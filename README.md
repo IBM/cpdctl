@@ -1,20 +1,34 @@
-# CPDCTL 
-CPDCTL is a command-line interface (CLI) you can use to manage the lifecycle of a model from IBM Cloud Pak for Data 3.0.1.
+# CPDCTL
+CPDCTL is a command-line interface (CLI) you can use to manage the lifecycle of a model from IBM Cloud Pak for Data 3.0.1 and 3.5.
 
 Using the CLI you can manage configuration settings and automate an end-to-end flow that includes training a model, saving it, creating a deployment space, and deploying the model.
 
 ## Installation
 
-Download the CLI from this repository:
-https://github.com/IBM/cpdctl/releases/
+CPDCTL is distributed as a single executable file inside a compressed archive. Installation consists in copying the file from the archive to a preferred directory. Some platforms may require additional steps.
 
-Downloading binaries from non-trusted sources requires extentions of `cpdctl` access rules with `execute` permission:
-```
-$ chmod u+x cpdctl
-```
+### Common for all platforms:
+Download the appropriate archive from [cpdctl repository](https://github.com/IBM/cpdctl/releases/).
 
-Additionally, on OSX platform, if the security policy is set to trust only `App Store and identyfied developers`, the additional approval in `Security & Privacy` settings panel is required.
+### Microsoft Windows x64
+* Archive name `cpdctl_windows_amd64.zip`
+* Use the Windows Explorer to extract `cpdctl.exe` from the archive.
+  
+### Linux x64
+* Archive name `cpdctl_linux_amd64.tar.gz`
+* Issue command `tar zxf cpdctl_linux_amd64.tar.gz` to extract `cpdctl` executable from the archive.
 
+### Linux Power 64 bit LE
+* Archive name `cpdctl_linux_ppc64le.tar.gz`
+* Issue command `tar zxf cpdctl_linux_ppc64le.tar.gz` to extract `cpdctl` executable from the archive.
+
+### macOS x64
+* Archive name `cpdctl_darwin_amd64.tar.gz`
+* Issue command `tar zxf cpdctl_darwin_mad64.tar.gz` to extract `cpdctl` executable from the archive.
+* Run `cpdctl`. Dismiss the warning message `"cpdctl" cannot be opened because the developer cannot be verified`.
+* Go to `Preferences` -> `Security & Privacy`, click on the lock icon and enter your password to allow modifications.
+* Find entry `"cpdctl" was blocked from use because it is not from an identified developer` and select `Allow Anyway`.
+* Run `cpdctl` again. Click `Open` on the warning message `macOS cannot verify the developer...`.
 
 ## Configuration
 `cpdctl` CLI tool provides the following groups of commands for managing configuration:
@@ -27,10 +41,10 @@ Usage:
   cpdctl config [command]
 
 Available Commands:
-  users       Manage users
-  clusters    Manage clusters
-  services    Manage services
-  contexts    Manage contexts
+  user       Manage users
+  cluster    Manage clusters
+  service    Manage services
+  context    Manage contexts
 ``` 
 
 #### Example
@@ -40,36 +54,36 @@ This example illustrates how to update a configuration by adding a user and assi
 First, add a CPD user with name "qa-user":
 
 ```
-$ cpdctl config users set qa-user --username=<username> --password=<password>
+$ cpdctl config user set qa-user --username=<username> --password=<password>
 ``` 
 
 Next, add the cluster named "qa-cluster":
 
 ```
-$ cpdctl config clusters set qa-cluster --user qa-user --url <cluster_url>
+$ cpdctl config cluster set qa-cluster --user qa-user --url <cluster_url>
 ```
 
 And finally, add the context named "qa-env":
 
 ```
-$ cpdctl config contexts set qa-context --cluster qa-cluster
+$ cpdctl config context set qa-context --cluster qa-cluster
 ```
 
 List spaces in qa-context:
 ```
-$ cpdctl spaces list --context qa-context
+$ cpdctl space list --context qa-context
 ```
 
 Set default contenxt:
 
 ```
-$ cpdctl config contexts use qa-context
+$ cpdctl config context use qa-context
 ```
 
 Print list of contexts:
 
 ```
-$ cpdctl config contexts list
+$ cpdctl config context list
 Name     Cluster      User   Current   
 qa-context   qa-cluster          *
 ```
@@ -77,47 +91,58 @@ qa-context   qa-cluster          *
 You can specify the service configuration like this:
 
 ```
-cpdctl config services set watson_machine_learning --cluster <cluster_name> --url <wml_url> --instance <wml_instance_id>
+cpdctl config service set watson_machine_learning --cluster <cluster_name> --url <wml_url> --instance <wml_instance_id>
 ```
 
 
 ### Configuration with file
 
-`cpdctl` uses the single configuration file that allows to store information about different contexts,
-where each context can refer to different environment 
+`cpdctl` uses a single configuration file that allows to store information about different contexts,
+where each context can refer to a different environment
 
-#### Configuration loading rules
+#### Configuration file location
 
-1. If the --cpdconfig flag is set, the config file is loaded. For example:
-   `cpdctl --cpdconfig=config.yaml config clusters list`
-   File references on the command line are relative to the current working directory. 
-2. The configuration file can be referenced by `CPDCONFIG` environment variable as well. For example:
-    `CPDCONFIG=/opt/cpdctl/config.yaml cpdctl config clusters list`
-3. Finally, if none of above is provided, the default configuration file location `$HOME/.cpdctl/config` is used. 
+The location of configuration file is determined in the following way (in the order of precedence):
+1. From the `--cpdconfig` flag value (if set). For example:
+   
+   `cpdctl --cpdconfig=config.yaml config cluster list`
+   
+   When the path is not absolute, it is regarded as relative to the current working directory. The command above will load configuration from file `config.yaml` located in the current working directory.
+2. From `CPDCONFIG` environment variable (if set). For example:
+   `CPDCONFIG=/opt/cpdctl/config.yaml cpdctl config cluster list`
+   The command above will load configuration from absolute path `/opt/cpdctl/config.yaml`
+3. Finally the default configuration file location `$HOME/.cpdctl/config` is used.
 
 
 ## Available commands
 ```
 $ cpdctl --help
+Cross-product common CLI for CPD and Public Cloud
 
 Usage:
   cpdctl [command]
 
 Available Commands:
-  config       Manage Configuration
-  assets       Manage Assets
-  projects     Manage Projects
-  spaces       Manage Spaces
-  wml          Manage Watson Machine Learning
-  wos          Manage Watson OpenScale
-  environments Manage environments
-  version      Display the tool version
-  help         Help about any command
+  config        Manage Configuration
+  asset         Manage Assets
+  project       Manage projects.
+  space         Manage Spaces
+  connection    Manage IBM Watson Data Platform Connections service.
+  environment   Manage Environments and Runtimes API.
+  notebook      Manage Notebooks.
+  job           Manage IBM Watson Data Platform Jobs and Scheduling Service.
+  ml            Manage Watson Machine Learning
+  orchestration Manage Orchestration Flows
+  find          Find a resource with CPD Path
+  version       Display the tool version
+  help          Help about any command
 
 Flags:
-      --context string     
-      --cpdconfig string   
-  -h, --help               help for cpdctl
+      --context string       
+      --cpdconfig string     
+  -h, --help                 help for cpdctl
+      --output-path string   
+      --raw-output
 
 Use "cpdctl [command] --help" for more information about a command.
 ```
@@ -125,11 +150,11 @@ Use "cpdctl [command] --help" for more information about a command.
 ## Supported outputs
 `cpdctl` supports three output formats: table (default), json, and yaml. Select the expected format with the `--output` flag. For example:
 ```
-$ cpdctl spaces list --output json
+$ cpdctl space list --output json
 ```
 The CLI also supports JMESPath query output customization. This example shows how to get an id of the first space programmatically:
 ```
-$ cpdctl spaces list --output json -q 'resources[0].metadata.id'
+$ cpdctl space list --output json -j 'resources[0].metadata.id'
 ```
 
 ## Usage
@@ -138,379 +163,479 @@ $ cpdctl spaces list --output json -q 'resources[0].metadata.id'
 
 - create a project
 ```
-$ cpdctl projects create --name '<project_name>' --description '<project_description>' --storage '{"type": "assetfiles", "guid": "00000000-0000-0000-0000-000000000000", "resource_crn": "crn"}' --public false --generator 'CPDCTL CLI' --enforce_members true
+$ cpdctl project create --name '<project_name>' --description '<project_description>' --storage '{"type": "assetfiles", "guid": "00000000-0000-0000-0000-000000000000", "resource_crn": "crn"}' --public false --generator 'CPDCTL CLI' --enforce-member true
 ```
 
 - list projects
 ```
-$ cpdctl projects list
+$ cpdctl project list
 ```
 
 - get project details
 ```
-$ cpdctl projects get --project_id <project_id>
+$ cpdctl project get --project-id <project_id>
 ```
 
 - update project
 ```
-$ cpdctl projects update --project_id <project_id> --description <project_description> --public true --tools jupyter_notebooks,dashboards
+$ cpdctl project update --project-id <project_id> --description <project_description> --public true --tools jupyter_notebooks,dashboards
 ```
 
 - create project member
 ```
-$ cpdctl projects members create --project_id <project_id> --members '[{"user_name":"<user_name>","id":"<user_id>","role":"editor","state":"ACTIVE","type":"user"},{"user_name":"<user_name>","id":"<user_id>","role":"viewer","state":"ACTIVE","type":"user"}]'
+$ cpdctl project member create --project-id <project_id> --members '[{"user_name":"<user_name>","id":"<user_id>","role":"editor","state":"ACTIVE","type":"user"},{"user_name":"<user_name>","id":"<user_id>","role":"viewer","state":"ACTIVE","type":"user"}]'
 ```
 
 - list members in project
 ```
-$ cpdctl projects members list --project_id <project_id>
+$ cpdctl project member list --project-id <project_id>
 ```
 
 - list members with `editor` or `viewer` role
 ```
-$ cpdctl projects members list --project_id <project_id> --roles "editor,viewer"
+$ cpdctl project member list --project-id <project_id> --roles "editor,viewer"
 ```
 
 - get member details
 ```
-$ cpdctl projects members get --project_id <project_id> --user_name "<user_name>"
+$ cpdctl project member get --project-id <project_id> --user-name "<user_name>"
 ```
 
 - update member
 ```
-$ cpdctl projects members update --project_id <project_id> --members '[{"user_name":"<user_name>","role":"admin"},{"user_name":"<user_name>","role":"editor"}]'
+$ cpdctl project member update --project-id <project_id> --members '[{"user_name":"<user_name>","role":"admin"},{"user_name":"<user_name>","role":"editor"}]'
 ```
 
 - delete member
 ```
-$ cpdctl projects members delete --project_id <project_id> --user_names "<user_name>"
+$ cpdctl project member delete --project-id <project_id> --user-names "<user_name>"
 ```
 
 - delete project
 ```
-$ cpdctl projects delete --guid '<project_id>'
+$ cpdctl project delete --project-id '<project_id>'
 ```
 
 ### Environments
 
+- create an environment
+```
+$ cpdctl environment create --project-id <project_id> --type "notebook" --name <env_name> --display-name <display_name> --hardware-specification '{"guid": "<hw_spec_id>"}' --software-specification '{"guid": "<sw_spec_id>"}' --tools-specification '{"supported_kernels": [{"language": "python", "version": "3.7", "display_name": "Python 3.7"}]}'
+```
+
 - list environments
 ```
-$ cpdctl environments list --project_id <project_id>
+$ cpdctl environment list --project-id <project_id>
+```
+
+- retrieve an environment
+```
+$ cpdctl environment get --environment-id <env_id> --project-id <project_id>
+```
+
+- update an environment (e.g update its description)
+```
+$ cpdctl environment update --environment-id <env_id> --project-id <project_id> --metadatadescription <new_description>
+```
+
+- delete an environment
+```
+$ cpdctl environment delete --environment-id <env_id> --project-id <project_id>
 ```
 
 - create a new hardware specification
 ```
-$ cpdctl environments hardware-specifications create --project_id <project_id> --name "<hw_spec_name>" --nodes '{"cpu": { "units": "1" }, "mem": { "size": "8Gi" } }'
+$ cpdctl environment hardware-specification create --project-id <project_id> --name <hw_spec_name> --nodes '{"cpu": {"units": "1"}, "mem": {"size": "8Gi"}}'
 ```
 
-- get details of hardware specification
+- list hardware specifications
 ```
-$ cpdctl environments hardware-specifications get --project_id <project_id> --hardware_specification_guid <hw_spec_id>
-```
-
-- create a new package extension
-```
-$ cpdctl environments package-extensions create --name "<package_extention_name>" --description "<description>" --type "conda_yml" --project_id <project_id>
+$ cpdctl environment hardware-specification list --project-id <project_id>
 ```
 
-- get details of package extension
+- retrieve a hardware specification
 ```
-$ cpdctl environments package-extensions get --project_id <project_id> --package_extension_guid <package_extension_id>
+$ cpdctl environment hardware-specification get --project-id <project_id> --hardware-specification-id <hw_spec_id>
+```
+
+- update a hardware specification (e.g. update its description)
+```
+$ cpdctl environment hardware-specification update --project-id <project_id> --hardware-specification-id <hw_spec_id> --metadatadescription <new_description>
+```
+
+- delete a hardware specification
+```
+$ cpdctl environment hardware-specification delete --project-id <project_id> --hardware-specification-id <hw_spec_id>
+```
+
+- create a software specification
+```
+$ cpdctl environment software-specification create --name <sw_spec_name> --software-configuration '{ "included_packages": [] }' --base-software-specification '{"guid" : "<base_sw_spec_id>"}' --project-id <project_id>
 ```
 
 - list software specifications
 ```
-$ cpdctl environments software-specifications list --project_id <project_id>
+$ cpdctl environment software-specification list --project-id <project_id>
 ```
 
-- create a new software specification
+- retrieve a software specification
 ```
-$ cpdctl environments software-specifications create --name "Test SW Spec" --software_configuration '{ "included_packages": [] }' --base_software_specification '{"guid" : "<base_software_spec_id>", "href" : "<base_software_spec_href>"}' --project_id <project_id>
-```
-
-- get details of software specification
-```
-$ cpdctl environments software-specifications get --software_specification_guid <software_spec_id> --project_id <project_id>
+$ cpdctl environment software-specification get --software-specification-id <sw_spec_id> --project-id <project_id>
 ```
 
-- add package extention to software specification
+- update a software specification (e.g. update its description)
 ```
-$ cpdctl environments software-specifications add-package-extensions --package_extension_guid <package_extention_id> --project_id <project_id> --software_specification_guid <software_spec_id>
-```
-
-- create a new envrionment 
-```
-$ cpdctl environments create --project_id <project_id> --type "notebook" --name "<env_name>" --display_name "<display_name>" --hardware_specification '{"guid": "<hw_specification_id>"}' --software_specification '{"guid": "sw_specification_id"}'
+$ cpdctl environment software-specification update --project-id <project_id> --software-specification-id <sw_spec_id> --metadatadescription <new_description>
 ```
 
-- get environment details
+- delete a software specification
 ```
-$ cpdctl environments get --environment_guid <environment_id> --project_id <project_id>
+$ cpdctl environment software-specification delete --project-id <project_id> --software-specification-id <sw_spec_id>
 ```
 
-- delete environment
+- create a package extension (see [demo](samples/Notebook-and-Environment-samples.ipynb) for more details)
 ```
-$ cpdctl environments delete --environment_guid <environment_id> --project_id <project_id>
+$ cpdctl environment package-extension create --name <pkg_ext_name> --type "conda_yml" --project-id <project_id>
+$ cpdctl asset file upload --path <remote_file_path> --file <local_file_path> --project-id <project_id>
+$ cpdctl environment package-extension upload-complete --package-extension-id <pkg_ext_id> --project-id <project_id>
+```
+
+- add a package extension to a software specification
+```
+$ cpdctl environment software-specification add-package-extensions --package-extension-id <pkg_ext_id> --project-id <project_id> --software-specification-id <sw_spec_id>
+```
+
+- list package extensions
+```
+$ cpdctl environment package-extension list --project-id <project_id>
+```
+
+- retrieve a package extension
+```
+$ cpdctl environment package-extension get --project-id <project_id> --package-extension-id <pkg_ext_id>
+```
+
+- update a package extension (e.g. update its description)
+```
+$ cpdctl environment package-extension update --package-extension-id <pkg_ext_id> --project-id <project_id>  --metadatadescription <new_description>
+```
+
+- remove a package extension from a software specification
+```
+$ cpdctl environment software-specification remove-package-extensions --software-specification-id <sw_spec_id> --package-extension-id <pkg_ext_id> --project-id <project_id>
+```
+
+- delete a package extension
+```
+$ cpdctl environment package-extension delete --package-extension-id <pkg_ext_id> --project-id <project_id>
+```
+
+### Notebooks
+
+- create a notebook (see [demo](samples/Notebook-and-Environment-samples.ipynb) for more details)
+```
+$ cpdctl asset file upload --path <remote_file_path> --file <local_file_path> --project-id <project_id>
+$ cpdctl notebook create --file-reference <remote_file_path> --name <file_name> --project <project_id> --runtime '{"environment": "<env_id>"}' --originates-from '{"type": "blank"}'
+```
+
+- update a notebook (e.g update its environment)
+```
+$ cpdctl notebook update --notebook-id <notebook_id> --environment <env_id>
+```
+
+- revert a notebook to a specific version 
+```
+$ cpdctl notebook revert --notebook-id <notebook_id> --source <version_id>
+```
+
+- delete a notebook
+```
+$ cpdctl notebook delete --notebook-id <notebook_id>
+```
+
+- create a notebook version
+```
+$ cpdctl notebook version create --notebook-id <notebook_id>
+```
+
+- list notebook versions
+```
+$ cpdctl notebook version list --notebook-id <notebook_id>
+```
+
+- retrieve a notebook version
+```
+$ cpdctl notebook version get --notebook-id <notebook_id> --version-id <version_id>
+```
+
+- update a notebook version (e.g update its kernel)
+```
+$ cpdctl notebook version update --notebook-id <notebook_id> --version-id <version_id> --kernel '{"display_name": "Python 3.7", "name": "python3", "language": "python3"}'
+```
+
+- delete a notebook version
+```
+$ cpdctl notebook version delete --notebook-id <notebook_id> --version-id <version_id>
 ```
 
 ### Assets
 
 - list data assets in project
 ```
-$ cpdctl assets search --query "*:*" --project_id <project_id> --type_name data_asset
+$ cpdctl asset search --query "*:*" --project-id <project_id> --type-name data_asset
 ```
 
 - list Watson Machine Learning models in project
 ```
-$ cpdctl assets search --project_id <project_id> --type_name wml_model --query "*:*"
+$ cpdctl asset search --project-id <project_id> --type-name wml_model --query "*:*"
 ```
 
 - list Watson Machine Learning pipelines in project
 ```
-$ cpdctl assets search --project_id <project_id> --type_name wml_pipeline --query "*:*"
+$ cpdctl asset search --project-id <project_id> --type-name wml_pipeline --query "*:*"
 ```
 
 - upload file as data asset to project
 ```
-$ cpdctl assets data-assets upload --project_id <project_id> --name <data_asset_name> --tag <asset_tag> --description <description> --file <file_path> --mime "text/csv" 
+$ cpdctl asset data-asset upload --project-id <project_id> --name <data_asset_name> --tag <asset_tag> --description <description> --file <file_path> --mime "text/csv" 
 ```
 
 - download the asset attachment
 ```
-$ cpdctl assets attachments download --project_id <project_id> --asset_id <asset_id> --attachment_id <attachment_id> --output_path <file_path>
+$ cpdctl asset attachment download --project-id <project_id> --asset-id <asset_id> --attachment-id <attachment_id> --output-path <file_path>
 ```
 
-- promote asset from project to space 
+- promote asset from project to space
 ```
-$ cpdctl assets promote --asset_id <asset_id> --project_id <project_id> --body '{"mode": 0, "space_id": "<space_id>"}'
+$ cpdctl asset promote --asset-id <asset_id> --project-id <project_id> --body '{"mode": 0, "space_id": "<space_id>"}'
 ```
 
 - export assets from project
 ```
-$ cpdctl assets exports start --assets '{"asset_ids":["<asset_id>"]}' --project_id <project_id> --output_file=./assets.zip
+$ cpdctl asset export start --assets '{"asset_ids":["<asset_id>"]}' --project-id <project_id> --output-file=./assets.zip
 ```
 
 - import assets to space
 ```
-$ cpdctl assets imports start --space_id <space_id> --import_file assets.zip
+$ cpdctl asset import start --space-id <space_id> --import-file assets.zip
 ```
 
 ### Spaces
 
 - spaces create
 ```
-$ cpdctl spaces create --name <space_name> --description <space_description>
+$ cpdctl space create --name <space_name> --description <space_description>
 ```
 
 - spaces list
 ```
-$ cpdctl spaces list
+$ cpdctl space list
 ```
 
 - get space details
 ```
-$ cpdctl spaces get --space_id <space_id>
+$ cpdctl space get --space-id <space_id>
 ```
 
 - update space
 ```
-$ cpdctl spaces update --space_id '<space_id>' --json_patch '[{"op": "add", "path": "/description", "value": "<updated_description>"}]'
+$ cpdctl space update --space-id '<space_id>' --json-patch '[{"op": "add", "path": "/description", "value": "<updated_description>"}]'
 ```
 
 - create space member
 ```
-$ cpdctl spaces members create --space_id <space_id> --members '[{"id": "<member_id>", "role": "viewer"}, {"id": "member_id", "role": "editor"}]'
+$ cpdctl space member create --space-id <space_id> --members '[{"id": "<member_id>", "role": "viewer"}, {"id": "member_id", "role": "editor"}]'
 ```
 
 - list space members
 ```
-$ cpdctl spaces members list --space_id <space_id>
+$ cpdctl space member list --space-id <space_id>
 ```
 
 - update space member
 ```
-$ cpdctl spaces members update --space_id <space_id> --member_id '<member_id>' --json_patch '[{"op": "replace", "path": "/role", "value": "editor"}]'
+$ cpdctl space member update --space-id <space_id> --member-id '<member_id>' --json-patch '[{"op": "replace", "path": "/role", "value": "editor"}]'
 ```
 
 - delete space member
 ```
-$ cpdctl spaces members delete --space_id <space_id> --member_id '<member_id>'
+$ cpdctl space member delete --space-id <space_id> --member-id '<member_id>'
 ```
 
 - delete space
 ```
-$ spaces delete --space_id <space_id>
+$ spaces delete --space-id <space_id>
 ```
 
 ### WML
 
 - models create
 ```
-$ cpdctl wml models create --name <model_name> --space_id <space_id> --software_spec '{"name": "scikit-learn_0.20-py3.6"}' --type 'scikit-learn_0.20'
+$ cpdctl ml model create --name <model_name> --space-id <space_id> --software-spec '{"name": "scikit-learn_0.20-py3.6"}' --type 'scikit-learn_0.20'
 ```
 
 - models list
 ```
-$ cpdctl wml models list --space_id <space_id>
+$ cpdctl ml model list --space-id <space_id>
 ```
 
 - models get
 ```
-$ cpdctl wml models get --model_id <model_id> --space_id <space_id>
+$ cpdctl ml model get --model-id <model_id> --space-id <space_id>
 ```
 
 - upload binary model content
 ```
-$ cpdctl wml models upload-content --model_id <model_id> --body scikit_model.tar.gz --content_format 'binary' --space_id <space_id>
+$ cpdctl ml model upload-content --model-id <model_id> --body scikit_model.tar.gz --content-format 'binary' --space-id <space_id>
 ```
 
 - download model content
 ```
-$ cpdctl wml models download-content --model_id <model_id> --output_file scikit_model_download.tar.gz --space_id <space_id>
+$ cpdctl ml model download-content --model-id <model_id> --output-file scikit_model_download.tar.gz --space-id <space_id>
 ```
 
 - create next version (revision) of the model
 ```
-$ cpdctl wml models create-revision --model_id <model_id> --space_id <space_id>
+$ cpdctl ml model create-revision --model-id <model_id> --space-id <space_id>
 ```
 
 - list model revisions
 ```
-$ cpdctl wml models list-revisions --model_id <model_id> --space_id <space_id>
+$ cpdctl ml model list-revisions --model-id <model_id> --space-id <space_id>
 ```
 
 - create function
 ```
-$ cpdctl wml functions create --name <function_name> --space_id <space_id> --software_spec '{"name": "ai-function_0.1-py3.6"}' --sample_scoring_input '{"input_data": [{"fields": ["name", "age", "occupation"], "values": [["john", 23, "student"], ["paul", 33, "engineer"]]}]}' --schemas '{"input": [{"id": "t1", "name": "Tasks", "fields": [{"name": "duration", "type": "number"}]}], "output": [{"id": "t1", "name": "Tasks", "fields": [{"name": "duration", "type": "number"}]}]}' --type 'python'
+$ cpdctl ml function create --name <function_name> --space-id <space_id> --software-spec '{"name": "ai-function_0.1-py3.6"}' --sample-scoring-input '{"input_data": [{"fields": ["name", "age", "occupation"], "values": [["john", 23, "student"], ["paul", 33, "engineer"]]}]}' --schemas '{"input": [{"id": "t1", "name": "Tasks", "fields": [{"name": "duration", "type": "number"}]}], "output": [{"id": "t1", "name": "Tasks", "fields": [{"name": "duration", "type": "number"}]}]}' --type 'python'
 ```
 
 - list functions
 ```
-$ cpdctl wml functions list --space_id <space_id>
+$ cpdctl ml function list --space-id <space_id>
 ```
 
 - get function details
 ```
-$ cpdctl wml functions get --function_id <function_id> --space_id <space_id>
+$ cpdctl ml function get --function-id <function_id> --space-id <space_id>
 ```
 
 - upload function code
 ```
-$ cpdctl wml functions upload-code --function_id <function_id> --space_id <space_id> --upload_code scoring_function.py.gz
+$ cpdctl ml function upload-code --function-id <function_id> --space-id <space_id> --upload-code scoring_function.py.gz
 ```
 
 - download function code
 ```
-$ cpdctl wml functions download-code --function_id <function_id> --space_id <space_id> --output_file scoring_function.py.gz --output json
+$ cpdctl ml function download-code --function-id <function_id> --space-id <space_id> --output-file scoring_function.py.gz --output json
 ```
 
 - delete function
 ```
-$ cpdctl wml functions delete --function_id <function_id> --space_id <space_id>
+$ cpdctl ml function delete --function-id <function_id> --space-id <space_id>
 ```
 
 - create deployment
 ```
-$ cpdctl wml deployments create --name <deployment_name> --online '{"description": "<deployment_description>"}' --asset '{"id": "<model_id>"}' --space_id <space_id>
+$ cpdctl ml deployment create --name <deployment_name> --online '{"description": "<deployment_description>"}' --asset '{"id": "<model_id>"}' --space-id <space_id>
 ```
 
 - deployments list
 ```
-$ cpdctl wml deployments list --space_id <space_id>
+$ cpdctl ml deployment list --space-id <space_id>
 ```
 
 - update the deployment with new asset revision
 ```
-$ cpdctl wml deployments update --deployment_id <deployment_id> --json_patch '[{"op": "replace", "path": "/asset", "value": {"id": "<model_id>", "rev": "<revision_number>"}}]' --space_id <space_id>
+$ cpdctl ml deployment update --deployment-id <deployment_id> --json-patch '[{"op": "replace", "path": "/asset", "value": {"id": "<model_id>", "rev": "<revision_number>"}}]' --space-id <space_id>
 ```
 
 - compute predictions
 ```
-$ cpdctl wml deployments compute-predictions --deployment_id <deployment_id> --input_data '[{"values": [[0.0, 0.0, 5.0]]}]' 
+$ cpdctl ml deployment compute-predictions --deployment-id <deployment_id> --input-data '[{"values": [[0.0, 0.0, 5.0]]}]' 
 ```
 
 - create batch deployment
 ```
-$ cpdctl wml deployments create --name <deployment_name> --batch '{}' --asset '{"id": "<model_id>"}' --hardware_spec '{"name": "S", "num_nodes": 1}' --space_id <space_id>
+$ cpdctl ml deployment create --name <deployment_name> --batch '{}' --asset '{"id": "<model_id>"}' --hardware-spec '{"name": "S", "num_nodes": 1}' --space-id <space_id>
 ```
 
 - create deployment job
 ```
-$ cpdctl wml deployment-jobs create --deployment '{"id": "<deployment_id>"}' --scoring '{"input_data": [{"id": "", "values": [["Positive", 0.84, 0, 10], ["Positive", 0.78, 0, 10], ["Negative", 0.27, 0, 10]]}]}' --space_id <space_id>
+$ cpdctl ml deployment-job create --deployment '{"id": "<deployment_id>"}' --scoring '{"input_data": [{"id": "", "values": [["Positive", 0.84, 0, 10], ["Positive", 0.78, 0, 10], ["Negative", 0.27, 0, 10]]}]}' --space-id <space_id>
 ```
 
 - list deployment jobs
 ```
-$ cpdctl wml deployment-jobs list --space_id <space_id>
+$ cpdctl ml deployment-job list --space-id <space_id>
 ```
 
 - get deployment job details
 ```
-$ cpdctl wml deployment-jobs get --job_id <deployment_job_id> --space_id <space_id>
+$ cpdctl ml deployment-job get --job-id <deployment_job_id> --space-id <space_id>
 ```
 
 - create deployment job definition
 ```
-$ cpdctl wml deployment-job-definitions create --name <job_definition_name> --deployment '{"id": "<deployment_id>"}' --scoring '{"input_data": [{"id": "", "values": [["Positive", 0.84, 0, 10], ["Positive", 0.78, 0, 10], ["Negative", 0.27, 0, 10]]}]}' --space_id <space_id>
+$ cpdctl ml deployment-job-definition create --name <job_definition_name> --deployment '{"id": "<deployment_id>"}' --scoring '{"input_data": [{"id": "", "values": [["Positive", 0.84, 0, 10], ["Positive", 0.78, 0, 10], ["Negative", 0.27, 0, 10]]}]}' --space-id <space_id>
 ```
 
 - list deployment job definitions
 ```
-$ cpdctl wml deployment-job-definitions list --space_id <space_id>
+$ cpdctl ml deployment-job-definition list --space-id <space_id>
 ```
 
 - delete deployment job definition
 ```
-$ cpdctl wml deployment-job-definitions delete --job_definition_id <job_definition_id> --space_id <space_id>
+$ cpdctl ml deployment-job-definition delete --job-definition-id <job_definition_id> --space-id <space_id>
 
 ```
-- delete deployment 
+- delete deployment
 ```
-$ cpdctl wml deployments delete --deployment_id <deployment_id> --space_id <space_id>
+$ cpdctl ml deployment delete --deployment-id <deployment_id> --space-id <space_id>
 ```
 
 - delete model
 ```
-$ cpdctl wml models delete --model_id <model_id> --space_id <space_id>
+$ cpdctl ml model delete --model-id <model_id> --space-id <space_id>
 ```
 
 ## AutoAI scenario
 
-This end-to-end scenario shows how to train an AutoAI experiment, save a pipeline as a model, and deploy the model. 
+This end-to-end scenario shows how to train an AutoAI experiment, save a pipeline as a model, and deploy the model.
 
 1. Create training pipeline
 ```
-$ cpdctl wml pipelines create --name <pipeline_name> --space_id <space_id> --document '{"doc_type": "pipeline", "pipelines": [{"id": "autoai", "nodes": [{"id": "automl", "op": "kube", "parameters": {"optimization": {"compute_pipeline_notebooks_flag": true, "daub_adaptive_subsampling_max_mem_usage": 9000000000, "daub_include_only_estimators": ["LogisticRegressionEstimator"], "holdout_param": 0.1, "label": "Risk", "learning_type": "classification", "max_num_daub_ensembles": 1, "run_cognito_flag": true, "scorer_for_ranking": "precision"}, "output_logs": true, "stage_flag": true}, "runtime_ref": "autoai", "type": "execution_node"}], "runtime_ref": "hybrid"}], "primary_pipeline": "autoai", "runtimes": [{"app_data": {"wml_data": {"hardware_spec": {"name": "M"}}}, "id": "autoai", "name": "auto_ai.kb"}], "version": "2.0"}' --description '<pipeline_description>'
+$ cpdctl ml pipeline create --name <pipeline_name> --space-id <space_id> --document '{"doc_type": "pipeline", "pipelines": [{"id": "autoai", "nodes": [{"id": "automl", "op": "kube", "parameters": {"optimization": {"compute_pipeline_notebooks_flag": true, "daub_adaptive_subsampling_max_mem_usage": 9000000000, "daub_include_only_estimators": ["LogisticRegressionEstimator"], "holdout_param": 0.1, "label": "Risk", "learning_type": "classification", "max_num_daub_ensembles": 1, "run_cognito_flag": true, "scorer_for_ranking": "precision"}, "output_logs": true, "stage_flag": true}, "runtime_ref": "autoai", "type": "execution_node"}], "runtime_ref": "hybrid"}], "primary_pipeline": "autoai", "runtimes": [{"app_data": {"wml_data": {"hardware_spec": {"name": "M"}}}, "id": "autoai", "name": "auto_ai.kb"}], "version": "2.0"}' --description '<pipeline_description>'
 ```
 
 2. Upload training data asset
 ```
-$ cpdctl assets data-assets upload --space_id <space_id> --file <training_dataset>.csv --mime 'text/csv' --origin_country us --tag '<asset_tag>'
+$ cpdctl asset data-assets upload --space-id <space_id> --file <training_dataset>.csv --mime 'text/csv' --origin-country us --tag '<asset_tag>'
 ```
 
 3. Run AutoAI training
 ```
-$ cpdctl wml trainings create --space_id <space_id> --name '<training_name>' --pipeline '{"id": "<training_pipeline_id>"}' --training_data_references '[{"connection": {}, "id": "<asset_id>", "location": {"href": "/v2/assets/<asset_id>?space_id=<space_id>"}, "type": "data_asset"}]' --results_reference '{"connection": {}, "location": {"path": "/spaces/<space_id>/assets/auto_ml"}, "type": "fs"}' --tags '<training_tag>'
+$ cpdctl ml training create --space-id <space_id> --name '<training_name>' --pipeline '{"id": "<training_pipeline_id>"}' --training-data-references '[{"connection": {}, "id": "<asset_id>", "location": {"href": "/v2/assets/<asset_id>?space_id=<space_id>"}, "type": "data_asset"}]' --results-reference '{"connection": {}, "location": {"path": "/spaces/<space_id>/assets/auto_ml"}, "type": "fs"}' --tags '<training_tag>'
 ```
 
 4. Get training details
 ```
-$ cpdctl wml trainings get --space_id <space_id> --training_id <training_id>
+$ cpdctl ml training get --space-id <space_id> --training-id <training_id>
 ```
 
 5. Download model trained by AutoAI
 ```
-$ cpdctl assets files get --space_id <space_id> --path '<pipeline_path>/model.pickle' --output_file '<output_path>/model.pickle'
+$ cpdctl asset file get --space-id <space_id> --path '<pipeline_path>/model.pickle' --output-file '<output_path>/model.pickle'
 ```
 
 6. Download trained model pipeline
 ```
-$ cpdctl assets files get --space_id <space_id> --path '<pipeline_path>/pipeline-model.json' --output_file '<output_path>/pipeline-model.json'
+$ cpdctl asset file get --space-id <space_id> --path '<pipeline_path>/pipeline-model.json' --output-file '<output_path>/pipeline-model.json'
 ```
 
 7. Create a model
 ```
-$ cpdctl wml models create --name <model_name> --space_id <space_id> --type wml-hybrid_0.1 --label_column <label_column> --metrics '[<training_metrics>]' --software_spec '{"name": "hybrid_0.1"}' --tags '<model_tag>'
+$ cpdctl ml model create --name <model_name> --space-id <space_id> --type wml-hybrid_0.1 --label-column <label_column> --metrics '[<training_metrics>]' --software-spec '{"name": "hybrid_0.1"}' --tags '<model_tag>'
 ```
 
 8. Prepare downloaded AutoAI pipeline and model
@@ -521,12 +646,10 @@ tar -czvf artifact_auto_ai_model.tar.gz <model_name>.tar.gz pipeline-model.json
 
 9. Upload model content
 ```
-$ cpdctl wml models upload-content --space_id <space_id> --model_id <model_id> --content_type 'application/gzip' --content_format 'native' --body artifact_auto_ai_model.tar.gz
+$ cpdctl ml model upload-content --space-id <space_id> --model-id <model_id> --content-type 'application/gzip' --content-format 'native' --body artifact_auto_ai_model.tar.gz
 ```
 
 10. Create a model deployment
 ```
-$ cpdctl wml deployments create --name <deployment_name> --online '{"description": "<deployment_description>"}' --asset '{"id": "<model_id>"}' --space_id <space_id>
+$ cpdctl ml deployment create --name <deployment_name> --online '{"description": "<deployment_description>"}' --asset '{"id": "<model_id>"}' --space-id <space_id>
 ```
-
-
