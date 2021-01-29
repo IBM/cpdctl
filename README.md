@@ -28,10 +28,10 @@ Download the appropriate archive from [cpdctl repository](https://github.com/IBM
 * Run `cpdctl`. Dismiss the warning message `"cpdctl" cannot be opened because the developer cannot be verified`.
 * Go to `Preferences` -> `Security & Privacy`, click on the lock icon and enter your password to allow modifications.
 * Find entry `"cpdctl" was blocked from use because it is not from an identified developer` and select `Allow Anyway`.
-* Run `cpdctl` again. Click `Open` on the warning message `macOS cannot verify the developer...`.
+* Run `cpdctl` again. Select `Open` on the warning message `macOS cannot verify the developer...`.
 
 ## Configuration
-`cpdctl` CLI tool provides the following groups of commands for managing configuration:
+`cpdctl` uses a configuration file to store IBM Cloud Pak for Data connection information: URLs and credentials. The following groups of commands allow for managing configuration:
 
 ```
 $ cpdctl config
@@ -42,76 +42,68 @@ Usage:
 
 Available Commands:
   user       Manage users
-  cluster    Manage clusters
+  profile    Manage profiles
   service    Manage services
   context    Manage contexts
 ``` 
 
 #### Example
 
-This example illustrates how to update a configuration by adding a user and assigning a context.
+This example illustrates how to create a configuration by defining a user and a profile, then associating the user with the profile using a context.
 
-First, add a CPD user with name "qa-user":
+First, set the credentials used to connect to Cloud Pak for Data instance:
 
 ```
 $ cpdctl config user set qa-user --username=<username> --password=<password>
 ``` 
 
-Next, add the cluster named "qa-cluster":
+Next, set the URL of IBM Cloud Pak for Data instance:
 
 ```
-$ cpdctl config cluster set qa-cluster --user qa-user --url <cluster_url>
+$ cpdctl config profile set qa-profile --url <profile_url>
 ```
 
-And finally, add the context named "qa-env":
+Then define the context:
 
 ```
-$ cpdctl config context set qa-context --cluster qa-cluster
-```
-
-List spaces in qa-context:
-```
-$ cpdctl space list --context qa-context
-```
-
-Set default contenxt:
-
-```
-$ cpdctl config context use qa-context
+$ cpdctl config context set qa-context --user qa-user --profile qa-profile
 ```
 
 Print list of contexts:
 
 ```
 $ cpdctl config context list
-Name     Cluster      User   Current   
-qa-context   qa-cluster          *
+Name         Profile      User     Current   
+qa-context   qa-profile   qa-user  
 ```
 
-You can specify the service configuration like this:
+Set default context:
 
 ```
-cpdctl config service set watson_machine_learning --cluster <cluster_name> --url <wml_url> --instance <wml_instance_id>
+$ cpdctl config context use qa-context
 ```
 
+Every subsequent command will use the default context unless a `--context` flag is used to select another context for the command:
+```
+$ cpdctl space list --context other-context
+```
 
 ### Configuration with file
 
-`cpdctl` uses a single configuration file that allows to store information about different contexts,
-where each context can refer to a different environment
+`cpdctl` uses a single configuration file that allows to store information about one or more contexts, where each context can refer to a different environment.
 
 #### Configuration file location
 
 The location of configuration file is determined in the following way (in the order of precedence):
 1. From the `--cpdconfig` flag value (if set). For example:
    
-   `cpdctl --cpdconfig=config.yaml config cluster list`
+   `cpdctl --cpdconfig=config.yaml config profile list`
    
    When the path is not absolute, it is regarded as relative to the current working directory. The command above will load configuration from file `config.yaml` located in the current working directory.
 2. From `CPDCONFIG` environment variable (if set). For example:
-   `CPDCONFIG=/opt/cpdctl/config.yaml cpdctl config cluster list`
+   `CPDCONFIG=/opt/cpdctl/config.yaml cpdctl config profile list`
    The command above will load configuration from absolute path `/opt/cpdctl/config.yaml`
-3. Finally the default configuration file location `$HOME/.cpdctl/config` is used.
+3. Finally, the default configuration file location `$HOME/.cpdctl/config` is used.
 
 
 ## Available commands
@@ -235,7 +227,7 @@ $ cpdctl environment get --environment-id <env_id> --project-id <project_id>
 
 - update an environment (e.g update its description)
 ```
-$ cpdctl environment update --environment-id <env_id> --project-id <project_id> --metadatadescription <new_description>
+$ cpdctl environment update --environment-id <env_id> --project-id <project_id> --description <new_description>
 ```
 
 - delete an environment
@@ -260,7 +252,7 @@ $ cpdctl environment hardware-specification get --project-id <project_id> --hard
 
 - update a hardware specification (e.g. update its description)
 ```
-$ cpdctl environment hardware-specification update --project-id <project_id> --hardware-specification-id <hw_spec_id> --metadatadescription <new_description>
+$ cpdctl environment hardware-specification update --project-id <project_id> --hardware-specification-id <hw_spec_id> --description <new_description>
 ```
 
 - delete a hardware specification
@@ -285,7 +277,7 @@ $ cpdctl environment software-specification get --software-specification-id <sw_
 
 - update a software specification (e.g. update its description)
 ```
-$ cpdctl environment software-specification update --project-id <project_id> --software-specification-id <sw_spec_id> --metadatadescription <new_description>
+$ cpdctl environment software-specification update --project-id <project_id> --software-specification-id <sw_spec_id> --description <new_description>
 ```
 
 - delete a software specification
@@ -317,7 +309,7 @@ $ cpdctl environment package-extension get --project-id <project_id> --package-e
 
 - update a package extension (e.g. update its description)
 ```
-$ cpdctl environment package-extension update --package-extension-id <pkg_ext_id> --project-id <project_id>  --metadatadescription <new_description>
+$ cpdctl environment package-extension update --package-extension-id <pkg_ext_id> --project-id <project_id>  --description <new_description>
 ```
 
 - remove a package extension from a software specification
@@ -605,7 +597,50 @@ This end-to-end scenario shows how to train an AutoAI experiment, save a pipelin
 
 1. Create training pipeline
 ```
-$ cpdctl ml pipeline create --name <pipeline_name> --space-id <space_id> --document '{"doc_type": "pipeline", "pipelines": [{"id": "autoai", "nodes": [{"id": "automl", "op": "kube", "parameters": {"optimization": {"compute_pipeline_notebooks_flag": true, "daub_adaptive_subsampling_max_mem_usage": 9000000000, "daub_include_only_estimators": ["LogisticRegressionEstimator"], "holdout_param": 0.1, "label": "Risk", "learning_type": "classification", "max_num_daub_ensembles": 1, "run_cognito_flag": true, "scorer_for_ranking": "precision"}, "output_logs": true, "stage_flag": true}, "runtime_ref": "autoai", "type": "execution_node"}], "runtime_ref": "hybrid"}], "primary_pipeline": "autoai", "runtimes": [{"app_data": {"wml_data": {"hardware_spec": {"name": "M"}}}, "id": "autoai", "name": "auto_ai.kb"}], "version": "2.0"}' --description '<pipeline_description>'
+$ pipeline='
+{
+	"doc_type": "pipeline",
+	"pipelines": [{
+		"id": "autoai",
+		"nodes": [{
+			"id": "automl",
+			"op": "kube",
+			"parameters": {
+				"optimization": {
+					"compute_pipeline_notebooks_flag": true,
+					"daub_adaptive_subsampling_max_mem_usage": 9000000000,
+					"daub_include_only_estimators": ["LogisticRegressionEstimator"],
+					"holdout_param": 0.1,
+					"label": "Risk",
+					"learning_type": "classification",
+					"max_num_daub_ensembles": 1,
+					"run_cognito_flag": true,
+					"scorer_for_ranking": "precision"
+				},
+				"output_logs": true,
+				"stage_flag": true
+			},
+			"runtime_ref": "autoai",
+			"type": "execution_node"
+		}],
+		"runtime_ref": "hybrid"
+	}],
+	"primary_pipeline": "autoai",
+	"runtimes": [{
+		"app_data": {
+			"wml_data": {
+				"hardware_spec": {
+					"name": "M"
+				}
+			}
+		},
+		"id": "autoai",
+		"name": "auto_ai.kb"
+	}],
+	"version": "2.0"
+}
+'
+$ cpdctl ml pipeline create --name <pipeline_name> --space-id <space_id> --document "$pipeline" --description '<pipeline_description>'
 ```
 
 2. Upload training data asset
