@@ -4,7 +4,7 @@ This document provides a list of all available commands for CLI tool `cpdctl`.
 A description of parameters is available for every command.
 In case of complex parameters an example is provided which shows the schema of the model in JSON notation.
 
-For general description of `cpdctl` purpose and usage refer to the [main README file](/).
+For general description of `cpdctl` purpose and usage refer to the [main README file](/README.md).
 
 ---
 
