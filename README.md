@@ -139,6 +139,7 @@ Flags:
 
 Use "cpdctl [command] --help" for more information about a command.
 ```
+Descriptions for all available commands along with examples showing the structure of complex parameters are provided in a [separate document](/README_command_reference.md).
 
 ## Supported outputs
 `cpdctl` supports three output formats: table (default), json, and yaml. Select the expected format with the `--output` flag. For example:
