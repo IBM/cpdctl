@@ -22,6 +22,11 @@ Download the appropriate archive from [cpdctl repository](https://github.com/IBM
 * Archive name `cpdctl_linux_ppc64le.tar.gz`
 * Issue command `tar zxf cpdctl_linux_ppc64le.tar.gz` to extract `cpdctl` executable from the archive.
 
+> ![New in 1.0.46](https://img.shields.io/badge/New%20in-1.0.46-blue)
+> ### Linux on IBM Z
+> * Archive name `cpdctl_linux_s390x.tar.gz`
+> * Issue command `tar zxf cpdctl_linux_s390x.tar.gz` to extract `cpdctl` executable from the archive.
+
 ### macOS x64
 * Archive name `cpdctl_darwin_amd64.tar.gz`
 * Issue command `tar zxf cpdctl_darwin_mad64.tar.gz` to extract `cpdctl` executable from the archive.
@@ -68,6 +73,13 @@ Then define the context:
 ```
 $ cpdctl config context set qa-context --user qa-user --profile qa-profile
 ```
+
+> ![New in 1.0.46](https://img.shields.io/badge/New%20in-1.0.46-blue)
+> 
+> The three steps above (setting user, profile and context) can be combined into one command:
+> ```
+> $ cpdctl config context set qa-context --username=<username> --password=<password> --url <profile_url>
+> ```
 
 Print list of contexts:
 
@@ -146,6 +158,10 @@ Descriptions for all available commands along with examples showing the structur
 ```
 $ cpdctl space list --output json
 ```
+> ![New in 1.0.46](https://img.shields.io/badge/New%20in-1.0.46-blue)
+> 
+> Table output may truncate overly long values to improve the readability of the table structure. Output formats `json` and `yaml` always present full information.
+
 The CLI also supports JMESPath query output customization. This example shows how to get an identifier of the first space programmatically:
 ```
 $ cpdctl space list --output json -j 'resources[0].metadata.id'
