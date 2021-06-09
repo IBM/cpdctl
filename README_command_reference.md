@@ -45,27 +45,26 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [asset import cancel](#asset_import_cancel)
 #### &#8226; [asset import get](#asset_import_get)
 #### &#8226; [asset import wait](#asset_import_wait)
-#### &#8226; [project create](#project_create)
-#### &#8226; [project delete](#project_delete)
-#### &#8226; [project list](#project_list)
-#### &#8226; [project get](#project_get)
-#### &#8226; [project update](#project_update)
-#### &#8226; [project member delete](#project_member_delete)
-#### &#8226; [project member list](#project_member_list)
-#### &#8226; [project member update](#project_member_update)
-#### &#8226; [project member create](#project_member_create)
-#### &#8226; [project member get](#project_member_get)
-#### &#8226; [space list](#space_list)
-#### &#8226; [space create](#space_create)
-#### &#8226; [space delete](#space_delete)
-#### &#8226; [space get](#space_get)
-#### &#8226; [space update](#space_update)
-#### &#8226; [space member list](#space_member_list)
-#### &#8226; [space member create](#space_member_create)
-#### &#8226; [space member delete](#space_member_delete)
-#### &#8226; [space member get](#space_member_get)
-#### &#8226; [space member update](#space_member_update)
-#### &#8226; [space wait](#space_wait)
+#### &#8226; [config user list](#config_user_list)
+#### &#8226; [config user get](#config_user_get)
+#### &#8226; [config user set](#config_user_set)
+#### &#8226; [config user unset](#config_user_unset)
+#### &#8226; [config profile list](#config_profile_list)
+#### &#8226; [config profile get](#config_profile_get)
+#### &#8226; [config profile set](#config_profile_set)
+#### &#8226; [config profile unset](#config_profile_unset)
+#### &#8226; [config service list](#config_service_list)
+#### &#8226; [config service export](#config_service_export)
+#### &#8226; [config service get](#config_service_get)
+#### &#8226; [config service set](#config_service_set)
+#### &#8226; [config service unset](#config_service_unset)
+#### &#8226; [config context list](#config_context_list)
+#### &#8226; [config context export](#config_context_export)
+#### &#8226; [config context get](#config_context_get)
+#### &#8226; [config context set](#config_context_set)
+#### &#8226; [config context unset](#config_context_unset)
+#### &#8226; [config context current](#config_context_current)
+#### &#8226; [config context use](#config_context_use)
 #### &#8226; [connection list](#connection_list)
 #### &#8226; [connection create](#connection_create)
 #### &#8226; [connection discover-adhoc](#connection_discover-adhoc)
@@ -101,19 +100,13 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [environment software-specification update](#environment_software-specification_update)
 #### &#8226; [environment software-specification remove-package-extensions](#environment_software-specification_remove-package-extensions)
 #### &#8226; [environment software-specification add-package-extensions](#environment_software-specification_add-package-extensions)
-#### &#8226; [notebook create](#notebook_create)
-#### &#8226; [notebook delete](#notebook_delete)
-#### &#8226; [notebook update](#notebook_update)
-#### &#8226; [notebook revert](#notebook_revert)
-#### &#8226; [notebook version list](#notebook_version_list)
-#### &#8226; [notebook version create](#notebook_version_create)
-#### &#8226; [notebook version delete](#notebook_version_delete)
-#### &#8226; [notebook version get](#notebook_version_get)
-#### &#8226; [notebook version update](#notebook_version_update)
+#### &#8226; [find ](#find_)
+#### &#8226; [help ](#help_)
 #### &#8226; [job list](#job_list)
 #### &#8226; [job create](#job_create)
 #### &#8226; [job delete](#job_delete)
 #### &#8226; [job get](#job_get)
+#### &#8226; [job update](#job_update)
 #### &#8226; [job run list](#job_run_list)
 #### &#8226; [job run create](#job_run_create)
 #### &#8226; [job run delete](#job_run_delete)
@@ -197,27 +190,37 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [ml training-definition delete](#ml_training-definition_delete)
 #### &#8226; [ml training-definition create-revision](#ml_training-definition_create-revision)
 #### &#8226; [ml training-definition list-revisions](#ml_training-definition_list-revisions)
-#### &#8226; [find ](#find_)
-#### &#8226; [config user list](#config_user_list)
-#### &#8226; [config user get](#config_user_get)
-#### &#8226; [config user set](#config_user_set)
-#### &#8226; [config user unset](#config_user_unset)
-#### &#8226; [config profile list](#config_profile_list)
-#### &#8226; [config profile get](#config_profile_get)
-#### &#8226; [config profile set](#config_profile_set)
-#### &#8226; [config profile unset](#config_profile_unset)
-#### &#8226; [config service list](#config_service_list)
-#### &#8226; [config service export](#config_service_export)
-#### &#8226; [config service get](#config_service_get)
-#### &#8226; [config service set](#config_service_set)
-#### &#8226; [config service unset](#config_service_unset)
-#### &#8226; [config context list](#config_context_list)
-#### &#8226; [config context export](#config_context_export)
-#### &#8226; [config context get](#config_context_get)
-#### &#8226; [config context set](#config_context_set)
-#### &#8226; [config context unset](#config_context_unset)
-#### &#8226; [config context current](#config_context_current)
-#### &#8226; [config context use](#config_context_use)
+#### &#8226; [notebook create](#notebook_create)
+#### &#8226; [notebook delete](#notebook_delete)
+#### &#8226; [notebook update](#notebook_update)
+#### &#8226; [notebook revert](#notebook_revert)
+#### &#8226; [notebook promote](#notebook_promote)
+#### &#8226; [notebook version list](#notebook_version_list)
+#### &#8226; [notebook version create](#notebook_version_create)
+#### &#8226; [notebook version delete](#notebook_version_delete)
+#### &#8226; [notebook version get](#notebook_version_get)
+#### &#8226; [notebook version update](#notebook_version_update)
+#### &#8226; [project create](#project_create)
+#### &#8226; [project delete](#project_delete)
+#### &#8226; [project list](#project_list)
+#### &#8226; [project get](#project_get)
+#### &#8226; [project update](#project_update)
+#### &#8226; [project member delete](#project_member_delete)
+#### &#8226; [project member list](#project_member_list)
+#### &#8226; [project member update](#project_member_update)
+#### &#8226; [project member create](#project_member_create)
+#### &#8226; [project member get](#project_member_get)
+#### &#8226; [space list](#space_list)
+#### &#8226; [space create](#space_create)
+#### &#8226; [space delete](#space_delete)
+#### &#8226; [space get](#space_get)
+#### &#8226; [space update](#space_update)
+#### &#8226; [space member list](#space_member_list)
+#### &#8226; [space member create](#space_member_create)
+#### &#8226; [space member delete](#space_member_delete)
+#### &#8226; [space member get](#space_member_get)
+#### &#8226; [space member update](#space_member_update)
+#### &#8226; [space wait](#space_wait)
 #### &#8226; [version ](#version_)
 # Command descriptions
 <a id='asset_search'></a>
@@ -1278,517 +1281,180 @@ Wait until the asset import becomes completed, failed, or canceled.
 <dt>--space-id space-id   </dt><dd>The ID of the space to use. Either space-id, `project-id`, `catalog-id` query parameter has to be given and is mandatory.</dd>
 </dl>
 
-<a id='project_create'></a>
-## &#8226; project create
-
-Creates a new project with the provided parameters, including all the storage and credentials in a single transaction. This endpoint will create a new COS bucket using generated unique name, all credentials, asset container and call all the required atomic APIs to fully configure a new project. Attempts to use the duplicate project names will result in an error. <b>NOTE</b>:  when creating projects programmatically, always use this endpoint, not /v2/projects. <br/><br/><br/> This endpoint can also be used to create a project from an exported Watson Studio .zip file. In this case, a new transaction is initiated to create assets under the project. A Transaction ID along with a URL is returned as a response of this API. As this transaction can take time, you can view the current status of the transaction using the returned URL.<br><b>NOTE</b>: This feature is only available in the private cloud.
+<a id='config_user_list'></a>
+## &#8226; config user list
+List users
 
 ```sh
-cpdctl project create --generator GENERATOR --name NAME --storage STORAGE [--compute COMPUTE] [--description DESCRIPTION] [--enforce-members ENFORCE-MEMBERS] [--public PUBLIC] [--tags TAGS] [--tools TOOLS] 
+  cpdctl config user list
 ```
 
-
-#### Command options
-
-<dl>
-<dt>-g, --generator (string)</dt>
-<dd>A tag to indicate where this project was generated. This is only intended for use in metrics. It does not need to be unique and all consumers of this API should use a consistent string for their 'generator' field. The value is stored in the project metadata for future consumption in metrics. Required.</dd>
-<dt>-n, --name (string)</dt>
-<dd>The name of the new project. The name must be a non-empty String. This does not need to be unique. Required.</dd>
-<dt>-s, --storage (<a href="#cli-transactional-project-storage-object-example-schema-project">TransactionalProjectStorageObject</a>)</dt>
-<dd>Object storage properties to be associated with the project. Required.</dd>
-<dt>-c, --compute (<a href="#cli-transactional-project-compute-object-cloud-example-schema-project">TransactionalProjectComputeObjectCloud[]</a>)</dt>
-<dd>List of computes to be associated with the project.</dd>
-<dt>-d, --description (string)</dt>
-<dd>A description for the new project.</dd>
-<dt>-e, --enforce-members (bool)</dt>
-<dd>Set to true of project members should be scoped to the account and/or SAML of the creator.</dd>
-<dd>The default value is `false`.</dd>
-<dt>-p, --public (bool)</dt>
-<dd>A value of `true` makes the project public.</dd>
-<dd>The default value is `false`.</dd>
-<dt>-t, --tags ([]string)</dt>
-<dd>List of user defined tags that are attached to the project.</dd>
-<dt>-T, --tools ([]string)</dt>
-<dd>List of tools to be associated with the project.</dd>
-</dl>
-
-<a id='project_delete'></a>
-## &#8226; project delete
-
-Deletes a project with a given ID, deletes COS bucket and all the files in it, all credentials and asset container in the order reverse from the project creation transaction. When deleting projects programmatically, always use this endpoint, not /v2/projects/{project_id}.
-
+<a id='config_user_get'></a>
+## &#8226; config user get
 ```sh
-cpdctl project delete --project-id PROJECT-ID 
+  cpdctl config user get name
 ```
 
-
-#### Command options
-
-<dl>
-<dt>-i, --project-id (string)</dt>
-<dd>The ID of the project to be deleted. Required.</dd>
-</dl>
-
-<a id='project_list'></a>
-## &#8226; project list
-
-Returns a list of projects that are meeting the provided query parameters. By default, the list returns projects that the authenticated user is a member of.
-
+<a id='config_user_set'></a>
+## &#8226; config user set
 ```sh
-cpdctl project list [--member MEMBER] [--roles ROLES] [--tags TAGS] [--guids GUIDS] [--include INCLUDE] [--limit LIMIT] [--skip SKIP] 
-```
-
-
-#### Command options
-
-<dl>
-<dt>-m, --member (string)</dt>
-<dd>A project member to use to filter the query results by membership.</dd>
-<dt>-r, --roles ([]string)</dt>
-<dd>A list of comma-separated project roles to use to filter the query results. Must be used in conjunction with the 'member' query parameter.</dd>
-<dt>-t, --tags ([]string)</dt>
-<dd>A list of comma-separated, user-defined tags to use to filter the query results.</dd>
-<dt>-g, --guids ([]string)</dt>
-<dd>A list of comma-separated project GUIDs to use to filter the query results.</dd>
-<dt>-I, --include ([]string)</dt>
-<dd>A list of comma-separated project metadata sections to include in the query results.</dd>
-<dt>-l, --limit (int64)</dt>
-<dd>The limit to use to restrict the number of projects returned in the query results. Used for pagination in conjunction with the 'skip' query parameter.</dd>
-<dd>The maximum value is `100`. The minimum value is `0`.</dd>
-<dt>-s, --skip (int64)</dt>
-<dd>The offset to use to define the starting index of projects to return in the query results. Used for pagination in conjunction with the 'limit' query parameter.</dd>
-<dd>The minimum value is `0`.</dd>
-</dl>
-
-<a id='project_get'></a>
-## &#8226; project get
-
-Returns the metadata for a target project specified by ID.
-
-```sh
-cpdctl project get --project-id PROJECT-ID [--include INCLUDE] 
-```
-
-
-#### Command options
-
-<dl>
-<dt>-i, --project-id (string)</dt>
-<dd>The project ID. Required.</dd>
-<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
-<dt>-I, --include ([]string)</dt>
-<dd>A list of comma-separated project metadata sections to include in the query results.</dd>
-</dl>
-
-<a id='project_update'></a>
-## &#8226; project update
-
-Partially updates the project with only a subset of properties.
-
-```sh
-cpdctl project update --project-id PROJECT-ID [--catalog CATALOG] [--compute COMPUTE] [--description DESCRIPTION] [--name NAME] [--public PUBLIC] [--tags TAGS] [--tools TOOLS] 
-```
-
-
-#### Command options
-
-<dl>
-<dt>-i, --project-id (string)</dt>
-<dd>The project ID. Required.</dd>
-<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
-<dt>-C, --catalog (<a href="#cli-project-catalog-example-schema-project">ProjectCatalog</a>)</dt>
-<dd>A catalog associated with the project.</dd>
-<dt>-c, --compute (<a href="#cli-project-compute-example-schema-project">ProjectCompute[]</a>)</dt>
-<dd>A list of computes associated with the project.</dd>
-<dt>-d, --description (string)</dt>
-<dd>A description for the new project.</dd>
-<dt>-n, --name (string)</dt>
-<dd>The name of the project.</dd>
-<dd>The maximum length is `100 ` characters. The minimum length is `1` character.</dd>
-<dt>-p, --public (bool)</dt>
-<dd>A value of 'true' makes the project public.</dd>
-<dd>The default value is `false`.</dd>
-<dt>-t, --tags ([]string)</dt>
-<dd>The user-defined tags associated with a project.</dd>
-<dt>-T, --tools ([]string)</dt>
-<dd>The tools associated with the project.</dd>
-</dl>
-
-<a id='project_member_delete'></a>
-## &#8226; project member delete
-
-Deletes members from the project that match the provided usernames.
-
-```sh
-cpdctl project member delete --project-id PROJECT-ID --user-names USER-NAMES 
-```
-
-
-#### Command options
-
-<dl>
-<dt>-i, --project-id (string)</dt>
-<dd>The project ID. Required.</dd>
-<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
-<dt>-u, --user-names ([]string)</dt>
-<dd>A list of comma-separated usernames corresponding to project members to remove from the project. Required.</dd>
-</dl>
-
-<a id='project_member_list'></a>
-## &#8226; project member list
-
-Returns the list of project members.
-
-```sh
-cpdctl project member list --project-id PROJECT-ID [--roles ROLES] [--user-names USER-NAMES] 
-```
-
-
-#### Command options
-
-<dl>
-<dt>-i, --project-id (string)</dt>
-<dd>The project ID. Required.</dd>
-<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
-<dt>-r, --roles ([]string)</dt>
-<dd>A list of comma-separated project roles to use to filter the query results.</dd>
-<dt>-u, --user-names ([]string)</dt>
-<dd>A list of comma-separated usernames corresponding to project members that are used to filter the query results.</dd>
-</dl>
-
-<a id='project_member_update'></a>
-## &#8226; project member update
-
-Change project member roles in a batch.
-
-```sh
-cpdctl project member update --project-id PROJECT-ID --members MEMBERS 
-```
-
-
-#### Command options
-
-<dl>
-<dt>-i, --project-id (string)</dt>
-<dd>The project ID. Required.</dd>
-<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
-<dt>--members (<a href="#cli-update-member-body-example-schema-project">UpdateMemberBody[]</a>)</dt>
-<dd>A list of project members to update. Required.</dd>
-</dl>
-
-<a id='project_member_create'></a>
-## &#8226; project member create
-
-Adds new project members with the provided roles. A project must always have at least one admin.
-
-```sh
-cpdctl project member create --project-id PROJECT-ID --members MEMBERS 
-```
-
-
-#### Command options
-
-<dl>
-<dt>-i, --project-id (string)</dt>
-<dd>The project ID. Required.</dd>
-<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
-<dt>--members (<a href="#cli-project-member-example-schema-project">ProjectMember[]</a>)</dt>
-<dd>A list of project members. Required.</dd>
-</dl>
-
-<a id='project_member_get'></a>
-## &#8226; project member get
-
-Returns the project member with the specified 'user_name' if any.
-
-```sh
-cpdctl project member get --project-id PROJECT-ID --user-name USER-NAME 
-```
-
-
-#### Command options
-
-<dl>
-<dt>-i, --project-id (string)</dt>
-<dd>The project ID. Required.</dd>
-<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
-<dt>-u, --user-name (string)</dt>
-<dd>The username of the project member. Required.</dd>
-</dl>
-
-<a id='space_list'></a>
-## &#8226; space list
-
-Retrieves the space list.
-
-```sh
-cpdctl space list [--start START] [--limit LIMIT] [--total-count TOTAL-COUNT] [--id ID] [--tags TAGS] [--include INCLUDE] [--member MEMBER] [--roles ROLES] [--bss-account-id BSS-ACCOUNT-ID] [--name NAME] [--compute-crn COMPUTE-CRN] 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--start (string)</dt>
-<dd>Token representing first resource.</dd>
-<dt>--limit (float64)</dt>
-<dd>The number of resources returned. Default value is 100. Max value is 200.</dd>
-<dt>--total-count (bool)</dt>
-<dd>Include details about total number of resources. This flag is not supported on CPD 3.0.1..</dd>
-<dt>--id (string)</dt>
-<dd>Comma separated list of ids to be returned. This flag is not supported on CPD 3.0.1.</dd>
-<dt>--tags (string)</dt>
-<dd>A list of comma-separated, user-defined tags to use to filter the query results.</dd>
-<dt>--include (string)</dt>
-<dd>A list of comma-separated space sections to include in the query results. Example: `?include=members`.
-
-Available fields:
- * members (returns up to 100 members)
- * nothing (does not return space entity and metadata).</dd>
-<dt>--member (string)</dt>
-<dd>Filters the result list to only include spaces where the user with a matching user id is a member.</dd>
-<dt>--roles (string)</dt>
-<dd>Must be used in conjunction with the member query parameter. Filters the result set to include only spaces where the specified member has one of the roles specified.
-
-Values:
-
-  * admin
-  * editor
-  * viewer.</dd>
-<dt>--bss-account-id (string)</dt>
-<dd>Filtering by bss_account_id is allowed only for accredited services.</dd>
-<dt>--name (string)</dt>
-<dd>Filters the result list to only include space with specified name.</dd>
-<dt>--compute-crn (string)</dt>
-<dd>Filters the result list to only include spaces with specified compute.crn.</dd>
-</dl>
-
-<a id='space_create'></a>
-## &#8226; space create
-
-Creates a new space to scope other assets. Authorized user must have the follwing roles (see /docs/cloud-object-storage?topic=cloud-object-storage-iams)
-- Platform management role: Administrator
-- Service access role: Manager
-
-On Public Cloud user is required to provide Cloud Object Storage instance details in the `storage` property. On private CPD installations the default storage is used instead.
-
-```sh
-cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--storage STORAGE] [--tags TAGS] 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--name (string)</dt>
-<dd>Name of space. Required.</dd>
-<dt>--compute (<a href="#cli-compute-request-example-schema-space">ComputeRequest[]</a>)</dt>
-<dd>This flag is not supported on CPD 3.0.1.</dd>
-<dt>--description (string)</dt>
-<dd>Description of space.</dd>
-<dt>--storage (<a href="#cli-storage-request-example-schema-space">StorageRequest</a>)</dt>
-<dd>Cloud Object Storage instance is required for spaces created on Public Cloud. On private CPD installations default storage is used instead. This flag is not supported on CPD 3.0.1.</dd>
-<dt>--tags ([]string)</dt>
-<dd>User-defined tags associated with a space.</dd>
-</dl>
-
-<a id='space_delete'></a>
-## &#8226; space delete
-
-Deletes the space with the specified identifier.
-
-```sh
-cpdctl space delete --space-id SPACE-ID 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space identification. Required.</dd>
-</dl>
-
-<a id='space_get'></a>
-## &#8226; space get
-
-Retrieves the space with the specified identifier.
-
-```sh
-cpdctl space get --space-id SPACE-ID [--include INCLUDE] 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space identification. Required.</dd>
-<dt>--include (string)</dt>
-<dd>A list of comma-separated space sections to include in the query results. Example: `?include=members`.
-
-Available fields:
- * members (returns up to 100 members)
- * nothing (does not return space entity and metadata).</dd>
-</dl>
-
-<a id='space_update'></a>
-## &#8226; space update
-
-Partially update this space. Allowed paths are:
-  - /name
-  - /description
-  - /compute.
-
-```sh
-cpdctl space update --space-id SPACE-ID --json-patch JSON-PATCH 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space identification. Required.</dd>
-<dt>--json-patch (<a href="#cli-json-patch-operation-example-schema-space">JSONPatchOperation[]</a>)</dt>
-<dd>Input payload for the space.</dd>
-<dt>--compute (<a href="#cli-compute-entity-example-schema-space">ComputeEntity[]</a>)</dt>
-<dd></dd>
-<dt>--description (string)</dt>
-<dd></dd>
-<dt>--name (string)</dt>
-<dd></dd>
-</dl>
-
-<a id='space_member_list'></a>
-## &#8226; space member list
-
-Retrieves the member list for the specified space.
-
-```sh
-cpdctl space member list --space-id SPACE-ID [--start START] [--limit LIMIT] [--total-count TOTAL-COUNT] [--type TYPE] [--role ROLE] [--state STATE] 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space identification. Required.</dd>
-<dt>--start (string)</dt>
-<dd>Token representing first resource.</dd>
-<dt>--limit (float64)</dt>
-<dd>The number of resources returned. Default value is 100. Max value is 200.</dd>
-<dt>--total-count (bool)</dt>
-<dd>Include details about total number of resources. This flag is not supported on CPD 3.0.1.</dd>
-<dt>--type (string)</dt>
-<dd>Find the member by `type`.</dd>
-<dt>--role (string)</dt>
-<dd>Find the member by `role`.</dd>
-<dt>--state (string)</dt>
-<dd>Find the member by `state`.</dd>
-</dl>
-
-<a id='space_member_create'></a>
-## &#8226; space member create
-
-Adds a member to the specified space.
-
-```sh
-cpdctl space member create --space-id SPACE-ID --members MEMBERS 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space identification. Required.</dd>
-<dt>--members (<a href="#cli-member-resource-example-schema-space">MemberResource[]</a>)</dt>
-<dd> Required.</dd>
-</dl>
-
-<a id='space_member_delete'></a>
-## &#8226; space member delete
-
-Removes the specified member from the space.
-
-```sh
-cpdctl space member delete --space-id SPACE-ID --member-id MEMBER-ID 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space identification. Required.</dd>
-<dt>--member-id (string)</dt>
-<dd>The member identification. Required.</dd>
-</dl>
-
-<a id='space_member_get'></a>
-## &#8226; space member get
-
-Retrieves the member information for the member and space with the specified identifiers.
-
-```sh
-cpdctl space member get --space-id SPACE-ID --member-id MEMBER-ID 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space identification. Required.</dd>
-<dt>--member-id (string)</dt>
-<dd>The member identification. Required.</dd>
-</dl>
-
-<a id='space_member_update'></a>
-## &#8226; space member update
-
-Partially update the member selected with the specified identifier. Allowed paths are:
-  - /role
-  - /state.
-
-```sh
-cpdctl space member update --space-id SPACE-ID --member-id MEMBER-ID --json-patch JSON-PATCH 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space identification. Required.</dd>
-<dt>--member-id (string)</dt>
-<dd>The member identification. Required.</dd>
-<dt>--json-patch (<a href="#cli-json-patch-operation-example-schema-space">JSONPatchOperation[]</a>)</dt>
-<dd>The json patch.</dd>
-<dt>--role (string)</dt>
-<dd>The role of the space member. Required.</dd>
-<dd>Allowable values are: viewer, editor, admin</dd>
-<dt>--state (string)</dt>
-<dd>The state of the space member. This field is only supported for members of type 'user'.</dd>
-<dd>Allowable values are: active, pending</dd>
-</dl>
-
-<a id='space_wait'></a>
-## &#8226; space wait
-Wait until the space creation or deletion is finished.
-
-```sh
-  cpdctl space wait --space-id SPACE_ID
+  cpdctl config user set name
 ```
 #### Command options
 
 <dl>
-<dt>--cpd-scope string </dt><dd>CPD space scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--space-id string  </dt><dd>The space identification.</dd>
+<dt>--apikey string     </dt><dd>Set user apikey</dd>
+<dt>--password string   </dt><dd>Set user password</dd>
+<dt>--token-file string </dt><dd>Set location of a file that contains user token</dd>
+<dt>--username string   </dt><dd>Set user name</dd>
 </dl>
+
+<a id='config_user_unset'></a>
+## &#8226; config user unset
+```sh
+  cpdctl config user unset name
+```
+
+<a id='config_profile_list'></a>
+## &#8226; config profile list
+List profiles
+
+```sh
+  cpdctl config profile list
+```
+
+<a id='config_profile_get'></a>
+## &#8226; config profile get
+```sh
+  cpdctl config profile get name
+```
+
+<a id='config_profile_set'></a>
+## &#8226; config profile set
+```sh
+  cpdctl config profile set name
+```
+#### Command options
+
+<dl>
+<dt>--common-services-url string </dt><dd>Set Common Services URL for the profile</dd>
+<dt>--iam-integration-enabled    </dt><dd>Set if IAM integration is enabled on CP4D</dd>
+<dt>--url string                 </dt><dd>Set URL for the profile</dd>
+<dt>--user string                </dt><dd>Set user for the profile</dd>
+</dl>
+
+<a id='config_profile_unset'></a>
+## &#8226; config profile unset
+```sh
+  cpdctl config profile unset name
+```
+
+<a id='config_service_list'></a>
+## &#8226; config service list
+List services
+
+```sh
+  cpdctl config service list
+```
+
+<a id='config_service_export'></a>
+## &#8226; config service export
+Export Configuration
+
+```sh
+  cpdctl config service export service-name
+```
+
+<a id='config_service_get'></a>
+## &#8226; config service get
+```sh
+  cpdctl config service get name
+```
+
+<a id='config_service_set'></a>
+## &#8226; config service set
+```sh
+  cpdctl config service set name
+```
+#### Command options
+
+<dl>
+<dt>--instance string </dt><dd>Set instance for the service</dd>
+<dt>--profile string  </dt><dd>Set profile for the service</dd>
+<dt>--type string     </dt><dd>Set type for the service</dd>
+<dt>--url string      </dt><dd>Set url for the service</dd>
+<dt>--user string     </dt><dd>Set user for the service</dd>
+</dl>
+
+<a id='config_service_unset'></a>
+## &#8226; config service unset
+```sh
+  cpdctl config service unset name
+```
+
+<a id='config_context_list'></a>
+## &#8226; config context list
+List contexts
+
+```sh
+  cpdctl config context list
+```
+
+<a id='config_context_export'></a>
+## &#8226; config context export
+Export Configuration
+
+```sh
+  cpdctl config context export context-name
+```
+
+<a id='config_context_get'></a>
+## &#8226; config context get
+```sh
+  cpdctl config context get name
+```
+
+<a id='config_context_set'></a>
+## &#8226; config context set
+```sh
+  cpdctl config context set name
+```
+#### Command options
+
+<dl>
+<dt>--apikey string                  </dt><dd>Create a user having this API key and associate it with the context.</dd>
+<dt>--password string                </dt><dd>Create a user having this password and associate it with the context.</dd>
+<dt>--profile string                 </dt><dd>Associate existing profile with the context. This option cannot be used together with --url.</dd>
+<dt>--token-file string              </dt><dd>Create a user having this token location and associate it with the context.</dd>
+<dt>--url string                     </dt><dd>Create a profile having this URL and associate it with the context.</dd>
+<dt>--user string                    </dt><dd>Associate existing user with the context. This option cannot be used together with --username, --password, --apikey, and --token.</dd>
+<dt>--username string                </dt><dd>Create a user having this name and associate it with the context.</dd>
+<dt>--watson-machine-learning string </dt><dd>Associate existing Watson Machine Learning service instance with the context.</dd>
+<dt>--watson-open-scale string       </dt><dd>Associate existing Watson OpenScale service instance with the context.</dd>
+<dt>--watson-studio string           </dt><dd>Associate existing Watson Studio service instance with the context.</dd>
+</dl>
+
+<a id='config_context_unset'></a>
+## &#8226; config context unset
+```sh
+  cpdctl config context unset name
+```
+
+<a id='config_context_current'></a>
+## &#8226; config context current
+Display the current context
+
+```sh
+  cpdctl config context current
+```
+
+<a id='config_context_use'></a>
+## &#8226; config context use
+Sets the current context
+
+```sh
+  cpdctl config context use context-name
+```
 
 <a id='connection_list'></a>
 ## &#8226; connection list
@@ -3028,202 +2694,31 @@ cpdctl environment software-specification add-package-extensions --software-spec
 <dd>The id of the project.</dd>
 </dl>
 
-<a id='notebook_create'></a>
-## &#8226; notebook create
-
-The creation of a notebook requires to first upload the notebook content('ipynb' format) to the project Cloud Object Storage (COS) with the following command: 
-`cpdctl assets files upload --path <your remote path to the notebook content> --file <your local path to the notebook content> --project-id <your project id>`.  Usually the remote path could be 'notebook/<your file name>'. 
-
-Then you can create a notebook by referencing the notebook content with the attribute 'file-reference'.  The other required attributes are 'name', 'project' and 'runtime'/'compute', e.g.
-`cpdctl notebooks create --name <your notebook name> --project <your project id> --file-reference <your remote path to the notebook content> --runtime '{"environment": "<your environment id>"}'`. 
-
-The attributes 'runtime' and 'compute' are used to specify the environment on which the notebook runs.  You can specify the environment either by the attribute 'runtime' if the engine is a 'default environment', 'Spark default environment' or a 'GPU environment' or by the attribute 'compute' if the engine is a 'Spark-aaS'.  A basic runtime can be defined as '{"environment": <your environment id>}'.
+<a id='find_'></a>
+## &#8226; find 
+Find a resource with CPD Path
 
 ```sh
-cpdctl notebook create [--compute COMPUTE] [--description DESCRIPTION] [--file-reference FILE-REFERENCE] [--kernel KERNEL] [--name NAME] [--originates-from ORIGINATES-FROM] [--project PROJECT] [--runtime RUNTIME] 
+  cpdctl find --cpd-path PATH
 ```
-
-
 #### Command options
 
 <dl>
-<dt>--compute (string)</dt>
-<dd>The id of the Spark-as-a-Service on which the notebook runs.</dd>
-<dt>--description (string)</dt>
-<dd>A more verbose description of the notebook.</dd>
-<dt>--file-reference (string)</dt>
-<dd>The reference to the file in the object storage.</dd>
-<dt>--kernel (<a href="#cli-notebook-kernel-example-schema-notebook">NotebookKernel</a>)</dt>
-<dd>A notebook kernel.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the new notebook.</dd>
-<dt>--originates-from (<a href="#cli-notebook-origin-example-schema-notebook">NotebookOrigin</a>)</dt>
-<dd>The notebook origin.</dd>
-<dt>--project (string)</dt>
-<dd>The id of the project in which to create the notebook.</dd>
-<dt>--runtime (<a href="#cli-notebook-runtime-example-schema-notebook">NotebookRuntime</a>)</dt>
-<dd>A notebook runtime.</dd>
+<dt>--asset-type string    </dt><dd>Asset type used when resolving paths with an asset ID only</dd>
+<dt>--ignore               </dt><dd>Ignore errors and return empty result (default: false)</dd>
+<dt>--output json          </dt><dd>Choose an output format - can be json, `yaml`, or `table`. (default "table")</dd>
+<dt>--resource-type string </dt><dd>Resource type used when resolving paths with a resource ID only</dd>
+<dt>--result               </dt><dd>Include result metadata in output (default: false)</dd>
 </dl>
 
-<a id='notebook_delete'></a>
-## &#8226; notebook delete
-
-Delete a particular notebook, including the notebook asset.
+<a id='help_'></a>
+## &#8226; help 
+Help provides help for any command in the application.
+Simply type cpdctl help [path to command] for full details.
 
 ```sh
-cpdctl notebook delete --notebook-id NOTEBOOK-ID 
+  cpdctl help [command]
 ```
-
-
-#### Command options
-
-<dl>
-<dt>--notebook-id (string)</dt>
-<dd>The guid of the notebook. Required.</dd>
-</dl>
-
-<a id='notebook_update'></a>
-## &#8226; notebook update
-
-Update a particular notebook.
-
-```sh
-cpdctl notebook update --notebook-id NOTEBOOK-ID [--compute COMPUTE] [--environment ENVIRONMENT] [--kernel KERNEL] [--schedule SCHEDULE] [--shares SHARES] [--spark-monitoring-enabled SPARK-MONITORING-ENABLED] 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--notebook-id (string)</dt>
-<dd>The guid of the notebook. Required.</dd>
-<dt>--compute (string)</dt>
-<dd>The id of the Spark instance on which the notebook runs.</dd>
-<dt>--environment (string)</dt>
-<dd>The id of the environment on which the notebook runs.</dd>
-<dt>--kernel (<a href="#cli-notebook-kernel-example-schema-notebook">NotebookKernel</a>)</dt>
-<dd>A notebook kernel.</dd>
-<dt>--schedule (string)</dt>
-<dd>The id of the schedule of the notebook.</dd>
-<dt>--shares (<a href="#cli-notebook-shares-example-schema-notebook">NotebookShares</a>)</dt>
-<dd>Share and repository information for a notebook.</dd>
-<dt>--spark-monitoring-enabled (bool)</dt>
-<dd>Spark monitoring enabled or not.</dd>
-</dl>
-
-<a id='notebook_revert'></a>
-## &#8226; notebook revert
-
-Revert the master notebook to a version.
-
-```sh
-cpdctl notebook revert --notebook-id NOTEBOOK-ID [--source SOURCE] 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--notebook-id (string)</dt>
-<dd>The guid of the master notebook. Required.</dd>
-<dt>--source (string)</dt>
-<dd>The id of the notebook version.</dd>
-</dl>
-
-<a id='notebook_version_list'></a>
-## &#8226; notebook version list
-
-List all versions of a particular notebook.
-
-```sh
-cpdctl notebook version list --notebook-id NOTEBOOK-ID 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--notebook-id (string)</dt>
-<dd>The guid of the notebook. Required.</dd>
-</dl>
-
-<a id='notebook_version_create'></a>
-## &#8226; notebook version create
-
-Create a version of a given notebook.
-
-```sh
-cpdctl notebook version create --notebook-id NOTEBOOK-ID 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--notebook-id (string)</dt>
-<dd>The guid of the notebook. Required.</dd>
-</dl>
-
-<a id='notebook_version_delete'></a>
-## &#8226; notebook version delete
-
-Delete a particular version of a given notebook.
-
-```sh
-cpdctl notebook version delete --notebook-id NOTEBOOK-ID --version-id VERSION-ID 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--notebook-id (string)</dt>
-<dd>The guid of the notebook. Required.</dd>
-<dt>--version-id (string)</dt>
-<dd>The guid of the version. Required.</dd>
-</dl>
-
-<a id='notebook_version_get'></a>
-## &#8226; notebook version get
-
-Retrieve a particular version of a notebook.
-
-```sh
-cpdctl notebook version get --notebook-id NOTEBOOK-ID --version-id VERSION-ID 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--notebook-id (string)</dt>
-<dd>The guid of the notebook. Required.</dd>
-<dt>--version-id (string)</dt>
-<dd>The guid of the version. Required.</dd>
-</dl>
-
-<a id='notebook_version_update'></a>
-## &#8226; notebook version update
-
-Update a version of a given notebook.
-
-```sh
-cpdctl notebook version update --notebook-id NOTEBOOK-ID --version-id VERSION-ID [--kernel KERNEL] [--schedule SCHEDULE] 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--notebook-id (string)</dt>
-<dd>The guid of the notebook. Required.</dd>
-<dt>--version-id (string)</dt>
-<dd>The guid of the version. Required.</dd>
-<dt>--kernel (<a href="#cli-notebook-kernel-example-schema-notebook">NotebookKernel</a>)</dt>
-<dd>A notebook kernel.</dd>
-<dt>--schedule (string)</dt>
-<dd>The schedule id of the notebook.</dd>
-</dl>
 
 <a id='job_list'></a>
 ## &#8226; job list
@@ -3231,13 +2726,13 @@ cpdctl notebook version update --notebook-id NOTEBOOK-ID --version-id VERSION-ID
 Lists the jobs in the specified project or space (either project_id or space_id must be set).
 
 ```sh
-cpdctl job list [--project-id PROJECT-ID] [--space-id SPACE-ID] [--asset-ref ASSET-REF] [--asset-ref-type ASSET-REF-TYPE] [--run-id RUN-ID] [--limit LIMIT] 
+cpdctl job list [--project-id PROJECT-ID] [--space-id SPACE-ID] [--asset-ref ASSET-REF] [--asset-ref-type ASSET-REF-TYPE] [--run-id RUN-ID] [--limit LIMIT] [--next NEXT] 
 ```
 
 
 #### Command options
 
-<dl> 
+<dl>
 <dt>--project-id (string)</dt>
 <dd>The ID of the project to use. project_id or space_id is required.</dd>
 <dt>--space-id (string)</dt>
@@ -3250,6 +2745,8 @@ cpdctl job list [--project-id PROJECT-ID] [--space-id SPACE-ID] [--asset-ref ASS
 <dd>The ID of the job run. Can be used to search parent job of a job run.</dd>
 <dt>--limit (int64)</dt>
 <dd>The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be used.</dd>
+<dt>--next (string)</dt>
+<dd>The optional 'next' field from the response in string format, can be used to get the next batch.\nThe response can contain up to 200 results in a batch, if there are more results, a 'next' field is returned in the response which can be used to get the next batch. Supported on CP4D releases 3.5.3+.</dd>
 </dl>
 
 <a id='job_create'></a>
@@ -3264,7 +2761,7 @@ cpdctl job create [--job JOB] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 
 #### Command options
 
-<dl> 
+<dl>
 <dt>--job (<a href="#cli-job-post-body-job-example-schema-job">JobPostBodyJob</a>)</dt>
 <dd></dd>
 <dt>--project-id (string)</dt>
@@ -3285,7 +2782,7 @@ cpdctl job delete --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-ID
 
 #### Command options
 
-<dl> 
+<dl>
 <dt>--job-id (string)</dt>
 <dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
 <dt>--project-id (string)</dt>
@@ -3306,7 +2803,7 @@ cpdctl job get --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
 
 #### Command options
 
-<dl> 
+<dl>
 <dt>--job-id (string)</dt>
 <dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
 <dt>--project-id (string)</dt>
@@ -3315,25 +2812,56 @@ cpdctl job get --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
 <dd>The ID of the space to use. project_id or space_id is required.</dd>
 </dl>
 
+<a id='job_update'></a>
+## &#8226; job update
+
+Updates specific attributes of a job in the specified project or space (either project_id or space_id must be set). You must specify the updates by using the JSON patch format, described in RFC 6902. Use 'last_run_initiator' for the initiator of the last job run, use 'last_run_status' for the status of the last job run.
+
+```sh
+cpdctl job update --job-id JOB-ID --body BODY [--project-id PROJECT-ID] [--space-id SPACE-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--job-id (string)</dt>
+<dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
+<dt>--body (<a href="#cli-json-patch-operation-example-schema-job">JSONPatchOperation[]</a>)</dt>
+<dd>Updates to make to the job run.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. project_id or space_id is required.</dd>
+<dt>--space-id (string)</dt>
+<dd>The ID of the space to use. project_id or space_id is required.</dd>
+<dt>--configuration (<a href="#cli-job-runtime-configuration-example-schema-job">JobRuntimeConfiguration</a>)</dt>
+<dd>Updated configuration.</dd>
+<dt>--description (string)</dt>
+<dd>Updated description.</dd>
+<dt>--name (string)</dt>
+<dd>Updated name.</dd>
+</dl>
+
 <a id='job_run_list'></a>
 ## &#8226; job run list
 
 Lists the job runs for a specific job in the specified project or space (either project_id or space_id must be set). Only the metadata and certain elements of the entity component of each run are returned.
 
 ```sh
-cpdctl job run list --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-ID] 
+cpdctl job run list --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-ID] [--next NEXT] 
 ```
 
 
 #### Command options
 
-<dl> 
+<dl>
 <dt>--job-id (string)</dt>
 <dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
 <dt>--project-id (string)</dt>
 <dd>The ID of the project to use. project_id or space_id is required.</dd>
 <dt>--space-id (string)</dt>
 <dd>The ID of the space to use. project_id or space_id is required.</dd>
+<dt>--next (string)</dt>
+<dd>The optional 'next' field from the response in string format, can be used to get the next batch.\nThe response can contain up to 200 results in a batch, if there are more results, a 'next' field is returned in the response which can be used to get the next batch. Supported on CP4D releases 3.5.3+.</dd>
 </dl>
 
 <a id='job_run_create'></a>
@@ -3348,7 +2876,7 @@ cpdctl job run create --job-id JOB-ID --job-run JOB-RUN [--project-id PROJECT-ID
 
 #### Command options
 
-<dl> 
+<dl>
 <dt>--job-id (string)</dt>
 <dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
 <dt>--job-run (<a href="#cli-job-run-post-body-job-run-example-schema-job">JobRunPostBodyJobRun</a>)</dt>
@@ -3371,7 +2899,7 @@ cpdctl job run delete --job-id JOB-ID --run-id RUN-ID [--project-id PROJECT-ID] 
 
 #### Command options
 
-<dl> 
+<dl>
 <dt>--job-id (string)</dt>
 <dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
 <dt>--run-id (string)</dt>
@@ -3394,7 +2922,7 @@ cpdctl job run get --job-id JOB-ID --run-id RUN-ID [--project-id PROJECT-ID] [--
 
 #### Command options
 
-<dl> 
+<dl>
 <dt>--job-id (string)</dt>
 <dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
 <dt>--run-id (string)</dt>
@@ -3417,7 +2945,7 @@ cpdctl job run cancel --job-id JOB-ID --run-id RUN-ID --body BODY [--project-id 
 
 #### Command options
 
-<dl> 
+<dl>
 <dt>--job-id (string)</dt>
 <dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
 <dt>--run-id (string)</dt>
@@ -3442,7 +2970,7 @@ cpdctl job run logs --job-id JOB-ID --run-id RUN-ID [--project-id PROJECT-ID] [-
 
 #### Command options
 
-<dl> 
+<dl>
 <dt>--job-id (string)</dt>
 <dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
 <dt>--run-id (string)</dt>
@@ -5602,195 +5130,743 @@ cpdctl ml training-definition list-revisions --training-definition-id TRAINING-D
 <dd>The maximum value is `200`. The minimum value is `1`.</dd>
 </dl>
 
-<a id='find_'></a>
-## &#8226; find 
-Find a resource with CPD Path
+<a id='notebook_create'></a>
+## &#8226; notebook create
+
+The creation of a notebook requires to first upload the notebook content('ipynb' format) to the project or space Cloud Object Storage (COS) with the following command: 
+`cpdctl assets files upload --path <your remote path to the notebook content> --file <your local path to the notebook content> --project-id <your project id>`.  Similar for space. Please specifiy either project or space, they are mutually exclusive, cannot both be provided.    Usually the remote path could be 'notebook/<your file name>'. 
+
+Then you can create a notebook by referencing the notebook content with the attribute 'file-reference'.  The other required attributes are 'name', either 'project' or 'space', and 'runtime'/'compute', e.g.
+`cpdctl notebooks create --name <your notebook name> --project <your project id> --file-reference <your remote path to the notebook content> --runtime '{"environment": "<your environment id>"}'`. 
+
+The attributes 'runtime' and 'compute' are used to specify the environment on which the notebook runs.  You can specify the environment either by the attribute 'runtime' if the engine is a 'default environment', 'Spark default environment' or a 'GPU environment' or by the attribute 'compute' if the engine is a 'Spark-aaS'.  A basic runtime can be defined as '{"environment": <your environment id>}'.
 
 ```sh
-  cpdctl find --cpd-path PATH
+cpdctl notebook create [--compute COMPUTE] [--description DESCRIPTION] [--file-reference FILE-REFERENCE] [--kernel KERNEL] [--name NAME] [--originates-from ORIGINATES-FROM] [--project PROJECT] [--runtime RUNTIME] [--space SPACE] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--compute (string)</dt>
+<dd>The id of the Spark-as-a-Service on which the notebook runs.</dd>
+<dt>--description (string)</dt>
+<dd>A more verbose description of the notebook.</dd>
+<dt>--file-reference (string)</dt>
+<dd>The reference to the file in the object storage.</dd>
+<dt>--kernel (<a href="#cli-notebook-kernel-example-schema-notebook">NotebookKernel</a>)</dt>
+<dd>A notebook kernel.</dd>
+<dt>--name (string)</dt>
+<dd>The name of the new notebook.</dd>
+<dt>--originates-from (<a href="#cli-notebook-origin-example-schema-notebook">NotebookOrigin</a>)</dt>
+<dd>The notebook origin.</dd>
+<dt>--project (string)</dt>
+<dd>The id of the project in which to create the notebook.</dd>
+<dt>--runtime (<a href="#cli-notebook-runtime-example-schema-notebook">NotebookRuntime</a>)</dt>
+<dd>A notebook runtime.</dd>
+<dt>--space (string)</dt>
+<dd>The id of the space in which to create the notebook.</dd>
+</dl>
+
+<a id='notebook_delete'></a>
+## &#8226; notebook delete
+
+Delete a particular notebook, including the notebook asset.
+
+```sh
+cpdctl notebook delete --notebook-id NOTEBOOK-ID 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--notebook-id (string)</dt>
+<dd>The guid of the notebook. Required.</dd>
+</dl>
+
+<a id='notebook_update'></a>
+## &#8226; notebook update
+
+Update a particular notebook.
+
+```sh
+cpdctl notebook update --notebook-id NOTEBOOK-ID [--compute COMPUTE] [--environment ENVIRONMENT] [--kernel KERNEL] [--schedule SCHEDULE] [--shares SHARES] [--spark-monitoring-enabled SPARK-MONITORING-ENABLED] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--notebook-id (string)</dt>
+<dd>The guid of the notebook. Required.</dd>
+<dt>--compute (string)</dt>
+<dd>The id of the Spark instance on which the notebook runs.</dd>
+<dt>--environment (string)</dt>
+<dd>The id of the environment on which the notebook runs.</dd>
+<dt>--kernel (<a href="#cli-notebook-kernel-example-schema-notebook">NotebookKernel</a>)</dt>
+<dd>A notebook kernel.</dd>
+<dt>--schedule (string)</dt>
+<dd>The id of the schedule of the notebook.</dd>
+<dt>--shares (<a href="#cli-notebook-shares-example-schema-notebook">NotebookShares</a>)</dt>
+<dd>Share and repository information for a notebook.</dd>
+<dt>--spark-monitoring-enabled (bool)</dt>
+<dd>Spark monitoring enabled or not.</dd>
+</dl>
+
+<a id='notebook_revert'></a>
+## &#8226; notebook revert
+
+Revert the master notebook to a version.
+
+```sh
+cpdctl notebook revert --notebook-id NOTEBOOK-ID [--source SOURCE] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--notebook-id (string)</dt>
+<dd>The guid of the master notebook. Required.</dd>
+<dt>--source (string)</dt>
+<dd>The id of the notebook version.</dd>
+</dl>
+
+<a id='notebook_promote'></a>
+## &#8226; notebook promote
+
+Promote a notebook from project to space.
+
+```sh
+cpdctl notebook promote --notebook-id NOTEBOOK-ID --version-id VERSION-ID --project-id PROJECT-ID --space-id SPACE-ID [--description DESCRIPTION] [--name NAME] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--notebook-id (string)</dt>
+<dd>The guid of the notebook. Required.</dd>
+<dt>--version-id (string)</dt>
+<dd>The guid of the notebook version. Required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The id of the project from which a notebook will be promoted. Required.</dd>
+<dt>--space-id (string)</dt>
+<dd>The id of the space to which a notebook will be promoted. Required.</dd>
+<dt>--description (string)</dt>
+<dd>The description of the new notebook in space. If not specified, the description of the notebook in project will be used.</dd>
+<dt>--name (string)</dt>
+<dd>The name of the new notebook in space. If not specified, the name of the notebook in project will be used.</dd>
+</dl>
+
+<a id='notebook_version_list'></a>
+## &#8226; notebook version list
+
+List all versions of a particular notebook.
+
+```sh
+cpdctl notebook version list --notebook-id NOTEBOOK-ID 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--notebook-id (string)</dt>
+<dd>The guid of the notebook. Required.</dd>
+</dl>
+
+<a id='notebook_version_create'></a>
+## &#8226; notebook version create
+
+Create a version of a given notebook.
+
+```sh
+cpdctl notebook version create --notebook-id NOTEBOOK-ID 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--notebook-id (string)</dt>
+<dd>The guid of the notebook. Required.</dd>
+</dl>
+
+<a id='notebook_version_delete'></a>
+## &#8226; notebook version delete
+
+Delete a particular version of a given notebook.
+
+```sh
+cpdctl notebook version delete --notebook-id NOTEBOOK-ID --version-id VERSION-ID 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--notebook-id (string)</dt>
+<dd>The guid of the notebook. Required.</dd>
+<dt>--version-id (string)</dt>
+<dd>The guid of the version. Required.</dd>
+</dl>
+
+<a id='notebook_version_get'></a>
+## &#8226; notebook version get
+
+Retrieve a particular version of a notebook.
+
+```sh
+cpdctl notebook version get --notebook-id NOTEBOOK-ID --version-id VERSION-ID 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--notebook-id (string)</dt>
+<dd>The guid of the notebook. Required.</dd>
+<dt>--version-id (string)</dt>
+<dd>The guid of the version. Required.</dd>
+</dl>
+
+<a id='notebook_version_update'></a>
+## &#8226; notebook version update
+
+Update a version of a given notebook.
+
+```sh
+cpdctl notebook version update --notebook-id NOTEBOOK-ID --version-id VERSION-ID [--kernel KERNEL] [--schedule SCHEDULE] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--notebook-id (string)</dt>
+<dd>The guid of the notebook. Required.</dd>
+<dt>--version-id (string)</dt>
+<dd>The guid of the version. Required.</dd>
+<dt>--kernel (<a href="#cli-notebook-kernel-example-schema-notebook">NotebookKernel</a>)</dt>
+<dd>A notebook kernel.</dd>
+<dt>--schedule (string)</dt>
+<dd>The schedule id of the notebook.</dd>
+</dl>
+
+<a id='project_create'></a>
+## &#8226; project create
+
+Creates a new project with the provided parameters, including all the storage and credentials in a single transaction. This endpoint will create a new COS bucket using generated unique name, all credentials, asset container and call all the required atomic APIs to fully configure a new project. Attempts to use the duplicate project names will result in an error. <b>NOTE</b>:  when creating projects programmatically, always use this endpoint, not /v2/projects. <br/><br/><br/> This endpoint can also be used to create a project from an exported Watson Studio .zip file. In this case, a new transaction is initiated to create assets under the project. A Transaction ID along with a URL is returned as a response of this API. As this transaction can take time, you can view the current status of the transaction using the returned URL.<br><b>NOTE</b>: This feature is only available in the private cloud.
+
+```sh
+cpdctl project create --generator GENERATOR --name NAME --storage STORAGE [--compute COMPUTE] [--description DESCRIPTION] [--enforce-members ENFORCE-MEMBERS] [--public PUBLIC] [--tags TAGS] [--tools TOOLS] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>-g, --generator (string)</dt>
+<dd>A tag to indicate where this project was generated. This is only intended for use in metrics. It does not need to be unique and all consumers of this API should use a consistent string for their 'generator' field. The value is stored in the project metadata for future consumption in metrics. Required.</dd>
+<dt>-n, --name (string)</dt>
+<dd>The name of the new project. The name must be a non-empty String. This does not need to be unique. Required.</dd>
+<dt>-s, --storage (<a href="#cli-transactional-project-storage-object-example-schema-project">TransactionalProjectStorageObject</a>)</dt>
+<dd>Object storage properties to be associated with the project. Required.</dd>
+<dt>-c, --compute (<a href="#cli-transactional-project-compute-object-cloud-example-schema-project">TransactionalProjectComputeObjectCloud[]</a>)</dt>
+<dd>List of computes to be associated with the project.</dd>
+<dt>-d, --description (string)</dt>
+<dd>A description for the new project.</dd>
+<dt>-e, --enforce-members (bool)</dt>
+<dd>Set to true of project members should be scoped to the account and/or SAML of the creator.</dd>
+<dd>The default value is `false`.</dd>
+<dt>-p, --public (bool)</dt>
+<dd>A value of `true` makes the project public.</dd>
+<dd>The default value is `false`.</dd>
+<dt>-t, --tags ([]string)</dt>
+<dd>List of user defined tags that are attached to the project.</dd>
+<dt>-T, --tools ([]string)</dt>
+<dd>List of tools to be associated with the project.</dd>
+</dl>
+
+<a id='project_delete'></a>
+## &#8226; project delete
+
+Deletes a project with a given ID, deletes COS bucket and all the files in it, all credentials and asset container in the order reverse from the project creation transaction. When deleting projects programmatically, always use this endpoint, not /v2/projects/{project_id}.
+
+```sh
+cpdctl project delete --project-id PROJECT-ID 
+```
+
+
+#### Command options
+
+<dl>
+<dt>-i, --project-id (string)</dt>
+<dd>The ID of the project to be deleted. Required.</dd>
+</dl>
+
+<a id='project_list'></a>
+## &#8226; project list
+
+Returns a list of projects that are meeting the provided query parameters. By default, the list returns projects that the authenticated user is a member of.
+
+```sh
+cpdctl project list [--member MEMBER] [--roles ROLES] [--tags TAGS] [--guids GUIDS] [--include INCLUDE] [--limit LIMIT] [--skip SKIP] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>-m, --member (string)</dt>
+<dd>A project member to use to filter the query results by membership.</dd>
+<dt>-r, --roles ([]string)</dt>
+<dd>A list of comma-separated project roles to use to filter the query results. Must be used in conjunction with the 'member' query parameter.</dd>
+<dt>-t, --tags ([]string)</dt>
+<dd>A list of comma-separated, user-defined tags to use to filter the query results.</dd>
+<dt>-g, --guids ([]string)</dt>
+<dd>A list of comma-separated project GUIDs to use to filter the query results.</dd>
+<dt>-I, --include ([]string)</dt>
+<dd>A list of comma-separated project metadata sections to include in the query results.</dd>
+<dt>-l, --limit (int64)</dt>
+<dd>The limit to use to restrict the number of projects returned in the query results. Used for pagination in conjunction with the 'skip' query parameter.</dd>
+<dd>The maximum value is `100`. The minimum value is `0`.</dd>
+<dt>-s, --skip (int64)</dt>
+<dd>The offset to use to define the starting index of projects to return in the query results. Used for pagination in conjunction with the 'limit' query parameter.</dd>
+<dd>The minimum value is `0`.</dd>
+</dl>
+
+<a id='project_get'></a>
+## &#8226; project get
+
+Returns the metadata for a target project specified by ID.
+
+```sh
+cpdctl project get --project-id PROJECT-ID [--include INCLUDE] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>-i, --project-id (string)</dt>
+<dd>The project ID. Required.</dd>
+<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
+<dt>-I, --include ([]string)</dt>
+<dd>A list of comma-separated project metadata sections to include in the query results.</dd>
+</dl>
+
+<a id='project_update'></a>
+## &#8226; project update
+
+Partially updates the project with only a subset of properties.
+
+```sh
+cpdctl project update --project-id PROJECT-ID [--catalog CATALOG] [--compute COMPUTE] [--description DESCRIPTION] [--name NAME] [--public PUBLIC] [--tags TAGS] [--tools TOOLS] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>-i, --project-id (string)</dt>
+<dd>The project ID. Required.</dd>
+<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
+<dt>-C, --catalog (<a href="#cli-project-catalog-example-schema-project">ProjectCatalog</a>)</dt>
+<dd>A catalog associated with the project.</dd>
+<dt>-c, --compute (<a href="#cli-project-compute-example-schema-project">ProjectCompute[]</a>)</dt>
+<dd>A list of computes associated with the project.</dd>
+<dt>-d, --description (string)</dt>
+<dd>A description for the new project.</dd>
+<dt>-n, --name (string)</dt>
+<dd>The name of the project.</dd>
+<dd>The maximum length is `100 ` characters. The minimum length is `1` character.</dd>
+<dt>-p, --public (bool)</dt>
+<dd>A value of 'true' makes the project public.</dd>
+<dd>The default value is `false`.</dd>
+<dt>-t, --tags ([]string)</dt>
+<dd>The user-defined tags associated with a project.</dd>
+<dt>-T, --tools ([]string)</dt>
+<dd>The tools associated with the project.</dd>
+</dl>
+
+<a id='project_member_delete'></a>
+## &#8226; project member delete
+
+Deletes members from the project that match the provided usernames.
+
+```sh
+cpdctl project member delete --project-id PROJECT-ID --user-names USER-NAMES 
+```
+
+
+#### Command options
+
+<dl>
+<dt>-i, --project-id (string)</dt>
+<dd>The project ID. Required.</dd>
+<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
+<dt>-u, --user-names ([]string)</dt>
+<dd>A list of comma-separated usernames corresponding to project members to remove from the project. Required.</dd>
+</dl>
+
+<a id='project_member_list'></a>
+## &#8226; project member list
+
+Returns the list of project members.
+
+```sh
+cpdctl project member list --project-id PROJECT-ID [--roles ROLES] [--user-names USER-NAMES] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>-i, --project-id (string)</dt>
+<dd>The project ID. Required.</dd>
+<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
+<dt>-r, --roles ([]string)</dt>
+<dd>A list of comma-separated project roles to use to filter the query results.</dd>
+<dt>-u, --user-names ([]string)</dt>
+<dd>A list of comma-separated usernames corresponding to project members that are used to filter the query results.</dd>
+</dl>
+
+<a id='project_member_update'></a>
+## &#8226; project member update
+
+Change project member roles in a batch.
+
+```sh
+cpdctl project member update --project-id PROJECT-ID --members MEMBERS 
+```
+
+
+#### Command options
+
+<dl>
+<dt>-i, --project-id (string)</dt>
+<dd>The project ID. Required.</dd>
+<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
+<dt>--members (<a href="#cli-update-member-body-example-schema-project">UpdateMemberBody[]</a>)</dt>
+<dd>A list of project members to update. Required.</dd>
+</dl>
+
+<a id='project_member_create'></a>
+## &#8226; project member create
+
+Adds new project members with the provided roles. A project must always have at least one admin.
+
+```sh
+cpdctl project member create --project-id PROJECT-ID --members MEMBERS 
+```
+
+
+#### Command options
+
+<dl>
+<dt>-i, --project-id (string)</dt>
+<dd>The project ID. Required.</dd>
+<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
+<dt>--members (<a href="#cli-project-member-example-schema-project">ProjectMember[]</a>)</dt>
+<dd>A list of project members. Required.</dd>
+</dl>
+
+<a id='project_member_get'></a>
+## &#8226; project member get
+
+Returns the project member with the specified 'user_name' if any.
+
+```sh
+cpdctl project member get --project-id PROJECT-ID --user-name USER-NAME 
+```
+
+
+#### Command options
+
+<dl>
+<dt>-i, --project-id (string)</dt>
+<dd>The project ID. Required.</dd>
+<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
+<dt>-u, --user-name (string)</dt>
+<dd>The username of the project member. Required.</dd>
+</dl>
+
+<a id='space_list'></a>
+## &#8226; space list
+
+Retrieves the space list.
+
+```sh
+cpdctl space list [--start START] [--limit LIMIT] [--total-count TOTAL-COUNT] [--id ID] [--tags TAGS] [--include INCLUDE] [--member MEMBER] [--roles ROLES] [--bss-account-id BSS-ACCOUNT-ID] [--name NAME] [--compute-crn COMPUTE-CRN] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--start (string)</dt>
+<dd>Token representing first resource.</dd>
+<dt>--limit (float64)</dt>
+<dd>The number of resources returned. Default value is 100. Max value is 200.</dd>
+<dt>--total-count (bool)</dt>
+<dd>Include details about total number of resources. This flag is not supported on CPD 3.0.1..</dd>
+<dt>--id (string)</dt>
+<dd>Comma separated list of ids to be returned. This flag is not supported on CPD 3.0.1.</dd>
+<dt>--tags (string)</dt>
+<dd>A list of comma-separated, user-defined tags to use to filter the query results.</dd>
+<dt>--include (string)</dt>
+<dd>A list of comma-separated space sections to include in the query results. Example: `?include=members`.
+
+Available fields:
+ * members (returns up to 100 members)
+ * nothing (does not return space entity and metadata).</dd>
+<dt>--member (string)</dt>
+<dd>Filters the result list to only include spaces where the user with a matching user id is a member.</dd>
+<dt>--roles (string)</dt>
+<dd>Must be used in conjunction with the member query parameter. Filters the result set to include only spaces where the specified member has one of the roles specified.
+
+Values:
+
+  * admin
+  * editor
+  * viewer.</dd>
+<dt>--bss-account-id (string)</dt>
+<dd>Filtering by bss_account_id is allowed only for accredited services.</dd>
+<dt>--name (string)</dt>
+<dd>Filters the result list to only include space with specified name.</dd>
+<dt>--compute-crn (string)</dt>
+<dd>Filters the result list to only include spaces with specified compute.crn.</dd>
+</dl>
+
+<a id='space_create'></a>
+## &#8226; space create
+
+Creates a new space to scope other assets. Authorized user must have the follwing roles (see /docs/cloud-object-storage?topic=cloud-object-storage-iams)
+- Platform management role: Administrator
+- Service access role: Manager
+
+On Public Cloud user is required to provide Cloud Object Storage instance details in the `storage` property. On private CPD installations the default storage is used instead.
+
+```sh
+cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--storage STORAGE] [--tags TAGS] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--name (string)</dt>
+<dd>Name of space. Required.</dd>
+<dt>--compute (<a href="#cli-compute-request-example-schema-space">ComputeRequest[]</a>)</dt>
+<dd>This flag is not supported on CPD 3.0.1.</dd>
+<dt>--description (string)</dt>
+<dd>Description of space.</dd>
+<dt>--storage (<a href="#cli-storage-request-example-schema-space">StorageRequest</a>)</dt>
+<dd>Cloud Object Storage instance is required for spaces created on Public Cloud. On private CPD installations default storage is used instead. This flag is not supported on CPD 3.0.1.</dd>
+<dt>--tags ([]string)</dt>
+<dd>User-defined tags associated with a space.</dd>
+</dl>
+
+<a id='space_delete'></a>
+## &#8226; space delete
+
+Deletes the space with the specified identifier.
+
+```sh
+cpdctl space delete --space-id SPACE-ID 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--space-id (string)</dt>
+<dd>The space identification. Required.</dd>
+</dl>
+
+<a id='space_get'></a>
+## &#8226; space get
+
+Retrieves the space with the specified identifier.
+
+```sh
+cpdctl space get --space-id SPACE-ID [--include INCLUDE] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--space-id (string)</dt>
+<dd>The space identification. Required.</dd>
+<dt>--include (string)</dt>
+<dd>A list of comma-separated space sections to include in the query results. Example: `?include=members`.
+
+Available fields:
+ * members (returns up to 100 members)
+ * nothing (does not return space entity and metadata).</dd>
+</dl>
+
+<a id='space_update'></a>
+## &#8226; space update
+
+Partially update this space. Allowed paths are:
+  - /name
+  - /description
+  - /compute.
+
+```sh
+cpdctl space update --space-id SPACE-ID --json-patch JSON-PATCH 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--space-id (string)</dt>
+<dd>The space identification. Required.</dd>
+<dt>--json-patch (<a href="#cli-json-patch-operation-example-schema-space">JSONPatchOperation[]</a>)</dt>
+<dd>Input payload for the space.</dd>
+<dt>--compute (<a href="#cli-compute-entity-example-schema-space">ComputeEntity[]</a>)</dt>
+<dd>Updated compute definition.</dd>
+<dt>--description (string)</dt>
+<dd>Updated description.</dd>
+<dt>--name (string)</dt>
+<dd>Updated name.</dd>
+</dl>
+
+<a id='space_member_list'></a>
+## &#8226; space member list
+
+Retrieves the member list for the specified space.
+
+```sh
+cpdctl space member list --space-id SPACE-ID [--start START] [--limit LIMIT] [--total-count TOTAL-COUNT] [--type TYPE] [--role ROLE] [--state STATE] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--space-id (string)</dt>
+<dd>The space identification. Required.</dd>
+<dt>--start (string)</dt>
+<dd>Token representing first resource.</dd>
+<dt>--limit (float64)</dt>
+<dd>The number of resources returned. Default value is 100. Max value is 200.</dd>
+<dt>--total-count (bool)</dt>
+<dd>Include details about total number of resources. This flag is not supported on CPD 3.0.1.</dd>
+<dt>--type (string)</dt>
+<dd>Find the member by `type`.</dd>
+<dt>--role (string)</dt>
+<dd>Find the member by `role`.</dd>
+<dt>--state (string)</dt>
+<dd>Find the member by `state`.</dd>
+</dl>
+
+<a id='space_member_create'></a>
+## &#8226; space member create
+
+Adds a member to the specified space.
+
+```sh
+cpdctl space member create --space-id SPACE-ID --members MEMBERS 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--space-id (string)</dt>
+<dd>The space identification. Required.</dd>
+<dt>--members (<a href="#cli-member-resource-example-schema-space">MemberResource[]</a>)</dt>
+<dd> Required.</dd>
+</dl>
+
+<a id='space_member_delete'></a>
+## &#8226; space member delete
+
+Removes the specified member from the space.
+
+```sh
+cpdctl space member delete --space-id SPACE-ID --member-id MEMBER-ID 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--space-id (string)</dt>
+<dd>The space identification. Required.</dd>
+<dt>--member-id (string)</dt>
+<dd>The member identification. Required.</dd>
+</dl>
+
+<a id='space_member_get'></a>
+## &#8226; space member get
+
+Retrieves the member information for the member and space with the specified identifiers.
+
+```sh
+cpdctl space member get --space-id SPACE-ID --member-id MEMBER-ID 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--space-id (string)</dt>
+<dd>The space identification. Required.</dd>
+<dt>--member-id (string)</dt>
+<dd>The member identification. Required.</dd>
+</dl>
+
+<a id='space_member_update'></a>
+## &#8226; space member update
+
+Partially update the member selected with the specified identifier. Allowed paths are:
+  - /role
+  - /state.
+
+```sh
+cpdctl space member update --space-id SPACE-ID --member-id MEMBER-ID --json-patch JSON-PATCH 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--space-id (string)</dt>
+<dd>The space identification. Required.</dd>
+<dt>--member-id (string)</dt>
+<dd>The member identification. Required.</dd>
+<dt>--json-patch (<a href="#cli-json-patch-operation-example-schema-space">JSONPatchOperation[]</a>)</dt>
+<dd>The json patch.</dd>
+<dt>--role (string)</dt>
+<dd>The role of the space member. Required.</dd>
+<dd>Allowable values are: viewer, editor, admin</dd>
+<dt>--state (string)</dt>
+<dd>The state of the space member. This field is only supported for members of type 'user'.</dd>
+<dd>Allowable values are: active, pending</dd>
+</dl>
+
+<a id='space_wait'></a>
+## &#8226; space wait
+Wait until the space creation or deletion is finished.
+
+```sh
+  cpdctl space wait --space-id SPACE_ID
 ```
 #### Command options
 
 <dl>
-<dt>--asset-type string    </dt><dd>Asset type used when resolving paths with an asset ID only</dd>
-<dt>--ignore               </dt><dd>Ignore errors and return empty result (default: false)</dd>
-<dt>--output json          </dt><dd>Choose an output format - can be json, `yaml`, or `table`. (default "table")</dd>
-<dt>--resource-type string </dt><dd>Resource type used when resolving paths with a resource ID only</dd>
-<dt>--result               </dt><dd>Include result metadata in output (default: false)</dd>
+<dt>--cpd-scope string </dt><dd>CPD space scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
+<dt>--space-id string  </dt><dd>The space identification.</dd>
 </dl>
-
-<a id='config_user_list'></a>
-## &#8226; config user list
-List users
-
-```sh
-  cpdctl config user list
-```
-
-<a id='config_user_get'></a>
-## &#8226; config user get
-```sh
-  cpdctl config user get name
-```
-
-<a id='config_user_set'></a>
-## &#8226; config user set
-```sh
-  cpdctl config user set name
-```
-#### Command options
-
-<dl>
-<dt>--apikey string     </dt><dd>Set user apikey</dd>
-<dt>--password string   </dt><dd>Set user password</dd>
-<dt>--token-file string </dt><dd>Set location of a file that contains user token</dd>
-<dt>--username string   </dt><dd>Set user name</dd>
-</dl>
-
-<a id='config_user_unset'></a>
-## &#8226; config user unset
-```sh
-  cpdctl config user unset name
-```
-
-<a id='config_profile_list'></a>
-## &#8226; config profile list
-List profiles
-
-```sh
-  cpdctl config profile list
-```
-
-<a id='config_profile_get'></a>
-## &#8226; config profile get
-```sh
-  cpdctl config profile get name
-```
-
-<a id='config_profile_set'></a>
-## &#8226; config profile set
-```sh
-  cpdctl config profile set name
-```
-#### Command options
-
-<dl>
-<dt>--url string  </dt><dd>Set url for the profile</dd>
-<dt>--user string </dt><dd>Set user for the profile</dd>
-</dl>
-
-<a id='config_profile_unset'></a>
-## &#8226; config profile unset
-```sh
-  cpdctl config profile unset name
-```
-
-<a id='config_service_list'></a>
-## &#8226; config service list
-List services
-
-```sh
-  cpdctl config service list
-```
-
-<a id='config_service_export'></a>
-## &#8226; config service export
-Export Configuration
-
-```sh
-  cpdctl config service export service-name
-```
-
-<a id='config_service_get'></a>
-## &#8226; config service get
-```sh
-  cpdctl config service get name
-```
-
-<a id='config_service_set'></a>
-## &#8226; config service set
-```sh
-  cpdctl config service set name
-```
-#### Command options
-
-<dl>
-<dt>--instance string </dt><dd>Set instance for the service</dd>
-<dt>--profile string  </dt><dd>Set profile for the service</dd>
-<dt>--type string     </dt><dd>Set type for the service</dd>
-<dt>--url string      </dt><dd>Set url for the service</dd>
-<dt>--user string     </dt><dd>Set user for the service</dd>
-</dl>
-
-<a id='config_service_unset'></a>
-## &#8226; config service unset
-```sh
-  cpdctl config service unset name
-```
-
-<a id='config_context_list'></a>
-## &#8226; config context list
-List contexts
-
-```sh
-  cpdctl config context list
-```
-
-<a id='config_context_export'></a>
-## &#8226; config context export
-Export Configuration
-
-```sh
-  cpdctl config context export context-name
-```
-
-<a id='config_context_get'></a>
-## &#8226; config context get
-```sh
-  cpdctl config context get name
-```
-
-<a id='config_context_set'></a>
-## &#8226; config context set
-```sh
-  cpdctl config context set name
-```
-#### Command options
-
-<dl>
-<dt>--apikey string                  </dt><dd>Create a user having this API key and associate it with the context.</dd>
-<dt>--password string                </dt><dd>Create a user having this password and associate it with the context.</dd>
-<dt>--profile string                 </dt><dd>Associate existing profile with the context. This option cannot be used together with --url.</dd>
-<dt>--token-file string              </dt><dd>Create a user having this token location and associate it with the context.</dd>
-<dt>--url string                     </dt><dd>Create a profile having this URL and associate it with the context.</dd>
-<dt>--user string                    </dt><dd>Associate existing user with the context. This option cannot be used together with --username, --password, --apikey, and --token.</dd>
-<dt>--username string                </dt><dd>Create a user having this name and associate it with the context.</dd>
-<dt>--watson-machine-learning string </dt><dd>Associate existing Watson Machine Learning service instance with the context.</dd>
-<dt>--watson-open-scale string       </dt><dd>Associate existing Watson OpenScale service instance with the context.</dd>
-<dt>--watson-studio string           </dt><dd>Associate existing Watson Studio service instance with the context.</dd>
-</dl>
-
-<a id='config_context_unset'></a>
-## &#8226; config context unset
-```sh
-  cpdctl config context unset name
-```
-
-<a id='config_context_current'></a>
-## &#8226; config context current
-Display the current context
-
-```sh
-  cpdctl config context current
-```
-
-<a id='config_context_use'></a>
-## &#8226; config context use
-Sets the current context
-
-```sh
-  cpdctl config context use context-name
-```
 
 <a id='version_'></a>
 ## &#8226; version 
@@ -5958,149 +6034,6 @@ The following example shows the format of the ExportAssets object.
   "asset_ids" : [ "exampleString" ],
   "asset_types" : [ "data_asset" ]
 }
-```
-### &#8226; TransactionalProjectStorageObject
-<a id="cli-transactional-project-storage-object-example-schema-project"></a>
-
-The following example shows the format of the TransactionalProjectStorageObject object.
-
-```json
-
-{
-  "delegated" : true,
-  "guid" : "d0e410a0-b358-42fc-b402-dba83316413a",
-  "resource_crn" : "crn:v1:staging:public:cloud-object-storage:global:a/a7026b374f39f570d20984c1ac6ecf63:5778e94f-c8c7-46a8-9878-d5eeadb51161::",
-  "type" : "bmcos_object_storage"
-}
-```
-### &#8226; TransactionalProjectComputeObjectCloud
-<a id="cli-transactional-project-compute-object-cloud-example-schema-project"></a>
-
-The following example shows the format of the TransactionalProjectComputeObjectCloud[] object.
-
-```json
-
-[ {
-  "crn" : "crn:v1:staging:public:watson-vision-combined:us-south:a/1438bf1daef49e20401d0179818ebef5:6874282b-42d6-40fa-869b-95a3c0f04125::",
-  "guid" : "eddc2f0c-4401-49d1-b632-dee2ec33dcc0",
-  "label" : "watson_vision_combined",
-  "name" : "Apache Spark",
-  "type" : "spark"
-} ]
-```
-### &#8226; ProjectCatalog
-<a id="cli-project-catalog-example-schema-project"></a>
-
-The following example shows the format of the ProjectCatalog object.
-
-```json
-
-{
-  "guid" : "fcce617b-1fc9-4965-8820-272864f58399",
-  "public" : true
-}
-```
-### &#8226; ProjectCompute
-<a id="cli-project-compute-example-schema-project"></a>
-
-The following example shows the format of the ProjectCompute[] object.
-
-```json
-
-[ {
-  "credentials" : {
-    "anyKey" : "anyValue"
-  },
-  "crn" : "crn:v1:staging:public:watson-vision-combined:us-south:a/1438bf1daef49e20401d0179818ebef5:6874282b-42d6-40fa-869b-95a3c0f04125::",
-  "guid" : "eddc2f0c-4401-49d1-b632-dee2ec33dcc0",
-  "label" : "service_label",
-  "name" : "Analytics Engine",
-  "type" : "analytics_engine"
-} ]
-```
-### &#8226; UpdateMemberBody
-<a id="cli-update-member-body-example-schema-project"></a>
-
-The following example shows the format of the UpdateMemberBody[] object.
-
-```json
-
-[ {
-  "id" : "IBMid-55000353XF",
-  "role" : "admin",
-  "state" : "ACTIVE",
-  "user_name" : "zapp.brannigan@ibm.com"
-} ]
-```
-### &#8226; ProjectMember
-<a id="cli-project-member-example-schema-project"></a>
-
-The following example shows the format of the ProjectMember[] object.
-
-```json
-
-[ {
-  "id" : "IBMid-55000353XF",
-  "role" : "admin",
-  "state" : "ACTIVE",
-  "type" : "user",
-  "user_name" : "zapp.brannigan@ibm.com"
-} ]
-```
-### &#8226; ComputeRequest
-<a id="cli-compute-request-example-schema-space"></a>
-
-The following example shows the format of the ComputeRequest[] object.
-
-```json
-
-[ {
-  "crn" : "exampleString",
-  "name" : "exampleString"
-} ]
-```
-### &#8226; StorageRequest
-<a id="cli-storage-request-example-schema-space"></a>
-
-The following example shows the format of the StorageRequest object.
-
-```json
-
-{
-  "delegated" : true,
-  "resource_crn" : "exampleString"
-}
-```
-### &#8226; JSONPatchOperation
-<a id="cli-json-patch-operation-example-schema-space"></a>
-
-The following example shows the format of the JSONPatchOperation[] object.
-
-```json
-
-[ {
-  "op" : "add",
-  "path" : "exampleString",
-  "from" : "exampleString",
-  "value" : "exampleString"
-} ]
-```
-### &#8226; ComputeEntity
-<a id="cli-compute-entity-example-schema-space"></a>
-
-### &#8226; MemberResource
-<a id="cli-member-resource-example-schema-space"></a>
-
-The following example shows the format of the MemberResource[] object.
-
-```json
-
-[ {
-  "id" : "exampleString",
-  "role" : "viewer",
-  "state" : "active",
-  "type" : "user"
-} ]
 ```
 ### &#8226; ConnectionInteractionProperties
 <a id="cli-connection-interaction-properties-example-schema-connection"></a>
@@ -6287,113 +6220,30 @@ The following example shows the format of the PackageExtensionReference[] object
   "href" : "/v2/package_extensions/b82b95df-fc3e-4273-98f7-473d62a03c2b"
 } ]
 ```
-### &#8226; NotebookKernel
-<a id="cli-notebook-kernel-example-schema-notebook"></a>
-
-The following example shows the format of the NotebookKernel object.
-
-```json
-
-{
-  "display_name" : "Python 3.5 with Spark",
-  "language" : "python3",
-  "name" : "python3"
-}
-```
-### &#8226; NotebookOrigin
-<a id="cli-notebook-origin-example-schema-notebook"></a>
-
-The following example shows the format of the NotebookOrigin object.
-
-```json
-
-{
-  "type" : "blank"
-}
-```
-### &#8226; NotebookRuntime
-<a id="cli-notebook-runtime-example-schema-notebook"></a>
-
-The following example shows the format of the NotebookRuntime object.
-
-```json
-
-{
-  "environment" : "conda4x16-d46ca0e27-a646-4de9-a646-9b113c183d4",
-  "spark_monitoring_enabled" : true
-}
-```
-### &#8226; NotebookShares
-<a id="cli-notebook-shares-example-schema-notebook"></a>
-
-The following example shows the format of the NotebookShares object.
-
-```json
-
-{
-  "gist" : {
-    "content_filter" : "none",
-    "enabled" : false,
-    "html_url" : "http://gist.ibm.com",
-    "visibility" : "all"
-  },
-  "github" : {
-    "api_url" : "http://api.github.ibm.com/v2",
-    "branch" : "dev",
-    "commit_sha" : "4f0c9d366173a0a322b032e01c989831a3287145",
-    "content_filter" : "none",
-    "content_sha" : "d89e37f1502717207e7f423c65e414e6b4645687",
-    "enabled" : false,
-    "html_url" : "http://github.ibm.com",
-    "path" : "blob/foo",
-    "repo_name" : "Data Science Experience",
-    "repo_org" : "dsx"
-  },
-  "public" : {
-    "content_filter" : "none",
-    "enabled" : false
-  }
-}
-```
 ### &#8226; JobPostBodyJob
 <a id="cli-job-post-body-job-example-schema-job"></a>
 
-The following example shows the format of the JobPostBodyJob object.
+### &#8226; JSONPatchOperation
+<a id="cli-json-patch-operation-example-schema-job"></a>
+
+The following example shows the format of the JSONPatchOperation[] object.
 
 ```json
 
-{
-  "asset_ref" : "ff1ab70b-0553-409a-93f9-ccc31471c218",
-  "asset_ref_type" : "notebook",
-  "configuration" : {
-    "deployment_job_definition_id" : "ff1ab70b-0553-409a-93f9-ccc31471c218",
-    "env_id" : "defaultsparkr1x4-18ce241b-c9e8-43ed-94a1-9f5585764924",
-    "env_variables" : [ "exampleString" ],
-    "version" : "d00a9d88-4394-48f8-86db-d9b8360f8a72"
-  },
-  "description" : "Description.",
-  "name" : "Name",
-  "schedule" : "0 3 21 13 1 ? 2019",
-  "schedule_info" : {
-    "endOn" : 1547578689512,
-    "repeat" : true,
-    "startOn" : 1547578689512
+[ {
+  "op" : "replace",
+  "path" : "/metadata/name (or /entity/job/configuration)",
+  "value" : {
+    "anyKey" : "anyValue"
   }
-}
+} ]
 ```
+### &#8226; JobRuntimeConfiguration
+<a id="cli-job-runtime-configuration-example-schema-job"></a>
+
 ### &#8226; JobRunPostBodyJobRun
 <a id="cli-job-run-post-body-job-run-example-schema-job"></a>
 
-The following example shows the format of the JobRunPostBodyJobRun object.
-
-```json
-
-{
-  "configuration" : {
-    "env_variables" : [ "exampleString" ]
-  }
-}
-```
 ### &#8226; Rel
 <a id="cli-rel-example-schema-ml"></a>
 
@@ -7136,4 +6986,215 @@ The following example shows the format of the ObjectLocation object.
     "anyKey" : "anyValue"
   }
 }
+```
+### &#8226; NotebookKernel
+<a id="cli-notebook-kernel-example-schema-notebook"></a>
+
+The following example shows the format of the NotebookKernel object.
+
+```json
+
+{
+  "display_name" : "Python 3.5 with Spark",
+  "language" : "python3",
+  "name" : "python3"
+}
+```
+### &#8226; NotebookOrigin
+<a id="cli-notebook-origin-example-schema-notebook"></a>
+
+The following example shows the format of the NotebookOrigin object.
+
+```json
+
+{
+  "type" : "blank"
+}
+```
+### &#8226; NotebookRuntime
+<a id="cli-notebook-runtime-example-schema-notebook"></a>
+
+The following example shows the format of the NotebookRuntime object.
+
+```json
+
+{
+  "environment" : "conda4x16-d46ca0e27-a646-4de9-a646-9b113c183d4",
+  "spark_monitoring_enabled" : true
+}
+```
+### &#8226; NotebookShares
+<a id="cli-notebook-shares-example-schema-notebook"></a>
+
+The following example shows the format of the NotebookShares object.
+
+```json
+
+{
+  "gist" : {
+    "content_filter" : "none",
+    "enabled" : false,
+    "html_url" : "http://gist.ibm.com",
+    "visibility" : "all"
+  },
+  "github" : {
+    "api_url" : "http://api.github.ibm.com/v2",
+    "branch" : "dev",
+    "commit_sha" : "4f0c9d366173a0a322b032e01c989831a3287145",
+    "content_filter" : "none",
+    "content_sha" : "d89e37f1502717207e7f423c65e414e6b4645687",
+    "enabled" : false,
+    "html_url" : "http://github.ibm.com",
+    "path" : "blob/foo",
+    "repo_name" : "Data Science Experience",
+    "repo_org" : "dsx"
+  },
+  "public" : {
+    "content_filter" : "none",
+    "enabled" : false
+  }
+}
+```
+### &#8226; TransactionalProjectStorageObject
+<a id="cli-transactional-project-storage-object-example-schema-project"></a>
+
+The following example shows the format of the TransactionalProjectStorageObject object.
+
+```json
+
+{
+  "delegated" : true,
+  "guid" : "d0e410a0-b358-42fc-b402-dba83316413a",
+  "resource_crn" : "crn:v1:staging:public:cloud-object-storage:global:a/a7026b374f39f570d20984c1ac6ecf63:5778e94f-c8c7-46a8-9878-d5eeadb51161::",
+  "type" : "bmcos_object_storage"
+}
+```
+### &#8226; TransactionalProjectComputeObjectCloud
+<a id="cli-transactional-project-compute-object-cloud-example-schema-project"></a>
+
+The following example shows the format of the TransactionalProjectComputeObjectCloud[] object.
+
+```json
+
+[ {
+  "crn" : "crn:v1:staging:public:watson-vision-combined:us-south:a/1438bf1daef49e20401d0179818ebef5:6874282b-42d6-40fa-869b-95a3c0f04125::",
+  "guid" : "eddc2f0c-4401-49d1-b632-dee2ec33dcc0",
+  "label" : "watson_vision_combined",
+  "name" : "Apache Spark",
+  "type" : "spark"
+} ]
+```
+### &#8226; ProjectCatalog
+<a id="cli-project-catalog-example-schema-project"></a>
+
+The following example shows the format of the ProjectCatalog object.
+
+```json
+
+{
+  "guid" : "fcce617b-1fc9-4965-8820-272864f58399",
+  "public" : true
+}
+```
+### &#8226; ProjectCompute
+<a id="cli-project-compute-example-schema-project"></a>
+
+The following example shows the format of the ProjectCompute[] object.
+
+```json
+
+[ {
+  "credentials" : {
+    "anyKey" : "anyValue"
+  },
+  "crn" : "crn:v1:staging:public:watson-vision-combined:us-south:a/1438bf1daef49e20401d0179818ebef5:6874282b-42d6-40fa-869b-95a3c0f04125::",
+  "guid" : "eddc2f0c-4401-49d1-b632-dee2ec33dcc0",
+  "label" : "service_label",
+  "name" : "Analytics Engine",
+  "type" : "analytics_engine"
+} ]
+```
+### &#8226; UpdateMemberBody
+<a id="cli-update-member-body-example-schema-project"></a>
+
+The following example shows the format of the UpdateMemberBody[] object.
+
+```json
+
+[ {
+  "id" : "IBMid-55000353XF",
+  "role" : "admin",
+  "state" : "ACTIVE",
+  "user_name" : "zapp.brannigan@ibm.com"
+} ]
+```
+### &#8226; ProjectMember
+<a id="cli-project-member-example-schema-project"></a>
+
+The following example shows the format of the ProjectMember[] object.
+
+```json
+
+[ {
+  "id" : "IBMid-55000353XF",
+  "role" : "admin",
+  "state" : "ACTIVE",
+  "type" : "user",
+  "user_name" : "zapp.brannigan@ibm.com"
+} ]
+```
+### &#8226; ComputeRequest
+<a id="cli-compute-request-example-schema-space"></a>
+
+The following example shows the format of the ComputeRequest[] object.
+
+```json
+
+[ {
+  "crn" : "exampleString",
+  "name" : "exampleString"
+} ]
+```
+### &#8226; StorageRequest
+<a id="cli-storage-request-example-schema-space"></a>
+
+The following example shows the format of the StorageRequest object.
+
+```json
+
+{
+  "delegated" : true,
+  "resource_crn" : "exampleString"
+}
+```
+### &#8226; JSONPatchOperation
+<a id="cli-json-patch-operation-example-schema-space"></a>
+
+The following example shows the format of the JSONPatchOperation[] object.
+
+```json
+
+[ {
+  "op" : "add",
+  "path" : "exampleString",
+  "from" : "exampleString",
+  "value" : "exampleString"
+} ]
+```
+### &#8226; ComputeEntity
+<a id="cli-compute-entity-example-schema-space"></a>
+
+### &#8226; MemberResource
+<a id="cli-member-resource-example-schema-space"></a>
+
+The following example shows the format of the MemberResource[] object.
+
+```json
+
+[ {
+  "id" : "exampleString",
+  "role" : "viewer",
+  "state" : "active",
+  "type" : "user"
+} ]
 ```
