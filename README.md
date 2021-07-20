@@ -1,7 +1,7 @@
 # CPDCTL
-CPDCTL is a command-line interface (CLI) you can use to manage the lifecycle of a model from IBM Cloud Pak for Data 3.0.1 and 3.5.
+CPDCTL is a command-line interface (CLI) you can use to manage the lifecycle of a model from IBM Cloud Pak for Data 3.0.1, 3.5, and 4.0.
 
-Using the CLI you can manage configuration settings and automate an end-to-end flow that includes training a model, saving it, creating a deployment space, and deploying the model.
+Using the CLI, you can manage configuration settings and automate an end-to-end flow that includes training a model, saving it, creating a deployment space, and deploying the model.
 
 ## Installation
 
@@ -16,20 +16,20 @@ Download the appropriate archive from [cpdctl repository](https://github.com/IBM
   
 ### Linux x64
 * Archive name `cpdctl_linux_amd64.tar.gz`
-* Issue command `tar zxf cpdctl_linux_amd64.tar.gz` to extract `cpdctl` executable from the archive.
+* Issue command `$ tar zxf cpdctl_linux_amd64.tar.gz` to extract the `cpdctl` executable from the archive.
 
 ### Linux Power 64 bit LE
 * Archive name `cpdctl_linux_ppc64le.tar.gz`
-* Issue command `tar zxf cpdctl_linux_ppc64le.tar.gz` to extract `cpdctl` executable from the archive.
+* Issue command `$ tar zxf cpdctl_linux_ppc64le.tar.gz` to extract the `cpdctl` executable from the archive.
 
 > ![New in 1.0.46](https://img.shields.io/badge/New%20in-1.0.46-blue)
 > ### Linux on IBM Z
 > * Archive name `cpdctl_linux_s390x.tar.gz`
-> * Issue command `tar zxf cpdctl_linux_s390x.tar.gz` to extract `cpdctl` executable from the archive.
+> * Issue command `$ tar zxf cpdctl_linux_s390x.tar.gz` to extract the `cpdctl` executable from the archive.
 
 ### macOS x64
 * Archive name `cpdctl_darwin_amd64.tar.gz`
-* Issue command `tar zxf cpdctl_darwin_mad64.tar.gz` to extract `cpdctl` executable from the archive.
+* Issue command `$ tar zxf cpdctl_darwin_mad64.tar.gz` to extract the `cpdctl` executable from the archive.
 * Run `cpdctl`. Dismiss the warning message `"cpdctl" cannot be opened because the developer cannot be verified`.
 * Go to `Preferences` -> `Security & Privacy`, click on the lock icon and enter your password to allow modifications.
 * Find entry `"cpdctl" was blocked from use because it is not from an identified developer` and select `Allow Anyway`.
@@ -59,62 +59,76 @@ This example illustrates how to create a configuration by defining a user and a 
 First, set the credentials used to connect to Cloud Pak for Data instance:
 
 ```
-$ cpdctl config user set qa-user --username=<username> --password=<password>
+$ cpdctl config user set <qa-user> --username=<username> --password=<password>
 ``` 
 
 Next, set the URL of IBM Cloud Pak for Data instance:
 
 ```
-$ cpdctl config profile set qa-profile --url <profile_url>
+$ cpdctl config profile set <qa-profile> --url <profile_url>
 ```
 
 Then define the context:
 
 ```
-$ cpdctl config context set qa-context --user qa-user --profile qa-profile
+$ cpdctl config context set <qa-context> --user <qa-user> --profile <qa-profile>
 ```
 
 > ![New in 1.0.46](https://img.shields.io/badge/New%20in-1.0.46-blue)
 > 
 > The three steps above (setting user, profile and context) can be combined into one command:
 > ```
-> $ cpdctl config context set qa-context --username=<username> --password=<password> --url <profile_url>
+> $ cpdctl config context set <qa-context> --username=<username> --password=<password> --url <profile_url>
 > ```
 
 Print list of contexts:
 
 ```
 $ cpdctl config context list
-Name         Profile      User     Current   
-qa-context   qa-profile   qa-user  
+Name           Profile        User        Current   
+<qa-context>   <qa-profile>   <qa-user>  
 ```
 
 Set default context:
 
 ```
-$ cpdctl config context use qa-context
+$ cpdctl config context use <qa-context>
 ```
 
 Every subsequent command will use the default context unless a `--context` flag is used to select another context for the command:
 ```
-$ cpdctl space list --context other-context
+$ cpdctl space list --context <another-context>
 ```
+### Support for IAM Service integration
+Cloud Pak for Data 4.0 introduces [LDAP integration provided by the Identity and Access Management Service](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-integrating-iam-service) (IAM Service) in IBM Cloud Pak® foundational services.
+`cpdctl` supports authentication with IAM integration enabled and disabled.
+
+When IAM integration is enabled, `cpdctl` needs to know the route to the foundational services in order to authenticate users. The route has a form of an URL. 
+When it is not specified, it is auto-discovered from the Cloud Pak for Data instance. In order to override the discovered route, use the following command:
+```shell
+$ cpdctl config profile set <profile_name> --common-services-url <foundational-services-route>
+```
+To retrieve the foundational services route, log in to Red Hat® OpenShift® Container Platform and issue this command:
+```shell
+$ oc get route cp-console -n <foundational-services-ns> --template='{{ .spec.host }}'
+```
+where `<foundational-services-ns>` is the namespace of foundational services, by default `ibm-common-services`.
 
 ### Configuration with file
 
-`cpdctl` uses a single configuration file that allows to store information about one or more contexts, where each context can refer to a different environment.
+`cpdctl` uses a single configuration file that allows it to store information about one or more contexts, where each context can refer to a different environment.
 
 #### Configuration file location
 
-The location of configuration file is determined in the following way (in the order of precedence):
+The location of the configuration file is determined in the following way (in the order of precedence):
 1. From the `--cpdconfig` flag value (if set). For example:
    
-   `cpdctl --cpdconfig=config.yaml config profile list`
+   `$ cpdctl --cpdconfig=config.yaml config profile list`
    
    When the path is not absolute, it is regarded as relative to the current working directory. The command above will load configuration from file `config.yaml` located in the current working directory.
 2. From `CPDCONFIG` environment variable (if set). For example:
 
-   `CPDCONFIG=/opt/cpdctl/config.yaml cpdctl config profile list`
+   `$ CPDCONFIG=/opt/cpdctl/config.yaml cpdctl config profile list`
    
    The command above will load configuration from absolute path `/opt/cpdctl/config.yaml`
 3. Finally, the default configuration file location `$HOME/.cpdctl/config` is used.
@@ -123,7 +137,7 @@ The location of configuration file is determined in the following way (in the or
 ## Available commands
 ```
 $ cpdctl --help
-Cross-product common CLI for CPD and Public Cloud
+Cross-product common CLI for Cloud Pak for Data
 
 Usage:
   cpdctl [command]
@@ -158,9 +172,7 @@ Descriptions for all available commands along with examples showing the structur
 ```
 $ cpdctl space list --output json
 ```
-> ![New in 1.0.46](https://img.shields.io/badge/New%20in-1.0.46-blue)
-> 
-> Table output may truncate overly long values to improve the readability of the table structure. Output formats `json` and `yaml` always present full information.
+Table output may truncate overly long values to improve readability of the table structure. Output formats `json` and `yaml` always present full information.
 
 The CLI also supports JMESPath query output customization. This example shows how to get an identifier of the first space programmatically:
 ```
