@@ -194,14 +194,11 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [notebook delete](#notebook_delete)
 #### &#8226; [notebook update](#notebook_update)
 #### &#8226; [notebook revert](#notebook_revert)
-#### &#8226; [notebook promote](#notebook_promote)
 #### &#8226; [notebook version list](#notebook_version_list)
 #### &#8226; [notebook version create](#notebook_version_create)
 #### &#8226; [notebook version delete](#notebook_version_delete)
 #### &#8226; [notebook version get](#notebook_version_get)
 #### &#8226; [notebook version update](#notebook_version_update)
-#### &#8226; [project create](#project_create)
-#### &#8226; [project delete](#project_delete)
 #### &#8226; [project list](#project_list)
 #### &#8226; [project get](#project_get)
 #### &#8226; [project update](#project_update)
@@ -210,6 +207,8 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [project member update](#project_member_update)
 #### &#8226; [project member create](#project_member_create)
 #### &#8226; [project member get](#project_member_get)
+#### &#8226; [project create](#project_create)
+#### &#8226; [project delete](#project_delete)
 #### &#8226; [space list](#space_list)
 #### &#8226; [space create](#space_create)
 #### &#8226; [space delete](#space_delete)
@@ -1992,7 +1991,7 @@ cpdctl environment list [--project-id PROJECT-ID] [--space-id SPACE-ID] [--types
 Create a new environment.
 
 ```sh
-cpdctl environment create --display-name DISPLAY-NAME --hardware-specification HARDWARE-SPECIFICATION --name NAME --software-specification SOFTWARE-SPECIFICATION --type TYPE [--authorization-variables AUTHORIZATION-VARIABLES] [--compute-specification COMPUTE-SPECIFICATION] [--description DESCRIPTION] [--environment-variables ENVIRONMENT-VARIABLES] [--location LOCATION] [--runtime-idle-time RUNTIME-IDLE-TIME] [--tools-specification TOOLS-SPECIFICATION] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
+cpdctl environment create --display-name DISPLAY-NAME --name NAME --type TYPE [--authorization-variables AUTHORIZATION-VARIABLES] [--compute-specification COMPUTE-SPECIFICATION] [--description DESCRIPTION] [--environment-variables ENVIRONMENT-VARIABLES] [--hardware-specification HARDWARE-SPECIFICATION] [--location LOCATION] [--runtime-idle-time RUNTIME-IDLE-TIME] [--software-specification SOFTWARE-SPECIFICATION] [--tools-specification TOOLS-SPECIFICATION] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
@@ -2001,12 +2000,8 @@ cpdctl environment create --display-name DISPLAY-NAME --hardware-specification H
 <dl>
 <dt>--display-name (string)</dt>
 <dd>Display name of the environment. Required.</dd>
-<dt>--hardware-specification (<a href="#cli-referenced-specification-example-schema-environment">ReferencedSpecification</a>)</dt>
-<dd>A pointer to a sub-specification that was defined elsewhere. Required.</dd>
 <dt>--name (string)</dt>
 <dd>Name of the environment. Required.</dd>
-<dt>--software-specification (<a href="#cli-referenced-specification-example-schema-environment">ReferencedSpecification</a>)</dt>
-<dd>A pointer to a sub-specification that was defined elsewhere. Required.</dd>
 <dt>--type (string)</dt>
 <dd>Type of the environment. Required.</dd>
 <dt>--authorization-variables (generic map)</dt>
@@ -2017,10 +2012,14 @@ cpdctl environment create --display-name DISPLAY-NAME --hardware-specification H
 <dd>Description of the environment.</dd>
 <dt>--environment-variables (generic map)</dt>
 <dd>Environment variables for the environment.</dd>
+<dt>--hardware-specification (<a href="#cli-referenced-specification-example-schema-environment">ReferencedSpecification</a>)</dt>
+<dd>A pointer to a sub-specification that was defined elsewhere.</dd>
 <dt>--location (generic map)</dt>
 <dd>Runtime location for the environment.</dd>
 <dt>--runtime-idle-time (int64)</dt>
 <dd>Runtime idle timeout.</dd>
+<dt>--software-specification (<a href="#cli-referenced-specification-example-schema-environment">ReferencedSpecification</a>)</dt>
+<dd>A pointer to a sub-specification that was defined elsewhere.</dd>
 <dt>--tools-specification (generic map)</dt>
 <dd>Tools specification for the environment.</dd>
 <dt>--project-id (string)</dt>
@@ -2157,10 +2156,10 @@ Global default hardware specifications are read from a well-known location on di
 
 Authorization rules for (1) and (2) follow those for `/v2/assets` for projects and spaces, respectively. Alternatively, the request is authorized for a valid authentication by Service Auth. Only WSL/CPD administrators are authorized to make a request of type (3) - global custom software specifications. Alternatively, the request is authorized for a valid authentication by Service Auth.
 
-You can only provide one of `nodes` or `spark`, not both at the same time.
+You can only provide exactly one of `nodes`, `spark` or `datastage`, not at the same time.
 
 ```sh
-cpdctl environment hardware-specification create --name NAME [--description DESCRIPTION] [--nodes NODES] [--spark SPARK] [--space-id SPACE-ID] [--project-id PROJECT-ID] 
+cpdctl environment hardware-specification create --name NAME [--datastage DATASTAGE] [--description DESCRIPTION] [--nodes NODES] [--spark SPARK] [--space-id SPACE-ID] [--project-id PROJECT-ID] 
 ```
 
 
@@ -2169,6 +2168,8 @@ cpdctl environment hardware-specification create --name NAME [--description DESC
 <dl>
 <dt>--name (string)</dt>
 <dd>Name of hardware specification. Required.</dd>
+<dt>--datastage (<a href="#cli-hardware-specification-data-stage-definition-example-schema-environment">HardwareSpecificationDataStageDefinition</a>)</dt>
+<dd>DataStage definition of hardware specification.</dd>
 <dt>--description (string)</dt>
 <dd>Description of hardware specification.</dd>
 <dt>--nodes (<a href="#cli-hardware-specification-nodes-definition-example-schema-environment">HardwareSpecificationNodesDefinition</a>)</dt>
@@ -3130,14 +3131,14 @@ cpdctl ml deployment delete --deployment-id DEPLOYMENT-ID --space-id SPACE-ID
 
 Update the deployment metadata. The following parameters of deployment metadata are supported for the patch operation.
 
-* tags
-* name
-* description
-* custom
-* virtual.parameters
-* hardware_spec
-* hybrid_pipeline_hardware_specs
-* asset
+- `/tags`
+- `/name`
+- `/description`
+- `/custom`
+- `/virtual.parameters`
+- `/hardware_spec`
+- `/hybrid_pipeline_hardware_specs`
+- `/asset`
 
 In case of online deployments, using PATCH operation of `/ml/v4/deployments`, users can update the number of copies of an online deployment. Users can specify the desired value of number of copies in `hardware_spec.num_nodes` parameter. As `hardware_spec.name` or `hardware_spec.id` is mandatory for `hardware_spec` schema, a valid value such as `XS`, `S` must be specified for `hardware_spec.name` parameter as part of PATCH request. Alternatively, users can also specify a valid ID of a hardware specification in `hardware_spec.id` parameter. However, changes related to `hardware_spec.name` or `hardware_spec.id` specified in PATCH operation will not be applied for online deployments.
 <br /> In case of batch deployments, using PATCH operation of `/ml/v4/deployments`, users can update the hardware specification so that subsequent batch deployment jobs can make use of the updated compute configurations. To update the compute configuration, users must specify a valid value for either `hardware_spec.name` or `hardware_spec.id` of the hardware specification that suits their requirement. In the batch deployment context, `hardware_spec.num_nodes` parameter is not currently supported.
@@ -3242,10 +3243,10 @@ cpdctl ml deployment-job list --space-id SPACE-ID [--tag-value TAG-VALUE] [--sta
 <a id='ml_deployment-job_create'></a>
 ## &#8226; ml deployment-job create
 
-Start a deployment job asynchronously. This can perform batch scoring, streaming, or other types of batch operations, such as solving a Decision Optimization problem.
+Start a deployment job asynchronously. This can perform batch scoring, streaming, or other types of batch operations, such as solving a Decision Optimization problem. Depending on the `version` date passed, the `platform_jobs` section in the response may or may not be populated. Use the GET call to retrieve the deployment job, this GET call will eventually populate the `platform_jobs` section. Refer to the `version date` description for more details.
 
 ```sh
-cpdctl ml deployment-job create [--space-id SPACE-ID] [--name NAME] [--description DESCRIPTION] [--tags TAGS] [--deployment DEPLOYMENT] [--custom CUSTOM] [--hardware-spec HARDWARE-SPEC] [--hybrid-pipeline-hardware-specs HYBRID-PIPELINE-HARDWARE-SPECS] [--scoring SCORING] [--decision-optimization DECISION-OPTIMIZATION] 
+cpdctl ml deployment-job create [--space-id SPACE-ID] [--name NAME] [--description DESCRIPTION] [--tags TAGS] [--deployment DEPLOYMENT] [--custom CUSTOM] [--hardware-spec HARDWARE-SPEC] [--hybrid-pipeline-hardware-specs HYBRID-PIPELINE-HARDWARE-SPECS] [--scoring SCORING] [--decision-optimization DECISION-OPTIMIZATION] [--retention RETENTION] 
 ```
 
 
@@ -3303,6 +3304,8 @@ The `input_data_references` property is mutually exclusive with `input_data` pro
 
 Use `output_data_references` property to specify the details pertaining to the remote source where the
 input data for batch deployment job is available. The `output_data_references` must be used with `input_data_references`.</dd>
+<dt>--retention (string)</dt>
+<dd>Defines number of days to retain the job meta. Job meta will be auto deleted after that. Value '-1' sets the meta to be never auto deleted. accepted values are positive integer and '-1'. default value considered if the parameter not passed to be '30' days.</dd>
 </dl>
 
 <a id='ml_deployment-job_delete'></a>
@@ -3574,7 +3577,7 @@ cpdctl ml experiment create --name NAME [--project-id PROJECT-ID] [--space-id SP
 
 <dl>
 <dt>--name (string)</dt>
-<dd>The name of the resource. Either `space_id` or `project_id` has to be provided and is mandatory. Required.</dd>
+<dd>The name of the resource. Required.</dd>
 <dt>--project-id (string)</dt>
 <dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
 <dt>--space-id (string)</dt>
@@ -3762,7 +3765,7 @@ cpdctl ml function create --name NAME --software-spec SOFTWARE-SPEC [--project-i
 
 <dl>
 <dt>--name (string)</dt>
-<dd>The name of the resource. Either `space_id` or `project_id` has to be provided and is mandatory. Required.</dd>
+<dd>The name of the resource. Required.</dd>
 <dt>--software-spec (<a href="#cli-software-spec-rel-example-schema-ml">SoftwareSpecRel</a>)</dt>
 <dd>A software specification. Required.</dd>
 <dt>--project-id (string)</dt>
@@ -4013,9 +4016,10 @@ cpdctl ml model create --name NAME --type TYPE --software-spec SOFTWARE-SPEC [--
 
 <dl>
 <dt>--name (string)</dt>
-<dd>The name of the resource. Either `space_id` or `project_id` has to be provided and is mandatory. Required.</dd>
+<dd>The name of the resource. Required.</dd>
 <dt>--type (string)</dt>
-<dd>The model type. The supported model types can be found in the documentation. Required.</dd>
+<dd>The model type. The supported model types can be found in the documentation
+[here](https://dataplatform.cloud.ibm.com/docs/content/wsj/wmls/wmls-deploy-python-types.html?context=analytics). Required.</dd>
 <dt>--software-spec (<a href="#cli-software-spec-rel-example-schema-ml">SoftwareSpecRel</a>)</dt>
 <dd>A software specification. Required.</dd>
 <dt>--project-id (string)</dt>
@@ -4244,7 +4248,7 @@ cpdctl ml model list-attachments --model-id MODEL-ID [--space-id SPACE-ID] [--pr
 Upload the content for the specified model.
 
 ```sh
-cpdctl ml model upload-content --model-id MODEL-ID --content-format CONTENT-FORMAT [--upload-content UPLOAD-CONTENT] [--body BODY] [--content-type CONTENT-TYPE] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--pipeline-node-id PIPELINE-NODE-ID] [--name NAME] 
+cpdctl ml model upload-content --model-id MODEL-ID --content-format CONTENT-FORMAT [--upload-content UPLOAD-CONTENT] [--body BODY] [--content-type CONTENT-TYPE] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--pipeline-node-id PIPELINE-NODE-ID] [--deployment-id DEPLOYMENT-ID] [--name NAME] 
 ```
 
 
@@ -4268,6 +4272,8 @@ cpdctl ml model upload-content --model-id MODEL-ID --content-format CONTENT-FORM
 <dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
 <dt>--pipeline-node-id (string)</dt>
 <dd>Returns only resources that match this `pipeline_node_id`, this is only relevant if `content_format` is `pipeline-node`.</dd>
+<dt>--deployment-id (string)</dt>
+<dd>Returns only resources that match this `deployment_id`, this is only relevant if `content_format` is `coreml`.</dd>
 <dt>--name (string)</dt>
 <dd>Provide the name of the attachment.</dd>
 </dl>
@@ -4330,7 +4336,7 @@ Download the model content identified by the provided criteria. If more than one
 `400` error is returned. If there are no attachments that match the filter then a `404` error is returned. If there are no filters then, if there is a single attachment, the attachment content will be returned otherwise a `400` or `404` error will be returned as described above. This method is just a shortcut for getting the attachment metadata and then downloading by attachment id. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model filtered-download --model-id MODEL-ID [--accept ACCEPT] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--rev REV] [--pipeline-node-id PIPELINE-NODE-ID] [--name NAME] [--content-format CONTENT-FORMAT] 
+cpdctl ml model filtered-download --model-id MODEL-ID [--accept ACCEPT] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--rev REV] [--pipeline-node-id PIPELINE-NODE-ID] [--deployment-id DEPLOYMENT-ID] [--name NAME] [--content-format CONTENT-FORMAT] 
 ```
 
 
@@ -4350,6 +4356,8 @@ cpdctl ml model filtered-download --model-id MODEL-ID [--accept ACCEPT] [--space
 <dd>The revision number of the resource.</dd>
 <dt>--pipeline-node-id (string)</dt>
 <dd>Returns only resources that match this `pipeline_node_id`, this is only relevant if `content_format` is `pipeline-node`.</dd>
+<dt>--deployment-id (string)</dt>
+<dd>Returns only resources that match this `deployment_id`, this is only relevant if `content_format` is `coreml`.</dd>
 <dt>--name (string)</dt>
 <dd>Match an attachment with this name.</dd>
 <dt>--content-format (string)</dt>
@@ -4386,7 +4394,7 @@ cpdctl ml model-definition create --name NAME --version VERSION --platform PLATF
 
 <dl>
 <dt>--name (string)</dt>
-<dd>The name of the resource. Either `space_id` or `project_id` has to be provided and is mandatory. Required.</dd>
+<dd>The name of the resource. Required.</dd>
 <dt>--version (string)</dt>
 <dd>The package version. Required.</dd>
 <dt>--platform (<a href="#cli-model-definition-entity-request-platform-example-schema-ml">ModelDefinitionEntityRequestPlatform</a>)</dt>
@@ -4620,7 +4628,7 @@ cpdctl ml pipeline create --name NAME [--project-id PROJECT-ID] [--space-id SPAC
 
 <dl>
 <dt>--name (string)</dt>
-<dd>The name of the resource. Either `space_id` or `project_id` has to be provided and is mandatory. Required.</dd>
+<dd>The name of the resource. Required.</dd>
 <dt>--project-id (string)</dt>
 <dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
 <dt>--space-id (string)</dt>
@@ -4942,7 +4950,7 @@ cpdctl ml training-definition create --name NAME [--project-id PROJECT-ID] [--sp
 
 <dl>
 <dt>--name (string)</dt>
-<dd>The name of the resource. Either `space_id` or `project_id` has to be provided and is mandatory. Required.</dd>
+<dd>The name of the resource. Required.</dd>
 <dt>--project-id (string)</dt>
 <dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
 <dt>--space-id (string)</dt>
@@ -5234,33 +5242,6 @@ cpdctl notebook revert --notebook-id NOTEBOOK-ID [--source SOURCE]
 <dd>The id of the notebook version.</dd>
 </dl>
 
-<a id='notebook_promote'></a>
-## &#8226; notebook promote
-
-Promote a notebook from project to space.
-
-```sh
-cpdctl notebook promote --notebook-id NOTEBOOK-ID --version-id VERSION-ID --project-id PROJECT-ID --space-id SPACE-ID [--description DESCRIPTION] [--name NAME] 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--notebook-id (string)</dt>
-<dd>The guid of the notebook. Required.</dd>
-<dt>--version-id (string)</dt>
-<dd>The guid of the notebook version. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project from which a notebook will be promoted. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space to which a notebook will be promoted. Required.</dd>
-<dt>--description (string)</dt>
-<dd>The description of the new notebook in space. If not specified, the description of the notebook in project will be used.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the new notebook in space. If not specified, the name of the notebook in project will be used.</dd>
-</dl>
-
 <a id='notebook_version_list'></a>
 ## &#8226; notebook version list
 
@@ -5354,58 +5335,6 @@ cpdctl notebook version update --notebook-id NOTEBOOK-ID --version-id VERSION-ID
 <dd>A notebook kernel.</dd>
 <dt>--schedule (string)</dt>
 <dd>The schedule id of the notebook.</dd>
-</dl>
-
-<a id='project_create'></a>
-## &#8226; project create
-
-Creates a new project with the provided parameters, including all the storage and credentials in a single transaction. This endpoint will create a new COS bucket using generated unique name, all credentials, asset container and call all the required atomic APIs to fully configure a new project. Attempts to use the duplicate project names will result in an error. <b>NOTE</b>:  when creating projects programmatically, always use this endpoint, not /v2/projects. <br/><br/><br/> This endpoint can also be used to create a project from an exported Watson Studio .zip file. In this case, a new transaction is initiated to create assets under the project. A Transaction ID along with a URL is returned as a response of this API. As this transaction can take time, you can view the current status of the transaction using the returned URL.<br><b>NOTE</b>: This feature is only available in the private cloud.
-
-```sh
-cpdctl project create --generator GENERATOR --name NAME --storage STORAGE [--compute COMPUTE] [--description DESCRIPTION] [--enforce-members ENFORCE-MEMBERS] [--public PUBLIC] [--tags TAGS] [--tools TOOLS] 
-```
-
-
-#### Command options
-
-<dl>
-<dt>-g, --generator (string)</dt>
-<dd>A tag to indicate where this project was generated. This is only intended for use in metrics. It does not need to be unique and all consumers of this API should use a consistent string for their 'generator' field. The value is stored in the project metadata for future consumption in metrics. Required.</dd>
-<dt>-n, --name (string)</dt>
-<dd>The name of the new project. The name must be a non-empty String. This does not need to be unique. Required.</dd>
-<dt>-s, --storage (<a href="#cli-transactional-project-storage-object-example-schema-project">TransactionalProjectStorageObject</a>)</dt>
-<dd>Object storage properties to be associated with the project. Required.</dd>
-<dt>-c, --compute (<a href="#cli-transactional-project-compute-object-cloud-example-schema-project">TransactionalProjectComputeObjectCloud[]</a>)</dt>
-<dd>List of computes to be associated with the project.</dd>
-<dt>-d, --description (string)</dt>
-<dd>A description for the new project.</dd>
-<dt>-e, --enforce-members (bool)</dt>
-<dd>Set to true of project members should be scoped to the account and/or SAML of the creator.</dd>
-<dd>The default value is `false`.</dd>
-<dt>-p, --public (bool)</dt>
-<dd>A value of `true` makes the project public.</dd>
-<dd>The default value is `false`.</dd>
-<dt>-t, --tags ([]string)</dt>
-<dd>List of user defined tags that are attached to the project.</dd>
-<dt>-T, --tools ([]string)</dt>
-<dd>List of tools to be associated with the project.</dd>
-</dl>
-
-<a id='project_delete'></a>
-## &#8226; project delete
-
-Deletes a project with a given ID, deletes COS bucket and all the files in it, all credentials and asset container in the order reverse from the project creation transaction. When deleting projects programmatically, always use this endpoint, not /v2/projects/{project_id}.
-
-```sh
-cpdctl project delete --project-id PROJECT-ID 
-```
-
-
-#### Command options
-
-<dl>
-<dt>-i, --project-id (string)</dt>
-<dd>The ID of the project to be deleted. Required.</dd>
 </dl>
 
 <a id='project_list'></a>
@@ -5595,6 +5524,58 @@ cpdctl project member get --project-id PROJECT-ID --user-name USER-NAME
 <dd>The username of the project member. Required.</dd>
 </dl>
 
+<a id='project_create'></a>
+## &#8226; project create
+
+Creates a new project with the provided parameters, including all the storage and credentials in a single transaction. This endpoint will create a new COS bucket using generated unique name, all credentials, asset container and call all the required atomic APIs to fully configure a new project. Attempts to use the duplicate project names will result in an error. <b>NOTE</b>:  when creating projects programmatically, always use this endpoint, not /v2/projects. <br/><br/><br/> This endpoint can also be used to create a project from an exported Watson Studio .zip file. In this case, a new transaction is initiated to create assets under the project. A Transaction ID along with a URL is returned as a response of this API. As this transaction can take time, you can view the current status of the transaction using the returned URL.<br><b>NOTE</b>: This feature is only available in the private cloud.
+
+```sh
+cpdctl project create --generator GENERATOR --name NAME --storage STORAGE [--compute COMPUTE] [--description DESCRIPTION] [--enforce-members ENFORCE-MEMBERS] [--public PUBLIC] [--tags TAGS] [--tools TOOLS] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>-g, --generator (string)</dt>
+<dd>A tag to indicate where this project was generated. This is only intended for use in metrics. It does not need to be unique and all consumers of this API should use a consistent string for their 'generator' field. The value is stored in the project metadata for future consumption in metrics. Required.</dd>
+<dt>-n, --name (string)</dt>
+<dd>The name of the new project. The name must be a non-empty String. This does not need to be unique. Required.</dd>
+<dt>-s, --storage (<a href="#cli-transactional-project-storage-object-example-schema-project">TransactionalProjectStorageObject</a>)</dt>
+<dd>Object storage properties to be associated with the project. Required.</dd>
+<dt>-c, --compute (<a href="#cli-transactional-project-compute-object-cloud-example-schema-project">TransactionalProjectComputeObjectCloud[]</a>)</dt>
+<dd>List of computes to be associated with the project.</dd>
+<dt>-d, --description (string)</dt>
+<dd>A description for the new project.</dd>
+<dt>-e, --enforce-members (bool)</dt>
+<dd>Set to true of project members should be scoped to the account and/or SAML of the creator.</dd>
+<dd>The default value is `false`.</dd>
+<dt>-p, --public (bool)</dt>
+<dd>A value of `true` makes the project public.</dd>
+<dd>The default value is `false`.</dd>
+<dt>-t, --tags ([]string)</dt>
+<dd>List of user defined tags that are attached to the project.</dd>
+<dt>-T, --tools ([]string)</dt>
+<dd>List of tools to be associated with the project.</dd>
+</dl>
+
+<a id='project_delete'></a>
+## &#8226; project delete
+
+Deletes a project with a given ID, deletes COS bucket and all the files in it, all credentials and asset container in the order reverse from the project creation transaction. When deleting projects programmatically, always use this endpoint, not /v2/projects/{project_id}.
+
+```sh
+cpdctl project delete --project-id PROJECT-ID 
+```
+
+
+#### Command options
+
+<dl>
+<dt>-i, --project-id (string)</dt>
+<dd>The ID of the project to be deleted. Required.</dd>
+</dl>
+
 <a id='space_list'></a>
 ## &#8226; space list
 
@@ -5652,7 +5633,7 @@ Creates a new space to scope other assets. Authorized user must have the follwin
 On Public Cloud user is required to provide Cloud Object Storage instance details in the `storage` property. On private CPD installations the default storage is used instead.
 
 ```sh
-cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--storage STORAGE] [--tags TAGS] 
+cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--generator GENERATOR] [--storage STORAGE] [--tags TAGS] 
 ```
 
 
@@ -5665,6 +5646,9 @@ cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] 
 <dd>This flag is not supported on CPD 3.0.1.</dd>
 <dt>--description (string)</dt>
 <dd>Description of space.</dd>
+<dt>--generator (string)</dt>
+<dd>A consistent label used to identify a client that created a space. A generator must be comprised of the following characters - alphanumeric, dash, underscore, space.</dd>
+<dd>The maximum length is `50 ` characters. The minimum length is `8 ` characters.</dd>
 <dt>--storage (<a href="#cli-storage-request-example-schema-space">StorageRequest</a>)</dt>
 <dd>Cloud Object Storage instance is required for spaces created on Public Cloud. On private CPD installations default storage is used instead. This flag is not supported on CPD 3.0.1.</dd>
 <dt>--tags ([]string)</dt>
@@ -6126,6 +6110,36 @@ The following example shows the format of the ReferencedSpecification object.
   "type" : "referenced"
 }
 ```
+### &#8226; HardwareSpecificationDataStageDefinition
+<a id="cli-hardware-specification-data-stage-definition-example-schema-environment"></a>
+
+The following example shows the format of the HardwareSpecificationDataStageDefinition object.
+
+```json
+
+{
+  "compute" : {
+    "cpu" : {
+      "model" : "exampleString",
+      "units" : "100m"
+    },
+    "mem" : {
+      "size" : "4Gi"
+    }
+  },
+  "conductor" : {
+    "cpu" : {
+      "model" : "exampleString",
+      "units" : "100m"
+    },
+    "mem" : {
+      "size" : "4Gi"
+    }
+  },
+  "num_computes" : 2,
+  "num_conductors" : 1
+}
+```
 ### &#8226; HardwareSpecificationNodesDefinition
 <a id="cli-hardware-specification-nodes-definition-example-schema-environment"></a>
 
@@ -6223,6 +6237,29 @@ The following example shows the format of the PackageExtensionReference[] object
 ### &#8226; JobPostBodyJob
 <a id="cli-job-post-body-job-example-schema-job"></a>
 
+The following example shows the format of the JobPostBodyJob object.
+
+```json
+
+{
+  "asset_ref" : "ff1ab70b-0553-409a-93f9-ccc31471c218",
+  "asset_ref_type" : "notebook",
+  "configuration" : {
+    "deployment_job_definition_id" : "ff1ab70b-0553-409a-93f9-ccc31471c218",
+    "env_id" : "defaultsparkr1x4-18ce241b-c9e8-43ed-94a1-9f5585764924",
+    "env_variables" : [ "key1=value1", "key2=value2" ],
+    "version" : "d00a9d88-4394-48f8-86db-d9b8360f8a72"
+  },
+  "description" : "Description.",
+  "name" : "Name",
+  "schedule" : "0 3 21 13 1 ? 2019",
+  "schedule_info" : {
+    "endOn" : 1547578689512,
+    "repeat" : true,
+    "startOn" : 1547578689512
+  }
+}
+```
 ### &#8226; JSONPatchOperation
 <a id="cli-json-patch-operation-example-schema-job"></a>
 
@@ -6244,6 +6281,16 @@ The following example shows the format of the JSONPatchOperation[] object.
 ### &#8226; JobRunPostBodyJobRun
 <a id="cli-job-run-post-body-job-run-example-schema-job"></a>
 
+The following example shows the format of the JobRunPostBodyJobRun object.
+
+```json
+
+{
+  "configuration" : {
+    "env_variables" : [ "key1=value1", "key2=value2" ]
+  }
+}
+```
 ### &#8226; Rel
 <a id="cli-rel-example-schema-ml"></a>
 
@@ -6278,7 +6325,7 @@ The following example shows the format of the JobEntityResultHybridPipelineHardw
 ```json
 
 [ {
-  "node_runtime_id" : "autoai.kb",
+  "node_runtime_id" : "auto_ai.kb",
   "hardware_spec" : {
     "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
     "rev" : "2",
@@ -6347,8 +6394,9 @@ The following example shows the format of the JSONPatchOperation[] object.
 [ {
   "op" : "add",
   "path" : "exampleString",
-  "from" : "exampleString",
-  "value" : "exampleString"
+  "value" : {
+    "anyKey" : "anyValue"
+  }
 } ]
 ```
 ### &#8226; DeploymentPatchRequestHelperVirtual
@@ -6388,7 +6436,7 @@ The following example shows the format of the JobEntityRequestHybridPipelineHard
 ```json
 
 [ {
-  "node_runtime_id" : "autoai.kb",
+  "node_runtime_id" : "auto_ai.kb",
   "hardware_spec" : {
     "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
     "rev" : "2",
@@ -6529,58 +6577,6 @@ The following example shows the format of the EvaluationDefinition object.
 ### &#8226; TrainingReference
 <a id="cli-training-reference-example-schema-ml"></a>
 
-The following example shows the format of the TrainingReference[] object.
-
-```json
-
-[ {
-  "pipeline" : {
-    "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
-    "rev" : "2",
-    "model_type" : "exampleString",
-    "data_bindings" : [ {
-      "data_reference_name" : "exampleString",
-      "node_id" : "exampleString"
-    } ],
-    "nodes_parameters" : [ {
-      "node_id" : "exampleString",
-      "parameters" : {
-        "anyKey" : "anyValue"
-      }
-    } ],
-    "hardware_spec" : {
-      "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
-      "rev" : "2",
-      "name" : "exampleString",
-      "num_nodes" : 2
-    },
-    "hybrid_pipeline_hardware_specs" : [ {
-      "node_runtime_id" : "autoai.kb",
-      "hardware_spec" : {
-        "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
-        "rev" : "2",
-        "name" : "exampleString",
-        "num_nodes" : 2
-      }
-    } ]
-  },
-  "model_definition" : {
-    "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"
-  },
-  "hyper_parameters_optimization" : {
-    "method" : {
-      "name" : "random",
-      "parameters" : {
-        "anyKey" : "anyValue"
-      }
-    },
-    "hyper_parameters" : [ {
-      "name" : "learning_rate",
-      "items" : [ 0.005, 0.1, 0.11 ]
-    } ]
-  }
-} ]
-```
 ### &#8226; SoftwareSpecRel
 <a id="cli-software-spec-rel-example-schema-ml"></a>
 
@@ -6816,7 +6812,8 @@ The following example shows the format of the ContentLocation object.
     "content_format" : "exampleString",
     "location" : "exampleString",
     "file_name" : "exampleString",
-    "pipeline_node_id" : "exampleString"
+    "pipeline_node_id" : "exampleString",
+    "deployment_id" : "exampleString"
   } ],
   "type" : "s3",
   "connection" : { },
@@ -6863,7 +6860,7 @@ The following example shows the format of the PipelineRel object.
     "num_nodes" : 2
   },
   "hybrid_pipeline_hardware_specs" : [ {
-    "node_runtime_id" : "autoai.kb",
+    "node_runtime_id" : "auto_ai.kb",
     "hardware_spec" : {
       "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
       "rev" : "2",
@@ -6928,7 +6925,7 @@ The following example shows the format of the FederatedLearning object.
     } ]
   },
   "rounds" : 3,
-  "termination_accuracy" : 0.9,
+  "termination_predicate" : "accuracy > 0.9",
   "epochs" : 3,
   "optimizer" : {
     "name" : "exampleString",
@@ -6954,7 +6951,8 @@ The following example shows the format of the FederatedLearning object.
     "name" : "exampleString",
     "num_nodes" : 2
   },
-  "version" : "exampleString"
+  "version" : "exampleString",
+  "log_level" : "info"
 }
 ```
 ### &#8226; TrainingDefinitionRel
@@ -7055,35 +7053,6 @@ The following example shows the format of the NotebookShares object.
   }
 }
 ```
-### &#8226; TransactionalProjectStorageObject
-<a id="cli-transactional-project-storage-object-example-schema-project"></a>
-
-The following example shows the format of the TransactionalProjectStorageObject object.
-
-```json
-
-{
-  "delegated" : true,
-  "guid" : "d0e410a0-b358-42fc-b402-dba83316413a",
-  "resource_crn" : "crn:v1:staging:public:cloud-object-storage:global:a/a7026b374f39f570d20984c1ac6ecf63:5778e94f-c8c7-46a8-9878-d5eeadb51161::",
-  "type" : "bmcos_object_storage"
-}
-```
-### &#8226; TransactionalProjectComputeObjectCloud
-<a id="cli-transactional-project-compute-object-cloud-example-schema-project"></a>
-
-The following example shows the format of the TransactionalProjectComputeObjectCloud[] object.
-
-```json
-
-[ {
-  "crn" : "crn:v1:staging:public:watson-vision-combined:us-south:a/1438bf1daef49e20401d0179818ebef5:6874282b-42d6-40fa-869b-95a3c0f04125::",
-  "guid" : "eddc2f0c-4401-49d1-b632-dee2ec33dcc0",
-  "label" : "watson_vision_combined",
-  "name" : "Apache Spark",
-  "type" : "spark"
-} ]
-```
 ### &#8226; ProjectCatalog
 <a id="cli-project-catalog-example-schema-project"></a>
 
@@ -7141,6 +7110,35 @@ The following example shows the format of the ProjectMember[] object.
   "state" : "ACTIVE",
   "type" : "user",
   "user_name" : "zapp.brannigan@ibm.com"
+} ]
+```
+### &#8226; TransactionalProjectStorageObject
+<a id="cli-transactional-project-storage-object-example-schema-project"></a>
+
+The following example shows the format of the TransactionalProjectStorageObject object.
+
+```json
+
+{
+  "delegated" : true,
+  "guid" : "d0e410a0-b358-42fc-b402-dba83316413a",
+  "resource_crn" : "crn:v1:staging:public:cloud-object-storage:global:a/a7026b374f39f570d20984c1ac6ecf63:5778e94f-c8c7-46a8-9878-d5eeadb51161::",
+  "type" : "bmcos_object_storage"
+}
+```
+### &#8226; TransactionalProjectComputeObjectCloud
+<a id="cli-transactional-project-compute-object-cloud-example-schema-project"></a>
+
+The following example shows the format of the TransactionalProjectComputeObjectCloud[] object.
+
+```json
+
+[ {
+  "crn" : "crn:v1:staging:public:watson-vision-combined:us-south:a/1438bf1daef49e20401d0179818ebef5:6874282b-42d6-40fa-869b-95a3c0f04125::",
+  "guid" : "eddc2f0c-4401-49d1-b632-dee2ec33dcc0",
+  "label" : "watson_vision_combined",
+  "name" : "Apache Spark",
+  "type" : "spark"
 } ]
 ```
 ### &#8226; ComputeRequest
