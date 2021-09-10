@@ -1,0 +1,26 @@
+node {
+    withCredentials([file(credentialsId: 'CPDCTL_CPD402_CONFIG', variable: 'CPDCONFIG')]) {
+        checkout scm
+
+        stage('Install cpdctl') {
+            sh 'bash -e ./samples/jenkins/scripts/helpers/install_cpdctl.sh'
+        }
+
+        stage('Train model') {
+            sh 'bash -e ./samples/jenkins/scripts/dev/train_model.sh'
+        }
+
+        stage('Promote to DEV') {
+            sh 'bash -e ./samples/jenkins/scripts/dev/promote_to_dev_space.sh'
+        }
+
+        stage('Export assets') {
+            sh 'bash -e ./samples/jenkins/scripts/dev/export_dev_space.sh'
+            archiveArtifacts artifacts: '*.zip', fingerprint: true
+        }
+
+        stage('Cleanup') {
+            sh 'bash -e ./samples/jenkins/scripts/dev/cleanup.sh'
+        }
+    }
+}
