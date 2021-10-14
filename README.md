@@ -31,8 +31,8 @@ Download the appropriate archive from [cpdctl repository](https://github.com/IBM
 * Archive name `cpdctl_darwin_amd64.tar.gz`
 * Issue command `$ tar zxf cpdctl_darwin_mad64.tar.gz` to extract the `cpdctl` executable from the archive.
 * Run `cpdctl`. Dismiss the warning message `"cpdctl" cannot be opened because the developer cannot be verified`.
-* Go to `Preferences` -> `Security & Privacy`, click on the lock icon and enter your password to allow modifications.
-* Find entry `"cpdctl" was blocked from use because it is not from an identified developer` and select `Allow Anyway`.
+* Go to `System Preferences` -> `Security & Privacy`, click on the lock icon and enter your password to allow modifications.
+* In the 'General' section, find entry `"cpdctl" was blocked from use because it is not from an identified developer` and click `Allow Anyway`.
 * Run `cpdctl` again. Select `Open` on the warning message `macOS cannot verify the developer...`.
 
 ## Configuration
