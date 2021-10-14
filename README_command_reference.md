@@ -34,6 +34,7 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [asset file download](#asset_file_download)
 #### &#8226; [asset file list](#asset_file_list)
 #### &#8226; [asset file upload](#asset_file_upload)
+#### &#8226; [asset script create](#asset_script_create)
 #### &#8226; [asset export list](#asset_export_list)
 #### &#8226; [asset export start](#asset_export_start)
 #### &#8226; [asset export cancel](#asset_export_cancel)
@@ -45,6 +46,10 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [asset import cancel](#asset_import_cancel)
 #### &#8226; [asset import get](#asset_import_get)
 #### &#8226; [asset import wait](#asset_import_wait)
+#### &#8226; [completion bash](#completion_bash)
+#### &#8226; [completion zsh](#completion_zsh)
+#### &#8226; [completion fish](#completion_fish)
+#### &#8226; [completion powershell](#completion_powershell)
 #### &#8226; [config user list](#config_user_list)
 #### &#8226; [config user get](#config_user_get)
 #### &#8226; [config user set](#config_user_set)
@@ -77,6 +82,30 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [connection discover](#connection_discover)
 #### &#8226; [connection datasource-type list](#connection_datasource-type_list)
 #### &#8226; [connection datasource-type get](#connection_datasource-type_get)
+#### &#8226; [datastage flow delete](#datastage_flow_delete)
+#### &#8226; [datastage flow list](#datastage_flow_list)
+#### &#8226; [datastage flow create](#datastage_flow_create)
+#### &#8226; [datastage flow get](#datastage_flow_get)
+#### &#8226; [datastage flow update](#datastage_flow_update)
+#### &#8226; [datastage flow clone](#datastage_flow_clone)
+#### &#8226; [datastage flow compile](#datastage_flow_compile)
+#### &#8226; [datastage subflow delete](#datastage_subflow_delete)
+#### &#8226; [datastage subflow list](#datastage_subflow_list)
+#### &#8226; [datastage subflow create](#datastage_subflow_create)
+#### &#8226; [datastage subflow get](#datastage_subflow_get)
+#### &#8226; [datastage subflow update](#datastage_subflow_update)
+#### &#8226; [datastage subflow clone](#datastage_subflow_clone)
+#### &#8226; [datastage xml-schema-library list](#datastage_xml-schema-library_list)
+#### &#8226; [datastage xml-schema-library create](#datastage_xml-schema-library_create)
+#### &#8226; [datastage xml-schema-library delete](#datastage_xml-schema-library_delete)
+#### &#8226; [datastage xml-schema-library get](#datastage_xml-schema-library_get)
+#### &#8226; [datastage xml-schema-library upload](#datastage_xml-schema-library_upload)
+#### &#8226; [datastage xml-schema-library delete-files](#datastage_xml-schema-library_delete-files)
+#### &#8226; [datastage xml-schema-library download](#datastage_xml-schema-library_download)
+#### &#8226; [datastage xml-schema-library rename](#datastage_xml-schema-library_rename)
+#### &#8226; [datastage migration create](#datastage_migration_create)
+#### &#8226; [datastage migration delete](#datastage_migration_delete)
+#### &#8226; [datastage migration get](#datastage_migration_get)
 #### &#8226; [environment list](#environment_list)
 #### &#8226; [environment create](#environment_create)
 #### &#8226; [environment delete](#environment_delete)
@@ -104,6 +133,7 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [help ](#help_)
 #### &#8226; [job list](#job_list)
 #### &#8226; [job create](#job_create)
+#### &#8226; [job serving-name](#job_serving-name)
 #### &#8226; [job delete](#job_delete)
 #### &#8226; [job get](#job_get)
 #### &#8226; [job update](#job_update)
@@ -113,6 +143,8 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [job run get](#job_run_get)
 #### &#8226; [job run cancel](#job_run_cancel)
 #### &#8226; [job run logs](#job_run_logs)
+#### &#8226; [job run pause](#job_run_pause)
+#### &#8226; [job run resume](#job_run_resume)
 #### &#8226; [job run wait](#job_run_wait)
 #### &#8226; [job run download-results](#job_run_download-results)
 #### &#8226; [ml deployment create](#ml_deployment_create)
@@ -1019,6 +1051,29 @@ Uploads the bytes into the file with the provided file name using HTTP multi-par
 <dt>--space-id string          </dt><dd>The space id the file should be associated with. One of catalog, project, space or account id is required.</dd>
 </dl>
 
+<a id='asset_script_create'></a>
+## &#8226; asset script create
+Use this command to create a script asset from a local file.
+
+```sh
+  cpdctl asset script create --file FILE [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--origin-country ORIGIN-COUNTRY] [--tag TAG] [--mime MIME] [--software-specification-id SOFTWARE-SPECIFICATION-ID] [--language LANGUAGE]
+```
+#### Command options
+
+<dl>
+<dt>--catalog-id string                </dt><dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
+<dt>--cpd-scope string                 </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
+<dt>--description string               </dt><dd>Description of the script asset</dd>
+<dt>--file string                      </dt><dd>File to upload</dd>
+<dt>--language string                  </dt><dd>Language of the script (default "python3" for Python scripts or "R" for R scripts)</dd>
+<dt>--mime string                      </dt><dd>The content type of the file (default is detected from the file contents)</dd>
+<dt>--origin-country string            </dt><dd>Origin country of the script asset (default "us")</dd>
+<dt>--project-id string                </dt><dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
+<dt>--software-specification-id string </dt><dd>ID of the software environment for the script.</dd>
+<dt>--space-id string                  </dt><dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
+<dt>--tag strings                      </dt><dd>Tag(s) of the script asset. Multiple can be provided</dd>
+</dl>
+
 <a id='asset_export_list'></a>
 ## &#8226; asset export list
 
@@ -1156,11 +1211,11 @@ Wait until the asset export becomes completed, failed, or cancelled.
 #### Command options
 
 <dl>
-<dt>--catalog-id space-id </dt><dd>This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either space-id, `project-id`, `catalog-id` query parameter has to be given and is mandatory.</dd>
-<dt>--cpd-scope string    </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--export-id string    </dt><dd>The export identification.</dd>
-<dt>--project-id space-id </dt><dd>The ID of the project to use. Either space-id, `project-id`, `catalog-id` query parameter has to be given and is mandatory.</dd>
-<dt>--space-id space-id   </dt><dd>The ID of the space to use. Either space-id, `project-id`, `catalog-id` query parameter has to be given and is mandatory.</dd>
+<dt>--catalog-id string </dt><dd>This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.</dd>
+<dt>--cpd-scope string  </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
+<dt>--export-id string  </dt><dd>The export identification.</dd>
+<dt>--project-id string </dt><dd>The ID of the project to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.</dd>
+<dt>--space-id string   </dt><dd>The ID of the space to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.</dd>
 </dl>
 
 <a id='asset_import_list'></a>
@@ -1273,11 +1328,104 @@ Wait until the asset import becomes completed, failed, or canceled.
 #### Command options
 
 <dl>
-<dt>--catalog-id space-id </dt><dd>This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either space-id, `project-id`, `catalog-id` query parameter has to be given and is mandatory.</dd>
-<dt>--cpd-scope string    </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--import-id string    </dt><dd>The import identification.</dd>
-<dt>--project-id space-id </dt><dd>The ID of the project to use. Either space-id, `project-id`, `catalog-id` query parameter has to be given and is mandatory.</dd>
-<dt>--space-id space-id   </dt><dd>The ID of the space to use. Either space-id, `project-id`, `catalog-id` query parameter has to be given and is mandatory.</dd>
+<dt>--catalog-id string </dt><dd>This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.</dd>
+<dt>--cpd-scope string  </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
+<dt>--import-id string  </dt><dd>The import identification.</dd>
+<dt>--project-id string </dt><dd>The ID of the project to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.</dd>
+<dt>--space-id string   </dt><dd>The ID of the space to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.</dd>
+</dl>
+
+<a id='completion_bash'></a>
+## &#8226; completion bash
+Generate the autocompletion script for the bash shell.
+
+This script depends on the 'bash-completion' package.
+If it is not installed already, you can install it via your OS's package manager.
+
+To load completions in your current shell session:
+$ source <(cpdctl completion bash)
+
+To load completions for every new session, execute once:
+Linux:
+  $ cpdctl completion bash > /etc/bash_completion.d/cpdctl
+MacOS:
+  $ cpdctl completion bash > /usr/local/etc/bash_completion.d/cpdctl
+
+You will need to start a new shell for this setup to take effect.
+
+```sh
+  cpdctl completion bash
+```
+#### Command options
+
+<dl>
+<dt>--no-descriptions </dt><dd>disable completion descriptions</dd>
+</dl>
+
+<a id='completion_zsh'></a>
+## &#8226; completion zsh
+Generate the autocompletion script for the zsh shell.
+
+If shell completion is not already enabled in your environment you will need
+to enable it.  You can execute the following once:
+
+$ echo "autoload -U compinit; compinit" >> ~/.zshrc
+
+To load completions for every new session, execute once:
+# Linux:
+$ cpdctl completion zsh > "${fpath[1]}/_cpdctl"
+# macOS:
+$ cpdctl completion zsh > /usr/local/share/zsh/site-functions/_cpdctl
+
+You will need to start a new shell for this setup to take effect.
+
+```sh
+  cpdctl completion zsh
+```
+#### Command options
+
+<dl>
+<dt>--no-descriptions </dt><dd>disable completion descriptions</dd>
+</dl>
+
+<a id='completion_fish'></a>
+## &#8226; completion fish
+Generate the autocompletion script for the fish shell.
+
+To load completions in your current shell session:
+$ cpdctl completion fish | source
+
+To load completions for every new session, execute once:
+$ cpdctl completion fish > ~/.config/fish/completions/cpdctl.fish
+
+You will need to start a new shell for this setup to take effect.
+
+```sh
+  cpdctl completion fish
+```
+#### Command options
+
+<dl>
+<dt>--no-descriptions </dt><dd>disable completion descriptions</dd>
+</dl>
+
+<a id='completion_powershell'></a>
+## &#8226; completion powershell
+Generate the autocompletion script for powershell.
+
+To load completions in your current shell session:
+PS C:\> cpdctl completion powershell | Out-String | Invoke-Expression
+
+To load completions for every new session, add the output of the above command
+to your powershell profile.
+
+```sh
+  cpdctl completion powershell
+```
+#### Command options
+
+<dl>
+<dt>--no-descriptions </dt><dd>disable completion descriptions</dd>
 </dl>
 
 <a id='config_user_list'></a>
@@ -1956,6 +2104,624 @@ cpdctl connection datasource-type get --datasource-type DATASOURCE-TYPE [--accep
 <dt>--product-selector-scope (string)</dt>
 <dd>Scope of ui-only product selector property. Applies to output under common_properties key. Genreated ui contains additional checkbox to switch between first of the requested products and the rest. If only a single one is given it switches between that product and remaining products supported by the data source.</dd>
 <dd>Allowable values are: global, context</dd>
+</dl>
+
+<a id='datastage_flow_delete'></a>
+## &#8226; datastage flow delete
+
+Deletes the specified data flows in a project or catalog (either `project_id` or `catalog_id` must be set).
+
+If the deletion of the data flows and their runs will take some time to finish, then a 202 response will be returned and the deletion will continue asynchronously.
+         All the data flow runs associated with the data flows will also be deleted. If a data flow is still running, it will not be deleted unless the force parameter is set to true. If a data flow is still running and the force parameter is set to true, the call returns immediately with a 202 response. The related data flows are deleted after the data flow runs are stopped.
+
+```sh
+cpdctl datastage flow delete --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--force FORCE] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--flow-id ([]string)</dt>
+<dd>The list of DataStage flow IDs to delete. Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--force (bool)</dt>
+<dd>Whether to stop all running data flows. Running DataStage flows must be stopped before the DataStage flows can be deleted.</dd>
+</dl>
+
+<a id='datastage_flow_list'></a>
+## &#8226; datastage flow list
+
+Lists the metadata, entity and lock information for DataStage flows that are contained in the specified project. 
+
+Use the following parameters to filter the results:
+
+| Field                    | Match type   | Example                                 |
+| ------------------------ | ------------ | --------------------------------------- |
+| `entity.name`              | Equals           | `entity.name=MyDataStageFlow`  |
+| `entity.name`              | Starts with      | `entity.name=starts:MyData`  |
+| `entity.description`       | Equals           | `entity.description=movement`  |
+| `entity.description`       | Starts with      | `entity.description=starts:data`  |
+
+To sort the results, use one or more of the parameters  described in the following section. If no sort key is specified, the results are sorted in descending order on `metadata.create_time` (i.e. returning the most  recently created data flows first).
+
+| Field                          | Example |
+| ------------------------- | ----------------------------------- |
+| sort     | `sort=+entity.name` (sort by ascending name)  |
+| sort     | `sort=-metadata.create_time` (sort by descending creation time) |
+
+Multiple sort keys can be specified by delimiting them with a comma. For example, to sort in descending order on `create_time` and then in ascending order on name use: `sort=-metadata.create_time`,`+entity.name`.
+
+```sh
+cpdctl datastage flow list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--sort SORT] [--start START] [--limit LIMIT] [--name NAME] [--description DESCRIPTION] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--sort (string)</dt>
+<dd>The field to sort the results on, including whether to sort ascending (+) or descending (-), for example, sort=-metadata.create_time.</dd>
+<dt>--start (string)</dt>
+<dd>The page token indicating where to start paging from.</dd>
+<dt>--limit (int64)</dt>
+<dd>The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.</dd>
+<dd>The minimum value is `1`.</dd>
+<dt>--name (string)</dt>
+<dd>Filter results based on the specified name.</dd>
+<dt>--description (string)</dt>
+<dd>Filter results based on the specified description.</dd>
+</dl>
+
+<a id='datastage_flow_create'></a>
+## &#8226; datastage flow create
+
+Creates a DataStage flow in the specified project or catalog (either `project_id` or `catalog_id` must be set). All subsequent calls to use the data flow must specify the project or catalog ID the data flow was created in.
+
+```sh
+cpdctl datastage flow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--asset-category ASSET-CATEGORY] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--name (string)</dt>
+<dd>The data flow name. Required.</dd>
+<dt>--pipeline-flow (<a href="#cli-pipeline-json-example-schema-datastage">PipelineJSON</a>)</dt>
+<dd>Pipeline flow to be stored.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--asset-category (string)</dt>
+<dd>The category of the asset. Must be either SYSTEM or USER. Only a registered service can use this parameter.</dd>
+<dd>Allowable values are: system, user</dd>
+</dl>
+
+<a id='datastage_flow_get'></a>
+## &#8226; datastage flow get
+
+Lists the DataStage flow that is contained in the specified project. Attachments, metadata and a limited number of attributes from the entity of each DataStage flow is returned.
+
+```sh
+cpdctl datastage flow get --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--flow-id (string)</dt>
+<dd>The DataStage flow ID to use. Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+</dl>
+
+<a id='datastage_flow_update'></a>
+## &#8226; datastage flow update
+
+Modifies a data flow in the specified project or catalog (either `project_id` or `catalog_id` must be set). All subsequent calls to use the data flow must specify the project or catalog ID the data flow was created in.
+
+```sh
+cpdctl datastage flow update --flow-id FLOW-ID --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--flow-id (string)</dt>
+<dd>The DataStage flow ID to use. Required.</dd>
+<dt>--name (string)</dt>
+<dd>The data flow name. Required.</dd>
+<dt>--pipeline-flow (<a href="#cli-pipeline-json-example-schema-datastage">PipelineJSON</a>)</dt>
+<dd>Pipeline flow to be stored.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+</dl>
+
+<a id='datastage_flow_clone'></a>
+## &#8226; datastage flow clone
+
+Create a DataStage flow in the specified project or catalog based on an existing DataStage flow in the same project or catalog.
+
+```sh
+cpdctl datastage flow clone --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--flow-id (string)</dt>
+<dd>The DataStage flow ID to use. Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+</dl>
+
+<a id='datastage_flow_compile'></a>
+## &#8226; datastage flow compile
+
+Generate the runtime assets for a DataStage flow in the specified project or catalog for a specified runtime type. Either project_id or catalog_id must be specified.
+
+```sh
+cpdctl datastage flow compile --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--runtime-type RUNTIME-TYPE] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--flow-id (string)</dt>
+<dd>The DataStage flow ID to use. Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--runtime-type (string)</dt>
+<dd>The type of the runtime to use. e.g. dspxosh or Spark etc. If not provided queried from within pipeline flow if available otherwise default of dspxosh is used.</dd>
+</dl>
+
+<a id='datastage_subflow_delete'></a>
+## &#8226; datastage subflow delete
+
+Deletes the specified data subflows in a project or catalog (either `project_id` or `catalog_id` must be set).
+
+If the deletion of the data subflows will take some time to finish, then a 202 response will be returned and the deletion will continue asynchronously.
+
+```sh
+cpdctl datastage subflow delete --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--subflow-id ([]string)</dt>
+<dd>The list of DataStage subflow IDs to delete. Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+</dl>
+
+<a id='datastage_subflow_list'></a>
+## &#8226; datastage subflow list
+
+Lists the metadata, entity and lock information for DataStage subflows that are contained in the specified project. 
+
+Use the following parameters to filter the results:
+
+| Field                    | Match type   | Example                                 |
+| ------------------------ | ------------ | --------------------------------------- |
+| `entity.name`              | Equals           | `entity.name=MyDataStageSubFlow`  |
+| `entity.name`              | Starts with      | `entity.name=starts:MyData`  |
+| `entity.description`       | Equals           | `entity.description=movement`  |
+| `entity.description`       | Starts with      | `entity.description=starts:data`  |
+
+To sort the results, use one or more of the parameters  described in the following section. If no sort key is specified, the results are sorted in descending order on `metadata.create_time` (i.e. returning the most  recently created data flows first).
+
+| Field                          | Example |
+| ------------------------- | ----------------------------------- |
+| sort     | `sort=+entity.name` (sort by ascending name)  |
+| sort     | `sort=-metadata.create_time` (sort by descending creation time) |
+
+Multiple sort keys can be specified by delimiting them with a comma. For example, to sort in descending order on `create_time` and then in ascending order on name use: `sort=-metadata.create_time`,`+entity.name`.
+
+```sh
+cpdctl datastage subflow list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--sort SORT] [--start START] [--limit LIMIT] [--name NAME] [--description DESCRIPTION] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--sort (string)</dt>
+<dd>The field to sort the results on, including whether to sort ascending (+) or descending (-), for example, sort=-metadata.create_time.</dd>
+<dt>--start (string)</dt>
+<dd>The page token indicating where to start paging from.</dd>
+<dt>--limit (int64)</dt>
+<dd>The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.</dd>
+<dd>The minimum value is `1`.</dd>
+<dt>--name (string)</dt>
+<dd>Filter results based on the specified name.</dd>
+<dt>--description (string)</dt>
+<dd>Filter results based on the specified description.</dd>
+</dl>
+
+<a id='datastage_subflow_create'></a>
+## &#8226; datastage subflow create
+
+Creates a DataStage subflow in the specified project or catalog (either `project_id` or `catalog_id` must be set). All subsequent calls to use the data flow must specify the project or catalog ID the data flow was created in.
+
+```sh
+cpdctl datastage subflow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--asset-category ASSET-CATEGORY] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--name (string)</dt>
+<dd>The DataStage subflow name. Required.</dd>
+<dt>--pipeline-flow (<a href="#cli-pipeline-json-example-schema-datastage">PipelineJSON</a>)</dt>
+<dd>Pipeline flow to be stored.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--asset-category (string)</dt>
+<dd>The category of the asset. Must be either SYSTEM or USER. Only a registered service can use this parameter.</dd>
+<dd>Allowable values are: system, user</dd>
+</dl>
+
+<a id='datastage_subflow_get'></a>
+## &#8226; datastage subflow get
+
+Lists the DataStage subflow that is contained in the specified project. Attachments, metadata and a limited number of attributes from the entity of each DataStage flow is returned.
+
+```sh
+cpdctl datastage subflow get --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--subflow-id (string)</dt>
+<dd>The DataStage subflow ID to use. Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+</dl>
+
+<a id='datastage_subflow_update'></a>
+## &#8226; datastage subflow update
+
+Modifies a data subflow in the specified project or catalog (either `project_id` or `catalog_id` must be set). All subsequent calls to use the data flow must specify the project or catalog ID the data flow was created in.
+
+```sh
+cpdctl datastage subflow update --subflow-id SUBFLOW-ID --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--subflow-id (string)</dt>
+<dd>The DataStage subflow ID to use. Required.</dd>
+<dt>--name (string)</dt>
+<dd>The DataStage subflow name. Required.</dd>
+<dt>--pipeline-flow (<a href="#cli-pipeline-json-example-schema-datastage">PipelineJSON</a>)</dt>
+<dd>Pipeline flow to be stored.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+</dl>
+
+<a id='datastage_subflow_clone'></a>
+## &#8226; datastage subflow clone
+
+Create a DataStage subflow in the specified project or catalog based on an existing DataStage subflow in the same project or catalog.
+
+```sh
+cpdctl datastage subflow clone --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--subflow-id (string)</dt>
+<dd>The DataStage subflow ID to use. Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+</dl>
+
+<a id='datastage_xml-schema-library_list'></a>
+## &#8226; datastage xml-schema-library list
+
+List existing DataStage XML schema libraries in the specified project or catalog (either `project_id` or `catalog_id` must be set).
+
+```sh
+cpdctl datastage xml-schema-library list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+</dl>
+
+<a id='datastage_xml-schema-library_create'></a>
+## &#8226; datastage xml-schema-library create
+
+Creates a new DataStage XML schema library in the specified project or catalog (either `project_id` or `catalog_id` must be set).
+
+```sh
+cpdctl datastage xml-schema-library create --name NAME [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--folder FOLDER] [--schema-type SCHEMA-TYPE] [--description DESCRIPTION] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--name (string)</dt>
+<dd> Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--folder (string)</dt>
+<dd></dd>
+<dt>--schema-type (string)</dt>
+<dd></dd>
+<dt>--description (string)</dt>
+<dd></dd>
+</dl>
+
+<a id='datastage_xml-schema-library_delete'></a>
+## &#8226; datastage xml-schema-library delete
+
+Delete a DataStage XML schema library in the specified project or catalog (either `project_id` or `catalog_id` must be set).
+
+```sh
+cpdctl datastage xml-schema-library delete --library-id LIBRARY-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--library-id (string)</dt>
+<dd>The library id. Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+</dl>
+
+<a id='datastage_xml-schema-library_get'></a>
+## &#8226; datastage xml-schema-library get
+
+Get the specify DataStage XML schema library in the specified project or catalog (either `project_id` or `catalog_id` must be set).
+
+```sh
+cpdctl datastage xml-schema-library get --library-id LIBRARY-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--library-id (string)</dt>
+<dd>The library id. Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+</dl>
+
+<a id='datastage_xml-schema-library_upload'></a>
+## &#8226; datastage xml-schema-library upload
+
+Upload a zip file to an existing DataStage XML schema library in the specified project or catalog (either `project_id` or `catalog_id` must be set). Thread unsafe.
+
+```sh
+cpdctl datastage xml-schema-library upload --library-id LIBRARY-ID --name NAME --body BODY [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--library-id (string)</dt>
+<dd>The library id. Required.</dd>
+<dt>--name (string)</dt>
+<dd> Required.</dd>
+<dt>--body (io.ReadCloser)</dt>
+<dd> Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+</dl>
+
+<a id='datastage_xml-schema-library_delete-files'></a>
+## &#8226; datastage xml-schema-library delete-files
+
+Delete files from a DataStage XML schema library based on the file_names in the specified project or catalog (either `project_id` or `catalog_id` must be set). Multiple file name can be specified by delimiting them with a comma. Thread unsafe.
+
+```sh
+cpdctl datastage xml-schema-library delete-files --file-name FILE-NAME --library-id LIBRARY-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--file-name (string)</dt>
+<dd> Required.</dd>
+<dt>--library-id (string)</dt>
+<dd>The library id. Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+</dl>
+
+<a id='datastage_xml-schema-library_download'></a>
+## &#8226; datastage xml-schema-library download
+
+Download file from a DataStage XML schema library based on the file_name in the specified project or catalog (either `project_id` or `catalog_id` must be set).
+
+```sh
+cpdctl datastage xml-schema-library download --file-name FILE-NAME --library-id LIBRARY-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--file-name (string)</dt>
+<dd>The file name. Required.</dd>
+<dt>--library-id (string)</dt>
+<dd>The library id. Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+</dl>
+
+<a id='datastage_xml-schema-library_rename'></a>
+## &#8226; datastage xml-schema-library rename
+
+Rename a DataStage XML schema library based on the specify library id in the specified project or catalog (either `project_id` or `catalog_id` must be set).
+
+```sh
+cpdctl datastage xml-schema-library rename --library-id LIBRARY-ID --name NAME [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--library-id (string)</dt>
+<dd>The library id. Required.</dd>
+<dt>--name (string)</dt>
+<dd> Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+</dl>
+
+<a id='datastage_migration_create'></a>
+## &#8226; datastage migration create
+
+Creates data flows from the attached job export file. This is an asynchronous call. The API call returns almost immediately which does not necessarily imply the completion of the import request. It only means that the import request has been accepted. The status field of the import request is included in the import response object. The status "completed" ("in_progress", "failed", resp.) indicates the import request is completed (in progress, and failed, resp.) The job export file for an import request may contain one mor more data flows. Unless the on_failure option is set to "stop", a completed import request may contain not only successfully imported data flows but also data flows that cannot be imported.
+
+```sh
+cpdctl datastage migration create --body BODY [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--on-failure ON-FAILURE] [--conflict-resolution CONFLICT-RESOLUTION] [--attachment-type ATTACHMENT-TYPE] [--file-name FILE-NAME] [--configuration CONFIGURATION] [--enable-notification ENABLE-NOTIFICATION] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--body (io.ReadCloser)</dt>
+<dd> Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--on-failure (string)</dt>
+<dd>Action when the first import failure occurs. The default action is "continue" which will continue importing the remaining data flows. The "stop" action will stop the import operation upon the first error.</dd>
+<dd>Allowable values are: continue, stop</dd>
+<dt>--conflict-resolution (string)</dt>
+<dd>Resolution when data flow to be imported has a name conflict with an existing data flow in the project or catalog. The default conflict resolution is "skip" will skip the data flow so that it will not be imported. The "rename" resolution will append "_Import_NNNN" suffix to the original name and use the new name for the imported data flow, while the "replace" resolution will first remove the existing data flow with the same name and import the new data flow. For the "rename_replace" option, when the flow name is already used, a new flow name with the suffix
+"_DATASTAGE_ISX_IMPORT" will be used. If the name is not currently used, the imported flow will be created with this name. In case the new name is already used, the existing flow will be removed  first before the imported flow is created. With the rename_replace option, job creation will be determined as follows. If the job name is already used, a new job name with the suffix ".DataStage job" will be used. If the new job name is not currently used, the job will be created with this name. In case the new job name is already used, the job creation will not happen and an error will be raised.</dd>
+<dd>Allowable values are: skip, rename, replace, rename_replace</dd>
+<dt>--attachment-type (string)</dt>
+<dd>Type of attachment. The default attachment type is "isx".</dd>
+<dd>Allowable values are: isx</dd>
+<dt>--file-name (string)</dt>
+<dd>Name of the input file, if it exists.</dd>
+<dt>--configuration (string)</dt>
+<dd>String in json format containing migration configuration properties. The example shows all the required configuration properties for the WaitForFile activity.</dd>
+<dt>--enable-notification (bool)</dt>
+<dd>enable/disable notification. Default value is true.</dd>
+</dl>
+
+<a id='datastage_migration_delete'></a>
+## &#8226; datastage migration delete
+
+Cancel a previous import request. Use GET /v3/migration/imports/{import_id} to obtain the current status of the import, including whether it has been cancelled.
+
+```sh
+cpdctl datastage migration delete --import-id IMPORT-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--import-id (string)</dt>
+<dd>Unique ID of the import request. Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+</dl>
+
+<a id='datastage_migration_get'></a>
+## &#8226; datastage migration get
+
+Gets the status of an import request. The status field in the response object indicates if the given import is completed, in progress, or failed. Detailed status information about each imported data flow is also contained in the response object.
+
+```sh
+cpdctl datastage migration get --import-id IMPORT-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--format FORMAT] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--import-id (string)</dt>
+<dd>Unique ID of the import request. Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--format (string)</dt>
+<dd>format of isx import report.</dd>
+<dd>Allowable values are: json, csv</dd>
 </dl>
 
 <a id='environment_list'></a>
@@ -2747,7 +3513,7 @@ cpdctl job list [--project-id PROJECT-ID] [--space-id SPACE-ID] [--asset-ref ASS
 <dt>--limit (int64)</dt>
 <dd>The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be used.</dd>
 <dt>--next (string)</dt>
-<dd>The optional 'next' field from the response in string format, can be used to get the next batch.\nThe response can contain up to 200 results in a batch, if there are more results, a 'next' field is returned in the response which can be used to get the next batch. Supported on CP4D releases 3.5.3+.</dd>
+<dd>The optional 'next' field from the response in string format, can be used to get the next batch. The response can contain up to 200 results in a batch, if there are more results, a 'next' field is returned in the response which can be used to get the next batch.</dd>
 </dl>
 
 <a id='job_create'></a>
@@ -2771,6 +3537,23 @@ cpdctl job create [--job JOB] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 <dd>The ID of the space to use. project_id or space_id is required.</dd>
 </dl>
 
+<a id='job_serving-name'></a>
+## &#8226; job serving-name
+
+Gets the availability of a given serving_name, as serving_name must be globally unique. serving_name must be a combination of alphanumeric and underscore characters, and must be between 1 and 36 characters.
+
+```sh
+cpdctl job serving-name --serving-name SERVING-NAME 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--serving-name (string)</dt>
+<dd>The serving_name value of the job to be used in place of the job ID. Required.</dd>
+</dl>
+
 <a id='job_delete'></a>
 ## &#8226; job delete
 
@@ -2785,7 +3568,7 @@ cpdctl job delete --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-ID
 
 <dl>
 <dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
+<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
 <dt>--project-id (string)</dt>
 <dd>The ID of the project to use. project_id or space_id is required.</dd>
 <dt>--space-id (string)</dt>
@@ -2806,7 +3589,7 @@ cpdctl job get --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
 
 <dl>
 <dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
+<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
 <dt>--project-id (string)</dt>
 <dd>The ID of the project to use. project_id or space_id is required.</dd>
 <dt>--space-id (string)</dt>
@@ -2827,7 +3610,7 @@ cpdctl job update --job-id JOB-ID --body BODY [--project-id PROJECT-ID] [--space
 
 <dl>
 <dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
+<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
 <dt>--body (<a href="#cli-json-patch-operation-example-schema-job">JSONPatchOperation[]</a>)</dt>
 <dd>Updates to make to the job run.</dd>
 <dt>--project-id (string)</dt>
@@ -2835,7 +3618,7 @@ cpdctl job update --job-id JOB-ID --body BODY [--project-id PROJECT-ID] [--space
 <dt>--space-id (string)</dt>
 <dd>The ID of the space to use. project_id or space_id is required.</dd>
 <dt>--configuration (<a href="#cli-job-runtime-configuration-example-schema-job">JobRuntimeConfiguration</a>)</dt>
-<dd>Updated configuration.</dd>
+<dd></dd>
 <dt>--description (string)</dt>
 <dd>Updated description.</dd>
 <dt>--name (string)</dt>
@@ -2848,7 +3631,7 @@ cpdctl job update --job-id JOB-ID --body BODY [--project-id PROJECT-ID] [--space
 Lists the job runs for a specific job in the specified project or space (either project_id or space_id must be set). Only the metadata and certain elements of the entity component of each run are returned.
 
 ```sh
-cpdctl job run list --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-ID] [--next NEXT] 
+cpdctl job run list --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-ID] [--next NEXT] [--limit LIMIT] [--states STATES] 
 ```
 
 
@@ -2856,13 +3639,17 @@ cpdctl job run list --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-
 
 <dl>
 <dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
+<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
 <dt>--project-id (string)</dt>
 <dd>The ID of the project to use. project_id or space_id is required.</dd>
 <dt>--space-id (string)</dt>
 <dd>The ID of the space to use. project_id or space_id is required.</dd>
 <dt>--next (string)</dt>
-<dd>The optional 'next' field from the response in string format, can be used to get the next batch.\nThe response can contain up to 200 results in a batch, if there are more results, a 'next' field is returned in the response which can be used to get the next batch. Supported on CP4D releases 3.5.3+.</dd>
+<dd>The optional 'next' field from the response in string format, can be used to get the next batch. The response can contain up to 200 results in a batch, if there are more results, a 'next' field is returned in the response which can be used to get the next batch.</dd>
+<dt>--limit (int64)</dt>
+<dd>The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be used.</dd>
+<dt>--states ([]string)</dt>
+<dd>A list of comma-separated job run states. Availble values: Completed, Failed, Canceled, Starting, Running, Queued, Canceling, Paused, Resuming, CompletedWithWarnings, CompletedWithErrors.</dd>
 </dl>
 
 <a id='job_run_create'></a>
@@ -2879,7 +3666,7 @@ cpdctl job run create --job-id JOB-ID --job-run JOB-RUN [--project-id PROJECT-ID
 
 <dl>
 <dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
+<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
 <dt>--job-run (<a href="#cli-job-run-post-body-job-run-example-schema-job">JobRunPostBodyJobRun</a>)</dt>
 <dd> Required.</dd>
 <dt>--project-id (string)</dt>
@@ -2902,7 +3689,7 @@ cpdctl job run delete --job-id JOB-ID --run-id RUN-ID [--project-id PROJECT-ID] 
 
 <dl>
 <dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
+<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
 <dt>--run-id (string)</dt>
 <dd>The ID of the job run. Required.</dd>
 <dt>--project-id (string)</dt>
@@ -2925,7 +3712,7 @@ cpdctl job run get --job-id JOB-ID --run-id RUN-ID [--project-id PROJECT-ID] [--
 
 <dl>
 <dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
+<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
 <dt>--run-id (string)</dt>
 <dd>The ID of the job run. Required.</dd>
 <dt>--project-id (string)</dt>
@@ -2948,7 +3735,7 @@ cpdctl job run cancel --job-id JOB-ID --run-id RUN-ID --body BODY [--project-id 
 
 <dl>
 <dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
+<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
 <dt>--run-id (string)</dt>
 <dd>The ID of the job run. Required.</dd>
 <dt>--body (generic map)</dt>
@@ -2973,7 +3760,7 @@ cpdctl job run logs --job-id JOB-ID --run-id RUN-ID [--project-id PROJECT-ID] [-
 
 <dl>
 <dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Required.</dd>
+<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
 <dt>--run-id (string)</dt>
 <dd>The ID of the job run. Required.</dd>
 <dt>--project-id (string)</dt>
@@ -2982,6 +3769,56 @@ cpdctl job run logs --job-id JOB-ID --run-id RUN-ID [--project-id PROJECT-ID] [-
 <dd>The ID of the space to use. project_id or space_id is required.</dd>
 <dt>--limit (int64)</dt>
 <dd>The limit of the number of lines to return, for example limit=50. If not specified, all log will be returned.</dd>
+</dl>
+
+<a id='job_run_pause'></a>
+## &#8226; job run pause
+
+Pauses a job run that is in the running state.
+
+```sh
+cpdctl job run pause --job-id JOB-ID --run-id RUN-ID --body BODY [--project-id PROJECT-ID] [--space-id SPACE-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--job-id (string)</dt>
+<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
+<dt>--run-id (string)</dt>
+<dd>The ID of the job run. Required.</dd>
+<dt>--body (generic map)</dt>
+<dd>An empty body. Required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. project_id or space_id is required.</dd>
+<dt>--space-id (string)</dt>
+<dd>The ID of the space to use. project_id or space_id is required.</dd>
+</dl>
+
+<a id='job_run_resume'></a>
+## &#8226; job run resume
+
+Resumes a job run that is in the paused state.
+
+```sh
+cpdctl job run resume --job-id JOB-ID --run-id RUN-ID --body BODY [--project-id PROJECT-ID] [--space-id SPACE-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--job-id (string)</dt>
+<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
+<dt>--run-id (string)</dt>
+<dd>The ID of the job run. Required.</dd>
+<dt>--body (generic map)</dt>
+<dd>An empty body. Required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. project_id or space_id is required.</dd>
+<dt>--space-id (string)</dt>
+<dd>The ID of the space to use. project_id or space_id is required.</dd>
 </dl>
 
 <a id='job_run_wait'></a>
@@ -3041,7 +3878,7 @@ cpdctl ml deployment create --space-id SPACE-ID [--tags TAGS] [--name NAME] [--d
 <dd>The name of the deployment.</dd>
 <dt>--description (string)</dt>
 <dd>A description of the deployment.</dd>
-<dt>--custom (interface{})</dt>
+<dt>--custom (<a href="#cli-custom-example-schema-ml">Custom</a>)</dt>
 <dd>User defined properties specified as key-value pairs.</dd>
 <dt>--asset (<a href="#cli-rel-example-schema-ml">Rel</a>)</dt>
 <dd>A reference to a resource.</dd>
@@ -3051,7 +3888,9 @@ cpdctl ml deployment create --space-id SPACE-ID [--tags TAGS] [--name NAME] [--d
 <dd>Hybrid pipeline hardware specification.</dd>
 <dt>--online (<a href="#cli-deployment-entity-request-online-example-schema-ml">DeploymentEntityRequestOnline</a>)</dt>
 <dd>Indicates that this is an online deployment. An empty object has to be specified.
-More properties will be added later on to setup the online deployment.</dd>
+More properties will be added later on to setup the online deployment.
+The `serving_name` can be provided in the `online.parameters`. The serving name can only have the characters [a-z,0-9,_] 
+and the length should not be more than 36 characters. The `serving_name` can be used in the prediction URL in place of the `deployment_id`.</dd>
 <dt>--batch (<a href="#cli-deployment-entity-request-batch-example-schema-ml">DeploymentEntityRequestBatch</a>)</dt>
 <dd>Indicates that this is a batch deployment. An empty object has to be specified.
 More properties will be added later on to setup the batch deployment.</dd>
@@ -3065,7 +3904,7 @@ More properties will be added later on to setup the batch deployment.</dd>
 Retrieve the list of deployments for the specified space.
 
 ```sh
-cpdctl ml deployment list [--space-id SPACE-ID] [--tag-value TAG-VALUE] [--asset-id ASSET-ID] [--name NAME] [--type TYPE] [--state STATE] [--stats STATS] 
+cpdctl ml deployment list [--space-id SPACE-ID] [--serving-name SERVING-NAME] [--tag-value TAG-VALUE] [--asset-id ASSET-ID] [--name NAME] [--type TYPE] [--state STATE] [--stats STATS] 
 ```
 
 
@@ -3073,7 +3912,9 @@ cpdctl ml deployment list [--space-id SPACE-ID] [--tag-value TAG-VALUE] [--asset
 
 <dl>
 <dt>--space-id (string)</dt>
-<dd>Retrieves the deployments of assets that belong to this space.</dd>
+<dd>Retrieves the deployments that belong to this space.</dd>
+<dt>--serving-name (string)</dt>
+<dd>Retrieves the deployment, if any, that contains this `serving_name`.</dd>
 <dt>--tag-value (string)</dt>
 <dd>Retrieves only the resources with the given tag value.</dd>
 <dt>--asset-id (string)</dt>
@@ -3135,10 +3976,11 @@ Update the deployment metadata. The following parameters of deployment metadata 
 - `/name`
 - `/description`
 - `/custom`
-- `/virtual.parameters`
+- `/virtual/parameters`
 - `/hardware_spec`
 - `/hybrid_pipeline_hardware_specs`
 - `/asset`
+- `/online/parameters`
 
 In case of online deployments, using PATCH operation of `/ml/v4/deployments`, users can update the number of copies of an online deployment. Users can specify the desired value of number of copies in `hardware_spec.num_nodes` parameter. As `hardware_spec.name` or `hardware_spec.id` is mandatory for `hardware_spec` schema, a valid value such as `XS`, `S` must be specified for `hardware_spec.name` parameter as part of PATCH request. Alternatively, users can also specify a valid ID of a hardware specification in `hardware_spec.id` parameter. However, changes related to `hardware_spec.name` or `hardware_spec.id` specified in PATCH operation will not be applied for online deployments.
 <br /> In case of batch deployments, using PATCH operation of `/ml/v4/deployments`, users can update the hardware specification so that subsequent batch deployment jobs can make use of the updated compute configurations. To update the compute configuration, users must specify a valid value for either `hardware_spec.name` or `hardware_spec.id` of the hardware specification that suits their requirement. In the batch deployment context, `hardware_spec.num_nodes` parameter is not currently supported.
@@ -3146,7 +3988,7 @@ In case of online deployments, using PATCH operation of `/ml/v4/deployments`, us
    - Deployment with the patched id/rev is started.
    - If the deployment is asynchronous, 202 response code will be returned and one can poll the deployment status thereafter.
    - If the deployment is synchronous, 200 response code will be returned with patched deployment response.
-   - If any failures, deployment will be reverted back to the previous id/rev and the failure message will be captured in 'failures' field in the response.
+   - If any failures, deployment will be reverted back to the previous id/rev and the failure message will be captured in 'failures' field in the response. In case of an online deployment, the PATCH operation with path specified as `/online/parameters` can be used to update the `serving_name`.
 
 ```sh
 cpdctl ml deployment update --deployment-id DEPLOYMENT-ID --space-id SPACE-ID --json-patch JSON-PATCH 
@@ -3168,7 +4010,7 @@ cpdctl ml deployment update --deployment-id DEPLOYMENT-ID --space-id SPACE-ID --
 <dd>The name of the resource.</dd>
 <dt>--description (string)</dt>
 <dd>A description of the resource.</dd>
-<dt>--custom (interface{})</dt>
+<dt>--custom (<a href="#cli-custom-example-schema-ml">Custom</a>)</dt>
 <dd>User defined properties specified as key-value pairs.</dd>
 <dt>--asset (<a href="#cli-rel-example-schema-ml">Rel</a>)</dt>
 <dd>A reference to a resource.</dd>
@@ -3183,7 +4025,7 @@ cpdctl ml deployment update --deployment-id DEPLOYMENT-ID --space-id SPACE-ID --
 <a id='ml_deployment_compute-predictions'></a>
 ## &#8226; ml deployment compute-predictions
 
-Execute a synchronous prediction for the deployment with the specified identifier.
+Execute a synchronous prediction for the deployment with the specified identifier. If a `serving_name` is used then it must match the `serving_name` that is returned in the `serving_urls`.
 
 ```sh
 cpdctl ml deployment compute-predictions --deployment-id DEPLOYMENT-ID --input-data INPUT-DATA 
@@ -3194,7 +4036,7 @@ cpdctl ml deployment compute-predictions --deployment-id DEPLOYMENT-ID --input-d
 
 <dl>
 <dt>--deployment-id (string)</dt>
-<dd>The deployment id. Required.</dd>
+<dd>The `deployment_id` can be either the `deployment_id` that identifies the deployment or a `serving_name` that allows a predefined URL to be used to post a prediction. Required.</dd>
 <dt>--input-data (<a href="#cli-input-data-array-example-schema-ml">InputDataArray[]</a>)</dt>
 <dd>The input data. Required.</dd>
 </dl>
@@ -3438,7 +4280,7 @@ cpdctl ml deployment-job-definition list --space-id SPACE-ID [--start START] [--
 <dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
 <dd>The maximum value is `200`. The minimum value is `1`.</dd>
 <dt>--tag-value (string)</dt>
-<dd>Return only the resources with the given tag value.</dd>
+<dd>Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.</dd>
 </dl>
 
 <a id='ml_deployment-job-definition_get'></a>
@@ -3493,7 +4335,7 @@ cpdctl ml deployment-job-definition update --job-definition-id JOB-DEFINITION-ID
 <dd>The name of the resource.</dd>
 <dt>--description (string)</dt>
 <dd>A description of the resource.</dd>
-<dt>--custom (interface{})</dt>
+<dt>--custom (<a href="#cli-custom-example-schema-ml">Custom</a>)</dt>
 <dd>User defined properties specified as key-value pairs.</dd>
 <dt>--deployment (<a href="#cli-simple-rel-example-schema-ml">SimpleRel</a>)</dt>
 <dd>A reference to a resource.</dd>
@@ -3592,7 +4434,7 @@ cpdctl ml experiment create --name NAME [--project-id PROJECT-ID] [--space-id SP
 <dd>The optional evaluation definition.</dd>
 <dt>--training-references (<a href="#cli-training-reference-example-schema-ml">TrainingReference[]</a>)</dt>
 <dd>The optional training references used by the experiment.</dd>
-<dt>--custom (interface{})</dt>
+<dt>--custom (<a href="#cli-custom-example-schema-ml">Custom</a>)</dt>
 <dd>User defined properties specified as key-value pairs.</dd>
 </dl>
 
@@ -3619,7 +4461,7 @@ cpdctl ml experiment list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--sta
 <dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
 <dd>The maximum value is `200`. The minimum value is `1`.</dd>
 <dt>--tag-value (string)</dt>
-<dd>Return only the resources with the given tag value.</dd>
+<dd>Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.</dd>
 </dl>
 
 <a id='ml_experiment_get'></a>
@@ -3677,7 +4519,7 @@ cpdctl ml experiment update --experiment-id EXPERIMENT-ID --json-patch JSON-PATC
 <dd>The name of the resource.</dd>
 <dt>--description (string)</dt>
 <dd>A description of the resource.</dd>
-<dt>--custom (interface{})</dt>
+<dt>--custom (<a href="#cli-custom-example-schema-ml">Custom</a>)</dt>
 <dd>User defined properties specified as key-value pairs.</dd>
 </dl>
 
@@ -3777,7 +4619,7 @@ cpdctl ml function create --name NAME --software-spec SOFTWARE-SPEC [--project-i
 <dt>--tags ([]string)</dt>
 <dd>A list of tags for this resource.</dd>
 <dt>--type (string)</dt>
-<dd>Type of the function to be created. Only `python` type is supported as of now. If not specified, `python` is the default. Functions expect a gzip file that contains a python file that make up the function. Python functions specify what needs to be run when the function is deployed and what needs to be run when the scoring function is called. In other words, you are able to customize what preparation WML does in the environment when you deploy the function, as well as what steps WML takes to generate the output when you call the API later on. The function consists of the outer function (any place that is not within the score function) and the inner score function. The code that sits in the outer function runs when the function is deployed, and the environment is then frozen and ready to be used whenever the online scoring or batch inline job processing API is called. The code that sits in the inner score function runs when the online scoring or batch inline job processing API is called, in the environment customized by the outer function. See [Deploying Python function](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-deploy-functions.html?audience=wdp&context=wdp) for more details.
+<dd>Type of the function to be created. Only `python` type is supported as of now. If not specified, `python` is the default. Functions expect a gzip file that contains a python file that make up the function. Python functions specify what needs to be run when the function is deployed and what needs to be run when the scoring function is called. In other words, you are able to customize what preparation WML does in the environment when you deploy the function, as well as what steps WML takes to generate the output when you call the API later on. The function consists of the outer function (any place that is not within the score function) and the inner score function. The code that sits in the outer function runs when the function is deployed, and the environment is then frozen and ready to be used whenever the online scoring or batch inline job processing API is called. The code that sits in the inner score function runs when the online scoring or batch inline job processing API is called, in the environment customized by the outer function. See [Deploying Python function](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-deploy-py-function.html?context=cpdaas&audience=wdp) for more details.
 
 This is illustrated in the example below:
 
@@ -3796,7 +4638,7 @@ This is illustrated in the example below:
 <dd>Scoring data.</dd>
 <dt>--schemas (<a href="#cli-function-entity-schemas-example-schema-ml">FunctionEntitySchemas</a>)</dt>
 <dd></dd>
-<dt>--custom (interface{})</dt>
+<dt>--custom (<a href="#cli-custom-example-schema-ml">Custom</a>)</dt>
 <dd>User defined properties specified as key-value pairs.</dd>
 </dl>
 
@@ -3823,7 +4665,7 @@ cpdctl ml function list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start
 <dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
 <dd>The maximum value is `200`. The minimum value is `1`.</dd>
 <dt>--tag-value (string)</dt>
-<dd>Return only the resources with the given tag value.</dd>
+<dd>Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.</dd>
 </dl>
 
 <a id='ml_function_get'></a>
@@ -3881,7 +4723,7 @@ cpdctl ml function update --function-id FUNCTION-ID --json-patch JSON-PATCH [--s
 <dd>The name of the resource.</dd>
 <dt>--description (string)</dt>
 <dd>A description of the resource.</dd>
-<dt>--custom (interface{})</dt>
+<dt>--custom (<a href="#cli-custom-example-schema-ml">Custom</a>)</dt>
 <dd>User defined properties specified as key-value pairs.</dd>
 </dl>
 
@@ -3958,7 +4800,7 @@ cpdctl ml function list-revisions --function-id FUNCTION-ID [--space-id SPACE-ID
 <a id='ml_function_upload-code'></a>
 ## &#8226; ml function upload-code
 
-Upload the function code. Functions expect a zip file that contains a python file     that make up the function. Python functions specify what needs to be run when     the function is deployed and what needs to be run when the scoring function is     called. In other words, you are able to customize what preparation WML does in     the environment when you deploy the function, as well as what steps WML takes to     generate the output when you call the API later on. The function consists of the     outer function (any place that is not within the score function) and the inner     score function. The code that sits in the outer function runs when the function     is deployed, and the environment is then frozen and ready to be used whenever     the online scoring or batch inline job processing API is called. The code that     sits in the inner score function runs when the online scoring or batch inline     job processing API is called, in the environment customized by the outer function.     See [Deploying Python function](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-deploy-functions.html?audience=wdp${content_description}context=wdp) for more details.         This is illustrated in the example below:        <pre> <br />     ...python code used to set up the environment... <br />     <br />     def score(payload): <br />         df_payload = pd.DataFrame(payload[values]) <br />         df_payload.columns = payload[fields] <br />         ... <br />         output = {result : res} <br />         return output <br />     <br />     return score <br />     </pre>.
+Upload the function code. Functions expect a zip file that contains a python file     that make up the function. Python functions specify what needs to be run when     the function is deployed and what needs to be run when the scoring function is     called. In other words, you are able to customize what preparation WML does in     the environment when you deploy the function, as well as what steps WML takes to     generate the output when you call the API later on. The function consists of the     outer function (any place that is not within the score function) and the inner     score function. The code that sits in the outer function runs when the function     is deployed, and the environment is then frozen and ready to be used whenever     the online scoring or batch inline job processing API is called. The code that     sits in the inner score function runs when the online scoring or batch inline     job processing API is called, in the environment customized by the outer function.     See [Deploying Python function](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-deploy-py-function.html?context=cpdaas${content_description}audience=wdp) for more details.         This is illustrated in the example below:        <pre> <br />     ...python code used to set up the environment... <br />     <br />     def score(payload): <br />         df_payload = pd.DataFrame(payload[values]) <br />         df_payload.columns = payload[fields] <br />         ... <br />         output = {result : res} <br />         return output <br />     <br />     return score <br />     </pre>.
 
 ```sh
 cpdctl ml function upload-code --function-id FUNCTION-ID --upload-code UPLOAD-CODE [--space-id SPACE-ID] [--project-id PROJECT-ID] 
@@ -3981,7 +4823,7 @@ cpdctl ml function upload-code --function-id FUNCTION-ID --upload-code UPLOAD-CO
 <a id='ml_function_download-code'></a>
 ## &#8226; ml function download-code
 
-Download the function code. It is possible to get the `code` for a given revision of the `function`. Functions expect a zip file that contains a python file     that make up the function. Python functions specify what needs to be run when     the function is deployed and what needs to be run when the scoring function is     called. In other words, you are able to customize what preparation WML does in     the environment when you deploy the function, as well as what steps WML takes to     generate the output when you call the API later on. The function consists of the     outer function (any place that is not within the score function) and the inner     score function. The code that sits in the outer function runs when the function     is deployed, and the environment is then frozen and ready to be used whenever     the online scoring or batch inline job processing API is called. The code that     sits in the inner score function runs when the online scoring or batch inline     job processing API is called, in the environment customized by the outer function.     See [Deploying Python function](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-deploy-functions.html?audience=wdp${content_description}context=wdp) for more details.         This is illustrated in the example below:        <pre> <br />     ...python code used to set up the environment... <br />     <br />     def score(payload): <br />         df_payload = pd.DataFrame(payload[values]) <br />         df_payload.columns = payload[fields] <br />         ... <br />         output = {result : res} <br />         return output <br />     <br />     return score <br />     </pre>.
+Download the function code. It is possible to get the `code` for a given revision of the `function`. Functions expect a zip file that contains a python file     that make up the function. Python functions specify what needs to be run when     the function is deployed and what needs to be run when the scoring function is     called. In other words, you are able to customize what preparation WML does in     the environment when you deploy the function, as well as what steps WML takes to     generate the output when you call the API later on. The function consists of the     outer function (any place that is not within the score function) and the inner     score function. The code that sits in the outer function runs when the function     is deployed, and the environment is then frozen and ready to be used whenever     the online scoring or batch inline job processing API is called. The code that     sits in the inner score function runs when the online scoring or batch inline     job processing API is called, in the environment customized by the outer function.     See [Deploying Python function](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-deploy-py-function.html?context=cpdaas${content_description}audience=wdp) for more details.         This is illustrated in the example below:        <pre> <br />     ...python code used to set up the environment... <br />     <br />     def score(payload): <br />         df_payload = pd.DataFrame(payload[values]) <br />         df_payload.columns = payload[fields] <br />         ... <br />         output = {result : res} <br />         return output <br />     <br />     return score <br />     </pre>.
 
 ```sh
 cpdctl ml function download-code --function-id FUNCTION-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--rev REV] 
@@ -4050,7 +4892,7 @@ cpdctl ml model create --name NAME --type TYPE --software-spec SOFTWARE-SPEC [--
 <dd>This will be used by scoring to record the size of the model.</dd>
 <dt>--metrics (<a href="#cli-metric-example-schema-ml">Metric[]</a>)</dt>
 <dd>Metrics that can be returned by an operation.</dd>
-<dt>--custom (interface{})</dt>
+<dt>--custom (<a href="#cli-custom-example-schema-ml">Custom</a>)</dt>
 <dd>User defined properties specified as key-value pairs.</dd>
 <dt>--user-defined-objects (map[string]string)</dt>
 <dd>User defined objects referenced by the model. For any user defined class or function used in the model, its name, as referenced in the model, must be specified as the `key` and its fully qualified class or function name must be specified as the `value`. This is applicable for `Tensorflow 2.X` models serialized in `H5` format using the `tf.keras` API.</dd>
@@ -4081,7 +4923,7 @@ cpdctl ml model list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start ST
 <dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
 <dd>The maximum value is `200`. The minimum value is `1`.</dd>
 <dt>--tag-value (string)</dt>
-<dd>Return only the resources with the given tag value.</dd>
+<dd>Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.</dd>
 <dt>--software-spec (string)</dt>
 <dd>Returns only resources having a dependency on this `software_spec`. The value is the `id` of the `software_spec`.</dd>
 </dl>
@@ -4141,7 +4983,7 @@ cpdctl ml model update --model-id MODEL-ID --json-patch JSON-PATCH [--space-id S
 <dd>The name of the resource.</dd>
 <dt>--description (string)</dt>
 <dd>A description of the resource.</dd>
-<dt>--custom (interface{})</dt>
+<dt>--custom (<a href="#cli-custom-example-schema-ml">Custom</a>)</dt>
 <dd>User defined properties specified as key-value pairs.</dd>
 </dl>
 
@@ -4409,7 +5251,7 @@ cpdctl ml model-definition create --name NAME --version VERSION --platform PLATF
 <dd>A list of tags for this resource.</dd>
 <dt>--command (string)</dt>
 <dd>The command used to run the model.</dd>
-<dt>--custom (interface{})</dt>
+<dt>--custom (<a href="#cli-custom-example-schema-ml">Custom</a>)</dt>
 <dd>User defined properties specified as key-value pairs.</dd>
 </dl>
 
@@ -4436,7 +5278,7 @@ cpdctl ml model-definition list [--space-id SPACE-ID] [--project-id PROJECT-ID] 
 <dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
 <dd>The maximum value is `200`. The minimum value is `1`.</dd>
 <dt>--tag-value (string)</dt>
-<dd>Return only the resources with the given tag value.</dd>
+<dd>Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.</dd>
 </dl>
 
 <a id='ml_model-definition_get'></a>
@@ -4494,7 +5336,7 @@ cpdctl ml model-definition update --model-definition-id MODEL-DEFINITION-ID --js
 <dd>The name of the resource.</dd>
 <dt>--description (string)</dt>
 <dd>A description of the resource.</dd>
-<dt>--custom (interface{})</dt>
+<dt>--custom (<a href="#cli-custom-example-schema-ml">Custom</a>)</dt>
 <dd>User defined properties specified as key-value pairs.</dd>
 </dl>
 
@@ -4640,7 +5482,7 @@ cpdctl ml pipeline create --name NAME [--project-id PROJECT-ID] [--space-id SPAC
 <dt>--document (interface{})</dt>
 <dd>Refer to the schema defined at
 [pipeline-flow-v2-schema](https://api.dataplatform.cloud.ibm.com/schemas/common-pipeline/pipeline-flow/pipeline-flow-v2-schema.json).</dd>
-<dt>--custom (interface{})</dt>
+<dt>--custom (<a href="#cli-custom-example-schema-ml">Custom</a>)</dt>
 <dd>User defined properties specified as key-value pairs.</dd>
 </dl>
 
@@ -4667,7 +5509,7 @@ cpdctl ml pipeline list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start
 <dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
 <dd>The maximum value is `200`. The minimum value is `1`.</dd>
 <dt>--tag-value (string)</dt>
-<dd>Return only the resources with the given tag value.</dd>
+<dd>Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.</dd>
 </dl>
 
 <a id='ml_pipeline_get'></a>
@@ -4725,7 +5567,7 @@ cpdctl ml pipeline update --pipeline-id PIPELINE-ID --json-patch JSON-PATCH [--s
 <dd>The name of the resource.</dd>
 <dt>--description (string)</dt>
 <dd>A description of the resource.</dd>
-<dt>--custom (interface{})</dt>
+<dt>--custom (<a href="#cli-custom-example-schema-ml">Custom</a>)</dt>
 <dd>User defined properties specified as key-value pairs.</dd>
 </dl>
 
@@ -4805,7 +5647,7 @@ cpdctl ml pipeline list-revisions --pipeline-id PIPELINE-ID [--space-id SPACE-ID
 Create a new WML training.
 
 ```sh
-cpdctl ml training create [--experiment EXPERIMENT] [--pipeline PIPELINE] [--model-definition MODEL-DEFINITION] [--federated-learning FEDERATED-LEARNING] [--training-definition TRAINING-DEFINITION] [--training-data-references TRAINING-DATA-REFERENCES] [--results-reference RESULTS-REFERENCE] [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--space-id SPACE-ID] [--project-id PROJECT-ID] 
+cpdctl ml training create [--experiment EXPERIMENT] [--pipeline PIPELINE] [--model-definition MODEL-DEFINITION] [--federated-learning FEDERATED-LEARNING] [--training-data-references TRAINING-DATA-REFERENCES] [--results-reference RESULTS-REFERENCE] [--custom CUSTOM] [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--space-id SPACE-ID] [--project-id PROJECT-ID] 
 ```
 
 
@@ -4825,12 +5667,12 @@ The `software_spec` is a reference to a software specification.
 The `hardware_spec` is a reference to a hardware specification.</dd>
 <dt>--federated-learning (<a href="#cli-federated-learning-example-schema-ml">FederatedLearning</a>)</dt>
 <dd>Federated Learning is a Technical Preview.</dd>
-<dt>--training-definition (<a href="#cli-training-definition-rel-example-schema-ml">TrainingDefinitionRel</a>)</dt>
-<dd>A training definition.</dd>
 <dt>--training-data-references (<a href="#cli-data-connection-reference-example-schema-ml">DataConnectionReference[]</a>)</dt>
 <dd>Training datasets.</dd>
 <dt>--results-reference (<a href="#cli-object-location-example-schema-ml">ObjectLocation</a>)</dt>
 <dd>A reference to data.</dd>
+<dt>--custom (<a href="#cli-custom-example-schema-ml">Custom</a>)</dt>
+<dd>User defined properties specified as key-value pairs.</dd>
 <dt>--tags ([]string)</dt>
 <dd>A list of tags for this resource.</dd>
 <dt>--name (string)</dt>
@@ -4942,7 +5784,7 @@ Wait until the training becomes completed, failed, or canceled.
 Create a new training definition with the given payload. A training definition represents the training meta-data necessary to start a training job. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition create --name NAME [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--experiment EXPERIMENT] [--pipeline PIPELINE] [--model-definition MODEL-DEFINITION] [--federated-learning FEDERATED-LEARNING] [--training-definition TRAINING-DEFINITION] [--training-data-references TRAINING-DATA-REFERENCES] [--results-reference RESULTS-REFERENCE] 
+cpdctl ml training-definition create --name NAME [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--experiment EXPERIMENT] [--pipeline PIPELINE] [--model-definition MODEL-DEFINITION] [--federated-learning FEDERATED-LEARNING] [--training-data-references TRAINING-DATA-REFERENCES] [--results-reference RESULTS-REFERENCE] [--custom CUSTOM] 
 ```
 
 
@@ -4972,12 +5814,12 @@ The `software_spec` is a reference to a software specification.
 The `hardware_spec` is a reference to a hardware specification.</dd>
 <dt>--federated-learning (<a href="#cli-federated-learning-example-schema-ml">FederatedLearning</a>)</dt>
 <dd>Federated Learning is a Technical Preview.</dd>
-<dt>--training-definition (<a href="#cli-training-definition-rel-example-schema-ml">TrainingDefinitionRel</a>)</dt>
-<dd>A training definition.</dd>
 <dt>--training-data-references (<a href="#cli-data-connection-reference-example-schema-ml">DataConnectionReference[]</a>)</dt>
 <dd>Training datasets.</dd>
 <dt>--results-reference (<a href="#cli-object-location-example-schema-ml">ObjectLocation</a>)</dt>
 <dd>A reference to data.</dd>
+<dt>--custom (<a href="#cli-custom-example-schema-ml">Custom</a>)</dt>
+<dd>User defined properties specified as key-value pairs.</dd>
 </dl>
 
 <a id='ml_training-definition_list'></a>
@@ -5003,7 +5845,7 @@ cpdctl ml training-definition list [--space-id SPACE-ID] [--project-id PROJECT-I
 <dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
 <dd>The maximum value is `200`. The minimum value is `1`.</dd>
 <dt>--tag-value (string)</dt>
-<dd>Return only the resources with the given tag value.</dd>
+<dd>Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.</dd>
 </dl>
 
 <a id='ml_training-definition_get'></a>
@@ -5062,7 +5904,7 @@ cpdctl ml training-definition update --training-definition-id TRAINING-DEFINITIO
 <dd>The name of the resource.</dd>
 <dt>--description (string)</dt>
 <dd>A description of the resource.</dd>
-<dt>--custom (interface{})</dt>
+<dt>--custom (<a href="#cli-custom-example-schema-ml">Custom</a>)</dt>
 <dd>User defined properties specified as key-value pairs.</dd>
 <dt>--federated-learning (<a href="#cli-federated-learning-example-schema-ml">FederatedLearning</a>)</dt>
 <dd>Federated Learning is a Technical Preview.</dd>
@@ -5412,7 +6254,7 @@ cpdctl project update --project-id PROJECT-ID [--catalog CATALOG] [--compute COM
 <dd>A description for the new project.</dd>
 <dt>-n, --name (string)</dt>
 <dd>The name of the project.</dd>
-<dd>The maximum length is `100 ` characters. The minimum length is `1` character.</dd>
+<dd>The maximum length is `100` characters. The minimum length is `1` character.</dd>
 <dt>-p, --public (bool)</dt>
 <dd>A value of 'true' makes the project public.</dd>
 <dd>The default value is `false`.</dd>
@@ -5648,7 +6490,7 @@ cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] 
 <dd>Description of space.</dd>
 <dt>--generator (string)</dt>
 <dd>A consistent label used to identify a client that created a space. A generator must be comprised of the following characters - alphanumeric, dash, underscore, space.</dd>
-<dd>The maximum length is `50 ` characters. The minimum length is `8 ` characters.</dd>
+<dd>The maximum length is `50` characters. The minimum length is `8` characters.</dd>
 <dt>--storage (<a href="#cli-storage-request-example-schema-space">StorageRequest</a>)</dt>
 <dd>Cloud Object Storage instance is required for spaces created on Public Cloud. On private CPD installations default storage is used instead. This flag is not supported on CPD 3.0.1.</dd>
 <dt>--tags ([]string)</dt>
@@ -6098,6 +6940,48 @@ The following example shows the format of the JSONPatchOperation[] object.
   "value" : "exampleString"
 } ]
 ```
+### &#8226; PipelineJSON
+<a id="cli-pipeline-json-example-schema-datastage"></a>
+
+The following example shows the format of the PipelineJSON object.
+
+```json
+
+{
+  "app_data" : {
+    "anyKey" : "anyValue"
+  },
+  "doc_type" : "pipeline",
+  "external_paramsets" : [ {
+    "anyKey" : "anyValue"
+  } ],
+  "id" : "84c2b6fb-1dd5-4114-b4ba-9bb2cb364fff",
+  "json_schema" : "http://api.dataplatform.ibm.com/schemas/common-pipeline/pipeline-flow/pipeline-flow-v3-schema.json",
+  "parameters" : {
+    "anyKey" : "anyValue"
+  },
+  "pipelines" : [ {
+    "app_data" : {
+      "anyKey" : "anyValue"
+    },
+    "description" : "A test DataStage flow.",
+    "id" : "fa1b859a-d592-474d-b56c-2137e4efa4bc",
+    "name" : "ContainerC1",
+    "nodes" : [ {
+      "anyKey" : "anyValue"
+    } ],
+    "runtime_ref" : "pxOsh"
+  } ],
+  "primary_pipeline" : "fa1b859a-d592-474d-b56c-2137e4efa4bc",
+  "runtimes" : [ {
+    "anyKey" : "anyValue"
+  } ],
+  "schemas" : [ {
+    "anyKey" : "anyValue"
+  } ],
+  "version" : "3.0"
+}
+```
 ### &#8226; ReferencedSpecification
 <a id="cli-referenced-specification-example-schema-environment"></a>
 
@@ -6252,12 +7136,17 @@ The following example shows the format of the JobPostBodyJob object.
   },
   "description" : "Description.",
   "name" : "Name",
+  "retention_policy" : {
+    "amount" : 38,
+    "days" : 38
+  },
   "schedule" : "0 3 21 13 1 ? 2019",
   "schedule_info" : {
     "endOn" : 1547578689512,
     "repeat" : true,
     "startOn" : 1547578689512
-  }
+  },
+  "serving_name" : "my_job_1_2_3"
 }
 ```
 ### &#8226; JSONPatchOperation
@@ -6290,6 +7179,15 @@ The following example shows the format of the JobRunPostBodyJobRun object.
     "env_variables" : [ "key1=value1", "key2=value2" ]
   }
 }
+```
+### &#8226; Custom
+<a id="cli-custom-example-schema-ml"></a>
+
+The following example shows the format of the Custom object.
+
+```json
+
+{ }
 ```
 ### &#8226; Rel
 <a id="cli-rel-example-schema-ml"></a>
@@ -6374,13 +7272,11 @@ The following example shows the format of the DeploymentEntityRequestVirtual obj
   },
   "notification_system" : {
     "id" : "exampleString",
-    "type" : "s3",
+    "type" : "connection_asset",
     "connection" : {
       "anyKey" : "anyValue"
     },
-    "location" : {
-      "anyKey" : "anyValue"
-    }
+    "location" : { }
   }
 }
 ```
@@ -6465,38 +7361,32 @@ The following example shows the format of the JobScoringRequest object.
     } ] ]
   } ],
   "input_data_references" : [ {
-    "id" : "exampleString",
-    "type" : "s3",
+    "id" : "8d3682dd-2858-43c9-bfd7-12a79abcfb0c",
+    "type" : "connection_asset",
     "connection" : {
       "anyKey" : "anyValue"
     },
-    "location" : {
-      "anyKey" : "anyValue"
-    },
+    "location" : { },
     "schema" : {
       "id" : "t1",
       "name" : "Tasks",
       "fields" : [ {
-        "name" : "duration",
-        "type" : "number"
+        "anyKey" : "anyValue"
       } ]
     }
   } ],
   "output_data_reference" : {
-    "id" : "exampleString",
-    "type" : "s3",
+    "id" : "8d3682dd-2858-43c9-bfd7-12a79abcfb0c",
+    "type" : "connection_asset",
     "connection" : {
       "anyKey" : "anyValue"
     },
-    "location" : {
-      "anyKey" : "anyValue"
-    },
+    "location" : { },
     "schema" : {
       "id" : "t1",
       "name" : "Tasks",
       "fields" : [ {
-        "name" : "duration",
-        "type" : "number"
+        "anyKey" : "anyValue"
       } ]
     }
   },
@@ -6505,9 +7395,7 @@ The following example shows the format of the JobScoringRequest object.
     "input_target" : "exampleString",
     "metrics_names" : [ "auroc", "accuracy" ]
   } ],
-  "environment_variables" : {
-    "anyKey" : "anyValue"
-  }
+  "environment_variables" : { }
 }
 ```
 ### &#8226; JobDecisionOptimizationRequest
@@ -6530,14 +7418,12 @@ The following example shows the format of the JobDecisionOptimizationRequest obj
     "content" : "exampleString"
   } ],
   "input_data_references" : [ {
-    "id" : "exampleString",
-    "type" : "s3",
+    "id" : "b6e37189-90e8-4260-86d8-0a6d2a02aa99",
+    "type" : "connection_asset",
     "connection" : {
       "anyKey" : "anyValue"
     },
-    "location" : {
-      "anyKey" : "anyValue"
-    }
+    "location" : { }
   } ],
   "output_data" : [ {
     "id" : "exampleString",
@@ -6548,14 +7434,12 @@ The following example shows the format of the JobDecisionOptimizationRequest obj
     "content" : "exampleString"
   } ],
   "output_data_references" : [ {
-    "id" : "exampleString",
-    "type" : "s3",
+    "id" : "b6e37189-90e8-4260-86d8-0a6d2a02aa99",
+    "type" : "connection_asset",
     "connection" : {
       "anyKey" : "anyValue"
     },
-    "location" : {
-      "anyKey" : "anyValue"
-    }
+    "location" : { }
   } ]
 }
 ```
@@ -6577,6 +7461,58 @@ The following example shows the format of the EvaluationDefinition object.
 ### &#8226; TrainingReference
 <a id="cli-training-reference-example-schema-ml"></a>
 
+The following example shows the format of the TrainingReference[] object.
+
+```json
+
+[ {
+  "pipeline" : {
+    "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
+    "rev" : "2",
+    "model_type" : "exampleString",
+    "data_bindings" : [ {
+      "data_reference_name" : "exampleString",
+      "node_id" : "exampleString"
+    } ],
+    "nodes_parameters" : [ {
+      "node_id" : "exampleString",
+      "parameters" : {
+        "anyKey" : "anyValue"
+      }
+    } ],
+    "hardware_spec" : {
+      "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
+      "rev" : "2",
+      "name" : "exampleString",
+      "num_nodes" : 2
+    },
+    "hybrid_pipeline_hardware_specs" : [ {
+      "node_runtime_id" : "auto_ai.kb",
+      "hardware_spec" : {
+        "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
+        "rev" : "2",
+        "name" : "exampleString",
+        "num_nodes" : 2
+      }
+    } ]
+  },
+  "model_definition" : {
+    "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"
+  },
+  "hyper_parameters_optimization" : {
+    "method" : {
+      "name" : "random",
+      "parameters" : {
+        "anyKey" : "anyValue"
+      }
+    },
+    "hyper_parameters" : [ {
+      "name" : "learning_rate",
+      "items" : "exampleString"
+    } ]
+  }
+} ]
+```
 ### &#8226; SoftwareSpecRel
 <a id="cli-software-spec-rel-example-schema-ml"></a>
 
@@ -6619,16 +7555,14 @@ The following example shows the format of the FunctionEntitySchemas object.
     "id" : "t1",
     "name" : "Tasks",
     "fields" : [ {
-      "name" : "duration",
-      "type" : "number"
+      "anyKey" : "anyValue"
     } ]
   } ],
   "output" : [ {
     "id" : "t1",
     "name" : "Tasks",
     "fields" : [ {
-      "name" : "duration",
-      "type" : "number"
+      "anyKey" : "anyValue"
     } ]
   } ]
 }
@@ -6652,20 +7586,17 @@ The following example shows the format of the DataConnectionReference[] object.
 ```json
 
 [ {
-  "id" : "exampleString",
-  "type" : "s3",
+  "id" : "8d3682dd-2858-43c9-bfd7-12a79abcfb0c",
+  "type" : "connection_asset",
   "connection" : {
     "anyKey" : "anyValue"
   },
-  "location" : {
-    "anyKey" : "anyValue"
-  },
+  "location" : { },
   "schema" : {
     "id" : "t1",
     "name" : "Tasks",
     "fields" : [ {
-      "name" : "duration",
-      "type" : "number"
+      "anyKey" : "anyValue"
     } ]
   }
 } ]
@@ -6682,16 +7613,14 @@ The following example shows the format of the ModelEntitySchemas object.
     "id" : "t1",
     "name" : "Tasks",
     "fields" : [ {
-      "name" : "duration",
-      "type" : "number"
+      "anyKey" : "anyValue"
     } ]
   } ],
   "output" : [ {
     "id" : "t1",
     "name" : "Tasks",
     "fields" : [ {
-      "name" : "duration",
-      "type" : "number"
+      "anyKey" : "anyValue"
     } ]
   } ]
 }
@@ -6716,7 +7645,7 @@ The following example shows the format of the Metric[] object.
 ```json
 
 [ {
-  "timestamp" : "2019-01-01T12:00:00.000Z",
+  "timestamp" : "2018-12-01T10:11:12.000Z",
   "iteration" : 2,
   "ml_metrics" : { },
   "ml_federated_metrics" : { },
@@ -6769,7 +7698,7 @@ The following example shows the format of the Metric[] object.
     },
     "multi_class_classification" : {
       "one_vs_all" : [ {
-        "class" : "exampleString",
+        "class_name" : "exampleString",
         "confusion_matrix_location" : "data/7d9ac934-9073-4ffd-846c-7b1f912b1ab2/data/autoai/pre_hpo_d_output/Pipeline1/confusion_matrix.json",
         "confusion_matrix" : {
           "true_class" : "exampleString",
@@ -6815,7 +7744,7 @@ The following example shows the format of the ContentLocation object.
     "pipeline_node_id" : "exampleString",
     "deployment_id" : "exampleString"
   } ],
-  "type" : "s3",
+  "type" : "connection_asset",
   "connection" : { },
   "location" : { }
 }
@@ -6955,18 +7884,6 @@ The following example shows the format of the FederatedLearning object.
   "log_level" : "info"
 }
 ```
-### &#8226; TrainingDefinitionRel
-<a id="cli-training-definition-rel-example-schema-ml"></a>
-
-The following example shows the format of the TrainingDefinitionRel object.
-
-```json
-
-{
-  "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
-  "rev" : "2"
-}
-```
 ### &#8226; ObjectLocation
 <a id="cli-object-location-example-schema-ml"></a>
 
@@ -6980,9 +7897,7 @@ The following example shows the format of the ObjectLocation object.
   "connection" : {
     "anyKey" : "anyValue"
   },
-  "location" : {
-    "anyKey" : "anyValue"
-  }
+  "location" : { }
 }
 ```
 ### &#8226; NotebookKernel
