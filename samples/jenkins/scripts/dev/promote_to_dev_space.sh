@@ -29,7 +29,7 @@ promote_asset () {
 
 trained_model_id=$(<${trained_model_id_file})
 regression_data_asset_id=$(find_asset data_asset "credit_risk_regression.csv")
-evaluation_script_id=$(find_asset script "evaluate_model")
+evaluation_script_id=$(find_asset script "evaluate_model*")
 
 promote_asset "trained model" $trained_model_id
 promote_asset "regression data asset" $regression_data_asset_id
