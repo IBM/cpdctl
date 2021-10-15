@@ -1,0 +1,26 @@
+node {
+    withCredentials([file(credentialsId: 'CPDCTL_CPD402_CONFIG', variable: 'CPDCONFIG')]) {
+        checkout scm
+
+        stage('Install cpdctl') {
+            sh 'bash -e ./samples/jenkins/scripts/helpers/install_cpdctl.sh'
+        }
+
+        stage('Import assets') {
+            copyArtifacts fingerprintArtifacts: true, projectName: 'cpdctl-demo-folder/model-lifecycle-demo-dev-pipeline', selector: lastSuccessful()
+            sh 'bash -e ./samples/jenkins/scripts/test/create_test_space.sh'
+        }
+
+        stage('Deploy model') {
+            sh 'bash -e ./samples/jenkins/scripts/test/create_model_batch_deployment.sh'
+        }
+
+        stage('Evaluate model') {
+            sh 'bash -e ./samples/jenkins/scripts/test/create_script_batch_deployment.sh'
+        }
+
+        stage('Cleanup') {
+            sh 'bash -e ./samples/jenkins/scripts/test/cleanup.sh'
+        }
+    }
+}
