@@ -16,7 +16,7 @@ find_asset () {
   echo $asset_id
 }
 
-prod_evaluation_script_id=$(find_asset script "evaluate_model.py")
+prod_evaluation_script_id=$(find_asset script "evaluate_model*")
 
 evaluate_model_job_id=$(find_asset job "evaluate_model_job")
 

@@ -34,7 +34,7 @@ echo Cleaning up the development space...
 export CPD_SCOPE=cpd://cpd/spaces/$DEV_SPACE_ID
 model_id=$(find_asset wml_model "$model_name")
 regression_data_asset_id=$(find_asset data_asset "credit_risk_regression.csv")
-evaluation_script_id=$(find_asset script "evaluate_model")
+evaluation_script_id=$(find_asset script "evaluate_model*")
 
 echo Deleting promoted assets...
 
