@@ -12,7 +12,9 @@ def get_asset_details(client, asset_id, space_id):
     url = client.wml_credentials['url']
     request_url = os.path.join(url, 'v2/assets', asset_id + "?space_id=" + space_id)
     headers = client._get_headers()
-    response = requests.get(request_url, headers=headers, verify=False)
+    response = requests.get(request_url, headers=headers)
+### Import CPD certificate or switch to cert verfication disabled      
+###    response = requests.get(request_url, headers=headers, verify=False)
     if response.status_code != 200:
         print('Getting asset details failed.')
         raise Exception(response.text)
