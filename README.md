@@ -34,10 +34,6 @@ Download the appropriate archive from [IBM cpdctl repository](https://github.com
 ### macOS x64
 * Archive name `cpdctl_darwin_amd64.tar.gz`
 * Issue command `$ tar zxf cpdctl_darwin_mad64.tar.gz` to extract the `cpdctl` executable from the archive.
-* Run `cpdctl`. Dismiss the warning message `"cpdctl" cannot be opened because the developer cannot be verified`.
-* Go to `System Preferences` -> `Security & Privacy`, click on the lock icon and enter your password to allow modifications.
-* In the 'General' section, find entry `"cpdctl" was blocked from use because it is not from an identified developer` and click `Allow Anyway`.
-* Run `cpdctl` again. Select `Open` on the warning message `macOS cannot verify the developer...`.
 
 ## Configuration
 > ![New in 1.1.34](https://img.shields.io/badge/New%20in-1.1.34-blue)
@@ -50,8 +46,8 @@ Download the appropriate archive from [IBM cpdctl repository](https://github.com
 
 ### Zero configuration
 When running **IBM cpdctl** inside IBM Cloud Pak for Data (CP4D) cluster, e.g. from a Jupyter Notebook executed in Watson Studio, it automatically connects to that CP4D instance:
-* profile URL is set to https://internal-nginx-svc:12443/,
-* access token for currently logged-in user is read from environment variable USER_ACCESS_TOKEN.
+* profile URL is read from environment variable `RUNTIME_ENV_APSX_URL`,
+* access token for currently logged-in user is read from environment variable `USER_ACCESS_TOKEN`.
 
 ### Manual configuration
 **IBM Cloud Pak for Data Command Line Interface** must be provided addresses and credentials to connect to IBM Cloud Pak for Data (CP4D) instances.
@@ -160,7 +156,7 @@ where `<foundational-services-ns>` is the namespace of foundational services, by
 ## Available commands
 ```
 $ cpdctl --help
-Cross-product common CLI for Cloud Pak for Data
+IBM Cloud Pak for Data Command Line Interface
 
 Usage:
   cpdctl [command]
