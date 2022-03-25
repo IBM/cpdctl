@@ -182,7 +182,6 @@ Flags:
       --cpd-config string    Configuration file path
       --cpdconfig string     [Deprecated] Use --cpd-config instead
   -h, --help                 help for cpdctl
-      --output-path string   If set, all output is redirected to a file of the given path
       --raw-output           If set to true, single values in JSON output mode are not surrounded by quotes
 
 Use "cpdctl [command] --help" for more information about a command.
