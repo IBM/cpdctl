@@ -7,7 +7,7 @@ export PATH=$PATH:$PWD
 # $DEV_SPACE_ID - ID of the development deployment space
 #
 
-env_name=jupconda38
+env_name=jupconda221
 job_name=train-scikit-model-job
 model_name=gcr-scikit-model
 trained_model_id_file=./trained_model_id
