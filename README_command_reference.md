@@ -104,6 +104,7 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [datastage xml-schema-library delete](#datastage_xml-schema-library_delete)
 #### &#8226; [datastage xml-schema-library get](#datastage_xml-schema-library_get)
 #### &#8226; [datastage xml-schema-library upload](#datastage_xml-schema-library_upload)
+#### &#8226; [datastage xml-schema-library clone](#datastage_xml-schema-library_clone)
 #### &#8226; [datastage xml-schema-library delete-files](#datastage_xml-schema-library_delete-files)
 #### &#8226; [datastage xml-schema-library download](#datastage_xml-schema-library_download)
 #### &#8226; [datastage xml-schema-library rename](#datastage_xml-schema-library_rename)
@@ -121,6 +122,7 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [datastage table-definition update](#datastage_table-definition_update)
 #### &#8226; [datastage table-definition replace](#datastage_table-definition_replace)
 #### &#8226; [datastage table-definition clone](#datastage_table-definition_clone)
+#### &#8226; [datastage codegen generate-buildop](#datastage_codegen_generate-buildop)
 #### &#8226; [environment list](#environment_list)
 #### &#8226; [environment create](#environment_create)
 #### &#8226; [environment delete](#environment_delete)
@@ -1001,22 +1003,21 @@ Streams the content of the specified file, with the appropriate HTTP headers for
 #### Command options
 
 <dl>
-<dt>--accept string            The type of the response:</dt><dd>or *_/_*.</dd>
-<dt>--account-id string      </dt><dd>The catalog id the file is associated with. One of catalog, project, space or account id is required.</dd>
-<dt>--byte-limit int         </dt><dd>If passed, indicates how many bytes of data is to be returned.</dd>
-<dt>--catalog-id string      </dt><dd>The catalog id the file is associated with. One of catalog, project, space or account id is required.</dd>
-<dt>--cos-credentials string </dt><dd>Credentials to Cloud Object Storage.</dd>
-<dt>--cpd-scope string       </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--flat                   </dt><dd>If true folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory.</dd>
-<dt>--force                  </dt><dd>Only used when &inflate=true. Tells asset files to skip validation on wheter the target is a zip. Inflate will be run regardless.</dd>
-<dt>--inflate                </dt><dd>If '&inflate=true' ALL other query params except the target are ignored. The file being retrieved must be an archive. If all checks pass the archive will be expanded to a temp location and the results will be returned as if flat=true was supplied. If the target archive has perviously be inflated any existing inflate preview will be overwritten if the zip is newer. Otherwise the previous preview will be returned.</dd>
-<dt>--output-file string     </dt><dd>Filename/path to write the resulting output to.</dd>
-<dt>--path string            </dt><dd>Asset file path.</dd>
-<dt>--project-id string      </dt><dd>The project id the file is associated with. One of catalog, project, space or account id is required.</dd>
-<dt>--root                   </dt><dd>If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of assets directory. Supported for services. Also supported for account admin if targeting account directory.</dd>
-<dt>--signature string       </dt><dd>Additional auth method. Signed string obtained by making presigned API request.</dd>
-<dt>--size-limit int         </dt><dd>Returns 400 bad request if asset is larger than the value provided here. In MB.</dd>
-<dt>--space-id string        </dt><dd>The space id the file is associated with. One of catalog, project, space or account id is required.</dd>
+<dt>--accept string        The type of the response:</dt><dd>or *_/_*.</dd>
+<dt>--account-id string  </dt><dd>The catalog id the file is associated with. One of catalog, project, space or account id is required.</dd>
+<dt>--byte-limit int     </dt><dd>If passed, indicates how many bytes of data is to be returned.</dd>
+<dt>--catalog-id string  </dt><dd>The catalog id the file is associated with. One of catalog, project, space or account id is required.</dd>
+<dt>--cpd-scope string   </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
+<dt>--flat               </dt><dd>If true folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory.</dd>
+<dt>--force              </dt><dd>Only used when &inflate=true. Tells asset files to skip validation on wheter the target is a zip. Inflate will be run regardless.</dd>
+<dt>--inflate            </dt><dd>If '&inflate=true' ALL other query params except the target are ignored. The file being retrieved must be an archive. If all checks pass the archive will be expanded to a temp location and the results will be returned as if flat=true was supplied. If the target archive has perviously be inflated any existing inflate preview will be overwritten if the zip is newer. Otherwise the previous preview will be returned.</dd>
+<dt>--output-file string </dt><dd>Filename/path to write the resulting output to.</dd>
+<dt>--path string        </dt><dd>Asset file path.</dd>
+<dt>--project-id string  </dt><dd>The project id the file is associated with. One of catalog, project, space or account id is required.</dd>
+<dt>--root               </dt><dd>If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of assets directory. Supported for services. Also supported for account admin if targeting account directory.</dd>
+<dt>--signature string   </dt><dd>Additional auth method. Signed string obtained by making presigned API request.</dd>
+<dt>--size-limit int     </dt><dd>Returns 400 bad request if asset is larger than the value provided here. In MB.</dd>
+<dt>--space-id string    </dt><dd>The space id the file is associated with. One of catalog, project, space or account id is required.</dd>
 </dl>
 
 <a id='asset_file_list'></a>
@@ -1029,17 +1030,16 @@ Returns a list of file paths (similar to S3 listObjects) for the provided projec
 #### Command options
 
 <dl>
-<dt>--account-id string      </dt><dd>The catalog id the file is associated with. One of catalog, project, space or account id is required.</dd>
-<dt>--catalog-id string      </dt><dd>Request the files for this catalog id. One of catalog, project, space or account id is required.</dd>
-<dt>--cos-credentials string </dt><dd>Credentials to Cloud Object Storage.</dd>
-<dt>--cpd-scope string       </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--flat                   </dt><dd>If true folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory.</dd>
-<dt>--limit string           </dt><dd>Pagination param, limit number of resources returned.</dd>
-<dt>--offset string          </dt><dd>Pagination param, resources returned wil be offset by this value.</dd>
-<dt>--path string            </dt><dd>List files from the given folder path</dd>
-<dt>--project-id string      </dt><dd>Request the files for this project id. One of project, catalog, space or account id is required.</dd>
-<dt>--root                   </dt><dd>If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of assets directory. Supported for services. Also support for account admins if targeting account directory.</dd>
-<dt>--space-id string        </dt><dd>Request the files for this space id. One of project, catalog, space or account id is required.</dd>
+<dt>--account-id string </dt><dd>The catalog id the file is associated with. One of catalog, project, space or account id is required.</dd>
+<dt>--catalog-id string </dt><dd>Request the files for this catalog id. One of catalog, project, space or account id is required.</dd>
+<dt>--cpd-scope string  </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
+<dt>--flat              </dt><dd>If true folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory.</dd>
+<dt>--limit string      </dt><dd>Pagination param, limit number of resources returned.</dd>
+<dt>--offset string     </dt><dd>Pagination param, resources returned wil be offset by this value.</dd>
+<dt>--path string       </dt><dd>List files from the given folder path</dd>
+<dt>--project-id string </dt><dd>Request the files for this project id. One of project, catalog, space or account id is required.</dd>
+<dt>--root              </dt><dd>If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of assets directory. Supported for services. Also support for account admins if targeting account directory.</dd>
+<dt>--space-id string   </dt><dd>Request the files for this space id. One of project, catalog, space or account id is required.</dd>
 </dl>
 
 <a id='asset_file_upload'></a>
@@ -1054,7 +1054,6 @@ Uploads the bytes into the file with the provided file name using HTTP multi-par
 <dl>
 <dt>--account-id string        </dt><dd>The catalog id the file is associated with. One of catalog, project, space or account id is required.</dd>
 <dt>--catalog-id string        </dt><dd>The catalog id the file should be associated with. One of catalog, project, space or account id is required.</dd>
-<dt>--cos-credentials string   </dt><dd>Credentials to Cloud Object Storage.</dd>
 <dt>--cpd-scope string         </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
 <dt>--ensure-dir               </dt><dd>Override utility. If true will ensure the directory specified in 'path' exists. 201 will be returned ig created, 200 if already exists and 409 if it is present and not a directory. Will take precedence over other query params except 'inflate'.</dd>
 <dt>--file string              </dt><dd>File to upload.</dd>
@@ -1686,6 +1685,10 @@ Sets the current context
 
 Lists defined connections.
 
+Connections created with shared credentials will return secrets such as database passwords and API keys in clear text. Such secrets are stored encrypted but will be decrypted by the API when retrieved by the caller in order to access the data source defined by the connection. Clear text credentials are allowed because it is understood that the caller has already been explicitly added as a collabaorator in the project or catalog in which the connection is stored and is thus implicitly permitted access to the credentials required to connect to a data source.
+
+Connections created with personal credentials will only display clear text credentials to the same user who provided them.
+
 Use the following parameters to sort the results:
 
 | Field                     | Example                             |
@@ -1701,7 +1704,7 @@ Use the following parameters to filter the results:
 | entity.datasource_type    | ?entity.datasource_type=<asset_id>  |
 | entity.context            | ?entity.context=source              |
 | entity.properties         | ?entity.properties={"name":"value"} |
-| entity.flags              | ?entity.flags=+restricted           |
+| entity.flags              | ?entity.flags=+personal_credentials |
 | metadata.creator_id       | ?metadata.creator_id=userid         |
 
 Filtering is done by specifying the fields to filter on. 
@@ -1715,7 +1718,7 @@ Adding the name of a flag to entity.flags will add the connections  with that fl
 Adding the name of a flag to entity.flags with a minus sign (-) prefix will remove those connections with that flag from the list  results. All additions are done before the subtractions.
 
 ```sh
-cpdctl connection list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--sort SORT] [--start START] [--limit LIMIT] [--metadata-creator METADATA-CREATOR] [--entity-name ENTITY-NAME] [--entity-datasource-type ENTITY-DATASOURCE-TYPE] [--entity-context ENTITY-CONTEXT] [--entity-properties ENTITY-PROPERTIES] [--entity-flags ENTITY-FLAGS] 
+cpdctl connection list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--sort SORT] [--start START] [--limit LIMIT] [--metadata-creator METADATA-CREATOR] [--entity-name ENTITY-NAME] [--entity-datasource-type ENTITY-DATASOURCE-TYPE] [--entity-context ENTITY-CONTEXT] [--entity-properties ENTITY-PROPERTIES] [--entity-flags ENTITY-FLAGS] [--inject-token INJECT-TOKEN] 
 ```
 
 
@@ -1747,6 +1750,9 @@ cpdctl connection list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--sp
 <dd>The properties of the connection that must match for the connection to be included in the list.</dd>
 <dt>--entity-flags (string)</dt>
 <dd>A comma separated list of flags that must be present for the connection to be included in the list. If not provided, only connections with no flags will be returned.</dd>
+<dt>--inject-token (bool)</dt>
+<dd>Boolean indicator if cluster username and access token should be injected into connection properties. It has to be ensured that access token is not revealed unintentionally together with connection properties.</dd>
+<dd>The default value is `false`.</dd>
 </dl>
 
 <a id='connection_create'></a>
@@ -1754,8 +1760,12 @@ cpdctl connection list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--sp
 
 Defines a connection.
 
+By default, a connection is created with shared credentials.  Though credentials'  secrets are stored encrypted, all credentials including secrets will be visible in clear text to API users who retrieve the connection and who are collaborators of the project or catalog in which a connection with shared credentials has been created.
+
+Alternatively, a connection can be created with personal credentials by using the personal_credentials flag.  The credentials' secrets will be visible only to the user who created the connection.
+
 ```sh
-cpdctl connection create --datasource-type DATASOURCE-TYPE --name NAME [--asset-category ASSET-CATEGORY] [--child-source-systems CHILD-SOURCE-SYSTEMS] [--description DESCRIPTION] [--flags FLAGS] [--gateway-id GATEWAY-ID] [--interaction-properties INTERACTION-PROPERTIES] [--origin-country ORIGIN-COUNTRY] [--owner-id OWNER-ID] [--properties PROPERTIES] [--ref-asset-id REF-ASSET-ID] [--ref-catalog-id REF-CATALOG-ID] [--rov ROV] [--source-system SOURCE-SYSTEM] [--tags TAGS] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--test TEST] 
+cpdctl connection create --datasource-type DATASOURCE-TYPE --name NAME [--asset-category ASSET-CATEGORY] [--child-source-systems CHILD-SOURCE-SYSTEMS] [--description DESCRIPTION] [--flags FLAGS] [--gateway-id GATEWAY-ID] [--interaction-properties INTERACTION-PROPERTIES] [--location-definition LOCATION-DEFINITION] [--origin-country ORIGIN-COUNTRY] [--owner-id OWNER-ID] [--properties PROPERTIES] [--ref-asset-id REF-ASSET-ID] [--ref-catalog-id REF-CATALOG-ID] [--rov ROV] [--source-system SOURCE-SYSTEM] [--tags TAGS] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--test TEST] [--skip-enforcement SKIP-ENFORCEMENT] 
 ```
 
 
@@ -1763,7 +1773,7 @@ cpdctl connection create --datasource-type DATASOURCE-TYPE --name NAME [--asset-
 
 <dl>
 <dt>--datasource-type (string)</dt>
-<dd>The id of the data source type to connect to. For example. "cfdcb449-1204-44ba-baa6-9a8a878e6aa7". Required.</dd>
+<dd>The id or the name of the data source type to connect to. For example "cfdcb449-1204-44ba-baa6-9a8a878e6aa7" or "db2". Required.</dd>
 <dt>--name (string)</dt>
 <dd>The name of the connection. Required.</dd>
 <dt>--asset-category (string)</dt>
@@ -1779,6 +1789,8 @@ cpdctl connection create --datasource-type DATASOURCE-TYPE --name NAME [--asset-
 <dd>The id of the secure gateway to use with the connection. A Secure Gateway is needed when connecting to an on-premises data source. This is the id of the Secure Gateway created with the SecureGateway Service. Your Secure Gateway Client running on-premises must be connected to the gateway with this Id. For example, "E9oXGRIhv1e_prod_ng".</dd>
 <dt>--interaction-properties (<a href="#cli-connection-interaction-properties-example-schema-connection">ConnectionInteractionProperties</a>)</dt>
 <dd>Interaction properties allowed for a connection.</dd>
+<dt>--location-definition (<a href="#cli-location-definition-example-schema-connection">LocationDefinition</a>)</dt>
+<dd>Indicates the location used by this connection.</dd>
 <dt>--origin-country (string)</dt>
 <dd>Country which data originated from. - ISO 3166 Country Codes.</dd>
 <dt>--owner-id (string)</dt>
@@ -1804,6 +1816,9 @@ cpdctl connection create --datasource-type DATASOURCE-TYPE --name NAME [--asset-
 <dt>--test (bool)</dt>
 <dd>Whether to test the connection before saving it. If a connection cannot be established, the connection is not saved.</dd>
 <dd>The default value is `true`.</dd>
+<dt>--skip-enforcement (bool)</dt>
+<dd>The indicator whether shared credentials disablement and vault credentials enforcement guards should be disabled for creation and updates.</dd>
+<dd>The default value is `false`.</dd>
 </dl>
 
 <a id='connection_discover-adhoc'></a>
@@ -1812,7 +1827,7 @@ cpdctl connection create --datasource-type DATASOURCE-TYPE --name NAME [--asset-
 Discovers assets from the data source accessed via a connection description.
 
 ```sh
-cpdctl connection discover-adhoc --path PATH --datasource-type DATASOURCE-TYPE --name NAME [--asset-category ASSET-CATEGORY] [--child-source-systems CHILD-SOURCE-SYSTEMS] [--description DESCRIPTION] [--flags FLAGS] [--gateway-id GATEWAY-ID] [--interaction-properties INTERACTION-PROPERTIES] [--origin-country ORIGIN-COUNTRY] [--owner-id OWNER-ID] [--properties PROPERTIES] [--ref-asset-id REF-ASSET-ID] [--ref-catalog-id REF-CATALOG-ID] [--rov ROV] [--source-system SOURCE-SYSTEM] [--tags TAGS] [--limit LIMIT] [--offset OFFSET] [--fetch FETCH] [--detail DETAIL] [--discovery-context DISCOVERY-CONTEXT] [--asset-properties ASSET-PROPERTIES] [--filters FILTERS] 
+cpdctl connection discover-adhoc --path PATH --datasource-type DATASOURCE-TYPE --name NAME [--asset-category ASSET-CATEGORY] [--child-source-systems CHILD-SOURCE-SYSTEMS] [--description DESCRIPTION] [--flags FLAGS] [--gateway-id GATEWAY-ID] [--interaction-properties INTERACTION-PROPERTIES] [--new-location-definition NEW-LOCATION-DEFINITION] [--origin-country ORIGIN-COUNTRY] [--owner-id OWNER-ID] [--properties PROPERTIES] [--ref-asset-id REF-ASSET-ID] [--ref-catalog-id REF-CATALOG-ID] [--rov ROV] [--new-source-system NEW-SOURCE-SYSTEM] [--tags TAGS] [--limit LIMIT] [--offset OFFSET] [--fetch FETCH] [--detail DETAIL] [--discovery-context DISCOVERY-CONTEXT] [--asset-properties ASSET-PROPERTIES] [--filters FILTERS] 
 ```
 
 
@@ -1822,7 +1837,7 @@ cpdctl connection discover-adhoc --path PATH --datasource-type DATASOURCE-TYPE -
 <dt>--path (string)</dt>
 <dd>Path of the asset. Required.</dd>
 <dt>--datasource-type (string)</dt>
-<dd>The id of the data source type to connect to. For example. "cfdcb449-1204-44ba-baa6-9a8a878e6aa7". Required.</dd>
+<dd>The id or the name of the data source type to connect to. For example "cfdcb449-1204-44ba-baa6-9a8a878e6aa7" or "db2". Required.</dd>
 <dt>--name (string)</dt>
 <dd>The name of the connection. Required.</dd>
 <dt>--asset-category (string)</dt>
@@ -1838,6 +1853,8 @@ cpdctl connection discover-adhoc --path PATH --datasource-type DATASOURCE-TYPE -
 <dd>The id of the secure gateway to use with the connection. A Secure Gateway is needed when connecting to an on-premises data source. This is the id of the Secure Gateway created with the SecureGateway Service. Your Secure Gateway Client running on-premises must be connected to the gateway with this Id. For example, "E9oXGRIhv1e_prod_ng".</dd>
 <dt>--interaction-properties (<a href="#cli-connection-interaction-properties-example-schema-connection">ConnectionInteractionProperties</a>)</dt>
 <dd>Interaction properties allowed for a connection.</dd>
+<dt>--new-location-definition (<a href="#cli-location-definition-example-schema-connection">LocationDefinition</a>)</dt>
+<dd>Indicates the location used by this connection.</dd>
 <dt>--origin-country (string)</dt>
 <dd>Country which data originated from. - ISO 3166 Country Codes.</dd>
 <dt>--owner-id (string)</dt>
@@ -1850,7 +1867,7 @@ cpdctl connection discover-adhoc --path PATH --datasource-type DATASOURCE-TYPE -
 <dd>The ID of the catalog that this connection refers to for properties values.</dd>
 <dt>--rov (<a href="#cli-connection-rov-example-schema-connection">ConnectionRov</a>)</dt>
 <dd>Rules of visibility for connections.</dd>
-<dt>--source-system (generic map)</dt>
+<dt>--new-source-system (generic map)</dt>
 <dd>Custom data to be associated with a given object.</dd>
 <dt>--tags ([]string)</dt>
 <dd></dd>
@@ -1943,8 +1960,12 @@ cpdctl connection delete --connection-id CONNECTION-ID [--catalog-id CATALOG-ID]
 
 Gets details of a specific connection definition.
 
+Connections created with shared credentials will return secrets such as database passwords and API keys in clear text. Such secrets are stored encrypted but will be decrypted by the API when retrieved by the caller in order to access the data source defined by the connection. Clear text credentials are allowed because it is understood that the caller has already been explicitly added as a collabaorator in the project or catalog in which the connection is stored and is thus implicitly permitted access to the credentials required to connect to a data source.
+
+Connections created with personal credentials will only display clear text credentials to the same user who provided them.
+
 ```sh
-cpdctl connection get --connection-id CONNECTION-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
+cpdctl connection get --connection-id CONNECTION-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--inject-token INJECT-TOKEN] [--entity-product ENTITY-PRODUCT] 
 ```
 
 
@@ -1959,6 +1980,11 @@ cpdctl connection get --connection-id CONNECTION-ID [--catalog-id CATALOG-ID] [-
 <dd>The ID of the project to use. catalog_id, project_id, or space_id is required.</dd>
 <dt>--space-id (string)</dt>
 <dd>The ID of the space to use. catalog_id, project_id, or space_id is required.</dd>
+<dt>--inject-token (bool)</dt>
+<dd>Boolean indicator if cluster username and access token should be injected into connection properties. It has to be ensured that access token is not revealed unintentionally together with connection properties.</dd>
+<dd>The default value is `false`.</dd>
+<dt>--entity-product (string)</dt>
+<dd>Specify the product the data source type must support to be returned. The available products are 'catalog', 'cpd', 'datastage', 'dv', 'igc', 'mdi', 'ml' and 'studio'. If no entity.product is specified, no filtering is applied. To specify multiple products, use a comma-separated string, such as entity.product=catalog,studio.</dd>
 </dl>
 
 <a id='connection_update'></a>
@@ -1967,7 +1993,7 @@ cpdctl connection get --connection-id CONNECTION-ID [--catalog-id CATALOG-ID] [-
 Updates the definition of a connection.
 
 ```sh
-cpdctl connection update --connection-id CONNECTION-ID --patch-request PATCH-REQUEST [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--test TEST] 
+cpdctl connection update --connection-id CONNECTION-ID --patch-request PATCH-REQUEST [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--test TEST] [--skip-enforcement SKIP-ENFORCEMENT] 
 ```
 
 
@@ -1987,6 +2013,9 @@ cpdctl connection update --connection-id CONNECTION-ID --patch-request PATCH-REQ
 <dt>--test (bool)</dt>
 <dd>Whether to test the connection before saving it. By default an attempt to establish a connection will be made, and the connection will not be saved if the connection cannot be established.</dd>
 <dd>The default value is `true`.</dd>
+<dt>--skip-enforcement (bool)</dt>
+<dd>The indicator whether shared credentials disablement and vault credentials enforcement guards should be disabled for creation and updates.</dd>
+<dd>The default value is `false`.</dd>
 </dl>
 
 <a id='connection_list-actions'></a>
@@ -2114,7 +2143,7 @@ The following fields are available for use with the sort parameter:
 | entity.type  | The major type of the data source type.              |.
 
 ```sh
-cpdctl connection datasource-type list [--accept-language ACCEPT-LANGUAGE] [--sort SORT] [--offset OFFSET] [--limit LIMIT] [--connection-properties CONNECTION-PROPERTIES] [--interaction-properties INTERACTION-PROPERTIES] [--discovery DISCOVERY] [--actions ACTIONS] [--entity-environment ENTITY-ENVIRONMENT] [--entity-product ENTITY-PRODUCT] [--product-selector-scope PRODUCT-SELECTOR-SCOPE] 
+cpdctl connection datasource-type list [--accept-language ACCEPT-LANGUAGE] [--sort SORT] [--offset OFFSET] [--limit LIMIT] [--connection-properties CONNECTION-PROPERTIES] [--interaction-properties INTERACTION-PROPERTIES] [--discovery DISCOVERY] [--actions ACTIONS] [--entity-environment ENTITY-ENVIRONMENT] [--entity-product ENTITY-PRODUCT] [--product-selector-scope PRODUCT-SELECTOR-SCOPE] [--generate-transitive-conditions GENERATE-TRANSITIVE-CONDITIONS] 
 ```
 
 
@@ -2147,6 +2176,9 @@ cpdctl connection datasource-type list [--accept-language ACCEPT-LANGUAGE] [--so
 <dt>--product-selector-scope (string)</dt>
 <dd>Scope of ui-only product selector property. Applies to output under common_properties key. Genreated ui contains additional checkbox to switch between first of the requested products and the rest. If only a single one is given it switches between that product and remaining products supported by the data source.</dd>
 <dd>Allowable values are: global, context</dd>
+<dt>--generate-transitive-conditions (bool)</dt>
+<dd>Whether to generate extra conditions in common properties format that will make them behave in a transitive manner under default configuration options of Elyra i.e. when a condition is part of a chain it will enable/disable everything down the chain rather than just hiding the control. Support for this option has been removed. Option itself was not removed to preserve binary compatibility but it no longer has any effect.</dd>
+<dd>The default value is `false`.</dd>
 </dl>
 
 <a id='connection_datasource-type_get'></a>
@@ -2155,7 +2187,7 @@ cpdctl connection datasource-type list [--accept-language ACCEPT-LANGUAGE] [--so
 Get details for type of data source.
 
 ```sh
-cpdctl connection datasource-type get --datasource-type DATASOURCE-TYPE [--accept-language ACCEPT-LANGUAGE] [--connection-properties CONNECTION-PROPERTIES] [--interaction-properties INTERACTION-PROPERTIES] [--discovery DISCOVERY] [--actions ACTIONS] [--entity-environment ENTITY-ENVIRONMENT] [--entity-product ENTITY-PRODUCT] [--product-selector-scope PRODUCT-SELECTOR-SCOPE] 
+cpdctl connection datasource-type get --datasource-type DATASOURCE-TYPE [--accept-language ACCEPT-LANGUAGE] [--connection-properties CONNECTION-PROPERTIES] [--interaction-properties INTERACTION-PROPERTIES] [--discovery DISCOVERY] [--actions ACTIONS] [--entity-environment ENTITY-ENVIRONMENT] [--entity-product ENTITY-PRODUCT] [--product-selector-scope PRODUCT-SELECTOR-SCOPE] [--generate-transitive-conditions GENERATE-TRANSITIVE-CONDITIONS] 
 ```
 
 
@@ -2182,6 +2214,9 @@ cpdctl connection datasource-type get --datasource-type DATASOURCE-TYPE [--accep
 <dt>--product-selector-scope (string)</dt>
 <dd>Scope of ui-only product selector property. Applies to output under common_properties key. Genreated ui contains additional checkbox to switch between first of the requested products and the rest. If only a single one is given it switches between that product and remaining products supported by the data source.</dd>
 <dd>Allowable values are: global, context</dd>
+<dt>--generate-transitive-conditions (bool)</dt>
+<dd>Whether to generate extra conditions in common properties format that will make them behave in a transitive manner under default configuration options of Elyra i.e. when a condition is part of a chain it will enable/disable everything down the chain rather than just hiding the control. Support for this option has been removed. Option itself was not removed to preserve binary compatibility but it no longer has any effect.</dd>
+<dd>The default value is `false`.</dd>
 </dl>
 
 <a id='datastage_flow_delete'></a>
@@ -2263,7 +2298,7 @@ cpdctl datastage flow list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [
 Creates a DataStage flow in the specified project or catalog (either `project_id` or `catalog_id` must be set). All subsequent calls to use the data flow must specify the project or catalog ID the data flow was created in.
 
 ```sh
-cpdctl datastage flow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--asset-category ASSET-CATEGORY] 
+cpdctl datastage flow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
 ```
 
 
@@ -2278,9 +2313,6 @@ cpdctl datastage flow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--cata
 <dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
 <dt>--project-id (string)</dt>
 <dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--asset-category (string)</dt>
-<dd>The category of the asset. Must be either SYSTEM or USER. Only a registered service can use this parameter.</dd>
-<dd>Allowable values are: system, user</dd>
 </dl>
 
 <a id='datastage_flow_get'></a>
@@ -2449,7 +2481,7 @@ cpdctl datastage subflow list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID
 Creates a DataStage subflow in the specified project or catalog (either `project_id` or `catalog_id` must be set). All subsequent calls to use the data flow must specify the project or catalog ID the data flow was created in.
 
 ```sh
-cpdctl datastage subflow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--asset-category ASSET-CATEGORY] 
+cpdctl datastage subflow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
 ```
 
 
@@ -2464,9 +2496,6 @@ cpdctl datastage subflow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--c
 <dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
 <dt>--project-id (string)</dt>
 <dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--asset-category (string)</dt>
-<dd>The category of the asset. Must be either SYSTEM or USER. Only a registered service can use this parameter.</dd>
-<dd>Allowable values are: system, user</dd>
 </dl>
 
 <a id='datastage_subflow_get'></a>
@@ -2647,6 +2676,27 @@ cpdctl datastage xml-schema-library upload --library-id LIBRARY-ID --body BODY [
 <dd>The ID of the project to use. catalog_id or project_id is required.</dd>
 </dl>
 
+<a id='datastage_xml-schema-library_clone'></a>
+## &#8226; datastage xml-schema-library clone
+
+Clone a DataStage XML schema library based on the specify library id in the specified project or catalog (either `project_id` or `catalog_id` must be set).
+
+```sh
+cpdctl datastage xml-schema-library clone --library-id LIBRARY-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--library-id (string)</dt>
+<dd>The ID of the XML Schema Library. Required.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. catalog_id or project_id is required.</dd>
+</dl>
+
 <a id='datastage_xml-schema-library_delete-files'></a>
 ## &#8226; datastage xml-schema-library delete-files
 
@@ -2722,7 +2772,7 @@ cpdctl datastage xml-schema-library rename --library-id LIBRARY-ID --name NAME [
 Creates data flows from the attached job export file. This is an asynchronous call. The API call returns almost immediately which does not necessarily imply the completion of the import request. It only means that the import request has been accepted. The status field of the import request is included in the import response object. The status "completed" ("in_progress", "failed", resp.) indicates the import request is completed (in progress, and failed, resp.) The job export file for an import request may contain one mor more data flows. Unless the on_failure option is set to "stop", a completed import request may contain not only successfully imported data flows but also data flows that cannot be imported.
 
 ```sh
-cpdctl datastage migration create --body BODY [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--on-failure ON-FAILURE] [--conflict-resolution CONFLICT-RESOLUTION] [--attachment-type ATTACHMENT-TYPE] [--file-name FILE-NAME] [--configuration CONFIGURATION] [--enable-notification ENABLE-NOTIFICATION] [--import-only IMPORT-ONLY] 
+cpdctl datastage migration create --body BODY [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--on-failure ON-FAILURE] [--conflict-resolution CONFLICT-RESOLUTION] [--attachment-type ATTACHMENT-TYPE] [--file-name FILE-NAME] [--configuration CONFIGURATION] [--enable-notification ENABLE-NOTIFICATION] [--import-only IMPORT-ONLY] [--create-missing-parameters CREATE-MISSING-PARAMETERS] 
 ```
 
 
@@ -2730,7 +2780,7 @@ cpdctl datastage migration create --body BODY [--catalog-id CATALOG-ID] [--proje
 
 <dl>
 <dt>--body (io.ReadCloser)</dt>
-<dd>The ISX file to import. Required.</dd>
+<dd>The ISX file to import. The maximum file size is 1GB. Required.</dd>
 <dt>--catalog-id (string)</dt>
 <dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
 <dt>--project-id (string)</dt>
@@ -2753,6 +2803,8 @@ cpdctl datastage migration create --body BODY [--catalog-id CATALOG-ID] [--proje
 <dd>enable/disable notification. Default value is true.</dd>
 <dt>--import-only (bool)</dt>
 <dd>Skip flow compilation.</dd>
+<dt>--create-missing-parameters (bool)</dt>
+<dd>Create missing parameter sets and job parameters.</dd>
 </dl>
 
 <a id='datastage_migration_delete'></a>
@@ -2839,7 +2891,7 @@ cpdctl datastage migration create-from-zip --body BODY [--catalog-id CATALOG-ID]
 
 <dl>
 <dt>--body (io.ReadCloser)</dt>
-<dd>The zip file to import. Required.</dd>
+<dd>The zip file to import. The maximum file size is 1GB. Required.</dd>
 <dt>--catalog-id (string)</dt>
 <dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
 <dt>--project-id (string)</dt>
@@ -3088,6 +3140,45 @@ cpdctl datastage table-definition clone --table-definition-id TABLE-DEFINITION-I
 <dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
 <dt>--project-id (string)</dt>
 <dd>The ID of the project to use. catalog_id or project_id is required.</dd>
+</dl>
+
+<a id='datastage_codegen_generate-buildop'></a>
+## &#8226; datastage codegen generate-buildop
+
+Generate the runtime assets for a DataStage buildop in the specified project or catalog for a specified runtime type. Either project_id or catalog_id must be specified.
+
+```sh
+cpdctl datastage codegen generate-buildop --data-intg-bldop-id DATA-INTG-BLDOP-ID [--build BUILD] [--creator CREATOR] [--general GENERAL] [--properties PROPERTIES] [--schemas SCHEMAS] [--type TYPE] [--ui-data UI-DATA] [--wrapped WRAPPED] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--runtime-type RUNTIME-TYPE] 
+```
+
+
+#### Command options
+
+<dl>
+<dt>--data-intg-bldop-id (string)</dt>
+<dd>The DataStage BuildOp-Asset-ID to use. Required.</dd>
+<dt>--build (<a href="#cli-buildop-build-example-schema-datastage">BuildopBuild</a>)</dt>
+<dd>Build info.</dd>
+<dt>--creator (<a href="#cli-buildop-creator-example-schema-datastage">BuildopCreator</a>)</dt>
+<dd>Creator information.</dd>
+<dt>--general (<a href="#cli-buildop-general-example-schema-datastage">BuildopGeneral</a>)</dt>
+<dd>General information.</dd>
+<dt>--properties (<a href="#cli-buildop-properties-item-example-schema-datastage">BuildopPropertiesItem[]</a>)</dt>
+<dd>List of stage properties.</dd>
+<dt>--schemas ([]interface{})</dt>
+<dd>Array of data record schemas used in the buildop.</dd>
+<dt>--type (string)</dt>
+<dd>The operator type.</dd>
+<dt>--ui-data (interface{})</dt>
+<dd>UI data.</dd>
+<dt>--wrapped (<a href="#cli-buildop-wrapped-example-schema-datastage">BuildopWrapped</a>)</dt>
+<dd>Wrapped info.</dd>
+<dt>--catalog-id (string)</dt>
+<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--project-id (string)</dt>
+<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
+<dt>--runtime-type (string)</dt>
+<dd>The type of the runtime to use. e.g. dspxosh or Spark etc. If not provided queried from within pipeline flow if available otherwise default of dspxosh is used.</dd>
 </dl>
 
 <a id='environment_list'></a>
@@ -3918,7 +4009,7 @@ cpdctl job serving-name --name NAME
 
 <dl>
 <dt>--name (string)</dt>
-<dd>The name value of the job to be used in place of the job ID. Required.</dd>
+<dd>The serving_name value of the job to be used in place of the job ID. Required.</dd>
 </dl>
 
 <a id='job_delete'></a>
@@ -4227,10 +4318,24 @@ VAR2=/tml/outputs/var2').
 <a id='ml_deployment_create'></a>
 ## &#8226; ml deployment create
 
-Create a new model, function or Python Script application deployment.
+Create a new deployment, the parameters specifying the deployment type are `online`, `r_shiny` and `batch`. These parameters are mutually exclusive, specify only one of these when creating a deployment.
+
+Use `hybrid_pipeline_hardware_specs` only when creating a `batch` deployment job of a hybrid pipeline in order to specify compute configuration for each pipeline node. For all other `batch` deployment cases use `hardware_spec` to specify compute configuration. The `hybrid_pipeline_hardware_specs` and
+`hardware_spec` are mutually exclusive, specify only one of these when creating a deployment.
+
+For `batch` deployments, `hardware_spec.num_nodes` parameter is not currently supported.
+
+For `online` deployments, `hardware_spec` cannot be specified at the time of creation,
+`hardware_spec.num_nodes` parameter is not supported as part of
+`POST /ml/v4/deployments` API request, but it can be updated using `PATCH /ml/v4/deployments/<deployment id>`.
+
+For `online` and `r_shiny` deployments, `serving_name` can be provided in
+`online.parameters` or `r_shiny.parameters`. The serving name can have the characters `[a-z,0-9,_]` and must not be more than 36 characters. The `serving_name` can be used in the prediction URL in place of the `deployment_id`.
+
+See the documentation [supported frameworks](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=specifications-supported-deployment-frameworks) for details about which frameworks can be used in a deployment.
 
 ```sh
-cpdctl ml deployment create --space-id SPACE-ID [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--asset ASSET] [--hardware-spec HARDWARE-SPEC] [--hybrid-pipeline-hardware-specs HYBRID-PIPELINE-HARDWARE-SPECS] [--online ONLINE] [--batch BATCH] [--virtual VIRTUAL] 
+cpdctl ml deployment create --space-id SPACE-ID [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--asset ASSET] [--hardware-spec HARDWARE-SPEC] [--hybrid-pipeline-hardware-specs HYBRID-PIPELINE-HARDWARE-SPECS] [--online ONLINE] [--batch BATCH] [--r-shiny R-SHINY] 
 ```
 
 
@@ -4261,8 +4366,8 @@ and the length should not be more than 36 characters. The `serving_name` can be 
 <dt>--batch (<a href="#cli-deployment-entity-request-batch-example-schema-ml">DeploymentEntityRequestBatch</a>)</dt>
 <dd>Indicates that this is a batch deployment. An empty object has to be specified.
 More properties will be added later on to setup the batch deployment.</dd>
-<dt>--virtual (<a href="#cli-deployment-entity-request-virtual-example-schema-ml">DeploymentEntityRequestVirtual</a>)</dt>
-<dd>Indicates that this is a virtual deployment.</dd>
+<dt>--r-shiny (<a href="#cli-deployment-entity-request-r-shiny-example-schema-ml">DeploymentEntityRequestRShiny</a>)</dt>
+<dd>Indicates that this is a Shiny application deployment.</dd>
 </dl>
 
 <a id='ml_deployment_list'></a>
@@ -4289,7 +4394,7 @@ cpdctl ml deployment list [--space-id SPACE-ID] [--serving-name SERVING-NAME] [-
 <dt>--name (string)</dt>
 <dd>Retrieves only the resources with the given name.</dd>
 <dt>--type (string)</dt>
-<dd>Retrieves the resources filtered with the given type. Allowed values are `model`, `function`, `py_script` and `do`.</dd>
+<dd>Retrieves the resources filtered with the given type. Allowed values are `model`, `function`, `py_script`, `r_shiny` and `do`.</dd>
 <dt>--state (string)</dt>
 <dd>Retrieves the resources filtered by state. Allowed values are `initializing`, `updating`, `ready` and `failed`.</dd>
 <dt>--stats (bool)</dt>
@@ -4346,19 +4451,23 @@ Update the deployment metadata. The following parameters of deployment metadata 
 - `/name`
 - `/description`
 - `/custom`
-- `/virtual/parameters`
 - `/hardware_spec`
 - `/hybrid_pipeline_hardware_specs`
 - `/asset`
 - `/online/parameters`
+- `/r_shiny/authentication`
+- `/r_shiny/parameters/code_package` (only the `path` field in `code_package`)
 
 In case of online deployments, using PATCH operation of `/ml/v4/deployments`, users can update the number of copies of an online deployment. Users can specify the desired value of number of copies in `hardware_spec.num_nodes` parameter. As `hardware_spec.name` or `hardware_spec.id` is mandatory for `hardware_spec` schema, a valid value such as `XS`, `S` must be specified for `hardware_spec.name` parameter as part of PATCH request. Alternatively, users can also specify a valid ID of a hardware specification in `hardware_spec.id` parameter. However, changes related to `hardware_spec.name` or `hardware_spec.id` specified in PATCH operation will not be applied for online deployments.
 <br /> In case of batch deployments, using PATCH operation of `/ml/v4/deployments`, users can update the hardware specification so that subsequent batch deployment jobs can make use of the updated compute configurations. To update the compute configuration, users must specify a valid value for either `hardware_spec.name` or `hardware_spec.id` of the hardware specification that suits their requirement. In the batch deployment context, `hardware_spec.num_nodes` parameter is not currently supported.
-<br /> When 'asset' is patched with id/rev,
-   - Deployment with the patched id/rev is started.
-   - If the deployment is asynchronous, 202 response code will be returned and one can poll the deployment status thereafter.
-   - If the deployment is synchronous, 200 response code will be returned with patched deployment response.
-   - If any failures, deployment will be reverted back to the previous id/rev and the failure message will be captured in 'failures' field in the response. In case of an online deployment, the PATCH operation with path specified as `/online/parameters` can be used to update the `serving_name`.
+<br /> When 'asset' is patched with id/rev:
+
+- Deployment with the patched id/rev is started.
+- If the deployment is asynchronous, 202 response code will be returned and one can poll the deployment status thereafter.
+- If the deployment is synchronous, 200 response code will be returned with patched deployment response.
+- If any failures, deployment will be reverted back to the previous id/rev and the failure message will be captured in 'failures' field in the response.
+
+In the case of an online deployment, the PATCH operation with path specified as `/online/parameters` can be used to update the `serving_name`. In the case of a Shiny deployment, the PATCH operation with path specified as `/r_shiny/parameters` can be used to update the `serving_name`.
 
 ```sh
 cpdctl ml deployment update --deployment-id DEPLOYMENT-ID --space-id SPACE-ID --json-patch JSON-PATCH 
@@ -4388,8 +4497,8 @@ cpdctl ml deployment update --deployment-id DEPLOYMENT-ID --space-id SPACE-ID --
 <dd>A hardware specification.</dd>
 <dt>--hybrid-pipeline-hardware-specs (<a href="#cli-job-entity-result-hybrid-pipeline-hardware-specs-item-example-schema-ml">JobEntityResultHybridPipelineHardwareSpecsItem[]</a>)</dt>
 <dd>Hybrid pipeline hardware specification.</dd>
-<dt>--virtual (<a href="#cli-deployment-patch-request-helper-virtual-example-schema-ml">DeploymentPatchRequestHelperVirtual</a>)</dt>
-<dd>Indicates that this is a virtual deployment.</dd>
+<dt>--r-shiny (<a href="#cli-deployment-patch-request-helper-r-shiny-example-schema-ml">DeploymentPatchRequestHelperRShiny</a>)</dt>
+<dd>Specify this section if deploying an Shiny application.</dd>
 </dl>
 
 <a id='ml_deployment_compute-predictions'></a>
@@ -5013,7 +5122,7 @@ This is illustrated in the example below:
 <dt>--sample-scoring-input (<a href="#cli-sync-scoring-data-example-schema-ml">SyncScoringData</a>)</dt>
 <dd>Scoring data.</dd>
 <dt>--schemas (<a href="#cli-function-entity-schemas-example-schema-ml">FunctionEntitySchemas</a>)</dt>
-<dd></dd>
+<dd>The schemas of the expected data.</dd>
 <dt>--custom (generic map)</dt>
 <dd>User defined properties specified as key-value pairs.</dd>
 </dl>
@@ -5264,7 +5373,8 @@ cpdctl ml model create --name NAME --type TYPE --software-spec SOFTWARE-SPEC [--
 <dt>--test-data-references (<a href="#cli-data-connection-reference-example-schema-ml">DataConnectionReference[]</a>)</dt>
 <dd>The holdout/test datasets.</dd>
 <dt>--schemas (<a href="#cli-model-entity-schemas-example-schema-ml">ModelEntitySchemas</a>)</dt>
-<dd></dd>
+<dd>If the schemas are provided here then they take precedent over any schemas
+provided in the data references.</dd>
 <dt>--label-column (string)</dt>
 <dd>The name of the label column.</dd>
 <dt>--transformed-label-column (string)</dt>
@@ -5341,7 +5451,8 @@ Update the model with the provided patch data. The following fields can be patch
 - `/tags`
 - `/name`
 - `/description`
-- `/custom`.
+- `/custom`
+- `/software_spec` (operation 'replace' only).
 
 ```sh
 cpdctl ml model update --model-id MODEL-ID --json-patch JSON-PATCH [--space-id SPACE-ID] [--project-id PROJECT-ID] 
@@ -5857,8 +5968,8 @@ cpdctl ml pipeline create --name NAME --document DOCUMENT [--project-id PROJECT-
 <dt>--name (string)</dt>
 <dd>The name of the resource. Required.</dd>
 <dt>--document (interface{})</dt>
-<dd>Refer to the schema defined at
-[pipeline-flow-v2-schema](https://raw.githubusercontent.com/elyra-ai/pipeline-schemas/master/common-pipeline/pipeline-flow/pipeline-flow-v2-schema.json). Required.</dd>
+<dd>The pipeline document, see
+[pipeline-flow-v2-schema](https://raw.githubusercontent.com/elyra-ai/pipeline-schemas/master/common-pipeline/pipeline-flow/pipeline-flow-v2-schema.json) for the schema definition. Required.</dd>
 <dt>--project-id (string)</dt>
 <dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
 <dt>--space-id (string)</dt>
@@ -6035,13 +6146,15 @@ cpdctl ml pipeline list-revisions --pipeline-id PIPELINE-ID [--space-id SPACE-ID
 Create a new WML training.
 
 ```sh
-cpdctl ml training create [--experiment EXPERIMENT] [--pipeline PIPELINE] [--model-definition MODEL-DEFINITION] [--federated-learning FEDERATED-LEARNING] [--training-data-references TRAINING-DATA-REFERENCES] [--results-reference RESULTS-REFERENCE] [--test-data-references TEST-DATA-REFERENCES] [--custom CUSTOM] [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--space-id SPACE-ID] [--project-id PROJECT-ID] 
+cpdctl ml training create --results-reference RESULTS-REFERENCE [--experiment EXPERIMENT] [--pipeline PIPELINE] [--model-definition MODEL-DEFINITION] [--federated-learning FEDERATED-LEARNING] [--training-data-references TRAINING-DATA-REFERENCES] [--test-data-references TEST-DATA-REFERENCES] [--custom CUSTOM] [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--space-id SPACE-ID] [--project-id PROJECT-ID] 
 ```
 
 
 #### Command options
 
 <dl>
+<dt>--results-reference (<a href="#cli-object-location-example-schema-ml">ObjectLocation</a>)</dt>
+<dd>The training results. Required.</dd>
 <dt>--experiment (<a href="#cli-rel-example-schema-ml">Rel</a>)</dt>
 <dd>A reference to a resource.</dd>
 <dt>--pipeline (<a href="#cli-pipeline-rel-example-schema-ml">PipelineRel</a>)</dt>
@@ -6057,8 +6170,6 @@ The `hardware_spec` is a reference to a hardware specification.</dd>
 <dd>Federated Learning is a Technical Preview.</dd>
 <dt>--training-data-references (<a href="#cli-data-connection-reference-example-schema-ml">DataConnectionReference[]</a>)</dt>
 <dd>Training datasets.</dd>
-<dt>--results-reference (<a href="#cli-object-location-example-schema-ml">ObjectLocation</a>)</dt>
-<dd>The training results.</dd>
 <dt>--test-data-references (<a href="#cli-data-connection-reference-example-schema-ml">DataConnectionReference[]</a>)</dt>
 <dd>The holdout/test datasets.</dd>
 <dt>--custom (generic map)</dt>
@@ -6174,7 +6285,7 @@ Wait until the training becomes completed, failed, or canceled.
 Create a new training definition with the given payload. A training definition represents the training meta-data necessary to start a training job. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition create --name NAME [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--experiment EXPERIMENT] [--pipeline PIPELINE] [--model-definition MODEL-DEFINITION] [--federated-learning FEDERATED-LEARNING] [--training-data-references TRAINING-DATA-REFERENCES] [--results-reference RESULTS-REFERENCE] [--test-data-references TEST-DATA-REFERENCES] [--custom CUSTOM] 
+cpdctl ml training-definition create --name NAME --results-reference RESULTS-REFERENCE [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--experiment EXPERIMENT] [--pipeline PIPELINE] [--model-definition MODEL-DEFINITION] [--federated-learning FEDERATED-LEARNING] [--training-data-references TRAINING-DATA-REFERENCES] [--test-data-references TEST-DATA-REFERENCES] [--custom CUSTOM] 
 ```
 
 
@@ -6183,6 +6294,8 @@ cpdctl ml training-definition create --name NAME [--project-id PROJECT-ID] [--sp
 <dl>
 <dt>--name (string)</dt>
 <dd>The name of the resource. Required.</dd>
+<dt>--results-reference (<a href="#cli-object-location-example-schema-ml">ObjectLocation</a>)</dt>
+<dd>The training results. Required.</dd>
 <dt>--project-id (string)</dt>
 <dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
 <dt>--space-id (string)</dt>
@@ -6206,8 +6319,6 @@ The `hardware_spec` is a reference to a hardware specification.</dd>
 <dd>Federated Learning is a Technical Preview.</dd>
 <dt>--training-data-references (<a href="#cli-data-connection-reference-example-schema-ml">DataConnectionReference[]</a>)</dt>
 <dd>Training datasets.</dd>
-<dt>--results-reference (<a href="#cli-object-location-example-schema-ml">ObjectLocation</a>)</dt>
-<dd>The training results.</dd>
 <dt>--test-data-references (<a href="#cli-data-connection-reference-example-schema-ml">DataConnectionReference[]</a>)</dt>
 <dd>The holdout/test datasets.</dd>
 <dt>--custom (generic map)</dt>
@@ -6387,23 +6498,23 @@ Then you can create a notebook by referencing the notebook content with the attr
 The attributes 'runtime' and 'compute' are used to specify the environment on which the notebook runs.  You can specify the environment either by the attribute 'runtime' if the engine is a 'default environment', 'Spark default environment' or a 'GPU environment' or by the attribute 'compute' if the engine is a 'Spark-aaS'.  A basic runtime can be defined as '{"environment": <your environment id>}'.
 
 ```sh
-cpdctl notebook create [--compute COMPUTE] [--description DESCRIPTION] [--file-reference FILE-REFERENCE] [--kernel KERNEL] [--name NAME] [--originates-from ORIGINATES-FROM] [--project PROJECT] [--runtime RUNTIME] [--space SPACE] 
+cpdctl notebook create --file-reference FILE-REFERENCE --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--kernel KERNEL] [--originates-from ORIGINATES-FROM] [--project PROJECT] [--runtime RUNTIME] [--space SPACE] 
 ```
 
 
 #### Command options
 
 <dl>
+<dt>--file-reference (string)</dt>
+<dd>The reference to the file in the object storage. Required.</dd>
+<dt>--name (string)</dt>
+<dd>The name of the new notebook. Required.</dd>
 <dt>--compute (string)</dt>
 <dd>The id of the Spark-as-a-Service on which the notebook runs.</dd>
 <dt>--description (string)</dt>
 <dd>A more verbose description of the notebook.</dd>
-<dt>--file-reference (string)</dt>
-<dd>The reference to the file in the object storage.</dd>
 <dt>--kernel (<a href="#cli-notebook-kernel-example-schema-notebook">NotebookKernel</a>)</dt>
 <dd>A notebook kernel.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the new notebook.</dd>
 <dt>--originates-from (<a href="#cli-notebook-origin-example-schema-notebook">NotebookOrigin</a>)</dt>
 <dd>The notebook origin.</dd>
 <dt>--project (string)</dt>
@@ -7270,12 +7381,29 @@ The following example shows the format of the ConnectionInteractionProperties ob
 
 {
   "source" : [ {
+    "aliases" : [ {
+      "name" : "exampleString",
+      "supported_products" : [ "exampleString" ]
+    } ],
+    "default_from_env" : "exampleString",
     "default_value" : "exampleString",
+    "default_value_conditions" : [ {
+      "evaluate" : {
+        "condition" : "contains",
+        "property_name" : "exampleString",
+        "uiOnly" : true,
+        "values" : [ "exampleString" ]
+      },
+      "value" : "exampleString"
+    } ],
     "description" : "exampleString",
+    "displayGroup" : "exampleString",
+    "displayOrdinal" : 38,
     "group" : "exampleString",
     "hidden" : true,
     "label" : "exampleString",
     "masked" : true,
+    "multichoice" : true,
     "multiline" : true,
     "name" : "exampleString",
     "placeholder" : "exampleString",
@@ -7285,19 +7413,39 @@ The following example shows the format of the ConnectionInteractionProperties ob
     "supported_products" : [ "exampleString" ],
     "tags" : [ "exampleString" ],
     "type" : "boolean",
+    "uiOnly" : true,
     "user_defined" : true,
     "values" : [ {
       "label" : "exampleString",
+      "supported_environments" : [ "exampleString" ],
+      "supported_products" : [ "exampleString" ],
       "value" : "exampleString"
     } ]
   } ],
   "target" : [ {
+    "aliases" : [ {
+      "name" : "exampleString",
+      "supported_products" : [ "exampleString" ]
+    } ],
+    "default_from_env" : "exampleString",
     "default_value" : "exampleString",
+    "default_value_conditions" : [ {
+      "evaluate" : {
+        "condition" : "contains",
+        "property_name" : "exampleString",
+        "uiOnly" : true,
+        "values" : [ "exampleString" ]
+      },
+      "value" : "exampleString"
+    } ],
     "description" : "exampleString",
+    "displayGroup" : "exampleString",
+    "displayOrdinal" : 38,
     "group" : "exampleString",
     "hidden" : true,
     "label" : "exampleString",
     "masked" : true,
+    "multichoice" : true,
     "multiline" : true,
     "name" : "exampleString",
     "placeholder" : "exampleString",
@@ -7307,12 +7455,27 @@ The following example shows the format of the ConnectionInteractionProperties ob
     "supported_products" : [ "exampleString" ],
     "tags" : [ "exampleString" ],
     "type" : "boolean",
+    "uiOnly" : true,
     "user_defined" : true,
     "values" : [ {
       "label" : "exampleString",
+      "supported_environments" : [ "exampleString" ],
+      "supported_products" : [ "exampleString" ],
       "value" : "exampleString"
     } ]
   } ]
+}
+```
+### &#8226; LocationDefinition
+<a id="cli-location-definition-example-schema-connection"></a>
+
+The following example shows the format of the LocationDefinition object.
+
+```json
+
+{
+  "physical_location_code" : "exampleString",
+  "sovereign_location_code" : "exampleString"
 }
 ```
 ### &#8226; ConnectionRov
@@ -7490,6 +7653,98 @@ The following example shows the format of the PatchDocument[] object.
   }
 } ]
 ```
+### &#8226; BuildopBuild
+<a id="cli-buildop-build-example-schema-datastage"></a>
+
+The following example shows the format of the BuildopBuild object.
+
+```json
+
+{
+  "interfaces" : {
+    "input" : [ {
+      "alias" : "alias",
+      "auto_read" : true,
+      "id" : "inpGUID",
+      "port_name" : "input_port",
+      "runtime_column_propagation" : false,
+      "table_name" : "table_name"
+    } ],
+    "inputs_order" : "GUID|GUID|...",
+    "output" : [ {
+      "alias" : "alias",
+      "auto_write" : true,
+      "id" : "outpGUID",
+      "port_name" : "output_port",
+      "runtime_column_propagation" : false,
+      "table_name" : "table_name"
+    } ],
+    "outputs_order" : "GUID|GUID|...",
+    "transfer" : [ {
+      "auto_transfer" : true,
+      "input" : "input1",
+      "output" : "output1",
+      "separate" : false
+    } ]
+  },
+  "logic" : {
+    "definitions" : "variable-definitions",
+    "per_record" : "logic-for-each-record",
+    "post_loop" : "post-loop-logic",
+    "pre_loop" : "pre-loop-logic"
+  }
+}
+```
+### &#8226; BuildopCreator
+<a id="cli-buildop-creator-example-schema-datastage"></a>
+
+The following example shows the format of the BuildopCreator object.
+
+```json
+
+{
+  "author" : "IBM",
+  "vendor" : "IBM Corporation",
+  "version" : "1.0"
+}
+```
+### &#8226; BuildopGeneral
+<a id="cli-buildop-general-example-schema-datastage"></a>
+
+The following example shows the format of the BuildopGeneral object.
+
+```json
+
+{
+  "class_name" : "TestBld01",
+  "command" : "sort",
+  "execmode" : "default_par",
+  "node_type_name" : "nodename",
+  "operator_name" : "OpBld01",
+  "wrapped_name" : "SortValues"
+}
+```
+### &#8226; BuildopPropertiesItem
+<a id="cli-buildop-properties-item-example-schema-datastage"></a>
+
+The following example shows the format of the BuildopPropertiesItem[] object.
+
+```json
+
+[ {
+  "conversion" : "Value-string",
+  "data_type" : "Integer",
+  "default_value" : "9",
+  "description" : "DESCR",
+  "prompt" : "prompt",
+  "property_name" : "stagePropName",
+  "repeats" : "false",
+  "required" : "false"
+} ]
+```
+### &#8226; BuildopWrapped
+<a id="cli-buildop-wrapped-example-schema-datastage"></a>
+
 ### &#8226; ReferencedSpecification
 <a id="cli-referenced-specification-example-schema-environment"></a>
 
@@ -7685,7 +7940,9 @@ The following example shows the format of the JobRunPostBodyJobRun object.
 {
   "configuration" : {
     "env_variables" : [ "key1=value1", "key2=value2" ]
-  }
+  },
+  "description" : "Description",
+  "name" : "Name"
 }
 ```
 ### &#8226; Rel
@@ -7757,25 +8014,20 @@ The following example shows the format of the DeploymentEntityRequestBatch objec
   }
 }
 ```
-### &#8226; DeploymentEntityRequestVirtual
-<a id="cli-deployment-entity-request-virtual-example-schema-ml"></a>
+### &#8226; DeploymentEntityRequestRShiny
+<a id="cli-deployment-entity-request-r-shiny-example-schema-ml"></a>
 
-The following example shows the format of the DeploymentEntityRequestVirtual object.
+The following example shows the format of the DeploymentEntityRequestRShiny object.
 
 ```json
 
 {
-  "export_format" : "coreml",
+  "authentication" : "members_of_deployment_space",
   "parameters" : {
-    "anyKey" : "anyValue"
-  },
-  "notification_system" : {
-    "id" : "exampleString",
-    "type" : "connection_asset",
-    "connection" : {
-      "anyKey" : "anyValue"
-    },
-    "location" : { }
+    "serving_name" : "churn",
+    "code_package" : {
+      "path" : "RShiny/apps/app1"
+    }
   }
 }
 ```
@@ -7794,8 +8046,8 @@ The following example shows the format of the JSONPatchOperation[] object.
   }
 } ]
 ```
-### &#8226; DeploymentPatchRequestHelperVirtual
-<a id="cli-deployment-patch-request-helper-virtual-example-schema-ml"></a>
+### &#8226; DeploymentPatchRequestHelperRShiny
+<a id="cli-deployment-patch-request-helper-r-shiny-example-schema-ml"></a>
 
 ### &#8226; InputDataArray
 <a id="cli-input-data-array-example-schema-ml"></a>
@@ -8263,6 +8515,22 @@ The following example shows the format of the ModelDefinitionEntityRequestPlatfo
   "versions" : [ "exampleString" ]
 }
 ```
+### &#8226; ObjectLocation
+<a id="cli-object-location-example-schema-ml"></a>
+
+The following example shows the format of the ObjectLocation object.
+
+```json
+
+{
+  "id" : "exampleString",
+  "type" : "connection_asset",
+  "connection" : {
+    "anyKey" : "anyValue"
+  },
+  "location" : { }
+}
+```
 ### &#8226; PipelineRel
 <a id="cli-pipeline-rel-example-schema-ml"></a>
 
@@ -8385,22 +8653,6 @@ The following example shows the format of the FederatedLearning object.
   },
   "version" : "exampleString",
   "log_level" : "info"
-}
-```
-### &#8226; ObjectLocation
-<a id="cli-object-location-example-schema-ml"></a>
-
-The following example shows the format of the ObjectLocation object.
-
-```json
-
-{
-  "id" : "exampleString",
-  "type" : "connection_asset",
-  "connection" : {
-    "anyKey" : "anyValue"
-  },
-  "location" : { }
 }
 ```
 ### &#8226; NotebookKernel
