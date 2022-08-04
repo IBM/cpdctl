@@ -1,5 +1,5 @@
 # IBM Cloud Pak for Data Command Line Interface
-**IBM Cloud Pak for Data Command Line Interface** (**IBM cpdctl**) is a command-line interface (CLI) you can use to manage the lifecycle of a model from IBM Cloud Pak for Data 3.0.1, 3.5, and 4.0.
+**IBM Cloud Pak for Data Command Line Interface** (**IBM cpdctl**) is a command-line interface (CLI) you can use to manage the lifecycle of a model from IBM Cloud Pak for Data 3.0.1, 3.5, 4.0, and 4.5.
 
 Using the CLI, you can manage configuration settings and automate an end-to-end flow that includes training a model, saving it, creating a deployment space, and deploying the model.
 
