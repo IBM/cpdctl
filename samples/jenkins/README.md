@@ -73,7 +73,7 @@ To upload config file as a Jenkins secret, open the [credentials configuration p
 Add the credentials with the following configuration:
 - Kind: Secret file
 - File: Select cpdctl configuration file copied in the previous step
-- ID: CPDCTL_CPD402_CONFIG
+- ID: CPDCTL_CPD450_CONFIG
 - Description: Description of the credentials
 
   ![secret-file-credentials.png](img/secret-file-credentials.png)
@@ -136,7 +136,7 @@ into text files, located in the [pipelines](pipelines) directory. The division m
 All of the pipelines have some common steps, to set up a working environment, install dependencies or to define the stage:
 1. `node` - allocates an executor on a build agent (node) and runs further code in the context of a workspace on that agent. 
 In this sample, the default agent is used.
-2. `withCredentials([file(credentialsId: 'CPDCTL_CPD402_CONFIG', variable: 'CPDCONFIG')])` - loads cpdctl configuration file
+2. `withCredentials([file(credentialsId: 'CPDCTL_CPD450_CONFIG', variable: 'CPDCONFIG')])` - loads cpdctl configuration file
 from a secret file uploaded to Jenkins in the Credentials section.
 3. `checkout scm` - the code from the Source Control Management defined in the job configuration.
 4. `stage` - defines the pipeline stage
