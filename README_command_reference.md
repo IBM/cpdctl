@@ -50,10 +50,6 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [code-package create](#code-package_create)
 #### &#8226; [code-package delete](#code-package_delete)
 #### &#8226; [code-package get](#code-package_get)
-#### &#8226; [completion bash](#completion_bash)
-#### &#8226; [completion zsh](#completion_zsh)
-#### &#8226; [completion fish](#completion_fish)
-#### &#8226; [completion powershell](#completion_powershell)
 #### &#8226; [config user list](#config_user_list)
 #### &#8226; [config user get](#config_user_get)
 #### &#8226; [config user set](#config_user_set)
@@ -62,18 +58,8 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [config profile get](#config_profile_get)
 #### &#8226; [config profile set](#config_profile_set)
 #### &#8226; [config profile unset](#config_profile_unset)
-#### &#8226; [config service list](#config_service_list)
-#### &#8226; [config service export](#config_service_export)
-#### &#8226; [config service get](#config_service_get)
-#### &#8226; [config service set](#config_service_set)
-#### &#8226; [config service unset](#config_service_unset)
-#### &#8226; [config context list](#config_context_list)
-#### &#8226; [config context export](#config_context_export)
-#### &#8226; [config context get](#config_context_get)
-#### &#8226; [config context set](#config_context_set)
-#### &#8226; [config context unset](#config_context_unset)
-#### &#8226; [config context current](#config_context_current)
-#### &#8226; [config context use](#config_context_use)
+#### &#8226; [config profile current](#config_profile_current)
+#### &#8226; [config profile use](#config_profile_use)
 #### &#8226; [connection list](#connection_list)
 #### &#8226; [connection create](#connection_create)
 #### &#8226; [connection discover-adhoc](#connection_discover-adhoc)
@@ -92,6 +78,7 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [datastage flow get](#datastage_flow_get)
 #### &#8226; [datastage flow update](#datastage_flow_update)
 #### &#8226; [datastage flow clone](#datastage_flow_clone)
+#### &#8226; [datastage flow get-compile-status](#datastage_flow_get-compile-status)
 #### &#8226; [datastage flow compile](#datastage_flow_compile)
 #### &#8226; [datastage subflow delete](#datastage_subflow_delete)
 #### &#8226; [datastage subflow list](#datastage_subflow_list)
@@ -108,6 +95,8 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [datastage xml-schema-library delete-files](#datastage_xml-schema-library_delete-files)
 #### &#8226; [datastage xml-schema-library download](#datastage_xml-schema-library_download)
 #### &#8226; [datastage xml-schema-library rename](#datastage_xml-schema-library_rename)
+#### &#8226; [datastage xml-schema-library export-datastage-library-zip](#datastage_xml-schema-library_export-datastage-library-zip)
+#### &#8226; [datastage xml-schema-library import-datastage-library-zip](#datastage_xml-schema-library_import-datastage-library-zip)
 #### &#8226; [datastage migration create](#datastage_migration_create)
 #### &#8226; [datastage migration delete](#datastage_migration_delete)
 #### &#8226; [datastage migration get](#datastage_migration_get)
@@ -139,6 +128,8 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [environment package-extension get](#environment_package-extension_get)
 #### &#8226; [environment package-extension update](#environment_package-extension_update)
 #### &#8226; [environment package-extension upload-complete](#environment_package-extension_upload-complete)
+#### &#8226; [environment runtime-definition list](#environment_runtime-definition_list)
+#### &#8226; [environment runtime-definition get](#environment_runtime-definition_get)
 #### &#8226; [environment software-specification list](#environment_software-specification_list)
 #### &#8226; [environment software-specification create](#environment_software-specification_create)
 #### &#8226; [environment software-specification delete](#environment_software-specification_delete)
@@ -147,7 +138,6 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [environment software-specification remove-package-extensions](#environment_software-specification_remove-package-extensions)
 #### &#8226; [environment software-specification add-package-extensions](#environment_software-specification_add-package-extensions)
 #### &#8226; [find ](#find_)
-#### &#8226; [help ](#help_)
 #### &#8226; [job list](#job_list)
 #### &#8226; [job create](#job_create)
 #### &#8226; [job serving-name](#job_serving-name)
@@ -251,10 +241,10 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [project list](#project_list)
 #### &#8226; [project get](#project_get)
 #### &#8226; [project update](#project_update)
-#### &#8226; [project member delete](#project_member_delete)
 #### &#8226; [project member list](#project_member_list)
-#### &#8226; [project member update](#project_member_update)
 #### &#8226; [project member create](#project_member_create)
+#### &#8226; [project member delete](#project_member_delete)
+#### &#8226; [project member update](#project_member_update)
 #### &#8226; [project member get](#project_member_get)
 #### &#8226; [project create](#project_create)
 #### &#8226; [project delete](#project_delete)
@@ -265,8 +255,8 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [space update](#space_update)
 #### &#8226; [space member list](#space_member_list)
 #### &#8226; [space member create](#space_member_create)
-#### &#8226; [space member delete](#space_member_delete)
 #### &#8226; [space member get](#space_member_get)
+#### &#8226; [space member delete](#space_member_delete)
 #### &#8226; [space member update](#space_member_update)
 #### &#8226; [space wait](#space_wait)
 #### &#8226; [version ](#version_)
@@ -283,33 +273,43 @@ cpdctl asset search --type-name TYPE-NAME --query QUERY [--bookmark BOOKMARK] [-
 
 #### Command options
 
-<dl>
-<dt>--type-name (string)</dt>
-<dd>Asset Type name (eg: data_asset). Required.</dd>
-<dt>--query (string)</dt>
-<dd>Lucene query. Required.</dd>
-<dt>--bookmark (string)</dt>
-<dd></dd>
-<dt>--counts ([]string)</dt>
-<dd></dd>
-<dt>--drilldown ([]map[string][]string)</dt>
-<dd></dd>
-<dt>--include (string)</dt>
-<dd>entity.</dd>
-<dt>--limit (int64)</dt>
-<dd></dd>
-<dt>--sort (string)</dt>
-<dd>Sort order for the query.</dd>
-<dt>--x-open-id-connect-id-token (string)</dt>
-<dd>(DEPRECATED) X-OpenID-Connect-ID-Token.</dd>
-<dd>The default value is `Bearer <token>`.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-</dl>
+`--type-name` (string)
+:   Asset Type name (eg: data_asset). Required.
+
+`--query` (string)
+:   Lucene query. Required.
+
+`--bookmark` (string)
+:   &nbsp;
+
+`--counts` ([]string)
+:   &nbsp;
+
+`--drilldown` ([]map[string][]string)
+:   &nbsp;
+
+`--include` (string)
+:   entity.
+
+`--limit` (int64)
+:   &nbsp;
+
+`--sort` (string)
+:   Sort order for the query.
+
+`--x-open-id-connect-id-token` (string)
+:   (DEPRECATED) X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 <a id='asset_create'></a>
 ## &#8226; asset create
@@ -329,23 +329,28 @@ cpdctl asset create --metadata METADATA [--attachments ATTACHMENTS] [--entity EN
 
 #### Command options
 
-<dl>
-<dt>--metadata (<a href="#cli-asset-metadata-example-schema-asset">AssetMetadata</a>)</dt>
-<dd>AssetMetadata Model. Required.</dd>
-<dt>--attachments (<a href="#cli-asset-attachment-example-schema-asset">AssetAttachment[]</a>)</dt>
-<dd></dd>
-<dt>--entity (interface{})</dt>
-<dd></dd>
-<dt>--x-open-id-connect-id-token (string)</dt>
-<dd>(DEPRECATED) X-OpenID-Connect-ID-Token.</dd>
-<dd>The default value is `Bearer <token>`.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-</dl>
+`--metadata` (<a href="#cli-asset-metadata-example-schema-asset">`AssetMetadata`</a>)
+:   AssetMetadata Model. Required.
+
+`--attachments` (<a href="#cli-asset-attachment-example-schema-asset">`AssetAttachment[]`</a>)
+:   &nbsp;
+
+`--entity` (interface{})
+:   &nbsp;
+
+`--x-open-id-connect-id-token` (string)
+:   (DEPRECATED) X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 <a id='asset_delete'></a>
 ## &#8226; asset delete
@@ -359,22 +364,27 @@ cpdctl asset delete --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-
 
 #### Command options
 
-<dl>
-<dt>--asset-id (string)</dt>
-<dd>asset_id. Required.</dd>
-<dt>--x-open-id-connect-id-token (string)</dt>
-<dd>(DEPRECATED) X-OpenID-Connect-ID-Token.</dd>
-<dd>The default value is `Bearer <token>`.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--purge-on-delete (bool)</dt>
-<dd>If true, asset is also deleted from the trash.</dd>
-<dd>The default value is `false`.</dd>
-</dl>
+`--asset-id` (string)
+:   asset_id. Required.
+
+`--x-open-id-connect-id-token` (string)
+:   (DEPRECATED) X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--purge-on-delete` (bool)
+:   If true, asset is also deleted from the trash.
+
+    The default value is `false`.
 
 <a id='asset_get'></a>
 ## &#8226; asset get
@@ -388,21 +398,25 @@ cpdctl asset get --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CON
 
 #### Command options
 
-<dl>
-<dt>--asset-id (string)</dt>
-<dd>asset_id. Required.</dd>
-<dt>--x-open-id-connect-id-token (string)</dt>
-<dd>(DEPRECATED) X-OpenID-Connect-ID-Token.</dd>
-<dd>The default value is `Bearer <token>`.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--revision-id (string)</dt>
-<dd>Revision id (1, 2, 3, ...), or leave empty for the current asset version. Use 'latest' for the most recent revision.</dd>
-</dl>
+`--asset-id` (string)
+:   asset_id. Required.
+
+`--x-open-id-connect-id-token` (string)
+:   (DEPRECATED) X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--revision-id` (string)
+:   Revision id (1, 2, 3, ...), or leave empty for the current asset version. Use 'latest' for the most recent revision.
 
 <a id='asset_update'></a>
 ## &#8226; asset update
@@ -422,30 +436,38 @@ cpdctl asset update --asset-id ASSET-ID --json-patch JSON-PATCH [--catalog-id CA
 
 #### Command options
 
-<dl>
-<dt>--asset-id (string)</dt>
-<dd>asset_id. Required.</dd>
-<dt>--json-patch (<a href="#cli-json-patch-operation-example-schema-asset">JSONPatchOperation[]</a>)</dt>
-<dd>JSON array of patch operations as defined in RFC 6902.<br/>.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--classification (<a href="#cli-classification-example-schema-asset">Classification</a>)</dt>
-<dd>Classification.</dd>
-<dt>--description (string)</dt>
-<dd>Updated description.</dd>
-<dt>--name (string)</dt>
-<dd>Updated name.</dd>
-<dt>--resource-key (string)</dt>
-<dd>Updated resource key.</dd>
-<dt>--source-system (<a href="#cli-source-system-example-schema-asset">SourceSystem</a>)</dt>
-<dd>Source System Info.</dd>
-<dt>--tags ([]string)</dt>
-<dd>Updated tag.</dd>
-</dl>
+`--asset-id` (string)
+:   asset_id. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-asset">`JSONPatchOperation[]`</a>)
+:   JSON array of patch operations as defined in RFC 6902.<br/>.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--classification` (<a href="#cli-classification-example-schema-asset">`Classification`</a>)
+:   Classification.
+
+`--description` (string)
+:   Updated description.
+
+`--name` (string)
+:   Updated name.
+
+`--resource-key` (string)
+:   Updated resource key.
+
+`--source-system` (<a href="#cli-source-system-example-schema-asset">`SourceSystem`</a>)
+:   Source System Info.
+
+`--tags` ([]string)
+:   Updated tag.
 
 <a id='asset_promote'></a>
 ## &#8226; asset promote
@@ -459,23 +481,26 @@ cpdctl asset promote --project-id PROJECT-ID --asset-id ASSET-ID --request-body 
 
 #### Command options
 
-<dl>
-<dt>--project-id (string)</dt>
-<dd>project_id must be provided. Required.</dd>
-<dt>--asset-id (string)</dt>
-<dd>asset_id. Required.</dd>
-<dt>--request-body (generic map)</dt>
-<dd>Asset permission and metadata.  Example: { "mode": 0, "space_id":"string", "metadata":{"name":"string", "description":"string", "tags":["string","string"]} }  
+`--project-id` (string)
+:   project_id must be provided. Required.
+
+`--asset-id` (string)
+:   asset_id. Required.
+
+`--request-body` (generic map)
+:   Asset permission and metadata.  Example: { "mode": 0, "space_id":"string", "metadata":{"name":"string", "description":"string", "tags":["string","string"]} }  
   Values for mode is 0 (public), 8 (private), 16 (hidden).  
   If not supplied, the currently existing mode applies.  
   space_id is the target space id. 
-  Metadata may contain attributes to overwrite the values in original asset; currently only name, description and tags may be overwritten. Required.</dd>
-<dt>--x-open-id-connect-id-token (string)</dt>
-<dd>(DEPRECATED) X-OpenID-Connect-ID-Token.</dd>
-<dd>The default value is `Bearer <token>`.</dd>
-<dt>--revision-id (string)</dt>
-<dd>Revision id (1, 2, 3, ...), or leave empty for the current asset version. Use 'latest' for the most recent revision.</dd>
-</dl>
+  Metadata may contain attributes to overwrite the values in original asset; currently only name, description and tags may be overwritten. Required.
+
+`--x-open-id-connect-id-token` (string)
+:   (DEPRECATED) X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
+
+`--revision-id` (string)
+:   Revision id (1, 2, 3, ...), or leave empty for the current asset version. Use 'latest' for the most recent revision.
 
 <a id='asset_type_list'></a>
 ## &#8226; asset type list
@@ -489,17 +514,19 @@ cpdctl asset type list [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN]
 
 #### Command options
 
-<dl>
-<dt>--x-open-id-connect-id-token (string)</dt>
-<dd>(DEPRECATED) X-OpenID-Connect-ID-Token.</dd>
-<dd>The default value is `Bearer <token>`.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-</dl>
+`--x-open-id-connect-id-token` (string)
+:   (DEPRECATED) X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 <a id='asset_type_get'></a>
 ## &#8226; asset type get
@@ -513,19 +540,22 @@ cpdctl asset type get --type-name TYPE-NAME [--x-open-id-connect-id-token X-OPEN
 
 #### Command options
 
-<dl>
-<dt>--type-name (string)</dt>
-<dd>Asset Type name (eg: data_asset). Required.</dd>
-<dt>--x-open-id-connect-id-token (string)</dt>
-<dd>(DEPRECATED) X-OpenID-Connect-ID-Token.</dd>
-<dd>The default value is `Bearer <token>`.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-</dl>
+`--type-name` (string)
+:   Asset Type name (eg: data_asset). Required.
+
+`--x-open-id-connect-id-token` (string)
+:   (DEPRECATED) X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 <a id='asset_type_replace'></a>
 ## &#8226; asset type replace
@@ -540,29 +570,37 @@ cpdctl asset type replace --type-name TYPE-NAME --fields FIELDS [--description D
 
 #### Command options
 
-<dl>
-<dt>--type-name (string)</dt>
-<dd>Asset Type name (eg: data_asset). Required.</dd>
-<dt>--fields (<a href="#cli-asset-type-field-example-schema-asset">AssetTypeField[]</a>)</dt>
-<dd>Asset type fields that will be indexed. Required.</dd>
-<dt>--description (string)</dt>
-<dd>Asset type description.</dd>
-<dt>--external-asset-preview (<a href="#cli-external-asset-preview-example-schema-asset">ExternalAssetPreview</a>)</dt>
-<dd>Asset Type URL Model.</dd>
-<dt>--properties (<a href="#cli-map-string-asset-type-property-example-schema-asset">map[string]AssetTypeProperty</a>)</dt>
-<dd>Descriptions of expected properties for this asset type. Each property can be described by its name and an AssetTypeProperty object.</dd>
-<dt>--relationships (<a href="#cli-asset-type-relationship-example-schema-asset">AssetTypeRelationship[]</a>)</dt>
-<dd>Relationship definitions for this asset type.</dd>
-<dt>--x-open-id-connect-id-token (string)</dt>
-<dd>X-OpenID-Connect-ID-Token.</dd>
-<dd>The default value is `Bearer <token>`.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-</dl>
+`--type-name` (string)
+:   Asset Type name (eg: data_asset). Required.
+
+`--fields` (<a href="#cli-asset-type-field-example-schema-asset">`AssetTypeField[]`</a>)
+:   Asset type fields that will be indexed. Required.
+
+`--description` (string)
+:   Asset type description.
+
+`--external-asset-preview` (<a href="#cli-external-asset-preview-example-schema-asset">`ExternalAssetPreview`</a>)
+:   Asset Type URL Model.
+
+`--properties` (<a href="#cli-map-string-asset-type-property-example-schema-asset">`map[string]AssetTypeProperty`</a>)
+:   Descriptions of expected properties for this asset type. Each property can be described by its name and an AssetTypeProperty object.
+
+`--relationships` (<a href="#cli-asset-type-relationship-example-schema-asset">`AssetTypeRelationship[]`</a>)
+:   Relationship definitions for this asset type.
+
+`--x-open-id-connect-id-token` (string)
+:   X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 <a id='asset_attribute_list'></a>
 ## &#8226; asset attribute list
@@ -576,21 +614,25 @@ cpdctl asset attribute list --asset-id ASSET-ID [--x-open-id-connect-id-token X-
 
 #### Command options
 
-<dl>
-<dt>--asset-id (string)</dt>
-<dd>asset_id. Required.</dd>
-<dt>--x-open-id-connect-id-token (string)</dt>
-<dd>(DEPRECATED) X-OpenID-Connect-ID-Token.</dd>
-<dd>The default value is `Bearer <token>`.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--revision-id (string)</dt>
-<dd>Revision id (1, 2, 3, ...), or leave empty for the current asset version. Use 'latest' for the most recent revision.</dd>
-</dl>
+`--asset-id` (string)
+:   asset_id. Required.
+
+`--x-open-id-connect-id-token` (string)
+:   (DEPRECATED) X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--revision-id` (string)
+:   Revision id (1, 2, 3, ...), or leave empty for the current asset version. Use 'latest' for the most recent revision.
 
 <a id='asset_attribute_create'></a>
 ## &#8226; asset attribute create
@@ -604,23 +646,28 @@ cpdctl asset attribute create --asset-id ASSET-ID --name NAME [--entity ENTITY] 
 
 #### Command options
 
-<dl>
-<dt>--asset-id (string)</dt>
-<dd>asset_id. Required.</dd>
-<dt>--name (string)</dt>
-<dd> Required.</dd>
-<dt>--entity (interface{})</dt>
-<dd></dd>
-<dt>--x-open-id-connect-id-token (string)</dt>
-<dd>(DEPRECATED) X-OpenID-Connect-ID-Token.</dd>
-<dd>The default value is `Bearer <token>`.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-</dl>
+`--asset-id` (string)
+:   asset_id. Required.
+
+`--name` (string)
+:   &nbsp; Required.
+
+`--entity` (interface{})
+:   &nbsp;
+
+`--x-open-id-connect-id-token` (string)
+:   (DEPRECATED) X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 <a id='asset_attribute_delete'></a>
 ## &#8226; asset attribute delete
@@ -634,21 +681,25 @@ cpdctl asset attribute delete --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY 
 
 #### Command options
 
-<dl>
-<dt>--asset-id (string)</dt>
-<dd>asset_id. Required.</dd>
-<dt>--attribute-key (string)</dt>
-<dd>attribute_key. Required.</dd>
-<dt>--x-open-id-connect-id-token (string)</dt>
-<dd>(DEPRECATED) X-OpenID-Connect-ID-Token.</dd>
-<dd>The default value is `Bearer <token>`.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-</dl>
+`--asset-id` (string)
+:   asset_id. Required.
+
+`--attribute-key` (string)
+:   attribute_key. Required.
+
+`--x-open-id-connect-id-token` (string)
+:   (DEPRECATED) X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 <a id='asset_attribute_get'></a>
 ## &#8226; asset attribute get
@@ -662,23 +713,28 @@ cpdctl asset attribute get --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY [--
 
 #### Command options
 
-<dl>
-<dt>--asset-id (string)</dt>
-<dd>asset_id. Required.</dd>
-<dt>--attribute-key (string)</dt>
-<dd>attribute_key. Required.</dd>
-<dt>--x-open-id-connect-id-token (string)</dt>
-<dd>(DEPRECATED) X-OpenID-Connect-ID-Token.</dd>
-<dd>The default value is `Bearer <token>`.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--revision-id (string)</dt>
-<dd>Revision id (1, 2, 3, ...), or leave empty for the current asset version. Use 'latest' for the most recent revision.</dd>
-</dl>
+`--asset-id` (string)
+:   asset_id. Required.
+
+`--attribute-key` (string)
+:   attribute_key. Required.
+
+`--x-open-id-connect-id-token` (string)
+:   (DEPRECATED) X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--revision-id` (string)
+:   Revision id (1, 2, 3, ...), or leave empty for the current asset version. Use 'latest' for the most recent revision.
 
 <a id='asset_attribute_update'></a>
 ## &#8226; asset attribute update
@@ -692,23 +748,28 @@ cpdctl asset attribute update --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY 
 
 #### Command options
 
-<dl>
-<dt>--asset-id (string)</dt>
-<dd>asset_id. Required.</dd>
-<dt>--attribute-key (string)</dt>
-<dd>attribute_key. Required.</dd>
-<dt>--json-patch (<a href="#cli-json-patch-operation-example-schema-asset">JSONPatchOperation[]</a>)</dt>
-<dd>JSON array of patch operations as defined in RFC 6902.<br/>. Required.</dd>
-<dt>--x-open-id-connect-id-token (string)</dt>
-<dd>(DEPRECATED) X-OpenID-Connect-ID-Token.</dd>
-<dd>The default value is `Bearer <token>`.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-</dl>
+`--asset-id` (string)
+:   asset_id. Required.
+
+`--attribute-key` (string)
+:   attribute_key. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-asset">`JSONPatchOperation[]`</a>)
+:   JSON array of patch operations as defined in RFC 6902.<br/>. Required.
+
+`--x-open-id-connect-id-token` (string)
+:   (DEPRECATED) X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 <a id='asset_attachment_create'></a>
 ## &#8226; asset attachment create
@@ -722,44 +783,59 @@ cpdctl asset attachment create --asset-id ASSET-ID --asset-type ASSET-TYPE [--co
 
 #### Command options
 
-<dl>
-<dt>--asset-id (string)</dt>
-<dd>Asset GUID. Required.</dd>
-<dt>--asset-type (string)</dt>
-<dd> Required.</dd>
-<dt>--connection-id (string)</dt>
-<dd></dd>
-<dt>--connection-path (string)</dt>
-<dd></dd>
-<dt>--data-partitions (int64)</dt>
-<dd></dd>
-<dt>--description (string)</dt>
-<dd></dd>
-<dt>--is-partitioned (bool)</dt>
-<dd></dd>
-<dt>--mime (string)</dt>
-<dd></dd>
-<dt>--name (string)</dt>
-<dd></dd>
-<dt>--object-key (string)</dt>
-<dd></dd>
-<dt>--object-key-is-read-only (bool)</dt>
-<dd></dd>
-<dt>--private-url (bool)</dt>
-<dd></dd>
-<dt>--test-doc (int64)</dt>
-<dd></dd>
-<dt>--url (string)</dt>
-<dd></dd>
-<dt>--user-data (interface{})</dt>
-<dd></dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-</dl>
+`--asset-id` (string)
+:   Asset GUID. Required.
+
+`--asset-type` (string)
+:   &nbsp; Required.
+
+`--connection-id` (string)
+:   &nbsp;
+
+`--connection-path` (string)
+:   &nbsp;
+
+`--data-partitions` (int64)
+:   &nbsp;
+
+`--description` (string)
+:   &nbsp;
+
+`--is-partitioned` (bool)
+:   &nbsp;
+
+`--mime` (string)
+:   &nbsp;
+
+`--name` (string)
+:   &nbsp;
+
+`--object-key` (string)
+:   &nbsp;
+
+`--object-key-is-read-only` (bool)
+:   &nbsp;
+
+`--private-url` (bool)
+:   &nbsp;
+
+`--test-doc` (int64)
+:   &nbsp;
+
+`--url` (string)
+:   &nbsp;
+
+`--user-data` (interface{})
+:   &nbsp;
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 <a id='asset_attachment_delete'></a>
 ## &#8226; asset attachment delete
@@ -773,18 +849,20 @@ cpdctl asset attachment delete --asset-id ASSET-ID --attachment-id ATTACHMENT-ID
 
 #### Command options
 
-<dl>
-<dt>--asset-id (string)</dt>
-<dd>Asset GUID. Required.</dd>
-<dt>--attachment-id (string)</dt>
-<dd>Attachment GUID. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-</dl>
+`--asset-id` (string)
+:   Asset GUID. Required.
+
+`--attachment-id` (string)
+:   Attachment GUID. Required.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 <a id='asset_attachment_get'></a>
 ## &#8226; asset attachment get
@@ -798,27 +876,34 @@ cpdctl asset attachment get --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [-
 
 #### Command options
 
-<dl>
-<dt>--asset-id (string)</dt>
-<dd>Asset GUID. Required.</dd>
-<dt>--attachment-id (string)</dt>
-<dd>Attachment GUID. Required.</dd>
-<dt>--revision-id (string)</dt>
-<dd>Revision id (1, 2, 3, ...), or leave empty for the current asset version. Use 'latest' for the most recent revision.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--private-url (bool)</dt>
-<dd>private_url.</dd>
-<dd>The default value is `false`.</dd>
-<dt>--response-content-disposition (string)</dt>
-<dd>response-content-disposition.</dd>
-<dt>--response-content-type (string)</dt>
-<dd>response-content-type.</dd>
-</dl>
+`--asset-id` (string)
+:   Asset GUID. Required.
+
+`--attachment-id` (string)
+:   Attachment GUID. Required.
+
+`--revision-id` (string)
+:   Revision id (1, 2, 3, ...), or leave empty for the current asset version. Use 'latest' for the most recent revision.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--private-url` (bool)
+:   private_url.
+
+    The default value is `false`.
+
+`--response-content-disposition` (string)
+:   response-content-disposition.
+
+`--response-content-type` (string)
+:   response-content-type.
 
 <a id='asset_attachment_update'></a>
 ## &#8226; asset attachment update
@@ -832,24 +917,27 @@ cpdctl asset attachment update --asset-id ASSET-ID --attachment-id ATTACHMENT-ID
 
 #### Command options
 
-<dl>
-<dt>--asset-id (string)</dt>
-<dd>Asset GUID. Required.</dd>
-<dt>--attachment-id (string)</dt>
-<dd>Attachment GUID. Required.</dd>
-<dt>--json-patch (<a href="#cli-json-patch-operation-example-schema-asset">JSONPatchOperation[]</a>)</dt>
-<dd>JSON array of patch operations as defined in RFC 6902. See http://jsonpatch.com/ for more info. <br/>[ 
+`--asset-id` (string)
+:   Asset GUID. Required.
+
+`--attachment-id` (string)
+:   Attachment GUID. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-asset">`JSONPatchOperation[]`</a>)
+:   JSON array of patch operations as defined in RFC 6902. See http://jsonpatch.com/ for more info. <br/>[ 
    { "op": "add", "path": "/name", "value": "my_attachment"},  
   {"op": "replace", "path": "/mime", "value": "text/csv" },  
   { "op": "remove", "path":"/description"}
-]. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-</dl>
+]. Required.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 <a id='asset_attachment_mark-complete'></a>
 ## &#8226; asset attachment mark-complete
@@ -863,39 +951,56 @@ cpdctl asset attachment mark-complete --asset-id ASSET-ID --attachment-id ATTACH
 
 #### Command options
 
-<dl>
-<dt>--asset-id (string)</dt>
-<dd>Asset GUID. Required.</dd>
-<dt>--attachment-id (string)</dt>
-<dd>Attachment GUID. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-</dl>
+`--asset-id` (string)
+:   Asset GUID. Required.
+
+`--attachment-id` (string)
+:   Attachment GUID. Required.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 <a id='asset_attachment_download'></a>
 ## &#8226; asset attachment download
 Use this command to download the asset attachment to the local path
 
 ```sh
-  cpdctl asset attachment download
+   cpdctl asset attachment download
 ```
 #### Command options
 
-<dl>
-<dt>--asset-id string      </dt><dd>ID of the asset</dd>
-<dt>--attachment-id string </dt><dd>ID of the attachment</dd>
-<dt>--catalog-id string    </dt><dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--cpd-scope string     </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--output-file string   </dt><dd>Path to a file where the downloaded attachment is stored.</dd>
-<dt>--output-path string   </dt><dd>Path where the downloaded attachment is stored. (DEPRECATED: use --output-file instead)</dd>
-<dt>--progress             </dt><dd>Show download progress. (default true)</dd>
-<dt>--project-id string    </dt><dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id string      </dt><dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-</dl>
+`--asset-id` (string      )
+:    ID of the asset
+
+`--attachment-id` (string )
+:    ID of the attachment
+
+`--catalog-id` (string    )
+:    You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--cpd-scope` (string     )
+:    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--output-file` (string   )
+:    Path to a file where the downloaded attachment is stored. Use '-' to print attachment contents to standard output.
+
+`--output-path` (string   )
+:    Path where the downloaded attachment is stored. (DEPRECATED: use --output-file instead)
+
+`--progress` (            )
+:    Show download progress. (default true)
+
+`--project-id` (string    )
+:    You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string      )
+:    You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 <a id='asset_data-asset_create'></a>
 ## &#8226; asset data-asset create
@@ -909,23 +1014,28 @@ cpdctl asset data-asset create --entity ENTITY --metadata METADATA [--attachment
 
 #### Command options
 
-<dl>
-<dt>--entity (generic map)</dt>
-<dd> Required.</dd>
-<dt>--metadata (<a href="#cli-asset-metadata-example-schema-asset">AssetMetadata</a>)</dt>
-<dd>AssetMetadata Model. Required.</dd>
-<dt>--attachments (<a href="#cli-asset-attachment-example-schema-asset">AssetAttachment[]</a>)</dt>
-<dd></dd>
-<dt>--x-open-id-connect-id-token (string)</dt>
-<dd>(DEPRECATED) X-OpenID-Connect-ID-Token.</dd>
-<dd>The default value is `Bearer <token>`.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--project-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id (string)</dt>
-<dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-</dl>
+`--entity` (generic map)
+:   &nbsp; Required.
+
+`--metadata` (<a href="#cli-asset-metadata-example-schema-asset">`AssetMetadata`</a>)
+:   AssetMetadata Model. Required.
+
+`--attachments` (<a href="#cli-asset-attachment-example-schema-asset">`AssetAttachment[]`</a>)
+:   &nbsp;
+
+`--x-open-id-connect-id-token` (string)
+:   (DEPRECATED) X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
+
+`--catalog-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--project-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 <a id='asset_data-asset_get'></a>
 ## &#8226; asset data-asset get
@@ -953,147 +1063,259 @@ cpdctl asset data-asset get --data-asset-id DATA-ASSET-ID [--x-open-id-connect-i
 
 #### Command options
 
-<dl>
-<dt>--data-asset-id (string)</dt>
-<dd>data_asset_id. Required.</dd>
-<dt>--x-open-id-connect-id-token (string)</dt>
-<dd>(DEPRECATED) X-OpenID-Connect-ID-Token.</dd>
-<dd>The default value is `Bearer <token>`.</dd>
-<dt>--revision-id (string)</dt>
-<dd>Revision id (1, 2, 3, ...), or leave empty for the current asset version. Use 'latest' for the most recent revision.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>catalog_id.</dd>
-<dt>--project-id (string)</dt>
-<dd>project_id (only catalog_id is supported at this time).</dd>
-<dt>--space-id (string)</dt>
-<dd>space_id (only catalog_id is supported at this time).</dd>
-</dl>
+`--data-asset-id` (string)
+:   data_asset_id. Required.
+
+`--x-open-id-connect-id-token` (string)
+:   (DEPRECATED) X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
+
+`--revision-id` (string)
+:   Revision id (1, 2, 3, ...), or leave empty for the current asset version. Use 'latest' for the most recent revision.
+
+`--catalog-id` (string)
+:   catalog_id.
+
+`--project-id` (string)
+:   project_id (only catalog_id is supported at this time).
+
+`--space-id` (string)
+:   space_id (only catalog_id is supported at this time).
 
 <a id='asset_data-asset_upload'></a>
 ## &#8226; asset data-asset upload
 Use this command to upload the local path as an asset attachment
 
 ```sh
-  cpdctl asset data-asset upload
+   cpdctl asset data-asset upload
 ```
 #### Command options
 
-<dl>
-<dt>--asset-id string       </dt><dd>ID of the asset</dd>
-<dt>--catalog-id string     </dt><dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--cpd-scope string      </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--description string    </dt><dd>Description of the data asset.</dd>
-<dt>--file strings          </dt><dd>Path to the file to upload.</dd>
-<dt>--mime string           </dt><dd>The content type of the file.</dd>
-<dt>--name string           </dt><dd>Name of the data asset (defaults to the uploaded file name).</dd>
-<dt>--origin-country string </dt><dd>Origin country of the data asset. (default "us")</dd>
-<dt>--progress              </dt><dd>Show upload progress. (default true)</dd>
-<dt>--project-id string     </dt><dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--space-id string       </dt><dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--tag strings           </dt><dd>Tag(s) of the data asset. Multiple can be provided</dd>
-</dl>
+`--asset-id` (string       )
+:    ID of the asset
+
+`--catalog-id` (string     )
+:    You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--cpd-scope` (string      )
+:    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--description` (string    )
+:    Description of the data asset.
+
+`--file` (strings          )
+:    Path to the file to upload.
+
+`--mime` (string           )
+:    The content type of the file.
+
+`--name` (string           )
+:    Name of the data asset (defaults to the uploaded file name).
+
+`--origin-country` (string )
+:    Origin country of the data asset. (default "us")
+
+`--progress` (             )
+:    Show upload progress. (default true)
+
+`--project-id` (string     )
+:    You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--space-id` (string       )
+:    You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--tag` (strings           )
+:    Tag(s) of the data asset. Multiple can be provided
 
 <a id='asset_file_download'></a>
 ## &#8226; asset file download
 Streams the content of the specified file, with the appropriate HTTP headers for etag, file size, mime type etc. If the asset file is a directory, response will be JSON listing the content of the directory. If the asset is a file, response will be contents of the file. Requires viewer permission. Service authentication is supported. Catalog assets require service authentication. This endpoint supports authentication via signature paramater. See 'Get auth signature' call for more info.
 
 ```sh
-  cpdctl asset file download --path PATH [--accept ACCEPT] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--byte-limit BYTE-LIMIT] [--size-limit SIZE-LIMIT] [--signature SIGNATURE] [--flat FLAT] [--root ROOT] [--inflate INFLATE] [--force FORCE]
+   cpdctl asset file download --path PATH [--accept ACCEPT] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--byte-limit BYTE-LIMIT] [--size-limit SIZE-LIMIT] [--signature SIGNATURE] [--flat FLAT] [--root ROOT] [--inflate INFLATE] [--force FORCE]
 ```
 #### Command options
 
-<dl>
-<dt>--accept string        The type of the response:</dt><dd>or *_/_*.</dd>
-<dt>--account-id string  </dt><dd>The catalog id the file is associated with. One of catalog, project, space or account id is required.</dd>
-<dt>--byte-limit int     </dt><dd>If passed, indicates how many bytes of data is to be returned.</dd>
-<dt>--catalog-id string  </dt><dd>The catalog id the file is associated with. One of catalog, project, space or account id is required.</dd>
-<dt>--cpd-scope string   </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--flat               </dt><dd>If true folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory.</dd>
-<dt>--force              </dt><dd>Only used when &inflate=true. Tells asset files to skip validation on wheter the target is a zip. Inflate will be run regardless.</dd>
-<dt>--inflate            </dt><dd>If '&inflate=true' ALL other query params except the target are ignored. The file being retrieved must be an archive. If all checks pass the archive will be expanded to a temp location and the results will be returned as if flat=true was supplied. If the target archive has perviously be inflated any existing inflate preview will be overwritten if the zip is newer. Otherwise the previous preview will be returned.</dd>
-<dt>--output-file string </dt><dd>Filename/path to write the resulting output to.</dd>
-<dt>--path string        </dt><dd>Asset file path.</dd>
-<dt>--project-id string  </dt><dd>The project id the file is associated with. One of catalog, project, space or account id is required.</dd>
-<dt>--root               </dt><dd>If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of assets directory. Supported for services. Also supported for account admin if targeting account directory.</dd>
-<dt>--signature string   </dt><dd>Additional auth method. Signed string obtained by making presigned API request.</dd>
-<dt>--size-limit int     </dt><dd>Returns 400 bad request if asset is larger than the value provided here. In MB.</dd>
-<dt>--space-id string    </dt><dd>The space id the file is associated with. One of catalog, project, space or account id is required.</dd>
-</dl>
+`--accept` (string        The type of the response:)
+:    or *_/_*.
+
+`--account-id` (string  )
+:    The catalog id the file is associated with. One of catalog, project, space or account id is required.
+
+`--byte-limit` (int     )
+:    If passed, indicates how many bytes of data is to be returned.
+
+`--catalog-id` (string  )
+:    The catalog id the file is associated with. One of catalog, project, space or account id is required.
+
+`--cpd-scope` (string   )
+:    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--flat` (              )
+:    If true folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory.
+
+`--force` (             )
+:    Only used when &inflate=true. Tells asset files to skip validation on wheter the target is a zip. Inflate will be run regardless.
+
+`--inflate` (           )
+:    If '&inflate=true' ALL other query params except the target are ignored. The file being retrieved must be an archive. If all checks pass the archive will be expanded to a temp location and the results will be returned as if flat=true was supplied. If the target archive has perviously be inflated any existing inflate preview will be overwritten if the zip is newer. Otherwise the previous preview will be returned.
+
+`--output-file` (string )
+:    Filename/path to write the resulting output to. Use '-' to print file contents to standard output.
+
+`--path` (string        )
+:    Asset file path.
+
+`--project-id` (string  )
+:    The project id the file is associated with. One of catalog, project, space or account id is required.
+
+`--root` (              )
+:    If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of assets directory. Supported for services. Also supported for account admin if targeting account directory.
+
+`--signature` (string   )
+:    Additional auth method. Signed string obtained by making presigned API request.
+
+`--size-limit` (int     )
+:    Returns 400 bad request if asset is larger than the value provided here. In MB.
+
+`--space-id` (string    )
+:    The space id the file is associated with. One of catalog, project, space or account id is required.
 
 <a id='asset_file_list'></a>
 ## &#8226; asset file list
 Returns a list of file paths (similar to S3 listObjects) for the provided project, catalog, space or account. Requires viewer or higher permission. When requesting assets for a catalog only Basic auth is supported.
 
 ```sh
-  cpdctl asset file list [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--limit LIMIT] [--offset OFFSET] [--flat FLAT] [--root ROOT]
+   cpdctl asset file list [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--limit LIMIT] [--offset OFFSET] [--flat FLAT] [--root ROOT]
 ```
 #### Command options
 
-<dl>
-<dt>--account-id string </dt><dd>The catalog id the file is associated with. One of catalog, project, space or account id is required.</dd>
-<dt>--catalog-id string </dt><dd>Request the files for this catalog id. One of catalog, project, space or account id is required.</dd>
-<dt>--cpd-scope string  </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--flat              </dt><dd>If true folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory.</dd>
-<dt>--limit string      </dt><dd>Pagination param, limit number of resources returned.</dd>
-<dt>--offset string     </dt><dd>Pagination param, resources returned wil be offset by this value.</dd>
-<dt>--path string       </dt><dd>List files from the given folder path</dd>
-<dt>--project-id string </dt><dd>Request the files for this project id. One of project, catalog, space or account id is required.</dd>
-<dt>--root              </dt><dd>If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of assets directory. Supported for services. Also support for account admins if targeting account directory.</dd>
-<dt>--space-id string   </dt><dd>Request the files for this space id. One of project, catalog, space or account id is required.</dd>
-</dl>
+`--account-id` (string )
+:    The catalog id the file is associated with. One of catalog, project, space or account id is required.
+
+`--catalog-id` (string )
+:    Request the files for this catalog id. One of catalog, project, space or account id is required.
+
+`--cpd-scope` (string  )
+:    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--flat` (             )
+:    If true folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory.
+
+`--limit` (string      )
+:    Pagination param, limit number of resources returned.
+
+`--offset` (string     )
+:    Pagination param, resources returned wil be offset by this value.
+
+`--path` (string       )
+:    List files from the given folder path
+
+`--project-id` (string )
+:    Request the files for this project id. One of project, catalog, space or account id is required.
+
+`--root` (             )
+:    If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of assets directory. Supported for services. Also support for account admins if targeting account directory.
+
+`--space-id` (string   )
+:    Request the files for this space id. One of project, catalog, space or account id is required.
 
 <a id='asset_file_upload'></a>
 ## &#8226; asset file upload
 Uploads the bytes into the file with the provided file name using HTTP multi-part format, creating a new file if missing, overriding if existing (unless override=false). Adding catalog assets requires service authentication or a signed url. Adding project or space assets accepts all formats that grant editor access (user, signature or service). Adding to accounts requires user with account admin access or service auth. This endpoint supports authentication via signature paramater. See 'Get auth signature' call for more info on signed urls.
 
 ```sh
-  cpdctl asset file upload --path PATH [--file FILE] [--file-content-type FILE-CONTENT-TYPE] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--override OVERRIDE] [--signature SIGNATURE] [--inflate INFLATE] [--ensure-dir ENSURE-DIR] [--root ROOT]
+   cpdctl asset file upload --path PATH [--file FILE] [--file-content-type FILE-CONTENT-TYPE] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--override OVERRIDE] [--signature SIGNATURE] [--inflate INFLATE] [--ensure-dir ENSURE-DIR] [--root ROOT]
 ```
 #### Command options
 
-<dl>
-<dt>--account-id string        </dt><dd>The catalog id the file is associated with. One of catalog, project, space or account id is required.</dd>
-<dt>--catalog-id string        </dt><dd>The catalog id the file should be associated with. One of catalog, project, space or account id is required.</dd>
-<dt>--cpd-scope string         </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--ensure-dir               </dt><dd>Override utility. If true will ensure the directory specified in 'path' exists. 201 will be returned ig created, 200 if already exists and 409 if it is present and not a directory. Will take precedence over other query params except 'inflate'.</dd>
-<dt>--file string              </dt><dd>File to upload.</dd>
-<dt>--file-content-type string </dt><dd>The content type of File.</dd>
-<dt>--inflate                  </dt><dd>Root dir must be created. Will take supplied file and decompress into target directory tree. Inflate is only acceptable for project, space and catalog targets. If inflate is selected it will take precedence over any and all other params.</dd>
-<dt>--override                 </dt><dd>Default true. If set to false will not overwrite file.</dd>
-<dt>--path string              </dt><dd>Asset file path.</dd>
-<dt>--project-id string        </dt><dd>The project id the file should be associated with. One of catalog, project, space or account id is required.</dd>
-<dt>--root                     </dt><dd>If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of assets directory. Supported for services. Also supported for account admin if targeting account directory.</dd>
-<dt>--signature string         </dt><dd>Additional auth method. Signed string obtained by making API request to signing endpoint.</dd>
-<dt>--space-id string          </dt><dd>The space id the file should be associated with. One of catalog, project, space or account id is required.</dd>
-</dl>
+`--account-id` (string        )
+:    The catalog id the file is associated with. One of catalog, project, space or account id is required.
+
+`--catalog-id` (string        )
+:    The catalog id the file should be associated with. One of catalog, project, space or account id is required.
+
+`--cpd-scope` (string         )
+:    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--ensure-dir` (              )
+:    Override utility. If true will ensure the directory specified in 'path' exists. 201 will be returned ig created, 200 if already exists and 409 if it is present and not a directory. Will take precedence over other query params except 'inflate'.
+
+`--file` (string              )
+:    File to upload. Use '-' to read file contents from standard input.
+
+`--file-content-type` (string )
+:    The content type of File.
+
+`--inflate` (                 )
+:    Root dir must be created. Will take supplied file and decompress into target directory tree. Inflate is only acceptable for project, space and catalog targets. If inflate is selected it will take precedence over any and all other params.
+
+`--override` (                )
+:    Default true. If set to false will not overwrite file.
+
+`--path` (string              )
+:    Asset file path.
+
+`--project-id` (string        )
+:    The project id the file should be associated with. One of catalog, project, space or account id is required.
+
+`--root` (                    )
+:    If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of assets directory. Supported for services. Also supported for account admin if targeting account directory.
+
+`--signature` (string         )
+:    Additional auth method. Signed string obtained by making API request to signing endpoint.
+
+`--space-id` (string          )
+:    The space id the file should be associated with. One of catalog, project, space or account id is required.
 
 <a id='asset_script_create'></a>
 ## &#8226; asset script create
 Use this command to create a script asset from a local file.
 
 ```sh
-  cpdctl asset script create --file FILE [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--origin-country ORIGIN-COUNTRY] [--tag TAG] [--mime MIME] [--software-specification-id SOFTWARE-SPECIFICATION-ID] [--language LANGUAGE]
+   cpdctl asset script create --file FILE [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--origin-country ORIGIN-COUNTRY] [--tag TAG] [--mime MIME] [--software-specification-id SOFTWARE-SPECIFICATION-ID] [--language LANGUAGE]
 ```
 #### Command options
 
-<dl>
-<dt>--catalog-id string                </dt><dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--cpd-scope string                 </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--description string               </dt><dd>Description of the script asset</dd>
-<dt>--file string                      </dt><dd>File to upload</dd>
-<dt>--language string                  </dt><dd>Language of the script (default "python3" for Python scripts or "R" for R scripts)</dd>
-<dt>--mime string                      </dt><dd>The content type of the file (default is detected from the file contents)</dd>
-<dt>--origin-country string            </dt><dd>Origin country of the script asset (default "us")</dd>
-<dt>--project-id string                </dt><dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--software-specification-id string </dt><dd>ID of the software environment for the script.</dd>
-<dt>--space-id string                  </dt><dd>You must provide either a catalog id, a project id, or a space id, but not more than one.</dd>
-<dt>--tag strings                      </dt><dd>Tag(s) of the script asset. Multiple can be provided</dd>
-</dl>
+`--catalog-id` (string                )
+:    You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--cpd-scope` (string                 )
+:    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--description` (string               )
+:    Description of the script asset
+
+`--file` (string                      )
+:    File to upload
+
+`--language` (string                  )
+:    Language of the script (default "python3" for Python scripts or "R" for R scripts)
+
+`--mime` (string                      )
+:    The content type of the file (default is detected from the file contents)
+
+`--origin-country` (string            )
+:    Origin country of the script asset (default "us")
+
+`--project-id` (string                )
+:    You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--software-specification-id` (string )
+:    ID of the software environment for the script.
+
+`--space-id` (string                  )
+:    You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--tag` (strings                      )
+:    Tag(s) of the script asset. Multiple can be provided
 
 <a id='asset_export_list'></a>
 ## &#8226; asset export list
 
 Retrieves the asset export list for the specified space, project, or catalog.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl asset export list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--start START] [--limit LIMIT] 
@@ -1102,18 +1324,20 @@ cpdctl asset export list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--cata
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--project-id (string)</dt>
-<dd>Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--start (string)</dt>
-<dd>Token representing first resource.</dd>
-<dt>--limit (float64)</dt>
-<dd>The number of resources returned. Default value is 100. Max value is 200.</dd>
-</dl>
+`--space-id` (string)
+:   Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--project-id` (string)
+:   Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--catalog-id` (string)
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--start` (string)
+:   Token representing first resource.
+
+`--limit` (float64)
+:   The number of resources returned. Default value is 100. Max value is 200.
 
 <a id='asset_export_start'></a>
 ## &#8226; asset export start
@@ -1121,28 +1345,32 @@ cpdctl asset export list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--cata
 Starts the asset export process for the specified space, project, or catalog. On CPD 3.0.1 assets export is supported only in the context of a space.
 
 ```sh
-cpdctl asset export start [--assets ASSETS] [--description DESCRIPTION] [--encryption-key ENCRYPTION-KEY] [--name NAME] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] 
+cpdctl asset export start [--name NAME] [--description DESCRIPTION] [--assets ASSETS] [--encryption-key ENCRYPTION-KEY] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--assets (<a href="#cli-export-assets-example-schema-asset">ExportAssets</a>)</dt>
-<dd></dd>
-<dt>--description (string)</dt>
-<dd></dd>
-<dt>--encryption-key (string)</dt>
-<dd>Encryption key used to encrypt the sensitive data during export.</dd>
-<dt>--name (string)</dt>
-<dd></dd>
-<dt>--space-id (string)</dt>
-<dd>Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--project-id (string)</dt>
-<dd>Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-</dl>
+`--name` (string)
+:   &nbsp;
+
+`--description` (string)
+:   &nbsp;
+
+`--assets` (<a href="#cli-export-assets-example-schema-asset">`ExportAssets`</a>)
+:   &nbsp;
+
+`--encryption-key` (string)
+:   Encryption key used to encrypt the sensitive data during export.
+
+`--space-id` (string)
+:   Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--project-id` (string)
+:   Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--catalog-id` (string)
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
 
 <a id='asset_export_cancel'></a>
 ## &#8226; asset export cancel
@@ -1156,19 +1384,22 @@ cpdctl asset export cancel --export-id EXPORT-ID [--space-id SPACE-ID] [--projec
 
 #### Command options
 
-<dl>
-<dt>--export-id (string)</dt>
-<dd>The export identification. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--project-id (string)</dt>
-<dd>Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--hard-delete (bool)</dt>
-<dd>Default is false.</dd>
-<dd>The default value is `false`.</dd>
-</dl>
+`--export-id` (string)
+:   The export identification. Required.
+
+`--space-id` (string)
+:   Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--project-id` (string)
+:   Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--catalog-id` (string)
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--hard-delete` (bool)
+:   Default is false.
+
+    The default value is `false`.
 
 <a id='asset_export_get'></a>
 ## &#8226; asset export get
@@ -1182,16 +1413,17 @@ cpdctl asset export get --export-id EXPORT-ID [--space-id SPACE-ID] [--project-i
 
 #### Command options
 
-<dl>
-<dt>--export-id (string)</dt>
-<dd>The export identification. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--project-id (string)</dt>
-<dd>Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-</dl>
+`--export-id` (string)
+:   The export identification. Required.
+
+`--space-id` (string)
+:   Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--project-id` (string)
+:   Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--catalog-id` (string)
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
 
 <a id='asset_export_download'></a>
 ## &#8226; asset export download
@@ -1205,38 +1437,47 @@ cpdctl asset export download --export-id EXPORT-ID [--space-id SPACE-ID] [--proj
 
 #### Command options
 
-<dl>
-<dt>--export-id (string)</dt>
-<dd>The export identification. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--project-id (string)</dt>
-<dd>Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-</dl>
+`--export-id` (string)
+:   The export identification. Required.
+
+`--space-id` (string)
+:   Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--project-id` (string)
+:   Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--catalog-id` (string)
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
 
 <a id='asset_export_wait'></a>
 ## &#8226; asset export wait
 Wait until the asset export becomes completed, failed, or cancelled.
 
 ```sh
-  cpdctl asset export wait --export-id EXPORT_ID [--space-id SPACE_ID] [--project-id PROJECT_ID] [--catalog-id CATALOG_ID]
+   cpdctl asset export wait --export-id EXPORT_ID [--space-id SPACE_ID] [--project-id PROJECT_ID] [--catalog-id CATALOG_ID]
 ```
 #### Command options
 
-<dl>
-<dt>--catalog-id string </dt><dd>This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.</dd>
-<dt>--cpd-scope string  </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--export-id string  </dt><dd>The export identification.</dd>
-<dt>--project-id string </dt><dd>The ID of the project to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.</dd>
-<dt>--space-id string   </dt><dd>The ID of the space to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.</dd>
-</dl>
+`--catalog-id` (string )
+:    This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
+
+`--cpd-scope` (string  )
+:    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--export-id` (string  )
+:    The export identification.
+
+`--project-id` (string )
+:    The ID of the project to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
+
+`--space-id` (string   )
+:    The ID of the space to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
 
 <a id='asset_import_list'></a>
 ## &#8226; asset import list
 
 Retrieves the asset import list for the specified space, project, or catalog.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl asset import list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--start START] [--limit LIMIT] 
@@ -1245,18 +1486,20 @@ cpdctl asset import list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--cata
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--project-id (string)</dt>
-<dd>Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--start (string)</dt>
-<dd>Token representing first resource.</dd>
-<dt>--limit (float64)</dt>
-<dd>The number of resources returned. Default value is 100. Max value is 200.</dd>
-</dl>
+`--space-id` (string)
+:   Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--project-id` (string)
+:   Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--catalog-id` (string)
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--start` (string)
+:   Token representing first resource.
+
+`--limit` (float64)
+:   The number of resources returned. Default value is 100. Max value is 200.
 
 <a id='asset_import_start'></a>
 ## &#8226; asset import start
@@ -1264,22 +1507,29 @@ cpdctl asset import list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--cata
 Starts the asset import process for the specified space, project, or catalog. On CPD 3.0.1 assets import is supported only in the context of a space.
 
 ```sh
-cpdctl asset import start [--import-file IMPORT-FILE] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] 
+cpdctl asset import start --import-file IMPORT-FILE [--file-content-type FILE-CONTENT-TYPE] [--encryption-key ENCRYPTION-KEY] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--import-file (io.ReadCloser)</dt>
-<dd></dd>
-<dt>--space-id (string)</dt>
-<dd>Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--project-id (string)</dt>
-<dd>Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-</dl>
+`--import-file` (io.ReadCloser)
+:   Archive with assets to be imported. Required.
+
+`--file-content-type` (string)
+:   The content type of File.
+
+`--encryption-key` (string)
+:   Encryption key used to decrypt the sensitive data during import.
+
+`--space-id` (string)
+:   Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--project-id` (string)
+:   Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--catalog-id` (string)
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
 
 <a id='asset_import_cancel'></a>
 ## &#8226; asset import cancel
@@ -1293,19 +1543,22 @@ cpdctl asset import cancel --import-id IMPORT-ID [--space-id SPACE-ID] [--projec
 
 #### Command options
 
-<dl>
-<dt>--import-id (string)</dt>
-<dd>The import identification. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--project-id (string)</dt>
-<dd>Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--hard-delete (bool)</dt>
-<dd>Default is false.</dd>
-<dd>The default value is `false`.</dd>
-</dl>
+`--import-id` (string)
+:   The import identification. Required.
+
+`--space-id` (string)
+:   Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--project-id` (string)
+:   Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--catalog-id` (string)
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--hard-delete` (bool)
+:   Default is false.
+
+    The default value is `false`.
 
 <a id='asset_import_get'></a>
 ## &#8226; asset import get
@@ -1319,365 +1572,228 @@ cpdctl asset import get --import-id IMPORT-ID [--space-id SPACE-ID] [--project-i
 
 #### Command options
 
-<dl>
-<dt>--import-id (string)</dt>
-<dd>The import identification. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--project-id (string)</dt>
-<dd>Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.</dd>
-</dl>
+`--import-id` (string)
+:   The import identification. Required.
+
+`--space-id` (string)
+:   Return resources pertaining to this space. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--project-id` (string)
+:   Return resources pertaining to this project. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--catalog-id` (string)
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
 
 <a id='asset_import_wait'></a>
 ## &#8226; asset import wait
 Wait until the asset import becomes completed, failed, or canceled.
 
 ```sh
-  cpdctl asset import wait --import-id IMPORT_ID [--space-id SPACE_ID] [--project-id PROJECT_ID] [--catalog-id CATALOG_ID]
+   cpdctl asset import wait --import-id IMPORT_ID [--space-id SPACE_ID] [--project-id PROJECT_ID] [--catalog-id CATALOG_ID]
 ```
 #### Command options
 
-<dl>
-<dt>--catalog-id string </dt><dd>This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.</dd>
-<dt>--cpd-scope string  </dt><dd>CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--import-id string  </dt><dd>The import identification.</dd>
-<dt>--project-id string </dt><dd>The ID of the project to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.</dd>
-<dt>--space-id string   </dt><dd>The ID of the space to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.</dd>
-</dl>
+`--catalog-id` (string )
+:    This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
+
+`--cpd-scope` (string  )
+:    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--import-id` (string  )
+:    The import identification.
+
+`--project-id` (string )
+:    The ID of the project to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
+
+`--space-id` (string   )
+:    The ID of the space to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
 
 <a id='code-package_list'></a>
 ## &#8226; code-package list
 List all code packages in a given project or space. You must specify either `project_id` or `space_id`.
 
 ```sh
-  cpdctl code-package list [--project-id PROJECT-ID] [--space-id SPACE-ID]
+   cpdctl code-package list [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 #### Command options
 
-<dl>
-<dt>--cpd-scope string  </dt><dd>CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--project-id string </dt><dd>The id of the project.</dd>
-<dt>--space-id string   </dt><dd>The id of the space.</dd>
-</dl>
+`--cpd-scope` (string  )
+:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--project-id` (string )
+:    The id of the project.
+
+`--space-id` (string   )
+:    The id of the space.
 
 <a id='code-package_create'></a>
 ## &#8226; code-package create
 Create a new code package in a given project or space. You must specify either `project_id` or `space_id`. If you create a code package from an existing zip file, you need to first upload the zip file to the project or space Cloud Object Storage (COS) and then reference it in the body of the creation request.
 
 ```sh
-  cpdctl code-package create --name NAME [--description DESCRIPTION] [--file-reference FILE-REFERENCE] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+   cpdctl code-package create --name NAME [--description DESCRIPTION] [--file-reference FILE-REFERENCE] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 #### Command options
 
-<dl>
-<dt>--cpd-scope string      </dt><dd>CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--description string    </dt><dd>Description of the code package.</dd>
-<dt>--file-reference string </dt><dd>The reference to the file in the object storage.</dd>
-<dt>--name string           </dt><dd>Name of the code package.</dd>
-<dt>--project-id string     </dt><dd>The id of the project.</dd>
-<dt>--space-id string       </dt><dd>The id of the space.</dd>
-</dl>
+`--cpd-scope` (string      )
+:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--description` (string    )
+:    Description of the code package.
+
+`--file-reference` (string )
+:    The reference to the file in the object storage.
+
+`--name` (string           )
+:    Name of the code package.
+
+`--project-id` (string     )
+:    The id of the project.
+
+`--space-id` (string       )
+:    The id of the space.
 
 <a id='code-package_delete'></a>
 ## &#8226; code-package delete
 Delete a code package in a given project or space. You must specify either `project_id` or `space_id`.
 
 ```sh
-  cpdctl code-package delete --code-package-id CODE-PACKAGE-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
+   cpdctl code-package delete --code-package-id CODE-PACKAGE-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 #### Command options
 
-<dl>
-<dt>--code-package-id string </dt><dd>The id of the code package.</dd>
-<dt>--cpd-scope string       </dt><dd>CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--project-id string      </dt><dd>The id of the project.</dd>
-<dt>--space-id string        </dt><dd>The id of the space.</dd>
-</dl>
+`--code-package-id` (string )
+:    The id of the code package.
+
+`--cpd-scope` (string       )
+:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--project-id` (string      )
+:    The id of the project.
+
+`--space-id` (string        )
+:    The id of the space.
 
 <a id='code-package_get'></a>
 ## &#8226; code-package get
 Retrieve a code package in a given project or space. You must specify either `project_id` or `space_id`.
 
 ```sh
-  cpdctl code-package get --code-package-id CODE-PACKAGE-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
+   cpdctl code-package get --code-package-id CODE-PACKAGE-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 #### Command options
 
-<dl>
-<dt>--code-package-id string </dt><dd>The id of the code package.</dd>
-<dt>--cpd-scope string       </dt><dd>CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--project-id string      </dt><dd>The id of the project.</dd>
-<dt>--space-id string        </dt><dd>The id of the space.</dd>
-</dl>
+`--code-package-id` (string )
+:    The id of the code package.
 
-<a id='completion_bash'></a>
-## &#8226; completion bash
-Generate the autocompletion script for the bash shell.
+`--cpd-scope` (string       )
+:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-This script depends on the 'bash-completion' package.
-If it is not installed already, you can install it via your OS's package manager.
+`--project-id` (string      )
+:    The id of the project.
 
-To load completions in your current shell session:
-$ source <(cpdctl completion bash)
-
-To load completions for every new session, execute once:
-Linux:
-  $ cpdctl completion bash > /etc/bash_completion.d/cpdctl
-MacOS:
-  $ cpdctl completion bash > /usr/local/etc/bash_completion.d/cpdctl
-
-You will need to start a new shell for this setup to take effect.
-
-```sh
-  cpdctl completion bash
-```
-#### Command options
-
-<dl>
-<dt>--no-descriptions </dt><dd>disable completion descriptions</dd>
-</dl>
-
-<a id='completion_zsh'></a>
-## &#8226; completion zsh
-Generate the autocompletion script for the zsh shell.
-
-If shell completion is not already enabled in your environment you will need
-to enable it.  You can execute the following once:
-
-$ echo "autoload -U compinit; compinit" >> ~/.zshrc
-
-To load completions for every new session, execute once:
-# Linux:
-$ cpdctl completion zsh > "${fpath[1]}/_cpdctl"
-# macOS:
-$ cpdctl completion zsh > /usr/local/share/zsh/site-functions/_cpdctl
-
-You will need to start a new shell for this setup to take effect.
-
-```sh
-  cpdctl completion zsh
-```
-#### Command options
-
-<dl>
-<dt>--no-descriptions </dt><dd>disable completion descriptions</dd>
-</dl>
-
-<a id='completion_fish'></a>
-## &#8226; completion fish
-Generate the autocompletion script for the fish shell.
-
-To load completions in your current shell session:
-$ cpdctl completion fish | source
-
-To load completions for every new session, execute once:
-$ cpdctl completion fish > ~/.config/fish/completions/cpdctl.fish
-
-You will need to start a new shell for this setup to take effect.
-
-```sh
-  cpdctl completion fish
-```
-#### Command options
-
-<dl>
-<dt>--no-descriptions </dt><dd>disable completion descriptions</dd>
-</dl>
-
-<a id='completion_powershell'></a>
-## &#8226; completion powershell
-Generate the autocompletion script for powershell.
-
-To load completions in your current shell session:
-PS C:\> cpdctl completion powershell | Out-String | Invoke-Expression
-
-To load completions for every new session, add the output of the above command
-to your powershell profile.
-
-```sh
-  cpdctl completion powershell
-```
-#### Command options
-
-<dl>
-<dt>--no-descriptions </dt><dd>disable completion descriptions</dd>
-</dl>
+`--space-id` (string        )
+:    The id of the space.
 
 <a id='config_user_list'></a>
 ## &#8226; config user list
-List users
-
 ```sh
-  cpdctl config user list
+   cpdctl config user list
 ```
 
 <a id='config_user_get'></a>
 ## &#8226; config user get
 ```sh
-  cpdctl config user get name
+   cpdctl config user get name
 ```
 
 <a id='config_user_set'></a>
 ## &#8226; config user set
 ```sh
-  cpdctl config user set name
+   cpdctl config user set name
 ```
 #### Command options
 
-<dl>
-<dt>--apikey string     </dt><dd>Set user apikey</dd>
-<dt>--password string   </dt><dd>Set user password</dd>
-<dt>--token-file string </dt><dd>Set location of a file that contains user token</dd>
-<dt>--username string   </dt><dd>Set user name</dd>
-</dl>
+`--apikey` (string     )
+:    Set user apikey
+
+`--password` (string   )
+:    Set user password
+
+`--token-file` (string )
+:    Set location of a file that contains user token
+
+`--username` (string   )
+:    Set user name
 
 <a id='config_user_unset'></a>
 ## &#8226; config user unset
 ```sh
-  cpdctl config user unset name
+   cpdctl config user unset name
 ```
 
 <a id='config_profile_list'></a>
 ## &#8226; config profile list
-List profiles
-
 ```sh
-  cpdctl config profile list
+   cpdctl config profile list
 ```
 
 <a id='config_profile_get'></a>
 ## &#8226; config profile get
 ```sh
-  cpdctl config profile get name
+   cpdctl config profile get name
 ```
 
 <a id='config_profile_set'></a>
 ## &#8226; config profile set
 ```sh
-  cpdctl config profile set name
+   cpdctl config profile set name
 ```
 #### Command options
 
-<dl>
-<dt>--common-services-url string </dt><dd>Set Common Services URL for the profile</dd>
-<dt>--iam-integration-enabled    </dt><dd>Set if IAM integration is enabled on CP4D</dd>
-<dt>--url string                 </dt><dd>Set URL for the profile</dd>
-<dt>--user string                </dt><dd>Set user for the profile</dd>
-</dl>
+`--apikey` (string              )
+:    Create a user having this API key and associate it with the profile.
+
+`--common-services-url` (string )
+:    Set Common Services URL for the profile
+
+`--iam-integration-enabled` (   )
+:    Set if IAM integration is enabled on CP4D
+
+`--password` (string            )
+:    Create a user having this password and associate it with the profile.
+
+`--token-file` (string          )
+:    Create a user having this token location and associate it with the profile.
+
+`--url` (string                 )
+:    Set URL for the profile
+
+`--user` (string                )
+:    Set user for the profile
+
+`--username` (string            )
+:    Create a user having this name and associate it with the profile.
+
+`--watson-studio-url` (string   )
+:    URL of the Watson Studio service.
 
 <a id='config_profile_unset'></a>
 ## &#8226; config profile unset
 ```sh
-  cpdctl config profile unset name
+   cpdctl config profile unset name
 ```
 
-<a id='config_service_list'></a>
-## &#8226; config service list
-List services
-
+<a id='config_profile_current'></a>
+## &#8226; config profile current
 ```sh
-  cpdctl config service list
+   cpdctl config profile current
 ```
 
-<a id='config_service_export'></a>
-## &#8226; config service export
-Export Configuration
-
+<a id='config_profile_use'></a>
+## &#8226; config profile use
 ```sh
-  cpdctl config service export service-name
-```
-
-<a id='config_service_get'></a>
-## &#8226; config service get
-```sh
-  cpdctl config service get name
-```
-
-<a id='config_service_set'></a>
-## &#8226; config service set
-```sh
-  cpdctl config service set name
-```
-#### Command options
-
-<dl>
-<dt>--instance string </dt><dd>Set instance for the service</dd>
-<dt>--profile string  </dt><dd>Set profile for the service</dd>
-<dt>--type string     </dt><dd>Set type for the service</dd>
-<dt>--url string      </dt><dd>Set url for the service</dd>
-<dt>--user string     </dt><dd>Set user for the service</dd>
-</dl>
-
-<a id='config_service_unset'></a>
-## &#8226; config service unset
-```sh
-  cpdctl config service unset name
-```
-
-<a id='config_context_list'></a>
-## &#8226; config context list
-List contexts
-
-```sh
-  cpdctl config context list
-```
-
-<a id='config_context_export'></a>
-## &#8226; config context export
-Export Configuration
-
-```sh
-  cpdctl config context export context-name
-```
-
-<a id='config_context_get'></a>
-## &#8226; config context get
-```sh
-  cpdctl config context get name
-```
-
-<a id='config_context_set'></a>
-## &#8226; config context set
-```sh
-  cpdctl config context set name
-```
-#### Command options
-
-<dl>
-<dt>--apikey string                  </dt><dd>Create a user having this API key and associate it with the context.</dd>
-<dt>--password string                </dt><dd>Create a user having this password and associate it with the context.</dd>
-<dt>--profile string                 </dt><dd>Associate existing profile with the context. This option cannot be used together with --url.</dd>
-<dt>--token-file string              </dt><dd>Create a user having this token location and associate it with the context.</dd>
-<dt>--url string                     </dt><dd>Create a profile having this URL and associate it with the context.</dd>
-<dt>--user string                    </dt><dd>Associate existing user with the context. This option cannot be used together with --username, --password, --apikey, and --token.</dd>
-<dt>--username string                </dt><dd>Create a user having this name and associate it with the context.</dd>
-<dt>--watson-machine-learning string </dt><dd>Associate existing Watson Machine Learning service instance with the context.</dd>
-<dt>--watson-open-scale string       </dt><dd>Associate existing Watson OpenScale service instance with the context.</dd>
-<dt>--watson-studio string           </dt><dd>Associate existing Watson Studio service instance with the context.</dd>
-</dl>
-
-<a id='config_context_unset'></a>
-## &#8226; config context unset
-```sh
-  cpdctl config context unset name
-```
-
-<a id='config_context_current'></a>
-## &#8226; config context current
-Display the current context
-
-```sh
-  cpdctl config context current
-```
-
-<a id='config_context_use'></a>
-## &#8226; config context use
-Sets the current context
-
-```sh
-  cpdctl config context use context-name
+   cpdctl config profile use profile-name
 ```
 
 <a id='connection_list'></a>
@@ -1716,6 +1832,7 @@ The entity.flags field specifies the flags a connection can have to be included 
 Adding the name of a flag to entity.flags will add the connections  with that flag to the list results. The name can be optionally  prefixed with a plus sign (+) to indicate that it is being added.
 
 Adding the name of a flag to entity.flags with a minus sign (-) prefix will remove those connections with that flag from the list  results. All additions are done before the subtractions.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl connection list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--sort SORT] [--start START] [--limit LIMIT] [--metadata-creator METADATA-CREATOR] [--entity-name ENTITY-NAME] [--entity-datasource-type ENTITY-DATASOURCE-TYPE] [--entity-context ENTITY-CONTEXT] [--entity-properties ENTITY-PROPERTIES] [--entity-flags ENTITY-FLAGS] [--inject-token INJECT-TOKEN] 
@@ -1724,36 +1841,48 @@ cpdctl connection list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--sp
 
 #### Command options
 
-<dl>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--sort (string)</dt>
-<dd>The field to sort the results on, including whether to sort ascending (+) or descending (-), for example, sort=-metadata.create_time.</dd>
-<dt>--start (string)</dt>
-<dd>The page token indicating where to start paging from.</dd>
-<dt>--limit (int64)</dt>
-<dd>The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.</dd>
-<dd>The minimum value is `1`.</dd>
-<dt>--metadata-creator (string)</dt>
-<dd>The creator of the connection.</dd>
-<dt>--entity-name (string)</dt>
-<dd>The name of the connection.</dd>
-<dt>--entity-datasource-type (string)</dt>
-<dd>The data source type of the connection.</dd>
-<dt>--entity-context (string)</dt>
-<dd>The context of the connection. Can be one of "source", "target", or "source,target".</dd>
-<dt>--entity-properties (string)</dt>
-<dd>The properties of the connection that must match for the connection to be included in the list.</dd>
-<dt>--entity-flags (string)</dt>
-<dd>A comma separated list of flags that must be present for the connection to be included in the list. If not provided, only connections with no flags will be returned.</dd>
-<dt>--inject-token (bool)</dt>
-<dd>Boolean indicator if cluster username and access token should be injected into connection properties. It has to be ensured that access token is not revealed unintentionally together with connection properties.</dd>
-<dd>The default value is `false`.</dd>
-</dl>
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, project_id, or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, project_id, or space_id is required.
+
+`--sort` (string)
+:   The field to sort the results on, including whether to sort ascending (+) or descending (-), for example, sort=-metadata.create_time.
+
+`--start` (string)
+:   The page token indicating where to start paging from.
+
+`--limit` (int64)
+:   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.
+
+    The minimum value is `1`.
+
+`--metadata-creator` (string)
+:   The creator of the connection.
+
+`--entity-name` (string)
+:   The name of the connection.
+
+`--entity-datasource-type` (string)
+:   The data source type of the connection.
+
+`--entity-context` (string)
+:   The context of the connection. Can be one of "source", "target", or "source,target".
+
+`--entity-properties` (string)
+:   The properties of the connection that must match for the connection to be included in the list.
+
+`--entity-flags` (string)
+:   A comma separated list of flags that must be present for the connection to be included in the list. If not provided, only connections with no flags will be returned.
+
+`--inject-token` (bool)
+:   Boolean indicator if cluster username and access token should be injected into connection properties. It has to be ensured that access token is not revealed unintentionally together with connection properties.
+
+    The default value is `false`.
 
 <a id='connection_create'></a>
 ## &#8226; connection create
@@ -1771,55 +1900,79 @@ cpdctl connection create --datasource-type DATASOURCE-TYPE --name NAME [--asset-
 
 #### Command options
 
-<dl>
-<dt>--datasource-type (string)</dt>
-<dd>The id or the name of the data source type to connect to. For example "cfdcb449-1204-44ba-baa6-9a8a878e6aa7" or "db2". Required.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the connection. Required.</dd>
-<dt>--asset-category (string)</dt>
-<dd>The asset category.</dd>
-<dd>Allowable values are: user, system</dd>
-<dt>--child-source-systems ([]map[string]interface{})</dt>
-<dd></dd>
-<dt>--description (string)</dt>
-<dd>The description of the connection.</dd>
-<dt>--flags ([]string)</dt>
-<dd>Specifies how a connection is to be treated internally.</dd>
-<dt>--gateway-id (string)</dt>
-<dd>The id of the secure gateway to use with the connection. A Secure Gateway is needed when connecting to an on-premises data source. This is the id of the Secure Gateway created with the SecureGateway Service. Your Secure Gateway Client running on-premises must be connected to the gateway with this Id. For example, "E9oXGRIhv1e_prod_ng".</dd>
-<dt>--interaction-properties (<a href="#cli-connection-interaction-properties-example-schema-connection">ConnectionInteractionProperties</a>)</dt>
-<dd>Interaction properties allowed for a connection.</dd>
-<dt>--location-definition (<a href="#cli-location-definition-example-schema-connection">LocationDefinition</a>)</dt>
-<dd>Indicates the location used by this connection.</dd>
-<dt>--origin-country (string)</dt>
-<dd>Country which data originated from. - ISO 3166 Country Codes.</dd>
-<dt>--owner-id (string)</dt>
-<dd>Owner or creator of connection.  Provided when a service ID token is used to create connection.</dd>
-<dt>--properties (generic map)</dt>
-<dd>Connection properties.</dd>
-<dt>--ref-asset-id (string)</dt>
-<dd>The ID of the connection in reference catalog that this connection refers to for properties values.</dd>
-<dt>--ref-catalog-id (string)</dt>
-<dd>The ID of the catalog that this connection refers to for properties values.</dd>
-<dt>--rov (<a href="#cli-connection-rov-example-schema-connection">ConnectionRov</a>)</dt>
-<dd>Rules of visibility for connections.</dd>
-<dt>--source-system (generic map)</dt>
-<dd>Custom data to be associated with a given object.</dd>
-<dt>--tags ([]string)</dt>
-<dd></dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--test (bool)</dt>
-<dd>Whether to test the connection before saving it. If a connection cannot be established, the connection is not saved.</dd>
-<dd>The default value is `true`.</dd>
-<dt>--skip-enforcement (bool)</dt>
-<dd>The indicator whether shared credentials disablement and vault credentials enforcement guards should be disabled for creation and updates.</dd>
-<dd>The default value is `false`.</dd>
-</dl>
+`--datasource-type` (string)
+:   The id or the name of the data source type to connect to. For example "cfdcb449-1204-44ba-baa6-9a8a878e6aa7" or "db2". Required.
+
+`--name` (string)
+:   The name of the connection. Required.
+
+`--asset-category` (string)
+:   The asset category.
+
+    Allowable values are: `user`, `system`.
+
+`--child-source-systems` ([]map[string]interface{})
+:   &nbsp;
+
+`--description` (string)
+:   The description of the connection.
+
+`--flags` ([]string)
+:   Specifies how a connection is to be treated internally.
+
+    Allowable list items are: `restricted`, `internal_use_only`, `personal_credentials`.
+
+`--gateway-id` (string)
+:   The id of the secure gateway to use with the connection. A Secure Gateway is needed when connecting to an on-premises data source. This is the id of the Secure Gateway created with the SecureGateway Service. Your Secure Gateway Client running on-premises must be connected to the gateway with this Id. For example, "E9oXGRIhv1e_prod_ng".
+
+`--interaction-properties` (<a href="#cli-connection-interaction-properties-example-schema-connection">`ConnectionInteractionProperties`</a>)
+:   Interaction properties allowed for a connection.
+
+`--location-definition` (<a href="#cli-location-definition-example-schema-connection">`LocationDefinition`</a>)
+:   Indicates the location used by this connection.
+
+`--origin-country` (string)
+:   Country which data originated from. - ISO 3166 Country Codes.
+
+`--owner-id` (string)
+:   Owner or creator of connection.  Provided when a service ID token is used to create connection.
+
+`--properties` (generic map)
+:   Connection properties.
+
+`--ref-asset-id` (string)
+:   The ID of the connection in reference catalog that this connection refers to for properties values.
+
+`--ref-catalog-id` (string)
+:   The ID of the catalog that this connection refers to for properties values.
+
+`--rov` (<a href="#cli-connection-rov-example-schema-connection">`ConnectionRov`</a>)
+:   Rules of visibility for connections.
+
+`--source-system` (generic map)
+:   Custom data to be associated with a given object.
+
+`--tags` ([]string)
+:   &nbsp;
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, project_id, or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, project_id, or space_id is required.
+
+`--test` (bool)
+:   Whether to test the connection before saving it. If a connection cannot be established, the connection is not saved.
+
+    The default value is `true`.
+
+`--skip-enforcement` (bool)
+:   The indicator whether shared credentials disablement and vault credentials enforcement guards should be disabled for creation and updates.
+
+    The default value is `false`.
 
 <a id='connection_discover-adhoc'></a>
 ## &#8226; connection discover-adhoc
@@ -1833,62 +1986,90 @@ cpdctl connection discover-adhoc --path PATH --datasource-type DATASOURCE-TYPE -
 
 #### Command options
 
-<dl>
-<dt>--path (string)</dt>
-<dd>Path of the asset. Required.</dd>
-<dt>--datasource-type (string)</dt>
-<dd>The id or the name of the data source type to connect to. For example "cfdcb449-1204-44ba-baa6-9a8a878e6aa7" or "db2". Required.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the connection. Required.</dd>
-<dt>--asset-category (string)</dt>
-<dd>The asset category.</dd>
-<dd>Allowable values are: user, system</dd>
-<dt>--child-source-systems ([]map[string]interface{})</dt>
-<dd></dd>
-<dt>--description (string)</dt>
-<dd>The description of the connection.</dd>
-<dt>--flags ([]string)</dt>
-<dd>Specifies how a connection is to be treated internally.</dd>
-<dt>--gateway-id (string)</dt>
-<dd>The id of the secure gateway to use with the connection. A Secure Gateway is needed when connecting to an on-premises data source. This is the id of the Secure Gateway created with the SecureGateway Service. Your Secure Gateway Client running on-premises must be connected to the gateway with this Id. For example, "E9oXGRIhv1e_prod_ng".</dd>
-<dt>--interaction-properties (<a href="#cli-connection-interaction-properties-example-schema-connection">ConnectionInteractionProperties</a>)</dt>
-<dd>Interaction properties allowed for a connection.</dd>
-<dt>--new-location-definition (<a href="#cli-location-definition-example-schema-connection">LocationDefinition</a>)</dt>
-<dd>Indicates the location used by this connection.</dd>
-<dt>--origin-country (string)</dt>
-<dd>Country which data originated from. - ISO 3166 Country Codes.</dd>
-<dt>--owner-id (string)</dt>
-<dd>Owner or creator of connection.  Provided when a service ID token is used to create connection.</dd>
-<dt>--properties (generic map)</dt>
-<dd>Connection properties.</dd>
-<dt>--ref-asset-id (string)</dt>
-<dd>The ID of the connection in reference catalog that this connection refers to for properties values.</dd>
-<dt>--ref-catalog-id (string)</dt>
-<dd>The ID of the catalog that this connection refers to for properties values.</dd>
-<dt>--rov (<a href="#cli-connection-rov-example-schema-connection">ConnectionRov</a>)</dt>
-<dd>Rules of visibility for connections.</dd>
-<dt>--new-source-system (generic map)</dt>
-<dd>Custom data to be associated with a given object.</dd>
-<dt>--tags ([]string)</dt>
-<dd></dd>
-<dt>--limit (int64)</dt>
-<dd>The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.</dd>
-<dd>The minimum value is `1`.</dd>
-<dt>--offset (int64)</dt>
-<dd>The 0-based index of the first result to return, for example, offset=200. If not specified, the default offset of 0 is used.</dd>
-<dd>The minimum value is `0`.</dd>
-<dt>--fetch (string)</dt>
-<dd>Specify whether to return the asset's metadata, the asset's data, interaction properties, connection properties, or data source type. If not specified, metadata is used by default. This parameter only applies when requesting details about a data set. To specify multiple fetch values, use a comma-separated string, such as fetch=data,metadata,interaction,connection,datasource_type.</dd>
-<dt>--detail (bool)</dt>
-<dd>Specify whether to return additional asset-specific details. If not specified, these details are not returned.</dd>
-<dt>--discovery-context (string)</dt>
-<dd>Specify whether assets are discovered for the purpose of reading (source) or writing (target). If not specified, source is used by default.</dd>
-<dd>Allowable values are: source, target</dd>
-<dt>--asset-properties (string)</dt>
-<dd>A JSON object containing a set of properties to configure aspects of the asset browsing.</dd>
-<dt>--filters (string)</dt>
-<dd>A JSON object containing a set of properties to define filtering of the assets to be returned.</dd>
-</dl>
+`--path` (string)
+:   Path of the asset. Required.
+
+`--datasource-type` (string)
+:   The id or the name of the data source type to connect to. For example "cfdcb449-1204-44ba-baa6-9a8a878e6aa7" or "db2". Required.
+
+`--name` (string)
+:   The name of the connection. Required.
+
+`--asset-category` (string)
+:   The asset category.
+
+    Allowable values are: `user`, `system`.
+
+`--child-source-systems` ([]map[string]interface{})
+:   &nbsp;
+
+`--description` (string)
+:   The description of the connection.
+
+`--flags` ([]string)
+:   Specifies how a connection is to be treated internally.
+
+    Allowable list items are: `restricted`, `internal_use_only`, `personal_credentials`.
+
+`--gateway-id` (string)
+:   The id of the secure gateway to use with the connection. A Secure Gateway is needed when connecting to an on-premises data source. This is the id of the Secure Gateway created with the SecureGateway Service. Your Secure Gateway Client running on-premises must be connected to the gateway with this Id. For example, "E9oXGRIhv1e_prod_ng".
+
+`--interaction-properties` (<a href="#cli-connection-interaction-properties-example-schema-connection">`ConnectionInteractionProperties`</a>)
+:   Interaction properties allowed for a connection.
+
+`--new-location-definition` (<a href="#cli-location-definition-example-schema-connection">`LocationDefinition`</a>)
+:   Indicates the location used by this connection.
+
+`--origin-country` (string)
+:   Country which data originated from. - ISO 3166 Country Codes.
+
+`--owner-id` (string)
+:   Owner or creator of connection.  Provided when a service ID token is used to create connection.
+
+`--properties` (generic map)
+:   Connection properties.
+
+`--ref-asset-id` (string)
+:   The ID of the connection in reference catalog that this connection refers to for properties values.
+
+`--ref-catalog-id` (string)
+:   The ID of the catalog that this connection refers to for properties values.
+
+`--rov` (<a href="#cli-connection-rov-example-schema-connection">`ConnectionRov`</a>)
+:   Rules of visibility for connections.
+
+`--new-source-system` (generic map)
+:   Custom data to be associated with a given object.
+
+`--tags` ([]string)
+:   &nbsp;
+
+`--limit` (int64)
+:   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.
+
+    The minimum value is `1`.
+
+`--offset` (int64)
+:   The 0-based index of the first result to return, for example, offset=200. If not specified, the default offset of 0 is used.
+
+    The minimum value is `0`.
+
+`--fetch` (string)
+:   Specify whether to return the asset's metadata, the asset's data, interaction properties, connection properties, or data source type. If not specified, metadata is used by default. This parameter only applies when requesting details about a data set. To specify multiple fetch values, use a comma-separated string, such as fetch=data,metadata,interaction,connection,datasource_type.
+
+`--detail` (bool)
+:   Specify whether to return additional asset-specific details. If not specified, these details are not returned.
+
+`--discovery-context` (string)
+:   Specify whether assets are discovered for the purpose of reading (source) or writing (target). If not specified, source is used by default.
+
+    Allowable values are: `source`, `target`.
+
+`--asset-properties` (string)
+:   A JSON object containing a set of properties to configure aspects of the asset browsing.
+
+`--filters` (string)
+:   A JSON object containing a set of properties to define filtering of the assets to be returned.
 
 <a id='connection_discover-data-asset'></a>
 ## &#8226; connection discover-data-asset
@@ -1902,35 +2083,47 @@ cpdctl connection discover-data-asset --data-asset-id DATA-ASSET-ID [--catalog-i
 
 #### Command options
 
-<dl>
-<dt>--data-asset-id (string)</dt>
-<dd>The ID of the data asset. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--limit (int64)</dt>
-<dd>The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.</dd>
-<dd>The minimum value is `1`.</dd>
-<dt>--offset (int64)</dt>
-<dd>The 0-based index of the first result to return, for example, offset=200. If not specified, the default offset of 0 is used.</dd>
-<dd>The minimum value is `0`.</dd>
-<dt>--fetch (string)</dt>
-<dd>Specify whether to return the asset's metadata, the asset's data, interaction properties, connection properties, or data source type. If not specified, metadata is used by default. This parameter only applies when requesting details about a data set. To specify multiple fetch values, use a comma-separated string, such as fetch=data,metadata,interaction,connection,datasource_type.</dd>
-<dt>--detail (bool)</dt>
-<dd>Specify whether to return additional asset-specific details. If not specified, these details are not returned.</dd>
-<dt>--context (string)</dt>
-<dd>Specify whether the asset is discovered for the purpose of reading (source) or writing (target). If not specified, source is used by default.</dd>
-<dd>Allowable values are: source, target</dd>
-<dt>--properties (string)</dt>
-<dd>A JSON object containing a set of properties to configure aspects of the asset browsing.</dd>
-<dt>--filters (string)</dt>
-<dd>A JSON object containing a set of properties to define filtering of the assets to be returned.</dd>
-<dt>--path (string)</dt>
-<dd>Path of the asset.</dd>
-</dl>
+`--data-asset-id` (string)
+:   The ID of the data asset. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, project_id, or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, project_id, or space_id is required.
+
+`--limit` (int64)
+:   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.
+
+    The minimum value is `1`.
+
+`--offset` (int64)
+:   The 0-based index of the first result to return, for example, offset=200. If not specified, the default offset of 0 is used.
+
+    The minimum value is `0`.
+
+`--fetch` (string)
+:   Specify whether to return the asset's metadata, the asset's data, interaction properties, connection properties, or data source type. If not specified, metadata is used by default. This parameter only applies when requesting details about a data set. To specify multiple fetch values, use a comma-separated string, such as fetch=data,metadata,interaction,connection,datasource_type.
+
+`--detail` (bool)
+:   Specify whether to return additional asset-specific details. If not specified, these details are not returned.
+
+`--context` (string)
+:   Specify whether the asset is discovered for the purpose of reading (source) or writing (target). If not specified, source is used by default.
+
+    Allowable values are: `source`, `target`.
+
+`--properties` (string)
+:   A JSON object containing a set of properties to configure aspects of the asset browsing.
+
+`--filters` (string)
+:   A JSON object containing a set of properties to define filtering of the assets to be returned.
+
+`--path` (string)
+:   Path of the asset.
 
 <a id='connection_delete'></a>
 ## &#8226; connection delete
@@ -1944,16 +2137,17 @@ cpdctl connection delete --connection-id CONNECTION-ID [--catalog-id CATALOG-ID]
 
 #### Command options
 
-<dl>
-<dt>--connection-id (string)</dt>
-<dd>The ID of the connection. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. catalog_id, project_id, or space_id is required.</dd>
-</dl>
+`--connection-id` (string)
+:   The ID of the connection. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, project_id, or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, project_id, or space_id is required.
 
 <a id='connection_get'></a>
 ## &#8226; connection get
@@ -1971,21 +2165,25 @@ cpdctl connection get --connection-id CONNECTION-ID [--catalog-id CATALOG-ID] [-
 
 #### Command options
 
-<dl>
-<dt>--connection-id (string)</dt>
-<dd>The ID of the connection. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--inject-token (bool)</dt>
-<dd>Boolean indicator if cluster username and access token should be injected into connection properties. It has to be ensured that access token is not revealed unintentionally together with connection properties.</dd>
-<dd>The default value is `false`.</dd>
-<dt>--entity-product (string)</dt>
-<dd>Specify the product the data source type must support to be returned. The available products are 'catalog', 'cpd', 'datastage', 'dv', 'igc', 'mdi', 'ml' and 'studio'. If no entity.product is specified, no filtering is applied. To specify multiple products, use a comma-separated string, such as entity.product=catalog,studio.</dd>
-</dl>
+`--connection-id` (string)
+:   The ID of the connection. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, project_id, or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, project_id, or space_id is required.
+
+`--inject-token` (bool)
+:   Boolean indicator if cluster username and access token should be injected into connection properties. It has to be ensured that access token is not revealed unintentionally together with connection properties.
+
+    The default value is `false`.
+
+`--entity-product` (string)
+:   Specify the product the data source type must support to be returned. The available products are 'catalog', 'cpd', 'datastage', 'dv', 'igc', 'mdi', 'ml' and 'studio'. If no entity.product is specified, no filtering is applied. To specify multiple products, use a comma-separated string, such as entity.product=catalog,studio.
 
 <a id='connection_update'></a>
 ## &#8226; connection update
@@ -1999,24 +2197,30 @@ cpdctl connection update --connection-id CONNECTION-ID --patch-request PATCH-REQ
 
 #### Command options
 
-<dl>
-<dt>--connection-id (string)</dt>
-<dd>The ID of the connection. Required.</dd>
-<dt>--patch-request (<a href="#cli-json-patch-operation-example-schema-connection">JSONPatchOperation[]</a>)</dt>
-<dd>Fields to update within the connection. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--test (bool)</dt>
-<dd>Whether to test the connection before saving it. By default an attempt to establish a connection will be made, and the connection will not be saved if the connection cannot be established.</dd>
-<dd>The default value is `true`.</dd>
-<dt>--skip-enforcement (bool)</dt>
-<dd>The indicator whether shared credentials disablement and vault credentials enforcement guards should be disabled for creation and updates.</dd>
-<dd>The default value is `false`.</dd>
-</dl>
+`--connection-id` (string)
+:   The ID of the connection. Required.
+
+`--patch-request` (<a href="#cli-json-patch-operation-example-schema-connection">`JSONPatchOperation[]`</a>)
+:   Fields to update within the connection. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, project_id, or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, project_id, or space_id is required.
+
+`--test` (bool)
+:   Whether to test the connection before saving it. By default an attempt to establish a connection will be made, and the connection will not be saved if the connection cannot be established.
+
+    The default value is `true`.
+
+`--skip-enforcement` (bool)
+:   The indicator whether shared credentials disablement and vault credentials enforcement guards should be disabled for creation and updates.
+
+    The default value is `false`.
 
 <a id='connection_list-actions'></a>
 ## &#8226; connection list-actions
@@ -2030,19 +2234,22 @@ cpdctl connection list-actions --connection-id CONNECTION-ID [--accept-language 
 
 #### Command options
 
-<dl>
-<dt>--connection-id (string)</dt>
-<dd>The ID of the connection. Required.</dd>
-<dt>--accept-language (string)</dt>
-<dd>The user's preferred locale identifier.</dd>
-<dd>The default value is `en-US`.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. catalog_id, project_id, or space_id is required.</dd>
-</dl>
+`--connection-id` (string)
+:   The ID of the connection. Required.
+
+`--accept-language` (string)
+:   The user's preferred locale identifier.
+
+    The default value is `en-US`.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, project_id, or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, project_id, or space_id is required.
 
 <a id='connection_perform-action'></a>
 ## &#8226; connection perform-action
@@ -2056,11 +2263,11 @@ cpdctl connection perform-action --connection-id CONNECTION-ID --action-name ACT
 
 #### Command options
 
-<dl>
-<dt>--connection-id (string)</dt>
-<dd>The ID of the connection. Required.</dd>
-<dt>--action-name (string)</dt>
-<dd>The name of the action to be performed. This list is expanded over time. The current actions are:
+`--connection-id` (string)
+:   The ID of the connection. Required.
+
+`--action-name` (string)
+:   The name of the action to be performed. This list is expanded over time. The current actions are:
 
 | action                | description                                                              |
 | --------------------- | ------------------------------------------------------------------------ |
@@ -2068,17 +2275,21 @@ cpdctl connection perform-action --connection-id CONNECTION-ID --action-name ACT
 | get_record_count      | to get the number of records available for the specified asset.          |
 | get_signed_url        | to get a signed URL for accessing a data source.                         |
 | test                  | to check if a connection can be established to the data source.          |
-| validate              | to validate the connection properties without establishing a connection. |. Required.</dd>
-<dd>Allowable values are: get_oauth2_tokens, get_record_count, get_signed_url, test, validate</dd>
-<dt>--request (generic map)</dt>
-<dd>The perform action request configuration. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. catalog_id, project_id, or space_id is required.</dd>
-</dl>
+| validate              | to validate the connection properties without establishing a connection. |. Required.
+
+    Allowable values are: `get_oauth2_tokens`, `get_record_count`, `get_signed_url`, `test`, `validate`.
+
+`--request` (generic map)
+:   The perform action request configuration. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, project_id, or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, project_id, or space_id is required.
 
 <a id='connection_discover'></a>
 ## &#8226; connection discover
@@ -2092,43 +2303,59 @@ cpdctl connection discover --connection-id CONNECTION-ID --path PATH [--catalog-
 
 #### Command options
 
-<dl>
-<dt>--connection-id (string)</dt>
-<dd>The ID of the connection. Required.</dd>
-<dt>--path (string)</dt>
-<dd>Path of the asset. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. catalog_id, project_id, or space_id is required.</dd>
-<dt>--data-asset-id (string)</dt>
-<dd>The ID of the data asset.</dd>
-<dt>--data-asset-catalog-id (string)</dt>
-<dd>The ID of the catalog that contains the data asset.</dd>
-<dt>--data-asset-project-id (string)</dt>
-<dd>The ID of the project that contains the data asset.</dd>
-<dt>--data-asset-space-id (string)</dt>
-<dd>The ID of the space that contains the data asset.</dd>
-<dt>--limit (int64)</dt>
-<dd>The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.</dd>
-<dd>The minimum value is `1`.</dd>
-<dt>--offset (int64)</dt>
-<dd>The 0-based index of the first result to return, for example, offset=200. If not specified, the default offset of 0 is used.</dd>
-<dd>The minimum value is `0`.</dd>
-<dt>--fetch (string)</dt>
-<dd>Specify whether to return the asset's metadata, the asset's data, interaction properties, connection properties, or data source type. If not specified, metadata is used by default. This parameter only applies when requesting details about a data set. To specify multiple fetch values, use a comma-separated string, such as fetch=data,metadata,interaction,connection,datasource_type.</dd>
-<dt>--detail (bool)</dt>
-<dd>Specify whether to return additional asset-specific details. If not specified, these details are not returned.</dd>
-<dt>--context (string)</dt>
-<dd>Specify whether assets are discovered for the purpose of reading (source) or writing (target). If not specified, source is used by default.</dd>
-<dd>Allowable values are: source, target</dd>
-<dt>--properties (string)</dt>
-<dd>A JSON object containing a set of properties to configure aspects of the asset browsing.</dd>
-<dt>--filters (string)</dt>
-<dd>A JSON object containing a set of properties to define filtering of the assets to be returned.</dd>
-</dl>
+`--connection-id` (string)
+:   The ID of the connection. Required.
+
+`--path` (string)
+:   Path of the asset. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, project_id, or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, project_id, or space_id is required.
+
+`--data-asset-id` (string)
+:   The ID of the data asset.
+
+`--data-asset-catalog-id` (string)
+:   The ID of the catalog that contains the data asset.
+
+`--data-asset-project-id` (string)
+:   The ID of the project that contains the data asset.
+
+`--data-asset-space-id` (string)
+:   The ID of the space that contains the data asset.
+
+`--limit` (int64)
+:   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.
+
+    The minimum value is `1`.
+
+`--offset` (int64)
+:   The 0-based index of the first result to return, for example, offset=200. If not specified, the default offset of 0 is used.
+
+    The minimum value is `0`.
+
+`--fetch` (string)
+:   Specify whether to return the asset's metadata, the asset's data, interaction properties, connection properties, or data source type. If not specified, metadata is used by default. This parameter only applies when requesting details about a data set. To specify multiple fetch values, use a comma-separated string, such as fetch=data,metadata,interaction,connection,datasource_type.
+
+`--detail` (bool)
+:   Specify whether to return additional asset-specific details. If not specified, these details are not returned.
+
+`--context` (string)
+:   Specify whether assets are discovered for the purpose of reading (source) or writing (target). If not specified, source is used by default.
+
+    Allowable values are: `source`, `target`.
+
+`--properties` (string)
+:   A JSON object containing a set of properties to configure aspects of the asset browsing.
+
+`--filters` (string)
+:   A JSON object containing a set of properties to define filtering of the assets to be returned.
 
 <a id='connection_datasource-type_list'></a>
 ## &#8226; connection datasource-type list
@@ -2141,6 +2368,7 @@ The following fields are available for use with the sort parameter:
 | ------------ | ---------------------------------------------------- |
 | entity.label | The name of the data source type in a readable form. |
 | entity.type  | The major type of the data source type.              |.
+If `offset` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl connection datasource-type list [--accept-language ACCEPT-LANGUAGE] [--sort SORT] [--offset OFFSET] [--limit LIMIT] [--connection-properties CONNECTION-PROPERTIES] [--interaction-properties INTERACTION-PROPERTIES] [--discovery DISCOVERY] [--actions ACTIONS] [--entity-environment ENTITY-ENVIRONMENT] [--entity-product ENTITY-PRODUCT] [--product-selector-scope PRODUCT-SELECTOR-SCOPE] [--generate-transitive-conditions GENERATE-TRANSITIVE-CONDITIONS] 
@@ -2149,37 +2377,51 @@ cpdctl connection datasource-type list [--accept-language ACCEPT-LANGUAGE] [--so
 
 #### Command options
 
-<dl>
-<dt>--accept-language (string)</dt>
-<dd>The user's preferred locale identifier.</dd>
-<dd>The default value is `en-US`.</dd>
-<dt>--sort (string)</dt>
-<dd>The field to sort the results on, including whether to sort ascending (+) or descending (-), for example, sort=-metadata.create_time.</dd>
-<dt>--offset (int64)</dt>
-<dd>The 0-based index of the first result to return, for example, offset=200. If not specified, the default offset of 0 is used.</dd>
-<dd>The minimum value is `0`.</dd>
-<dt>--limit (int64)</dt>
-<dd>The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.</dd>
-<dd>The minimum value is `1`.</dd>
-<dt>--connection-properties (bool)</dt>
-<dd>Whether to return information about the connection properties.</dd>
-<dt>--interaction-properties (bool)</dt>
-<dd>Whether to return information about the source and target interaction properties.</dd>
-<dt>--discovery (bool)</dt>
-<dd>Whether to return information about discovery capabilities.</dd>
-<dt>--actions (bool)</dt>
-<dd>Whether to return information about supported actions.</dd>
-<dt>--entity-environment (string)</dt>
-<dd>Specify the environment the data source types must support to be included in the returned list. The available environments are 'cloud', 'streams' and 'local'. If no entity.environment is specified, the default for service's deploy environment is used. To specify multiple environments, use a comma-separated string, such as entity.environment=cloud,streams.</dd>
-<dt>--entity-product (string)</dt>
-<dd>Specify the product the data source types must support to be included in the returned list. The available products are 'catalog', 'cpd', 'datastage', 'dv', 'igc', 'mdi', 'ml' and 'studio'. If no entity.product is specified, the default for service's deploy product is used. To specify multiple products, use a comma-separated string, such as entity.product=catalog,studio.</dd>
-<dt>--product-selector-scope (string)</dt>
-<dd>Scope of ui-only product selector property. Applies to output under common_properties key. Genreated ui contains additional checkbox to switch between first of the requested products and the rest. If only a single one is given it switches between that product and remaining products supported by the data source.</dd>
-<dd>Allowable values are: global, context</dd>
-<dt>--generate-transitive-conditions (bool)</dt>
-<dd>Whether to generate extra conditions in common properties format that will make them behave in a transitive manner under default configuration options of Elyra i.e. when a condition is part of a chain it will enable/disable everything down the chain rather than just hiding the control. Support for this option has been removed. Option itself was not removed to preserve binary compatibility but it no longer has any effect.</dd>
-<dd>The default value is `false`.</dd>
-</dl>
+`--accept-language` (string)
+:   The user's preferred locale identifier.
+
+    The default value is `en-US`.
+
+`--sort` (string)
+:   The field to sort the results on, including whether to sort ascending (+) or descending (-), for example, sort=-metadata.create_time.
+
+`--offset` (int64)
+:   The 0-based index of the first result to return, for example, offset=200. If not specified, the default offset of 0 is used.
+
+    The minimum value is `0`.
+
+`--limit` (int64)
+:   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.
+
+    The minimum value is `1`.
+
+`--connection-properties` (bool)
+:   Whether to return information about the connection properties.
+
+`--interaction-properties` (bool)
+:   Whether to return information about the source and target interaction properties.
+
+`--discovery` (bool)
+:   Whether to return information about discovery capabilities.
+
+`--actions` (bool)
+:   Whether to return information about supported actions.
+
+`--entity-environment` (string)
+:   Specify the environment the data source types must support to be included in the returned list. The available environments are 'cloud', 'streams' and 'local'. If no entity.environment is specified, the default for service's deploy environment is used. To specify multiple environments, use a comma-separated string, such as entity.environment=cloud,streams.
+
+`--entity-product` (string)
+:   Specify the product the data source types must support to be included in the returned list. The available products are 'catalog', 'cpd', 'datastage', 'dv', 'igc', 'mdi', 'ml' and 'studio'. If no entity.product is specified, the default for service's deploy product is used. To specify multiple products, use a comma-separated string, such as entity.product=catalog,studio.
+
+`--product-selector-scope` (string)
+:   Scope of ui-only product selector property. Applies to output under common_properties key. Genreated ui contains additional checkbox to switch between first of the requested products and the rest. If only a single one is given it switches between that product and remaining products supported by the data source.
+
+    Allowable values are: `global`, `context`.
+
+`--generate-transitive-conditions` (bool)
+:   Whether to generate extra conditions in common properties format that will make them behave in a transitive manner under default configuration options of Elyra i.e. when a condition is part of a chain it will enable/disable everything down the chain rather than just hiding the control. Support for this option has been removed. Option itself was not removed to preserve binary compatibility but it no longer has any effect.
+
+    The default value is `false`.
 
 <a id='connection_datasource-type_get'></a>
 ## &#8226; connection datasource-type get
@@ -2193,31 +2435,41 @@ cpdctl connection datasource-type get --datasource-type DATASOURCE-TYPE [--accep
 
 #### Command options
 
-<dl>
-<dt>--datasource-type (string)</dt>
-<dd>The data source type. Required.</dd>
-<dt>--accept-language (string)</dt>
-<dd>The user's preferred locale identifier.</dd>
-<dd>The default value is `en-US`.</dd>
-<dt>--connection-properties (bool)</dt>
-<dd>Whether to return information about connection properties.</dd>
-<dt>--interaction-properties (bool)</dt>
-<dd>Whether to return information about source and target interaction properties.</dd>
-<dt>--discovery (bool)</dt>
-<dd>Whether to return information about discovery capabilities.</dd>
-<dt>--actions (bool)</dt>
-<dd>Whether to return information about supported actions.</dd>
-<dt>--entity-environment (string)</dt>
-<dd>Specify the environment the data source type must support to be returned. The available environments are 'cloud', 'streams' and 'local'. If no entity.environment is specified, no filtering is applied. To specify multiple environments, use a comma-separated string, such as entity.environment=cloud,streams.</dd>
-<dt>--entity-product (string)</dt>
-<dd>Specify the product the data source type must support to be returned. The available products are 'catalog', 'cpd', 'datastage', 'dv', 'igc', 'mdi', 'ml' and 'studio'. If no entity.product is specified, no filtering is applied. To specify multiple products, use a comma-separated string, such as entity.product=catalog,studio.</dd>
-<dt>--product-selector-scope (string)</dt>
-<dd>Scope of ui-only product selector property. Applies to output under common_properties key. Genreated ui contains additional checkbox to switch between first of the requested products and the rest. If only a single one is given it switches between that product and remaining products supported by the data source.</dd>
-<dd>Allowable values are: global, context</dd>
-<dt>--generate-transitive-conditions (bool)</dt>
-<dd>Whether to generate extra conditions in common properties format that will make them behave in a transitive manner under default configuration options of Elyra i.e. when a condition is part of a chain it will enable/disable everything down the chain rather than just hiding the control. Support for this option has been removed. Option itself was not removed to preserve binary compatibility but it no longer has any effect.</dd>
-<dd>The default value is `false`.</dd>
-</dl>
+`--datasource-type` (string)
+:   The data source type. Required.
+
+`--accept-language` (string)
+:   The user's preferred locale identifier.
+
+    The default value is `en-US`.
+
+`--connection-properties` (bool)
+:   Whether to return information about connection properties.
+
+`--interaction-properties` (bool)
+:   Whether to return information about source and target interaction properties.
+
+`--discovery` (bool)
+:   Whether to return information about discovery capabilities.
+
+`--actions` (bool)
+:   Whether to return information about supported actions.
+
+`--entity-environment` (string)
+:   Specify the environment the data source type must support to be returned. The available environments are 'cloud', 'streams' and 'local'. If no entity.environment is specified, no filtering is applied. To specify multiple environments, use a comma-separated string, such as entity.environment=cloud,streams.
+
+`--entity-product` (string)
+:   Specify the product the data source type must support to be returned. The available products are 'catalog', 'cpd', 'datastage', 'dv', 'igc', 'mdi', 'ml' and 'studio'. If no entity.product is specified, no filtering is applied. To specify multiple products, use a comma-separated string, such as entity.product=catalog,studio.
+
+`--product-selector-scope` (string)
+:   Scope of ui-only product selector property. Applies to output under common_properties key. Genreated ui contains additional checkbox to switch between first of the requested products and the rest. If only a single one is given it switches between that product and remaining products supported by the data source.
+
+    Allowable values are: `global`, `context`.
+
+`--generate-transitive-conditions` (bool)
+:   Whether to generate extra conditions in common properties format that will make them behave in a transitive manner under default configuration options of Elyra i.e. when a condition is part of a chain it will enable/disable everything down the chain rather than just hiding the control. Support for this option has been removed. Option itself was not removed to preserve binary compatibility but it no longer has any effect.
+
+    The default value is `false`.
 
 <a id='datastage_flow_delete'></a>
 ## &#8226; datastage flow delete
@@ -2228,22 +2480,26 @@ If the deletion of the data flows and their runs will take some time to finish, 
          All the data flow runs associated with the data flows will also be deleted. If a data flow is still running, it will not be deleted unless the force parameter is set to true. If a data flow is still running and the force parameter is set to true, the call returns immediately with a 202 response. The related data flows are deleted after the data flow runs are stopped.
 
 ```sh
-cpdctl datastage flow delete --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--force FORCE] 
+cpdctl datastage flow delete --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--force FORCE] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--flow-id ([]string)</dt>
-<dd>The list of DataStage flow IDs to delete. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--force (bool)</dt>
-<dd>Whether to stop all running data flows. Running DataStage flows must be stopped before the DataStage flows can be deleted.</dd>
-</dl>
+`--flow-id` ([]string)
+:   The list of DataStage flow IDs to delete. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--force` (bool)
+:   Whether to stop all running data flows. Running DataStage flows must be stopped before the DataStage flows can be deleted.
 
 <a id='datastage_flow_list'></a>
 ## &#8226; datastage flow list
@@ -2267,30 +2523,38 @@ To sort the results, use one or more of the parameters  described in the followi
 | sort     | `sort=-metadata.create_time` (sort by descending creation time) |
 
 Multiple sort keys can be specified by delimiting them with a comma. For example, to sort in descending order on `create_time` and then in ascending order on name use: `sort=-metadata.create_time`,`+entity.name`.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
-cpdctl datastage flow list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--sort SORT] [--start START] [--limit LIMIT] [--name NAME] [--description DESCRIPTION] 
+cpdctl datastage flow list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--sort SORT] [--start START] [--limit LIMIT] [--name NAME] [--description DESCRIPTION] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--sort (string)</dt>
-<dd>The field to sort the results on, including whether to sort ascending (+) or descending (-), for example, sort=-metadata.create_time.</dd>
-<dt>--start (string)</dt>
-<dd>The page token indicating where to start paging from.</dd>
-<dt>--limit (int64)</dt>
-<dd>The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.</dd>
-<dt>--name (string)</dt>
-<dd>Filter results based on the specified name.</dd>
-<dt>--description (string)</dt>
-<dd>Filter results based on the specified description.</dd>
-</dl>
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--sort` (string)
+:   The field to sort the results on, including whether to sort ascending (+) or descending (-), for example, sort=-metadata.create_time.
+
+`--start` (string)
+:   The page token indicating where to start paging from.
+
+`--limit` (int64)
+:   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.
+
+`--name` (string)
+:   Filter results based on the specified name.
+
+`--description` (string)
+:   Filter results based on the specified description.
 
 <a id='datastage_flow_create'></a>
 ## &#8226; datastage flow create
@@ -2298,22 +2562,26 @@ cpdctl datastage flow list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [
 Creates a DataStage flow in the specified project or catalog (either `project_id` or `catalog_id` must be set). All subsequent calls to use the data flow must specify the project or catalog ID the data flow was created in.
 
 ```sh
-cpdctl datastage flow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage flow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--name (string)</dt>
-<dd>The data flow name. Required.</dd>
-<dt>--pipeline-flow (<a href="#cli-pipeline-json-example-schema-datastage">PipelineJSON</a>)</dt>
-<dd>Pipeline flow to be stored.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-</dl>
+`--name` (string)
+:   The data flow name. Required.
+
+`--pipeline-flow` (<a href="#cli-pipeline-json-example-schema-datastage">`PipelineJSON`</a>)
+:   Pipeline flow to be stored.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
 
 <a id='datastage_flow_get'></a>
 ## &#8226; datastage flow get
@@ -2321,20 +2589,23 @@ cpdctl datastage flow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--cata
 Lists the DataStage flow that is contained in the specified project. Attachments, metadata and a limited number of attributes from the entity of each DataStage flow is returned.
 
 ```sh
-cpdctl datastage flow get --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage flow get --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--flow-id (string)</dt>
-<dd>The DataStage flow ID to use. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-</dl>
+`--flow-id` (string)
+:   The DataStage flow ID to use. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
 
 <a id='datastage_flow_update'></a>
 ## &#8226; datastage flow update
@@ -2342,45 +2613,80 @@ cpdctl datastage flow get --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project
 Modifies a data flow in the specified project or catalog (either `project_id` or `catalog_id` must be set). All subsequent calls to use the data flow must specify the project or catalog ID the data flow was created in.
 
 ```sh
-cpdctl datastage flow update --flow-id FLOW-ID --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage flow update --flow-id FLOW-ID --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--flow-id (string)</dt>
-<dd>The DataStage flow ID to use. Required.</dd>
-<dt>--name (string)</dt>
-<dd>The data flow name. Required.</dd>
-<dt>--pipeline-flow (<a href="#cli-pipeline-json-example-schema-datastage">PipelineJSON</a>)</dt>
-<dd>Pipeline flow to be stored.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-</dl>
+`--flow-id` (string)
+:   The DataStage flow ID to use. Required.
+
+`--name` (string)
+:   The data flow name. Required.
+
+`--pipeline-flow` (<a href="#cli-pipeline-json-example-schema-datastage">`PipelineJSON`</a>)
+:   Pipeline flow to be stored.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
 
 <a id='datastage_flow_clone'></a>
 ## &#8226; datastage flow clone
 
-Create a DataStage flow in the specified project or catalog based on an existing DataStage flow in the same project or catalog.
+Create a DataStage flow in the specified project or catalog or space based on an existing DataStage flow in the same project or catalog or space.
 
 ```sh
-cpdctl datastage flow clone --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage flow clone --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--flow-id (string)</dt>
-<dd>The DataStage flow ID to use. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-</dl>
+`--flow-id` (string)
+:   The DataStage flow ID to use. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+<a id='datastage_flow_get-compile-status'></a>
+## &#8226; datastage flow get-compile-status
+
+Request compile status of the flow that was previously submitted for compile. Either project_id or catalog_id must be specified.
+
+```sh
+cpdctl datastage flow get-compile-status --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--enable-sql-pushdown ENABLE-SQL-PUSHDOWN] 
+```
+
+
+#### Command options
+
+`--flow-id` (string)
+:   The DataStage flow ID to use. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--enable-sql-pushdown` (bool)
+:   Whether to enable the SQL pushdown code generation or not.
 
 <a id='datastage_flow_compile'></a>
 ## &#8226; datastage flow compile
@@ -2388,22 +2694,29 @@ cpdctl datastage flow clone --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--proje
 Generate the runtime assets for a DataStage flow in the specified project or catalog for a specified runtime type. Either project_id or catalog_id must be specified.
 
 ```sh
-cpdctl datastage flow compile --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--runtime-type RUNTIME-TYPE] 
+cpdctl datastage flow compile --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--runtime-type RUNTIME-TYPE] [--enable-sql-pushdown ENABLE-SQL-PUSHDOWN] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--flow-id (string)</dt>
-<dd>The DataStage flow ID to use. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--runtime-type (string)</dt>
-<dd>The type of the runtime to use. e.g. dspxosh or Spark etc. If not provided queried from within pipeline flow if available otherwise default of dspxosh is used.</dd>
-</dl>
+`--flow-id` (string)
+:   The DataStage flow ID to use. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--runtime-type` (string)
+:   The type of the runtime to use. e.g. dspxosh or Spark etc. If not provided queried from within pipeline flow if available otherwise default of dspxosh is used.
+
+`--enable-sql-pushdown` (bool)
+:   Whether to enable the SQL pushdown code generation or not.
 
 <a id='datastage_subflow_delete'></a>
 ## &#8226; datastage subflow delete
@@ -2413,20 +2726,23 @@ Deletes the specified data subflows in a project or catalog (either `project_id`
 If the deletion of the data subflows will take some time to finish, then a 202 response will be returned and the deletion will continue asynchronously.
 
 ```sh
-cpdctl datastage subflow delete --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage subflow delete --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--subflow-id ([]string)</dt>
-<dd>The list of DataStage subflow IDs to delete. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-</dl>
+`--subflow-id` ([]string)
+:   The list of DataStage subflow IDs to delete. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
 
 <a id='datastage_subflow_list'></a>
 ## &#8226; datastage subflow list
@@ -2450,30 +2766,38 @@ To sort the results, use one or more of the parameters  described in the followi
 | sort     | `sort=-metadata.create_time` (sort by descending creation time) |
 
 Multiple sort keys can be specified by delimiting them with a comma. For example, to sort in descending order on `create_time` and then in ascending order on name use: `sort=-metadata.create_time`,`+entity.name`.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
-cpdctl datastage subflow list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--sort SORT] [--start START] [--limit LIMIT] [--name NAME] [--description DESCRIPTION] 
+cpdctl datastage subflow list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--sort SORT] [--start START] [--limit LIMIT] [--name NAME] [--description DESCRIPTION] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--sort (string)</dt>
-<dd>The field to sort the results on, including whether to sort ascending (+) or descending (-), for example, sort=-metadata.create_time.</dd>
-<dt>--start (string)</dt>
-<dd>The page token indicating where to start paging from.</dd>
-<dt>--limit (int64)</dt>
-<dd>The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.</dd>
-<dt>--name (string)</dt>
-<dd>Filter results based on the specified name.</dd>
-<dt>--description (string)</dt>
-<dd>Filter results based on the specified description.</dd>
-</dl>
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--sort` (string)
+:   The field to sort the results on, including whether to sort ascending (+) or descending (-), for example, sort=-metadata.create_time.
+
+`--start` (string)
+:   The page token indicating where to start paging from.
+
+`--limit` (int64)
+:   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.
+
+`--name` (string)
+:   Filter results based on the specified name.
+
+`--description` (string)
+:   Filter results based on the specified description.
 
 <a id='datastage_subflow_create'></a>
 ## &#8226; datastage subflow create
@@ -2481,22 +2805,26 @@ cpdctl datastage subflow list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID
 Creates a DataStage subflow in the specified project or catalog (either `project_id` or `catalog_id` must be set). All subsequent calls to use the data flow must specify the project or catalog ID the data flow was created in.
 
 ```sh
-cpdctl datastage subflow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage subflow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--name (string)</dt>
-<dd>The DataStage subflow name. Required.</dd>
-<dt>--pipeline-flow (<a href="#cli-pipeline-json-example-schema-datastage">PipelineJSON</a>)</dt>
-<dd>Pipeline flow to be stored.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-</dl>
+`--name` (string)
+:   The DataStage subflow name. Required.
+
+`--pipeline-flow` (<a href="#cli-pipeline-json-example-schema-datastage">`PipelineJSON`</a>)
+:   Pipeline flow to be stored.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
 
 <a id='datastage_subflow_get'></a>
 ## &#8226; datastage subflow get
@@ -2504,20 +2832,23 @@ cpdctl datastage subflow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--c
 Lists the DataStage subflow that is contained in the specified project. Attachments, metadata and a limited number of attributes from the entity of each DataStage flow is returned.
 
 ```sh
-cpdctl datastage subflow get --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage subflow get --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--subflow-id (string)</dt>
-<dd>The DataStage subflow ID to use. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-</dl>
+`--subflow-id` (string)
+:   The DataStage subflow ID to use. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
 
 <a id='datastage_subflow_update'></a>
 ## &#8226; datastage subflow update
@@ -2525,24 +2856,29 @@ cpdctl datastage subflow get --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID] [
 Modifies a data subflow in the specified project or catalog (either `project_id` or `catalog_id` must be set). All subsequent calls to use the data flow must specify the project or catalog ID the data flow was created in.
 
 ```sh
-cpdctl datastage subflow update --subflow-id SUBFLOW-ID --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage subflow update --subflow-id SUBFLOW-ID --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--subflow-id (string)</dt>
-<dd>The DataStage subflow ID to use. Required.</dd>
-<dt>--name (string)</dt>
-<dd>The DataStage subflow name. Required.</dd>
-<dt>--pipeline-flow (<a href="#cli-pipeline-json-example-schema-datastage">PipelineJSON</a>)</dt>
-<dd>Pipeline flow to be stored.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-</dl>
+`--subflow-id` (string)
+:   The DataStage subflow ID to use. Required.
+
+`--name` (string)
+:   The DataStage subflow name. Required.
+
+`--pipeline-flow` (<a href="#cli-pipeline-json-example-schema-datastage">`PipelineJSON`</a>)
+:   Pipeline flow to be stored.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
 
 <a id='datastage_subflow_clone'></a>
 ## &#8226; datastage subflow clone
@@ -2550,221 +2886,314 @@ cpdctl datastage subflow update --subflow-id SUBFLOW-ID --name NAME [--pipeline-
 Create a DataStage subflow in the specified project or catalog based on an existing DataStage subflow in the same project or catalog.
 
 ```sh
-cpdctl datastage subflow clone --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage subflow clone --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--subflow-id (string)</dt>
-<dd>The DataStage subflow ID to use. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-</dl>
+`--subflow-id` (string)
+:   The DataStage subflow ID to use. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
 
 <a id='datastage_xml-schema-library_list'></a>
 ## &#8226; datastage xml-schema-library list
 
-List existing DataStage XML schema libraries in the specified project or catalog (either `project_id` or `catalog_id` must be set).
+List existing DataStage XML schema libraries in the specified project, catalog, or space (either `project_id`, `catalog_id`, or `space_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage xml-schema-library list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id or project_id is required.</dd>
-</dl>
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
 <a id='datastage_xml-schema-library_create'></a>
 ## &#8226; datastage xml-schema-library create
 
-Creates a new DataStage XML schema library in the specified project or catalog (either `project_id` or `catalog_id` must be set).
+Creates a new DataStage XML schema library in the specified project, catalog, or space (either `project_id`, `catalog_id`, or `space_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library create --name NAME [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--folder FOLDER] [--description DESCRIPTION] 
+cpdctl datastage xml-schema-library create --name NAME [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--folder FOLDER] [--description DESCRIPTION] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--name (string)</dt>
-<dd>The name of the new XML schema library. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id or project_id is required.</dd>
-<dt>--folder (string)</dt>
-<dd>The folder that the new XML schema library belongs to.</dd>
-<dt>--description (string)</dt>
-<dd>The description of the new XML schema library.</dd>
-</dl>
+`--name` (string)
+:   The name of the new XML schema library. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
+
+`--folder` (string)
+:   The folder that the new XML schema library belongs to.
+
+`--description` (string)
+:   The description of the new XML schema library.
 
 <a id='datastage_xml-schema-library_delete'></a>
 ## &#8226; datastage xml-schema-library delete
 
-Delete a DataStage XML schema library in the specified project or catalog (either `project_id` or `catalog_id` must be set).
+Delete a DataStage XML schema library in the specified project, catalog, or space (either `project_id`, `catalog_id`, or `space_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library delete --library-id LIBRARY-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage xml-schema-library delete --library-id LIBRARY-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--library-id (string)</dt>
-<dd>The ID of the XML Schema Library. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id or project_id is required.</dd>
-</dl>
+`--library-id` (string)
+:   The ID of the XML Schema Library. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
 <a id='datastage_xml-schema-library_get'></a>
 ## &#8226; datastage xml-schema-library get
 
-Get the specify DataStage XML schema library in the specified project or catalog (either `project_id` or `catalog_id` must be set).
+Get the specify DataStage XML schema library in the specified project, catalog, or space (either `project_id`, `catalog_id`, or `space_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library get --library-id LIBRARY-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage xml-schema-library get --library-id LIBRARY-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--library-id (string)</dt>
-<dd>The ID of the XML Schema Library. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id or project_id is required.</dd>
-</dl>
+`--library-id` (string)
+:   The ID of the XML Schema Library. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
 <a id='datastage_xml-schema-library_upload'></a>
 ## &#8226; datastage xml-schema-library upload
 
-Upload a file to an existing DataStage XML schema library in the specified project or catalog (either `project_id` or `catalog_id` must be set). Thread unsafe.
+Upload a file to an existing DataStage XML schema library in the specified project, catalog, or space (either `project_id`, `catalog_id`, or `space_id` must be set). Thread unsafe.
 
 ```sh
-cpdctl datastage xml-schema-library upload --library-id LIBRARY-ID --body BODY [--file-name FILE-NAME] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage xml-schema-library upload --library-id LIBRARY-ID --body BODY [--file-name FILE-NAME] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--library-id (string)</dt>
-<dd>The ID of the XML Schema Library. Required.</dd>
-<dt>--body (io.ReadCloser)</dt>
-<dd>The content of the file to upload. Required.</dd>
-<dt>--file-name (string)</dt>
-<dd>The file name you want to upload to the specified XML schema library.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id or project_id is required.</dd>
-</dl>
+`--library-id` (string)
+:   The ID of the XML Schema Library. Required.
+
+`--body` (io.ReadCloser)
+:   The content of the file to upload. Required.
+
+`--file-name` (string)
+:   The file name you want to upload to the specified XML schema library.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
 <a id='datastage_xml-schema-library_clone'></a>
 ## &#8226; datastage xml-schema-library clone
 
-Clone a DataStage XML schema library based on the specify library id in the specified project or catalog (either `project_id` or `catalog_id` must be set).
+Clone a DataStage XML schema library based on the specify library id in the specified project, catalog, or space (either `project_id`, `catalog_id`, or `space_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library clone --library-id LIBRARY-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage xml-schema-library clone --library-id LIBRARY-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--library-id (string)</dt>
-<dd>The ID of the XML Schema Library. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id or project_id is required.</dd>
-</dl>
+`--library-id` (string)
+:   The ID of the XML Schema Library. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
 <a id='datastage_xml-schema-library_delete-files'></a>
 ## &#8226; datastage xml-schema-library delete-files
 
-Delete files from a DataStage XML schema library based on the file_names in the specified project or catalog (either `project_id` or `catalog_id` must be set). Thread unsafe.
+Delete files from a DataStage XML schema library based on the file_names in the specified project, catalog, or space (either `project_id`, `catalog_id`, or `space_id` must be set). Thread unsafe.
 
 ```sh
-cpdctl datastage xml-schema-library delete-files --file-name FILE-NAME --library-id LIBRARY-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage xml-schema-library delete-files --file-name FILE-NAME --library-id LIBRARY-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--file-name (string)</dt>
-<dd>The file names (path-dependent) you want to delete from the specified XML schema library. Multiple files can be specified by delimiting them with a comma. Skip files are not exist in this library. Required.</dd>
-<dt>--library-id (string)</dt>
-<dd>The ID of the XML Schema Library. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id or project_id is required.</dd>
-</dl>
+`--file-name` (string)
+:   The file names (path-dependent) you want to delete from the specified XML schema library. Multiple files can be specified by delimiting them with a comma. Skip files are not exist in this library. Required.
+
+`--library-id` (string)
+:   The ID of the XML Schema Library. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
 <a id='datastage_xml-schema-library_download'></a>
 ## &#8226; datastage xml-schema-library download
 
-Download file from a DataStage XML schema library based on the file_name in the specified project or catalog (either `project_id` or `catalog_id` must be set).
+Download file from a DataStage XML schema library based on the file_name in the specified project, catalog, or space (either `project_id`, `catalog_id`, or `space_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library download --library-id LIBRARY-ID [--file-name FILE-NAME] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage xml-schema-library download --library-id LIBRARY-ID [--file-name FILE-NAME] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--library-id (string)</dt>
-<dd>The ID of the XML Schema Library. Required.</dd>
-<dt>--file-name (string)</dt>
-<dd>The file name (path-dependent) you want to download from the specified XML schema library. If specified, only download the file. If not specified, download all files as a zip which maintain its original structure.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id or project_id is required.</dd>
-</dl>
+`--library-id` (string)
+:   The ID of the XML Schema Library. Required.
+
+`--file-name` (string)
+:   The file name (path-dependent) you want to download from the specified XML schema library. If specified, only download the file. If not specified, download all files as a zip which maintain its original structure.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
 <a id='datastage_xml-schema-library_rename'></a>
 ## &#8226; datastage xml-schema-library rename
 
-Rename a DataStage XML schema library based on the specify library id in the specified project or catalog (either `project_id` or `catalog_id` must be set).
+Rename a DataStage XML schema library based on the specify library id in the specified project, catalog, or space (either `project_id`, `catalog_id`, or `space_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library rename --library-id LIBRARY-ID --name NAME [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage xml-schema-library rename --library-id LIBRARY-ID --name NAME [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--library-id (string)</dt>
-<dd>The ID of the XML Schema Library. Required.</dd>
-<dt>--name (string)</dt>
-<dd>The new name of the XML schema library. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id or project_id is required.</dd>
-</dl>
+`--library-id` (string)
+:   The ID of the XML Schema Library. Required.
+
+`--name` (string)
+:   The new name of the XML schema library. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
+
+<a id='datastage_xml-schema-library_export-datastage-library-zip'></a>
+## &#8226; datastage xml-schema-library export-datastage-library-zip
+
+Export a XML Schema Library in zip format.
+
+```sh
+cpdctl datastage xml-schema-library export-datastage-library-zip --library-name LIBRARY-NAME [--folder FOLDER] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
+```
+
+
+#### Command options
+
+`--library-name` (string)
+:   The name of the XML schema library. Required.
+
+`--folder` (string)
+:   The folder of the XML schema library.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
+
+<a id='datastage_xml-schema-library_import-datastage-library-zip'></a>
+## &#8226; datastage xml-schema-library import-datastage-library-zip
+
+Import/create XML Schema Library from zip stream.
+
+```sh
+cpdctl datastage xml-schema-library import-datastage-library-zip --library-name LIBRARY-NAME --body BODY [--folder FOLDER] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
+```
+
+
+#### Command options
+
+`--library-name` (string)
+:   The name of the XML schema library. Required.
+
+`--body` (io.ReadCloser)
+:   &nbsp; Required.
+
+`--folder` (string)
+:   The folder of the XML schema library.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
 <a id='datastage_migration_create'></a>
 ## &#8226; datastage migration create
@@ -2772,40 +3201,54 @@ cpdctl datastage xml-schema-library rename --library-id LIBRARY-ID --name NAME [
 Creates data flows from the attached job export file. This is an asynchronous call. The API call returns almost immediately which does not necessarily imply the completion of the import request. It only means that the import request has been accepted. The status field of the import request is included in the import response object. The status "completed" ("in_progress", "failed", resp.) indicates the import request is completed (in progress, and failed, resp.) The job export file for an import request may contain one mor more data flows. Unless the on_failure option is set to "stop", a completed import request may contain not only successfully imported data flows but also data flows that cannot be imported.
 
 ```sh
-cpdctl datastage migration create --body BODY [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--on-failure ON-FAILURE] [--conflict-resolution CONFLICT-RESOLUTION] [--attachment-type ATTACHMENT-TYPE] [--file-name FILE-NAME] [--configuration CONFIGURATION] [--enable-notification ENABLE-NOTIFICATION] [--import-only IMPORT-ONLY] [--create-missing-parameters CREATE-MISSING-PARAMETERS] 
+cpdctl datastage migration create --body BODY [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--on-failure ON-FAILURE] [--conflict-resolution CONFLICT-RESOLUTION] [--attachment-type ATTACHMENT-TYPE] [--file-name FILE-NAME] [--enable-notification ENABLE-NOTIFICATION] [--import-only IMPORT-ONLY] [--create-missing-parameters CREATE-MISSING-PARAMETERS] [--enable-rulestage-integration ENABLE-RULESTAGE-INTEGRATION] [--enable-local-connection ENABLE-LOCAL-CONNECTION] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--body (io.ReadCloser)</dt>
-<dd>The ISX file to import. The maximum file size is 1GB. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--on-failure (string)</dt>
-<dd>Action when the first import failure occurs. The default action is "continue" which will continue importing the remaining data flows. The "stop" action will stop the import operation upon the first error.</dd>
-<dd>Allowable values are: continue, stop</dd>
-<dt>--conflict-resolution (string)</dt>
-<dd>Resolution when data flow to be imported has a name conflict with an existing data flow in the project or catalog. The default conflict resolution is "skip" will skip the data flow so that it will not be imported. The "rename" resolution will append "_Import_NNNN" suffix to the original name and use the new name for the imported data flow, while the "replace" resolution will first remove the existing data flow with the same name and import the new data flow. For the "rename_replace" option, when the flow name is already used, a new flow name with the suffix
-"_DATASTAGE_ISX_IMPORT" will be used. If the name is not currently used, the imported flow will be created with this name. In case the new name is already used, the existing flow will be removed  first before the imported flow is created. With the rename_replace option, job creation will be determined as follows. If the job name is already used, a new job name with the suffix ".DataStage job" will be used. If the new job name is not currently used, the job will be created with this name. In case the new job name is already used, the job creation will not happen and an error will be raised.</dd>
-<dd>Allowable values are: skip, rename, replace, rename_replace</dd>
-<dt>--attachment-type (string)</dt>
-<dd>Type of attachment. The default attachment type is "isx".</dd>
-<dd>Allowable values are: isx</dd>
-<dt>--file-name (string)</dt>
-<dd>Name of the input file, if it exists.</dd>
-<dt>--configuration (string)</dt>
-<dd>String in json format containing migration configuration properties. The example shows all the required configuration properties for the WaitForFile activity.</dd>
-<dt>--enable-notification (bool)</dt>
-<dd>enable/disable notification. Default value is true.</dd>
-<dt>--import-only (bool)</dt>
-<dd>Skip flow compilation.</dd>
-<dt>--create-missing-parameters (bool)</dt>
-<dd>Create missing parameter sets and job parameters.</dd>
-</dl>
+`--body` (io.ReadCloser)
+:   The ISX file to import. The maximum file size is 1GB. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `project_id` or `catalog_id` is required.
+
+`--on-failure` (string)
+:   Action when the first import failure occurs. The default action is "continue" which will continue importing the remaining data flows. The "stop" action will stop the import operation upon the first error.
+
+    Allowable values are: `continue`, `stop`.
+
+`--conflict-resolution` (string)
+:   Resolution when data flow to be imported has a name conflict with an existing data flow in the project or catalog. The default conflict resolution is "skip" will skip the data flow so that it will not be imported. The "rename" resolution will append "_Import_NNNN" suffix to the original name and use the new name for the imported data flow, while the "replace" resolution will first remove the existing data flow with the same name and import the new data flow. For the "rename_replace" option, when the flow name is already used, a new flow name with the suffix
+"_DATASTAGE_ISX_IMPORT" will be used. If the name is not currently used, the imported flow will be created with this name. In case the new name is already used, the existing flow will be removed  first before the imported flow is created. With the rename_replace option, job creation will be determined as follows. If the job name is already used, a new job name with the suffix ".DataStage job" will be used. If the new job name is not currently used, the job will be created with this name. In case the new job name is already used, the job creation will not happen and an error will be raised.
+
+    Allowable values are: `skip`, `rename`, `replace`, `rename_replace`.
+
+`--attachment-type` (string)
+:   Type of attachment. The default attachment type is "isx".
+
+    Allowable values are: `isx`.
+
+`--file-name` (string)
+:   Name of the input file, if it exists.
+
+`--enable-notification` (bool)
+:   enable/disable notification. Default value is true.
+
+`--import-only` (bool)
+:   Skip flow compilation.
+
+`--create-missing-parameters` (bool)
+:   Create missing parameter sets and job parameters.
+
+`--enable-rulestage-integration` (bool)
+:   enable/disable wkc rule stage migration. Default value is false.
+
+`--enable-local-connection` (bool)
+:   enable local connection migration. Default value is false.
 
 <a id='datastage_migration_delete'></a>
 ## &#8226; datastage migration delete
@@ -2819,14 +3262,14 @@ cpdctl datastage migration delete --import-id IMPORT-ID [--catalog-id CATALOG-ID
 
 #### Command options
 
-<dl>
-<dt>--import-id (string)</dt>
-<dd>Unique ID of the import request. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-</dl>
+`--import-id` (string)
+:   Unique ID of the import request. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `project_id` or `catalog_id` is required.
 
 <a id='datastage_migration_get'></a>
 ## &#8226; datastage migration get
@@ -2840,17 +3283,19 @@ cpdctl datastage migration get --import-id IMPORT-ID [--catalog-id CATALOG-ID] [
 
 #### Command options
 
-<dl>
-<dt>--import-id (string)</dt>
-<dd>Unique ID of the import request. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--format (string)</dt>
-<dd>format of isx import report.</dd>
-<dd>Allowable values are: json, csv</dd>
-</dl>
+`--import-id` (string)
+:   Unique ID of the import request. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `project_id` or `catalog_id` is required.
+
+`--format` (string)
+:   format of isx import report.
+
+    Allowable values are: `json`, `csv`.
 
 <a id='datastage_migration_export-flows-with-dependencies'></a>
 ## &#8226; datastage migration export-flows-with-dependencies
@@ -2858,24 +3303,29 @@ cpdctl datastage migration get --import-id IMPORT-ID [--catalog-id CATALOG-ID] [
 export flows with dependencies as a zip file.
 
 ```sh
-cpdctl datastage migration export-flows-with-dependencies --flows FLOWS [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--remove-secrets REMOVE-SECRETS] [--include-dependencies INCLUDE-DEPENDENCIES] 
+cpdctl datastage migration export-flows-with-dependencies --flows FLOWS [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--remove-secrets REMOVE-SECRETS] [--include-dependencies INCLUDE-DEPENDENCIES] [--id ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--flows (<a href="#cli-flow-dependency-tree-example-schema-datastage">FlowDependencyTree[]</a>)</dt>
-<dd>list of flows and their dependencies. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--remove-secrets (bool)</dt>
-<dd>remove secrets from exported flows.</dd>
-<dt>--include-dependencies (bool)</dt>
-<dd>include dependencies. If no dependencies are specified in the payload, all dependencies will be included.</dd>
-</dl>
+`--flows` (<a href="#cli-flow-dependency-tree-example-schema-datastage">`FlowDependencyTree[]`</a>)
+:   list of flows and their dependencies. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `project_id` or `catalog_id` is required.
+
+`--remove-secrets` (bool)
+:   remove secrets from exported flows.
+
+`--include-dependencies` (bool)
+:   include dependencies. If no dependencies are specified in the payload, all dependencies will be included.
+
+`--id` ([]string)
+:   The list of DataStage flow IDs to export.
 
 <a id='datastage_migration_create-from-zip'></a>
 ## &#8226; datastage migration create-from-zip
@@ -2883,36 +3333,43 @@ cpdctl datastage migration export-flows-with-dependencies --flows FLOWS [--catal
 Creates data flows from the attached job export file. This is an asynchronous call. The API call returns almost immediately which does not necessarily imply the completion of the import request. It only means that the import request has been accepted. The status field of the import request is included in the import response object. The status "completed" ("in_progress", "failed", resp.) indicates the import request is completed (in progress, and failed, resp.) The job export file for an import request may contain one mor more data flows. Unless the on_failure option is set to "stop", a completed import request may contain not only successfully imported data flows but also data flows that cannot be imported.
 
 ```sh
-cpdctl datastage migration create-from-zip --body BODY [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--on-failure ON-FAILURE] [--conflict-resolution CONFLICT-RESOLUTION] [--attachment-type ATTACHMENT-TYPE] [--file-name FILE-NAME] [--configuration CONFIGURATION] [--enable-notification ENABLE-NOTIFICATION] 
+cpdctl datastage migration create-from-zip --body BODY [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--on-failure ON-FAILURE] [--conflict-resolution CONFLICT-RESOLUTION] [--file-name FILE-NAME] [--enable-notification ENABLE-NOTIFICATION] [--import-only IMPORT-ONLY] [--include-dependencies INCLUDE-DEPENDENCIES] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--body (io.ReadCloser)</dt>
-<dd>The zip file to import. The maximum file size is 1GB. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--on-failure (string)</dt>
-<dd>Action when the first import failure occurs. The default action is "continue" which will continue importing the remaining data flows. The "stop" action will stop the import operation upon the first error.</dd>
-<dd>Allowable values are: continue, stop</dd>
-<dt>--conflict-resolution (string)</dt>
-<dd>Resolution when data flow to be imported has a name conflict with an existing data flow in the project or catalog. The default conflict resolution is "skip" will skip the data flow so that it will not be imported. The "rename" resolution will append "_Import_NNNN" suffix to the original name and use the new name for the imported data flow, while the "replace" resolution will first remove the existing data flow with the same name and import the new data flow. For the "rename_replace" option, when the flow name is already used, a new flow name with the suffix
-"_DATASTAGE_ISX_IMPORT" will be used. If the name is not currently used, the imported flow will be created with this name. In case the new name is already used, the existing flow will be removed  first before the imported flow is created. With the rename_replace option, job creation will be determined as follows. If the job name is already used, a new job name with the suffix ".DataStage job" will be used. If the new job name is not currently used, the job will be created with this name. In case the new job name is already used, the job creation will not happen and an error will be raised.</dd>
-<dd>Allowable values are: skip, rename, replace, rename_replace</dd>
-<dt>--attachment-type (string)</dt>
-<dd>Type of attachment. The default attachment type is "zip".</dd>
-<dd>Allowable values are: zip</dd>
-<dt>--file-name (string)</dt>
-<dd>Name of the input file, if it exists.</dd>
-<dt>--configuration (string)</dt>
-<dd>String in json format containing migration configuration properties. The example shows all the required configuration properties for the WaitForFile activity.</dd>
-<dt>--enable-notification (bool)</dt>
-<dd>enable/disable notification. Default value is true.</dd>
-</dl>
+`--body` (io.ReadCloser)
+:   The zip file to import. The maximum file size is 1GB. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `project_id` or `catalog_id` is required.
+
+`--on-failure` (string)
+:   Action when the first import failure occurs. The default action is "continue" which will continue importing the remaining data flows. The "stop" action will stop the import operation upon the first error.
+
+    Allowable values are: `continue`, `stop`.
+
+`--conflict-resolution` (string)
+:   Resolution when data flow to be imported has a name conflict with an existing data flow in the project or catalog. The default conflict resolution is "skip" will skip the data flow so that it will not be imported. The "rename" resolution will append "_Import_NNNN" suffix to the original name and use the new name for the imported data flow, while the "replace" resolution will first remove the existing data flow with the same name and import the new data flow. For the "rename_replace" option, when the flow name is already used, a new flow name with the suffix
+"_DATASTAGE_ISX_IMPORT" will be used. If the name is not currently used, the imported flow will be created with this name. In case the new name is already used, the existing flow will be removed  first before the imported flow is created. With the rename_replace option, job creation will be determined as follows. If the job name is already used, a new job name with the suffix ".DataStage job" will be used. If the new job name is not currently used, the job will be created with this name. In case the new job name is already used, the job creation will not happen and an error will be raised.
+
+    Allowable values are: `skip`, `rename`, `replace`, `rename_replace`.
+
+`--file-name` (string)
+:   Name of the input file, if it exists.
+
+`--enable-notification` (bool)
+:   enable/disable notification. Default value is true.
+
+`--import-only` (bool)
+:   Skip flow compilation.
+
+`--include-dependencies` (bool)
+:   If set to false, skip dependencies, only import flow. If not specified or set to true, import flow and dependencies.
 
 <a id='datastage_migration_delete-zip'></a>
 ## &#8226; datastage migration delete-zip
@@ -2926,14 +3383,14 @@ cpdctl datastage migration delete-zip --import-id IMPORT-ID [--catalog-id CATALO
 
 #### Command options
 
-<dl>
-<dt>--import-id (string)</dt>
-<dd>Unique ID of the import request. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-</dl>
+`--import-id` (string)
+:   Unique ID of the import request. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `project_id` or `catalog_id` is required.
 
 <a id='datastage_migration_get-zip'></a>
 ## &#8226; datastage migration get-zip
@@ -2947,17 +3404,19 @@ cpdctl datastage migration get-zip --import-id IMPORT-ID [--catalog-id CATALOG-I
 
 #### Command options
 
-<dl>
-<dt>--import-id (string)</dt>
-<dd>Unique ID of the import request. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--format (string)</dt>
-<dd>format of isx import report.</dd>
-<dd>Allowable values are: json, csv</dd>
-</dl>
+`--import-id` (string)
+:   Unique ID of the import request. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `project_id` or `catalog_id` is required.
+
+`--format` (string)
+:   format of isx import report.
+
+    Allowable values are: `json`, `csv`.
 
 <a id='datastage_table-definition_delete'></a>
 ## &#8226; datastage table-definition delete
@@ -2965,20 +3424,23 @@ cpdctl datastage migration get-zip --import-id IMPORT-ID [--catalog-id CATALOG-I
 Delete the specified table definitions from a project or catalog (either project_id or catalog_id must be set).
 
 ```sh
-cpdctl datastage table-definition delete --table-definition-id TABLE-DEFINITION-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage table-definition delete --table-definition-id TABLE-DEFINITION-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--table-definition-id ([]string)</dt>
-<dd>The list of table definitions IDs to delete. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id or project_id is required.</dd>
-</dl>
+`--table-definition-id` ([]string)
+:   The list of table definitions IDs to delete. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
 <a id='datastage_table-definition_list'></a>
 ## &#8226; datastage table-definition list
@@ -3000,31 +3462,40 @@ To sort the returned results, use one or more of the parameters described in the
 | metadata.create_time      | ?sort=-metadata.create_time         |
 
 Multiple sort keys can be specified by delimiting them with a comma. For example, to sort in descending order on create_time and then in ascending order on name use: `?sort=-metadata.create_time,+asset.name.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
-cpdctl datastage table-definition list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--sort SORT] [--start START] [--limit LIMIT] [--name NAME] [--description DESCRIPTION] 
+cpdctl datastage table-definition list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--sort SORT] [--start START] [--limit LIMIT] [--name NAME] [--description DESCRIPTION] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id or project_id is required.</dd>
-<dt>--sort (string)</dt>
-<dd>The field to sort the results on, including whether to sort ascending (+) or descending (-), for example, sort=-metadata.create_time.</dd>
-<dt>--start (string)</dt>
-<dd>The page token indicating where to start paging from.</dd>
-<dt>--limit (int64)</dt>
-<dd>The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.</dd>
-<dd>The minimum value is `1`.</dd>
-<dt>--name (string)</dt>
-<dd>Filter results based on the specified name.</dd>
-<dt>--description (string)</dt>
-<dd>Filter results based on the specified description.</dd>
-</dl>
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
+
+`--sort` (string)
+:   The field to sort the results on, including whether to sort ascending (+) or descending (-), for example, sort=-metadata.create_time.
+
+`--start` (string)
+:   The page token indicating where to start paging from.
+
+`--limit` (int64)
+:   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.
+
+    The minimum value is `1`.
+
+`--name` (string)
+:   Filter results based on the specified name.
+
+`--description` (string)
+:   Filter results based on the specified description.
 
 <a id='datastage_table-definition_create'></a>
 ## &#8226; datastage table-definition create
@@ -3032,25 +3503,31 @@ cpdctl datastage table-definition list [--catalog-id CATALOG-ID] [--project-id P
 Creates a table definition in the specified project or catalog (either project_id or catalog_id must be set). All subsequent calls to use the parameter set must specify the project or catalog ID the table definition was created in.
 
 ```sh
-cpdctl datastage table-definition create --entity ENTITY --metadata METADATA [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--asset-category ASSET-CATEGORY] 
+cpdctl datastage table-definition create --entity ENTITY --metadata METADATA [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--asset-category ASSET-CATEGORY] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--entity (<a href="#cli-table-definition-entity-example-schema-datastage">TableDefinitionEntity</a>)</dt>
-<dd>The underlying table definition. Required.</dd>
-<dt>--metadata (<a href="#cli-table-definition-metadata-example-schema-datastage">TableDefinitionMetadata</a>)</dt>
-<dd>System metadata about a table definition. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id or project_id is required.</dd>
-<dt>--asset-category (string)</dt>
-<dd>The category of the asset. Must be either SYSTEM or USER. Only a registered service can use this parameter.</dd>
-<dd>Allowable values are: SYSTEM, USER</dd>
-</dl>
+`--entity` (<a href="#cli-table-definition-entity-example-schema-datastage">`TableDefinitionEntity`</a>)
+:   The underlying table definition. Required.
+
+`--metadata` (<a href="#cli-table-definition-metadata-example-schema-datastage">`TableDefinitionMetadata`</a>)
+:   System metadata about a table definition. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
+
+`--asset-category` (string)
+:   The category of the asset. Must be either SYSTEM or USER. Only a registered service can use this parameter.
+
+    Allowable values are: `SYSTEM`, `USER`.
 
 <a id='datastage_table-definition_get'></a>
 ## &#8226; datastage table-definition get
@@ -3058,20 +3535,23 @@ cpdctl datastage table-definition create --entity ENTITY --metadata METADATA [--
 Get table definition.
 
 ```sh
-cpdctl datastage table-definition get --table-definition-id TABLE-DEFINITION-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage table-definition get --table-definition-id TABLE-DEFINITION-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--table-definition-id (string)</dt>
-<dd>Table definition ID. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id or project_id is required.</dd>
-</dl>
+`--table-definition-id` (string)
+:   Table definition ID. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
 <a id='datastage_table-definition_update'></a>
 ## &#8226; datastage table-definition update
@@ -3079,22 +3559,26 @@ cpdctl datastage table-definition get --table-definition-id TABLE-DEFINITION-ID 
 Patch a table definition in the specified project or catalog (either project_id or catalog_id must be set).
 
 ```sh
-cpdctl datastage table-definition update --table-definition-id TABLE-DEFINITION-ID --json-patch JSON-PATCH [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage table-definition update --table-definition-id TABLE-DEFINITION-ID --json-patch JSON-PATCH [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--table-definition-id (string)</dt>
-<dd>Table definition ID. Required.</dd>
-<dt>--json-patch (<a href="#cli-patch-document-example-schema-datastage">PatchDocument[]</a>)</dt>
-<dd>The patch operations to apply. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id or project_id is required.</dd>
-</dl>
+`--table-definition-id` (string)
+:   Table definition ID. Required.
+
+`--json-patch` (<a href="#cli-patch-document-example-schema-datastage">`PatchDocument[]`</a>)
+:   The patch operations to apply. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
 <a id='datastage_table-definition_replace'></a>
 ## &#8226; datastage table-definition replace
@@ -3102,24 +3586,29 @@ cpdctl datastage table-definition update --table-definition-id TABLE-DEFINITION-
 Replace the contents of a table definition in the specified project or catalog (either project_id or catalog_id must be set).
 
 ```sh
-cpdctl datastage table-definition replace --table-definition-id TABLE-DEFINITION-ID --entity ENTITY --metadata METADATA [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage table-definition replace --table-definition-id TABLE-DEFINITION-ID --entity ENTITY --metadata METADATA [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--table-definition-id (string)</dt>
-<dd>Table definition ID. Required.</dd>
-<dt>--entity (<a href="#cli-table-definition-entity-example-schema-datastage">TableDefinitionEntity</a>)</dt>
-<dd>The underlying table definition. Required.</dd>
-<dt>--metadata (<a href="#cli-table-definition-metadata-example-schema-datastage">TableDefinitionMetadata</a>)</dt>
-<dd>System metadata about a table definition. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id or project_id is required.</dd>
-</dl>
+`--table-definition-id` (string)
+:   Table definition ID. Required.
+
+`--entity` (<a href="#cli-table-definition-entity-example-schema-datastage">`TableDefinitionEntity`</a>)
+:   The underlying table definition. Required.
+
+`--metadata` (<a href="#cli-table-definition-metadata-example-schema-datastage">`TableDefinitionMetadata`</a>)
+:   System metadata about a table definition. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
 <a id='datastage_table-definition_clone'></a>
 ## &#8226; datastage table-definition clone
@@ -3127,20 +3616,23 @@ cpdctl datastage table-definition replace --table-definition-id TABLE-DEFINITION
 Clone table definition.
 
 ```sh
-cpdctl datastage table-definition clone --table-definition-id TABLE-DEFINITION-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] 
+cpdctl datastage table-definition clone --table-definition-id TABLE-DEFINITION-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--table-definition-id (string)</dt>
-<dd>Table definition ID. Required.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. catalog_id or project_id is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. catalog_id or project_id is required.</dd>
-</dl>
+`--table-definition-id` (string)
+:   Table definition ID. Required.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
+
+`--project-id` (string)
+:   The ID of the project to use. catalog_id, space_id, or project_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
 <a id='datastage_codegen_generate-buildop'></a>
 ## &#8226; datastage codegen generate-buildop
@@ -3148,38 +3640,50 @@ cpdctl datastage table-definition clone --table-definition-id TABLE-DEFINITION-I
 Generate the runtime assets for a DataStage buildop in the specified project or catalog for a specified runtime type. Either project_id or catalog_id must be specified.
 
 ```sh
-cpdctl datastage codegen generate-buildop --data-intg-bldop-id DATA-INTG-BLDOP-ID [--build BUILD] [--creator CREATOR] [--general GENERAL] [--properties PROPERTIES] [--schemas SCHEMAS] [--type TYPE] [--ui-data UI-DATA] [--wrapped WRAPPED] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--runtime-type RUNTIME-TYPE] 
+cpdctl datastage codegen generate-buildop --buildop-id BUILDOP-ID [--build BUILD] [--creator CREATOR] [--general GENERAL] [--properties PROPERTIES] [--schemas SCHEMAS] [--type TYPE] [--ui-data UI-DATA] [--wrapped WRAPPED] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--runtime-type RUNTIME-TYPE] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--data-intg-bldop-id (string)</dt>
-<dd>The DataStage BuildOp-Asset-ID to use. Required.</dd>
-<dt>--build (<a href="#cli-buildop-build-example-schema-datastage">BuildopBuild</a>)</dt>
-<dd>Build info.</dd>
-<dt>--creator (<a href="#cli-buildop-creator-example-schema-datastage">BuildopCreator</a>)</dt>
-<dd>Creator information.</dd>
-<dt>--general (<a href="#cli-buildop-general-example-schema-datastage">BuildopGeneral</a>)</dt>
-<dd>General information.</dd>
-<dt>--properties (<a href="#cli-buildop-properties-item-example-schema-datastage">BuildopPropertiesItem[]</a>)</dt>
-<dd>List of stage properties.</dd>
-<dt>--schemas ([]interface{})</dt>
-<dd>Array of data record schemas used in the buildop.</dd>
-<dt>--type (string)</dt>
-<dd>The operator type.</dd>
-<dt>--ui-data (interface{})</dt>
-<dd>UI data.</dd>
-<dt>--wrapped (<a href="#cli-buildop-wrapped-example-schema-datastage">BuildopWrapped</a>)</dt>
-<dd>Wrapped info.</dd>
-<dt>--catalog-id (string)</dt>
-<dd>The ID of the catalog to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. `catalog_id` or `project_id` is required.</dd>
-<dt>--runtime-type (string)</dt>
-<dd>The type of the runtime to use. e.g. dspxosh or Spark etc. If not provided queried from within pipeline flow if available otherwise default of dspxosh is used.</dd>
-</dl>
+`--buildop-id` (string)
+:   The DataStage BuildOp-Asset-ID to use. Required.
+
+`--build` (<a href="#cli-buildop-build-example-schema-datastage">`BuildopBuild`</a>)
+:   Build info.
+
+`--creator` (<a href="#cli-buildop-creator-example-schema-datastage">`BuildopCreator`</a>)
+:   Creator information.
+
+`--general` (<a href="#cli-buildop-general-example-schema-datastage">`BuildopGeneral`</a>)
+:   General information.
+
+`--properties` (<a href="#cli-buildop-properties-item-example-schema-datastage">`BuildopPropertiesItem[]`</a>)
+:   List of stage properties.
+
+`--schemas` ([]interface{})
+:   Array of data record schemas used in the buildop.
+
+`--type` (string)
+:   The operator type.
+
+`--ui-data` (interface{})
+:   UI data.
+
+`--wrapped` (<a href="#cli-buildop-wrapped-example-schema-datastage">`BuildopWrapped`</a>)
+:   Wrapped info.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--runtime-type` (string)
+:   The type of the runtime to use. e.g. dspxosh or Spark etc. If not provided queried from within pipeline flow if available otherwise default of dspxosh is used.
 
 <a id='environment_list'></a>
 ## &#8226; environment list
@@ -3193,20 +3697,23 @@ cpdctl environment list [--project-id PROJECT-ID] [--space-id SPACE-ID] [--types
 
 #### Command options
 
-<dl>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--types (string)</dt>
-<dd>Comma-separated list of environment types. Defaults to list of all types.</dd>
-<dt>--exclude-types (string)</dt>
-<dd>Comma-separated list of environment types. Takes precedence over types. Defaults to empty list.</dd>
-<dt>--exclude-languages (string)</dt>
-<dd>Comma-separated list of kernel names. Defaults to empty list.</dd>
-<dt>--spark-versions (string)</dt>
-<dd>Comma-separated list of Spark versions. If provided, the response only contains default_spark environments of that version. Defaults to all supported Spark versions.</dd>
-</dl>
+`--project-id` (string)
+:   The id of the project.
+
+`--space-id` (string)
+:   The id of the space.
+
+`--types` (string)
+:   Comma-separated list of environment types. Defaults to list of all types.
+
+`--exclude-types` (string)
+:   Comma-separated list of environment types. Takes precedence over types. Defaults to empty list.
+
+`--exclude-languages` (string)
+:   Comma-separated list of kernel names. Defaults to empty list.
+
+`--spark-versions` (string)
+:   Comma-separated list of Spark versions. If provided, the response only contains default_spark environments of that version. Defaults to all supported Spark versions.
 
 <a id='environment_create'></a>
 ## &#8226; environment create
@@ -3214,42 +3721,56 @@ cpdctl environment list [--project-id PROJECT-ID] [--space-id SPACE-ID] [--types
 Create a new environment.
 
 ```sh
-cpdctl environment create --display-name DISPLAY-NAME --name NAME --type TYPE [--authorization-variables AUTHORIZATION-VARIABLES] [--compute-specification COMPUTE-SPECIFICATION] [--description DESCRIPTION] [--environment-variables ENVIRONMENT-VARIABLES] [--hardware-specification HARDWARE-SPECIFICATION] [--location LOCATION] [--runtime-idle-time RUNTIME-IDLE-TIME] [--software-specification SOFTWARE-SPECIFICATION] [--tools-specification TOOLS-SPECIFICATION] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
+cpdctl environment create --display-name DISPLAY-NAME --hardware-specification HARDWARE-SPECIFICATION --name NAME --software-specification SOFTWARE-SPECIFICATION --type TYPE [--authorization-variables AUTHORIZATION-VARIABLES] [--compute-specification COMPUTE-SPECIFICATION] [--description DESCRIPTION] [--environment-variables ENVIRONMENT-VARIABLES] [--location LOCATION] [--runtime-definition RUNTIME-DEFINITION] [--runtime-idle-time RUNTIME-IDLE-TIME] [--tools-specification TOOLS-SPECIFICATION] [--project-id PROJECT-ID] [--space-id SPACE-ID] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--display-name (string)</dt>
-<dd>Display name of the environment. Required.</dd>
-<dt>--name (string)</dt>
-<dd>Name of the environment. Required.</dd>
-<dt>--type (string)</dt>
-<dd>Type of the environment. Required.</dd>
-<dt>--authorization-variables (generic map)</dt>
-<dd>Authorization variables for the environment.</dd>
-<dt>--compute-specification (generic map)</dt>
-<dd>Compute specification of the environment.</dd>
-<dt>--description (string)</dt>
-<dd>Description of the environment.</dd>
-<dt>--environment-variables (generic map)</dt>
-<dd>Environment variables for the environment.</dd>
-<dt>--hardware-specification (<a href="#cli-referenced-specification-example-schema-environment">ReferencedSpecification</a>)</dt>
-<dd>A pointer to a sub-specification that was defined elsewhere.</dd>
-<dt>--location (generic map)</dt>
-<dd>Runtime location for the environment.</dd>
-<dt>--runtime-idle-time (int64)</dt>
-<dd>Runtime idle timeout.</dd>
-<dt>--software-specification (<a href="#cli-referenced-specification-example-schema-environment">ReferencedSpecification</a>)</dt>
-<dd>A pointer to a sub-specification that was defined elsewhere.</dd>
-<dt>--tools-specification (generic map)</dt>
-<dd>Tools specification for the environment.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-</dl>
+`--display-name` (string)
+:   Display name of the environment. Required.
+
+`--hardware-specification` (<a href="#cli-referenced-specification-example-schema-environment">`ReferencedSpecification`</a>)
+:   A pointer to a sub-specification that was defined elsewhere. Required.
+
+`--name` (string)
+:   Name of the environment. Required.
+
+`--software-specification` (<a href="#cli-referenced-specification-example-schema-environment">`ReferencedSpecification`</a>)
+:   A pointer to a sub-specification that was defined elsewhere. Required.
+
+`--type` (string)
+:   Type of the environment. Required.
+
+`--authorization-variables` (generic map)
+:   Authorization variables for the environment.
+
+`--compute-specification` (generic map)
+:   Compute specification of the environment.
+
+`--description` (string)
+:   Description of the environment.
+
+`--environment-variables` (generic map)
+:   Environment variables for the environment.
+
+`--location` (generic map)
+:   Runtime location for the environment.
+
+`--runtime-definition` (string)
+:   Runtime definition for the environment.
+
+`--runtime-idle-time` (int64)
+:   Runtime idle timeout.
+
+`--tools-specification` (generic map)
+:   Tools specification for the environment.
+
+`--project-id` (string)
+:   The id of the project.
+
+`--space-id` (string)
+:   The id of the space.
 
 <a id='environment_delete'></a>
 ## &#8226; environment delete
@@ -3263,14 +3784,14 @@ cpdctl environment delete --environment-id ENVIRONMENT-ID [--project-id PROJECT-
 
 #### Command options
 
-<dl>
-<dt>--environment-id (string)</dt>
-<dd>The guid of the environment. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-</dl>
+`--environment-id` (string)
+:   The guid of the environment. Required.
+
+`--project-id` (string)
+:   The id of the project.
+
+`--space-id` (string)
+:   The id of the space.
 
 <a id='environment_get'></a>
 ## &#8226; environment get
@@ -3284,16 +3805,17 @@ cpdctl environment get --environment-id ENVIRONMENT-ID [--project-id PROJECT-ID]
 
 #### Command options
 
-<dl>
-<dt>--environment-id (string)</dt>
-<dd>The guid of the environment. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--response-format (string)</dt>
-<dd>Format the response. Defaults to none.</dd>
-</dl>
+`--environment-id` (string)
+:   The guid of the environment. Required.
+
+`--project-id` (string)
+:   The id of the project.
+
+`--space-id` (string)
+:   The id of the space.
+
+`--response-format` (string)
+:   Format the response. Defaults to none.
 
 <a id='environment_update'></a>
 ## &#8226; environment update
@@ -3307,34 +3829,44 @@ cpdctl environment update --environment-id ENVIRONMENT-ID --project-id PROJECT-I
 
 #### Command options
 
-<dl>
-<dt>--environment-id (string)</dt>
-<dd>The guid of the environment. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project. Required.</dd>
-<dt>--authorization-variables (generic map)</dt>
-<dd>Authorization variables for the environment.</dd>
-<dt>--compute-specification (generic map)</dt>
-<dd>Compute specification of the environment.</dd>
-<dt>--display-name (string)</dt>
-<dd>Display name of the environment.</dd>
-<dt>--environment-variables (generic map)</dt>
-<dd>Environment variables for the environment.</dd>
-<dt>--hardware-specification (generic map)</dt>
-<dd>Hardware specification of the environment.</dd>
-<dt>--location (generic map)</dt>
-<dd>Runtime location for the environment.</dd>
-<dt>--runtime-idle-time (int64)</dt>
-<dd>Runtime idle timeout.</dd>
-<dt>--software-specification (generic map)</dt>
-<dd>Software specification of the environment.</dd>
-<dt>--tools-specification (generic map)</dt>
-<dd>Tools specification for the environment.</dd>
-<dt>--description (string)</dt>
-<dd>Description of the environment.</dd>
-<dt>--name (string)</dt>
-<dd>Name of the environment.</dd>
-</dl>
+`--environment-id` (string)
+:   The guid of the environment. Required.
+
+`--project-id` (string)
+:   The id of the project. Required.
+
+`--authorization-variables` (generic map)
+:   Authorization variables for the environment.
+
+`--compute-specification` (generic map)
+:   Compute specification of the environment.
+
+`--display-name` (string)
+:   Display name of the environment.
+
+`--environment-variables` (generic map)
+:   Environment variables for the environment.
+
+`--hardware-specification` (generic map)
+:   Hardware specification of the environment.
+
+`--location` (generic map)
+:   Runtime location for the environment.
+
+`--runtime-idle-time` (int64)
+:   Runtime idle timeout.
+
+`--software-specification` (generic map)
+:   Software specification of the environment.
+
+`--tools-specification` (generic map)
+:   Tools specification for the environment.
+
+`--description` (string)
+:   Description of the environment.
+
+`--name` (string)
+:   Name of the environment.
 
 <a id='environment_hardware-specification_list'></a>
 ## &#8226; environment hardware-specification list
@@ -3355,14 +3887,14 @@ cpdctl environment hardware-specification list [--space-id SPACE-ID] [--project-
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the hardware specification. If specified, each of the hardware specification in the returned list will have the specified name.</dd>
-</dl>
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project.
+
+`--name` (string)
+:   The name of the hardware specification. If specified, each of the hardware specification in the returned list will have the specified name.
 
 <a id='environment_hardware-specification_create'></a>
 ## &#8226; environment hardware-specification create
@@ -3388,22 +3920,26 @@ cpdctl environment hardware-specification create --name NAME [--datastage DATAST
 
 #### Command options
 
-<dl>
-<dt>--name (string)</dt>
-<dd>Name of hardware specification. Required.</dd>
-<dt>--datastage (<a href="#cli-hardware-specification-data-stage-definition-example-schema-environment">HardwareSpecificationDataStageDefinition</a>)</dt>
-<dd>DataStage definition of hardware specification.</dd>
-<dt>--description (string)</dt>
-<dd>Description of hardware specification.</dd>
-<dt>--nodes (<a href="#cli-hardware-specification-nodes-definition-example-schema-environment">HardwareSpecificationNodesDefinition</a>)</dt>
-<dd>Compute node definition of hardware specification.</dd>
-<dt>--spark (<a href="#cli-hardware-specification-spark-definition-example-schema-environment">HardwareSpecificationSparkDefinition</a>)</dt>
-<dd>Spark definition of hardware specification.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project in which to create the hardware specification.</dd>
-</dl>
+`--name` (string)
+:   Name of hardware specification. Required.
+
+`--datastage` (<a href="#cli-hardware-specification-data-stage-definition-example-schema-environment">`HardwareSpecificationDataStageDefinition`</a>)
+:   DataStage definition of hardware specification.
+
+`--description` (string)
+:   Description of hardware specification.
+
+`--nodes` (<a href="#cli-hardware-specification-nodes-definition-example-schema-environment">`HardwareSpecificationNodesDefinition`</a>)
+:   Compute node definition of hardware specification.
+
+`--spark` (<a href="#cli-hardware-specification-spark-definition-example-schema-environment">`HardwareSpecificationSparkDefinition`</a>)
+:   Spark definition of hardware specification.
+
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project in which to create the hardware specification.
 
 <a id='environment_hardware-specification_delete'></a>
 ## &#8226; environment hardware-specification delete
@@ -3427,14 +3963,14 @@ cpdctl environment hardware-specification delete --hardware-specification-id HAR
 
 #### Command options
 
-<dl>
-<dt>--hardware-specification-id (string)</dt>
-<dd>The guid of the hardware specification. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-</dl>
+`--hardware-specification-id` (string)
+:   The guid of the hardware specification. Required.
+
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project.
 
 <a id='environment_hardware-specification_get'></a>
 ## &#8226; environment hardware-specification get
@@ -3462,14 +3998,14 @@ cpdctl environment hardware-specification get --hardware-specification-id HARDWA
 
 #### Command options
 
-<dl>
-<dt>--hardware-specification-id (string)</dt>
-<dd>The guid of the hardware specification. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-</dl>
+`--hardware-specification-id` (string)
+:   The guid of the hardware specification. Required.
+
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project.
 
 <a id='environment_hardware-specification_update'></a>
 ## &#8226; environment hardware-specification update
@@ -3493,46 +4029,62 @@ cpdctl environment hardware-specification update --hardware-specification-id HAR
 
 #### Command options
 
-<dl>
-<dt>--hardware-specification-id (string)</dt>
-<dd>The guid of the hardware specification. Required.</dd>
-<dt>--cpu-model (string)</dt>
-<dd>Model of CPU.</dd>
-<dt>--cpu-units (string)</dt>
-<dd>Number of CPUs.</dd>
-<dt>--gpu-name (string)</dt>
-<dd>Name of GPUs.</dd>
-<dt>--gpu-num (string)</dt>
-<dd>Number of GPUs.</dd>
-<dt>--mem-size (string)</dt>
-<dd>Size of memory (in Kubernetes size strings).</dd>
-<dt>--nodes-num (int64)</dt>
-<dd>Number of compute nodes.</dd>
-<dt>--spark-driver-cpu-model (string)</dt>
-<dd>Model of Spark driver CPUs.</dd>
-<dt>--spark-driver-cpu-units (string)</dt>
-<dd>Number of Spark driver CPUs.</dd>
-<dt>--spark-driver-mem-size (int64)</dt>
-<dd>Memory size of Spark driver.</dd>
-<dt>--spark-executor-cpu-model (string)</dt>
-<dd>Model of Spark executor CPUs.</dd>
-<dt>--spark-executor-cpu-units (string)</dt>
-<dd>Number of Spark executor CPUs.</dd>
-<dt>--spark-executor-mem-size (int64)</dt>
-<dd>Memory size of Spark executor.</dd>
-<dt>--spark-drivers-num (int64)</dt>
-<dd>Number of Spark drivers.</dd>
-<dt>--spark-executors-num (int64)</dt>
-<dd>Number of Spark executors.</dd>
-<dt>--description (string)</dt>
-<dd>Description of the hardware specification.</dd>
-<dt>--name (string)</dt>
-<dd>Name of the hardware specification.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-</dl>
+`--hardware-specification-id` (string)
+:   The guid of the hardware specification. Required.
+
+`--cpu-model` (string)
+:   Model of CPU.
+
+`--cpu-units` (string)
+:   Number of CPUs.
+
+`--gpu-name` (string)
+:   Name of GPUs.
+
+`--gpu-num` (string)
+:   Number of GPUs.
+
+`--mem-size` (string)
+:   Size of memory (in Kubernetes size strings).
+
+`--nodes-num` (int64)
+:   Number of compute nodes.
+
+`--spark-driver-cpu-model` (string)
+:   Model of Spark driver CPUs.
+
+`--spark-driver-cpu-units` (string)
+:   Number of Spark driver CPUs.
+
+`--spark-driver-mem-size` (int64)
+:   Memory size of Spark driver.
+
+`--spark-executor-cpu-model` (string)
+:   Model of Spark executor CPUs.
+
+`--spark-executor-cpu-units` (string)
+:   Number of Spark executor CPUs.
+
+`--spark-executor-mem-size` (int64)
+:   Memory size of Spark executor.
+
+`--spark-drivers-num` (int64)
+:   Number of Spark drivers.
+
+`--spark-executors-num` (int64)
+:   Number of Spark executors.
+
+`--description` (string)
+:   Description of the hardware specification.
+
+`--name` (string)
+:   Name of the hardware specification.
+
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project.
 
 <a id='environment_package-extension_list'></a>
 ## &#8226; environment package-extension list
@@ -3548,17 +4100,19 @@ cpdctl environment package-extension list [--space-id SPACE-ID] [--project-id PR
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-<dt>--name (string)</dt>
-<dd>Returning only those package extensions that have a particular name.</dd>
-<dt>--type (string)</dt>
-<dd>Returning only those package extensions that have a particular type.</dd>
-<dd>Allowable values are: conda_yml, pip_zip</dd>
-</dl>
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project.
+
+`--name` (string)
+:   Returning only those package extensions that have a particular name.
+
+`--type` (string)
+:   Returning only those package extensions that have a particular type.
+
+    Allowable values are: `conda_yml`, `pip_zip`.
 
 <a id='environment_package-extension_create'></a>
 ## &#8226; environment package-extension create
@@ -3575,19 +4129,22 @@ cpdctl environment package-extension create --name NAME --type TYPE [--descripti
 
 #### Command options
 
-<dl>
-<dt>--name (string)</dt>
-<dd>The name of the package extension. Should be unique. Required.</dd>
-<dt>--type (string)</dt>
-<dd>The type of the package extension. Required.</dd>
-<dd>Allowable values are: pip_zip, conda_yml</dd>
-<dt>--description (string)</dt>
-<dd>The description of the package extension. Can be any string.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project in which to create the package extension.</dd>
-</dl>
+`--name` (string)
+:   The name of the package extension. Should be unique. Required.
+
+`--type` (string)
+:   The type of the package extension. Required.
+
+    Allowable values are: `pip_zip`, `conda_yml`.
+
+`--description` (string)
+:   The description of the package extension. Can be any string.
+
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project in which to create the package extension.
 
 <a id='environment_package-extension_delete'></a>
 ## &#8226; environment package-extension delete
@@ -3603,14 +4160,14 @@ cpdctl environment package-extension delete --package-extension-id PACKAGE-EXTEN
 
 #### Command options
 
-<dl>
-<dt>--package-extension-id (string)</dt>
-<dd>The UUID v4 identifying the package extension. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-</dl>
+`--package-extension-id` (string)
+:   The UUID v4 identifying the package extension. Required.
+
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project.
 
 <a id='environment_package-extension_get'></a>
 ## &#8226; environment package-extension get
@@ -3626,14 +4183,14 @@ cpdctl environment package-extension get --package-extension-id PACKAGE-EXTENSIO
 
 #### Command options
 
-<dl>
-<dt>--package-extension-id (string)</dt>
-<dd>The UUID v4 identifying the package extension. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-</dl>
+`--package-extension-id` (string)
+:   The UUID v4 identifying the package extension. Required.
+
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project.
 
 <a id='environment_package-extension_update'></a>
 ## &#8226; environment package-extension update
@@ -3647,21 +4204,25 @@ cpdctl environment package-extension update --package-extension-id PACKAGE-EXTEN
 
 #### Command options
 
-<dl>
-<dt>--package-extension-id (string)</dt>
-<dd>A UUID v4 identifying the package extension. Required.</dd>
-<dt>--type (string)</dt>
-<dd>The type of the package extension. One would not normally want to change it.</dd>
-<dd>Allowable values are: conda_yml, pip_zip</dd>
-<dt>--description (string)</dt>
-<dd>A description of the package extension.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the package extension.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-</dl>
+`--package-extension-id` (string)
+:   A UUID v4 identifying the package extension. Required.
+
+`--type` (string)
+:   The type of the package extension. One would not normally want to change it.
+
+    Allowable values are: `conda_yml`, `pip_zip`.
+
+`--description` (string)
+:   A description of the package extension.
+
+`--name` (string)
+:   The name of the package extension.
+
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project.
 
 <a id='environment_package-extension_upload-complete'></a>
 ## &#8226; environment package-extension upload-complete
@@ -3677,14 +4238,56 @@ cpdctl environment package-extension upload-complete --package-extension-id PACK
 
 #### Command options
 
-<dl>
-<dt>--package-extension-id (string)</dt>
-<dd>A UUID v4 identifying the package extension. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-</dl>
+`--package-extension-id` (string)
+:   A UUID v4 identifying the package extension. Required.
+
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project.
+
+<a id='environment_runtime-definition_list'></a>
+## &#8226; environment runtime-definition list
+
+List all runtime definitions. Always includes all default runtime definitions. When specifying project_id also includes all runtime definitions scoped to that project; when the microservice was started with APP_ENV_RUNTIME_DEFINITIONS_LIST_ACCOUNT_SCOPED_ENABLED=true, also includes all runtime definitions scoped to the account the project is associated with. when secured by a user bearer token, the user must be granted view rights for the specified project. When secured by a service ID, the service ID must be whitelisted. Instead of a whitelisted serviceID, a request can be secured using by a whitelisted serviceToServiceToken using basic authentication.
+
+```sh
+cpdctl environment runtime-definition list [--project-id PROJECT-ID] [--runtime-type RUNTIME-TYPE] [--include INCLUDE] 
+```
+
+
+#### Command options
+
+`--project-id` (string)
+:   The id of the project.
+
+`--runtime-type` (string)
+:   The runtime type of the runtime definitions.
+
+`--include` (string)
+:   Opt-in more details to return. Possible value is 'launch_configuration'; when specified, the request must be secured by a service ID bearer token.
+
+<a id='environment_runtime-definition_get'></a>
+## &#8226; environment runtime-definition get
+
+Retrieve a particular runtime definition. When secured by a user bearer token, the user must be granted view rights for the project. When secured by a service ID, the service ID must be whitelisted. Instead of a whitelisted serviceID, a request can be secured using by a whitelisted serviceToServiceToken using basic authentication.
+
+```sh
+cpdctl environment runtime-definition get --runtime-definition-id RUNTIME-DEFINITION-ID [--project-id PROJECT-ID] [--include INCLUDE] 
+```
+
+
+#### Command options
+
+`--runtime-definition-id` (string)
+:   The UUID v4 identifying the runtime definition. Required.
+
+`--project-id` (string)
+:   Required for an account or project scoped runtime definition. The id of the project the runtime definition is queried for. For a project scoped runtime definition, must refer to that project. For an account scoped runtime definition, must refer to a project within that account.
+
+`--include` (string)
+:   Opt-in more details to return. Possible value is 'launch_configuration'; when specified, the request must be secured by a service ID bearer token.
 
 <a id='environment_software-specification_list'></a>
 ## &#8226; environment software-specification list
@@ -3705,16 +4308,17 @@ cpdctl environment software-specification list [--space-id SPACE-ID] [--project-
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-<dt>--include-packages (string)</dt>
-<dd>String of comma-separated package names that refers to the packages that a software specification should contain. If specified, each of the software specification in the returned list will contain all of the packages specified in the query.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the software specification. If specified, each of the software specification in the returned list will have the specified name.</dd>
-</dl>
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project.
+
+`--include-packages` (string)
+:   String of comma-separated package names that refers to the packages that a software specification should contain. If specified, each of the software specification in the returned list will contain all of the packages specified in the query.
+
+`--name` (string)
+:   The name of the software specification. If specified, each of the software specification in the returned list will have the specified name.
 
 <a id='environment_software-specification_create'></a>
 ## &#8226; environment software-specification create
@@ -3740,22 +4344,26 @@ cpdctl environment software-specification create --name NAME --software-configur
 
 #### Command options
 
-<dl>
-<dt>--name (string)</dt>
-<dd>Name of the software specification. Required.</dd>
-<dt>--software-configuration (<a href="#cli-software-specification-entity-software-configuration-definition-example-schema-environment">SoftwareSpecificationEntitySoftwareConfigurationDefinition</a>)</dt>
-<dd>Software configuration. Required.</dd>
-<dt>--base-software-specification (<a href="#cli-base-software-specification-reference-example-schema-environment">BaseSoftwareSpecificationReference</a>)</dt>
-<dd>A reference to a base software specification.</dd>
-<dt>--description (string)</dt>
-<dd>Description of the software specification.</dd>
-<dt>--package-extensions (<a href="#cli-package-extension-reference-example-schema-environment">PackageExtensionReference[]</a>)</dt>
-<dd>Package extensions of the software specification.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project in which to create the software specification.</dd>
-</dl>
+`--name` (string)
+:   Name of the software specification. Required.
+
+`--software-configuration` (<a href="#cli-software-specification-entity-software-configuration-definition-example-schema-environment">`SoftwareSpecificationEntitySoftwareConfigurationDefinition`</a>)
+:   Software configuration. Required.
+
+`--base-software-specification` (<a href="#cli-base-software-specification-reference-example-schema-environment">`BaseSoftwareSpecificationReference`</a>)
+:   A reference to a base software specification.
+
+`--description` (string)
+:   Description of the software specification.
+
+`--package-extensions` (<a href="#cli-package-extension-reference-example-schema-environment">`PackageExtensionReference[]`</a>)
+:   Package extensions of the software specification.
+
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project in which to create the software specification.
 
 <a id='environment_software-specification_delete'></a>
 ## &#8226; environment software-specification delete
@@ -3779,14 +4387,14 @@ cpdctl environment software-specification delete --software-specification-id SOF
 
 #### Command options
 
-<dl>
-<dt>--software-specification-id (string)</dt>
-<dd>The UUID v4 identifying the software specification. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project. The deleted software specification must be scoped to the specified project.</dd>
-</dl>
+`--software-specification-id` (string)
+:   The UUID v4 identifying the software specification. Required.
+
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project. The deleted software specification must be scoped to the specified project.
 
 <a id='environment_software-specification_get'></a>
 ## &#8226; environment software-specification get
@@ -3816,14 +4424,14 @@ cpdctl environment software-specification get --software-specification-id SOFTWA
 
 #### Command options
 
-<dl>
-<dt>--software-specification-id (string)</dt>
-<dd>The UUID v4 identifying the software specification. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-</dl>
+`--software-specification-id` (string)
+:   The UUID v4 identifying the software specification. Required.
+
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project.
 
 <a id='environment_software-specification_update'></a>
 ## &#8226; environment software-specification update
@@ -3848,20 +4456,23 @@ cpdctl environment software-specification update --software-specification-id SOF
 
 #### Command options
 
-<dl>
-<dt>--software-specification-id (string)</dt>
-<dd>A UUID v4 identifying the software specification. Required.</dd>
-<dt>--display-name (string)</dt>
-<dd>Software specification display name.</dd>
-<dt>--description (string)</dt>
-<dd>Software specification description.</dd>
-<dt>--name (string)</dt>
-<dd>Software specification name.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-</dl>
+`--software-specification-id` (string)
+:   A UUID v4 identifying the software specification. Required.
+
+`--display-name` (string)
+:   Software specification display name.
+
+`--description` (string)
+:   Software specification description.
+
+`--name` (string)
+:   Software specification name.
+
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project.
 
 <a id='environment_software-specification_remove-package-extensions'></a>
 ## &#8226; environment software-specification remove-package-extensions
@@ -3877,16 +4488,17 @@ cpdctl environment software-specification remove-package-extensions --software-s
 
 #### Command options
 
-<dl>
-<dt>--software-specification-id (string)</dt>
-<dd>A UUID v4 identifying the software specification. Required.</dd>
-<dt>--package-extension-id (string)</dt>
-<dd>A UUID v4 identifying the package extension. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-</dl>
+`--software-specification-id` (string)
+:   A UUID v4 identifying the software specification. Required.
+
+`--package-extension-id` (string)
+:   A UUID v4 identifying the package extension. Required.
+
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project.
 
 <a id='environment_software-specification_add-package-extensions'></a>
 ## &#8226; environment software-specification add-package-extensions
@@ -3907,43 +4519,42 @@ cpdctl environment software-specification add-package-extensions --software-spec
 
 #### Command options
 
-<dl>
-<dt>--software-specification-id (string)</dt>
-<dd>A UUID v4 identifying the software specification. Required.</dd>
-<dt>--package-extension-id (string)</dt>
-<dd>A UUID v4 identifying the package extension. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The id of the space.</dd>
-<dt>--project-id (string)</dt>
-<dd>The id of the project.</dd>
-</dl>
+`--software-specification-id` (string)
+:   A UUID v4 identifying the software specification. Required.
+
+`--package-extension-id` (string)
+:   A UUID v4 identifying the package extension. Required.
+
+`--space-id` (string)
+:   The id of the space.
+
+`--project-id` (string)
+:   The id of the project.
 
 <a id='find_'></a>
 ## &#8226; find 
-Find a resource with CPD Path
-
 ```sh
-  cpdctl find --cpd-path PATH
+   cpdctl find --cpd-path PATH
 ```
 #### Command options
 
-<dl>
-<dt>--asset-type string    </dt><dd>Asset type used when resolving paths with an asset ID only</dd>
-<dt>--ignore               </dt><dd>Ignore errors and return empty result (default: false)</dd>
-<dt>--name string          </dt><dd>Resource name</dd>
-<dt>--output json          </dt><dd>Choose an output format - can be json, `yaml`, or `table`. (default "table")</dd>
-<dt>--resource-type string </dt><dd>Resource type used when resolving paths with a resource ID only</dd>
-<dt>--result               </dt><dd>Include result metadata in output (default: false)</dd>
-</dl>
+`--asset-type` (string    )
+:    Asset type used when resolving paths with an asset ID only
 
-<a id='help_'></a>
-## &#8226; help 
-Help provides help for any command in the application.
-Simply type cpdctl help [path to command] for full details.
+`--ignore` (              )
+:    Ignore errors and return empty result (default: false)
 
-```sh
-  cpdctl help [command]
-```
+`--name` (string          )
+:    Resource name
+
+`--output` (json          )
+:    Choose an output format - can be json, `yaml`, or `table`. (default "table")
+
+`--resource-type` (string )
+:    Resource type used when resolving paths with a resource ID only
+
+`--result` (              )
+:    Include result metadata in output (default: false)
 
 <a id='job_list'></a>
 ## &#8226; job list
@@ -3957,22 +4568,26 @@ cpdctl job list [--project-id PROJECT-ID] [--space-id SPACE-ID] [--asset-ref ASS
 
 #### Command options
 
-<dl>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. project_id or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. project_id or space_id is required.</dd>
-<dt>--asset-ref (string)</dt>
-<dd>Optionally get all jobs associated with a particular asset.</dd>
-<dt>--asset-ref-type (string)</dt>
-<dd>Optionally get all jobs associated with the particular asset ref type.</dd>
-<dt>--run-id (string)</dt>
-<dd>The ID of the job run. Can be used to search parent job of a job run.</dd>
-<dt>--limit (int64)</dt>
-<dd>The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be used.</dd>
-<dt>--next (string)</dt>
-<dd>The optional 'next' field from the response in string format, can be used to get the next batch. The response can contain up to 200 results in a batch, if there are more results, a 'next' field is returned in the response which can be used to get the next batch.</dd>
-</dl>
+`--project-id` (string)
+:   The ID of the project to use. project_id or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. project_id or space_id is required.
+
+`--asset-ref` (string)
+:   Optionally get all jobs associated with a particular asset.
+
+`--asset-ref-type` (string)
+:   Optionally get all jobs associated with the particular asset ref type.
+
+`--run-id` (string)
+:   The ID of the job run. Can be used to search parent job of a job run.
+
+`--limit` (int64)
+:   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be used.
+
+`--next` (string)
+:   The optional 'next' field from the response in string format, can be used to get the next batch. The response can contain up to 200 results in a batch, if there are more results, a 'next' field is returned in the response which can be used to get the next batch.
 
 <a id='job_create'></a>
 ## &#8226; job create
@@ -3986,14 +4601,14 @@ cpdctl job create [--job JOB] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 
 #### Command options
 
-<dl>
-<dt>--job (<a href="#cli-job-post-body-job-example-schema-job">JobPostBodyJob</a>)</dt>
-<dd></dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. project_id or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. project_id or space_id is required.</dd>
-</dl>
+`--job` (<a href="#cli-job-post-body-job-example-schema-job">`JobPostBodyJob`</a>)
+:   &nbsp;
+
+`--project-id` (string)
+:   The ID of the project to use. project_id or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. project_id or space_id is required.
 
 <a id='job_serving-name'></a>
 ## &#8226; job serving-name
@@ -4007,10 +4622,8 @@ cpdctl job serving-name --name NAME
 
 #### Command options
 
-<dl>
-<dt>--name (string)</dt>
-<dd>The serving_name value of the job to be used in place of the job ID. Required.</dd>
-</dl>
+`--name` (string)
+:   The serving_name value of the job to be used in place of the job ID. Required.
 
 <a id='job_delete'></a>
 ## &#8226; job delete
@@ -4024,14 +4637,14 @@ cpdctl job delete --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-ID
 
 #### Command options
 
-<dl>
-<dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. project_id or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. project_id or space_id is required.</dd>
-</dl>
+`--job-id` (string)
+:   The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.
+
+`--project-id` (string)
+:   The ID of the project to use. project_id or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. project_id or space_id is required.
 
 <a id='job_get'></a>
 ## &#8226; job get
@@ -4045,14 +4658,14 @@ cpdctl job get --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
 
 #### Command options
 
-<dl>
-<dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. project_id or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. project_id or space_id is required.</dd>
-</dl>
+`--job-id` (string)
+:   The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.
+
+`--project-id` (string)
+:   The ID of the project to use. project_id or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. project_id or space_id is required.
 
 <a id='job_update'></a>
 ## &#8226; job update
@@ -4066,22 +4679,26 @@ cpdctl job update --job-id JOB-ID --body BODY [--project-id PROJECT-ID] [--space
 
 #### Command options
 
-<dl>
-<dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
-<dt>--body (<a href="#cli-json-patch-operation-example-schema-job">JSONPatchOperation[]</a>)</dt>
-<dd>Updates to make to the job run.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. project_id or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. project_id or space_id is required.</dd>
-<dt>--configuration (<a href="#cli-job-runtime-configuration-example-schema-job">JobRuntimeConfiguration</a>)</dt>
-<dd>Updated configuration.</dd>
-<dt>--description (string)</dt>
-<dd>Updated description.</dd>
-<dt>--name (string)</dt>
-<dd>Updated name.</dd>
-</dl>
+`--job-id` (string)
+:   The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.
+
+`--body` (<a href="#cli-json-patch-operation-example-schema-job">`JSONPatchOperation[]`</a>)
+:   Updates to make to the job run.
+
+`--project-id` (string)
+:   The ID of the project to use. project_id or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. project_id or space_id is required.
+
+`--configuration` (<a href="#cli-job-runtime-configuration-example-schema-job">`JobRuntimeConfiguration`</a>)
+:   Updated configuration.
+
+`--description` (string)
+:   Updated description.
+
+`--name` (string)
+:   Updated name.
 
 <a id='job_run_list'></a>
 ## &#8226; job run list
@@ -4095,20 +4712,25 @@ cpdctl job run list --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-
 
 #### Command options
 
-<dl>
-<dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. project_id or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. project_id or space_id is required.</dd>
-<dt>--next (string)</dt>
-<dd>The optional 'next' field from the response in string format, can be used to get the next batch. The response can contain up to 200 results in a batch, if there are more results, a 'next' field is returned in the response which can be used to get the next batch.</dd>
-<dt>--limit (int64)</dt>
-<dd>The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be used.</dd>
-<dt>--states ([]string)</dt>
-<dd>A list of comma-separated job run states. Availble values: Completed, Failed, Canceled, Starting, Running, Queued, Canceling, Paused, Resuming, CompletedWithWarnings, CompletedWithErrors.</dd>
-</dl>
+`--job-id` (string)
+:   The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.
+
+`--project-id` (string)
+:   The ID of the project to use. project_id or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. project_id or space_id is required.
+
+`--next` (string)
+:   The optional 'next' field from the response in string format, can be used to get the next batch. The response can contain up to 200 results in a batch, if there are more results, a 'next' field is returned in the response which can be used to get the next batch.
+
+`--limit` (int64)
+:   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be used.
+
+`--states` ([]string)
+:   A list of comma-separated job run states. Availble values: Completed, Failed, Canceled, Starting, Running, Queued, Canceling, Paused, Resuming, CompletedWithWarnings, CompletedWithErrors.
+
+    Allowable list items are: `Queued`, `Starting`, `Running`, `Paused`, `Resuming`, `Canceling`, `Canceled`, `Failed`, `Completed`, `CompletedWithErrors`, `CompletedWithWarnings`.
 
 <a id='job_run_create'></a>
 ## &#8226; job run create
@@ -4122,16 +4744,17 @@ cpdctl job run create --job-id JOB-ID --job-run JOB-RUN [--project-id PROJECT-ID
 
 #### Command options
 
-<dl>
-<dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
-<dt>--job-run (<a href="#cli-job-run-post-body-job-run-example-schema-job">JobRunPostBodyJobRun</a>)</dt>
-<dd> Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. project_id or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. project_id or space_id is required.</dd>
-</dl>
+`--job-id` (string)
+:   The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.
+
+`--job-run` (<a href="#cli-job-run-post-body-job-run-example-schema-job">`JobRunPostBodyJobRun`</a>)
+:   &nbsp; Required.
+
+`--project-id` (string)
+:   The ID of the project to use. project_id or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. project_id or space_id is required.
 
 <a id='job_run_delete'></a>
 ## &#8226; job run delete
@@ -4145,16 +4768,17 @@ cpdctl job run delete --job-id JOB-ID --run-id RUN-ID [--project-id PROJECT-ID] 
 
 #### Command options
 
-<dl>
-<dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
-<dt>--run-id (string)</dt>
-<dd>The ID of the job run. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. project_id or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. project_id or space_id is required.</dd>
-</dl>
+`--job-id` (string)
+:   The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.
+
+`--run-id` (string)
+:   The ID of the job run. Required.
+
+`--project-id` (string)
+:   The ID of the project to use. project_id or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. project_id or space_id is required.
 
 <a id='job_run_get'></a>
 ## &#8226; job run get
@@ -4168,16 +4792,17 @@ cpdctl job run get --job-id JOB-ID --run-id RUN-ID [--project-id PROJECT-ID] [--
 
 #### Command options
 
-<dl>
-<dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
-<dt>--run-id (string)</dt>
-<dd>The ID of the job run. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. project_id or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. project_id or space_id is required.</dd>
-</dl>
+`--job-id` (string)
+:   The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.
+
+`--run-id` (string)
+:   The ID of the job run. Required.
+
+`--project-id` (string)
+:   The ID of the project to use. project_id or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. project_id or space_id is required.
 
 <a id='job_run_cancel'></a>
 ## &#8226; job run cancel
@@ -4191,18 +4816,20 @@ cpdctl job run cancel --job-id JOB-ID --run-id RUN-ID --body BODY [--project-id 
 
 #### Command options
 
-<dl>
-<dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
-<dt>--run-id (string)</dt>
-<dd>The ID of the job run. Required.</dd>
-<dt>--body (generic map)</dt>
-<dd>An empty body. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. project_id or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. project_id or space_id is required.</dd>
-</dl>
+`--job-id` (string)
+:   The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.
+
+`--run-id` (string)
+:   The ID of the job run. Required.
+
+`--body` (generic map)
+:   An empty body. Required.
+
+`--project-id` (string)
+:   The ID of the project to use. project_id or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. project_id or space_id is required.
 
 <a id='job_run_logs'></a>
 ## &#8226; job run logs
@@ -4216,18 +4843,20 @@ cpdctl job run logs --job-id JOB-ID --run-id RUN-ID [--project-id PROJECT-ID] [-
 
 #### Command options
 
-<dl>
-<dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
-<dt>--run-id (string)</dt>
-<dd>The ID of the job run. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. project_id or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. project_id or space_id is required.</dd>
-<dt>--limit (int64)</dt>
-<dd>The limit of the number of lines to return, for example limit=50. If not specified, all log will be returned.</dd>
-</dl>
+`--job-id` (string)
+:   The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.
+
+`--run-id` (string)
+:   The ID of the job run. Required.
+
+`--project-id` (string)
+:   The ID of the project to use. project_id or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. project_id or space_id is required.
+
+`--limit` (int64)
+:   The limit of the number of lines to return, for example limit=50. If not specified, all log will be returned.
 
 <a id='job_run_pause'></a>
 ## &#8226; job run pause
@@ -4241,18 +4870,20 @@ cpdctl job run pause --job-id JOB-ID --run-id RUN-ID --body BODY [--project-id P
 
 #### Command options
 
-<dl>
-<dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
-<dt>--run-id (string)</dt>
-<dd>The ID of the job run. Required.</dd>
-<dt>--body (generic map)</dt>
-<dd>An empty body. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. project_id or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. project_id or space_id is required.</dd>
-</dl>
+`--job-id` (string)
+:   The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.
+
+`--run-id` (string)
+:   The ID of the job run. Required.
+
+`--body` (generic map)
+:   An empty body. Required.
+
+`--project-id` (string)
+:   The ID of the project to use. project_id or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. project_id or space_id is required.
 
 <a id='job_run_resume'></a>
 ## &#8226; job run resume
@@ -4266,54 +4897,71 @@ cpdctl job run resume --job-id JOB-ID --run-id RUN-ID --body BODY [--project-id 
 
 #### Command options
 
-<dl>
-<dt>--job-id (string)</dt>
-<dd>The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.</dd>
-<dt>--run-id (string)</dt>
-<dd>The ID of the job run. Required.</dd>
-<dt>--body (generic map)</dt>
-<dd>An empty body. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The ID of the project to use. project_id or space_id is required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The ID of the space to use. project_id or space_id is required.</dd>
-</dl>
+`--job-id` (string)
+:   The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.
+
+`--run-id` (string)
+:   The ID of the job run. Required.
+
+`--body` (generic map)
+:   An empty body. Required.
+
+`--project-id` (string)
+:   The ID of the project to use. project_id or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. project_id or space_id is required.
 
 <a id='job_run_wait'></a>
 ## &#8226; job run wait
 Wait until the job run becomes completed, failed, or canceled.
 
 ```sh
-  cpdctl job run wait --job-id JOB_ID --run-id RUN_ID [--project-id PROJECT_ID] [--space-id SPACE_ID]
+   cpdctl job run wait --job-id JOB_ID --run-id RUN_ID [--project-id PROJECT_ID] [--space-id SPACE_ID]
 ```
 #### Command options
 
-<dl>
-<dt>--cpd-scope string  </dt><dd>CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--job-id string     </dt><dd>The ID of the job to use. Each job has a unique ID.</dd>
-<dt>--project-id string </dt><dd>The ID of the project to use. project-id or space-id is required.</dd>
-<dt>--run-id string     </dt><dd>The ID of the job run.</dd>
-<dt>--space-id string   </dt><dd>The ID of the space to use. project-id or space-id is required.</dd>
-</dl>
+`--cpd-scope` (string  )
+:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--job-id` (string     )
+:    The ID of the job to use. Each job has a unique ID.
+
+`--project-id` (string )
+:    The ID of the project to use. project-id or space-id is required.
+
+`--run-id` (string     )
+:    The ID of the job run.
+
+`--space-id` (string   )
+:    The ID of the space to use. project-id or space-id is required.
 
 <a id='job_run_download-results'></a>
 ## &#8226; job run download-results
 Downloads the results of the complete job run to the locations pointed in `outputs`, which defines a output map (e.g. 'VAR1=/tml/outputs/var1
-VAR2=/tml/outputs/var2').
 
 ```sh
-  cpdctl job run download-results --outputs OUTPUTS --run-id RUN_ID [--project-id PROJECT_ID] [--space-id SPACE_ID]
+   cpdctl job run download-results --outputs OUTPUTS --run-id RUN_ID [--project-id PROJECT_ID] [--space-id SPACE_ID]
 ```
 #### Command options
 
-<dl>
-<dt>--cpd-scope string  </dt><dd>CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--outputs string    </dt><dd>The list of results to be downloaded (JSON array with objects: '{"name": "<variable-name>", "path": "<output-path>"}').</dd>
-<dt>--progress          </dt><dd>Show download progress. (default true)</dd>
-<dt>--project-id string </dt><dd>The ID of the project to use. project-id or space-id is required.</dd>
-<dt>--run-id string     </dt><dd>The ID of the job run.</dd>
-<dt>--space-id string   </dt><dd>The ID of the space to use. project-id or space-id is required.</dd>
-</dl>
+`--cpd-scope` (string  )
+:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--outputs` (string    )
+:    The list of results to be downloaded (JSON array with objects: '{"name": "<variable-name>", "path": "<output-path>"}').
+
+`--progress` (         )
+:    Show download progress. (default true)
+
+`--project-id` (string )
+:    The ID of the project to use. project-id or space-id is required.
+
+`--run-id` (string     )
+:    The ID of the job run.
+
+`--space-id` (string   )
+:    The ID of the space to use. project-id or space-id is required.
 
 <a id='ml_deployment_create'></a>
 ## &#8226; ml deployment create
@@ -4341,34 +4989,43 @@ cpdctl ml deployment create --space-id SPACE-ID [--tags TAGS] [--name NAME] [--d
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Required.</dd>
-<dt>--tags ([]string)</dt>
-<dd>Tags that can be used when searching for resources.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the deployment.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the deployment.</dd>
-<dt>--custom (generic map)</dt>
-<dd>User defined properties specified as key-value pairs.</dd>
-<dt>--asset (<a href="#cli-rel-example-schema-ml">Rel</a>)</dt>
-<dd>A reference to a resource.</dd>
-<dt>--hardware-spec (<a href="#cli-hardware-spec-rel-example-schema-ml">HardwareSpecRel</a>)</dt>
-<dd>A hardware specification.</dd>
-<dt>--hybrid-pipeline-hardware-specs (<a href="#cli-job-entity-result-hybrid-pipeline-hardware-specs-item-example-schema-ml">JobEntityResultHybridPipelineHardwareSpecsItem[]</a>)</dt>
-<dd>Hybrid pipeline hardware specification.</dd>
-<dt>--online (<a href="#cli-deployment-entity-request-online-example-schema-ml">DeploymentEntityRequestOnline</a>)</dt>
-<dd>Indicates that this is an online deployment. An empty object has to be specified.
+`--space-id` (string)
+:   The space that contains the resource. Required.
+
+`--tags` ([]string)
+:   Tags that can be used when searching for resources.
+
+`--name` (string)
+:   The name of the deployment.
+
+`--description` (string)
+:   A description of the deployment.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
+
+`--asset` (<a href="#cli-rel-example-schema-ml">`Rel`</a>)
+:   A reference to a resource.
+
+`--hardware-spec` (<a href="#cli-hardware-spec-rel-example-schema-ml">`HardwareSpecRel`</a>)
+:   A hardware specification.
+
+`--hybrid-pipeline-hardware-specs` (<a href="#cli-job-entity-result-hybrid-pipeline-hardware-specs-item-example-schema-ml">`JobEntityResultHybridPipelineHardwareSpecsItem[]`</a>)
+:   Hybrid pipeline hardware specification.
+
+`--online` (<a href="#cli-deployment-entity-request-online-example-schema-ml">`DeploymentEntityRequestOnline`</a>)
+:   Indicates that this is an online deployment. An empty object has to be specified.
 More properties will be added later on to setup the online deployment.
 The `serving_name` can be provided in the `online.parameters`. The serving name can only have the characters [a-z,0-9,_] 
-and the length should not be more than 36 characters. The `serving_name` can be used in the prediction URL in place of the `deployment_id`.</dd>
-<dt>--batch (<a href="#cli-deployment-entity-request-batch-example-schema-ml">DeploymentEntityRequestBatch</a>)</dt>
-<dd>Indicates that this is a batch deployment. An empty object has to be specified.
-More properties will be added later on to setup the batch deployment.</dd>
-<dt>--r-shiny (<a href="#cli-deployment-entity-request-r-shiny-example-schema-ml">DeploymentEntityRequestRShiny</a>)</dt>
-<dd>Indicates that this is a Shiny application deployment.</dd>
-</dl>
+and the length should not be more than 36 characters. The `serving_name` can be used in the prediction URL in place of the `deployment_id`.
+If the online scoring schema has a `type` of `DataFrame` then the scoring payload will be converted to a `Pandas` data frame.
+
+`--batch` (<a href="#cli-deployment-entity-request-batch-example-schema-ml">`DeploymentEntityRequestBatch`</a>)
+:   Indicates that this is a batch deployment. An empty object has to be specified.
+More properties will be added later on to setup the batch deployment.
+
+`--r-shiny` (<a href="#cli-deployment-entity-request-r-shiny-example-schema-ml">`DeploymentEntityRequestRShiny`</a>)
+:   Indicates that this is a Shiny application deployment.
 
 <a id='ml_deployment_list'></a>
 ## &#8226; ml deployment list
@@ -4382,27 +5039,34 @@ cpdctl ml deployment list [--space-id SPACE-ID] [--serving-name SERVING-NAME] [-
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>Retrieves the deployments that belong to this space.</dd>
-<dt>--serving-name (string)</dt>
-<dd>Retrieves the deployment, if any, that contains this `serving_name`.</dd>
-<dt>--tag-value (string)</dt>
-<dd>Retrieves only the resources with the given tag value.</dd>
-<dt>--asset-id (string)</dt>
-<dd>Retrieves only the resources with the given asset_id, asset_id would be either model_id or function_id.</dd>
-<dt>--name (string)</dt>
-<dd>Retrieves only the resources with the given name.</dd>
-<dt>--type (string)</dt>
-<dd>Retrieves the resources filtered with the given type. Allowed values are `model`, `function`, `py_script`, `r_shiny` and `do`.</dd>
-<dt>--state (string)</dt>
-<dd>Retrieves the resources filtered by state. Allowed values are `initializing`, `updating`, `ready` and `failed`.</dd>
-<dt>--stats (bool)</dt>
-<dd>Returns stats about deployments within a space or across spaces if it is set to true. This query parameter cannot be combined with any other except for 'space_id'.</dd>
-<dt>--conflict (bool)</dt>
-<dd>Returns whether serving_name is available for use or not. This query parameter cannot be combined with any other except for 'serving_name'.</dd>
-<dd>The default value is `false`.</dd>
-</dl>
+`--space-id` (string)
+:   Retrieves the deployments that belong to this space.
+
+`--serving-name` (string)
+:   Retrieves the deployment, if any, that contains this `serving_name`.
+
+`--tag-value` (string)
+:   Retrieves only the resources with the given tag value.
+
+`--asset-id` (string)
+:   Retrieves only the resources with the given asset_id, asset_id would be either model_id or function_id.
+
+`--name` (string)
+:   Retrieves only the resources with the given name.
+
+`--type` (string)
+:   Retrieves the resources filtered with the given type. Allowed values are `model`, `function`, `py_script`, `r_shiny` and `do`.
+
+`--state` (string)
+:   Retrieves the resources filtered by state. Allowed values are `initializing`, `updating`, `ready` and `failed`.
+
+`--stats` (bool)
+:   Returns stats about deployments within a space or across spaces if it is set to true. This query parameter cannot be combined with any other except for 'space_id'.
+
+`--conflict` (bool)
+:   Returns whether serving_name is available for use or not. This query parameter cannot be combined with any other except for 'serving_name'.
+
+    The default value is `false`.
 
 <a id='ml_deployment_get'></a>
 ## &#8226; ml deployment get
@@ -4416,12 +5080,11 @@ cpdctl ml deployment get --deployment-id DEPLOYMENT-ID --space-id SPACE-ID
 
 #### Command options
 
-<dl>
-<dt>--deployment-id (string)</dt>
-<dd>The deployment id. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>Retrieves the deployments of assets that belong to this space. Required.</dd>
-</dl>
+`--deployment-id` (string)
+:   The deployment id. Required.
+
+`--space-id` (string)
+:   Retrieves the deployments of assets that belong to this space. Required.
 
 <a id='ml_deployment_delete'></a>
 ## &#8226; ml deployment delete
@@ -4435,12 +5098,11 @@ cpdctl ml deployment delete --deployment-id DEPLOYMENT-ID --space-id SPACE-ID
 
 #### Command options
 
-<dl>
-<dt>--deployment-id (string)</dt>
-<dd>The deployment id. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>Retrieves the deployments of assets that belong to this space. Required.</dd>
-</dl>
+`--deployment-id` (string)
+:   The deployment id. Required.
+
+`--space-id` (string)
+:   Retrieves the deployments of assets that belong to this space. Required.
 
 <a id='ml_deployment_update'></a>
 ## &#8226; ml deployment update
@@ -4476,30 +5138,38 @@ cpdctl ml deployment update --deployment-id DEPLOYMENT-ID --space-id SPACE-ID --
 
 #### Command options
 
-<dl>
-<dt>--deployment-id (string)</dt>
-<dd>The deployment id. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>Retrieves the deployments of assets that belong to this space. Required.</dd>
-<dt>--json-patch (<a href="#cli-json-patch-operation-example-schema-ml">JSONPatchOperation[]</a>)</dt>
-<dd>The json patch.</dd>
-<dt>--tags ([]string)</dt>
-<dd>A list of tags for this resource.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the resource.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the resource.</dd>
-<dt>--custom (generic map)</dt>
-<dd>User defined properties specified as key-value pairs.</dd>
-<dt>--asset (<a href="#cli-rel-example-schema-ml">Rel</a>)</dt>
-<dd>A reference to a resource.</dd>
-<dt>--hardware-spec (<a href="#cli-hardware-spec-rel-example-schema-ml">HardwareSpecRel</a>)</dt>
-<dd>A hardware specification.</dd>
-<dt>--hybrid-pipeline-hardware-specs (<a href="#cli-job-entity-result-hybrid-pipeline-hardware-specs-item-example-schema-ml">JobEntityResultHybridPipelineHardwareSpecsItem[]</a>)</dt>
-<dd>Hybrid pipeline hardware specification.</dd>
-<dt>--r-shiny (<a href="#cli-deployment-patch-request-helper-r-shiny-example-schema-ml">DeploymentPatchRequestHelperRShiny</a>)</dt>
-<dd>Specify this section if deploying an Shiny application.</dd>
-</dl>
+`--deployment-id` (string)
+:   The deployment id. Required.
+
+`--space-id` (string)
+:   Retrieves the deployments of assets that belong to this space. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
+:   The json patch.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--name` (string)
+:   The name of the resource.
+
+`--description` (string)
+:   A description of the resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
+
+`--asset` (<a href="#cli-rel-example-schema-ml">`Rel`</a>)
+:   A reference to a resource.
+
+`--hardware-spec` (<a href="#cli-hardware-spec-rel-example-schema-ml">`HardwareSpecRel`</a>)
+:   A hardware specification.
+
+`--hybrid-pipeline-hardware-specs` (<a href="#cli-job-entity-result-hybrid-pipeline-hardware-specs-item-example-schema-ml">`JobEntityResultHybridPipelineHardwareSpecsItem[]`</a>)
+:   Hybrid pipeline hardware specification.
+
+`--r-shiny` (<a href="#cli-deployment-patch-request-helper-r-shiny-example-schema-ml">`DeploymentPatchRequestHelperRShiny`</a>)
+:   Specify this section if deploying an Shiny application.
 
 <a id='ml_deployment_compute-predictions'></a>
 ## &#8226; ml deployment compute-predictions
@@ -4513,27 +5183,29 @@ cpdctl ml deployment compute-predictions --deployment-id DEPLOYMENT-ID --input-d
 
 #### Command options
 
-<dl>
-<dt>--deployment-id (string)</dt>
-<dd>The `deployment_id` can be either the `deployment_id` that identifies the deployment or a `serving_name` that allows a predefined URL to be used to post a prediction. Required.</dd>
-<dt>--input-data (<a href="#cli-input-data-array-example-schema-ml">InputDataArray[]</a>)</dt>
-<dd>The input data. Required.</dd>
-</dl>
+`--deployment-id` (string)
+:   The `deployment_id` can be either the `deployment_id` that identifies the deployment or a `serving_name` that allows a predefined URL to be used to post a prediction. Required.
+
+`--input-data` (<a href="#cli-input-data-array-example-schema-ml">`InputDataArray[]`</a>)
+:   The input data. Required.
 
 <a id='ml_deployment_wait'></a>
 ## &#8226; ml deployment wait
 Wait until the deployment becomes ready or failed.
 
 ```sh
-  cpdctl ml deployment wait --deployment-id DEPLOYMENT_ID --space-id SPACE_ID
+   cpdctl ml deployment wait --deployment-id DEPLOYMENT_ID --space-id SPACE_ID
 ```
 #### Command options
 
-<dl>
-<dt>--cpd-scope string     </dt><dd>CPD space scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--deployment-id string </dt><dd>The deployment ID.</dd>
-<dt>--space-id string      </dt><dd>The ID of the space to use.</dd>
-</dl>
+`--cpd-scope` (string     )
+:    CPD space scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--deployment-id` (string )
+:    The deployment ID.
+
+`--space-id` (string      )
+:    The ID of the space to use.
 
 <a id='ml_deployment-job_list'></a>
 ## &#8226; ml deployment-job list
@@ -4547,19 +5219,21 @@ cpdctl ml deployment-job list --space-id SPACE-ID [--tag-value TAG-VALUE] [--sta
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>Retrieves the deployment jobs that belong to this space. Required.</dd>
-<dt>--tag-value (string)</dt>
-<dd>Retrieves only the jobs with these tags (comma separated).</dd>
-<dt>--state (string)</dt>
-<dd>Filter based on on the deployment job state: queued, running, completed, failed etc.</dd>
-<dt>--deployment-id (string)</dt>
-<dd>Filter based on the deployment_id.</dd>
-<dt>--include (string)</dt>
-<dd>Retrieves only fields from 'decision_optimization' and 'scoring' section mentioned as value(s)
-(comma separated) as output response fields. Retrieves all the fields if not mentioned.</dd>
-</dl>
+`--space-id` (string)
+:   Retrieves the deployment jobs that belong to this space. Required.
+
+`--tag-value` (string)
+:   Retrieves only the jobs with these tags (comma separated).
+
+`--state` (string)
+:   Filter based on on the deployment job state: queued, running, completed, failed etc.
+
+`--deployment-id` (string)
+:   Filter based on the deployment_id.
+
+`--include` (string)
+:   Retrieves only fields from 'decision_optimization' and 'scoring' section mentioned as value(s)
+(comma separated) as output response fields. Retrieves all the fields if not mentioned.
 
 <a id='ml_deployment-job_create'></a>
 ## &#8226; ml deployment-job create
@@ -4567,31 +5241,38 @@ cpdctl ml deployment-job list --space-id SPACE-ID [--tag-value TAG-VALUE] [--sta
 Start a deployment job asynchronously. This can perform batch scoring, streaming, or other types of batch operations, such as solving a Decision Optimization problem. Depending on the `version` date passed, the `platform_jobs` section in the response may or may not be populated. Use the GET call to retrieve the deployment job, this GET call will eventually populate the `platform_jobs` section. Refer to the `version date` description for more details.
 
 ```sh
-cpdctl ml deployment-job create [--space-id SPACE-ID] [--name NAME] [--description DESCRIPTION] [--tags TAGS] [--deployment DEPLOYMENT] [--custom CUSTOM] [--hardware-spec HARDWARE-SPEC] [--hybrid-pipeline-hardware-specs HYBRID-PIPELINE-HARDWARE-SPECS] [--scoring SCORING] [--decision-optimization DECISION-OPTIMIZATION] [--retention RETENTION] 
+cpdctl ml deployment-job create --space-id SPACE-ID --name NAME --deployment DEPLOYMENT [--description DESCRIPTION] [--tags TAGS] [--custom CUSTOM] [--hardware-spec HARDWARE-SPEC] [--hybrid-pipeline-hardware-specs HYBRID-PIPELINE-HARDWARE-SPECS] [--scoring SCORING] [--decision-optimization DECISION-OPTIMIZATION] [--retention RETENTION] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the resource.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the resource.</dd>
-<dt>--tags ([]string)</dt>
-<dd>A list of tags for this resource.</dd>
-<dt>--deployment (<a href="#cli-simple-rel-example-schema-ml">SimpleRel</a>)</dt>
-<dd>A reference to a resource.</dd>
-<dt>--custom (interface{})</dt>
-<dd>User defined properties.</dd>
-<dt>--hardware-spec (<a href="#cli-hardware-spec-rel-example-schema-ml">HardwareSpecRel</a>)</dt>
-<dd>A hardware specification.</dd>
-<dt>--hybrid-pipeline-hardware-specs (<a href="#cli-job-entity-request-hybrid-pipeline-hardware-specs-item-example-schema-ml">JobEntityRequestHybridPipelineHardwareSpecsItem[]</a>)</dt>
-<dd>Hybrid pipeline hardware specification.</dd>
-<dt>--scoring (<a href="#cli-job-scoring-request-example-schema-ml">JobScoringRequest</a>)</dt>
-<dd>Details about the input/output data and other properties to be used for a batch deployment job of a model,
+`--space-id` (string)
+:   The space that contains the resource. Required.
+
+`--name` (string)
+:   The name of the resource. Required.
+
+`--deployment` (<a href="#cli-simple-rel-example-schema-ml">`SimpleRel`</a>)
+:   A reference to a resource. Required.
+
+`--description` (string)
+:   A description of the resource.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--custom` (interface{})
+:   User defined properties.
+
+`--hardware-spec` (<a href="#cli-hardware-spec-rel-example-schema-ml">`HardwareSpecRel`</a>)
+:   A hardware specification.
+
+`--hybrid-pipeline-hardware-specs` (<a href="#cli-job-entity-request-hybrid-pipeline-hardware-specs-item-example-schema-ml">`JobEntityRequestHybridPipelineHardwareSpecsItem[]`</a>)
+:   Hybrid pipeline hardware specification.
+
+`--scoring` (<a href="#cli-job-scoring-request-example-schema-ml">`JobScoringRequest`</a>)
+:   Details about the input/output data and other properties to be used for a batch deployment job of a model,
 Python Function or a Python Scripts.
 
 Use `input_data` property to specify the input data for batch processing as part of the job's payload.
@@ -4608,9 +5289,10 @@ property is not supported for batch deployment job of Spark models and Python Fu
 Use `output_data_references` property to specify the details pertaining to the remote source where the input
 data for batch deployment job is available. `output_data_references` must be used with `input_data_references`.
 The `output_data_references`
-property is not supported for batch deployment job of Spark models and Python Functions.</dd>
-<dt>--decision-optimization (<a href="#cli-job-decision-optimization-request-example-schema-ml">JobDecisionOptimizationRequest</a>)</dt>
-<dd>Details about the input/output data and other properties to be used for a batch
+property is not supported for batch deployment job of Spark models and Python Functions.
+
+`--decision-optimization` (<a href="#cli-job-decision-optimization-request-example-schema-ml">`JobDecisionOptimizationRequest`</a>)
+:   Details about the input/output data and other properties to be used for a batch
 deployment job of a decision optimization problem.
 
 Use `input_data` property to specify the input data for batch processing as part
@@ -4624,10 +5306,10 @@ with `output_data_references`.
 The `input_data_references` property is mutually exclusive with `input_data` property, only use one of these.
 
 Use `output_data_references` property to specify the details pertaining to the remote source where the
-input data for batch deployment job is available. The `output_data_references` must be used with `input_data_references`.</dd>
-<dt>--retention (string)</dt>
-<dd>Defines number of days to retain the job meta. Job meta will be auto deleted after that. Value '-1' sets the meta to be never auto deleted. accepted values are positive integer and '-1'. default value considered if the parameter not passed to be '30' days.</dd>
-</dl>
+input data for batch deployment job is available. The `output_data_references` must be used with `input_data_references`.
+
+`--retention` (string)
+:   Defines number of days to retain the job meta. Job meta will be auto deleted after that. Value '-1' sets the meta to be never auto deleted. accepted values are positive integer and '-1'. The default value if the parameter is not passed is '30' days.
 
 <a id='ml_deployment-job_delete'></a>
 ## &#8226; ml deployment-job delete
@@ -4641,14 +5323,14 @@ cpdctl ml deployment-job delete --job-id JOB-ID --space-id SPACE-ID [--hard-dele
 
 #### Command options
 
-<dl>
-<dt>--job-id (string)</dt>
-<dd>The id of the job. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>Cancel the deployment job that belong to this space. Required.</dd>
-<dt>--hard-delete (bool)</dt>
-<dd>Set to true in order to also delete the job metadata information.</dd>
-</dl>
+`--job-id` (string)
+:   The id of the job. Required.
+
+`--space-id` (string)
+:   Cancel the deployment job that belong to this space. Required.
+
+`--hard-delete` (bool)
+:   Set to true in order to also delete the job metadata information.
 
 <a id='ml_deployment-job_get'></a>
 ## &#8226; ml deployment-job get
@@ -4662,15 +5344,15 @@ cpdctl ml deployment-job get --job-id JOB-ID --space-id SPACE-ID [--include INCL
 
 #### Command options
 
-<dl>
-<dt>--job-id (string)</dt>
-<dd>The id of the job. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>Retrieve the deployment job that belong to this space. Required.</dd>
-<dt>--include (string)</dt>
-<dd>Retrieves only fields from 'decision_optimization' and 'scoring' section mentioned as value(s)
-(comma separated) as output response fields. Retrieves all the fields if not mentioned.</dd>
-</dl>
+`--job-id` (string)
+:   The id of the job. Required.
+
+`--space-id` (string)
+:   Retrieve the deployment job that belong to this space. Required.
+
+`--include` (string)
+:   Retrieves only fields from 'decision_optimization' and 'scoring' section mentioned as value(s)
+(comma separated) as output response fields. Retrieves all the fields if not mentioned.
 
 <a id='ml_deployment-job-definition_create'></a>
 ## &#8226; ml deployment-job-definition create
@@ -4684,25 +5366,32 @@ cpdctl ml deployment-job-definition create --space-id SPACE-ID --name NAME --dep
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Required.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the resource. Required.</dd>
-<dt>--deployment (<a href="#cli-simple-rel-example-schema-ml">SimpleRel</a>)</dt>
-<dd>A reference to a resource. Required.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the resource.</dd>
-<dt>--tags ([]string)</dt>
-<dd>A list of tags for this resource.</dd>
-<dt>--custom (interface{})</dt>
-<dd>User defined properties.</dd>
-<dt>--hardware-spec (<a href="#cli-hardware-spec-rel-example-schema-ml">HardwareSpecRel</a>)</dt>
-<dd>A hardware specification.</dd>
-<dt>--hybrid-pipeline-hardware-specs (<a href="#cli-job-entity-request-hybrid-pipeline-hardware-specs-item-example-schema-ml">JobEntityRequestHybridPipelineHardwareSpecsItem[]</a>)</dt>
-<dd>Hybrid pipeline hardware specification.</dd>
-<dt>--scoring (<a href="#cli-job-scoring-request-example-schema-ml">JobScoringRequest</a>)</dt>
-<dd>Details about the input/output data and other properties to be used for a batch deployment job of a model,
+`--space-id` (string)
+:   The space that contains the resource. Required.
+
+`--name` (string)
+:   The name of the resource. Required.
+
+`--deployment` (<a href="#cli-simple-rel-example-schema-ml">`SimpleRel`</a>)
+:   A reference to a resource. Required.
+
+`--description` (string)
+:   A description of the resource.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--custom` (interface{})
+:   User defined properties.
+
+`--hardware-spec` (<a href="#cli-hardware-spec-rel-example-schema-ml">`HardwareSpecRel`</a>)
+:   A hardware specification.
+
+`--hybrid-pipeline-hardware-specs` (<a href="#cli-job-entity-request-hybrid-pipeline-hardware-specs-item-example-schema-ml">`JobEntityRequestHybridPipelineHardwareSpecsItem[]`</a>)
+:   Hybrid pipeline hardware specification.
+
+`--scoring` (<a href="#cli-job-scoring-request-example-schema-ml">`JobScoringRequest`</a>)
+:   Details about the input/output data and other properties to be used for a batch deployment job of a model,
 Python Function or a Python Scripts.
 
 Use `input_data` property to specify the input data for batch processing as part of the job's payload.
@@ -4719,9 +5408,10 @@ property is not supported for batch deployment job of Spark models and Python Fu
 Use `output_data_references` property to specify the details pertaining to the remote source where the input
 data for batch deployment job is available. `output_data_references` must be used with `input_data_references`.
 The `output_data_references`
-property is not supported for batch deployment job of Spark models and Python Functions.</dd>
-<dt>--decision-optimization (<a href="#cli-job-decision-optimization-request-example-schema-ml">JobDecisionOptimizationRequest</a>)</dt>
-<dd>Details about the input/output data and other properties to be used for a batch
+property is not supported for batch deployment job of Spark models and Python Functions.
+
+`--decision-optimization` (<a href="#cli-job-decision-optimization-request-example-schema-ml">`JobDecisionOptimizationRequest`</a>)
+:   Details about the input/output data and other properties to be used for a batch
 deployment job of a decision optimization problem.
 
 Use `input_data` property to specify the input data for batch processing as part
@@ -4735,13 +5425,13 @@ with `output_data_references`.
 The `input_data_references` property is mutually exclusive with `input_data` property, only use one of these.
 
 Use `output_data_references` property to specify the details pertaining to the remote source where the
-input data for batch deployment job is available. The `output_data_references` must be used with `input_data_references`.</dd>
-</dl>
+input data for batch deployment job is available. The `output_data_references` must be used with `input_data_references`.
 
 <a id='ml_deployment-job-definition_list'></a>
 ## &#8226; ml deployment-job-definition list
 
 Retrieve the deployment job definitions for the specified space.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl ml deployment-job-definition list --space-id SPACE-ID [--start START] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] 
@@ -4750,20 +5440,24 @@ cpdctl ml deployment-job-definition list --space-id SPACE-ID [--start START] [--
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Required.</dd>
-<dt>--start (string)</dt>
-<dd>Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.</dd>
-<dt>--limit (int64)</dt>
-<dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
-<dd>The maximum value is `200`. The minimum value is `1`.</dd>
-<dt>--tag-value (string)</dt>
-<dd>Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.</dd>
-<dt>--search (string)</dt>
-<dd>Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.</dd>
-<dd>The minimum length is `3` characters.</dd>
-</dl>
+`--space-id` (string)
+:   The space that contains the resource. Required.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The maximum value is `200`. The minimum value is `1`.
+
+`--tag-value` (string)
+:   Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.
+
+`--search` (string)
+:   Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.
+
+    The minimum length is `3` characters.
 
 <a id='ml_deployment-job-definition_get'></a>
 ## &#8226; ml deployment-job-definition get
@@ -4778,14 +5472,14 @@ cpdctl ml deployment-job-definition get --job-definition-id JOB-DEFINITION-ID --
 
 #### Command options
 
-<dl>
-<dt>--job-definition-id (string)</dt>
-<dd>Deployment job definition identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Required.</dd>
-<dt>--rev (string)</dt>
-<dd>The revision number of the resource.</dd>
-</dl>
+`--job-definition-id` (string)
+:   Deployment job definition identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Required.
+
+`--rev` (string)
+:   The revision number of the resource.
 
 <a id='ml_deployment-job-definition_update'></a>
 ## &#8226; ml deployment-job-definition update
@@ -4804,24 +5498,29 @@ cpdctl ml deployment-job-definition update --job-definition-id JOB-DEFINITION-ID
 
 #### Command options
 
-<dl>
-<dt>--job-definition-id (string)</dt>
-<dd>Deployment job definition identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Required.</dd>
-<dt>--json-patch (<a href="#cli-json-patch-operation-example-schema-ml">JSONPatchOperation[]</a>)</dt>
-<dd>Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).</dd>
-<dt>--tags ([]string)</dt>
-<dd>A list of tags for this resource.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the resource.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the resource.</dd>
-<dt>--custom (generic map)</dt>
-<dd>User defined properties specified as key-value pairs.</dd>
-<dt>--deployment (<a href="#cli-simple-rel-example-schema-ml">SimpleRel</a>)</dt>
-<dd>A reference to a resource.</dd>
-</dl>
+`--job-definition-id` (string)
+:   Deployment job definition identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
+:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--name` (string)
+:   The name of the resource.
+
+`--description` (string)
+:   A description of the resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
+
+`--deployment` (<a href="#cli-simple-rel-example-schema-ml">`SimpleRel`</a>)
+:   A reference to a resource.
 
 <a id='ml_deployment-job-definition_delete'></a>
 ## &#8226; ml deployment-job-definition delete
@@ -4835,12 +5534,11 @@ cpdctl ml deployment-job-definition delete --job-definition-id JOB-DEFINITION-ID
 
 #### Command options
 
-<dl>
-<dt>--job-definition-id (string)</dt>
-<dd>Deployment job definition identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Required.</dd>
-</dl>
+`--job-definition-id` (string)
+:   Deployment job definition identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Required.
 
 <a id='ml_deployment-job-definition_create-revision'></a>
 ## &#8226; ml deployment-job-definition create-revision
@@ -4854,19 +5552,20 @@ cpdctl ml deployment-job-definition create-revision --job-definition-id JOB-DEFI
 
 #### Command options
 
-<dl>
-<dt>--job-definition-id (string)</dt>
-<dd>Deployment job definition identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Required.</dd>
-<dt>--commit-message (string)</dt>
-<dd>An optional commit message for the revision.</dd>
-</dl>
+`--job-definition-id` (string)
+:   Deployment job definition identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Required.
+
+`--commit-message` (string)
+:   An optional commit message for the revision.
 
 <a id='ml_deployment-job-definition_list-revisions'></a>
 ## &#8226; ml deployment-job-definition list-revisions
 
 Retrieve the deployment job definition revisions. This command is supported starting with release 3.5 of Cloud Pak for Data.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl ml deployment-job-definition list-revisions --job-definition-id JOB-DEFINITION-ID --space-id SPACE-ID [--start START] [--limit LIMIT] 
@@ -4875,17 +5574,19 @@ cpdctl ml deployment-job-definition list-revisions --job-definition-id JOB-DEFIN
 
 #### Command options
 
-<dl>
-<dt>--job-definition-id (string)</dt>
-<dd>Deployment job definition identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Required.</dd>
-<dt>--start (string)</dt>
-<dd>Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.</dd>
-<dt>--limit (int64)</dt>
-<dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
-<dd>The maximum value is `200`. The minimum value is `1`.</dd>
-</dl>
+`--job-definition-id` (string)
+:   Deployment job definition identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Required.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The maximum value is `200`. The minimum value is `1`.
 
 <a id='ml_experiment_create'></a>
 ## &#8226; ml experiment create
@@ -4899,31 +5600,38 @@ cpdctl ml experiment create --name NAME [--project-id PROJECT-ID] [--space-id SP
 
 #### Command options
 
-<dl>
-<dt>--name (string)</dt>
-<dd>The name of the resource. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the resource.</dd>
-<dt>--tags ([]string)</dt>
-<dd>A list of tags for this resource.</dd>
-<dt>--label-column (string)</dt>
-<dd>The label column.</dd>
-<dt>--evaluation-definition (<a href="#cli-evaluation-definition-example-schema-ml">EvaluationDefinition</a>)</dt>
-<dd>The optional evaluation definition.</dd>
-<dt>--training-references (<a href="#cli-training-reference-example-schema-ml">TrainingReference[]</a>)</dt>
-<dd>The optional training references used by the experiment.</dd>
-<dt>--custom (generic map)</dt>
-<dd>User defined properties specified as key-value pairs.</dd>
-</dl>
+`--name` (string)
+:   The name of the resource. Required.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--description` (string)
+:   A description of the resource.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--label-column` (string)
+:   The label column.
+
+`--evaluation-definition` (<a href="#cli-evaluation-definition-example-schema-ml">`EvaluationDefinition`</a>)
+:   The optional evaluation definition.
+
+`--training-references` (<a href="#cli-training-reference-example-schema-ml">`TrainingReference[]`</a>)
+:   The optional training references used by the experiment.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
 
 <a id='ml_experiment_list'></a>
 ## &#8226; ml experiment list
 
 Retrieve the experiments for the specified space or project.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl ml experiment list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] 
@@ -4932,22 +5640,27 @@ cpdctl ml experiment list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--sta
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--start (string)</dt>
-<dd>Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.</dd>
-<dt>--limit (int64)</dt>
-<dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
-<dd>The maximum value is `200`. The minimum value is `1`.</dd>
-<dt>--tag-value (string)</dt>
-<dd>Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.</dd>
-<dt>--search (string)</dt>
-<dd>Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.</dd>
-<dd>The minimum length is `3` characters.</dd>
-</dl>
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The maximum value is `200`. The minimum value is `1`.
+
+`--tag-value` (string)
+:   Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.
+
+`--search` (string)
+:   Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.
+
+    The minimum length is `3` characters.
 
 <a id='ml_experiment_get'></a>
 ## &#8226; ml experiment get
@@ -4962,16 +5675,17 @@ cpdctl ml experiment get --experiment-id EXPERIMENT-ID [--space-id SPACE-ID] [--
 
 #### Command options
 
-<dl>
-<dt>--experiment-id (string)</dt>
-<dd>Experiment identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--rev (string)</dt>
-<dd>The revision number of the resource.</dd>
-</dl>
+`--experiment-id` (string)
+:   Experiment identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--rev` (string)
+:   The revision number of the resource.
 
 <a id='ml_experiment_update'></a>
 ## &#8226; ml experiment update
@@ -4989,24 +5703,29 @@ cpdctl ml experiment update --experiment-id EXPERIMENT-ID --json-patch JSON-PATC
 
 #### Command options
 
-<dl>
-<dt>--experiment-id (string)</dt>
-<dd>Experiment identifier. Required.</dd>
-<dt>--json-patch (<a href="#cli-json-patch-operation-example-schema-ml">JSONPatchOperation[]</a>)</dt>
-<dd>Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--tags ([]string)</dt>
-<dd>A list of tags for this resource.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the resource.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the resource.</dd>
-<dt>--custom (generic map)</dt>
-<dd>User defined properties specified as key-value pairs.</dd>
-</dl>
+`--experiment-id` (string)
+:   Experiment identifier. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
+:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--name` (string)
+:   The name of the resource.
+
+`--description` (string)
+:   A description of the resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
 
 <a id='ml_experiment_delete'></a>
 ## &#8226; ml experiment delete
@@ -5020,14 +5739,14 @@ cpdctl ml experiment delete --experiment-id EXPERIMENT-ID [--space-id SPACE-ID] 
 
 #### Command options
 
-<dl>
-<dt>--experiment-id (string)</dt>
-<dd>Experiment identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-</dl>
+`--experiment-id` (string)
+:   Experiment identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
 
 <a id='ml_experiment_create-revision'></a>
 ## &#8226; ml experiment create-revision
@@ -5041,21 +5760,23 @@ cpdctl ml experiment create-revision --experiment-id EXPERIMENT-ID [--space-id S
 
 #### Command options
 
-<dl>
-<dt>--experiment-id (string)</dt>
-<dd>Experiment identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--commit-message (string)</dt>
-<dd>An optional commit message for the revision.</dd>
-</dl>
+`--experiment-id` (string)
+:   Experiment identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--commit-message` (string)
+:   An optional commit message for the revision.
 
 <a id='ml_experiment_list-revisions'></a>
 ## &#8226; ml experiment list-revisions
 
 Retrieve the experiment revisions.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl ml experiment list-revisions --experiment-id EXPERIMENT-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT] 
@@ -5064,19 +5785,22 @@ cpdctl ml experiment list-revisions --experiment-id EXPERIMENT-ID [--space-id SP
 
 #### Command options
 
-<dl>
-<dt>--experiment-id (string)</dt>
-<dd>Experiment identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--start (string)</dt>
-<dd>Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.</dd>
-<dt>--limit (int64)</dt>
-<dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
-<dd>The maximum value is `200`. The minimum value is `1`.</dd>
-</dl>
+`--experiment-id` (string)
+:   Experiment identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The maximum value is `200`. The minimum value is `1`.
 
 <a id='ml_function_create'></a>
 ## &#8226; ml function create
@@ -5084,27 +5808,32 @@ cpdctl ml experiment list-revisions --experiment-id EXPERIMENT-ID [--space-id SP
 Create a new function with the given payload. A function is some code that can be deployed as an online, or batch deployment.
 
 ```sh
-cpdctl ml function create --name NAME --software-spec SOFTWARE-SPEC [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--type TYPE] [--sample-scoring-input SAMPLE-SCORING-INPUT] [--schemas SCHEMAS] [--custom CUSTOM] 
+cpdctl ml function create --name NAME --software-spec SOFTWARE-SPEC [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--type TYPE] [--sample-scoring-input SAMPLE-SCORING-INPUT] [--schemas SCHEMAS] [--custom CUSTOM] [--model-references MODEL-REFERENCES] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--name (string)</dt>
-<dd>The name of the resource. Required.</dd>
-<dt>--software-spec (<a href="#cli-software-spec-rel-example-schema-ml">SoftwareSpecRel</a>)</dt>
-<dd>A software specification. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the resource.</dd>
-<dt>--tags ([]string)</dt>
-<dd>A list of tags for this resource.</dd>
-<dt>--type (string)</dt>
-<dd>Type of the function to be created. Only `python` type is supported as of now. If not specified, `python` is the default. Functions expect a gzip file that contains a python file that make up the function. Python functions specify what needs to be run when the function is deployed and what needs to be run when the scoring function is called. In other words, you are able to customize what preparation WML does in the environment when you deploy the function, as well as what steps WML takes to generate the output when you call the API later on. The function consists of the outer function (any place that is not within the score function) and the inner score function. The code that sits in the outer function runs when the function is deployed, and the environment is then frozen and ready to be used whenever the online scoring or batch inline job processing API is called. The code that sits in the inner score function runs when the online scoring or batch inline job processing API is called, in the environment customized by the outer function. See [Deploying Python function](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-deploy-py-function.html?context=cpdaas&audience=wdp) for more details.
+`--name` (string)
+:   The name of the resource. Required.
+
+`--software-spec` (<a href="#cli-software-spec-rel-example-schema-ml">`SoftwareSpecRel`</a>)
+:   A software specification. Required.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--description` (string)
+:   A description of the resource.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--type` (string)
+:   Type of the function to be created. Only `python` type is supported as of now. If not specified, `python` is the default. Functions expect a gzip file that contains a python file that make up the function. Python functions specify what needs to be run when the function is deployed and what needs to be run when the scoring function is called. In other words, you are able to customize what preparation WML does in the environment when you deploy the function, as well as what steps WML takes to generate the output when you call the API later on. The function consists of the outer function (any place that is not within the score function) and the inner score function. The code that sits in the outer function runs when the function is deployed, and the environment is then frozen and ready to be used whenever the online scoring or batch inline job processing API is called. The code that sits in the inner score function runs when the online scoring or batch inline job processing API is called, in the environment customized by the outer function. See [Deploying Python function](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-deploy-py-function.html?context=cpdaas&audience=wdp) for more details.
 
 This is illustrated in the example below:
 
@@ -5117,20 +5846,27 @@ This is illustrated in the example below:
 >&nbsp;&nbsp;&nbsp;&nbsp;output = {"result" : res} \
 >&nbsp;&nbsp;&nbsp;&nbsp;return output \
 >\
->return score.</dd>
-<dd>The default value is `python`.</dd>
-<dt>--sample-scoring-input (<a href="#cli-sync-scoring-data-example-schema-ml">SyncScoringData</a>)</dt>
-<dd>Scoring data.</dd>
-<dt>--schemas (<a href="#cli-function-entity-schemas-example-schema-ml">FunctionEntitySchemas</a>)</dt>
-<dd>The schemas of the expected data.</dd>
-<dt>--custom (generic map)</dt>
-<dd>User defined properties specified as key-value pairs.</dd>
-</dl>
+>return score.
+
+    The default value is `python`.
+
+`--sample-scoring-input` (<a href="#cli-sync-scoring-data-example-schema-ml">`SyncScoringData`</a>)
+:   Scoring data.
+
+`--schemas` (<a href="#cli-function-entity-schemas-example-schema-ml">`FunctionEntitySchemas`</a>)
+:   The schemas of the expected data.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
+
+`--model-references` (<a href="#cli-model-reference-example-schema-ml">`ModelReference[]`</a>)
+:   This is a list of references of the models that are used by this function, if any. These references are provided by the owner of the function and are used for usage tracking only.
 
 <a id='ml_function_list'></a>
 ## &#8226; ml function list
 
 Retrieve the functions for the specified space or project.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl ml function list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] 
@@ -5139,22 +5875,27 @@ cpdctl ml function list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--start (string)</dt>
-<dd>Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.</dd>
-<dt>--limit (int64)</dt>
-<dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
-<dd>The maximum value is `200`. The minimum value is `1`.</dd>
-<dt>--tag-value (string)</dt>
-<dd>Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.</dd>
-<dt>--search (string)</dt>
-<dd>Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.</dd>
-<dd>The minimum length is `3` characters.</dd>
-</dl>
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The maximum value is `200`. The minimum value is `1`.
+
+`--tag-value` (string)
+:   Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.
+
+`--search` (string)
+:   Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.
+
+    The minimum length is `3` characters.
 
 <a id='ml_function_get'></a>
 ## &#8226; ml function get
@@ -5169,16 +5910,17 @@ cpdctl ml function get --function-id FUNCTION-ID [--space-id SPACE-ID] [--projec
 
 #### Command options
 
-<dl>
-<dt>--function-id (string)</dt>
-<dd>Function identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--rev (string)</dt>
-<dd>The revision number of the resource.</dd>
-</dl>
+`--function-id` (string)
+:   Function identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--rev` (string)
+:   The revision number of the resource.
 
 <a id='ml_function_update'></a>
 ## &#8226; ml function update
@@ -5196,24 +5938,29 @@ cpdctl ml function update --function-id FUNCTION-ID --json-patch JSON-PATCH [--s
 
 #### Command options
 
-<dl>
-<dt>--function-id (string)</dt>
-<dd>Function identifier. Required.</dd>
-<dt>--json-patch (<a href="#cli-json-patch-operation-example-schema-ml">JSONPatchOperation[]</a>)</dt>
-<dd>Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--tags ([]string)</dt>
-<dd>A list of tags for this resource.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the resource.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the resource.</dd>
-<dt>--custom (generic map)</dt>
-<dd>User defined properties specified as key-value pairs.</dd>
-</dl>
+`--function-id` (string)
+:   Function identifier. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
+:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--name` (string)
+:   The name of the resource.
+
+`--description` (string)
+:   A description of the resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
 
 <a id='ml_function_delete'></a>
 ## &#8226; ml function delete
@@ -5227,14 +5974,14 @@ cpdctl ml function delete --function-id FUNCTION-ID [--space-id SPACE-ID] [--pro
 
 #### Command options
 
-<dl>
-<dt>--function-id (string)</dt>
-<dd>Function identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-</dl>
+`--function-id` (string)
+:   Function identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
 
 <a id='ml_function_create-revision'></a>
 ## &#8226; ml function create-revision
@@ -5248,21 +5995,23 @@ cpdctl ml function create-revision --function-id FUNCTION-ID [--space-id SPACE-I
 
 #### Command options
 
-<dl>
-<dt>--function-id (string)</dt>
-<dd>Function identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--commit-message (string)</dt>
-<dd>An optional commit message for the revision.</dd>
-</dl>
+`--function-id` (string)
+:   Function identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--commit-message` (string)
+:   An optional commit message for the revision.
 
 <a id='ml_function_list-revisions'></a>
 ## &#8226; ml function list-revisions
 
 Retrieve the function revisions.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl ml function list-revisions --function-id FUNCTION-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT] 
@@ -5271,19 +6020,22 @@ cpdctl ml function list-revisions --function-id FUNCTION-ID [--space-id SPACE-ID
 
 #### Command options
 
-<dl>
-<dt>--function-id (string)</dt>
-<dd>Function identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--start (string)</dt>
-<dd>Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.</dd>
-<dt>--limit (int64)</dt>
-<dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
-<dd>The maximum value is `200`. The minimum value is `1`.</dd>
-</dl>
+`--function-id` (string)
+:   Function identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The maximum value is `200`. The minimum value is `1`.
 
 <a id='ml_function_upload-code'></a>
 ## &#8226; ml function upload-code
@@ -5297,16 +6049,17 @@ cpdctl ml function upload-code --function-id FUNCTION-ID --upload-code UPLOAD-CO
 
 #### Command options
 
-<dl>
-<dt>--function-id (string)</dt>
-<dd>Function identifier. Required.</dd>
-<dt>--upload-code (io.ReadCloser)</dt>
-<dd>A gzip file containing code files. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-</dl>
+`--function-id` (string)
+:   Function identifier. Required.
+
+`--upload-code` (io.ReadCloser)
+:   A gzip file containing code files. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
 
 <a id='ml_function_download-code'></a>
 ## &#8226; ml function download-code
@@ -5320,16 +6073,17 @@ cpdctl ml function download-code --function-id FUNCTION-ID [--space-id SPACE-ID]
 
 #### Command options
 
-<dl>
-<dt>--function-id (string)</dt>
-<dd>Function identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--rev (string)</dt>
-<dd>The revision number of the resource.</dd>
-</dl>
+`--function-id` (string)
+:   Function identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--rev` (string)
+:   The revision number of the resource.
 
 <a id='ml_model_create'></a>
 ## &#8226; ml model create
@@ -5338,63 +6092,92 @@ Create a new model with the given payload. A model represents a machine learning
 `content_import_state` in the model status (/ml/v4/models/{model_id}) is `completed`. If `content_import_state` is not used then a `201` status is returned.
 
 ```sh
-cpdctl ml model create --name NAME --type TYPE --software-spec SOFTWARE-SPEC [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--pipeline PIPELINE] [--model-definition MODEL-DEFINITION] [--hyper-parameters HYPER-PARAMETERS] [--domain DOMAIN] [--training-data-references TRAINING-DATA-REFERENCES] [--test-data-references TEST-DATA-REFERENCES] [--schemas SCHEMAS] [--label-column LABEL-COLUMN] [--transformed-label-column TRANSFORMED-LABEL-COLUMN] [--size SIZE] [--metrics METRICS] [--custom CUSTOM] [--user-defined-objects USER-DEFINED-OBJECTS] [--content-location CONTENT-LOCATION] 
+cpdctl ml model create --name NAME --type TYPE --software-spec SOFTWARE-SPEC [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--pipeline PIPELINE] [--model-definition MODEL-DEFINITION] [--hyper-parameters HYPER-PARAMETERS] [--domain DOMAIN] [--training-data-references TRAINING-DATA-REFERENCES] [--test-data-references TEST-DATA-REFERENCES] [--schemas SCHEMAS] [--label-column LABEL-COLUMN] [--transformed-label-column TRANSFORMED-LABEL-COLUMN] [--size SIZE] [--metrics METRICS] [--custom CUSTOM] [--user-defined-objects USER-DEFINED-OBJECTS] [--hybrid-pipeline-software-specs HYBRID-PIPELINE-SOFTWARE-SPECS] [--training-id TRAINING-ID] [--content-location CONTENT-LOCATION] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--name (string)</dt>
-<dd>The name of the resource. Required.</dd>
-<dt>--type (string)</dt>
-<dd>The model type. The supported model types can be found in the documentation
-[here](https://dataplatform.cloud.ibm.com/docs/content/wsj/wmls/wmls-deploy-python-types.html?context=analytics). Required.</dd>
-<dt>--software-spec (<a href="#cli-software-spec-rel-example-schema-ml">SoftwareSpecRel</a>)</dt>
-<dd>A software specification. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the resource.</dd>
-<dt>--tags ([]string)</dt>
-<dd>A list of tags for this resource.</dd>
-<dt>--pipeline (<a href="#cli-rel-example-schema-ml">Rel</a>)</dt>
-<dd>A reference to a resource.</dd>
-<dt>--model-definition (<a href="#cli-model-definition-id-example-schema-ml">ModelDefinitionID</a>)</dt>
-<dd>The model definition.</dd>
-<dt>--hyper-parameters (interface{})</dt>
-<dd>Hyper parameters used for training this model.</dd>
-<dt>--domain (string)</dt>
-<dd>User provided domain name for this model. For example: sentiment, entity, visual-recognition, finance, retail, real estate etc.</dd>
-<dt>--training-data-references (<a href="#cli-data-connection-reference-example-schema-ml">DataConnectionReference[]</a>)</dt>
-<dd>The training data that was used to create this model.</dd>
-<dt>--test-data-references (<a href="#cli-data-connection-reference-example-schema-ml">DataConnectionReference[]</a>)</dt>
-<dd>The holdout/test datasets.</dd>
-<dt>--schemas (<a href="#cli-model-entity-schemas-example-schema-ml">ModelEntitySchemas</a>)</dt>
-<dd>If the schemas are provided here then they take precedent over any schemas
-provided in the data references.</dd>
-<dt>--label-column (string)</dt>
-<dd>The name of the label column.</dd>
-<dt>--transformed-label-column (string)</dt>
-<dd>The name of the  label column seen by the estimator, which may have been transformed by the previous transformers in the pipeline. This is not necessarily the same column as the `label_column` in the initial data set.</dd>
-<dt>--size (<a href="#cli-model-entity-size-example-schema-ml">ModelEntitySize</a>)</dt>
-<dd>This will be used by scoring to record the size of the model.</dd>
-<dt>--metrics (<a href="#cli-metric-example-schema-ml">Metric[]</a>)</dt>
-<dd>Metrics that can be returned by an operation.</dd>
-<dt>--custom (generic map)</dt>
-<dd>User defined properties specified as key-value pairs.</dd>
-<dt>--user-defined-objects (map[string]string)</dt>
-<dd>User defined objects referenced by the model. For any user defined class or function used in the model, its name, as referenced in the model, must be specified as the `key` and its fully qualified class or function name must be specified as the `value`. This is applicable for `Tensorflow 2.X` models serialized in `H5` format using the `tf.keras` API.</dd>
-<dt>--content-location (<a href="#cli-content-location-example-schema-ml">ContentLocation</a>)</dt>
-<dd>Details about the attachments that should be uploaded with this model.</dd>
-</dl>
+`--name` (string)
+:   The name of the resource. Required.
+
+`--type` (string)
+:   The model type. The supported model types can be found in the documentation
+[here](https://dataplatform.cloud.ibm.com/docs/content/wsj/wmls/wmls-deploy-python-types.html?context=analytics). Required.
+
+`--software-spec` (<a href="#cli-software-spec-rel-example-schema-ml">`SoftwareSpecRel`</a>)
+:   A software specification. Required.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--description` (string)
+:   A description of the resource.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--pipeline` (<a href="#cli-rel-example-schema-ml">`Rel`</a>)
+:   A reference to a resource.
+
+`--model-definition` (<a href="#cli-model-definition-id-example-schema-ml">`ModelDefinitionID`</a>)
+:   The model definition.
+
+`--hyper-parameters` (interface{})
+:   Hyper parameters used for training this model.
+
+`--domain` (string)
+:   User provided domain name for this model. For example: sentiment, entity, visual-recognition, finance, retail, real estate etc.
+
+`--training-data-references` (<a href="#cli-data-connection-reference-example-schema-ml">`DataConnectionReference[]`</a>)
+:   The training data that was used to create this model.
+
+`--test-data-references` (<a href="#cli-data-connection-reference-example-schema-ml">`DataConnectionReference[]`</a>)
+:   The holdout/test datasets.
+
+`--schemas` (<a href="#cli-model-entity-schemas-example-schema-ml">`ModelEntitySchemas`</a>)
+:   If the prediction schemas are provided here then they take precedent over any schemas
+provided in the data references. Note that data references contain the schema for the
+associated data and this object contains the schema(s) for the associated prediction, if any.
+In the case that the prediction input data matches exactly the schema of the training data
+references then the prediction schema can be omitted. However it is highly recommended to
+always specify the prediction schemas using this field.
+
+`--label-column` (string)
+:   The name of the label column.
+
+`--transformed-label-column` (string)
+:   The name of the  label column seen by the estimator, which may have been transformed by the previous transformers in the pipeline. This is not necessarily the same column as the `label_column` in the initial data set.
+
+`--size` (<a href="#cli-model-entity-size-example-schema-ml">`ModelEntitySize`</a>)
+:   This will be used by scoring to record the size of the model.
+
+`--metrics` (<a href="#cli-metric-example-schema-ml">`Metric[]`</a>)
+:   Metrics that can be returned by an operation.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
+
+`--user-defined-objects` (map[string]string)
+:   User defined objects referenced by the model. For any user defined class or function used in the model, its name, as referenced in the model, must be specified as the `key` and its fully qualified class or function name must be specified as the `value`. This is applicable for `Tensorflow 2.X` models serialized in `H5` format using the `tf.keras` API.
+
+`--hybrid-pipeline-software-specs` (<a href="#cli-software-spec-rel-example-schema-ml">`SoftwareSpecRel[]`</a>)
+:   The list of the software specifications that are used by the pipeline that generated this model, if the model was generated by a pipeline.
+
+`--training-id` (string)
+:   Since CloudPak for Data `4.7.0`. This field can be used to store the `id` of the training job that was used to produce this model.
+
+`--content-location` (<a href="#cli-content-location-example-schema-ml">`ContentLocation`</a>)
+:   Details about the attachments that should be uploaded with this model.
 
 <a id='ml_model_list'></a>
 ## &#8226; ml model list
 
 Retrieve the models for the specified space or project.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl ml model list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] 
@@ -5403,22 +6186,27 @@ cpdctl ml model list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start ST
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--start (string)</dt>
-<dd>Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.</dd>
-<dt>--limit (int64)</dt>
-<dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
-<dd>The maximum value is `200`. The minimum value is `1`.</dd>
-<dt>--tag-value (string)</dt>
-<dd>Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.</dd>
-<dt>--search (string)</dt>
-<dd>Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.</dd>
-<dd>The minimum length is `3` characters.</dd>
-</dl>
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The maximum value is `200`. The minimum value is `1`.
+
+`--tag-value` (string)
+:   Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.
+
+`--search` (string)
+:   Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.
+
+    The minimum length is `3` characters.
 
 <a id='ml_model_get'></a>
 ## &#8226; ml model get
@@ -5433,16 +6221,17 @@ cpdctl ml model get --model-id MODEL-ID [--space-id SPACE-ID] [--project-id PROJ
 
 #### Command options
 
-<dl>
-<dt>--model-id (string)</dt>
-<dd>Model identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--rev (string)</dt>
-<dd>The revision number of the resource.</dd>
-</dl>
+`--model-id` (string)
+:   Model identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--rev` (string)
+:   The revision number of the resource.
 
 <a id='ml_model_update'></a>
 ## &#8226; ml model update
@@ -5461,24 +6250,29 @@ cpdctl ml model update --model-id MODEL-ID --json-patch JSON-PATCH [--space-id S
 
 #### Command options
 
-<dl>
-<dt>--model-id (string)</dt>
-<dd>Model identifier. Required.</dd>
-<dt>--json-patch (<a href="#cli-json-patch-operation-example-schema-ml">JSONPatchOperation[]</a>)</dt>
-<dd>Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--tags ([]string)</dt>
-<dd>A list of tags for this resource.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the resource.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the resource.</dd>
-<dt>--custom (generic map)</dt>
-<dd>User defined properties specified as key-value pairs.</dd>
-</dl>
+`--model-id` (string)
+:   Model identifier. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
+:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--name` (string)
+:   The name of the resource.
+
+`--description` (string)
+:   A description of the resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
 
 <a id='ml_model_delete'></a>
 ## &#8226; ml model delete
@@ -5492,14 +6286,14 @@ cpdctl ml model delete --model-id MODEL-ID [--space-id SPACE-ID] [--project-id P
 
 #### Command options
 
-<dl>
-<dt>--model-id (string)</dt>
-<dd>Model identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-</dl>
+`--model-id` (string)
+:   Model identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
 
 <a id='ml_model_create-revision'></a>
 ## &#8226; ml model create-revision
@@ -5513,21 +6307,23 @@ cpdctl ml model create-revision --model-id MODEL-ID [--space-id SPACE-ID] [--pro
 
 #### Command options
 
-<dl>
-<dt>--model-id (string)</dt>
-<dd>Model identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--commit-message (string)</dt>
-<dd>An optional commit message for the revision.</dd>
-</dl>
+`--model-id` (string)
+:   Model identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--commit-message` (string)
+:   An optional commit message for the revision.
 
 <a id='ml_model_list-revisions'></a>
 ## &#8226; ml model list-revisions
 
 Retrieve the model revisions.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl ml model list-revisions --model-id MODEL-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT] 
@@ -5536,19 +6332,22 @@ cpdctl ml model list-revisions --model-id MODEL-ID [--space-id SPACE-ID] [--proj
 
 #### Command options
 
-<dl>
-<dt>--model-id (string)</dt>
-<dd>Model identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--start (string)</dt>
-<dd>Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.</dd>
-<dt>--limit (int64)</dt>
-<dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
-<dd>The maximum value is `200`. The minimum value is `1`.</dd>
-</dl>
+`--model-id` (string)
+:   Model identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The maximum value is `200`. The minimum value is `1`.
 
 <a id='ml_model_list-attachments'></a>
 ## &#8226; ml model list-attachments
@@ -5562,20 +6361,23 @@ cpdctl ml model list-attachments --model-id MODEL-ID [--space-id SPACE-ID] [--pr
 
 #### Command options
 
-<dl>
-<dt>--model-id (string)</dt>
-<dd>Model identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--rev (string)</dt>
-<dd>The revision number of the resource.</dd>
-<dt>--name (string)</dt>
-<dd>List only attachments with the given name.</dd>
-<dt>--content-format (string)</dt>
-<dd>This is the format of the content. Any value can be used for the format and is there to be able to easily find content by format.</dd>
-</dl>
+`--model-id` (string)
+:   Model identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--rev` (string)
+:   The revision number of the resource.
+
+`--name` (string)
+:   List only attachments with the given name.
+
+`--content-format` (string)
+:   This is the format of the content. Any value can be used for the format and is there to be able to easily find content by format.
 
 <a id='ml_model_upload-content'></a>
 ## &#8226; ml model upload-content
@@ -5589,29 +6391,37 @@ cpdctl ml model upload-content --model-id MODEL-ID --content-format CONTENT-FORM
 
 #### Command options
 
-<dl>
-<dt>--model-id (string)</dt>
-<dd>Model identifier. Required.</dd>
-<dt>--content-format (string)</dt>
-<dd>This is the format of the content. Any value can be used for the format and is there to be able to easily find content by format. Required.</dd>
-<dt>--upload-content (generic map)</dt>
-<dd>models file.</dd>
-<dt>--body (io.ReadCloser)</dt>
-<dd>models file.</dd>
-<dt>--content-type (string)</dt>
-<dd>The type of the input. A character encoding can be specified by including a `charset` parameter. For example, 'text/plain;charset=utf-8'.</dd>
-<dd>Allowable values are: application/json, application/zip, text/plain, application/xml</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--pipeline-node-id (string)</dt>
-<dd>Returns only resources that match this `pipeline_node_id`, this is only relevant if `content_format` is `pipeline-node`.</dd>
-<dt>--deployment-id (string)</dt>
-<dd>Returns only resources that match this `deployment_id`, this is only relevant if `content_format` is `coreml`.</dd>
-<dt>--name (string)</dt>
-<dd>Provide the name of the attachment.</dd>
-</dl>
+`--model-id` (string)
+:   Model identifier. Required.
+
+`--content-format` (string)
+:   This is the format of the content. Any value can be used for the format and is there to be able to easily find content by format. Required.
+
+`--upload-content` (generic map)
+:   models file.
+
+`--body` (io.ReadCloser)
+:   models file.
+
+`--content-type` (string)
+:   The type of the input. A character encoding can be specified by including a `charset` parameter. For example, 'text/plain;charset=utf-8'.
+
+    Allowable values are: `application/json`, `application/zip`, `text/plain`, `application/xml`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--pipeline-node-id` (string)
+:   Returns only resources that match this `pipeline_node_id`, this is only relevant if `content_format` is `pipeline-node`.
+
+`--deployment-id` (string)
+:   Returns only resources that match this `deployment_id`, this is only relevant if `content_format` is `coreml`.
+
+`--name` (string)
+:   Provide the name of the attachment.
 
 <a id='ml_model_download-content'></a>
 ## &#8226; ml model download-content
@@ -5625,21 +6435,25 @@ cpdctl ml model download-content --model-id MODEL-ID --attachment-id ATTACHMENT-
 
 #### Command options
 
-<dl>
-<dt>--model-id (string)</dt>
-<dd>Model identifier. Required.</dd>
-<dt>--attachment-id (string)</dt>
-<dd>Identifier for the attachment for resources that support separate content. Required.</dd>
-<dt>--accept (string)</dt>
-<dd>The type of the response: application/zip, application/gzip, application/json, text/plain, or application/xml. A character encoding can be specified by including a `charset` parameter. For example, 'text/plain;charset=utf-8'.</dd>
-<dd>Allowable values are: application/zip, application/gzip, application/json, text/plain, application/xml</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--rev (string)</dt>
-<dd>The revision number of the resource.</dd>
-</dl>
+`--model-id` (string)
+:   Model identifier. Required.
+
+`--attachment-id` (string)
+:   Identifier for the attachment for resources that support separate content. Required.
+
+`--accept` (string)
+:   The type of the response: application/zip, application/gzip, application/json, text/plain, or application/xml. A character encoding can be specified by including a `charset` parameter. For example, 'text/plain;charset=utf-8'.
+
+    Allowable values are: `application/zip`, `application/gzip`, `application/json`, `text/plain`, `application/xml`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--rev` (string)
+:   The revision number of the resource.
 
 <a id='ml_model_delete-content'></a>
 ## &#8226; ml model delete-content
@@ -5653,16 +6467,17 @@ cpdctl ml model delete-content --model-id MODEL-ID --attachment-id ATTACHMENT-ID
 
 #### Command options
 
-<dl>
-<dt>--model-id (string)</dt>
-<dd>Model identifier. Required.</dd>
-<dt>--attachment-id (string)</dt>
-<dd>Identifier for the attachment for resources that support separate content. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-</dl>
+`--model-id` (string)
+:   Model identifier. Required.
+
+`--attachment-id` (string)
+:   Identifier for the attachment for resources that support separate content. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
 
 <a id='ml_model_filtered-download'></a>
 ## &#8226; ml model filtered-download
@@ -5677,43 +6492,55 @@ cpdctl ml model filtered-download --model-id MODEL-ID [--accept ACCEPT] [--space
 
 #### Command options
 
-<dl>
-<dt>--model-id (string)</dt>
-<dd>Model identifier. Required.</dd>
-<dt>--accept (string)</dt>
-<dd>The type of the response: application/zip, application/gzip, application/json, text/plain, or application/xml. A character encoding can be specified by including a `charset` parameter. For example, 'text/plain;charset=utf-8'.</dd>
-<dd>Allowable values are: application/zip, application/gzip, application/json, text/plain, application/xml</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--rev (string)</dt>
-<dd>The revision number of the resource.</dd>
-<dt>--pipeline-node-id (string)</dt>
-<dd>Returns only resources that match this `pipeline_node_id`, this is only relevant if `content_format` is `pipeline-node`.</dd>
-<dt>--deployment-id (string)</dt>
-<dd>Returns only resources that match this `deployment_id`, this is only relevant if `content_format` is `coreml`.</dd>
-<dt>--name (string)</dt>
-<dd>Match an attachment with this name.</dd>
-<dt>--content-format (string)</dt>
-<dd>This is the format of the content. Any value can be used for the format and is there to be able to easily find content by format.</dd>
-</dl>
+`--model-id` (string)
+:   Model identifier. Required.
+
+`--accept` (string)
+:   The type of the response: application/zip, application/gzip, application/json, text/plain, or application/xml. A character encoding can be specified by including a `charset` parameter. For example, 'text/plain;charset=utf-8'.
+
+    Allowable values are: `application/zip`, `application/gzip`, `application/json`, `text/plain`, `application/xml`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--rev` (string)
+:   The revision number of the resource.
+
+`--pipeline-node-id` (string)
+:   Returns only resources that match this `pipeline_node_id`, this is only relevant if `content_format` is `pipeline-node`.
+
+`--deployment-id` (string)
+:   Returns only resources that match this `deployment_id`, this is only relevant if `content_format` is `coreml`.
+
+`--name` (string)
+:   Match an attachment with this name.
+
+`--content-format` (string)
+:   This is the format of the content. Any value can be used for the format and is there to be able to easily find content by format.
 
 <a id='ml_model_wait'></a>
 ## &#8226; ml model wait
 Wait until the model upload becomes completed or failed.
 
 ```sh
-  cpdctl ml model wait --model-id MODEL_ID [--space-id SPACE_ID] [--project-id PROJECT_ID]
+   cpdctl ml model wait --model-id MODEL_ID [--space-id SPACE_ID] [--project-id PROJECT_ID]
 ```
 #### Command options
 
-<dl>
-<dt>--cpd-scope string  </dt><dd>CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--model-id string   </dt><dd>The model ID.</dd>
-<dt>--project-id string </dt><dd>The ID of the project to use.</dd>
-<dt>--space-id string   </dt><dd>The ID of the space to use.</dd>
-</dl>
+`--cpd-scope` (string  )
+:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--model-id` (string   )
+:    The model ID.
+
+`--project-id` (string )
+:    The ID of the project to use.
+
+`--space-id` (string   )
+:    The ID of the space to use.
 
 <a id='ml_model-definition_create'></a>
 ## &#8226; ml model-definition create
@@ -5727,31 +6554,38 @@ cpdctl ml model-definition create --name NAME --version VERSION --platform PLATF
 
 #### Command options
 
-<dl>
-<dt>--name (string)</dt>
-<dd>The name of the resource. Required.</dd>
-<dt>--version (string)</dt>
-<dd>The package version. Required.</dd>
-<dt>--platform (<a href="#cli-model-definition-entity-request-platform-example-schema-ml">ModelDefinitionEntityRequestPlatform</a>)</dt>
-<dd> Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the resource.</dd>
-<dt>--tags ([]string)</dt>
-<dd>A list of tags for this resource.</dd>
-<dt>--command (string)</dt>
-<dd>The command used to run the model.</dd>
-<dt>--custom (generic map)</dt>
-<dd>User defined properties specified as key-value pairs.</dd>
-</dl>
+`--name` (string)
+:   The name of the resource. Required.
+
+`--version` (string)
+:   The package version. Required.
+
+`--platform` (<a href="#cli-model-definition-entity-request-platform-example-schema-ml">`ModelDefinitionEntityRequestPlatform`</a>)
+:   &nbsp; Required.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--description` (string)
+:   A description of the resource.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--command` (string)
+:   The command used to run the model.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
 
 <a id='ml_model-definition_list'></a>
 ## &#8226; ml model-definition list
 
 Retrieve the model definitions for the specified space or project. This command is supported starting with release 3.5 of Cloud Pak for Data.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl ml model-definition list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] 
@@ -5760,22 +6594,27 @@ cpdctl ml model-definition list [--space-id SPACE-ID] [--project-id PROJECT-ID] 
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--start (string)</dt>
-<dd>Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.</dd>
-<dt>--limit (int64)</dt>
-<dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
-<dd>The maximum value is `200`. The minimum value is `1`.</dd>
-<dt>--tag-value (string)</dt>
-<dd>Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.</dd>
-<dt>--search (string)</dt>
-<dd>Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.</dd>
-<dd>The minimum length is `3` characters.</dd>
-</dl>
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The maximum value is `200`. The minimum value is `1`.
+
+`--tag-value` (string)
+:   Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.
+
+`--search` (string)
+:   Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.
+
+    The minimum length is `3` characters.
 
 <a id='ml_model-definition_get'></a>
 ## &#8226; ml model-definition get
@@ -5790,16 +6629,17 @@ cpdctl ml model-definition get --model-definition-id MODEL-DEFINITION-ID [--spac
 
 #### Command options
 
-<dl>
-<dt>--model-definition-id (string)</dt>
-<dd>Model definition identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--rev (string)</dt>
-<dd>The revision number of the resource.</dd>
-</dl>
+`--model-definition-id` (string)
+:   Model definition identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--rev` (string)
+:   The revision number of the resource.
 
 <a id='ml_model-definition_update'></a>
 ## &#8226; ml model-definition update
@@ -5817,24 +6657,29 @@ cpdctl ml model-definition update --model-definition-id MODEL-DEFINITION-ID --js
 
 #### Command options
 
-<dl>
-<dt>--model-definition-id (string)</dt>
-<dd>Model definition identifier. Required.</dd>
-<dt>--json-patch (<a href="#cli-json-patch-operation-example-schema-ml">JSONPatchOperation[]</a>)</dt>
-<dd>Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--tags ([]string)</dt>
-<dd>A list of tags for this resource.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the resource.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the resource.</dd>
-<dt>--custom (generic map)</dt>
-<dd>User defined properties specified as key-value pairs.</dd>
-</dl>
+`--model-definition-id` (string)
+:   Model definition identifier. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
+:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--name` (string)
+:   The name of the resource.
+
+`--description` (string)
+:   A description of the resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
 
 <a id='ml_model-definition_delete'></a>
 ## &#8226; ml model-definition delete
@@ -5848,14 +6693,14 @@ cpdctl ml model-definition delete --model-definition-id MODEL-DEFINITION-ID [--s
 
 #### Command options
 
-<dl>
-<dt>--model-definition-id (string)</dt>
-<dd>Model definition identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-</dl>
+`--model-definition-id` (string)
+:   Model definition identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
 
 <a id='ml_model-definition_create-revision'></a>
 ## &#8226; ml model-definition create-revision
@@ -5869,21 +6714,23 @@ cpdctl ml model-definition create-revision --model-definition-id MODEL-DEFINITIO
 
 #### Command options
 
-<dl>
-<dt>--model-definition-id (string)</dt>
-<dd>Model definition identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--commit-message (string)</dt>
-<dd>An optional commit message for the revision.</dd>
-</dl>
+`--model-definition-id` (string)
+:   Model definition identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--commit-message` (string)
+:   An optional commit message for the revision.
 
 <a id='ml_model-definition_list-revisions'></a>
 ## &#8226; ml model-definition list-revisions
 
 Retrieve the model definition revisions. This command is supported starting with release 3.5 of Cloud Pak for Data.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl ml model-definition list-revisions --model-definition-id MODEL-DEFINITION-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT] 
@@ -5892,19 +6739,22 @@ cpdctl ml model-definition list-revisions --model-definition-id MODEL-DEFINITION
 
 #### Command options
 
-<dl>
-<dt>--model-definition-id (string)</dt>
-<dd>Model definition identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--start (string)</dt>
-<dd>Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.</dd>
-<dt>--limit (int64)</dt>
-<dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
-<dd>The maximum value is `200`. The minimum value is `1`.</dd>
-</dl>
+`--model-definition-id` (string)
+:   Model definition identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The maximum value is `200`. The minimum value is `1`.
 
 <a id='ml_model-definition_upload-model'></a>
 ## &#8226; ml model-definition upload-model
@@ -5918,16 +6768,17 @@ cpdctl ml model-definition upload-model --model-definition-id MODEL-DEFINITION-I
 
 #### Command options
 
-<dl>
-<dt>--model-definition-id (string)</dt>
-<dd>Model definition identifier. Required.</dd>
-<dt>--upload-model (io.ReadCloser)</dt>
-<dd>A gzip file containing code files. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-</dl>
+`--model-definition-id` (string)
+:   Model definition identifier. Required.
+
+`--upload-model` (io.ReadCloser)
+:   A gzip file containing code files. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
 
 <a id='ml_model-definition_download-model'></a>
 ## &#8226; ml model-definition download-model
@@ -5941,16 +6792,17 @@ cpdctl ml model-definition download-model --model-definition-id MODEL-DEFINITION
 
 #### Command options
 
-<dl>
-<dt>--model-definition-id (string)</dt>
-<dd>Model definition identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--rev (string)</dt>
-<dd>The revision number of the resource.</dd>
-</dl>
+`--model-definition-id` (string)
+:   Model definition identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--rev` (string)
+:   The revision number of the resource.
 
 <a id='ml_pipeline_create'></a>
 ## &#8226; ml pipeline create
@@ -5964,28 +6816,33 @@ cpdctl ml pipeline create --name NAME --document DOCUMENT [--project-id PROJECT-
 
 #### Command options
 
-<dl>
-<dt>--name (string)</dt>
-<dd>The name of the resource. Required.</dd>
-<dt>--document (interface{})</dt>
-<dd>The pipeline document, see
-[pipeline-flow-v2-schema](https://raw.githubusercontent.com/elyra-ai/pipeline-schemas/master/common-pipeline/pipeline-flow/pipeline-flow-v2-schema.json) for the schema definition. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the resource.</dd>
-<dt>--tags ([]string)</dt>
-<dd>A list of tags for this resource.</dd>
-<dt>--custom (generic map)</dt>
-<dd>User defined properties specified as key-value pairs.</dd>
-</dl>
+`--name` (string)
+:   The name of the resource. Required.
+
+`--document` (interface{})
+:   The pipeline document, see
+[pipeline-flow-v2-schema](https://raw.githubusercontent.com/elyra-ai/pipeline-schemas/master/common-pipeline/pipeline-flow/pipeline-flow-v2-schema.json) for the schema definition. Required.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--description` (string)
+:   A description of the resource.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
 
 <a id='ml_pipeline_list'></a>
 ## &#8226; ml pipeline list
 
 Retrieve the pipelines for the specified space or project.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl ml pipeline list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] 
@@ -5994,22 +6851,27 @@ cpdctl ml pipeline list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--start (string)</dt>
-<dd>Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.</dd>
-<dt>--limit (int64)</dt>
-<dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
-<dd>The maximum value is `200`. The minimum value is `1`.</dd>
-<dt>--tag-value (string)</dt>
-<dd>Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.</dd>
-<dt>--search (string)</dt>
-<dd>Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.</dd>
-<dd>The minimum length is `3` characters.</dd>
-</dl>
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The maximum value is `200`. The minimum value is `1`.
+
+`--tag-value` (string)
+:   Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.
+
+`--search` (string)
+:   Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.
+
+    The minimum length is `3` characters.
 
 <a id='ml_pipeline_get'></a>
 ## &#8226; ml pipeline get
@@ -6024,16 +6886,17 @@ cpdctl ml pipeline get --pipeline-id PIPELINE-ID [--space-id SPACE-ID] [--projec
 
 #### Command options
 
-<dl>
-<dt>--pipeline-id (string)</dt>
-<dd>Pipeline identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--rev (string)</dt>
-<dd>The revision number of the resource.</dd>
-</dl>
+`--pipeline-id` (string)
+:   Pipeline identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--rev` (string)
+:   The revision number of the resource.
 
 <a id='ml_pipeline_update'></a>
 ## &#8226; ml pipeline update
@@ -6051,24 +6914,29 @@ cpdctl ml pipeline update --pipeline-id PIPELINE-ID --json-patch JSON-PATCH [--s
 
 #### Command options
 
-<dl>
-<dt>--pipeline-id (string)</dt>
-<dd>Pipeline identifier. Required.</dd>
-<dt>--json-patch (<a href="#cli-json-patch-operation-example-schema-ml">JSONPatchOperation[]</a>)</dt>
-<dd>Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--tags ([]string)</dt>
-<dd>A list of tags for this resource.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the resource.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the resource.</dd>
-<dt>--custom (generic map)</dt>
-<dd>User defined properties specified as key-value pairs.</dd>
-</dl>
+`--pipeline-id` (string)
+:   Pipeline identifier. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
+:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--name` (string)
+:   The name of the resource.
+
+`--description` (string)
+:   A description of the resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
 
 <a id='ml_pipeline_delete'></a>
 ## &#8226; ml pipeline delete
@@ -6082,14 +6950,14 @@ cpdctl ml pipeline delete --pipeline-id PIPELINE-ID [--space-id SPACE-ID] [--pro
 
 #### Command options
 
-<dl>
-<dt>--pipeline-id (string)</dt>
-<dd>Pipeline identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-</dl>
+`--pipeline-id` (string)
+:   Pipeline identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
 
 <a id='ml_pipeline_create-revision'></a>
 ## &#8226; ml pipeline create-revision
@@ -6103,21 +6971,23 @@ cpdctl ml pipeline create-revision --pipeline-id PIPELINE-ID [--space-id SPACE-I
 
 #### Command options
 
-<dl>
-<dt>--pipeline-id (string)</dt>
-<dd>Pipeline identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--commit-message (string)</dt>
-<dd>An optional commit message for the revision.</dd>
-</dl>
+`--pipeline-id` (string)
+:   Pipeline identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--commit-message` (string)
+:   An optional commit message for the revision.
 
 <a id='ml_pipeline_list-revisions'></a>
 ## &#8226; ml pipeline list-revisions
 
 Retrieve the pipeline revisions.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl ml pipeline list-revisions --pipeline-id PIPELINE-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT] 
@@ -6126,19 +6996,22 @@ cpdctl ml pipeline list-revisions --pipeline-id PIPELINE-ID [--space-id SPACE-ID
 
 #### Command options
 
-<dl>
-<dt>--pipeline-id (string)</dt>
-<dd>Pipeline identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--start (string)</dt>
-<dd>Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.</dd>
-<dt>--limit (int64)</dt>
-<dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
-<dd>The maximum value is `200`. The minimum value is `1`.</dd>
-</dl>
+`--pipeline-id` (string)
+:   Pipeline identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The maximum value is `200`. The minimum value is `1`.
 
 <a id='ml_training_create'></a>
 ## &#8226; ml training create
@@ -6152,44 +7025,55 @@ cpdctl ml training create --results-reference RESULTS-REFERENCE [--experiment EX
 
 #### Command options
 
-<dl>
-<dt>--results-reference (<a href="#cli-object-location-example-schema-ml">ObjectLocation</a>)</dt>
-<dd>The training results. Required.</dd>
-<dt>--experiment (<a href="#cli-rel-example-schema-ml">Rel</a>)</dt>
-<dd>A reference to a resource.</dd>
-<dt>--pipeline (<a href="#cli-pipeline-rel-example-schema-ml">PipelineRel</a>)</dt>
-<dd>A pipeline.
+`--results-reference` (<a href="#cli-object-location-example-schema-ml">`ObjectLocation`</a>)
+:   The training results. Required.
+
+`--experiment` (<a href="#cli-rel-example-schema-ml">`Rel`</a>)
+:   A reference to a resource.
+
+`--pipeline` (<a href="#cli-pipeline-rel-example-schema-ml">`PipelineRel`</a>)
+:   A pipeline.
 The `hardware_spec` is a reference to the hardware specification.
 The `hybrid_pipeline_hardware_specs` are used only when training a hybrid pipeline in order to
-specify compute requirement for each pipeline node.</dd>
-<dt>--model-definition (<a href="#cli-model-definition-rel-example-schema-ml">ModelDefinitionRel</a>)</dt>
-<dd>A model.
+specify compute requirement for each pipeline node.
+
+`--model-definition` (<a href="#cli-model-definition-rel-example-schema-ml">`ModelDefinitionRel`</a>)
+:   A model.
 The `software_spec` is a reference to a software specification.
-The `hardware_spec` is a reference to a hardware specification.</dd>
-<dt>--federated-learning (<a href="#cli-federated-learning-example-schema-ml">FederatedLearning</a>)</dt>
-<dd>Federated Learning is a Technical Preview.</dd>
-<dt>--training-data-references (<a href="#cli-data-connection-reference-example-schema-ml">DataConnectionReference[]</a>)</dt>
-<dd>Training datasets.</dd>
-<dt>--test-data-references (<a href="#cli-data-connection-reference-example-schema-ml">DataConnectionReference[]</a>)</dt>
-<dd>The holdout/test datasets.</dd>
-<dt>--custom (generic map)</dt>
-<dd>User defined properties specified as key-value pairs.</dd>
-<dt>--tags ([]string)</dt>
-<dd>A list of tags for this resource.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the training.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the training.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-</dl>
+The `hardware_spec` is a reference to a hardware specification.
+
+`--federated-learning` (<a href="#cli-federated-learning-example-schema-ml">`FederatedLearning`</a>)
+:   Federated Learning.
+
+`--training-data-references` (<a href="#cli-data-connection-reference-example-schema-ml">`DataConnectionReference[]`</a>)
+:   Training datasets.
+
+`--test-data-references` (<a href="#cli-data-connection-reference-example-schema-ml">`DataConnectionReference[]`</a>)
+:   The holdout/test datasets.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--name` (string)
+:   The name of the training.
+
+`--description` (string)
+:   A description of the training.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
 
 <a id='ml_training_list'></a>
 ## &#8226; ml training list
 
 Retrieve the list of trainings for the specified space or project.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl ml training list [--start START] [--limit LIMIT] [--total-count TOTAL-COUNT] [--tag-value TAG-VALUE] [--type TYPE] [--state STATE] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parent-id PARENT-ID] 
@@ -6198,26 +7082,32 @@ cpdctl ml training list [--start START] [--limit LIMIT] [--total-count TOTAL-COU
 
 #### Command options
 
-<dl>
-<dt>--start (string)</dt>
-<dd>Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.</dd>
-<dt>--limit (int64)</dt>
-<dd>How many resources should be returned. Default value is 100. Max value is 200.</dd>
-<dt>--total-count (bool)</dt>
-<dd>Compute the total count. May have performance impact.</dd>
-<dt>--tag-value (string)</dt>
-<dd>Return only the resources with the given tag value.</dd>
-<dt>--type (string)</dt>
-<dd>Filter based on 'pipeline' or 'experiment' trainings. Example: `type=pipeline`. If not provided, returns all the trainings.</dd>
-<dt>--state (string)</dt>
-<dd>Filter based on on the training job state: queued, running, completed, failed etc.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--parent-id (string)</dt>
-<dd>Return the training jobs that are sub-jobs of this parent_id job. The parent_id can be the experiment job ID.</dd>
-</dl>
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. Default value is 100. Max value is 200.
+
+`--total-count` (bool)
+:   Compute the total count. May have performance impact.
+
+`--tag-value` (string)
+:   Return only the resources with the given tag value.
+
+`--type` (string)
+:   Filter based on 'pipeline' or 'experiment' trainings. Example: `type=pipeline`. If not provided, returns all the trainings.
+
+`--state` (string)
+:   Filter based on on the training job state: queued, running, completed, failed etc.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--parent-id` (string)
+:   Return the training jobs that are sub-jobs of this parent_id job. The parent_id can be the experiment job ID.
 
 <a id='ml_training_get'></a>
 ## &#8226; ml training get
@@ -6231,14 +7121,14 @@ cpdctl ml training get --training-id TRAINING-ID [--space-id SPACE-ID] [--projec
 
 #### Command options
 
-<dl>
-<dt>--training-id (string)</dt>
-<dd>The training identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-</dl>
+`--training-id` (string)
+:   The training identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
 
 <a id='ml_training_delete'></a>
 ## &#8226; ml training delete
@@ -6252,32 +7142,38 @@ cpdctl ml training delete --training-id TRAINING-ID [--space-id SPACE-ID] [--pro
 
 #### Command options
 
-<dl>
-<dt>--training-id (string)</dt>
-<dd>The training identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--hard-delete (bool)</dt>
-<dd>Set to true in order to also delete the job metadata information.</dd>
-</dl>
+`--training-id` (string)
+:   The training identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--hard-delete` (bool)
+:   Set to true in order to also delete the job metadata information.
 
 <a id='ml_training_wait'></a>
 ## &#8226; ml training wait
 Wait until the training becomes completed, failed, or canceled.
 
 ```sh
-  cpdctl ml training wait --training-id TRAINING_ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+   cpdctl ml training wait --training-id TRAINING_ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
 ```
 #### Command options
 
-<dl>
-<dt>--cpd-scope string   </dt><dd>CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--project-id string  </dt><dd>The ID of the project to use.</dd>
-<dt>--space-id string    </dt><dd>The ID of the space to use.</dd>
-<dt>--training-id string </dt><dd>The training ID.</dd>
-</dl>
+`--cpd-scope` (string   )
+:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--project-id` (string  )
+:    The ID of the project to use.
+
+`--space-id` (string    )
+:    The ID of the space to use.
+
+`--training-id` (string )
+:    The training ID.
 
 <a id='ml_training-definition_create'></a>
 ## &#8226; ml training-definition create
@@ -6291,44 +7187,55 @@ cpdctl ml training-definition create --name NAME --results-reference RESULTS-REF
 
 #### Command options
 
-<dl>
-<dt>--name (string)</dt>
-<dd>The name of the resource. Required.</dd>
-<dt>--results-reference (<a href="#cli-object-location-example-schema-ml">ObjectLocation</a>)</dt>
-<dd>The training results. Required.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the resource.</dd>
-<dt>--tags ([]string)</dt>
-<dd>A list of tags for this resource.</dd>
-<dt>--experiment (<a href="#cli-rel-example-schema-ml">Rel</a>)</dt>
-<dd>A reference to a resource.</dd>
-<dt>--pipeline (<a href="#cli-pipeline-rel-example-schema-ml">PipelineRel</a>)</dt>
-<dd>A pipeline.
+`--name` (string)
+:   The name of the resource. Required.
+
+`--results-reference` (<a href="#cli-object-location-example-schema-ml">`ObjectLocation`</a>)
+:   The training results. Required.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--description` (string)
+:   A description of the resource.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--experiment` (<a href="#cli-rel-example-schema-ml">`Rel`</a>)
+:   A reference to a resource.
+
+`--pipeline` (<a href="#cli-pipeline-rel-example-schema-ml">`PipelineRel`</a>)
+:   A pipeline.
 The `hardware_spec` is a reference to the hardware specification.
 The `hybrid_pipeline_hardware_specs` are used only when training a hybrid pipeline in order to
-specify compute requirement for each pipeline node.</dd>
-<dt>--model-definition (<a href="#cli-model-definition-rel-example-schema-ml">ModelDefinitionRel</a>)</dt>
-<dd>A model.
+specify compute requirement for each pipeline node.
+
+`--model-definition` (<a href="#cli-model-definition-rel-example-schema-ml">`ModelDefinitionRel`</a>)
+:   A model.
 The `software_spec` is a reference to a software specification.
-The `hardware_spec` is a reference to a hardware specification.</dd>
-<dt>--federated-learning (<a href="#cli-federated-learning-example-schema-ml">FederatedLearning</a>)</dt>
-<dd>Federated Learning is a Technical Preview.</dd>
-<dt>--training-data-references (<a href="#cli-data-connection-reference-example-schema-ml">DataConnectionReference[]</a>)</dt>
-<dd>Training datasets.</dd>
-<dt>--test-data-references (<a href="#cli-data-connection-reference-example-schema-ml">DataConnectionReference[]</a>)</dt>
-<dd>The holdout/test datasets.</dd>
-<dt>--custom (generic map)</dt>
-<dd>User defined properties specified as key-value pairs.</dd>
-</dl>
+The `hardware_spec` is a reference to a hardware specification.
+
+`--federated-learning` (<a href="#cli-federated-learning-example-schema-ml">`FederatedLearning`</a>)
+:   Federated Learning.
+
+`--training-data-references` (<a href="#cli-data-connection-reference-example-schema-ml">`DataConnectionReference[]`</a>)
+:   Training datasets.
+
+`--test-data-references` (<a href="#cli-data-connection-reference-example-schema-ml">`DataConnectionReference[]`</a>)
+:   The holdout/test datasets.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
 
 <a id='ml_training-definition_list'></a>
 ## &#8226; ml training-definition list
 
 Retrieve the training definitions for the specified space or project. This command is supported starting with release 3.5 of Cloud Pak for Data.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl ml training-definition list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] 
@@ -6337,22 +7244,27 @@ cpdctl ml training-definition list [--space-id SPACE-ID] [--project-id PROJECT-I
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--start (string)</dt>
-<dd>Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.</dd>
-<dt>--limit (int64)</dt>
-<dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
-<dd>The maximum value is `200`. The minimum value is `1`.</dd>
-<dt>--tag-value (string)</dt>
-<dd>Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.</dd>
-<dt>--search (string)</dt>
-<dd>Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.</dd>
-<dd>The minimum length is `3` characters.</dd>
-</dl>
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The maximum value is `200`. The minimum value is `1`.
+
+`--tag-value` (string)
+:   Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.
+
+`--search` (string)
+:   Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.
+
+    The minimum length is `3` characters.
 
 <a id='ml_training-definition_get'></a>
 ## &#8226; ml training-definition get
@@ -6367,16 +7279,17 @@ cpdctl ml training-definition get --training-definition-id TRAINING-DEFINITION-I
 
 #### Command options
 
-<dl>
-<dt>--training-definition-id (string)</dt>
-<dd>Training definition identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--rev (string)</dt>
-<dd>The revision number of the resource.</dd>
-</dl>
+`--training-definition-id` (string)
+:   Training definition identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--rev` (string)
+:   The revision number of the resource.
 
 <a id='ml_training-definition_update'></a>
 ## &#8226; ml training-definition update
@@ -6395,26 +7308,32 @@ cpdctl ml training-definition update --training-definition-id TRAINING-DEFINITIO
 
 #### Command options
 
-<dl>
-<dt>--training-definition-id (string)</dt>
-<dd>Training definition identifier. Required.</dd>
-<dt>--json-patch (<a href="#cli-json-patch-operation-example-schema-ml">JSONPatchOperation[]</a>)</dt>
-<dd>Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--tags ([]string)</dt>
-<dd>A list of tags for this resource.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the resource.</dd>
-<dt>--description (string)</dt>
-<dd>A description of the resource.</dd>
-<dt>--custom (generic map)</dt>
-<dd>User defined properties specified as key-value pairs.</dd>
-<dt>--federated-learning (<a href="#cli-federated-learning-example-schema-ml">FederatedLearning</a>)</dt>
-<dd>Federated Learning is a Technical Preview.</dd>
-</dl>
+`--training-definition-id` (string)
+:   Training definition identifier. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
+:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--name` (string)
+:   The name of the resource.
+
+`--description` (string)
+:   A description of the resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
+
+`--federated-learning` (<a href="#cli-federated-learning-example-schema-ml">`FederatedLearning`</a>)
+:   Federated Learning.
 
 <a id='ml_training-definition_delete'></a>
 ## &#8226; ml training-definition delete
@@ -6428,14 +7347,14 @@ cpdctl ml training-definition delete --training-definition-id TRAINING-DEFINITIO
 
 #### Command options
 
-<dl>
-<dt>--training-definition-id (string)</dt>
-<dd>Training definition identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-</dl>
+`--training-definition-id` (string)
+:   Training definition identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
 
 <a id='ml_training-definition_create-revision'></a>
 ## &#8226; ml training-definition create-revision
@@ -6449,21 +7368,23 @@ cpdctl ml training-definition create-revision --training-definition-id TRAINING-
 
 #### Command options
 
-<dl>
-<dt>--training-definition-id (string)</dt>
-<dd>Training definition identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` has to be given.</dd>
-<dt>--commit-message (string)</dt>
-<dd>An optional commit message for the revision.</dd>
-</dl>
+`--training-definition-id` (string)
+:   Training definition identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--commit-message` (string)
+:   An optional commit message for the revision.
 
 <a id='ml_training-definition_list-revisions'></a>
 ## &#8226; ml training-definition list-revisions
 
 Retrieve the training definition revisions. This command is supported starting with release 3.5 of Cloud Pak for Data.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl ml training-definition list-revisions --training-definition-id TRAINING-DEFINITION-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT] 
@@ -6472,19 +7393,22 @@ cpdctl ml training-definition list-revisions --training-definition-id TRAINING-D
 
 #### Command options
 
-<dl>
-<dt>--training-definition-id (string)</dt>
-<dd>Training definition identifier. Required.</dd>
-<dt>--space-id (string)</dt>
-<dd>The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--project-id (string)</dt>
-<dd>The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.</dd>
-<dt>--start (string)</dt>
-<dd>Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.</dd>
-<dt>--limit (int64)</dt>
-<dd>How many resources should be returned. By default limit is 100. Max limit allowed is 200.</dd>
-<dd>The maximum value is `200`. The minimum value is `1`.</dd>
-</dl>
+`--training-definition-id` (string)
+:   Training definition identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The maximum value is `200`. The minimum value is `1`.
 
 <a id='notebook_create'></a>
 ## &#8226; notebook create
@@ -6504,26 +7428,32 @@ cpdctl notebook create --file-reference FILE-REFERENCE --name NAME [--compute CO
 
 #### Command options
 
-<dl>
-<dt>--file-reference (string)</dt>
-<dd>The reference to the file in the object storage. Required.</dd>
-<dt>--name (string)</dt>
-<dd>The name of the new notebook. Required.</dd>
-<dt>--compute (string)</dt>
-<dd>The id of the Spark-as-a-Service on which the notebook runs.</dd>
-<dt>--description (string)</dt>
-<dd>A more verbose description of the notebook.</dd>
-<dt>--kernel (<a href="#cli-notebook-kernel-example-schema-notebook">NotebookKernel</a>)</dt>
-<dd>A notebook kernel.</dd>
-<dt>--originates-from (<a href="#cli-notebook-origin-example-schema-notebook">NotebookOrigin</a>)</dt>
-<dd>The notebook origin.</dd>
-<dt>--project (string)</dt>
-<dd>The id of the project in which to create the notebook.</dd>
-<dt>--runtime (<a href="#cli-notebook-runtime-example-schema-notebook">NotebookRuntime</a>)</dt>
-<dd>A notebook runtime.</dd>
-<dt>--space (string)</dt>
-<dd>The id of the space in which to create the notebook.</dd>
-</dl>
+`--file-reference` (string)
+:   The reference to the file in the object storage. Required.
+
+`--name` (string)
+:   The name of the new notebook. Required.
+
+`--compute` (string)
+:   The id of the Spark-as-a-Service on which the notebook runs.
+
+`--description` (string)
+:   A more verbose description of the notebook.
+
+`--kernel` (<a href="#cli-notebook-kernel-example-schema-notebook">`NotebookKernel`</a>)
+:   A notebook kernel.
+
+`--originates-from` (<a href="#cli-notebook-origin-example-schema-notebook">`NotebookOrigin`</a>)
+:   The notebook origin.
+
+`--project` (string)
+:   The id of the project in which to create the notebook.
+
+`--runtime` (<a href="#cli-notebook-runtime-example-schema-notebook">`NotebookRuntime`</a>)
+:   A notebook runtime.
+
+`--space` (string)
+:   The id of the space in which to create the notebook.
 
 <a id='notebook_delete'></a>
 ## &#8226; notebook delete
@@ -6537,10 +7467,8 @@ cpdctl notebook delete --notebook-id NOTEBOOK-ID
 
 #### Command options
 
-<dl>
-<dt>--notebook-id (string)</dt>
-<dd>The guid of the notebook. Required.</dd>
-</dl>
+`--notebook-id` (string)
+:   The guid of the notebook. Required.
 
 <a id='notebook_update'></a>
 ## &#8226; notebook update
@@ -6554,22 +7482,26 @@ cpdctl notebook update --notebook-id NOTEBOOK-ID [--compute COMPUTE] [--environm
 
 #### Command options
 
-<dl>
-<dt>--notebook-id (string)</dt>
-<dd>The guid of the notebook. Required.</dd>
-<dt>--compute (string)</dt>
-<dd>The id of the Spark instance on which the notebook runs.</dd>
-<dt>--environment (string)</dt>
-<dd>The id of the environment on which the notebook runs.</dd>
-<dt>--kernel (<a href="#cli-notebook-kernel-example-schema-notebook">NotebookKernel</a>)</dt>
-<dd>A notebook kernel.</dd>
-<dt>--schedule (string)</dt>
-<dd>The id of the schedule of the notebook.</dd>
-<dt>--shares (<a href="#cli-notebook-shares-example-schema-notebook">NotebookShares</a>)</dt>
-<dd>Share and repository information for a notebook.</dd>
-<dt>--spark-monitoring-enabled (bool)</dt>
-<dd>Spark monitoring enabled or not.</dd>
-</dl>
+`--notebook-id` (string)
+:   The guid of the notebook. Required.
+
+`--compute` (string)
+:   The id of the Spark instance on which the notebook runs.
+
+`--environment` (string)
+:   The id of the environment on which the notebook runs.
+
+`--kernel` (<a href="#cli-notebook-kernel-example-schema-notebook">`NotebookKernel`</a>)
+:   A notebook kernel.
+
+`--schedule` (string)
+:   The id of the schedule of the notebook.
+
+`--shares` (<a href="#cli-notebook-shares-example-schema-notebook">`NotebookShares`</a>)
+:   Share and repository information for a notebook.
+
+`--spark-monitoring-enabled` (bool)
+:   Spark monitoring enabled or not.
 
 <a id='notebook_revert'></a>
 ## &#8226; notebook revert
@@ -6583,12 +7515,11 @@ cpdctl notebook revert --notebook-id NOTEBOOK-ID [--source SOURCE]
 
 #### Command options
 
-<dl>
-<dt>--notebook-id (string)</dt>
-<dd>The guid of the master notebook. Required.</dd>
-<dt>--source (string)</dt>
-<dd>The id of the notebook version.</dd>
-</dl>
+`--notebook-id` (string)
+:   The guid of the master notebook. Required.
+
+`--source` (string)
+:   The id of the notebook version.
 
 <a id='notebook_version_list'></a>
 ## &#8226; notebook version list
@@ -6602,10 +7533,8 @@ cpdctl notebook version list --notebook-id NOTEBOOK-ID
 
 #### Command options
 
-<dl>
-<dt>--notebook-id (string)</dt>
-<dd>The guid of the notebook. Required.</dd>
-</dl>
+`--notebook-id` (string)
+:   The guid of the notebook. Required.
 
 <a id='notebook_version_create'></a>
 ## &#8226; notebook version create
@@ -6619,10 +7548,8 @@ cpdctl notebook version create --notebook-id NOTEBOOK-ID
 
 #### Command options
 
-<dl>
-<dt>--notebook-id (string)</dt>
-<dd>The guid of the notebook. Required.</dd>
-</dl>
+`--notebook-id` (string)
+:   The guid of the notebook. Required.
 
 <a id='notebook_version_delete'></a>
 ## &#8226; notebook version delete
@@ -6636,12 +7563,11 @@ cpdctl notebook version delete --notebook-id NOTEBOOK-ID --version-id VERSION-ID
 
 #### Command options
 
-<dl>
-<dt>--notebook-id (string)</dt>
-<dd>The guid of the notebook. Required.</dd>
-<dt>--version-id (string)</dt>
-<dd>The guid of the version. Required.</dd>
-</dl>
+`--notebook-id` (string)
+:   The guid of the notebook. Required.
+
+`--version-id` (string)
+:   The guid of the version. Required.
 
 <a id='notebook_version_get'></a>
 ## &#8226; notebook version get
@@ -6655,12 +7581,11 @@ cpdctl notebook version get --notebook-id NOTEBOOK-ID --version-id VERSION-ID
 
 #### Command options
 
-<dl>
-<dt>--notebook-id (string)</dt>
-<dd>The guid of the notebook. Required.</dd>
-<dt>--version-id (string)</dt>
-<dd>The guid of the version. Required.</dd>
-</dl>
+`--notebook-id` (string)
+:   The guid of the notebook. Required.
+
+`--version-id` (string)
+:   The guid of the version. Required.
 
 <a id='notebook_version_update'></a>
 ## &#8226; notebook version update
@@ -6674,16 +7599,17 @@ cpdctl notebook version update --notebook-id NOTEBOOK-ID --version-id VERSION-ID
 
 #### Command options
 
-<dl>
-<dt>--notebook-id (string)</dt>
-<dd>The guid of the notebook. Required.</dd>
-<dt>--version-id (string)</dt>
-<dd>The guid of the version. Required.</dd>
-<dt>--kernel (<a href="#cli-notebook-kernel-example-schema-notebook">NotebookKernel</a>)</dt>
-<dd>A notebook kernel.</dd>
-<dt>--schedule (string)</dt>
-<dd>The schedule id of the notebook.</dd>
-</dl>
+`--notebook-id` (string)
+:   The guid of the notebook. Required.
+
+`--version-id` (string)
+:   The guid of the version. Required.
+
+`--kernel` (<a href="#cli-notebook-kernel-example-schema-notebook">`NotebookKernel`</a>)
+:   A notebook kernel.
+
+`--schedule` (string)
+:   The schedule id of the notebook.
 
 <a id='project_list'></a>
 ## &#8226; project list
@@ -6691,30 +7617,61 @@ cpdctl notebook version update --notebook-id NOTEBOOK-ID --version-id VERSION-ID
 Returns a list of projects that are meeting the provided query parameters. By default, the list returns projects that the authenticated user is a member of. This command lists only Analytics projects. Data Quality projects are not supported.
 
 ```sh
-cpdctl project list [--member MEMBER] [--roles ROLES] [--tags TAGS] [--guids GUIDS] [--include INCLUDE] [--limit LIMIT] [--skip SKIP] 
+cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--member MEMBER] [--roles ROLES] [--name NAME] [--match MATCH] [--guids GUIDS] [--include INCLUDE] [--limit LIMIT] [--bookmark BOOKMARK] [--skip SKIP] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>-m, --member (string)</dt>
-<dd>A project member to use to filter the query results by membership.</dd>
-<dt>-r, --roles ([]string)</dt>
-<dd>A list of comma-separated project roles to use to filter the query results. Must be used in conjunction with the 'member' query parameter.</dd>
-<dt>-t, --tags ([]string)</dt>
-<dd>A list of comma-separated, user-defined tags to use to filter the query results.</dd>
-<dt>-g, --guids ([]string)</dt>
-<dd>A list of comma-separated project GUIDs to use to filter the query results.</dd>
-<dt>-I, --include ([]string)</dt>
-<dd>A list of comma-separated project metadata sections to include in the query results.</dd>
-<dt>-l, --limit (int64)</dt>
-<dd>The limit to use to restrict the number of projects returned in the query results. Used for pagination in conjunction with the 'skip' query parameter.</dd>
-<dd>The maximum value is `100`. The minimum value is `0`.</dd>
-<dt>-s, --skip (int64)</dt>
-<dd>The offset to use to define the starting index of projects to return in the query results. Used for pagination in conjunction with the 'limit' query parameter.</dd>
-<dd>The minimum value is `0`.</dd>
-</dl>
+`-a`, `--bss-account-id` (string)
+:   The BSS Account ID.
+
+    The value must match regular expression `/^[0-9a-f]{32}$/`.
+
+`-m`, `--member` (string)
+:   A project member to use to filter the query results by membership.
+
+    The maximum length is `100` characters. The minimum length is `1` character.
+
+`-r`, `--roles` ([]string)
+:   A list of comma-separated project roles to use to filter the query results. Must be used in conjunction with the "member" query parameter.
+
+    Allowable list items are: `admin`, `editor`, `viewer`.
+
+`-n`, `--name` (string)
+:   A full or partial project name to use to filter the query results. This query parameter must be used in conjunction with the 'bss_account_id' query parameter. Use the 'match' query parameter to control they type of text matching performed. Project names are not unique and should not be used in place of project IDs.
+
+    The maximum length is `100` characters. The minimum length is `1` character.
+
+`-t`, `--match` (string)
+:   The type of text matching to perform. This query parameter must be used in conjunction with the 'name' query parameter. The 'exact' value will match projects if the specified text matches the exact project name. The 'keyword' value will match projects if the specified text matches any keyword parsed from the project name.
+
+    The default value is `exact`. Allowable values are: `exact`, `keyword`.
+
+`-g`, `--guids` ([]string)
+:   A list of comma-separated project IDs to use to filter the query results.
+
+    The list items must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`.
+
+`-I`, `--include` ([]string)
+:   A list of comma-separated project metadata sections to include in the query results.
+
+    The default value is `["fields"]`. Allowable list items are: `name`, `fields`, `members`, `everything`, `nothing`.
+
+`-l`, `--limit` (int64)
+:   The limit used to specify the maximum number of projects returned in the query results. Used for pagination in conjunction with the "bookmark" query parameter.
+
+    The maximum value is `100`. The minimum value is `0`.
+
+`-b`, `--bookmark` (string)
+:   The bookmark is an opaque key returned in the query results set that serves as a reference to the next page of query results. Specify the bookmark on subsquent query requests to retrieve the next page of query results. Used for pagination in conjunction with the "limit" query parameter.
+
+    The value must match regular expression `/^[0-9A-Za-z_-]{1,1000}$/`.
+
+`-s`, `--skip` (int64)
+:   Deprecated. Use of this query parameter exhibits poor performance characteristics. Use the more efficient "bookmark" query parameter instead. The offset to use to define the starting index of projects to return in the query results. Used for pagination in conjunction with the "limit" query parameter.
+
+    The minimum value is `0`.
 
 <a id='project_get'></a>
 ## &#8226; project get
@@ -6728,13 +7685,15 @@ cpdctl project get --project-id PROJECT-ID [--include INCLUDE]
 
 #### Command options
 
-<dl>
-<dt>-i, --project-id (string)</dt>
-<dd>The project ID. Required.</dd>
-<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
-<dt>-I, --include ([]string)</dt>
-<dd>A list of comma-separated project metadata sections to include in the query results.</dd>
-</dl>
+`-i`, `--project-id` (string)
+:   The project ID. Required.
+
+    The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`.
+
+`-I`, `--include` ([]string)
+:   A list of comma-separated project metadata sections to include in the query results.
+
+    Allowable list items are: `name`, `fields`, `members`, `settings`, `integrations`, `storage`, `everything`, `nothing`.
 
 <a id='project_update'></a>
 ## &#8226; project update
@@ -6742,53 +7701,42 @@ cpdctl project get --project-id PROJECT-ID [--include INCLUDE]
 Partially updates the project with only a subset of properties.
 
 ```sh
-cpdctl project update --project-id PROJECT-ID [--catalog CATALOG] [--compute COMPUTE] [--description DESCRIPTION] [--name NAME] [--public PUBLIC] [--tags TAGS] [--tools TOOLS] 
+cpdctl project update --project-id PROJECT-ID [--name NAME] [--description DESCRIPTION] [--public PUBLIC] [--catalog CATALOG] [--compute COMPUTE] [--tools TOOLS] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>-i, --project-id (string)</dt>
-<dd>The project ID. Required.</dd>
-<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
-<dt>-C, --catalog (<a href="#cli-project-catalog-example-schema-project">ProjectCatalog</a>)</dt>
-<dd>A catalog associated with the project.</dd>
-<dt>-c, --compute (<a href="#cli-project-compute-example-schema-project">ProjectCompute[]</a>)</dt>
-<dd>A list of computes associated with the project.</dd>
-<dt>-d, --description (string)</dt>
-<dd>A description for the new project.</dd>
-<dt>-n, --name (string)</dt>
-<dd>The name of the project.</dd>
-<dd>The maximum length is `100` characters. The minimum length is `1` character.</dd>
-<dt>-p, --public (bool)</dt>
-<dd>A value of 'true' makes the project public.</dd>
-<dd>The default value is `false`.</dd>
-<dt>-t, --tags ([]string)</dt>
-<dd>The user-defined tags associated with a project.</dd>
-<dt>-T, --tools ([]string)</dt>
-<dd>The tools associated with the project.</dd>
-</dl>
+`-i`, `--project-id` (string)
+:   The project ID. Required.
 
-<a id='project_member_delete'></a>
-## &#8226; project member delete
+    The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`.
 
-Deletes members from the project that match the provided usernames.
+`-n`, `--name` (string)
+:   The name of the project. The name cannot contain any of the following characters - left angle bracket (<), right angle bracket (>), backslash (\\), double quote ("), percentage sign (%).
 
-```sh
-cpdctl project member delete --project-id PROJECT-ID --user-names USER-NAMES 
-```
+    The maximum length is `100` characters. The minimum length is `1` character.
 
+`-d`, `--description` (string)
+:   A description for the new project. The name cannot contain any of the following characters - left angle bracket (<), right angle bracket (>), backslash (\\), double quote (").
 
-#### Command options
+    The maximum length is `1000` characters. The minimum length is `0` characters.
 
-<dl>
-<dt>-i, --project-id (string)</dt>
-<dd>The project ID. Required.</dd>
-<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
-<dt>-u, --user-names ([]string)</dt>
-<dd>A list of comma-separated usernames corresponding to project members to remove from the project. Required.</dd>
-</dl>
+`-p`, `--public` (bool)
+:   A value of "true" makes the project public.
+
+    The default value is `false`.
+
+`-C`, `--catalog` (<a href="#cli-project-catalog-example-schema-project">`ProjectCatalog`</a>)
+:   A catalog associated with the project.
+
+`-c`, `--compute` (<a href="#cli-project-compute-example-schema-project">`ProjectCompute[]`</a>)
+:   A list of computes associated with the project.
+
+`-T`, `--tools` ([]string)
+:   The tools associated with the project.
+
+    Allowable list items are: `jupyter_notebooks`, `watson_visual_recognition`, `dashboards`, `streams_designer`, `spss_modeler`, `experiments`, `data_refinery`.
 
 <a id='project_member_list'></a>
 ## &#8226; project member list
@@ -6802,35 +7750,18 @@ cpdctl project member list --project-id PROJECT-ID [--roles ROLES] [--user-names
 
 #### Command options
 
-<dl>
-<dt>-i, --project-id (string)</dt>
-<dd>The project ID. Required.</dd>
-<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
-<dt>-r, --roles ([]string)</dt>
-<dd>A list of comma-separated project roles to use to filter the query results.</dd>
-<dt>-u, --user-names ([]string)</dt>
-<dd>A list of comma-separated usernames corresponding to project members that are used to filter the query results.</dd>
-</dl>
+`-i`, `--project-id` (string)
+:   The project ID. Required.
 
-<a id='project_member_update'></a>
-## &#8226; project member update
+    The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`.
 
-Change project member roles in a batch.
+`-r`, `--roles` ([]string)
+:   A list of comma-separated project roles to use to filter the query results.
 
-```sh
-cpdctl project member update --project-id PROJECT-ID --members MEMBERS 
-```
+    Allowable list items are: `admin`, `editor`, `viewer`.
 
-
-#### Command options
-
-<dl>
-<dt>-i, --project-id (string)</dt>
-<dd>The project ID. Required.</dd>
-<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
-<dt>--members (<a href="#cli-update-member-body-example-schema-project">UpdateMemberBody[]</a>)</dt>
-<dd>A list of project members to update. Required.</dd>
-</dl>
+`-u`, `--user-names` ([]string)
+:   A list of comma-separated usernames corresponding to project members that are used to filter the query results.
 
 <a id='project_member_create'></a>
 ## &#8226; project member create
@@ -6844,13 +7775,53 @@ cpdctl project member create --project-id PROJECT-ID --members MEMBERS
 
 #### Command options
 
-<dl>
-<dt>-i, --project-id (string)</dt>
-<dd>The project ID. Required.</dd>
-<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
-<dt>--members (<a href="#cli-project-member-example-schema-project">ProjectMember[]</a>)</dt>
-<dd>A list of project members. Required.</dd>
-</dl>
+`-i`, `--project-id` (string)
+:   The project ID. Required.
+
+    The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`.
+
+`--members` (<a href="#cli-project-member-example-schema-project">`ProjectMember[]`</a>)
+:   A list of project members. Required.
+
+<a id='project_member_delete'></a>
+## &#8226; project member delete
+
+Deletes members from the project that match the provided usernames.
+
+```sh
+cpdctl project member delete --project-id PROJECT-ID --user-names USER-NAMES 
+```
+
+
+#### Command options
+
+`-i`, `--project-id` (string)
+:   The project ID. Required.
+
+    The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`.
+
+`-u`, `--user-names` ([]string)
+:   A list of comma-separated usernames corresponding to project members to remove from the project. Required.
+
+<a id='project_member_update'></a>
+## &#8226; project member update
+
+Change project member roles in a batch.
+
+```sh
+cpdctl project member update --project-id PROJECT-ID --members MEMBERS 
+```
+
+
+#### Command options
+
+`-i`, `--project-id` (string)
+:   The project ID. Required.
+
+    The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`.
+
+`--members` (<a href="#cli-update-member-body-example-schema-project">`UpdateMemberBody[]`</a>)
+:   A list of project members to update. Required.
 
 <a id='project_member_get'></a>
 ## &#8226; project member get
@@ -6858,19 +7829,26 @@ cpdctl project member create --project-id PROJECT-ID --members MEMBERS
 Returns the project member with the specified 'user_name' if any.
 
 ```sh
-cpdctl project member get --project-id PROJECT-ID --user-name USER-NAME 
+cpdctl project member get --project-id PROJECT-ID --user-name USER-NAME [--resolve-groups RESOLVE-GROUPS] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>-i, --project-id (string)</dt>
-<dd>The project ID. Required.</dd>
-<dd>The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`</dd>
-<dt>-u, --user-name (string)</dt>
-<dd>The username of the project member. Required.</dd>
-</dl>
+`-i`, `--project-id` (string)
+:   The project ID. Required.
+
+    The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`.
+
+`-u`, `--user-name` (string)
+:   The username of the project member. Required.
+
+    The maximum length is `100` characters. The minimum length is `1` character.
+
+`-g`, `--resolve-groups` (bool)
+:   A flag indicating whether to return a derived project member based on resolving user groups.
+
+    The default value is `true`.
 
 <a id='project_create'></a>
 ## &#8226; project create
@@ -6878,34 +7856,44 @@ cpdctl project member get --project-id PROJECT-ID --user-name USER-NAME
 Creates a new project with the provided parameters, including all the storage and credentials in a single transaction. This endpoint will create a new COS bucket using generated unique name, all credentials, asset container and call all the required atomic APIs to fully configure a new project. Attempts to use the duplicate project names will result in an error. <b>NOTE</b>:  when creating projects programmatically, always use this endpoint, not /v2/projects. <br/><br/><br/> This endpoint can also be used to create a project from an exported Watson Studio .zip file. In this case, a new transaction is initiated to create assets under the project. A Transaction ID along with a URL is returned as a response of this API. As this transaction can take time, you can view the current status of the transaction using the returned URL.<br><b>NOTE</b>: This feature is only available in the private cloud.
 
 ```sh
-cpdctl project create --generator GENERATOR --name NAME --storage STORAGE [--compute COMPUTE] [--description DESCRIPTION] [--enforce-members ENFORCE-MEMBERS] [--public PUBLIC] [--tags TAGS] [--tools TOOLS] 
+cpdctl project create --name NAME --generator GENERATOR --storage STORAGE [--description DESCRIPTION] [--public PUBLIC] [--tags TAGS] [--enforce-members ENFORCE-MEMBERS] [--compute COMPUTE] [--tools TOOLS] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>-g, --generator (string)</dt>
-<dd>A tag to indicate where this project was generated. This is only intended for use in metrics. It does not need to be unique and all consumers of this API should use a consistent string for their 'generator' field. The value is stored in the project metadata for future consumption in metrics. Required.</dd>
-<dt>-n, --name (string)</dt>
-<dd>The name of the new project. The name must be a non-empty String. This does not need to be unique. Required.</dd>
-<dt>-s, --storage (<a href="#cli-transactional-project-storage-object-example-schema-project">TransactionalProjectStorageObject</a>)</dt>
-<dd>Object storage properties to be associated with the project. Required.</dd>
-<dt>-c, --compute (<a href="#cli-transactional-project-compute-object-cloud-example-schema-project">TransactionalProjectComputeObjectCloud[]</a>)</dt>
-<dd>List of computes to be associated with the project.</dd>
-<dt>-d, --description (string)</dt>
-<dd>A description for the new project.</dd>
-<dt>-e, --enforce-members (bool)</dt>
-<dd>Set to true of project members should be scoped to the account and/or SAML of the creator.</dd>
-<dd>The default value is `false`.</dd>
-<dt>-p, --public (bool)</dt>
-<dd>A value of `true` makes the project public.</dd>
-<dd>The default value is `false`.</dd>
-<dt>-t, --tags ([]string)</dt>
-<dd>List of user defined tags that are attached to the project.</dd>
-<dt>-T, --tools ([]string)</dt>
-<dd>List of tools to be associated with the project.</dd>
-</dl>
+`-n`, `--name` (string)
+:   The name of the new project. The name must be a non-empty String. This does not need to be unique. Required.
+
+`-g`, `--generator` (string)
+:   A tag to indicate where this project was generated. This is only intended for use in metrics. It does not need to be unique and all consumers of this API should use a consistent string for their 'generator' field. The value is stored in the project metadata for future consumption in metrics. Required.
+
+`-s`, `--storage` (<a href="#cli-transactional-project-storage-object-example-schema-project">`TransactionalProjectStorageObject`</a>)
+:   Object storage properties to be associated with the project. Required.
+
+`-d`, `--description` (string)
+:   A description for the new project.
+
+`-p`, `--public` (bool)
+:   A value of `true` makes the project public.
+
+    The default value is `false`.
+
+`-t`, `--tags` ([]string)
+:   List of user defined tags that are attached to the project.
+
+`-e`, `--enforce-members` (bool)
+:   Set to true of project members should be scoped to the account and/or SAML of the creator.
+
+    The default value is `false`.
+
+`-c`, `--compute` (<a href="#cli-transactional-project-compute-object-cloud-example-schema-project">`TransactionalProjectComputeObjectCloud[]`</a>)
+:   List of computes to be associated with the project.
+
+`-T`, `--tools` ([]string)
+:   List of tools to be associated with the project.
+
+    Allowable list items are: `watson_visual_recognition`, `jupyter_notebooks`, `dashboards`, `streams_designer`, `spss_modeler`, `experiments`, `data_refinery`.
 
 <a id='project_delete'></a>
 ## &#8226; project delete
@@ -6919,15 +7907,14 @@ cpdctl project delete --project-id PROJECT-ID
 
 #### Command options
 
-<dl>
-<dt>-i, --project-id (string)</dt>
-<dd>The ID of the project to be deleted. Required.</dd>
-</dl>
+`-i`, `--project-id` (string)
+:   The ID of the project to be deleted. Required.
 
 <a id='space_list'></a>
 ## &#8226; space list
 
 Retrieves the space list.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl space list [--start START] [--limit LIMIT] [--total-count TOTAL-COUNT] [--id ID] [--tags TAGS] [--include INCLUDE] [--member MEMBER] [--roles ROLES] [--bss-account-id BSS-ACCOUNT-ID] [--name NAME] [--compute-crn COMPUTE-CRN] 
@@ -6936,40 +7923,48 @@ cpdctl space list [--start START] [--limit LIMIT] [--total-count TOTAL-COUNT] [-
 
 #### Command options
 
-<dl>
-<dt>--start (string)</dt>
-<dd>Token representing first resource.</dd>
-<dt>--limit (float64)</dt>
-<dd>The number of resources returned. Default value is 100. Max value is 200.</dd>
-<dt>--total-count (bool)</dt>
-<dd>Include details about total number of resources. This flag is not supported on CPD 3.0.1.</dd>
-<dt>--id (string)</dt>
-<dd>Comma-separated list of ids to be returned. This flag is not supported on CPD 3.0.1.</dd>
-<dt>--tags (string)</dt>
-<dd>A list of comma-separated, user-defined tags to use to filter the query results.</dd>
-<dt>--include (string)</dt>
-<dd>A list of comma-separated space sections to include in the query results. Example: '?include=members'.
+`--start` (string)
+:   Token representing first resource.
+
+`--limit` (float64)
+:   The number of resources returned. Default value is 100. Max value is 200.
+
+`--total-count` (bool)
+:   Include details about total number of resources. This flag is not supported on CPD 3.0.1.
+
+`--id` (string)
+:   Comma-separated list of ids to be returned. This flag is not supported on CPD 3.0.1.
+
+`--tags` (string)
+:   A list of comma-separated, user-defined tags to use to filter the query results.
+
+`--include` (string)
+:   A list of comma-separated space sections to include in the query results. Example: '?include=members'.
 
 Available fields:
  * members (returns up to 100 members)
- * nothing (does not return space entity and metadata).</dd>
-<dt>--member (string)</dt>
-<dd>Filters the result list to only include spaces where the user with a matching user id is a member.</dd>
-<dt>--roles (string)</dt>
-<dd>Must be used in conjunction with the member query parameter. Filters the result set to include only spaces where the specified member has one of the roles specified.
+ * nothing (does not return space entity and metadata).
+
+`--member` (string)
+:   Filters the result list to only include spaces where the user with a matching user id is a member.
+
+`--roles` (string)
+:   Must be used in conjunction with the member query parameter. Filters the result set to include only spaces where the specified member has one of the roles specified.
 
 Values:
 
   * admin
   * editor
-  * viewer.</dd>
-<dt>--bss-account-id (string)</dt>
-<dd>Filtering by bss_account_id is allowed only for accredited services.</dd>
-<dt>--name (string)</dt>
-<dd>Filters the result list to only include space with specified name.</dd>
-<dt>--compute-crn (string)</dt>
-<dd>Filters the result list to only include spaces with specified compute.crn.</dd>
-</dl>
+  * viewer.
+
+`--bss-account-id` (string)
+:   Filtering by bss_account_id is allowed only for accredited services.
+
+`--name` (string)
+:   Filters the result list to only include space with specified name.
+
+`--compute-crn` (string)
+:   Filters the result list to only include spaces with specified compute.crn.
 
 <a id='space_create'></a>
 ## &#8226; space create
@@ -6981,29 +7976,34 @@ Creates a new space to scope other assets. Authorized user must have the followi
 On Public Cloud user is required to provide Cloud Object Storage instance details in the 'storage' property. On private CPD installations the default storage is used instead.
 
 ```sh
-cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--generator GENERATOR] [--stage STAGE] [--storage STORAGE] [--tags TAGS] 
+cpdctl space create --name NAME [--description DESCRIPTION] [--storage STORAGE] [--compute COMPUTE] [--tags TAGS] [--generator GENERATOR] [--stage STAGE] 
 ```
 
 
 #### Command options
 
-<dl>
-<dt>--name (string)</dt>
-<dd>Name of space. Required.</dd>
-<dt>--compute (<a href="#cli-compute-request-example-schema-space">ComputeRequest[]</a>)</dt>
-<dd>This flag is not supported on CPD.</dd>
-<dt>--description (string)</dt>
-<dd>Description of space.</dd>
-<dt>--generator (string)</dt>
-<dd>A consistent label used to identify a client that created a space. A generator must be comprised of the following characters - alphanumeric, dash, underscore, space.</dd>
-<dd>The maximum length is `50` characters. The minimum length is `8` characters.</dd>
-<dt>--stage (<a href="#cli-stage-request-example-schema-space">StageRequest</a>)</dt>
-<dd>Space production and stage name.</dd>
-<dt>--storage (<a href="#cli-storage-request-example-schema-space">StorageRequest</a>)</dt>
-<dd>Cloud Object Storage instance is required for spaces created on Public Cloud. On private CPD installations default storage is used instead. This flag is not supported on CPD.</dd>
-<dt>--tags ([]string)</dt>
-<dd>User-defined tags associated with a space.</dd>
-</dl>
+`--name` (string)
+:   Name of space. Required.
+
+`--description` (string)
+:   Description of space.
+
+`--storage` (<a href="#cli-storage-request-example-schema-space">`StorageRequest`</a>)
+:   Cloud Object Storage instance is required for spaces created on Public Cloud. On private CPD installations default storage is used instead. This flag is not supported on CPD.
+
+`--compute` (<a href="#cli-compute-request-example-schema-space">`ComputeRequest[]`</a>)
+:   This flag is not supported on CPD.
+
+`--tags` ([]string)
+:   User-defined tags associated with a space.
+
+`--generator` (string)
+:   A consistent label used to identify a client that created a space. A generator must be comprised of the following characters - alphanumeric, dash, underscore, space.
+
+    The maximum length is `50` characters. The minimum length is `8` characters.
+
+`--stage` (<a href="#cli-stage-request-example-schema-space">`StageRequest`</a>)
+:   Space production and stage name.
 
 <a id='space_delete'></a>
 ## &#8226; space delete
@@ -7017,10 +8017,8 @@ cpdctl space delete --space-id SPACE-ID
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space identification. Required.</dd>
-</dl>
+`--space-id` (string)
+:   The space identification. Required.
 
 <a id='space_get'></a>
 ## &#8226; space get
@@ -7034,16 +8032,15 @@ cpdctl space get --space-id SPACE-ID [--include INCLUDE]
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space identification. Required.</dd>
-<dt>--include (string)</dt>
-<dd>A list of comma-separated space sections to include in the query results. Example: '?include=members'.
+`--space-id` (string)
+:   The space identification. Required.
+
+`--include` (string)
+:   A list of comma-separated space sections to include in the query results. Example: '?include=members'.
 
 Available fields:
  * members (returns up to 100 members)
- * nothing (does not return space entity and metadata).</dd>
-</dl>
+ * nothing (does not return space entity and metadata).
 
 <a id='space_update'></a>
 ## &#8226; space update
@@ -7061,25 +8058,29 @@ cpdctl space update --space-id SPACE-ID --json-patch JSON-PATCH
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space identification. Required.</dd>
-<dt>--json-patch (<a href="#cli-json-patch-operation-example-schema-space">JSONPatchOperation[]</a>)</dt>
-<dd>Input payload for the space.</dd>
-<dt>--compute (<a href="#cli-compute-entity-example-schema-space">ComputeEntity[]</a>)</dt>
-<dd>Updated compute definition.</dd>
-<dt>--description (string)</dt>
-<dd>Updated description.</dd>
-<dt>--name (string)</dt>
-<dd>Updated name.</dd>
-<dt>--stage-name (string)</dt>
-<dd>Updated stage name.</dd>
-</dl>
+`--space-id` (string)
+:   The space identification. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-space">`JSONPatchOperation[]`</a>)
+:   Input payload for the space.
+
+`--name` (string)
+:   Updated name.
+
+`--description` (string)
+:   Updated description.
+
+`--compute` (<a href="#cli-compute-entity-example-schema-space">`ComputeEntity[]`</a>)
+:   Updated compute definition.
+
+`--stage-name` (string)
+:   Updated stage name.
 
 <a id='space_member_list'></a>
 ## &#8226; space member list
 
 Retrieves the member list for the specified space.
+If `start` is not provided, the command will retrieve all results instead of a single page.
 
 ```sh
 cpdctl space member list --space-id SPACE-ID [--start START] [--limit LIMIT] [--total-count TOTAL-COUNT] [--type TYPE] [--role ROLE] [--state STATE] 
@@ -7088,22 +8089,26 @@ cpdctl space member list --space-id SPACE-ID [--start START] [--limit LIMIT] [--
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space identification. Required.</dd>
-<dt>--start (string)</dt>
-<dd>Token representing first resource.</dd>
-<dt>--limit (float64)</dt>
-<dd>The number of resources returned. Default value is 100. Max value is 200.</dd>
-<dt>--total-count (bool)</dt>
-<dd>Include details about total number of resources. This flag is not supported on CPD 3.0.1.</dd>
-<dt>--type (string)</dt>
-<dd>Find the member by 'type'.</dd>
-<dt>--role (string)</dt>
-<dd>Find the member by 'role'.</dd>
-<dt>--state (string)</dt>
-<dd>Find the member by 'state'.</dd>
-</dl>
+`--space-id` (string)
+:   The space identification. Required.
+
+`--start` (string)
+:   Token representing first resource.
+
+`--limit` (float64)
+:   The number of resources returned. Default value is 100. Max value is 200.
+
+`--total-count` (bool)
+:   Include details about total number of resources. This flag is not supported on CPD 3.0.1.
+
+`--type` (string)
+:   Find the member by 'type'.
+
+`--role` (string)
+:   Find the member by 'role'.
+
+`--state` (string)
+:   Find the member by 'state'.
 
 <a id='space_member_create'></a>
 ## &#8226; space member create
@@ -7117,31 +8122,11 @@ cpdctl space member create --space-id SPACE-ID --members MEMBERS
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space identification. Required.</dd>
-<dt>--members (<a href="#cli-member-resource-example-schema-space">MemberResource[]</a>)</dt>
-<dd> Required.</dd>
-</dl>
+`--space-id` (string)
+:   The space identification. Required.
 
-<a id='space_member_delete'></a>
-## &#8226; space member delete
-
-Removes the specified member from the space.
-
-```sh
-cpdctl space member delete --space-id SPACE-ID --member-id MEMBER-ID 
-```
-
-
-#### Command options
-
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space identification. Required.</dd>
-<dt>--member-id (string)</dt>
-<dd>The member identification. Required.</dd>
-</dl>
+`--members` (<a href="#cli-member-resource-example-schema-space">`MemberResource[]`</a>)
+:   &nbsp; Required.
 
 <a id='space_member_get'></a>
 ## &#8226; space member get
@@ -7155,12 +8140,29 @@ cpdctl space member get --space-id SPACE-ID --member-id MEMBER-ID
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space identification. Required.</dd>
-<dt>--member-id (string)</dt>
-<dd>The member identification. Required.</dd>
-</dl>
+`--space-id` (string)
+:   The space identification. Required.
+
+`--member-id` (string)
+:   The member identification. Required.
+
+<a id='space_member_delete'></a>
+## &#8226; space member delete
+
+Removes the specified member from the space.
+
+```sh
+cpdctl space member delete --space-id SPACE-ID --member-id MEMBER-ID 
+```
+
+
+#### Command options
+
+`--space-id` (string)
+:   The space identification. Required.
+
+`--member-id` (string)
+:   The member identification. Required.
 
 <a id='space_member_update'></a>
 ## &#8226; space member update
@@ -7176,41 +8178,44 @@ cpdctl space member update --space-id SPACE-ID --member-id MEMBER-ID --json-patc
 
 #### Command options
 
-<dl>
-<dt>--space-id (string)</dt>
-<dd>The space identification. Required.</dd>
-<dt>--member-id (string)</dt>
-<dd>The member identification. Required.</dd>
-<dt>--json-patch (<a href="#cli-json-patch-operation-example-schema-space">JSONPatchOperation[]</a>)</dt>
-<dd>The json patch.</dd>
-<dt>--role (string)</dt>
-<dd>The role of the space member. Required.</dd>
-<dd>Allowable values are: viewer, editor, admin</dd>
-<dt>--state (string)</dt>
-<dd>The state of the space member. This field is only supported for members of type 'user'.</dd>
-<dd>Allowable values are: active, pending</dd>
-</dl>
+`--space-id` (string)
+:   The space identification. Required.
+
+`--member-id` (string)
+:   The member identification. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-space">`JSONPatchOperation[]`</a>)
+:   The json patch.
+
+`--role` (string)
+:   The role of the space member. Required.
+
+    Allowable values are: `viewer`, `editor`, `admin`.
+
+`--state` (string)
+:   The state of the space member. This field is only supported for members of type 'user'.
+
+    Allowable values are: `active`, `pending`.
 
 <a id='space_wait'></a>
 ## &#8226; space wait
 Wait until the space creation or deletion is finished.
 
 ```sh
-  cpdctl space wait --space-id SPACE_ID
+   cpdctl space wait --space-id SPACE_ID
 ```
 #### Command options
 
-<dl>
-<dt>--cpd-scope string </dt><dd>CPD space scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'</dd>
-<dt>--space-id string  </dt><dd>The space identification.</dd>
-</dl>
+`--cpd-scope` (string )
+:    CPD space scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--space-id` (string  )
+:    The space identification.
 
 <a id='version_'></a>
 ## &#8226; version 
-Display the tool version
-
 ```sh
-  cpdctl version
+   cpdctl version
 ```
 
 # Schema examples
@@ -7302,9 +8307,32 @@ The following example shows the format of the JSONPatchOperation[] object.
 ### &#8226; Classification
 <a id="cli-classification-example-schema-asset"></a>
 
+The following example shows the format of the Classification object.
+
+```json
+
+{
+  "classificationName" : "exampleString",
+  "classificationProperties" : { }
+}
+```
 ### &#8226; SourceSystem
 <a id="cli-source-system-example-schema-asset"></a>
 
+The following example shows the format of the SourceSystem object.
+
+```json
+
+{
+  "asset_identifier" : "String",
+  "created" : 1531854592,
+  "creation_timestamp" : "2018-03-21T12:47:43",
+  "last_modification_timestamp" : "2018-03-21T12:47:43",
+  "last_modified" : 1531854592,
+  "source" : "DASHDB",
+  "source_system_id" : "String"
+}
+```
 ### &#8226; AssetTypeField
 <a id="cli-asset-type-field-example-schema-asset"></a>
 
@@ -7368,8 +8396,8 @@ The following example shows the format of the ExportAssets object.
 
 {
   "all_assets" : true,
-  "asset_ids" : [ "exampleString" ],
-  "asset_types" : [ "exampleString" ]
+  "asset_types" : [ "exampleString" ],
+  "asset_ids" : [ "exampleString" ]
 }
 ```
 ### &#8226; ConnectionInteractionProperties
@@ -7559,7 +8587,9 @@ The following example shows the format of the FlowDependencyTree[] object.
     "type" : "exampleString"
   } ],
   "id" : "exampleString",
-  "name" : "exampleString"
+  "name" : "exampleString",
+  "type" : "data_intg_flow",
+  "volatile" : true
 } ]
 ```
 ### &#8226; TableDefinitionEntity
@@ -7732,19 +8762,68 @@ The following example shows the format of the BuildopPropertiesItem[] object.
 ```json
 
 [ {
+  "category" : "Category-string",
+  "conditions" : "Condition-string",
   "conversion" : "Value-string",
   "data_type" : "Integer",
   "default_value" : "9",
   "description" : "DESCR",
+  "hidden" : "false",
+  "list_values" : "list-values",
+  "parents" : "Parents-string",
   "prompt" : "prompt",
   "property_name" : "stagePropName",
   "repeats" : "false",
-  "required" : "false"
+  "required" : "false",
+  "template" : "Template-string",
+  "use_quoting" : "false"
 } ]
 ```
 ### &#8226; BuildopWrapped
 <a id="cli-buildop-wrapped-example-schema-datastage"></a>
 
+The following example shows the format of the BuildopWrapped object.
+
+```json
+
+{
+  "environment" : {
+    "exit_codes" : {
+      "all_exit_codes_successful" : true,
+      "failure_codes" : [ "error", "-1", "fail" ],
+      "success_codes" : [ "ok", "0", "success" ]
+    },
+    "name_value" : [ {
+      "name" : "name1",
+      "value" : "value1"
+    } ]
+  },
+  "interfaces" : {
+    "input" : [ {
+      "argument_variable_name" : "arg1",
+      "file_descriptor" : "stdin",
+      "id" : "inpGUID",
+      "is_command_line" : true,
+      "link_name" : "input_link",
+      "named_pipe" : "test_pipe",
+      "table_name" : "table_name",
+      "use_stream" : true
+    } ],
+    "inputs_order" : "GUID|GUID|...",
+    "output" : [ {
+      "argument_variable_name" : "arg1",
+      "file_descriptor" : "stdin",
+      "id" : "outpGUID",
+      "is_command_line" : true,
+      "link_name" : "output_link",
+      "named_pipe" : "test_pipe",
+      "table_name" : "table_name",
+      "use_stream" : true
+    } ],
+    "outputs_order" : "GUID|GUID|..."
+  }
+}
+```
 ### &#8226; ReferencedSpecification
 <a id="cli-referenced-specification-example-schema-environment"></a>
 
@@ -7898,12 +8977,21 @@ The following example shows the format of the JobPostBodyJob object.
     "version" : "d00a9d88-4394-48f8-86db-d9b8360f8a72"
   },
   "description" : "Description.",
+  "job_parameters" : [ {
+    "name" : "job_param_1",
+    "value" : "The value could be of any type"
+  } ],
   "name" : "Name",
+  "parameter_sets" : [ {
+    "name" : "paramset_1",
+    "ref" : "31abfd90-5497-4605-8ac1-d85896fe6c6f",
+    "value_set" : "red"
+  } ],
   "retention_policy" : {
     "amount" : 38,
     "days" : 38
   },
-  "schedule" : "0 3 21 13 1 ? 2019",
+  "schedule" : "0 0 1 * *",
   "schedule_info" : {
     "endOn" : 1547578689512,
     "repeat" : true,
@@ -7930,6 +9018,24 @@ The following example shows the format of the JSONPatchOperation[] object.
 ### &#8226; JobRuntimeConfiguration
 <a id="cli-job-runtime-configuration-example-schema-job"></a>
 
+The following example shows the format of the JobRuntimeConfiguration object.
+
+```json
+
+{
+  "deployment_job_definition_id" : "ff1ab70b-0553-409a-93f9-ccc31471c218",
+  "env_id" : "defaultsparkr1x4-18ce241b-c9e8-43ed-94a1-9f5585764924",
+  "env_type" : "default_spark",
+  "env_variables" : [ "key1=value1", "key2=value2" ],
+  "outputs" : {
+    "total_bytes_read" : 64582,
+    "total_bytes_written" : 594346,
+    "total_rows_read" : 1000,
+    "total_rows_written" : 1846
+  },
+  "version" : "d00a9d88-4394-48f8-86db-d9b8360f8a72"
+}
+```
 ### &#8226; JobRunPostBodyJobRun
 <a id="cli-job-run-post-body-job-run-example-schema-job"></a>
 
@@ -7942,7 +9048,16 @@ The following example shows the format of the JobRunPostBodyJobRun object.
     "env_variables" : [ "key1=value1", "key2=value2" ]
   },
   "description" : "Description",
-  "name" : "Name"
+  "job_parameters" : [ {
+    "name" : "job_param_1",
+    "value" : "The value could be of any type"
+  } ],
+  "name" : "Name",
+  "parameter_sets" : [ {
+    "name" : "paramset_1",
+    "ref" : "31abfd90-5497-4605-8ac1-d85896fe6c6f",
+    "value_set" : "red"
+  } ]
 }
 ```
 ### &#8226; Rel
@@ -8049,6 +9164,20 @@ The following example shows the format of the JSONPatchOperation[] object.
 ### &#8226; DeploymentPatchRequestHelperRShiny
 <a id="cli-deployment-patch-request-helper-r-shiny-example-schema-ml"></a>
 
+The following example shows the format of the DeploymentPatchRequestHelperRShiny object.
+
+```json
+
+{
+  "authentication" : "members_of_deployment_space",
+  "parameters" : {
+    "serving_name" : "churn",
+    "code_package" : {
+      "path" : "RShiny/apps/app1"
+    }
+  }
+}
+```
 ### &#8226; InputDataArray
 <a id="cli-input-data-array-example-schema-ml"></a>
 
@@ -8123,7 +9252,8 @@ The following example shows the format of the JobScoringRequest object.
       "name" : "Tasks",
       "fields" : [ {
         "anyKey" : "anyValue"
-      } ]
+      } ],
+      "type" : "struct"
     }
   } ],
   "output_data_reference" : {
@@ -8138,7 +9268,8 @@ The following example shows the format of the JobScoringRequest object.
       "name" : "Tasks",
       "fields" : [ {
         "anyKey" : "anyValue"
-      } ]
+      } ],
+      "type" : "struct"
     }
   },
   "evaluations" : [ {
@@ -8307,16 +9438,32 @@ The following example shows the format of the FunctionEntitySchemas object.
     "name" : "Tasks",
     "fields" : [ {
       "anyKey" : "anyValue"
-    } ]
+    } ],
+    "type" : "struct"
   } ],
   "output" : [ {
     "id" : "t1",
     "name" : "Tasks",
     "fields" : [ {
       "anyKey" : "anyValue"
-    } ]
+    } ],
+    "type" : "struct"
   } ]
 }
+```
+### &#8226; ModelReference
+<a id="cli-model-reference-example-schema-ml"></a>
+
+The following example shows the format of the ModelReference[] object.
+
+```json
+
+[ {
+  "space_id" : "3fc54cf1-252f-424b-b52d-5cdd9814987f",
+  "project_id" : "12ac4cf1-252f-424b-b52d-5cdd9814987f",
+  "id" : "exampleString",
+  "rev" : "exampleString"
+} ]
 ```
 ### &#8226; ModelDefinitionID
 <a id="cli-model-definition-id-example-schema-ml"></a>
@@ -8348,7 +9495,8 @@ The following example shows the format of the DataConnectionReference[] object.
     "name" : "Tasks",
     "fields" : [ {
       "anyKey" : "anyValue"
-    } ]
+    } ],
+    "type" : "struct"
   }
 } ]
 ```
@@ -8365,14 +9513,16 @@ The following example shows the format of the ModelEntitySchemas object.
     "name" : "Tasks",
     "fields" : [ {
       "anyKey" : "anyValue"
-    } ]
+    } ],
+    "type" : "struct"
   } ],
   "output" : [ {
     "id" : "t1",
     "name" : "Tasks",
     "fields" : [ {
       "anyKey" : "anyValue"
-    } ]
+    } ],
+    "type" : "struct"
   } ]
 }
 ```
@@ -8645,11 +9795,24 @@ The following example shows the format of the FederatedLearning object.
   "verbose" : true,
   "num_classes" : 38,
   "byzantine_threshold" : 38,
+  "sigma" : 72.5,
+  "sigma0" : 72.5,
+  "gamma" : 72.5,
+  "iters" : 38,
+  "save_intermediate_models" : true,
+  "crypto" : {
+    "cipher_spec" : "encryption_level_1"
+  },
   "hardware_spec" : {
     "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
     "rev" : "2",
     "name" : "exampleString",
     "num_nodes" : 2
+  },
+  "software_spec" : {
+    "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
+    "rev" : "2",
+    "name" : "..."
   },
   "version" : "exampleString",
   "log_level" : "info"
@@ -8732,7 +9895,7 @@ The following example shows the format of the ProjectCatalog object.
 
 {
   "guid" : "fcce617b-1fc9-4965-8820-272864f58399",
-  "public" : true
+  "public" : false
 }
 ```
 ### &#8226; ProjectCompute
@@ -8743,28 +9906,14 @@ The following example shows the format of the ProjectCompute[] object.
 ```json
 
 [ {
+  "type" : "analytics_engine",
+  "guid" : "eddc2f0c-4401-49d1-b632-dee2ec33dcc0",
+  "crn" : "crn:v1:staging:public:watson-vision-combined:us-south:a/1438bf1daef49e20401d0179818ebef5:6874282b-42d6-40fa-869b-95a3c0f04125::",
+  "name" : "Analytics Engine",
+  "label" : "service_label",
   "credentials" : {
     "anyKey" : "anyValue"
-  },
-  "crn" : "crn:v1:staging:public:watson-vision-combined:us-south:a/1438bf1daef49e20401d0179818ebef5:6874282b-42d6-40fa-869b-95a3c0f04125::",
-  "guid" : "eddc2f0c-4401-49d1-b632-dee2ec33dcc0",
-  "label" : "service_label",
-  "name" : "Analytics Engine",
-  "type" : "analytics_engine"
-} ]
-```
-### &#8226; UpdateMemberBody
-<a id="cli-update-member-body-example-schema-project"></a>
-
-The following example shows the format of the UpdateMemberBody[] object.
-
-```json
-
-[ {
-  "id" : "IBMid-55000353XF",
-  "role" : "admin",
-  "state" : "ACTIVE",
-  "user_name" : "zapp.brannigan@ibm.com"
+  }
 } ]
 ```
 ### &#8226; ProjectMember
@@ -8775,11 +9924,25 @@ The following example shows the format of the ProjectMember[] object.
 ```json
 
 [ {
+  "user_name" : "zapp.brannigan@ibm.com",
   "id" : "IBMid-55000353XF",
   "role" : "admin",
   "state" : "ACTIVE",
-  "type" : "user",
-  "user_name" : "zapp.brannigan@ibm.com"
+  "type" : "user"
+} ]
+```
+### &#8226; UpdateMemberBody
+<a id="cli-update-member-body-example-schema-project"></a>
+
+The following example shows the format of the UpdateMemberBody[] object.
+
+```json
+
+[ {
+  "user_name" : "zapp.brannigan@ibm.com",
+  "id" : "IBMid-55000353XF",
+  "role" : "admin",
+  "state" : "ACTIVE"
 } ]
 ```
 ### &#8226; TransactionalProjectStorageObject
@@ -8790,10 +9953,10 @@ The following example shows the format of the TransactionalProjectStorageObject 
 ```json
 
 {
-  "delegated" : true,
+  "type" : "bmcos_object_storage",
   "guid" : "d0e410a0-b358-42fc-b402-dba83316413a",
   "resource_crn" : "crn:v1:staging:public:cloud-object-storage:global:a/a7026b374f39f570d20984c1ac6ecf63:5778e94f-c8c7-46a8-9878-d5eeadb51161::",
-  "type" : "bmcos_object_storage"
+  "delegated" : false
 }
 ```
 ### &#8226; TransactionalProjectComputeObjectCloud
@@ -8804,12 +9967,24 @@ The following example shows the format of the TransactionalProjectComputeObjectC
 ```json
 
 [ {
-  "crn" : "crn:v1:staging:public:watson-vision-combined:us-south:a/1438bf1daef49e20401d0179818ebef5:6874282b-42d6-40fa-869b-95a3c0f04125::",
+  "type" : "spark",
   "guid" : "eddc2f0c-4401-49d1-b632-dee2ec33dcc0",
-  "label" : "watson_vision_combined",
+  "crn" : "crn:v1:staging:public:watson-vision-combined:us-south:a/1438bf1daef49e20401d0179818ebef5:6874282b-42d6-40fa-869b-95a3c0f04125::",
   "name" : "Apache Spark",
-  "type" : "spark"
+  "label" : "watson_vision_combined"
 } ]
+```
+### &#8226; StorageRequest
+<a id="cli-storage-request-example-schema-space"></a>
+
+The following example shows the format of the StorageRequest object.
+
+```json
+
+{
+  "resource_crn" : "exampleString",
+  "delegated" : false
+}
 ```
 ### &#8226; ComputeRequest
 <a id="cli-compute-request-example-schema-space"></a>
@@ -8819,8 +9994,8 @@ The following example shows the format of the ComputeRequest[] object.
 ```json
 
 [ {
-  "crn" : "exampleString",
-  "name" : "exampleString"
+  "name" : "exampleString",
+  "crn" : "exampleString"
 } ]
 ```
 ### &#8226; StageRequest
@@ -8831,20 +10006,8 @@ The following example shows the format of the StageRequest object.
 ```json
 
 {
-  "name" : "exampleString",
-  "production" : true
-}
-```
-### &#8226; StorageRequest
-<a id="cli-storage-request-example-schema-space"></a>
-
-The following example shows the format of the StorageRequest object.
-
-```json
-
-{
-  "delegated" : true,
-  "resource_crn" : "exampleString"
+  "production" : false,
+  "name" : "exampleString"
 }
 ```
 ### &#8226; JSONPatchOperation
@@ -8864,6 +10027,17 @@ The following example shows the format of the JSONPatchOperation[] object.
 ### &#8226; ComputeEntity
 <a id="cli-compute-entity-example-schema-space"></a>
 
+The following example shows the format of the ComputeEntity[] object.
+
+```json
+
+[ {
+  "name" : "exampleString",
+  "crn" : "exampleString",
+  "guid" : "exampleString",
+  "type" : "machine_learning"
+} ]
+```
 ### &#8226; MemberResource
 <a id="cli-member-resource-example-schema-space"></a>
 

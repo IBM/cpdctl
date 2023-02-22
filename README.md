@@ -1,5 +1,5 @@
 # IBM Cloud Pak for Data Command Line Interface
-**IBM Cloud Pak for Data Command Line Interface** (**IBM cpdctl**) is a command-line interface (CLI) you can use to manage the lifecycle of a model from IBM Cloud Pak for Data 3.0.1, 3.5, 4.0, and 4.5.
+**IBM Cloud Pak for Data Command Line Interface** (**IBM cpdctl**) is a command-line interface (CLI) you can use to manage the lifecycle of a model from IBM Cloud Pak for Data 3.0.1, 3.5, and 4.0.
 
 Using the CLI, you can manage configuration settings and automate an end-to-end flow that includes training a model, saving it, creating a deployment space, and deploying the model.
 
@@ -74,26 +74,39 @@ The location of configuration file is determined in the following way (in order 
 
 The following groups of commands allow for managing configuration:
 ```
-$ cpdctl config
-Manage Configuration
+NAME:
+  config - 
 
-Usage:
-  cpdctl config [command]
+USAGE:
+   cpdctl config [flags]
 
-Available Commands:
-  user       Manage users
-  profile    Manage profiles
-  service    Manage services
-  context    Manage contexts
+COMMANDS:
+  user      Manage users
+  profile   Manage profiles
 ``` 
 * **user** reflects credentials of a CP4D account used for connection. It may be a pair of username and password, username and API key, or a path to a file that contains user access token.
-* **profile** is the address (URL) of a CP4D instance, e.g. https://cpd-namespace.apps.OCP-default-domain. The URL should contain only host name, without path.  
-* **service** describes details (URL, instance ID etc.) of services available in CP4D, like Watson Studio or Watson Machine Learning. They don't need to be configured manually since **IBM cpdctl** automatically retrieves these service details from CP4D instance.  
-* **context** is an entity that binds **user**, **profile**, and **service** definitions. It is a convenience to facilitate quick switching between CP4D instances or user accounts.
+* **profile** is the address (URL) of a CP4D instance, e.g. https://cpd-namespace.apps.OCP-default-domain. The URL should contain only host name, without path. A profile has to be associated with a user.  
+> ![New in 1.2.0](https://img.shields.io/badge/New%20in-1.2.0-blue)
+> ### Deprecation of context and service configuration
+> **IBM cpdctl** releases prior to 1.2.0 supported configuration of contexts and services. These two concepts have been deprecated and will be removed in the future. From now on profiles take over the role previously fulfilled by contexts and services. 
+> #### Backward compatibility 
+> * Configuration files created with earlier **IBM cpdctl** releases remain valid for releases following the deprecation.
+>   * Profiles are directly associated with users to which they were previously linked via contexts.
+>   * A profile associated with current context becomes the current profile.
+>   * Service URLs (if defined) are stored directly in the corresponding profile.
+>   * All context information is removed from configuration file.
+> * Configuration commands `cpdctl config service <command>` are still supported and have the same effect as previously. The only difference is deprecation warning message printed to standard error stream.
+> * Configuration commands `cpdctl config context <command>` are still supported but have different effect. Creating and updating contexts results in creating or updating profiles instead. Retrieving context information would return no results as no context information is present in the configuration file.
+> * global flag `--context` is still honored and has the effect of selecting profile that was associated with the context. However, new global flag `--profile` has been introduced which has precedence over `--context` flag.
+> * environment variable `CPD_CONTEXT` is still honored and has the effect of selecting profile that was associated with the context. However, new environment variable `CPD_PROFILE` has been introduced which has precedence over `CPD_CONTEXT`.
+> #### Forward compatibility
+> * There is no forward compatibility. Configuration files created with new **IBM cpdctl** releases cannot be used with releases prior to deprecation.  
+> 
+
 
 #### Configuration process example
 
-This example illustrates how to create a configuration by defining a user and a profile, then associating the user with the profile using a context.
+This example illustrates how to create a configuration by defining a user and a profile.
 
 First, set the credentials used to connect to IBM Cloud Pak for Data instance:
 
@@ -101,42 +114,36 @@ First, set the credentials used to connect to IBM Cloud Pak for Data instance:
 $ cpdctl config user set dev_user --username=<dev_username> --password=<dev_password>
 ``` 
 
-Next, set the URL of IBM Cloud Pak for Data instance:
+Next, create profile with a specific URL of IBM Cloud Pak for Data instance:
 
 ```
-$ cpdctl config profile set dev_profile --url <dev_profile_url>
-```
-
-Then define the context:
-
-```
-$ cpdctl config context set dev_context --user dev_user --profile dev_profile
+$ cpdctl config profile set dev_profile --user dev_user --url <dev_profile_url>
 ```
 
 > ![New in 1.0.46](https://img.shields.io/badge/New%20in-1.0.46-blue)
 >
-> The three steps above (setting user, profile and context) can be achieved with a single command:
+> The two steps above (setting user and profile) can be achieved with a single command:
 > ```
-> $ cpdctl config context set qa_context --username=<qa_username> --password=<qa_password> --url <qa_profile_url>
+> $ cpdctl config profile set qa_profile --username=<qa_username> --password=<qa_password> --url <qa_profile_url>
 > ```
 
-Print list of contexts:
+Print list of profiles:
 ```
-$ cpdctl config context list
-Name           Profile        User        Current   
-dev_context    dev_profile    dev_user
-qa_context     qa_profile     qa_user     *  
+$ cpdctl config profile list
+Name          Type      User              URL                 Current
+dev_profile   private   dev_user          <dev_profile_url>   *
+qa_profile    private   qa_profile_user   <qa_profile_url>   
 ```
-Asterisk in the `Current` column is an indicator of the current context (context used by subsequent **IBM cpdctl** runs). 
+Asterisk in the `Current` column is an indicator of the current profile (profile used by subsequent **IBM cpdctl** runs). 
 
-When a context is created it becomes the current one. It is also possible to change current context manually:
+When a first profile is created it becomes the current one. It is also possible to change current profile manually:
 ```
-$ cpdctl config context use <context>
+$ cpdctl config profile use <profile>
 ```
-This change of current context is persisted in configuration file and affects all subsequent **IBM cpdctl** runs that are using this file. 
-In order to temporarily change current context:
-* for a single command - use `--context <context>` flag,
-* for a terminal session or shell script - use `CPD_CONTEXT` environment variable. 
+This change of current profile is persisted in configuration file and affects all subsequent **IBM cpdctl** runs that are using this file. 
+In order to temporarily change current profile:
+* for a single command - use `--profile <profile>` flag,
+* for a terminal session or shell script - use `CPD_PROFILE` environment variable. 
 
 ### Support for IAM Service integration
 Cloud Pak for Data 4.0 introduces [LDAP integration provided by the Identity and Access Management Service](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-integrating-iam-service) (IAM Service) in IBM Cloud Pak® foundational services.
@@ -178,11 +185,12 @@ Available Commands:
   completion  generate the autocompletion script for the specified shell
 
 Flags:
-      --context string       Name of the configuration context to use
       --cpd-config string    Configuration file path
       --cpdconfig string     [Deprecated] Use --cpd-config instead
   -h, --help                 help for cpdctl
+      --profile string       Name of the configuration profile to use
       --raw-output           If set to true, single values in JSON output mode are not surrounded by quotes
+  -v, --version              version for cpdctl
 
 Use "cpdctl [command] --help" for more information about a command.
 ```
