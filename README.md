@@ -3,7 +3,7 @@
 
 Using the CLI, you can manage configuration settings and automate an end-to-end flow that includes training a model, saving it, creating a deployment space, and deploying the model.
 
-**Note**: in Cloud Pak for Data two types of projects are used: Analytics Projects and Data Quality Projects. **IBM cpdctl** supports only Analytics Projects. 
+**Note**: in Cloud Pak for Data two types of projects are used: Analytics Projects and Data Quality Projects. **IBM cpdctl** supports only Analytics Projects.
 
 ## Installation
 
@@ -37,11 +37,11 @@ Download the appropriate archive from [IBM cpdctl repository](https://github.com
 
 ## Configuration
 > ![New in 1.1.34](https://img.shields.io/badge/New%20in-1.1.34-blue)
-> 
+>
 > **IBM Cloud Pak for Data Command Line Interface** has two configuration modes:
 > 1. zero configuration based on `USER_ACCESS_TOKEN` environment variable,
 > 2. manual configuration.
-> 
+>
 > **IBM cpdctl** automatically enters zero configuration mode when `USER_ACCESS_TOKEN` variable is not empty, otherwise manual configuration mode is employed.
 
 ### Zero configuration
@@ -85,14 +85,14 @@ COMMANDS:
   profile   Manage profiles
 ``` 
 * **user** reflects credentials of a CP4D account used for connection. It may be a pair of username and password, username and API key, or a path to a file that contains user access token.
-* **profile** is the address (URL) of a CP4D instance, e.g. https://cpd-namespace.apps.OCP-default-domain. The URL should contain only host name, without path. A profile has to be associated with a user.  
+* **profile** is the address (URL) of a CP4D instance, e.g. https://cpd-namespace.apps.OCP-default-domain. The URL should contain only host name, without path. A profile has to be associated with a user.
 > ![New in 1.2.0](https://img.shields.io/badge/New%20in-1.2.0-blue)
 > ### Deprecation of context and service configuration
-> **IBM cpdctl** releases prior to 1.2.0 supported configuration of contexts and services. These two concepts have been deprecated and will be removed in the future. From now on profiles take over the role previously fulfilled by contexts and services. 
-> #### Backward compatibility 
+> **IBM cpdctl** releases prior to 1.2.0 supported configuration of contexts and services. These two concepts have been deprecated and will be removed in the future. From now on profiles take over the role previously fulfilled by contexts and services.
+> #### Backward compatibility
 > * Configuration files created with earlier **IBM cpdctl** releases remain valid for releases following the deprecation.
->   * Profiles are directly associated with users to which they were previously linked via contexts.
->   * A profile associated with current context becomes the current profile.
+    >   * Profiles are directly associated with users to which they were previously linked via contexts.
+    >   * A profile associated with current context becomes the current profile.
 >   * Service URLs (if defined) are stored directly in the corresponding profile.
 >   * All context information is removed from configuration file.
 > * Configuration commands `cpdctl config service <command>` are still supported and have the same effect as previously. The only difference is deprecation warning message printed to standard error stream.
@@ -100,9 +100,22 @@ COMMANDS:
 > * global flag `--context` is still honored and has the effect of selecting profile that was associated with the context. However, new global flag `--profile` has been introduced which has precedence over `--context` flag.
 > * environment variable `CPD_CONTEXT` is still honored and has the effect of selecting profile that was associated with the context. However, new environment variable `CPD_PROFILE` has been introduced which has precedence over `CPD_CONTEXT`.
 > #### Forward compatibility
-> * There is no forward compatibility. Configuration files created with new **IBM cpdctl** releases cannot be used with releases prior to deprecation.  
-> 
+> * There is no forward compatibility. Configuration files created with new **IBM cpdctl** releases cannot be used with releases prior to deprecation.
+>
 
+> ![New in 1.3.0](https://img.shields.io/badge/New%20in-1.3.0-blue)
+> ### AES-256 encryption of credentials stored in configuration file
+> **IBM cpdctl** stores passwords and API keys in configuration file. Since release 1.3.0 these secrets are encrypted using AES-256 algorithm. Custom encryption key for AES-256 can be provided by setting environment variable `CPDCTL_ENCRYPTION_KEY_PATH` to point to a file holding encryption key, e.g.:
+> ```
+> export CPDCTL_ENCRYPTION_KEY_PATH=/path/cpdctl.key
+> ```
+> If this environment variable is not set, **IBM cpdctl** will use its own hardcoded encryption key.
+>
+> There is no mechanism for recovery of secrets encrypted using custom encryption key. If the key is lost, configuration file must be re-created.
+> #### Backward compatibility
+> * Configuration files created with earlier **IBM cpdctl** releases can still be used. Any command that modifies configuration file (e.g. `cpdctl config profile set ...`) forces encryption of all passwords and API keys stored in this file.
+> #### Forward compatibility
+> * There is no forward compatibility. Configuration files that have credentials encrypted with AES-256 will not work with earlier **IBM cpdctl** releases.
 
 #### Configuration process example
 
@@ -134,16 +147,16 @@ Name          Type      User              URL                 Current
 dev_profile   private   dev_user          <dev_profile_url>   *
 qa_profile    private   qa_profile_user   <qa_profile_url>   
 ```
-Asterisk in the `Current` column is an indicator of the current profile (profile used by subsequent **IBM cpdctl** runs). 
+Asterisk in the `Current` column is an indicator of the current profile (profile used by subsequent **IBM cpdctl** runs).
 
 When a first profile is created it becomes the current one. It is also possible to change current profile manually:
 ```
 $ cpdctl config profile use <profile>
 ```
-This change of current profile is persisted in configuration file and affects all subsequent **IBM cpdctl** runs that are using this file. 
+This change of current profile is persisted in configuration file and affects all subsequent **IBM cpdctl** runs that are using this file.
 In order to temporarily change current profile:
 * for a single command - use `--profile <profile>` flag,
-* for a terminal session or shell script - use `CPD_PROFILE` environment variable. 
+* for a terminal session or shell script - use `CPD_PROFILE` environment variable.
 
 ### Support for IAM Service integration
 Cloud Pak for Data 4.0 introduces [LDAP integration provided by the Identity and Access Management Service](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-integrating-iam-service) (IAM Service) in IBM Cloud Pak® foundational services.

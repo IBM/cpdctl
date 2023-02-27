@@ -383,6 +383,9 @@ The Program includes some or all of the following that IBM obtained under the MI
 - github.com/mitchellh/mapstructure
   Copyright (c) 2013 Mitchell Hashimoto
 
+- github.com/mkmueller/aes256
+  Copyright 2016 Mark K Mueller github.com/mkmueller
+
 - github.com/nicksnyder/go-i18n/v2
   Copyright (c) 2014 Nick Snyder https://github.com/nicksnyder
 
