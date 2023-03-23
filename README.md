@@ -64,9 +64,10 @@ Download the appropriate archive from [IBM cpdctl repository](https://github.com
     * access token for currently logged-in user is read from environment variable `USER_ACCESS_TOKEN`.
 
 > ![New in 1.4.0](https://img.shields.io/badge/New%20in-1.4.0-blue)
+> 
 > 2. based on session metadata of [ibmcloud CLI](https://www.ibm.com/cloud/cli).
-     >
-     >   On a machine where `ibmcloud` is configured to connect to IBM Cloud, **IBM cpdctl** can use its session metadata to connect to Cloud Pak for Data as a Service. Autoconfiguration mechanism honors environment variable `IBMCLOUD_HOME` to indicate non-default location for `ibmcloud` session metadata.
+>
+>   On a machine where `ibmcloud` is configured to connect to IBM Cloud, **IBM cpdctl** can use its session metadata to connect to Cloud Pak for Data as a Service. Autoconfiguration mechanism honors environment variable `IBMCLOUD_HOME` to indicate non-default location for `ibmcloud` session metadata.
 
 
 ### Manual configuration
