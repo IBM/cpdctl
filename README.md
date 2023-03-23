@@ -112,10 +112,10 @@ COMMANDS:
 > **IBM cpdctl** releases prior to 1.2.0 supported configuration of contexts and services. These two concepts have been deprecated and will be removed in the future. From now on profiles take over the role previously fulfilled by contexts and services.
 > #### Backward compatibility
 > * Configuration files created with earlier **IBM cpdctl** releases remain valid for releases following the deprecation.
->  * Profiles are directly associated with users to which they were previously linked via contexts.
->  * A profile associated with current context becomes the current profile.
->  * Service URLs (if defined) are stored directly in the corresponding profile.
->  * All context information is removed from configuration file.
+>   * Profiles are directly associated with users to which they were previously linked via contexts.
+>   * A profile associated with current context becomes the current profile.
+>   * Service URLs (if defined) are stored directly in the corresponding profile.
+>   * All context information is removed from configuration file.
 > * Configuration commands `cpdctl config service <command>` are still supported and have the same effect as previously. The only difference is deprecation warning message printed to standard error stream.
 > * Configuration commands `cpdctl config context <command>` are still supported but have different effect. Creating and updating contexts results in creating or updating profiles instead. Retrieving context information would return no results as no context information is present in the configuration file.
 > * global flag `--context` is still honored and has the effect of selecting profile that was associated with the context. However, new global flag `--profile` has been introduced which has precedence over `--context` flag.
@@ -183,7 +183,7 @@ Name          Type      User              URL                 Current
 dev_profile   private   dev_user          <dev_profile_url>   *
 qa_profile    private   qa_profile_user   <qa_profile_url>   
 ```
-Asterisk in the `Current` column is an indicator of the current profile (profile used by subsequent **IBM cpdctl** runs). The column `Type` indicates if the connection target is a private Cloud Pak for Data instance ('private') or Cloud Pak for Data as a Service ('public'). 
+Asterisk in the `Current` column is an indicator of the current profile (profile used by subsequent **IBM cpdctl** runs). The column `Type` indicates if the connection target is an on-premise Cloud Pak for Data instance ('private') or a managed Cloud Pak for Data as a Service ('public'). 
 
 When a first profile is created it becomes the current one. It is also possible to change current profile manually:
 ```
