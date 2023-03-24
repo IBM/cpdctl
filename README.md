@@ -1,8 +1,5 @@
 # IBM Cloud Pak for Data Command Line Interface
 **IBM Cloud Pak for Data Command Line Interface** (**IBM cpdctl**) is a command-line interface (CLI) you can use to manage the lifecycle of a model from IBM Cloud Pak for Data 3.0.1, 3.5, and 4.x.
-> ![New in 1.4.0](https://img.shields.io/badge/New%20in-1.4.0-blue)
->
-> Supported are private Cloud Pak for Data installations as well as Cloud Pak for Data as a Service (managed Cloud Pak for Data instance running on IBM Cloud).
 
 Using the CLI, you can manage configuration settings and automate an end-to-end flow that includes training a model, saving it, creating a deployment space, and deploying the model.
 
@@ -56,19 +53,12 @@ Download the appropriate archive from [IBM cpdctl repository](https://github.com
 > Previous **IBM cpdctl** versions gave priority to zero configuration mode: if connection settings could be automatically obtained, they were used unconditionally and manual configuration was ignored. Since v1.2.0 manual configuration has precedence: if configuration file is present, `IBM cpdctl` does not attempt to auto-detect connection settings.
 
 ### Zero configuration
-**IBM cpdctl** uses two methods for connection settings auto-discovery:
+**IBM cpdctl** uses the following method for connection settings auto-discovery:
 1. based on `USER_ACCESS_TOKEN` and `RUNTIME_ENV_APSX_URL` environment variables.
 
    When running **IBM cpdctl** inside IBM Cloud Pak for Data (CP4D) cluster, e.g. from a Jupyter Notebook executed in Watson Studio, it automatically connects to that CP4D instance:
-    * profile URL is read from environment variable `RUNTIME_ENV_APSX_URL`,
-    * access token for currently logged-in user is read from environment variable `USER_ACCESS_TOKEN`.
-
-> ![New in 1.4.0](https://img.shields.io/badge/New%20in-1.4.0-blue)
-> 
-> 2. based on session metadata of [ibmcloud CLI](https://www.ibm.com/cloud/cli).
->
->   On a machine where `ibmcloud` is configured to connect to IBM Cloud, **IBM cpdctl** can use its session metadata to connect to Cloud Pak for Data as a Service. Autoconfiguration mechanism honors environment variable `IBMCLOUD_HOME` to indicate non-default location for `ibmcloud` session metadata.
-
+   * profile URL is read from environment variable `RUNTIME_ENV_APSX_URL`,
+   * access token for currently logged-in user is read from environment variable `USER_ACCESS_TOKEN`.
 
 ### Manual configuration
 **IBM Cloud Pak for Data Command Line Interface** must be provided addresses and credentials to connect to IBM Cloud Pak for Data (CP4D) instances.
@@ -112,7 +102,7 @@ COMMANDS:
 > **IBM cpdctl** releases prior to 1.2.0 supported configuration of contexts and services. These two concepts have been deprecated and will be removed in the future. From now on profiles take over the role previously fulfilled by contexts and services.
 > #### Backward compatibility
 > * Configuration files created with earlier **IBM cpdctl** releases remain valid for releases following the deprecation.
->   * Profiles are directly associated with users to which they were previously linked via contexts.
+    >   * Profiles are directly associated with users to which they were previously linked via contexts.
 >   * A profile associated with current context becomes the current profile.
 >   * Service URLs (if defined) are stored directly in the corresponding profile.
 >   * All context information is removed from configuration file.
@@ -126,7 +116,7 @@ COMMANDS:
 
 > ![New in 1.3.0](https://img.shields.io/badge/New%20in-1.3.0-blue)
 > ### AES-256 encryption of credentials stored in configuration file
-> **IBM cpdctl** stores passwords and API keys in configuration file. Since release 1.2.2 these secrets are encrypted using AES-256 algorithm. Custom encryption key for AES-256 can be provided by setting environment variable `CPDCTL_ENCRYPTION_KEY_PATH` to point to a file holding encryption key, e.g.:
+> **IBM cpdctl** stores passwords and API keys in configuration file. Since release 1.3.0 these secrets are encrypted using AES-256 algorithm. Custom encryption key for AES-256 can be provided by setting environment variable `CPDCTL_ENCRYPTION_KEY_PATH` to point to a file holding encryption key, e.g.:
 > ```
 > export CPDCTL_ENCRYPTION_KEY_PATH=/path/cpdctl.key
 > ```
@@ -138,14 +128,6 @@ COMMANDS:
 > #### Forward compatibility
 > * There is no forward compatibility. Configuration files that have credentials encrypted with AES-256 will not work with earlier **IBM cpdctl** releases.
 
-> ![New in 1.4.0](https://img.shields.io/badge/New%20in-1.4.0-blue)
-> ### Linking profile with ibmcloud session metadata
-> **IBM cpdctl** v1.4.0 introduces new command
-> ```
-> cpdctl config profile link-ibmcloud <profile-name> [--home IBMCLOUD_HOME]
-> ```
-> This command creates new profile named `<profile-name>` linked to [ibmcloud session metadata directory](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud-home). **IBM cpdctl** retrieves API URL, IBM Cloud region, and access token information to connect to Cloud Pak for Data as a Service. If the token is expired, `ibmcloud login` must be run to refresh the token.
-
 #### Configuration process example
 
 This example illustrates how to create a configuration by defining a user and a profile.
@@ -156,7 +138,7 @@ First, set the credentials used to connect to IBM Cloud Pak for Data instance:
 $ cpdctl config user set dev_user --username=<dev_username> --apikey=<dev_apikey>
 ``` 
 
-Next, create profile associated with the user setting a specific URL of IBM Cloud Pak for Data instance:
+Next, create profile associated with the user by setting a specific URL of IBM Cloud Pak for Data instance:
 
 ```
 $ cpdctl config profile set dev_profile --user dev_user --url <dev_profile_url>
@@ -169,13 +151,6 @@ $ cpdctl config profile set dev_profile --user dev_user --url <dev_profile_url>
 > $ cpdctl config profile set qa_profile --username=<qa_username> --apikey=<qa_apikey> --url <qa_profile_url>
 > ```
 
-> ![New in 1.4.0](https://img.shields.io/badge/New%20in-1.4.0-blue)
->
-> To configure profile to connect to Cloud Pak for Data as a Service in IBM Cloud:
-> ```
-> $ cpdctl config profile set cpdaas --apikey=<apikey> --url https://cloud.ibm.com [--region IBM_CLOUD_REGION]
-> ```
-
 Print list of profiles:
 ```
 $ cpdctl config profile list
@@ -183,7 +158,7 @@ Name          Type      User              URL                 Current
 dev_profile   private   dev_user          <dev_profile_url>   *
 qa_profile    private   qa_profile_user   <qa_profile_url>   
 ```
-Asterisk in the `Current` column is an indicator of the current profile (profile used by subsequent **IBM cpdctl** runs). The column `Type` indicates if the connection target is an on-premise Cloud Pak for Data instance ('private') or a managed Cloud Pak for Data as a Service ('public'). 
+Asterisk in the `Current` column is an indicator of the current profile (profile used by subsequent **IBM cpdctl** runs).
 
 When a first profile is created it becomes the current one. It is also possible to change current profile manually:
 ```
