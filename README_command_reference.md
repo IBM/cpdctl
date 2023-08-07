@@ -50,6 +50,11 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [code-package create](#code-package_create)
 #### &#8226; [code-package delete](#code-package_delete)
 #### &#8226; [code-package get](#code-package_get)
+#### &#8226; [code-package promote](#code-package_promote)
+#### &#8226; [code-package revision list](#code-package_revision_list)
+#### &#8226; [code-package revision create](#code-package_revision_create)
+#### &#8226; [code-package revision delete](#code-package_revision_delete)
+#### &#8226; [code-package revision get](#code-package_revision_get)
 #### &#8226; [config user list](#config_user_list)
 #### &#8226; [config user get](#config_user_get)
 #### &#8226; [config user set](#config_user_set)
@@ -1164,10 +1169,10 @@ Use this command to upload the local path as an asset attachment
 
 <a id='asset_file_download'></a>
 ## &#8226; asset file download
-Streams the content of the specified file, with the appropriate HTTP headers for etag, file size, mime type etc. If the asset file is a directory, response will be JSON listing the content of the directory. If the asset is a file, response will be contents of the file. Requires viewer permission. Service authentication is supported. Catalog assets require service authentication. This endpoint supports authentication via signature paramater. See 'Get auth signature' call for more info.
+Streams the content of the specified file, with the appropriate HTTP headers for etag, file size, mime type etc. If the asset file is a directory, response will be JSON listing the content of the directory. If the asset is a file, response will be contents of the file. Requires viewer permission or higher. Assets for a catalog are not available to external users. This endpoint supports authentication via signature parameter. See 'Get auth signature' call for more info.
 
 ```sh
-   cpdctl asset file download --path PATH [--accept ACCEPT] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--byte-limit BYTE-LIMIT] [--size-limit SIZE-LIMIT] [--signature SIGNATURE] [--flat FLAT] [--root ROOT] [--inflate INFLATE] [--force FORCE]
+   cpdctl asset file download --path PATH [--accept ACCEPT] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--space-id SPACE-ID] [--iam-id IAM-ID] [--byte-limit BYTE-LIMIT] [--byte-range BYTE-RANGE] [--size-limit SIZE-LIMIT] [--signature SIGNATURE] [--flat FLAT] [--hidden-files HIDDEN-FILES] [--root ROOT] [--inflate INFLATE] [--force FORCE] [--stream STREAM] [--range RANGE]
 ```
 #### Command options
 
@@ -1175,25 +1180,34 @@ Streams the content of the specified file, with the appropriate HTTP headers for
 :    or *_/_*.
 
 `--account-id` (string  )
-:    The catalog id the file is associated with. One of catalog, project, space or account id is required.
+:    Make request relative to the specified account.
 
 `--byte-limit` (int     )
 :    If passed, indicates how many bytes of data is to be returned.
 
+`--byte-range` (string  )
+:    If passed, indicates the bytes that should be returned. Must be in format ('x-y': bytes x to y inclusive, '-y': the last y bytes, 'x-': everything from and including the xth byte). Does not support multiple ranges.
+
 `--catalog-id` (string  )
-:    The catalog id the file is associated with. One of catalog, project, space or account id is required.
+:    Make request relative to the specified catalog.
 
 `--cpd-scope` (string   )
 :    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--flat` (              )
-:    If true folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory.
+:    If true, folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory. Only works for directories.
 
 `--force` (             )
-:    Only used when &inflate=true. Tells asset files to skip validation on wheter the target is a zip. Inflate will be run regardless.
+:    Only used when &inflate=true. Tells asset files to skip validation on whether the target is a zip. Inflate will be run regardless.
+
+`--hidden-files` (      )
+:    Whether or not to return hidden files. If false, hidden files files will be left out of the response object. Only works when the path being retrieved is a directory. Default is true.
+
+`--iam-id` (string      )
+:    (Internal use only) Make request relative to the specific iam id. Respected only when 'userfs' is also supplied.
 
 `--inflate` (           )
-:    If '&inflate=true' ALL other query params except the target are ignored. The file being retrieved must be an archive. If all checks pass the archive will be expanded to a temp location and the results will be returned as if flat=true was supplied. If the target archive has perviously be inflated any existing inflate preview will be overwritten if the zip is newer. Otherwise the previous preview will be returned.
+:    If '&inflate=true' ALL other query params except the target are ignored. The file being retrieved must be an archive. If all checks pass the archive will be expanded to a temp location and the results will be returned as if flat=true was supplied. If the target archive has previously be inflated any existing inflate preview will be overwritten if the zip is newer. Otherwise the previous preview will be returned.
 
 `--output-file` (string )
 :    Filename/path to write the resulting output to. Use '-' to print file contents to standard output.
@@ -1202,10 +1216,13 @@ Streams the content of the specified file, with the appropriate HTTP headers for
 :    Asset file path.
 
 `--project-id` (string  )
-:    The project id the file is associated with. One of catalog, project, space or account id is required.
+:    Make request relative to the specified project.
+
+`--range` (string       )
+:    Similar to byte_range query param. Currently only supports bytes. See https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35 for more info. Can be used to limit the bytes of a file being returned. Ranges are inclusive. If set will take precedence over anything in byte_limit or byte_range.
 
 `--root` (              )
-:    If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of assets directory. Supported for services. Also supported for account admin if targeting account directory.
+:    (Internal use only) If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of standard assets directory. Note, there is one exception. If '&root=true' is supplied along with 'userfs' param targeting a project where the user has correct permissions standard auth will work.'.
 
 `--signature` (string   )
 :    Additional auth method. Signed string obtained by making presigned API request.
@@ -1214,22 +1231,28 @@ Streams the content of the specified file, with the appropriate HTTP headers for
 :    Returns 400 bad request if asset is larger than the value provided here. In MB.
 
 `--space-id` (string    )
-:    The space id the file is associated with. One of catalog, project, space or account id is required.
+:    Make request relative to the specified space.
+
+`--stream` (              Only works for directories. The content will be streamed out instead of being fully constructed and sent out all at once.)
+:    Used mainly for when there are a large number of files are expected.
 
 <a id='asset_file_list'></a>
 ## &#8226; asset file list
-Returns a list of file paths (similar to S3 listObjects) for the provided project, catalog, space or account. Requires viewer or higher permission. When requesting assets for a catalog only Basic auth is supported.
+Returns a list of file paths (similar to S3 listObjects) for the provided project, catalog, space or account. Requires viewer or higher permission. Assets for a catalog are not retrievable by external users.
 
 ```sh
-   cpdctl asset file list [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--limit LIMIT] [--offset OFFSET] [--flat FLAT] [--root ROOT]
+   cpdctl asset file list [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--space-id SPACE-ID] [--iam-id IAM-ID] [--limit LIMIT] [--offset OFFSET] [--flat FLAT] [--hidden-files HIDDEN-FILES] [--minimal MINIMAL] [--root ROOT] [--stream STREAM]
 ```
 #### Command options
 
 `--account-id` (string )
-:    The catalog id the file is associated with. One of catalog, project, space or account id is required.
+:    Make request relative to the specified account.
+
+`--all-pages` (        )
+:    Invoke multiple requests to display all pages of the collection for asset-files-list.
 
 `--catalog-id` (string )
-:    Request the files for this catalog id. One of catalog, project, space or account id is required.
+:    Make request relative to the specified catalog.
 
 `--cpd-scope` (string  )
 :    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -1237,8 +1260,17 @@ Returns a list of file paths (similar to S3 listObjects) for the provided projec
 `--flat` (             )
 :    If true folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory.
 
+`--hidden-files` (     )
+:    Whether or not to return hidden files. If false, hidden files files will be left out of the response object. Only works when the path being retrieved is a directory. Default is true.
+
+`--iam-id` (string     )
+:    (Internal use only) Make request relative to the specific iam id. Respected only when 'userfs' is also supplied.
+
 `--limit` (string      )
 :    Pagination param, limit number of resources returned.
+
+`--minimal` (          )
+:    If true, the response will contain less info. (ex// no etag) Only works with flat param set to true.
 
 `--offset` (string     )
 :    Pagination param, resources returned wil be offset by this value.
@@ -1247,43 +1279,52 @@ Returns a list of file paths (similar to S3 listObjects) for the provided projec
 :    List files from the given folder path
 
 `--project-id` (string )
-:    Request the files for this project id. One of project, catalog, space or account id is required.
+:    Make request relative to the specified project.
 
 `--root` (             )
-:    If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of assets directory. Supported for services. Also support for account admins if targeting account directory.
+:    (Internal use only) If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of standard assets directory. Note, there is one exception. If '&root=true' is supplied along with 'userfs' param targeting a project where the user has correct permissions standard auth will work.'.
 
 `--space-id` (string   )
-:    Request the files for this space id. One of project, catalog, space or account id is required.
+:    Make request relative to the specified space.
+
+`--stream` (           )
+:    The content will be streamed out instead of being fully constructed and sent out all at once. Used mainly when there are a large number of files are expected.
 
 <a id='asset_file_upload'></a>
 ## &#8226; asset file upload
-Uploads the bytes into the file with the provided file name using HTTP multi-part format, creating a new file if missing, overriding if existing (unless override=false). Adding catalog assets requires service authentication or a signed url. Adding project or space assets accepts all formats that grant editor access (user, signature or service). Adding to accounts requires user with account admin access or service auth. This endpoint supports authentication via signature paramater. See 'Get auth signature' call for more info on signed urls.
+Uploads the bytes into the file with the provided file name using HTTP multi-part format, creating a new file if missing, overriding if existing (unless override=false). Assets cannot be uploaded to a catalog by external users. Adding project or space assets accepts all formats that grant editor access or higher. Adding to accounts requires a user with account admin access. This endpoint supports authentication via signature parameter. See 'Get auth signature' call for more info on signed urls.
 
 ```sh
-   cpdctl asset file upload --path PATH [--file FILE] [--file-content-type FILE-CONTENT-TYPE] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--override OVERRIDE] [--signature SIGNATURE] [--inflate INFLATE] [--ensure-dir ENSURE-DIR] [--root ROOT]
+   cpdctl asset file upload --path PATH [--file FILE] [--file-content-type FILE-CONTENT-TYPE] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--space-id SPACE-ID] [--iam-id IAM-ID] [--override OVERRIDE] [--signature SIGNATURE] [--inflate INFLATE] [--inflate-mode INFLATE-MODE] [--ensure-dir ENSURE-DIR] [--root ROOT]
 ```
 #### Command options
 
 `--account-id` (string        )
-:    The catalog id the file is associated with. One of catalog, project, space or account id is required.
+:    Make request relative to the specified account.
 
 `--catalog-id` (string        )
-:    The catalog id the file should be associated with. One of catalog, project, space or account id is required.
+:    Make request relative to the specified catalog.
 
 `--cpd-scope` (string         )
 :    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--ensure-dir` (              )
-:    Override utility. If true will ensure the directory specified in 'path' exists. 201 will be returned ig created, 200 if already exists and 409 if it is present and not a directory. Will take precedence over other query params except 'inflate'.
+:    Override functionality. If true will ensure the directory specified by 'path' exists (instead of uploading any file provided). 201 will be returned ig created, 200 if already exists and 409 if it is present and not a directory. Will take precedence over other query params except 'inflate'.
 
 `--file` (string              )
-:    File to upload. Use '-' to read file contents from standard input.
+:    File to upload.
 
 `--file-content-type` (string )
 :    The content type of File.
 
+`--iam-id` (string            )
+:    (Internal use only) Make request relative to the specific iam id. Respected only when 'userfs' is also supplied.
+
 `--inflate` (                 )
 :    Root dir must be created. Will take supplied file and decompress into target directory tree. Inflate is only acceptable for project, space and catalog targets. If inflate is selected it will take precedence over any and all other params.
+
+`--inflate-mode` (string      )
+:    Type of inflate to perform:
 
 `--override` (                )
 :    Default true. If set to false will not overwrite file.
@@ -1292,16 +1333,16 @@ Uploads the bytes into the file with the provided file name using HTTP multi-par
 :    Asset file path.
 
 `--project-id` (string        )
-:    The project id the file should be associated with. One of catalog, project, space or account id is required.
+:    Make request relative to the specified project.
 
 `--root` (                    )
-:    If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of assets directory. Supported for services. Also supported for account admin if targeting account directory.
+:    (Internal use only) If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of standard assets directory. Note, there is one exception. If '&root=true' is supplied along with 'userfs' param targeting a project where the user has correct permissions standard auth will work.'.
 
 `--signature` (string         )
 :    Additional auth method. Signed string obtained by making API request to signing endpoint.
 
 `--space-id` (string          )
-:    The space id the file should be associated with. One of catalog, project, space or account id is required.
+:    Make request relative to the specified space.
 
 <a id='asset_script_create'></a>
 ## &#8226; asset script create
@@ -1683,26 +1724,29 @@ List all code packages in a given project or space. You must specify either `pro
 Create a new code package in a given project or space. You must specify either `project_id` or `space_id`. If you create a code package from an existing zip file, you need to first upload the zip file to the project or space Cloud Object Storage (COS) and then reference it in the body of the creation request.
 
 ```sh
-   cpdctl code-package create --name NAME [--description DESCRIPTION] [--file-reference FILE-REFERENCE] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+   cpdctl code-package create --name NAME [--description DESCRIPTION] [--file-reference FILE-REFERENCE] [--json-file-reference JSON-FILE-REFERENCE] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 #### Command options
 
-`--cpd-scope` (string      )
+`--cpd-scope` (string           )
 :    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--description` (string    )
+`--description` (string         )
 :    Description of the code package.
 
-`--file-reference` (string )
+`--file-reference` (string      )
 :    The reference to the file in the object storage.
 
-`--name` (string           )
+`--json-file-reference` (string )
+:    The reference to the metadata (json file) in the object storage.
+
+`--name` (string                )
 :    Name of the code package.
 
-`--project-id` (string     )
+`--project-id` (string          )
 :    The id of the project.
 
-`--space-id` (string       )
+`--space-id` (string            )
 :    The id of the space.
 
 <a id='code-package_delete'></a>
@@ -1746,6 +1790,129 @@ Retrieve a code package in a given project or space. You must specify either `pr
 
 `--space-id` (string        )
 :    The id of the space.
+
+<a id='code-package_promote'></a>
+## &#8226; code-package promote
+Promote a code package from a project to a space.
+
+```sh
+   cpdctl code-package promote --code-package-id CODE-PACKAGE-ID --revision-id REVISION-ID --project-id PROJECT-ID --space-id SPACE-ID [--description DESCRIPTION] [--name NAME]
+```
+#### Command options
+
+`--code-package-id` (string )
+:    The id of the code package.
+
+`--cpd-scope` (string       )
+:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--description` (string     )
+:    The description of the new code package in space. If not specified, the description of the code package in project will be used.
+
+`--name` (string            )
+:    The name of the new code package in space. If not specified, the name of the code package in project will be used.
+
+`--project-id` (string      )
+:    The id of the project from which a code package will be promoted.
+
+`--revision-id` (string     )
+:    The id of the code package revision.
+
+`--space-id` (string        )
+:    The id of the space to which a code package will be promoted.
+
+<a id='code-package_revision_list'></a>
+## &#8226; code-package revision list
+
+List revisions of a given code package. You must specify either `project_id` or `space_id`.
+
+```sh
+cpdctl code-package revision list --code-package-id CODE-PACKAGE-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
+```
+
+
+#### Command options
+
+`--code-package-id` (string)
+:   The id of the code package. Required.
+
+`--project-id` (string)
+:   The id of the project.
+
+`--space-id` (string)
+:   The id of the space.
+
+<a id='code-package_revision_create'></a>
+## &#8226; code-package revision create
+
+Create a revision of a given code package. You must specify either `project_id` or `space_id`.
+
+```sh
+cpdctl code-package revision create --code-package-id CODE-PACKAGE-ID [--commit-message COMMIT-MESSAGE] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+```
+
+
+#### Command options
+
+`--code-package-id` (string)
+:   The id of the code package. Required.
+
+`--commit-message` (string)
+:   Description of the revision.
+
+`--project-id` (string)
+:   The id of the project.
+
+`--space-id` (string)
+:   The id of the space.
+
+<a id='code-package_revision_delete'></a>
+## &#8226; code-package revision delete
+
+Delete a revision of a given code package. You must specify either `project_id` or `space_id`.
+
+```sh
+cpdctl code-package revision delete --code-package-id CODE-PACKAGE-ID --revision-id REVISION-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
+```
+
+
+#### Command options
+
+`--code-package-id` (string)
+:   The id of the code package. Required.
+
+`--revision-id` (string)
+:   The id of the code package revision. Required.
+
+`--project-id` (string)
+:   The id of the project.
+
+`--space-id` (string)
+:   The id of the space.
+
+<a id='code-package_revision_get'></a>
+## &#8226; code-package revision get
+
+Retrieve a revision of a given code package. You must specify either `project_id` or `space_id`.
+
+```sh
+cpdctl code-package revision get --code-package-id CODE-PACKAGE-ID --revision-id REVISION-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
+```
+
+
+#### Command options
+
+`--code-package-id` (string)
+:   The id of the code package. Required.
+
+`--revision-id` (string)
+:   The id of the code package revision. Required.
+
+`--project-id` (string)
+:   The id of the project.
+
+`--space-id` (string)
+:   The id of the space.
 
 <a id='config_user_list'></a>
 ## &#8226; config user list
@@ -4735,6 +4902,8 @@ cpdctl job list [--project-id PROJECT-ID] [--space-id SPACE-ID] [--asset-ref ASS
 `--limit` (int64)
 :   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be used.
 
+    The default value is `100`.
+
 `--next` (string)
 :   The optional 'next' field from the response in string format, can be used to get the next batch. The response can contain up to 200 results in a batch, if there are more results, a 'next' field is returned in the response which can be used to get the next batch.
 
@@ -4879,6 +5048,8 @@ cpdctl job run list --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-
 
 `--limit` (int64)
 :   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be used.
+
+    The default value is `100`.
 
 `--states` ([]string)
 :   A list of comma-separated job run states. Availble values: Completed, Failed, Canceled, Starting, Running, Queued, Canceling, Paused, Resuming, CompletedWithWarnings, CompletedWithErrors.
@@ -5652,7 +5823,7 @@ cpdctl ml deployment-job-definition list --space-id SPACE-ID [--start START] [--
 `--limit` (int64)
 :   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
 
-    The maximum value is `200`. The minimum value is `1`.
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
 
 `--tag-value` (string)
 :   Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.
@@ -5660,7 +5831,7 @@ cpdctl ml deployment-job-definition list --space-id SPACE-ID [--start START] [--
 `--search` (string)
 :   Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.
 
-    The minimum length is `3` characters.
+    The minimum length is `1` character.
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for deployment-job-definition-list.
@@ -5794,7 +5965,7 @@ cpdctl ml deployment-job-definition list-revisions --job-definition-id JOB-DEFIN
 `--limit` (int64)
 :   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
 
-    The maximum value is `200`. The minimum value is `1`.
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for deployment-job-definition-list-revisions.
@@ -5869,7 +6040,7 @@ cpdctl ml experiment list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--sta
 `--limit` (int64)
 :   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
 
-    The maximum value is `200`. The minimum value is `1`.
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
 
 `--tag-value` (string)
 :   Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.
@@ -5877,7 +6048,7 @@ cpdctl ml experiment list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--sta
 `--search` (string)
 :   Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.
 
-    The minimum length is `3` characters.
+    The minimum length is `1` character.
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for experiment-list.
@@ -6022,7 +6193,7 @@ cpdctl ml experiment list-revisions --experiment-id EXPERIMENT-ID [--space-id SP
 `--limit` (int64)
 :   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
 
-    The maximum value is `200`. The minimum value is `1`.
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for experiment-list-revisions.
@@ -6122,7 +6293,7 @@ cpdctl ml function list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start
 `--limit` (int64)
 :   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
 
-    The maximum value is `200`. The minimum value is `1`.
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
 
 `--tag-value` (string)
 :   Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.
@@ -6130,7 +6301,7 @@ cpdctl ml function list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start
 `--search` (string)
 :   Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.
 
-    The minimum length is `3` characters.
+    The minimum length is `1` character.
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for function-list.
@@ -6275,7 +6446,7 @@ cpdctl ml function list-revisions --function-id FUNCTION-ID [--space-id SPACE-ID
 `--limit` (int64)
 :   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
 
-    The maximum value is `200`. The minimum value is `1`.
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for function-list-revisions.
@@ -6335,7 +6506,7 @@ Create a new model with the given payload. A model represents a machine learning
 `content_import_state` in the model status (/ml/v4/models/{model_id}) is `completed`. If `content_import_state` is not used then a `201` status is returned.
 
 ```sh
-cpdctl ml model create --name NAME --type TYPE --software-spec SOFTWARE-SPEC [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--pipeline PIPELINE] [--model-definition MODEL-DEFINITION] [--hyper-parameters HYPER-PARAMETERS] [--domain DOMAIN] [--training-data-references TRAINING-DATA-REFERENCES] [--test-data-references TEST-DATA-REFERENCES] [--schemas SCHEMAS] [--label-column LABEL-COLUMN] [--transformed-label-column TRANSFORMED-LABEL-COLUMN] [--size SIZE] [--metrics METRICS] [--custom CUSTOM] [--user-defined-objects USER-DEFINED-OBJECTS] [--hybrid-pipeline-software-specs HYBRID-PIPELINE-SOFTWARE-SPECS] [--training-id TRAINING-ID] [--content-location CONTENT-LOCATION]
+cpdctl ml model create --name NAME --type TYPE --software-spec SOFTWARE-SPEC [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--pipeline PIPELINE] [--model-definition MODEL-DEFINITION] [--hyper-parameters HYPER-PARAMETERS] [--domain DOMAIN] [--training-data-references TRAINING-DATA-REFERENCES] [--test-data-references TEST-DATA-REFERENCES] [--schemas SCHEMAS] [--label-column LABEL-COLUMN] [--transformed-label-column TRANSFORMED-LABEL-COLUMN] [--size SIZE] [--metrics METRICS] [--custom CUSTOM] [--user-defined-objects USER-DEFINED-OBJECTS] [--hybrid-pipeline-software-specs HYBRID-PIPELINE-SOFTWARE-SPECS] [--model-version MODEL-VERSION] [--training-id TRAINING-ID] [--data-preprocessing DATA-PREPROCESSING] [--content-location CONTENT-LOCATION]
 ```
 
 
@@ -6434,8 +6605,24 @@ always specify the prediction schemas using this field.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--hybrid-pipeline-software-specs=@path/to/file.json`.
 
+`--model-version` (<a href="#cli-model-entity-model-version-example-schema-ml">`ModelEntityModelVersion`</a>)
+:   Optional metadata that can be used to provide information
+about this model that can be tracked with IBM AI Factsheets.
+See [Using AI Factsheets](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/factsheets-model-inventory.html) for more details.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--model-version=@path/to/file.json`.
+
 `--training-id` (string)
-:   Since CloudPak for Data `4.7.0`. This field can be used to store the `id` of the training job that was used to produce this model.
+:   This field can be used to store the `id` of the training job that was used to produce this model.
+
+Since CloudPak for Data `4.7.0`.
+
+`--data-preprocessing` (<a href="#cli-data-preprocessing-transformation-example-schema-ml">`DataPreprocessingTransformation[]`</a>)
+:   Array which contains the data preprocessing transformations.
+
+Since CloudPak for Data `4.7.0`.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--data-preprocessing=@path/to/file.json`.
 
 `--content-location` (<a href="#cli-content-location-example-schema-ml">`ContentLocation`</a>)
 :   Details about the attachments that should be uploaded with this model.
@@ -6467,7 +6654,7 @@ cpdctl ml model list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start ST
 `--limit` (int64)
 :   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
 
-    The maximum value is `200`. The minimum value is `1`.
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
 
 `--tag-value` (string)
 :   Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.
@@ -6475,7 +6662,7 @@ cpdctl ml model list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start ST
 `--search` (string)
 :   Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.
 
-    The minimum length is `3` characters.
+    The minimum length is `1` character.
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for model-list.
@@ -6621,7 +6808,7 @@ cpdctl ml model list-revisions --model-id MODEL-ID [--space-id SPACE-ID] [--proj
 `--limit` (int64)
 :   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
 
-    The maximum value is `200`. The minimum value is `1`.
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for model-list-revisions.
@@ -6827,7 +7014,7 @@ Wait until the model upload becomes completed or failed.
 Create a new model definition with the given payload. A model definition represents the code that is used to train one or more models. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition create --name NAME --version VERSION --platform PLATFORM [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--command COMMAND] [--custom CUSTOM]
+cpdctl ml model-definition create --name NAME --version VERSION --platform PLATFORM [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--command COMMAND] [--software-spec SOFTWARE-SPEC] [--custom CUSTOM]
 ```
 
 
@@ -6859,6 +7046,11 @@ cpdctl ml model-definition create --name NAME --version VERSION --platform PLATF
 `--command` (string)
 :   The command used to run the model.
 
+`--software-spec` (<a href="#cli-software-spec-rel-example-schema-ml">`SoftwareSpecRel`</a>)
+:   A software specification.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--software-spec=@path/to/file.json`.
+
 `--custom` (generic map)
 :   User defined properties specified as key-value pairs.
 
@@ -6889,7 +7081,7 @@ cpdctl ml model-definition list [--space-id SPACE-ID] [--project-id PROJECT-ID] 
 `--limit` (int64)
 :   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
 
-    The maximum value is `200`. The minimum value is `1`.
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
 
 `--tag-value` (string)
 :   Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.
@@ -6897,7 +7089,7 @@ cpdctl ml model-definition list [--space-id SPACE-ID] [--project-id PROJECT-ID] 
 `--search` (string)
 :   Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.
 
-    The minimum length is `3` characters.
+    The minimum length is `1` character.
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for model-definition-list.
@@ -7042,7 +7234,7 @@ cpdctl ml model-definition list-revisions --model-definition-id MODEL-DEFINITION
 `--limit` (int64)
 :   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
 
-    The maximum value is `200`. The minimum value is `1`.
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for model-definition-list-revisions.
@@ -7158,7 +7350,7 @@ cpdctl ml pipeline list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start
 `--limit` (int64)
 :   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
 
-    The maximum value is `200`. The minimum value is `1`.
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
 
 `--tag-value` (string)
 :   Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.
@@ -7166,7 +7358,7 @@ cpdctl ml pipeline list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start
 `--search` (string)
 :   Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.
 
-    The minimum length is `3` characters.
+    The minimum length is `1` character.
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for pipeline-list.
@@ -7311,7 +7503,7 @@ cpdctl ml pipeline list-revisions --pipeline-id PIPELINE-ID [--space-id SPACE-ID
 `--limit` (int64)
 :   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
 
-    The maximum value is `200`. The minimum value is `1`.
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for pipeline-list-revisions.
@@ -7406,6 +7598,8 @@ cpdctl ml training list [--start START] [--limit LIMIT] [--total-count TOTAL-COU
 
 `--limit` (int64)
 :   How many resources should be returned. Default value is 100. Max value is 200.
+
+    The default value is `100`.
 
 `--total-count` (bool)
 :   Compute the total count. May have performance impact.
@@ -7594,7 +7788,7 @@ cpdctl ml training-definition list [--space-id SPACE-ID] [--project-id PROJECT-I
 `--limit` (int64)
 :   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
 
-    The maximum value is `200`. The minimum value is `1`.
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
 
 `--tag-value` (string)
 :   Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.
@@ -7602,7 +7796,7 @@ cpdctl ml training-definition list [--space-id SPACE-ID] [--project-id PROJECT-I
 `--search` (string)
 :   Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.
 
-    The minimum length is `3` characters.
+    The minimum length is `1` character.
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for training-definition-list.
@@ -7751,7 +7945,7 @@ cpdctl ml training-definition list-revisions --training-definition-id TRAINING-D
 `--limit` (int64)
 :   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
 
-    The maximum value is `200`. The minimum value is `1`.
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for training-definition-list-revisions.
@@ -7762,13 +7956,13 @@ cpdctl ml training-definition list-revisions --training-definition-id TRAINING-D
 The creation of a notebook requires to first upload the notebook content('ipynb' format) to the project or space Cloud Object Storage (COS) with the following command:
 `cpdctl assets files upload --path <your remote path to the notebook content> --file <your local path to the notebook content> --project-id <your project id>`.  Similar for space. Please specifiy either project or space, they are mutually exclusive, cannot both be provided.    Usually the remote path could be 'notebook/<your file name>'.
 
-Then you can create a notebook by referencing the notebook content with the attribute 'file-reference'.  The other required attributes are 'name', either 'project' or 'space', and 'runtime'/'compute', e.g.
-`cpdctl notebooks create --name <your notebook name> --project <your project id> --file-reference <your remote path to the notebook content> --runtime '{"environment": "<your environment id>"}'`.
+Then you can create a notebook by referencing the notebook content with the attribute 'file-reference'.  The other required attributes are 'name', either 'project-id' or 'space-id', and 'runtime'/'compute', e.g.
+`cpdctl notebooks create --name <your notebook name> --project-id <your project id> --file-reference <your remote path to the notebook content> --runtime '{"environment": "<your environment id>"}'`.
 
 The attributes 'runtime' and 'compute' are used to specify the environment on which the notebook runs.  You can specify the environment either by the attribute 'runtime' if the engine is a 'default environment', 'Spark default environment' or a 'GPU environment' or by the attribute 'compute' if the engine is a 'Spark-aaS'.  A basic runtime can be defined as '{"environment": <your environment id>}'.
 
 ```sh
-cpdctl notebook create --file-reference FILE-REFERENCE --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--kernel KERNEL] [--originates-from ORIGINATES-FROM] [--project PROJECT] [--runtime RUNTIME] [--space SPACE]
+cpdctl notebook create --file-reference FILE-REFERENCE --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--kernel KERNEL] [--originates-from ORIGINATES-FROM] [--project-id PROJECT-ID] [--runtime RUNTIME] [--space-id SPACE-ID]
 ```
 
 
@@ -7796,7 +7990,7 @@ cpdctl notebook create --file-reference FILE-REFERENCE --name NAME [--compute CO
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--originates-from=@path/to/file.json`.
 
-`--project` (string)
+`--project-id` (string)
 :   The id of the project in which to create the notebook.
 
 `--runtime` (<a href="#cli-notebook-runtime-example-schema-notebook">`NotebookRuntime`</a>)
@@ -7804,7 +7998,7 @@ cpdctl notebook create --file-reference FILE-REFERENCE --name NAME [--compute CO
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--runtime=@path/to/file.json`.
 
-`--space` (string)
+`--space-id` (string)
 :   The id of the space in which to create the notebook.
 
 <a id='notebook_delete'></a>
@@ -8019,7 +8213,7 @@ cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--member MEMBER] [--roles
 `-l`, `--limit` (int64)
 :   The limit used to specify the maximum number of projects returned in the query results. Used for pagination in conjunction with the "bookmark" query parameter.
 
-    The maximum value is `100`. The minimum value is `0`.
+    The default value is `10`. The maximum value is `100`. The minimum value is `0`.
 
 `-b`, `--bookmark` (string)
 :   The bookmark is an opaque key returned in the query results set that serves as a reference to the next page of query results. Specify the bookmark on subsquent query requests to retrieve the next page of query results. Used for pagination in conjunction with the "limit" query parameter.
@@ -8029,7 +8223,7 @@ cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--member MEMBER] [--roles
 `-s`, `--skip` (int64)
 :   Deprecated. Use of this query parameter exhibits poor performance characteristics. Use the more efficient "bookmark" query parameter instead. The offset to use to define the starting index of projects to return in the query results. Used for pagination in conjunction with the "limit" query parameter.
 
-    The minimum value is `0`.
+    The default value is `0`. The minimum value is `0`.
 
 <a id='project_get'></a>
 ## &#8226; project get
@@ -9954,7 +10148,148 @@ The following example shows the format of the Metric[] object.
   "iteration" : 2,
   "ml_metrics" : { },
   "ts_metrics" : {
-    "anyKey" : "anyValue"
+    "training" : {
+      "neg_symmetric_mean_absolute_percentage_error" : -38.35790647931252
+    }
+  },
+  "tsad_metrics" : {
+    "iterations" : [ {
+      "average_precision" : {
+        "localized_extreme" : 0.5294117647058824,
+        "level_shift" : 1,
+        "variance" : 0.5471792823589406,
+        "trend" : 0.8183221870721871
+      },
+      "roc_auc" : {
+        "anyKey" : "anyValue"
+      },
+      "f1" : {
+        "anyKey" : "anyValue"
+      },
+      "precision" : {
+        "anyKey" : "anyValue"
+      },
+      "recall" : {
+        "anyKey" : "anyValue"
+      }
+    } ],
+    "agg" : {
+      "average_precision" : {
+        "level_shift" : {
+          "mean" : 1,
+          "range" : [ 1, 1 ]
+        },
+        "localized_extreme" : {
+          "mean" : 1,
+          "range" : [ 1, 1 ]
+        },
+        "trend" : {
+          "mean" : 1,
+          "range" : [ 1, 1 ]
+        },
+        "variance" : {
+          "mean" : 1,
+          "range" : [ 1, 1 ]
+        }
+      },
+      "f1" : {
+        "level_shift" : {
+          "anyKey" : "anyValue"
+        },
+        "localized_extreme" : {
+          "anyKey" : "anyValue"
+        },
+        "trend" : {
+          "anyKey" : "anyValue"
+        },
+        "variance" : {
+          "anyKey" : "anyValue"
+        }
+      },
+      "precision" : {
+        "level_shift" : {
+          "anyKey" : "anyValue"
+        },
+        "localized_extreme" : {
+          "anyKey" : "anyValue"
+        },
+        "trend" : {
+          "anyKey" : "anyValue"
+        },
+        "variance" : {
+          "anyKey" : "anyValue"
+        }
+      },
+      "recall" : {
+        "level_shift" : {
+          "anyKey" : "anyValue"
+        },
+        "localized_extreme" : {
+          "anyKey" : "anyValue"
+        },
+        "trend" : {
+          "anyKey" : "anyValue"
+        },
+        "variance" : {
+          "anyKey" : "anyValue"
+        }
+      },
+      "roc_auc" : {
+        "level_shift" : {
+          "anyKey" : "anyValue"
+        },
+        "localized_extreme" : {
+          "anyKey" : "anyValue"
+        },
+        "trend" : {
+          "anyKey" : "anyValue"
+        },
+        "variance" : {
+          "anyKey" : "anyValue"
+        }
+      }
+    },
+    "supporting_rank" : {
+      "average_precision" : {
+        "level_shift" : {
+          "p1" : 2,
+          "p2" : 2,
+          "p3" : 2,
+          "p4" : 5,
+          "p5" : 5,
+          "p6" : 6
+        },
+        "localized_extreme" : {
+          "anyKey" : "anyValue"
+        },
+        "trend" : {
+          "anyKey" : "anyValue"
+        },
+        "variance" : {
+          "anyKey" : "anyValue"
+        }
+      },
+      "f1" : {
+        "anyKey" : "anyValue"
+      },
+      "roc_auc" : {
+        "anyKey" : "anyValue"
+      },
+      "precision" : {
+        "anyKey" : "anyValue"
+      },
+      "recall" : {
+        "anyKey" : "anyValue"
+      }
+    },
+    "aggregated_score" : [ {
+      "p1" : 14.5,
+      "p2" : 12,
+      "p3" : 12,
+      "p4" : 10,
+      "p5" : 6,
+      "p6" : 5
+    } ]
   },
   "ml_federated_metrics" : { },
   "context" : {
@@ -9988,8 +10323,8 @@ The following example shows the format of the Metric[] object.
       "transformer" : "exampleString",
       "score" : 72.5
     },
-    "classes" : [ "exampleString" ],
-    "binary_classfication" : {
+    "classes" : [ "positive", "negative", "neutral" ],
+    "binary_classification" : {
       "confusion_matrices" : [ {
         "true_class" : "exampleString",
         "tp" : 38,
@@ -10033,7 +10368,51 @@ The following example shows the format of the Metric[] object.
       }
     } ],
     "schema" : "exampleString",
-    "estimators" : [ "exampleString" ]
+    "estimators" : [ "exampleString" ],
+    "incremental_training" : {
+      "iteration" : 10,
+      "total_iterations" : 30,
+      "measures_location" : "/path_to_csv",
+      "train_batch_samples_count" : 10786,
+      "holdout_samples_count" : 6784,
+      "early_stop_triggered" : true
+    },
+    "prediction_type" : "regression"
+  }
+} ]
+```
+### &#8226; ModelEntityModelVersion
+<a id="cli-model-entity-model-version-example-schema-ml"></a>
+
+The following example shows the format of the ModelEntityModelVersion object.
+
+```json
+
+{
+  "number" : "1.0.0",
+  "tag" : "xgb classifier",
+  "description" : "Providing an update to the version."
+}
+```
+### &#8226; DataPreprocessingTransformation
+<a id="cli-data-preprocessing-transformation-example-schema-ml"></a>
+
+The following example shows the format of the DataPreprocessingTransformation[] object.
+
+```json
+
+[ {
+  "stage" : "sampling",
+  "input" : {
+    "rows" : 50000,
+    "columns" : 81
+  },
+  "output" : {
+    "rows" : 1463,
+    "columns" : 81
+  },
+  "props" : {
+    "anyKey" : "anyValue"
   }
 } ]
 ```
@@ -10219,7 +10598,8 @@ The following example shows the format of the FederatedLearning object.
     "name" : "..."
   },
   "version" : "exampleString",
-  "log_level" : "info"
+  "log_level" : "info",
+  "sketch_accuracy_vs_privacy" : 0.01
 }
 ```
 ### &#8226; NotebookKernel
