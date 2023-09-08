@@ -153,6 +153,7 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [job run create](#job_run_create)
 #### &#8226; [job run delete](#job_run_delete)
 #### &#8226; [job run get](#job_run_get)
+#### &#8226; [job run update](#job_run_update)
 #### &#8226; [job run cancel](#job_run_cancel)
 #### &#8226; [job run logs](#job_run_logs)
 #### &#8226; [job run pause](#job_run_pause)
@@ -4990,7 +4991,7 @@ cpdctl job get --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
 <a id='job_update'></a>
 ## &#8226; job update
 
-Updates specific attributes of a job in the specified project or space (either project_id or space_id must be set). You must specify the updates by using the JSON patch format, described in RFC 6902. Use 'last_run_initiator' for the initiator of the last job run, use 'last_run_status' for the status of the last job run.
+Updates specific attributes of a job in the specified project or space (either project_id or space_id must be set). You must specify the updates by using the JSON patch format, described in RFC 6902.
 
 ```sh
 cpdctl job update --job-id JOB-ID [--configuration CONFIGURATION] [--description DESCRIPTION] [--name NAME] [--userfs USERFS] [--project-id PROJECT-ID] [--space-id SPACE-ID]
@@ -5123,6 +5124,35 @@ cpdctl job run get --job-id JOB-ID --run-id RUN-ID [--project-id PROJECT-ID] [--
 
 `--run-id` (string)
 :   The ID of the job run. Required.
+
+`--project-id` (string)
+:   The ID of the project to use. project_id or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. project_id or space_id is required.
+
+<a id='job_run_update'></a>
+## &#8226; job run update
+
+Updates specific attributes of a job run in the specified project or space (either project_id or space_id must be set). You must specify the updates using the JSON patch format, described in RFC 6902. Use 'runtime_job_id' for the unique id in the runtime system, and use 'duration' for the job run duration.
+
+```sh
+cpdctl job run update --job-id JOB-ID --run-id RUN-ID --body BODY [--project-id PROJECT-ID] [--space-id SPACE-ID]
+```
+
+
+#### Command options
+
+`--job-id` (string)
+:   The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.
+
+`--run-id` (string)
+:   The ID of the job run. Required.
+
+`--body` (<a href="#cli-json-job-run-patch-model-item-example-schema-job">`JSONJobRunPatchModelItem[]`</a>)
+:   Updates to make to the job run. Required.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--body=@path/to/file.json`.
 
 `--project-id` (string)
 :   The ID of the project to use. project_id or space_id is required.
@@ -9665,6 +9695,21 @@ The following example shows the format of the JobRunPostBodyJobRun object.
     }
   } ]
 }
+```
+### &#8226; JSONJobRunPatchModelItem
+<a id="cli-json-job-run-patch-model-item-example-schema-job"></a>
+
+The following example shows the format of the JSONJobRunPatchModelItem[] object.
+
+```json
+
+[ {
+  "logLocation" : "exampleString",
+  "logStr" : "exampleString",
+  "op" : "replace",
+  "path" : "/entity/runtime_job_id (or /entity/job_run/configuration)",
+  "value" : "Completed"
+} ]
 ```
 ### &#8226; Rel
 <a id="cli-rel-example-schema-ml"></a>
