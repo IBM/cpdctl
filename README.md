@@ -8,6 +8,28 @@ Using the CLI, you can manage configuration settings and automate an end-to-end 
 
 **Note**: in Cloud Pak for Data two types of projects are used: Analytics Projects and Data Quality Projects. **IBM cpdctl** supports only Analytics Projects.
 
+## Quick start
+### Download for Linux and macOS:
+These commands download and install latest release of `cpdctl` executable to the current directory.
+```shell
+platform=$(uname -s | tr [A-Z] [a-z])
+arch=$(uname -m | sed 's/x86_64/amd64/')
+curl -LOs https://github.com/IBM/cpdctl/releases/latest/download/cpdctl_${platform}_${arch}.tar.gz
+tar zxf cpdctl_${platform}_${arch}.tar.gz
+```
+### Configure connection with on-premise Cloud Pak for Data:
+**Note**: set variables `cpd_url`, `cpd_username`, and `cpd_apikey` before running these commands.
+```shell
+./cpdctl config profile set cpd --url $cpd_url --username $cpd_username --apikey $cpd_apikey
+./cpdctl config profile use cpd
+```
+### Configure connection with Cloud Pak for Data as a Service:
+**Note**: set variable `ibmcloud_apikey` before running these commands.
+```shell
+./cpdctl config profile set cpdaas --url https://cloud.ibm.com --apikey $ibmcloud_apikey
+./cpdctl config profile use cpdaas
+```
+
 ## Installation
 
 **IBM Cloud Pak for Data Command Line Interface** is distributed as a single executable file inside a compressed archive. To install, copy the file from the archive to a preferred directory.
@@ -65,8 +87,8 @@ Download the appropriate archive from [IBM cpdctl repository](https://github.com
 
 > ![New in 1.4.0](https://img.shields.io/badge/New%20in-1.4.0-blue)
 > 2. Method 2 is based on session metadata of [IBM Cloud CLI](https://www.ibm.com/cloud/cli) (`ibmcloud`).
->
->   On a machine where `ibmcloud` is configured to connect to IBM Cloud, **IBM cpdctl** can use its session metadata to connect to Cloud Pak for Data as a Service. An auto-configuration mechanism honors the environment variable `IBMCLOUD_HOME` to indicate a non-default location for `ibmcloud` session metadata.
+     >
+     >   On a machine where `ibmcloud` is configured to connect to IBM Cloud, **IBM cpdctl** can use its session metadata to connect to Cloud Pak for Data as a Service. An auto-configuration mechanism honors the environment variable `IBMCLOUD_HOME` to indicate a non-default location for `ibmcloud` session metadata.
 
 
 ### Manual configuration
@@ -143,14 +165,14 @@ COMMANDS:
 > ```
 > cpdctl config profile set <profile-name> --ibmcloud
 > ```
-> This command creates a new profile named `<profile-name>` linked to [IBM Cloud CLI configuration](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud-home). **IBM cpdctl** retrieves API URL, IBM Cloud region, and access token information to connect to Cloud Pak for Data as a Service. If the token is expired, `ibmcloud login` must be run to refresh the token. 
-> 
+> This command creates a new profile named `<profile-name>` linked to [IBM Cloud CLI configuration](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud-home). **IBM cpdctl** retrieves API URL, IBM Cloud region, and access token information to connect to Cloud Pak for Data as a Service. If the token is expired, `ibmcloud login` must be run to refresh the token.
+>
 > The flag `--ibmcloud` accepts an optional value:
 > ```
 > cpdctl config profile set <profile-name> --ibmcloud [IBMCLOUD_HOME]
 > ```
 > This command creates cpdctl profile `<profile-name>` linked to alternative IBM Cloud CLI configuration directory `IBMCLOUD_HOME`. If no value is given then default IBM Cloud CLI configuration directory is assumed.
-> 
+>
 
 #### Configuration process example
 
