@@ -1424,7 +1424,7 @@ cpdctl asset export list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--cata
 Starts the asset export process for the specified space, project, or catalog. On CPD 3.0.1 assets export is supported only in the context of a space.
 
 ```sh
-cpdctl asset export start [--assets ASSETS] [--description DESCRIPTION] [--encryption-key ENCRYPTION-KEY] [--format FORMAT] [--name NAME] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID]
+cpdctl asset export start [--assets ASSETS] [--description DESCRIPTION] [--encryption-key ENCRYPTION-KEY] [--format FORMAT] [--module-keys MODULE-KEYS] [--name NAME] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID]
 ```
 
 
@@ -1445,6 +1445,9 @@ cpdctl asset export start [--assets ASSETS] [--description DESCRIPTION] [--encry
 :   Export format type.
 
     The default value is `json`. Allowable values are: `json`, `csv`.
+
+`--module-keys` ([]string)
+:   &nbsp;
 
 `--name` (string)
 :   &nbsp;
@@ -3996,6 +3999,13 @@ cpdctl environment list [--project-id PROJECT-ID] [--space-id SPACE-ID] [--types
 ## &#8226; environment create
 
 Create a new environment.
+
+You need to specify either `project_id` or `space_id`.
+
+Required body parameters vary dependent on environment types:
+- notebook: `type`, `name`, `display_name`, `hardware_specification`, `software_specification`, `tools_specification`, `runtime_definition`
+- datastage: `type`, `name`, `display_name`, `hardware_specification`
+- other types: `type`, `name`, `display_name`, `hardware_specification`, `software_specification`.
 
 ```sh
 cpdctl environment create --display-name DISPLAY-NAME --hardware-specification HARDWARE-SPECIFICATION --name NAME --software-specification SOFTWARE-SPECIFICATION --type TYPE [--authorization-variables AUTHORIZATION-VARIABLES] [--compute-specification COMPUTE-SPECIFICATION] [--description DESCRIPTION] [--environment-variables ENVIRONMENT-VARIABLES] [--location LOCATION] [--runtime-definition RUNTIME-DEFINITION] [--runtime-idle-time RUNTIME-IDLE-TIME] [--tools-specification TOOLS-SPECIFICATION] [--project-id PROJECT-ID] [--space-id SPACE-ID]
@@ -8511,7 +8521,7 @@ Retrieves the space list.
 Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
 
 ```sh
-cpdctl space list [--start START] [--limit LIMIT] [--total-count TOTAL-COUNT] [--id ID] [--tags TAGS] [--include INCLUDE] [--member MEMBER] [--roles ROLES] [--bss-account-id BSS-ACCOUNT-ID] [--name NAME] [--sub-name SUB-NAME] [--compute-crn COMPUTE-CRN]
+cpdctl space list [--start START] [--limit LIMIT] [--total-count TOTAL-COUNT] [--id ID] [--tags TAGS] [--include INCLUDE] [--member MEMBER] [--roles ROLES] [--bss-account-id BSS-ACCOUNT-ID] [--name NAME] [--sub-name SUB-NAME] [--compute-crn COMPUTE-CRN] [--type TYPE]
 ```
 
 
@@ -8563,6 +8573,9 @@ Values:
 `--compute-crn` (string)
 :   Filters the result list to only include spaces with specified compute.crn.
 
+`--type` (string)
+:   Filters the result list to only include space with specified type.
+
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for list.
 
@@ -8576,7 +8589,7 @@ Creates a new space to scope other assets. Authorized user must have the followi
 On Public Cloud user is required to provide Cloud Object Storage instance details in the 'storage' property. On private CPD installations the default storage is used instead.
 
 ```sh
-cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--generator GENERATOR] [--stage STAGE] [--storage STORAGE] [--tags TAGS]
+cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--generator GENERATOR] [--stage STAGE] [--storage STORAGE] [--tags TAGS] [--type TYPE]
 ```
 
 
@@ -8610,6 +8623,11 @@ cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] 
 
 `--tags` ([]string)
 :   User-defined tags associated with a space.
+
+`--type` (string)
+:   Space type.
+
+    The default value is `cpd`. Allowable values are: `cpd`, `wx`, `wca`.
 
 <a id='space_delete'></a>
 ## &#8226; space delete
@@ -8655,7 +8673,8 @@ Partially update this space. Allowed paths are:
 - /name
 - /description
 - /compute
-- /stage/name.
+- /stage/name
+- /type.
 
 ```sh
 cpdctl space update --space-id SPACE-ID [--compute COMPUTE] [--description DESCRIPTION] [--name NAME] [--stage-name STAGE-NAME]
