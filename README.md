@@ -12,7 +12,7 @@ Using the CLI, you can manage configuration settings and automate an end-to-end 
 ### Download for Linux and macOS:
 These commands download and install latest release of `cpdctl` executable to the current directory.
 ```shell
-platform=$(uname -s | tr [A-Z] [a-z])
+platform=$(uname -s | tr '[A-Z]' '[a-z]')
 arch=$(uname -m | sed 's/x86_64/amd64/')
 curl -LOs https://github.com/IBM/cpdctl/releases/latest/download/cpdctl_${platform}_${arch}.tar.gz
 tar zxf cpdctl_${platform}_${arch}.tar.gz
