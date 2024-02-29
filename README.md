@@ -14,7 +14,7 @@ These commands download and install latest release of `cpdctl` executable to the
 ```shell
 platform=$(uname -s | tr '[A-Z]' '[a-z]')
 arch=$(uname -m | sed 's/x86_64/amd64/')
-curl -LOs https://github.com/IBM/cpdctl/releases/latest/download/cpdctl_${platform}_${arch}.tar.gz
+curl -LOs "https://github.com/IBM/cpdctl/releases/latest/download/cpdctl_${platform}_${arch}.tar.gz"
 tar zxf cpdctl_${platform}_${arch}.tar.gz
 ```
 ### Configure connection with on-premise Cloud Pak for Data:
