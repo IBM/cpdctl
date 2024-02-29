@@ -8,6 +8,7 @@ Using the CLI, you can manage configuration settings and automate an end-to-end 
 
 **Note**: in Cloud Pak for Data two types of projects are used: Analytics Projects and Data Quality Projects. **IBM cpdctl** supports only Analytics Projects.
 
+
 ## Quick start
 ### Download for Linux and macOS:
 These commands download and install latest release of `cpdctl` executable to the current directory.
