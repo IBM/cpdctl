@@ -1,3 +1,6 @@
 [submodule "samples/job_run_retention"]
 	path = samples/job_run_retention
 	url = https://github.com/jamesspyker/JobRunRetentionSamples
+[submodule "samples/GeneralJobSamples"]
+	path = samples/GeneralJobSamples
+	url = https://github.com/jamesspyker/GeneralJobSamples
