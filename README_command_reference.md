@@ -82,6 +82,7 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [datastage flow create](#datastage_flow_create)
 #### &#8226; [datastage flow get](#datastage_flow_get)
 #### &#8226; [datastage flow update](#datastage_flow_update)
+#### &#8226; [datastage flow patch-attributes](#datastage_flow_patch-attributes)
 #### &#8226; [datastage flow clone](#datastage_flow_clone)
 #### &#8226; [datastage flow get-compile-status](#datastage_flow_get-compile-status)
 #### &#8226; [datastage flow compile](#datastage_flow_compile)
@@ -90,6 +91,7 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [datastage subflow create](#datastage_subflow_create)
 #### &#8226; [datastage subflow get](#datastage_subflow_get)
 #### &#8226; [datastage subflow update](#datastage_subflow_update)
+#### &#8226; [datastage subflow patch-attributes](#datastage_subflow_patch-attributes)
 #### &#8226; [datastage subflow clone](#datastage_subflow_clone)
 #### &#8226; [datastage xml-schema-library list](#datastage_xml-schema-library_list)
 #### &#8226; [datastage xml-schema-library create](#datastage_xml-schema-library_create)
@@ -102,6 +104,7 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [datastage xml-schema-library rename](#datastage_xml-schema-library_rename)
 #### &#8226; [datastage xml-schema-library export-datastage-library-zip](#datastage_xml-schema-library_export-datastage-library-zip)
 #### &#8226; [datastage xml-schema-library import-datastage-library-zip](#datastage_xml-schema-library_import-datastage-library-zip)
+#### &#8226; [datastage migration encrypt](#datastage_migration_encrypt)
 #### &#8226; [datastage migration create](#datastage_migration_create)
 #### &#8226; [datastage migration delete](#datastage_migration_delete)
 #### &#8226; [datastage migration get](#datastage_migration_get)
@@ -244,6 +247,32 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [notebook version delete](#notebook_version_delete)
 #### &#8226; [notebook version get](#notebook_version_get)
 #### &#8226; [notebook version update](#notebook_version_update)
+#### &#8226; [pipeline version list](#pipeline_version_list)
+#### &#8226; [pipeline version delete](#pipeline_version_delete)
+#### &#8226; [pipeline version get](#pipeline_version_get)
+#### &#8226; [pipeline version get-template](#pipeline_version_get-template)
+#### &#8226; [pipeline version get-template-format](#pipeline_version_get-template-format)
+#### &#8226; [pipeline version upload](#pipeline_version_upload)
+#### &#8226; [pipeline run get](#pipeline_run_get)
+#### &#8226; [pipeline run get-artifact](#pipeline_run_get-artifact)
+#### &#8226; [pipeline run get-logs](#pipeline_run_get-logs)
+#### &#8226; [pipeline run get-log](#pipeline_run_get-log)
+#### &#8226; [pipeline run list-parameter](#pipeline_run_list-parameter)
+#### &#8226; [pipeline run task-result head](#pipeline_run_task-result_head)
+#### &#8226; [pipeline run task-result list](#pipeline_run_task-result_list)
+#### &#8226; [pipeline run task-result get](#pipeline_run_task-result_get)
+#### &#8226; [pipeline run migrate-cache](#pipeline_run_migrate-cache)
+#### &#8226; [pipeline run get-status](#pipeline_run_get-status)
+#### &#8226; [pipeline cleanup delete-cache](#pipeline_cleanup_delete-cache)
+#### &#8226; [pipeline cleanup delete-artifacts](#pipeline_cleanup_delete-artifacts)
+#### &#8226; [pipeline list](#pipeline_list)
+#### &#8226; [pipeline delete](#pipeline_delete)
+#### &#8226; [pipeline get](#pipeline_get)
+#### &#8226; [pipeline get-template](#pipeline_get-template)
+#### &#8226; [pipeline commit](#pipeline_commit)
+#### &#8226; [pipeline copy](#pipeline_copy)
+#### &#8226; [pipeline upload](#pipeline_upload)
+#### &#8226; [pipeline validate](#pipeline_validate)
 #### &#8226; [project list](#project_list)
 #### &#8226; [project get](#project_get)
 #### &#8226; [project update](#project_update)
@@ -266,6 +295,45 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [space member update](#space_member_update)
 #### &#8226; [space wait](#space_wait)
 #### &#8226; [version ](#version_)
+#### &#8226; [wx-ai deployment create](#wx-ai_deployment_create)
+#### &#8226; [wx-ai deployment list](#wx-ai_deployment_list)
+#### &#8226; [wx-ai deployment get](#wx-ai_deployment_get)
+#### &#8226; [wx-ai deployment update](#wx-ai_deployment_update)
+#### &#8226; [wx-ai deployment delete](#wx-ai_deployment_delete)
+#### &#8226; [wx-ai deployment text-generate](#wx-ai_deployment_text-generate)
+#### &#8226; [wx-ai deployment text-generate-stream](#wx-ai_deployment_text-generate-stream)
+#### &#8226; [wx-ai deployment wait](#wx-ai_deployment_wait)
+#### &#8226; [wx-ai foundation-model list-models](#wx-ai_foundation-model_list-models)
+#### &#8226; [wx-ai foundation-model list-tasks](#wx-ai_foundation-model_list-tasks)
+#### &#8226; [wx-ai prompt create](#wx-ai_prompt_create)
+#### &#8226; [wx-ai prompt get](#wx-ai_prompt_get)
+#### &#8226; [wx-ai prompt update](#wx-ai_prompt_update)
+#### &#8226; [wx-ai prompt delete](#wx-ai_prompt_delete)
+#### &#8226; [wx-ai prompt update-lock](#wx-ai_prompt_update-lock)
+#### &#8226; [wx-ai prompt get-lock](#wx-ai_prompt_get-lock)
+#### &#8226; [wx-ai prompt get-input](#wx-ai_prompt_get-input)
+#### &#8226; [wx-ai prompt add-chat-item](#wx-ai_prompt_add-chat-item)
+#### &#8226; [wx-ai prompt-session create](#wx-ai_prompt-session_create)
+#### &#8226; [wx-ai prompt-session get](#wx-ai_prompt-session_get)
+#### &#8226; [wx-ai prompt-session update](#wx-ai_prompt-session_update)
+#### &#8226; [wx-ai prompt-session delete](#wx-ai_prompt-session_delete)
+#### &#8226; [wx-ai prompt-session add-entry](#wx-ai_prompt-session_add-entry)
+#### &#8226; [wx-ai prompt-session list-entries](#wx-ai_prompt-session_list-entries)
+#### &#8226; [wx-ai prompt-session add-chat-item](#wx-ai_prompt-session_add-chat-item)
+#### &#8226; [wx-ai prompt-session update-lock](#wx-ai_prompt-session_update-lock)
+#### &#8226; [wx-ai prompt-session get-lock](#wx-ai_prompt-session_get-lock)
+#### &#8226; [wx-ai prompt-session get-entry](#wx-ai_prompt-session_get-entry)
+#### &#8226; [wx-ai prompt-session delete-entry](#wx-ai_prompt-session_delete-entry)
+#### &#8226; [wx-ai training create](#wx-ai_training_create)
+#### &#8226; [wx-ai training list](#wx-ai_training_list)
+#### &#8226; [wx-ai training get](#wx-ai_training_get)
+#### &#8226; [wx-ai training delete](#wx-ai_training_delete)
+#### &#8226; [wx-ai training wait](#wx-ai_training_wait)
+#### &#8226; [wx-ai text generate](#wx-ai_text_generate)
+#### &#8226; [wx-ai text generate-stream](#wx-ai_text_generate-stream)
+#### &#8226; [wx-ai text tokenize](#wx-ai_text_tokenize)
+#### &#8226; [wx-ai text calculate-embeddings](#wx-ai_text_calculate-embeddings)
+#### &#8226; [wx-ai custom-foundation-model list](#wx-ai_custom-foundation-model_list)
 # Command descriptions
 <a id='asset_search'></a>
 ## &#8226; asset search
@@ -323,22 +391,22 @@ cpdctl asset search --type-name TYPE-NAME --query QUERY [--bookmark BOOKMARK] [-
 ## &#8226; asset create
 
 Create an asset in catalog or project. Assets contain information about the contents of your data and how to access the data. You store asset metadata in a catalog and add collaborators from your organization to analyze data. Your data can reside in a variety of sources. For example, you can keep your data in your existing on-premises data sources, cloud data services, or streaming data feeds. By adding connection information to these remote sources in the catalog, you can allow other catalog users to access the data with the stored credentials. Alternatively, you can copy a snapshot of the remote data into the catalog's encrypted cloud storage.<br/>All asset types have a common set of properties. Some asset types have additional properties.<br/>When you add an asset to a catalog, you specify these common properties:
-* The asset name and an optional description. The name can only contain letters, numbers, underscore, dash, space, and period. The name can't be only blank spaces.
-* Privacy. You can choose to restrict access to the asset with the privacy level and asset membership.
-* Public = Default. No restrictions on finding or using the asset.
-* Private = Only asset members can find or use the asset.
-* Members. The catalog collaborators can be added as members of the asset. Members are important if you restrict access to the asset. When you create an asset, you are the owner (and a member) of it.
-* Tags. Metadata that makes searching for the asset easier. Tags can contain only letters, numbers, underscores, dashes, and the symbols # and @.
+ * The asset name and an optional description. The name can only contain letters, numbers, underscore, dash, space, and period. The name can't be only blank spaces.
+ * Privacy. You can choose to restrict access to the asset with the privacy level and asset membership. 
+  * Public = Default. No restrictions on finding or using the asset.
+  * Private = Only asset members can find or use the asset.
+ * Members. The catalog collaborators can be added as members of the asset. Members are important if you restrict access to the asset. When you create an asset, you are the owner (and a member) of it.
+ * Tags. Metadata that makes searching for the asset easier. Tags can contain only letters, numbers, underscores, dashes, and the symbols # and @.
 
 ```sh
-cpdctl asset create --metadata METADATA [--attachments ATTACHMENTS] [--entity ENTITY] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl asset create [--metadata METADATA | --metadata-asset-attributes METADATA-ASSET-ATTRIBUTES --metadata-asset-category METADATA-ASSET-CATEGORY --metadata-asset-id METADATA-ASSET-ID --metadata-asset-state METADATA-ASSET-STATE --metadata-asset-type METADATA-ASSET-TYPE --metadata-child-source-systems METADATA-CHILD-SOURCE-SYSTEMS --metadata-commit-info METADATA-COMMIT-INFO --metadata-created-at METADATA-CREATED-AT --metadata-description METADATA-DESCRIPTION --metadata-name METADATA-NAME --metadata-origin-country METADATA-ORIGIN-COUNTRY --metadata-owner-id METADATA-OWNER-ID --metadata-resource-key METADATA-RESOURCE-KEY --metadata-rov METADATA-ROV --metadata-size METADATA-SIZE --source-system SOURCE-SYSTEM --metadata-tags METADATA-TAGS] [--attachments ATTACHMENTS] [--entity ENTITY] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 
 
 #### Command options
 
 `--metadata` (<a href="#cli-asset-metadata-example-schema-asset">`AssetMetadata`</a>)
-:   AssetMetadata Model. Required.
+:   AssetMetadata Model. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--metadata=@path/to/file.json`.
 
@@ -365,6 +433,65 @@ cpdctl asset create --metadata METADATA [--attachments ATTACHMENTS] [--entity EN
 
 `--space-id` (string)
 :   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--metadata-asset-attributes` ([]string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-asset-category` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-asset-id` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-asset-state` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-asset-type` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-child-source-systems` (<a href="#cli-source-system-example-schema-asset">`SourceSystem[]`</a>)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--metadata-child-source-systems=@path/to/file.json`.
+
+`--metadata-commit-info` (<a href="#cli-commit-info-example-schema-asset">`CommitInfo`</a>)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--metadata-commit-info=@path/to/file.json`.
+
+`--metadata-created-at` (strfmt.DateTime)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-description` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-name` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-origin-country` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-owner-id` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-resource-key` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-rov` (<a href="#cli-asset-rov-example-schema-asset">`AssetRov`</a>)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--metadata-rov=@path/to/file.json`.
+
+`--metadata-size` (int64)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--source-system` (<a href="#cli-source-system-example-schema-asset">`SourceSystem`</a>)
+:   Source System Info. This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--source-system=@path/to/file.json`.
+
+`--metadata-tags` ([]string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
 
 <a id='asset_delete'></a>
 ## &#8226; asset delete
@@ -436,12 +563,12 @@ cpdctl asset get --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CON
 ## &#8226; asset update
 
 Edit an existing asset properties, if you have proper permissions. Who can edit asset properties depends on the privacy setting of the asset:<br/>If the asset privacy setting is public, you must have Editor or Admin permissions on the catalog to edit asset properties. If the asset privacy setting is private, you must have Editor or Admin permissions on the catalog and be an asset member to edit asset properties. You can edit these asset properties:
-* Name
-* Description
-* Tags
-* Classification
-* Resource key
-* source_system.last_modification_timestamp, Expected Format: "yyyy-MM-ddTHH:mm:ssX".
+ * Name 
+ * Description 
+ * Tags 
+ * Classification 
+ * Resource key 
+ * source_system.last_modification_timestamp, Expected Format: "yyyy-MM-ddTHH:mm:ssX".
 
 ```sh
 cpdctl asset update --asset-id ASSET-ID [--classification CLASSIFICATION] [--description DESCRIPTION] [--name NAME] [--resource-key RESOURCE-KEY] [--source-system SOURCE-SYSTEM] [--tags TAGS] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
@@ -505,10 +632,10 @@ cpdctl asset promote --project-id PROJECT-ID --asset-id ASSET-ID --request-body 
 
 `--request-body` (generic map)
 :   Asset permission and metadata.  Example: { "mode": 0, "space_id":"string", "metadata":{"name":"string", "description":"string", "tags":["string","string"]} }  
-Values for mode is 0 (public), 8 (private), 16 (hidden).  
-If not supplied, the currently existing mode applies.  
-space_id is the target space id.
-Metadata may contain attributes to overwrite the values in original asset; currently only name, description and tags may be overwritten. Required.
+  Values for mode is 0 (public), 8 (private), 16 (hidden).  
+  If not supplied, the currently existing mode applies.  
+  space_id is the target space id. 
+  Metadata may contain attributes to overwrite the values in original asset; currently only name, description and tags may be overwritten. Required.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--request-body=@path/to/file.json`.
 
@@ -579,10 +706,10 @@ cpdctl asset type get --type-name TYPE-NAME [--x-open-id-connect-id-token X-OPEN
 ## &#8226; asset type replace
 
 Replace asset attributes for the given asset type or create a new asset type if the given asset type does not exist.
-Enter url_parameters_from_asset_attributes : ["id", "name.short_name"].
+ Enter url_parameters_from_asset_attributes : ["id", "name.short_name"].
 
 ```sh
-cpdctl asset type replace --type-name TYPE-NAME --fields FIELDS [--description DESCRIPTION] [--external-asset-preview EXTERNAL-ASSET-PREVIEW] [--properties PROPERTIES] [--relationships RELATIONSHIPS] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl asset type replace --type-name TYPE-NAME --fields FIELDS [--description DESCRIPTION] [--external-asset-preview EXTERNAL-ASSET-PREVIEW | --external-asset-preview-base-client-url EXTERNAL-ASSET-PREVIEW-BASE-CLIENT-URL --external-asset-preview-url-parameters-fixed EXTERNAL-ASSET-PREVIEW-URL-PARAMETERS-FIXED --external-asset-preview-url-parameters-from-asset-attributes EXTERNAL-ASSET-PREVIEW-URL-PARAMETERS-FROM-ASSET-ATTRIBUTES --external-asset-preview-url-path-from-asset-attributes EXTERNAL-ASSET-PREVIEW-URL-PATH-FROM-ASSET-ATTRIBUTES] [--properties PROPERTIES] [--relationships RELATIONSHIPS] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 
 
@@ -600,7 +727,7 @@ cpdctl asset type replace --type-name TYPE-NAME --fields FIELDS [--description D
 :   Asset type description.
 
 `--external-asset-preview` (<a href="#cli-external-asset-preview-example-schema-asset">`ExternalAssetPreview`</a>)
-:   Asset Type URL Model.
+:   Asset Type URL Model. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--external-asset-preview=@path/to/file.json`.
 
@@ -627,6 +754,18 @@ cpdctl asset type replace --type-name TYPE-NAME --fields FIELDS [--description D
 
 `--space-id` (string)
 :   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+`--external-asset-preview-base-client-url` (string)
+:   Base client URL. This option provides a value for a sub-field of the JSON option 'external-asset-preview'. It is mutually exclusive with that option.
+
+`--external-asset-preview-url-parameters-fixed` (string)
+:   URL parameters fixed. This option provides a value for a sub-field of the JSON option 'external-asset-preview'. It is mutually exclusive with that option.
+
+`--external-asset-preview-url-parameters-from-asset-attributes` ([]string)
+:   URL parameters. This option provides a value for a sub-field of the JSON option 'external-asset-preview'. It is mutually exclusive with that option.
+
+`--external-asset-preview-url-path-from-asset-attributes` (string)
+:   URL path. This option provides a value for a sub-field of the JSON option 'external-asset-preview'. It is mutually exclusive with that option.
 
 <a id='asset_attribute_list'></a>
 ## &#8226; asset attribute list
@@ -956,10 +1095,10 @@ cpdctl asset attachment update --asset-id ASSET-ID --attachment-id ATTACHMENT-ID
 :   Attachment GUID. Required.
 
 `--json-patch` (<a href="#cli-json-patch-operation-example-schema-asset">`JSONPatchOperation[]`</a>)
-:   JSON array of patch operations as defined in RFC 6902. See http://jsonpatch.com/ for more info. <br/>[
-{ "op": "add", "path": "/name", "value": "my_attachment"},  
-{"op": "replace", "path": "/mime", "value": "text/csv" },  
-{ "op": "remove", "path":"/description"}
+:   JSON array of patch operations as defined in RFC 6902. See http://jsonpatch.com/ for more info. <br/>[ 
+   { "op": "add", "path": "/name", "value": "my_attachment"},  
+  {"op": "replace", "path": "/mime", "value": "text/csv" },  
+  { "op": "remove", "path":"/description"}
 ]. Required.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--json-patch=@path/to/file.json`.
@@ -1019,7 +1158,7 @@ Use this command to download the asset attachment to the local path
 :    You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string     )
-:    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--output-file` (string   )
 :    Path to a file where the downloaded attachment is stored. Use '-' to print attachment contents to standard output.
@@ -1042,7 +1181,7 @@ Use this command to download the asset attachment to the local path
 Add data assets to a catalog. Data assets could be data from a connection to a data source (ex. tables) or files from your local system uploaded into cloud object storage associated with Projects or Catalog.All asset types have a common set of properties, such as name, description, asset type, visibility, tags, classifications. Data Asset  have additional attributes such as mime type, columns with types, and properties. Use v2/attachments API to indicate location of data (ex. table path) from a connection to a data source.
 
 ```sh
-cpdctl asset data-asset create --entity ENTITY --metadata METADATA [--attachments ATTACHMENTS] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl asset data-asset create --entity ENTITY [--metadata METADATA | --metadata-asset-attributes METADATA-ASSET-ATTRIBUTES --metadata-asset-category METADATA-ASSET-CATEGORY --metadata-asset-id METADATA-ASSET-ID --metadata-asset-state METADATA-ASSET-STATE --metadata-asset-type METADATA-ASSET-TYPE --metadata-child-source-systems METADATA-CHILD-SOURCE-SYSTEMS --metadata-commit-info METADATA-COMMIT-INFO --metadata-created-at METADATA-CREATED-AT --metadata-description METADATA-DESCRIPTION --metadata-name METADATA-NAME --metadata-origin-country METADATA-ORIGIN-COUNTRY --metadata-owner-id METADATA-OWNER-ID --metadata-resource-key METADATA-RESOURCE-KEY --metadata-rov METADATA-ROV --metadata-size METADATA-SIZE --source-system SOURCE-SYSTEM --metadata-tags METADATA-TAGS] [--attachments ATTACHMENTS] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 
 
@@ -1054,7 +1193,7 @@ cpdctl asset data-asset create --entity ENTITY --metadata METADATA [--attachment
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--entity=@path/to/file.json`.
 
 `--metadata` (<a href="#cli-asset-metadata-example-schema-asset">`AssetMetadata`</a>)
-:   AssetMetadata Model. Required.
+:   AssetMetadata Model. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--metadata=@path/to/file.json`.
 
@@ -1077,24 +1216,83 @@ cpdctl asset data-asset create --entity ENTITY --metadata METADATA [--attachment
 `--space-id` (string)
 :   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
+`--metadata-asset-attributes` ([]string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-asset-category` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-asset-id` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-asset-state` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-asset-type` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-child-source-systems` (<a href="#cli-source-system-example-schema-asset">`SourceSystem[]`</a>)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--metadata-child-source-systems=@path/to/file.json`.
+
+`--metadata-commit-info` (<a href="#cli-commit-info-example-schema-asset">`CommitInfo`</a>)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--metadata-commit-info=@path/to/file.json`.
+
+`--metadata-created-at` (strfmt.DateTime)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-description` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-name` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-origin-country` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-owner-id` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-resource-key` (string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-rov` (<a href="#cli-asset-rov-example-schema-asset">`AssetRov`</a>)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--metadata-rov=@path/to/file.json`.
+
+`--metadata-size` (int64)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--source-system` (<a href="#cli-source-system-example-schema-asset">`SourceSystem`</a>)
+:   Source System Info. This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--source-system=@path/to/file.json`.
+
+`--metadata-tags` ([]string)
+:   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
 <a id='asset_data-asset_get'></a>
 ## &#8226; asset data-asset get
 
 Retrieve _metadata_ about a data asset. The response document will contain three top-level fields:<br/>
-* **'metadata':** contains metadata common to all types of assets
-* **'entity':** contains metadata specific to the asset_type - in this case 'data_asset'
-* **'attachments':** an array containing one item of metadata per attached resource<br/><br/>The data described by the above metadata is stored in attached resources.  Examples of attached resources are database tables, csv files, word documents, extended metadata documents, etc.  Because an item in the 'attachments' array only contains metadata about an attached resource, accessing the actual attached resource requires additional server calls.  Exactly which additional server calls are needed depends on the kind of attached resource.  Follow the steps below to access an attached resource.<br/><br/>
-  **Step 1**: find the index i of the item in the above 'attachments' array whose 'asset_type' value matches the type of the attached resource you want to access.  For a 'data_asset' attached resource look for the item i where 'attachments[i].asset_type' is 'data_asset'.<br/><br/>There are two important pairs of fields (among many others) which may appear in 'attachments[i]'.  Only one of those pairs will actually appear.  Which pair appears influences which steps to perform next.<br/>
-*  **Pair 1:** **'connection_id'** and **'connection_path'**:
-* The above two fields will appear in 'attachments[i]' if the value of 'attachments[i].is_remote' is true.
-* 'attachments[i].is_remote' WILL be true if the attached resource is a database table.  In this case, 'attachments[i].connection_path' will contain a schema name and table name.
-* 'attachments[i].is_remote' MAY be true if the attached resource is, for example, a csv file.  In this case, 'attachments[i].connection_path' will contain a folder path and file name.<br/><br/>If the above pair of fields are present in 'attachments[i]' then:<br/>
-  **Step 2**: use the value of the 'attachments[i].connection_id' field to make a call to the **GET /v2/connections/{connection_id}** API.  You'll need appropriate credentials.<br/>
-  **Step 3**: use the values in the 'entity.properties' field of the result from Step 2 to either create a connection to the database containing the table or to retrieve the file.<br/><br/>Note: even if 'attachments[i].is_remote' is true and the above pair of fields are present in 'attachments[i]', if the attached resource is located in the catalog/project bucket then you may optionally perform the two steps discussed for Pair 2 ('object_key' and 'handle') below.<br/>
-* **Pair 2:** **'object_key'** and **'handle'**:
-* The above two fields will appear in 'attachments[i]' if the value of 'attachments[i].is_remote' is false.  In this case, 'attachments[i].handle' will contain information about the attached resource.<br/>
-  **Step 2**: use the value of the 'attachments[i].id' field as the value for 'attachment_id' in a call to the **GET /v2/assets/{asset_id}/attachments/{attachment_id}** API.  The value to use for 'asset_id' in the call to the attachments API is the same as the value that was used for 'data_asset_id' in the original call to the GET /v2/data_assets/{data_asset_id} API.<br/>
-  **Step 3**: use the value in the 'url' field of the result from Step 2 to download (for example, with a browser) a copy of the file.
+ * **'metadata':** contains metadata common to all types of assets
+ * **'entity':** contains metadata specific to the asset_type - in this case 'data_asset'
+ * **'attachments':** an array containing one item of metadata per attached resource<br/><br/>The data described by the above metadata is stored in attached resources.  Examples of attached resources are database tables, csv files, word documents, extended metadata documents, etc.  Because an item in the 'attachments' array only contains metadata about an attached resource, accessing the actual attached resource requires additional server calls.  Exactly which additional server calls are needed depends on the kind of attached resource.  Follow the steps below to access an attached resource.<br/><br/>
+    **Step 1**: find the index i of the item in the above 'attachments' array whose 'asset_type' value matches the type of the attached resource you want to access.  For a 'data_asset' attached resource look for the item i where 'attachments[i].asset_type' is 'data_asset'.<br/><br/>There are two important pairs of fields (among many others) which may appear in 'attachments[i]'.  Only one of those pairs will actually appear.  Which pair appears influences which steps to perform next.<br/>
+ *  **Pair 1:** **'connection_id'** and **'connection_path'**:
+  * The above two fields will appear in 'attachments[i]' if the value of 'attachments[i].is_remote' is true.
+  * 'attachments[i].is_remote' WILL be true if the attached resource is a database table.  In this case, 'attachments[i].connection_path' will contain a schema name and table name.
+  * 'attachments[i].is_remote' MAY be true if the attached resource is, for example, a csv file.  In this case, 'attachments[i].connection_path' will contain a folder path and file name.<br/><br/>If the above pair of fields are present in 'attachments[i]' then:<br/>
+    **Step 2**: use the value of the 'attachments[i].connection_id' field to make a call to the **GET /v2/connections/{connection_id}** API.  You'll need appropriate credentials.<br/>
+    **Step 3**: use the values in the 'entity.properties' field of the result from Step 2 to either create a connection to the database containing the table or to retrieve the file.<br/><br/>Note: even if 'attachments[i].is_remote' is true and the above pair of fields are present in 'attachments[i]', if the attached resource is located in the catalog/project bucket then you may optionally perform the two steps discussed for Pair 2 ('object_key' and 'handle') below.<br/>
+ * **Pair 2:** **'object_key'** and **'handle'**:
+  * The above two fields will appear in 'attachments[i]' if the value of 'attachments[i].is_remote' is false.  In this case, 'attachments[i].handle' will contain information about the attached resource.<br/>
+    **Step 2**: use the value of the 'attachments[i].id' field as the value for 'attachment_id' in a call to the **GET /v2/assets/{asset_id}/attachments/{attachment_id}** API.  The value to use for 'asset_id' in the call to the attachments API is the same as the value that was used for 'data_asset_id' in the original call to the GET /v2/data_assets/{data_asset_id} API.<br/>
+    **Step 3**: use the value in the 'url' field of the result from Step 2 to download (for example, with a browser) a copy of the file.
 
 ```sh
 cpdctl asset data-asset get --data-asset-id DATA-ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--revision-id REVISION-ID] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
@@ -1139,7 +1337,7 @@ Use this command to upload the local path as an asset attachment
 :    You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string      )
-:    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--description` (string    )
 :    Description of the data asset.
@@ -1173,7 +1371,7 @@ Use this command to upload the local path as an asset attachment
 Streams the content of the specified file, with the appropriate HTTP headers for etag, file size, mime type etc. If the asset file is a directory, response will be JSON listing the content of the directory. If the asset is a file, response will be contents of the file. Requires viewer permission or higher. Assets for a catalog are not available to external users. This endpoint supports authentication via signature parameter. See 'Get auth signature' call for more info.
 
 ```sh
-   cpdctl asset file download --path PATH [--accept ACCEPT] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--space-id SPACE-ID] [--iam-id IAM-ID] [--byte-limit BYTE-LIMIT] [--byte-range BYTE-RANGE] [--size-limit SIZE-LIMIT] [--signature SIGNATURE] [--flat FLAT] [--hidden-files HIDDEN-FILES] [--root ROOT] [--inflate INFLATE] [--force FORCE] [--stream STREAM] [--range RANGE]
+   cpdctl asset file download [command options]
 ```
 #### Command options
 
@@ -1193,7 +1391,7 @@ Streams the content of the specified file, with the appropriate HTTP headers for
 :    Make request relative to the specified catalog.
 
 `--cpd-scope` (string   )
-:    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--flat` (              )
 :    If true, folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory. Only works for directories.
@@ -1221,6 +1419,9 @@ Streams the content of the specified file, with the appropriate HTTP headers for
 
 `--range` (string       )
 :    Similar to byte_range query param. Currently only supports bytes. See https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35 for more info. Can be used to limit the bytes of a file being returned. Ranges are inclusive. If set will take precedence over anything in byte_limit or byte_range.
+
+`--retry` (             )
+:    Allow retries to account for disk syncronization across replicas. The default value is true.
 
 `--root` (              )
 :    (Internal use only) If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of standard assets directory. Note, there is one exception. If '&root=true' is supplied along with 'userfs' param targeting a project where the user has correct permissions standard auth will work.'.
@@ -1256,7 +1457,7 @@ Returns a list of file paths (similar to S3 listObjects) for the provided projec
 :    Make request relative to the specified catalog.
 
 `--cpd-scope` (string  )
-:    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--flat` (             )
 :    If true folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory.
@@ -1307,7 +1508,7 @@ Uploads the bytes into the file with the provided file name using HTTP multi-par
 :    Make request relative to the specified catalog.
 
 `--cpd-scope` (string         )
-:    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--ensure-dir` (              )
 :    Override functionality. If true will ensure the directory specified by 'path' exists (instead of uploading any file provided). 201 will be returned ig created, 200 if already exists and 409 if it is present and not a directory. Will take precedence over other query params except 'inflate'.
@@ -1358,7 +1559,7 @@ Use this command to create a script asset from a local file.
 :    You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string                 )
-:    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--description` (string               )
 :    Description of the script asset
@@ -1424,14 +1625,14 @@ cpdctl asset export list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--cata
 Starts the asset export process for the specified space, project, or catalog. On CPD 3.0.1 assets export is supported only in the context of a space.
 
 ```sh
-cpdctl asset export start [--assets ASSETS] [--description DESCRIPTION] [--encryption-key ENCRYPTION-KEY] [--format FORMAT] [--module-keys MODULE-KEYS] [--name NAME] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID]
+cpdctl asset export start [--assets ASSETS | --assets-all-assets ASSETS-ALL-ASSETS --assets-asset-ids ASSETS-ASSET-IDS --assets-asset-types ASSETS-ASSET-TYPES] [--description DESCRIPTION] [--encryption-key ENCRYPTION-KEY] [--format FORMAT] [--module-keys MODULE-KEYS] [--name NAME] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID]
 ```
 
 
 #### Command options
 
 `--assets` (<a href="#cli-export-assets-example-schema-asset">`ExportAssets`</a>)
-:   &nbsp;
+:   This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--assets=@path/to/file.json`.
 
@@ -1460,6 +1661,15 @@ cpdctl asset export start [--assets ASSETS] [--description DESCRIPTION] [--encry
 
 `--catalog-id` (string)
 :   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+`--assets-all-assets` (bool)
+:   This option provides a value for a sub-field of the JSON option 'assets'. It is mutually exclusive with that option.
+
+`--assets-asset-ids` ([]string)
+:   This option provides a value for a sub-field of the JSON option 'assets'. It is mutually exclusive with that option.
+
+`--assets-asset-types` ([]string)
+:   This option provides a value for a sub-field of the JSON option 'assets'. It is mutually exclusive with that option.
 
 <a id='asset_export_cancel'></a>
 ## &#8226; asset export cancel
@@ -1551,7 +1761,7 @@ Wait until the asset export becomes completed, failed, or cancelled.
 :    This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
 
 `--cpd-scope` (string  )
-:    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--export-id` (string  )
 :    The export identification.
@@ -1694,7 +1904,7 @@ Wait until the asset import becomes completed, failed, or canceled.
 :    This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
 
 `--cpd-scope` (string  )
-:    CPD space or project or catalog scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--import-id` (string  )
 :    The import identification.
@@ -1715,7 +1925,7 @@ List all code packages in a given project or space. You must specify either `pro
 #### Command options
 
 `--cpd-scope` (string  )
-:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--project-id` (string )
 :    The id of the project.
@@ -1733,7 +1943,7 @@ Create a new code package in a given project or space. You must specify either `
 #### Command options
 
 `--cpd-scope` (string           )
-:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--description` (string         )
 :    Description of the code package.
@@ -1766,7 +1976,7 @@ Delete a code package in a given project or space. You must specify either `proj
 :    The id of the code package.
 
 `--cpd-scope` (string       )
-:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--project-id` (string      )
 :    The id of the project.
@@ -1787,7 +1997,7 @@ Retrieve a code package in a given project or space. You must specify either `pr
 :    The id of the code package.
 
 `--cpd-scope` (string       )
-:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--project-id` (string      )
 :    The id of the project.
@@ -1808,7 +2018,7 @@ Promote a code package from a project to a space.
 :    The id of the code package.
 
 `--cpd-scope` (string       )
-:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--description` (string     )
 :    The description of the new code package in space. If not specified, the description of the code package in project will be used.
@@ -2054,11 +2264,11 @@ Use the following parameters to filter the results:
 | entity.flags              | ?entity.flags=+personal_credentials |
 | metadata.creator_id       | ?metadata.creator_id=userid         |
 
-Filtering is done by specifying the fields to filter on.
+Filtering is done by specifying the fields to filter on. 
 
 To filter on the properties of a connection, the exact values to  compare must be provided in the entities.properties field and all  values supplied must exactly match a property of a connection.
 
-The entity.flags field specifies the flags a connection can have to be included in the list results. By default, all connections with no flags are returned.
+The entity.flags field specifies the flags a connection can have to be included in the list results. By default, all connections with no flags are returned. 
 
 Adding the name of a flag to entity.flags will add the connections  with that flag to the list results. The name can be optionally  prefixed with a plus sign (+) to indicate that it is being added.
 
@@ -2090,7 +2300,7 @@ cpdctl connection list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--sp
 `--limit` (int64)
 :   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.
 
-    The minimum value is `1`.
+    The default value is `100`. The minimum value is `1`.
 
 `--metadata-creator` (string)
 :   The creator of the connection.
@@ -2128,7 +2338,7 @@ By default, a connection is created with shared credentials.  Though credentials
 Alternatively, a connection can be created with personal credentials by using the personal_credentials flag.  The credentials' secrets will be visible only to the user who created the connection.
 
 ```sh
-cpdctl connection create --datasource-type DATASOURCE-TYPE --name NAME [--asset-category ASSET-CATEGORY] [--child-source-systems CHILD-SOURCE-SYSTEMS] [--description DESCRIPTION] [--flags FLAGS] [--gateway-id GATEWAY-ID] [--interaction-properties INTERACTION-PROPERTIES] [--location-definition LOCATION-DEFINITION] [--origin-country ORIGIN-COUNTRY] [--owner-id OWNER-ID] [--properties PROPERTIES] [--ref-asset-id REF-ASSET-ID] [--ref-catalog-id REF-CATALOG-ID] [--rov ROV] [--source-system SOURCE-SYSTEM] [--tags TAGS] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--test TEST] [--skip-enforcement SKIP-ENFORCEMENT]
+cpdctl connection create --datasource-type DATASOURCE-TYPE --name NAME [--asset-category ASSET-CATEGORY] [--child-source-systems CHILD-SOURCE-SYSTEMS] [--description DESCRIPTION] [--flags FLAGS] [--gateway-id GATEWAY-ID] [--interaction-properties INTERACTION-PROPERTIES | --interaction-properties-source INTERACTION-PROPERTIES-SOURCE --interaction-properties-target INTERACTION-PROPERTIES-TARGET] [--location-definition LOCATION-DEFINITION | --location-definition-physical-location-code LOCATION-DEFINITION-PHYSICAL-LOCATION-CODE --location-definition-sovereign-location-code LOCATION-DEFINITION-SOVEREIGN-LOCATION-CODE] [--origin-country ORIGIN-COUNTRY] [--owner-id OWNER-ID] [--properties PROPERTIES] [--ref-asset-id REF-ASSET-ID] [--ref-catalog-id REF-CATALOG-ID] [--rov ROV | --rov-mode ROV-MODE] [--source-system SOURCE-SYSTEM] [--tags TAGS] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--test TEST] [--skip-enforcement SKIP-ENFORCEMENT]
 ```
 
 
@@ -2148,6 +2358,8 @@ cpdctl connection create --datasource-type DATASOURCE-TYPE --name NAME [--asset-
 `--child-source-systems` ([]map[string]interface{})
 :   &nbsp;
 
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--child-source-systems=@path/to/file.json`.
+
 `--description` (string)
 :   The description of the connection.
 
@@ -2160,10 +2372,14 @@ cpdctl connection create --datasource-type DATASOURCE-TYPE --name NAME [--asset-
 :   The id of the secure gateway to use with the connection. A Secure Gateway is needed when connecting to an on-premises data source. This is the id of the Secure Gateway created with the SecureGateway Service. Your Secure Gateway Client running on-premises must be connected to the gateway with this Id. For example, "E9oXGRIhv1e_prod_ng".
 
 `--interaction-properties` (<a href="#cli-connection-interaction-properties-example-schema-connection">`ConnectionInteractionProperties`</a>)
-:   Interaction properties allowed for a connection.
+:   Interaction properties allowed for a connection. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--interaction-properties=@path/to/file.json`.
 
 `--location-definition` (<a href="#cli-location-definition-example-schema-connection">`LocationDefinition`</a>)
-:   Indicates the location used by this connection.
+:   Indicates the location used by this connection. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--location-definition=@path/to/file.json`.
 
 `--origin-country` (string)
 :   Country which data originated from. - ISO 3166 Country Codes.
@@ -2174,6 +2390,8 @@ cpdctl connection create --datasource-type DATASOURCE-TYPE --name NAME [--asset-
 `--properties` (generic map)
 :   Connection properties.
 
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--properties=@path/to/file.json`.
+
 `--ref-asset-id` (string)
 :   The ID of the connection in reference catalog that this connection refers to for properties values.
 
@@ -2181,10 +2399,14 @@ cpdctl connection create --datasource-type DATASOURCE-TYPE --name NAME [--asset-
 :   The ID of the catalog that this connection refers to for properties values.
 
 `--rov` (<a href="#cli-connection-rov-example-schema-connection">`ConnectionRov`</a>)
-:   Rules of visibility for connections.
+:   Rules of visibility for connections. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--rov=@path/to/file.json`.
 
 `--source-system` (generic map)
 :   Custom data to be associated with a given object.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--source-system=@path/to/file.json`.
 
 `--tags` ([]string)
 :   &nbsp;
@@ -2208,13 +2430,37 @@ cpdctl connection create --datasource-type DATASOURCE-TYPE --name NAME [--asset-
 
     The default value is `false`.
 
+`--interaction-properties-source` (<a href="#cli-datasource-type-property-example-schema-connection">`DatasourceTypeProperty[]`</a>)
+:   The properties that can be set for a source interaction. This option provides a value for a sub-field of the JSON option 'interaction-properties'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--interaction-properties-source=@path/to/file.json`.
+
+`--interaction-properties-target` (<a href="#cli-datasource-type-property-example-schema-connection">`DatasourceTypeProperty[]`</a>)
+:   The properties that can be set for a target interaction. This option provides a value for a sub-field of the JSON option 'interaction-properties'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--interaction-properties-target=@path/to/file.json`.
+
+`--location-definition-physical-location-code` (string)
+:   The code of the physical location. This option provides a value for a sub-field of the JSON option 'location-definition'. It is mutually exclusive with that option.
+
+`--location-definition-sovereign-location-code` (string)
+:   The code of the sovereign location. This option provides a value for a sub-field of the JSON option 'location-definition'. It is mutually exclusive with that option.
+
+`--rov-mode` (int64)
+:   The Rules of Visibility mode. Value can be:
+
+| mode | description|
+| 0    | Connection is searchable and viewable by everyone with access to the catalog or project associated with this connection |
+| 8    | Connection is searchable by everyone and cannot be viewed unless the user has proper view permissions |
+| 16   | Connection is searchable by users with proper view permissions |. This option provides a value for a sub-field of the JSON option 'rov'. It is mutually exclusive with that option.
+
 <a id='connection_discover-adhoc'></a>
 ## &#8226; connection discover-adhoc
 
 Discovers assets from the data source accessed via a connection description.
 
 ```sh
-cpdctl connection discover-adhoc --path PATH --datasource-type DATASOURCE-TYPE --name NAME [--asset-category ASSET-CATEGORY] [--child-source-systems CHILD-SOURCE-SYSTEMS] [--description DESCRIPTION] [--flags FLAGS] [--gateway-id GATEWAY-ID] [--interaction-properties INTERACTION-PROPERTIES] [--new-location-definition NEW-LOCATION-DEFINITION] [--origin-country ORIGIN-COUNTRY] [--owner-id OWNER-ID] [--properties PROPERTIES] [--ref-asset-id REF-ASSET-ID] [--ref-catalog-id REF-CATALOG-ID] [--rov ROV] [--new-source-system NEW-SOURCE-SYSTEM] [--tags TAGS] [--limit LIMIT] [--offset OFFSET] [--fetch FETCH] [--detail DETAIL] [--discovery-context DISCOVERY-CONTEXT] [--asset-properties ASSET-PROPERTIES] [--filters FILTERS]
+cpdctl connection discover-adhoc --path PATH --datasource-type DATASOURCE-TYPE --name NAME [--asset-category ASSET-CATEGORY] [--child-source-systems CHILD-SOURCE-SYSTEMS] [--description DESCRIPTION] [--flags FLAGS] [--gateway-id GATEWAY-ID] [--interaction-properties INTERACTION-PROPERTIES | --new-interaction-properties-source NEW-INTERACTION-PROPERTIES-SOURCE --new-interaction-properties-target NEW-INTERACTION-PROPERTIES-TARGET] [--new-location-definition NEW-LOCATION-DEFINITION | --new-location-definition-physical-location-code NEW-LOCATION-DEFINITION-PHYSICAL-LOCATION-CODE --new-location-definition-sovereign-location-code NEW-LOCATION-DEFINITION-SOVEREIGN-LOCATION-CODE] [--origin-country ORIGIN-COUNTRY] [--owner-id OWNER-ID] [--properties PROPERTIES] [--ref-asset-id REF-ASSET-ID] [--ref-catalog-id REF-CATALOG-ID] [--rov ROV | --new-rov-mode NEW-ROV-MODE] [--new-source-system NEW-SOURCE-SYSTEM] [--tags TAGS] [--limit LIMIT] [--offset OFFSET] [--fetch FETCH] [--detail DETAIL] [--discovery-context DISCOVERY-CONTEXT] [--asset-properties ASSET-PROPERTIES] [--filters FILTERS]
 ```
 
 
@@ -2237,6 +2483,8 @@ cpdctl connection discover-adhoc --path PATH --datasource-type DATASOURCE-TYPE -
 `--child-source-systems` ([]map[string]interface{})
 :   &nbsp;
 
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--child-source-systems=@path/to/file.json`.
+
 `--description` (string)
 :   The description of the connection.
 
@@ -2249,10 +2497,14 @@ cpdctl connection discover-adhoc --path PATH --datasource-type DATASOURCE-TYPE -
 :   The id of the secure gateway to use with the connection. A Secure Gateway is needed when connecting to an on-premises data source. This is the id of the Secure Gateway created with the SecureGateway Service. Your Secure Gateway Client running on-premises must be connected to the gateway with this Id. For example, "E9oXGRIhv1e_prod_ng".
 
 `--interaction-properties` (<a href="#cli-connection-interaction-properties-example-schema-connection">`ConnectionInteractionProperties`</a>)
-:   Interaction properties allowed for a connection.
+:   Interaction properties allowed for a connection. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--interaction-properties=@path/to/file.json`.
 
 `--new-location-definition` (<a href="#cli-location-definition-example-schema-connection">`LocationDefinition`</a>)
-:   Indicates the location used by this connection.
+:   Indicates the location used by this connection. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--new-location-definition=@path/to/file.json`.
 
 `--origin-country` (string)
 :   Country which data originated from. - ISO 3166 Country Codes.
@@ -2263,6 +2515,8 @@ cpdctl connection discover-adhoc --path PATH --datasource-type DATASOURCE-TYPE -
 `--properties` (generic map)
 :   Connection properties.
 
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--properties=@path/to/file.json`.
+
 `--ref-asset-id` (string)
 :   The ID of the connection in reference catalog that this connection refers to for properties values.
 
@@ -2270,10 +2524,14 @@ cpdctl connection discover-adhoc --path PATH --datasource-type DATASOURCE-TYPE -
 :   The ID of the catalog that this connection refers to for properties values.
 
 `--rov` (<a href="#cli-connection-rov-example-schema-connection">`ConnectionRov`</a>)
-:   Rules of visibility for connections.
+:   Rules of visibility for connections. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--rov=@path/to/file.json`.
 
 `--new-source-system` (generic map)
 :   Custom data to be associated with a given object.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--new-source-system=@path/to/file.json`.
 
 `--tags` ([]string)
 :   &nbsp;
@@ -2281,12 +2539,12 @@ cpdctl connection discover-adhoc --path PATH --datasource-type DATASOURCE-TYPE -
 `--limit` (int64)
 :   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.
 
-    The minimum value is `1`.
+    The default value is `100`. The minimum value is `1`.
 
 `--offset` (int64)
 :   The 0-based index of the first result to return, for example, offset=200. If not specified, the default offset of 0 is used.
 
-    The minimum value is `0`.
+    The default value is `0`. The minimum value is `0`.
 
 `--fetch` (string)
 :   Specify whether to return the asset's metadata, the asset's data, interaction properties, connection properties, or data source type. If not specified, metadata is used by default. This parameter only applies when requesting details about a data set. To specify multiple fetch values, use a comma-separated string, such as fetch=data,metadata,interaction,connection,datasource_type.
@@ -2304,6 +2562,30 @@ cpdctl connection discover-adhoc --path PATH --datasource-type DATASOURCE-TYPE -
 
 `--filters` (string)
 :   A JSON object containing a set of properties to define filtering of the assets to be returned.
+
+`--new-interaction-properties-source` (<a href="#cli-datasource-type-property-example-schema-connection">`DatasourceTypeProperty[]`</a>)
+:   The properties that can be set for a source interaction. This option provides a value for a sub-field of the JSON option 'interaction-properties'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--new-interaction-properties-source=@path/to/file.json`.
+
+`--new-interaction-properties-target` (<a href="#cli-datasource-type-property-example-schema-connection">`DatasourceTypeProperty[]`</a>)
+:   The properties that can be set for a target interaction. This option provides a value for a sub-field of the JSON option 'interaction-properties'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--new-interaction-properties-target=@path/to/file.json`.
+
+`--new-location-definition-physical-location-code` (string)
+:   The code of the physical location. This option provides a value for a sub-field of the JSON option 'new-location-definition'. It is mutually exclusive with that option.
+
+`--new-location-definition-sovereign-location-code` (string)
+:   The code of the sovereign location. This option provides a value for a sub-field of the JSON option 'new-location-definition'. It is mutually exclusive with that option.
+
+`--new-rov-mode` (int64)
+:   The Rules of Visibility mode. Value can be:
+
+| mode | description|
+| 0    | Connection is searchable and viewable by everyone with access to the catalog or project associated with this connection |
+| 8    | Connection is searchable by everyone and cannot be viewed unless the user has proper view permissions |
+| 16   | Connection is searchable by users with proper view permissions |. This option provides a value for a sub-field of the JSON option 'rov'. It is mutually exclusive with that option.
 
 <a id='connection_discover-data-asset'></a>
 ## &#8226; connection discover-data-asset
@@ -2332,12 +2614,12 @@ cpdctl connection discover-data-asset --data-asset-id DATA-ASSET-ID [--catalog-i
 `--limit` (int64)
 :   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.
 
-    The minimum value is `1`.
+    The default value is `100`. The minimum value is `1`.
 
 `--offset` (int64)
 :   The 0-based index of the first result to return, for example, offset=200. If not specified, the default offset of 0 is used.
 
-    The minimum value is `0`.
+    The default value is `0`. The minimum value is `0`.
 
 `--fetch` (string)
 :   Specify whether to return the asset's metadata, the asset's data, interaction properties, connection properties, or data source type. If not specified, metadata is used by default. This parameter only applies when requesting details about a data set. To specify multiple fetch values, use a comma-separated string, such as fetch=data,metadata,interaction,connection,datasource_type.
@@ -2437,6 +2719,8 @@ cpdctl connection update --connection-id CONNECTION-ID --patch-request PATCH-REQ
 `--patch-request` (<a href="#cli-json-patch-operation-example-schema-connection">`JSONPatchOperation[]`</a>)
 :   Fields to update within the connection. Required.
 
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--patch-request=@path/to/file.json`.
+
 `--catalog-id` (string)
 :   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
 
@@ -2516,6 +2800,8 @@ cpdctl connection perform-action --connection-id CONNECTION-ID --action-name ACT
 `--request` (generic map)
 :   The perform action request configuration. Required.
 
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--request=@path/to/file.json`.
+
 `--catalog-id` (string)
 :   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
 
@@ -2567,12 +2853,12 @@ cpdctl connection discover --connection-id CONNECTION-ID --path PATH [--catalog-
 `--limit` (int64)
 :   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.
 
-    The minimum value is `1`.
+    The default value is `100`. The minimum value is `1`.
 
 `--offset` (int64)
 :   The 0-based index of the first result to return, for example, offset=200. If not specified, the default offset of 0 is used.
 
-    The minimum value is `0`.
+    The default value is `0`. The minimum value is `0`.
 
 `--fetch` (string)
 :   Specify whether to return the asset's metadata, the asset's data, interaction properties, connection properties, or data source type. If not specified, metadata is used by default. This parameter only applies when requesting details about a data set. To specify multiple fetch values, use a comma-separated string, such as fetch=data,metadata,interaction,connection,datasource_type.
@@ -2622,12 +2908,12 @@ cpdctl connection datasource-type list [--accept-language ACCEPT-LANGUAGE] [--so
 `--offset` (int64)
 :   The 0-based index of the first result to return, for example, offset=200. If not specified, the default offset of 0 is used.
 
-    The minimum value is `0`.
+    The default value is `0`. The minimum value is `0`.
 
 `--limit` (int64)
 :   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.
 
-    The minimum value is `1`.
+    The default value is `100`. The minimum value is `1`.
 
 `--connection-properties` (bool)
 :   Whether to return information about the connection properties.
@@ -2714,7 +3000,7 @@ cpdctl connection datasource-type get --datasource-type DATASOURCE-TYPE [--accep
 Deletes the specified data flows in a project or catalog (either `project_id` or `catalog_id` must be set).
 
 If the deletion of the data flows and their runs will take some time to finish, then a 202 response will be returned and the deletion will continue asynchronously.
-All the data flow runs associated with the data flows will also be deleted. If a data flow is still running, it will not be deleted unless the force parameter is set to true. If a data flow is still running and the force parameter is set to true, the call returns immediately with a 202 response. The related data flows are deleted after the data flow runs are stopped.
+         All the data flow runs associated with the data flows will also be deleted. If a data flow is still running, it will not be deleted unless the force parameter is set to true. If a data flow is still running and the force parameter is set to true, the call returns immediately with a 202 response. The related data flows are deleted after the data flow runs are stopped.
 
 ```sh
 cpdctl datastage flow delete --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--force FORCE]
@@ -2741,7 +3027,7 @@ cpdctl datastage flow delete --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--proj
 <a id='datastage_flow_list'></a>
 ## &#8226; datastage flow list
 
-Lists the metadata, entity and lock information for DataStage flows that are contained in the specified project.
+Lists the metadata and entity for DataStage flows that are contained in the specified project. 
 
 Use the following parameters to filter the results:
 
@@ -2802,7 +3088,7 @@ cpdctl datastage flow list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [
 Creates a DataStage flow in the specified project or catalog (either `project_id` or `catalog_id` must be set). All subsequent calls to use the data flow must specify the project or catalog ID the data flow was created in.
 
 ```sh
-cpdctl datastage flow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl datastage flow create --name NAME [--pipeline-flow PIPELINE-FLOW | --pipeline-flows-app-data PIPELINE-FLOWS-APP-DATA --pipeline-flows-doc-type PIPELINE-FLOWS-DOC-TYPE --pipeline-flows-external-paramsets PIPELINE-FLOWS-EXTERNAL-PARAMSETS --pipeline-flows-id PIPELINE-FLOWS-ID --pipeline-flows-json-schema PIPELINE-FLOWS-JSON-SCHEMA --pipeline-flows-parameters PIPELINE-FLOWS-PARAMETERS --pipeline-flows-pipelines PIPELINE-FLOWS-PIPELINES --pipeline-flows-primary-pipeline PIPELINE-FLOWS-PRIMARY-PIPELINE --pipeline-flows-runtimes PIPELINE-FLOWS-RUNTIMES --pipeline-flows-schemas PIPELINE-FLOWS-SCHEMAS --pipeline-flows-version PIPELINE-FLOWS-VERSION] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--directory-asset-id DIRECTORY-ASSET-ID]
 ```
 
 
@@ -2812,7 +3098,7 @@ cpdctl datastage flow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--cata
 :   The data flow name. Required.
 
 `--pipeline-flow` (<a href="#cli-pipeline-json-example-schema-datastage">`PipelineJSON`</a>)
-:   Pipeline flow to be stored.
+:   Pipeline flow to be stored. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flow=@path/to/file.json`.
 
@@ -2824,6 +3110,54 @@ cpdctl datastage flow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--cata
 
 `--space-id` (string)
 :   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--directory-asset-id` (string)
+:   The directory asset ID.
+
+`--pipeline-flows-app-data` (generic map)
+:   Object containing app-specific data. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-app-data=@path/to/file.json`.
+
+`--pipeline-flows-doc-type` (string)
+:   The document type. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+`--pipeline-flows-external-paramsets` ([]map[string]interface{})
+:   Array of parameter set references. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-external-paramsets=@path/to/file.json`.
+
+`--pipeline-flows-id` (string)
+:   Document identifier, GUID recommended. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+`--pipeline-flows-json-schema` (string)
+:   Refers to the JSON schema used to validate documents of this type. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+`--pipeline-flows-parameters` (generic map)
+:   Parameters for the flow document. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-parameters=@path/to/file.json`.
+
+`--pipeline-flows-pipelines` (<a href="#cli-pipelines-example-schema-datastage">`Pipelines[]`</a>)
+:   This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-pipelines=@path/to/file.json`.
+
+`--pipeline-flows-primary-pipeline` (string)
+:   Reference to the primary (main) pipeline flow within the document. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+`--pipeline-flows-runtimes` ([]map[string]interface{})
+:   Runtime information for pipeline flow. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-runtimes=@path/to/file.json`.
+
+`--pipeline-flows-schemas` ([]map[string]interface{})
+:   Array of data record schemas used in the pipeline. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-schemas=@path/to/file.json`.
+
+`--pipeline-flows-version` (string)
+:   Pipeline flow version. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
 
 <a id='datastage_flow_get'></a>
 ## &#8226; datastage flow get
@@ -2855,7 +3189,7 @@ cpdctl datastage flow get --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project
 Modifies a data flow in the specified project or catalog (either `project_id` or `catalog_id` must be set). All subsequent calls to use the data flow must specify the project or catalog ID the data flow was created in.
 
 ```sh
-cpdctl datastage flow update --flow-id FLOW-ID --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl datastage flow update --flow-id FLOW-ID --name NAME [--pipeline-flow PIPELINE-FLOW | --pipeline-flows-app-data PIPELINE-FLOWS-APP-DATA --pipeline-flows-doc-type PIPELINE-FLOWS-DOC-TYPE --pipeline-flows-external-paramsets PIPELINE-FLOWS-EXTERNAL-PARAMSETS --pipeline-flows-id PIPELINE-FLOWS-ID --pipeline-flows-json-schema PIPELINE-FLOWS-JSON-SCHEMA --pipeline-flows-parameters PIPELINE-FLOWS-PARAMETERS --pipeline-flows-pipelines PIPELINE-FLOWS-PIPELINES --pipeline-flows-primary-pipeline PIPELINE-FLOWS-PRIMARY-PIPELINE --pipeline-flows-runtimes PIPELINE-FLOWS-RUNTIMES --pipeline-flows-schemas PIPELINE-FLOWS-SCHEMAS --pipeline-flows-version PIPELINE-FLOWS-VERSION] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--directory-asset-id DIRECTORY-ASSET-ID]
 ```
 
 
@@ -2868,9 +3202,90 @@ cpdctl datastage flow update --flow-id FLOW-ID --name NAME [--pipeline-flow PIPE
 :   The data flow name. Required.
 
 `--pipeline-flow` (<a href="#cli-pipeline-json-example-schema-datastage">`PipelineJSON`</a>)
-:   Pipeline flow to be stored.
+:   Pipeline flow to be stored. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flow=@path/to/file.json`.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--directory-asset-id` (string)
+:   The directory asset ID.
+
+`--pipeline-flows-app-data` (generic map)
+:   Object containing app-specific data. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-app-data=@path/to/file.json`.
+
+`--pipeline-flows-doc-type` (string)
+:   The document type. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+`--pipeline-flows-external-paramsets` ([]map[string]interface{})
+:   Array of parameter set references. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-external-paramsets=@path/to/file.json`.
+
+`--pipeline-flows-id` (string)
+:   Document identifier, GUID recommended. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+`--pipeline-flows-json-schema` (string)
+:   Refers to the JSON schema used to validate documents of this type. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+`--pipeline-flows-parameters` (generic map)
+:   Parameters for the flow document. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-parameters=@path/to/file.json`.
+
+`--pipeline-flows-pipelines` (<a href="#cli-pipelines-example-schema-datastage">`Pipelines[]`</a>)
+:   This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-pipelines=@path/to/file.json`.
+
+`--pipeline-flows-primary-pipeline` (string)
+:   Reference to the primary (main) pipeline flow within the document. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+`--pipeline-flows-runtimes` ([]map[string]interface{})
+:   Runtime information for pipeline flow. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-runtimes=@path/to/file.json`.
+
+`--pipeline-flows-schemas` ([]map[string]interface{})
+:   Array of data record schemas used in the pipeline. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-schemas=@path/to/file.json`.
+
+`--pipeline-flows-version` (string)
+:   Pipeline flow version. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+<a id='datastage_flow_patch-attributes'></a>
+## &#8226; datastage flow patch-attributes
+
+Modifies attributes of a DataStage flow in the specified project or catalog (either `project_id` or `catalog_id` must be set).
+
+```sh
+cpdctl datastage flow patch-attributes --flow-id FLOW-ID [--description DESCRIPTION] [--directory-asset-id DIRECTORY-ASSET-ID] [--name NAME] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+```
+
+
+#### Command options
+
+`--flow-id` (string)
+:   The DataStage flow ID to use. Required.
+
+`--description` (string)
+:   description of the asset.
+
+`--directory-asset-id` (string)
+:   The directory asset ID of the asset.
+
+`--name` (string)
+:   name of the asset.
 
 `--catalog-id` (string)
 :   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
@@ -2887,7 +3302,7 @@ cpdctl datastage flow update --flow-id FLOW-ID --name NAME [--pipeline-flow PIPE
 Create a DataStage flow in the specified project or catalog or space based on an existing DataStage flow in the same project or catalog or space.
 
 ```sh
-cpdctl datastage flow clone --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl datastage flow clone --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--directory-asset-id DIRECTORY-ASSET-ID]
 ```
 
 
@@ -2904,6 +3319,9 @@ cpdctl datastage flow clone --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--proje
 
 `--space-id` (string)
 :   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--directory-asset-id` (string)
+:   The directory asset ID.
 
 <a id='datastage_flow_get-compile-status'></a>
 ## &#8226; datastage flow get-compile-status
@@ -2938,7 +3356,7 @@ cpdctl datastage flow get-compile-status --flow-id FLOW-ID [--catalog-id CATALOG
 Generate the runtime assets for a DataStage flow in the specified project or catalog for a specified runtime type. Either project_id or catalog_id must be specified.
 
 ```sh
-cpdctl datastage flow compile --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--runtime-type RUNTIME-TYPE] [--enable-sql-pushdown ENABLE-SQL-PUSHDOWN]
+cpdctl datastage flow compile --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--runtime-type RUNTIME-TYPE] [--enable-sql-pushdown ENABLE-SQL-PUSHDOWN] [--enable-async-compile ENABLE-ASYNC-COMPILE] [--enable-native-sql-pushdown ENABLE-NATIVE-SQL-PUSHDOWN] [--enable-push-processing-to-source ENABLE-PUSH-PROCESSING-TO-SOURCE] [--enable-push-join-to-source ENABLE-PUSH-JOIN-TO-SOURCE]
 ```
 
 
@@ -2961,6 +3379,18 @@ cpdctl datastage flow compile --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--pro
 
 `--enable-sql-pushdown` (bool)
 :   Whether to enable the SQL pushdown code generation or not.
+
+`--enable-async-compile` (bool)
+:   Whether to compile the flow asynchronously or not. When set to true, the compile request will be queued and then compiled. Response will be returned immediately as "Compiling". For compile status, call get compile status api.
+
+`--enable-native-sql-pushdown` (bool)
+:   Whether to enable the Native SQL pushdown code generation or not. When this flag is set to true and enable_push_processing_to_source is not specified, enable_push_processing_to_source will be automatically set to true as well. When this flag is set to true and enable_push_join_to_source is not speicified, enable_push_join_to_source will be automatically set to true as well.
+
+`--enable-push-processing-to-source` (bool)
+:   Whether to enable pushing processing stages to source connectors or not. Setting this flag to true will automatically set enable_native_sql_pushdown to true if the latter is not specified or is explicitly set to false.
+
+`--enable-push-join-to-source` (bool)
+:   Whether to enable pushing join/lookup stages to source connectors or not. Setting this flag to true will automatically set enable_native_sql_pushdown to true if the latter is not specified or is explicitly set to false.
 
 <a id='datastage_subflow_delete'></a>
 ## &#8226; datastage subflow delete
@@ -2991,7 +3421,7 @@ cpdctl datastage subflow delete --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID
 <a id='datastage_subflow_list'></a>
 ## &#8226; datastage subflow list
 
-Lists the metadata, entity and lock information for DataStage subflows that are contained in the specified project.
+Lists the metadata and entity for DataStage subflows that are contained in the specified project. 
 
 Use the following parameters to filter the results:
 
@@ -3052,7 +3482,7 @@ cpdctl datastage subflow list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID
 Creates a DataStage subflow in the specified project or catalog (either `project_id` or `catalog_id` must be set). All subsequent calls to use the data flow must specify the project or catalog ID the data flow was created in.
 
 ```sh
-cpdctl datastage subflow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl datastage subflow create --name NAME [--pipeline-flow PIPELINE-FLOW | --pipeline-flows-app-data PIPELINE-FLOWS-APP-DATA --pipeline-flows-doc-type PIPELINE-FLOWS-DOC-TYPE --pipeline-flows-external-paramsets PIPELINE-FLOWS-EXTERNAL-PARAMSETS --pipeline-flows-id PIPELINE-FLOWS-ID --pipeline-flows-json-schema PIPELINE-FLOWS-JSON-SCHEMA --pipeline-flows-parameters PIPELINE-FLOWS-PARAMETERS --pipeline-flows-pipelines PIPELINE-FLOWS-PIPELINES --pipeline-flows-primary-pipeline PIPELINE-FLOWS-PRIMARY-PIPELINE --pipeline-flows-runtimes PIPELINE-FLOWS-RUNTIMES --pipeline-flows-schemas PIPELINE-FLOWS-SCHEMAS --pipeline-flows-version PIPELINE-FLOWS-VERSION] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--directory-asset-id DIRECTORY-ASSET-ID]
 ```
 
 
@@ -3062,7 +3492,7 @@ cpdctl datastage subflow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--c
 :   The DataStage subflow name. Required.
 
 `--pipeline-flow` (<a href="#cli-pipeline-json-example-schema-datastage">`PipelineJSON`</a>)
-:   Pipeline flow to be stored.
+:   Pipeline flow to be stored. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flow=@path/to/file.json`.
 
@@ -3074,6 +3504,54 @@ cpdctl datastage subflow create --name NAME [--pipeline-flow PIPELINE-FLOW] [--c
 
 `--space-id` (string)
 :   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--directory-asset-id` (string)
+:   The directory asset ID.
+
+`--pipeline-flows-app-data` (generic map)
+:   Object containing app-specific data. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-app-data=@path/to/file.json`.
+
+`--pipeline-flows-doc-type` (string)
+:   The document type. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+`--pipeline-flows-external-paramsets` ([]map[string]interface{})
+:   Array of parameter set references. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-external-paramsets=@path/to/file.json`.
+
+`--pipeline-flows-id` (string)
+:   Document identifier, GUID recommended. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+`--pipeline-flows-json-schema` (string)
+:   Refers to the JSON schema used to validate documents of this type. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+`--pipeline-flows-parameters` (generic map)
+:   Parameters for the flow document. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-parameters=@path/to/file.json`.
+
+`--pipeline-flows-pipelines` (<a href="#cli-pipelines-example-schema-datastage">`Pipelines[]`</a>)
+:   This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-pipelines=@path/to/file.json`.
+
+`--pipeline-flows-primary-pipeline` (string)
+:   Reference to the primary (main) pipeline flow within the document. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+`--pipeline-flows-runtimes` ([]map[string]interface{})
+:   Runtime information for pipeline flow. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-runtimes=@path/to/file.json`.
+
+`--pipeline-flows-schemas` ([]map[string]interface{})
+:   Array of data record schemas used in the pipeline. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-schemas=@path/to/file.json`.
+
+`--pipeline-flows-version` (string)
+:   Pipeline flow version. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
 
 <a id='datastage_subflow_get'></a>
 ## &#8226; datastage subflow get
@@ -3105,7 +3583,7 @@ cpdctl datastage subflow get --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID] [
 Modifies a data subflow in the specified project or catalog (either `project_id` or `catalog_id` must be set). All subsequent calls to use the data flow must specify the project or catalog ID the data flow was created in.
 
 ```sh
-cpdctl datastage subflow update --subflow-id SUBFLOW-ID --name NAME [--pipeline-flow PIPELINE-FLOW] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl datastage subflow update --subflow-id SUBFLOW-ID --name NAME [--pipeline-flow PIPELINE-FLOW | --pipeline-flows-app-data PIPELINE-FLOWS-APP-DATA --pipeline-flows-doc-type PIPELINE-FLOWS-DOC-TYPE --pipeline-flows-external-paramsets PIPELINE-FLOWS-EXTERNAL-PARAMSETS --pipeline-flows-id PIPELINE-FLOWS-ID --pipeline-flows-json-schema PIPELINE-FLOWS-JSON-SCHEMA --pipeline-flows-parameters PIPELINE-FLOWS-PARAMETERS --pipeline-flows-pipelines PIPELINE-FLOWS-PIPELINES --pipeline-flows-primary-pipeline PIPELINE-FLOWS-PRIMARY-PIPELINE --pipeline-flows-runtimes PIPELINE-FLOWS-RUNTIMES --pipeline-flows-schemas PIPELINE-FLOWS-SCHEMAS --pipeline-flows-version PIPELINE-FLOWS-VERSION] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--directory-asset-id DIRECTORY-ASSET-ID]
 ```
 
 
@@ -3118,9 +3596,90 @@ cpdctl datastage subflow update --subflow-id SUBFLOW-ID --name NAME [--pipeline-
 :   The DataStage subflow name. Required.
 
 `--pipeline-flow` (<a href="#cli-pipeline-json-example-schema-datastage">`PipelineJSON`</a>)
-:   Pipeline flow to be stored.
+:   Pipeline flow to be stored. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flow=@path/to/file.json`.
+
+`--catalog-id` (string)
+:   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--project-id` (string)
+:   The ID of the project to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--directory-asset-id` (string)
+:   The directory asset ID.
+
+`--pipeline-flows-app-data` (generic map)
+:   Object containing app-specific data. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-app-data=@path/to/file.json`.
+
+`--pipeline-flows-doc-type` (string)
+:   The document type. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+`--pipeline-flows-external-paramsets` ([]map[string]interface{})
+:   Array of parameter set references. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-external-paramsets=@path/to/file.json`.
+
+`--pipeline-flows-id` (string)
+:   Document identifier, GUID recommended. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+`--pipeline-flows-json-schema` (string)
+:   Refers to the JSON schema used to validate documents of this type. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+`--pipeline-flows-parameters` (generic map)
+:   Parameters for the flow document. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-parameters=@path/to/file.json`.
+
+`--pipeline-flows-pipelines` (<a href="#cli-pipelines-example-schema-datastage">`Pipelines[]`</a>)
+:   This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-pipelines=@path/to/file.json`.
+
+`--pipeline-flows-primary-pipeline` (string)
+:   Reference to the primary (main) pipeline flow within the document. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+`--pipeline-flows-runtimes` ([]map[string]interface{})
+:   Runtime information for pipeline flow. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-runtimes=@path/to/file.json`.
+
+`--pipeline-flows-schemas` ([]map[string]interface{})
+:   Array of data record schemas used in the pipeline. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-flows-schemas=@path/to/file.json`.
+
+`--pipeline-flows-version` (string)
+:   Pipeline flow version. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
+
+<a id='datastage_subflow_patch-attributes'></a>
+## &#8226; datastage subflow patch-attributes
+
+Modifies attributes of a data subflow in the specified project or catalog (either `project_id` or `catalog_id` must be set).
+
+```sh
+cpdctl datastage subflow patch-attributes --subflow-id SUBFLOW-ID [--description DESCRIPTION] [--directory-asset-id DIRECTORY-ASSET-ID] [--name NAME] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+```
+
+
+#### Command options
+
+`--subflow-id` (string)
+:   The DataStage subflow ID to use. Required.
+
+`--description` (string)
+:   description of the asset.
+
+`--directory-asset-id` (string)
+:   The directory asset ID of the asset.
+
+`--name` (string)
+:   name of the asset.
 
 `--catalog-id` (string)
 :   The ID of the catalog to use. `catalog_id` or `project_id` or `space_id` is required.
@@ -3137,7 +3696,7 @@ cpdctl datastage subflow update --subflow-id SUBFLOW-ID --name NAME [--pipeline-
 Create a DataStage subflow in the specified project or catalog based on an existing DataStage subflow in the same project or catalog.
 
 ```sh
-cpdctl datastage subflow clone --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl datastage subflow clone --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--directory-asset-id DIRECTORY-ASSET-ID]
 ```
 
 
@@ -3154,6 +3713,9 @@ cpdctl datastage subflow clone --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID]
 
 `--space-id` (string)
 :   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+`--directory-asset-id` (string)
+:   The directory asset ID.
 
 <a id='datastage_xml-schema-library_list'></a>
 ## &#8226; datastage xml-schema-library list
@@ -3182,7 +3744,7 @@ cpdctl datastage xml-schema-library list [--catalog-id CATALOG-ID] [--project-id
 Creates a new DataStage XML schema library in the specified project, catalog, or space (either `project_id`, `catalog_id`, or `space_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library create --name NAME [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--folder FOLDER] [--description DESCRIPTION]
+cpdctl datastage xml-schema-library create --name NAME [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--directory-asset-id DIRECTORY-ASSET-ID] [--folder FOLDER] [--description DESCRIPTION]
 ```
 
 
@@ -3199,6 +3761,9 @@ cpdctl datastage xml-schema-library create --name NAME [--catalog-id CATALOG-ID]
 
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, space_id, or project_id is required.
+
+`--directory-asset-id` (string)
+:   The directory asset id to create the asset in or move to.
 
 `--folder` (string)
 :   The folder that the new XML schema library belongs to.
@@ -3402,7 +3967,7 @@ cpdctl datastage xml-schema-library export-datastage-library-zip --library-name 
 #### Command options
 
 `--library-name` (string)
-:   The name of the XML schema library. Required.
+:   The name or id of the XML schema library. Required.
 
 `--folder` (string)
 :   The folder of the XML schema library.
@@ -3422,7 +3987,7 @@ cpdctl datastage xml-schema-library export-datastage-library-zip --library-name 
 Import/create XML Schema Library from zip stream.
 
 ```sh
-cpdctl datastage xml-schema-library import-datastage-library-zip --library-name LIBRARY-NAME --body BODY [--folder FOLDER] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl datastage xml-schema-library import-datastage-library-zip --library-name LIBRARY-NAME --body BODY [--folder FOLDER] [--conflict-option CONFLICT-OPTION] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--directory-asset-id DIRECTORY-ASSET-ID]
 ```
 
 
@@ -3437,6 +4002,9 @@ cpdctl datastage xml-schema-library import-datastage-library-zip --library-name 
 `--folder` (string)
 :   The folder of the XML schema library.
 
+`--conflict-option` (string)
+:   The conflict_option. The default is skip.
+
 `--catalog-id` (string)
 :   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
 
@@ -3446,13 +4014,31 @@ cpdctl datastage xml-schema-library import-datastage-library-zip --library-name 
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
+`--directory-asset-id` (string)
+:   The directory asset id to create the asset in or move to.
+
+<a id='datastage_migration_encrypt'></a>
+## &#8226; datastage migration encrypt
+
+Encrypt a single text phrase using NextGen encoding The test phrase can be either simple plain text phrase, encoded string from IIS or encoded string from NextGen This call returns an NextGen encoded text string back to the user.
+
+```sh
+cpdctl datastage migration encrypt --input-text INPUT-TEXT
+```
+
+
+#### Command options
+
+`--input-text` (string)
+:   Text phrase to encrypt. Required.
+
 <a id='datastage_migration_create'></a>
 ## &#8226; datastage migration create
 
 Creates data flows from the attached job export file. This is an asynchronous call. The API call returns almost immediately which does not necessarily imply the completion of the import request. It only means that the import request has been accepted. The status field of the import request is included in the import response object. The status "completed" ("in_progress", "failed", resp.) indicates the import request is completed (in progress, and failed, resp.) The job export file for an import request may contain one mor more data flows. Unless the on_failure option is set to "stop", a completed import request may contain not only successfully imported data flows but also data flows that cannot be imported.
 
 ```sh
-cpdctl datastage migration create --body BODY [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--on-failure ON-FAILURE] [--conflict-resolution CONFLICT-RESOLUTION] [--attachment-type ATTACHMENT-TYPE] [--file-name FILE-NAME] [--enable-notification ENABLE-NOTIFICATION] [--import-only IMPORT-ONLY] [--create-missing-parameters CREATE-MISSING-PARAMETERS] [--enable-rulestage-integration ENABLE-RULESTAGE-INTEGRATION] [--enable-local-connection ENABLE-LOCAL-CONNECTION]
+cpdctl datastage migration create --body BODY [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--on-failure ON-FAILURE] [--conflict-resolution CONFLICT-RESOLUTION] [--attachment-type ATTACHMENT-TYPE] [--file-name FILE-NAME] [--enable-notification ENABLE-NOTIFICATION] [--import-only IMPORT-ONLY] [--create-missing-parameters CREATE-MISSING-PARAMETERS] [--enable-rulestage-integration ENABLE-RULESTAGE-INTEGRATION] [--enable-local-connection ENABLE-LOCAL-CONNECTION] [--asset-type ASSET-TYPE] [--create-connection-parametersets CREATE-CONNECTION-PARAMETERSETS] [--storage-path STORAGE-PATH] [--replace-mode REPLACE-MODE] [--migrate-to-platform-connection MIGRATE-TO-PLATFORM-CONNECTION] [--use-dsn-name USE-DSN-NAME] [--migrate-to-send-email MIGRATE-TO-SEND-EMAIL] [--enable-folder ENABLE-FOLDER] [--migrate-hive-impala MIGRATE-HIVE-IMPALA] [--from FROM] [--to TO]
 ```
 
 
@@ -3466,6 +4052,9 @@ cpdctl datastage migration create --body BODY [--catalog-id CATALOG-ID] [--proje
 
 `--project-id` (string)
 :   The ID of the project to use. `project_id` or `catalog_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
 
 `--on-failure` (string)
 :   Action when the first import failure occurs. The default action is "continue" which will continue importing the remaining data flows. The "stop" action will stop the import operation upon the first error.
@@ -3501,13 +4090,48 @@ cpdctl datastage migration create --body BODY [--catalog-id CATALOG-ID] [--proje
 `--enable-local-connection` (bool)
 :   enable local connection migration. Default value is false.
 
+`--asset-type` (string)
+:   Asset types separated by commas (','). Only assets of these types will be imported. If not specified, all supported assets will be imported.
+
+`--create-connection-parametersets` (bool)
+:   Create generic parameter sets for default connection values migration. Default value is true.
+
+`--storage-path` (string)
+:   Folder path of the storage volume for routine scripts and other data assets.
+
+`--replace-mode` (string)
+:   This paramter take effect when conflict_resolution is set to replace or skip. soft- merge the parameter set, add new parameter only, keep the old value sets hard- replace all.
+
+    Allowable values are: `soft`, `hard`.
+
+`--migrate-to-platform-connection` (bool)
+:   Will migrate all isx connections to available platform connections instead of their datastage optimized versions.
+
+`--use-dsn-name` (bool)
+:   Enables private cloud migration of ODBC connector 'datasource' to 'dsn_name' instead of generating parameter references. Default is false.
+
+`--migrate-to-send-email` (bool)
+:   Will migrate all notification activitie stages in sequence job to send email task nodes.
+
+`--enable-folder` (bool)
+:   Enable folder support.
+
+`--migrate-hive-impala` (bool)
+:   Will migrate hive isx connections to impala.
+
+`--from` (string)
+:   Migrate from which stage.
+
+`--to` (string)
+:   Migrate to which stage.
+
 <a id='datastage_migration_delete'></a>
 ## &#8226; datastage migration delete
 
 Cancel a previous import request. Use GET /v3/migration/imports/{import_id} to obtain the current status of the import, including whether it has been cancelled.
 
 ```sh
-cpdctl datastage migration delete --import-id IMPORT-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID]
+cpdctl datastage migration delete --import-id IMPORT-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 
 
@@ -3521,6 +4145,9 @@ cpdctl datastage migration delete --import-id IMPORT-ID [--catalog-id CATALOG-ID
 
 `--project-id` (string)
 :   The ID of the project to use. `project_id` or `catalog_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
 
 <a id='datastage_migration_get'></a>
 ## &#8226; datastage migration get
@@ -3528,7 +4155,7 @@ cpdctl datastage migration delete --import-id IMPORT-ID [--catalog-id CATALOG-ID
 Gets the status of an import request. The status field in the response object indicates if the given import is completed, in progress, or failed. Detailed status information about each imported data flow is also contained in the response object.
 
 ```sh
-cpdctl datastage migration get --import-id IMPORT-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--format FORMAT]
+cpdctl datastage migration get --import-id IMPORT-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--format FORMAT]
 ```
 
 
@@ -3542,6 +4169,9 @@ cpdctl datastage migration get --import-id IMPORT-ID [--catalog-id CATALOG-ID] [
 
 `--project-id` (string)
 :   The ID of the project to use. `project_id` or `catalog_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
 
 `--format` (string)
 :   format of isx import report.
@@ -3554,7 +4184,7 @@ cpdctl datastage migration get --import-id IMPORT-ID [--catalog-id CATALOG-ID] [
 export flows with dependencies as a zip file.
 
 ```sh
-cpdctl datastage migration export-flows-with-dependencies --flows FLOWS [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--remove-secrets REMOVE-SECRETS] [--include-dependencies INCLUDE-DEPENDENCIES] [--id ID]
+cpdctl datastage migration export-flows-with-dependencies --flows FLOWS [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--remove-secrets REMOVE-SECRETS] [--include-dependencies INCLUDE-DEPENDENCIES] [--id ID] [--type TYPE] [--include-data-assets INCLUDE-DATA-ASSETS] [--exclude-data-files EXCLUDE-DATA-FILES] [--x-migration-enc-key X-MIGRATION-ENC-KEY]
 ```
 
 
@@ -3571,14 +4201,29 @@ cpdctl datastage migration export-flows-with-dependencies --flows FLOWS [--catal
 `--project-id` (string)
 :   The ID of the project to use. `project_id` or `catalog_id` is required.
 
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
 `--remove-secrets` (bool)
-:   remove secrets from exported flows.
+:   remove secrets from exported flows, default value is false.
 
 `--include-dependencies` (bool)
 :   include dependencies. If no dependencies are specified in the payload, all dependencies will be included.
 
 `--id` ([]string)
-:   The list of DataStage flow IDs to export.
+:   The list of flow IDs to export.
+
+`--type` (string)
+:   Type of flow. The default flow type is "data_intg_flow". It is only used with 'id' parameter.
+
+`--include-data-assets` (bool)
+:   include data_assets. If set as true, all referenced data_assets will be included.
+
+`--exclude-data-files` (bool)
+:   skip the actual data files for datastage dataset and fileset when exporting flows as zip.
+
+`--x-migration-enc-key` (string)
+:   The encryption key to encrypt credentials on export or to decrypt them on import.
 
 <a id='datastage_migration_create-from-zip'></a>
 ## &#8226; datastage migration create-from-zip
@@ -3586,7 +4231,7 @@ cpdctl datastage migration export-flows-with-dependencies --flows FLOWS [--catal
 Creates data flows from the attached job export file. This is an asynchronous call. The API call returns almost immediately which does not necessarily imply the completion of the import request. It only means that the import request has been accepted. The status field of the import request is included in the import response object. The status "completed" ("in_progress", "failed", resp.) indicates the import request is completed (in progress, and failed, resp.) The job export file for an import request may contain one mor more data flows. Unless the on_failure option is set to "stop", a completed import request may contain not only successfully imported data flows but also data flows that cannot be imported.
 
 ```sh
-cpdctl datastage migration create-from-zip --body BODY [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--on-failure ON-FAILURE] [--conflict-resolution CONFLICT-RESOLUTION] [--file-name FILE-NAME] [--enable-notification ENABLE-NOTIFICATION] [--import-only IMPORT-ONLY] [--include-dependencies INCLUDE-DEPENDENCIES]
+cpdctl datastage migration create-from-zip --body BODY [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--on-failure ON-FAILURE] [--conflict-resolution CONFLICT-RESOLUTION] [--file-name FILE-NAME] [--enable-notification ENABLE-NOTIFICATION] [--import-only IMPORT-ONLY] [--include-dependencies INCLUDE-DEPENDENCIES] [--asset-type ASSET-TYPE] [--skip-dependencies SKIP-DEPENDENCIES] [--replace-mode REPLACE-MODE] [--x-migration-enc-key X-MIGRATION-ENC-KEY]
 ```
 
 
@@ -3600,6 +4245,9 @@ cpdctl datastage migration create-from-zip --body BODY [--catalog-id CATALOG-ID]
 
 `--project-id` (string)
 :   The ID of the project to use. `project_id` or `catalog_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
 
 `--on-failure` (string)
 :   Action when the first import failure occurs. The default action is "continue" which will continue importing the remaining data flows. The "stop" action will stop the import operation upon the first error.
@@ -3624,13 +4272,27 @@ cpdctl datastage migration create-from-zip --body BODY [--catalog-id CATALOG-ID]
 `--include-dependencies` (bool)
 :   If set to false, skip dependencies, only import flow. If not specified or set to true, import flow and dependencies.
 
+`--asset-type` (string)
+:   Asset types separated by commas (','). Only assets of these types will be imported. If not specified, all supported assets will be imported.
+
+`--skip-dependencies` (string)
+:   Skip dependencies separated by commas (','), it is only used with replace option. If specified the skiped dependencies, only assets of these types will be skiped if the assets are existed.
+
+`--replace-mode` (string)
+:   This paramter take effect when conflict_resolution is set to replace or skip. soft- merge the parameter set, add new parameter only, keep the old value sets hard- replace all.
+
+    Allowable values are: `soft`, `hard`.
+
+`--x-migration-enc-key` (string)
+:   The encryption key to encrypt credentials on export or to decrypt them on import.
+
 <a id='datastage_migration_delete-zip'></a>
 ## &#8226; datastage migration delete-zip
 
 Cancel a previous import request.
 
 ```sh
-cpdctl datastage migration delete-zip --import-id IMPORT-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID]
+cpdctl datastage migration delete-zip --import-id IMPORT-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 
 
@@ -3644,6 +4306,9 @@ cpdctl datastage migration delete-zip --import-id IMPORT-ID [--catalog-id CATALO
 
 `--project-id` (string)
 :   The ID of the project to use. `project_id` or `catalog_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
 
 <a id='datastage_migration_get-zip'></a>
 ## &#8226; datastage migration get-zip
@@ -3651,7 +4316,7 @@ cpdctl datastage migration delete-zip --import-id IMPORT-ID [--catalog-id CATALO
 Gets the status of an import request. The status field in the response object indicates if the given import is completed, in progress, or failed. Detailed status information about each imported data flow is also contained in the response object.
 
 ```sh
-cpdctl datastage migration get-zip --import-id IMPORT-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--format FORMAT]
+cpdctl datastage migration get-zip --import-id IMPORT-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--format FORMAT]
 ```
 
 
@@ -3665,6 +4330,9 @@ cpdctl datastage migration get-zip --import-id IMPORT-ID [--catalog-id CATALOG-I
 
 `--project-id` (string)
 :   The ID of the project to use. `project_id` or `catalog_id` is required.
+
+`--space-id` (string)
+:   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
 
 `--format` (string)
 :   format of isx import report.
@@ -3759,19 +4427,19 @@ cpdctl datastage table-definition list [--catalog-id CATALOG-ID] [--project-id P
 Creates a table definition in the specified project or catalog (either project_id or catalog_id must be set). All subsequent calls to use the parameter set must specify the project or catalog ID the table definition was created in.
 
 ```sh
-cpdctl datastage table-definition create --entity ENTITY --metadata METADATA [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--asset-category ASSET-CATEGORY]
+cpdctl datastage table-definition create [--entity ENTITY | --entity-column-info ENTITY-COLUMN-INFO --entity-data-asset ENTITY-DATA-ASSET --entity-data-definition ENTITY-DATA-DEFINITION --entity-directory-asset ENTITY-DIRECTORY-ASSET --entity-ds-info ENTITY-DS-INFO] [--metadata METADATA | --metadata-description METADATA-DESCRIPTION --metadata-name METADATA-NAME] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--directory-asset-id DIRECTORY-ASSET-ID] [--asset-category ASSET-CATEGORY]
 ```
 
 
 #### Command options
 
 `--entity` (<a href="#cli-table-definition-entity-example-schema-datastage">`TableDefinitionEntity`</a>)
-:   The underlying table definition. Required.
+:   The underlying table definition. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--entity=@path/to/file.json`.
 
 `--metadata` (<a href="#cli-table-definition-metadata-example-schema-datastage">`TableDefinitionMetadata`</a>)
-:   System metadata about a table definition. Required.
+:   System metadata about a table definition. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--metadata=@path/to/file.json`.
 
@@ -3784,10 +4452,44 @@ cpdctl datastage table-definition create --entity ENTITY --metadata METADATA [--
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
+`--directory-asset-id` (string)
+:   The directory asset id to create the asset in or move to.
+
 `--asset-category` (string)
 :   The category of the asset. Must be either SYSTEM or USER. Only a registered service can use this parameter.
 
     Allowable values are: `SYSTEM`, `USER`.
+
+`--entity-column-info` (generic map)
+:   This option provides a value for a sub-field of the JSON option 'entity'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--entity-column-info=@path/to/file.json`.
+
+`--entity-data-asset` (<a href="#cli-table-definition-data-asset-example-schema-datastage">`TableDefinitionDataAsset`</a>)
+:   column definitions and table properties. This option provides a value for a sub-field of the JSON option 'entity'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--entity-data-asset=@path/to/file.json`.
+
+`--entity-data-definition` (generic map)
+:   This option provides a value for a sub-field of the JSON option 'entity'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--entity-data-definition=@path/to/file.json`.
+
+`--entity-directory-asset` (<a href="#cli-directory-asset-example-schema-datastage">`DirectoryAsset`</a>)
+:   This option provides a value for a sub-field of the JSON option 'entity'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--entity-directory-asset=@path/to/file.json`.
+
+`--entity-ds-info` (<a href="#cli-table-definition-ds-info-example-schema-datastage">`TableDefinitionDSInfo`</a>)
+:   data type defaults and format properties. This option provides a value for a sub-field of the JSON option 'entity'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--entity-ds-info=@path/to/file.json`.
+
+`--metadata-description` (string)
+:   table definition description. This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-name` (string)
+:   table definition name. This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
 
 <a id='datastage_table-definition_get'></a>
 ## &#8226; datastage table-definition get
@@ -3848,7 +4550,7 @@ cpdctl datastage table-definition update --table-definition-id TABLE-DEFINITION-
 Replace the contents of a table definition in the specified project or catalog (either project_id or catalog_id must be set).
 
 ```sh
-cpdctl datastage table-definition replace --table-definition-id TABLE-DEFINITION-ID --entity ENTITY --metadata METADATA [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl datastage table-definition replace --table-definition-id TABLE-DEFINITION-ID [--entity ENTITY | --entity-column-info ENTITY-COLUMN-INFO --entity-data-asset ENTITY-DATA-ASSET --entity-data-definition ENTITY-DATA-DEFINITION --entity-directory-asset ENTITY-DIRECTORY-ASSET --entity-ds-info ENTITY-DS-INFO] [--metadata METADATA | --metadata-description METADATA-DESCRIPTION --metadata-name METADATA-NAME] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 
 
@@ -3858,12 +4560,12 @@ cpdctl datastage table-definition replace --table-definition-id TABLE-DEFINITION
 :   Table definition ID. Required.
 
 `--entity` (<a href="#cli-table-definition-entity-example-schema-datastage">`TableDefinitionEntity`</a>)
-:   The underlying table definition. Required.
+:   The underlying table definition. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--entity=@path/to/file.json`.
 
 `--metadata` (<a href="#cli-table-definition-metadata-example-schema-datastage">`TableDefinitionMetadata`</a>)
-:   System metadata about a table definition. Required.
+:   System metadata about a table definition. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--metadata=@path/to/file.json`.
 
@@ -3875,6 +4577,37 @@ cpdctl datastage table-definition replace --table-definition-id TABLE-DEFINITION
 
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, space_id, or project_id is required.
+
+`--entity-column-info` (generic map)
+:   This option provides a value for a sub-field of the JSON option 'entity'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--entity-column-info=@path/to/file.json`.
+
+`--entity-data-asset` (<a href="#cli-table-definition-data-asset-example-schema-datastage">`TableDefinitionDataAsset`</a>)
+:   column definitions and table properties. This option provides a value for a sub-field of the JSON option 'entity'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--entity-data-asset=@path/to/file.json`.
+
+`--entity-data-definition` (generic map)
+:   This option provides a value for a sub-field of the JSON option 'entity'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--entity-data-definition=@path/to/file.json`.
+
+`--entity-directory-asset` (<a href="#cli-directory-asset-example-schema-datastage">`DirectoryAsset`</a>)
+:   This option provides a value for a sub-field of the JSON option 'entity'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--entity-directory-asset=@path/to/file.json`.
+
+`--entity-ds-info` (<a href="#cli-table-definition-ds-info-example-schema-datastage">`TableDefinitionDSInfo`</a>)
+:   data type defaults and format properties. This option provides a value for a sub-field of the JSON option 'entity'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--entity-ds-info=@path/to/file.json`.
+
+`--metadata-description` (string)
+:   table definition description. This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
+
+`--metadata-name` (string)
+:   table definition name. This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
 
 <a id='datastage_table-definition_clone'></a>
 ## &#8226; datastage table-definition clone
@@ -3906,7 +4639,7 @@ cpdctl datastage table-definition clone --table-definition-id TABLE-DEFINITION-I
 Generate the runtime assets for a DataStage buildop in the specified project or catalog for a specified runtime type. Either project_id or catalog_id must be specified.
 
 ```sh
-cpdctl datastage codegen generate-buildop --buildop-id BUILDOP-ID [--build BUILD] [--creator CREATOR] [--general GENERAL] [--properties PROPERTIES] [--schemas SCHEMAS] [--type TYPE] [--ui-data UI-DATA] [--wrapped WRAPPED] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--runtime-type RUNTIME-TYPE]
+cpdctl datastage codegen generate-buildop --buildop-id BUILDOP-ID [--build BUILD | --build-interfaces BUILD-INTERFACES --build-logic BUILD-LOGIC] [--creator CREATOR | --creator-author CREATOR-AUTHOR --creator-vendor CREATOR-VENDOR --creator-version CREATOR-VERSION] [--directory-asset DIRECTORY-ASSET] [--general GENERAL | --general-class-name GENERAL-CLASS-NAME --general-command GENERAL-COMMAND --general-execmode GENERAL-EXECMODE --general-node-type-name GENERAL-NODE-TYPE-NAME --general-operator-name GENERAL-OPERATOR-NAME --general-wrapped-name GENERAL-WRAPPED-NAME] [--properties PROPERTIES] [--schemas SCHEMAS] [--type TYPE] [--ui-data UI-DATA] [--wrapped WRAPPED | --wrapped-environment WRAPPED-ENVIRONMENT --wrapped-interfaces WRAPPED-INTERFACES] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--runtime-type RUNTIME-TYPE] [--enable-async-compile ENABLE-ASYNC-COMPILE]
 ```
 
 
@@ -3916,17 +4649,22 @@ cpdctl datastage codegen generate-buildop --buildop-id BUILDOP-ID [--build BUILD
 :   The DataStage BuildOp-Asset-ID to use. Required.
 
 `--build` (<a href="#cli-buildop-build-example-schema-datastage">`BuildopBuild`</a>)
-:   Build info.
+:   Build info. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--build=@path/to/file.json`.
 
 `--creator` (<a href="#cli-buildop-creator-example-schema-datastage">`BuildopCreator`</a>)
-:   Creator information.
+:   Creator information. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--creator=@path/to/file.json`.
 
+`--directory-asset` (generic map)
+:   directory information.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--directory-asset=@path/to/file.json`.
+
 `--general` (<a href="#cli-buildop-general-example-schema-datastage">`BuildopGeneral`</a>)
-:   General information.
+:   General information. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--general=@path/to/file.json`.
 
@@ -3949,7 +4687,7 @@ cpdctl datastage codegen generate-buildop --buildop-id BUILDOP-ID [--build BUILD
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--ui-data=@path/to/file.json`.
 
 `--wrapped` (<a href="#cli-buildop-wrapped-example-schema-datastage">`BuildopWrapped`</a>)
-:   Wrapped info.
+:   Wrapped info. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--wrapped=@path/to/file.json`.
 
@@ -3964,6 +4702,56 @@ cpdctl datastage codegen generate-buildop --buildop-id BUILDOP-ID [--build BUILD
 
 `--runtime-type` (string)
 :   The type of the runtime to use. e.g. dspxosh or Spark etc. If not provided queried from within pipeline flow if available otherwise default of dspxosh is used.
+
+`--enable-async-compile` (bool)
+:   Whether to compile the flow asynchronously or not. When set to true, the compile request will be queued and then compiled. Response will be returned immediately as "Compiling". For compile status, call get compile status api.
+
+`--build-interfaces` (<a href="#cli-buildop-build-interfaces-example-schema-datastage">`BuildopBuildInterfaces`</a>)
+:   null. This option provides a value for a sub-field of the JSON option 'build'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--build-interfaces=@path/to/file.json`.
+
+`--build-logic` (<a href="#cli-buildop-build-logic-example-schema-datastage">`BuildopBuildLogic`</a>)
+:   Operator business logic. This option provides a value for a sub-field of the JSON option 'build'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--build-logic=@path/to/file.json`.
+
+`--creator-author` (string)
+:   Author name. This option provides a value for a sub-field of the JSON option 'creator'. It is mutually exclusive with that option.
+
+`--creator-vendor` (string)
+:   Vendor name. This option provides a value for a sub-field of the JSON option 'creator'. It is mutually exclusive with that option.
+
+`--creator-version` (string)
+:   Version. This option provides a value for a sub-field of the JSON option 'creator'. It is mutually exclusive with that option.
+
+`--general-class-name` (string)
+:   Class name. This option provides a value for a sub-field of the JSON option 'general'. It is mutually exclusive with that option.
+
+`--general-command` (string)
+:   Command name. This option provides a value for a sub-field of the JSON option 'general'. It is mutually exclusive with that option.
+
+`--general-execmode` (string)
+:   Exec Mode. This option provides a value for a sub-field of the JSON option 'general'. It is mutually exclusive with that option.
+
+`--general-node-type-name` (string)
+:   Node type name. This option provides a value for a sub-field of the JSON option 'general'. It is mutually exclusive with that option.
+
+`--general-operator-name` (string)
+:   Operator name. This option provides a value for a sub-field of the JSON option 'general'. It is mutually exclusive with that option.
+
+`--general-wrapped-name` (string)
+:   Wrapped name. This option provides a value for a sub-field of the JSON option 'general'. It is mutually exclusive with that option.
+
+`--wrapped-environment` (<a href="#cli-buildop-wrapped-environment-example-schema-datastage">`BuildopWrappedEnvironment`</a>)
+:   Environment information. This option provides a value for a sub-field of the JSON option 'wrapped'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--wrapped-environment=@path/to/file.json`.
+
+`--wrapped-interfaces` (<a href="#cli-buildop-wrapped-interfaces-example-schema-datastage">`BuildopWrappedInterfaces`</a>)
+:   Interfaces. This option provides a value for a sub-field of the JSON option 'wrapped'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--wrapped-interfaces=@path/to/file.json`.
 
 <a id='environment_list'></a>
 ## &#8226; environment list
@@ -4008,7 +4796,7 @@ Required body parameters vary dependent on environment types:
 - other types: `type`, `name`, `display_name`, `hardware_specification`, `software_specification`.
 
 ```sh
-cpdctl environment create --display-name DISPLAY-NAME --hardware-specification HARDWARE-SPECIFICATION --name NAME --software-specification SOFTWARE-SPECIFICATION --type TYPE [--authorization-variables AUTHORIZATION-VARIABLES] [--compute-specification COMPUTE-SPECIFICATION] [--description DESCRIPTION] [--environment-variables ENVIRONMENT-VARIABLES] [--location LOCATION] [--runtime-definition RUNTIME-DEFINITION] [--runtime-idle-time RUNTIME-IDLE-TIME] [--tools-specification TOOLS-SPECIFICATION] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl environment create --display-name DISPLAY-NAME [--hardware-specification HARDWARE-SPECIFICATION | --hardware-specification-guid HARDWARE-SPECIFICATION-GUID --hardware-specification-type HARDWARE-SPECIFICATION-TYPE] --name NAME [--software-specification SOFTWARE-SPECIFICATION | --software-specification-guid SOFTWARE-SPECIFICATION-GUID --software-specification-type SOFTWARE-SPECIFICATION-TYPE] --type TYPE [--authorization-variables AUTHORIZATION-VARIABLES] [--compute-specification COMPUTE-SPECIFICATION] [--description DESCRIPTION] [--environment-variables ENVIRONMENT-VARIABLES] [--location LOCATION] [--runtime-definition RUNTIME-DEFINITION] [--runtime-idle-time RUNTIME-IDLE-TIME] [--tools-specification TOOLS-SPECIFICATION] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 
 
@@ -4018,7 +4806,7 @@ cpdctl environment create --display-name DISPLAY-NAME --hardware-specification H
 :   Display name of the environment. Required.
 
 `--hardware-specification` (<a href="#cli-referenced-specification-example-schema-environment">`ReferencedSpecification`</a>)
-:   A pointer to a sub-specification that was defined elsewhere. Required.
+:   A pointer to a sub-specification that was defined elsewhere. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--hardware-specification=@path/to/file.json`.
 
@@ -4026,7 +4814,7 @@ cpdctl environment create --display-name DISPLAY-NAME --hardware-specification H
 :   Name of the environment. Required.
 
 `--software-specification` (<a href="#cli-referenced-specification-example-schema-environment">`ReferencedSpecification`</a>)
-:   A pointer to a sub-specification that was defined elsewhere. Required.
+:   A pointer to a sub-specification that was defined elsewhere. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--software-specification=@path/to/file.json`.
 
@@ -4072,6 +4860,22 @@ cpdctl environment create --display-name DISPLAY-NAME --hardware-specification H
 
 `--space-id` (string)
 :   The id of the space.
+
+`--hardware-specification-guid` (string)
+:   A UUID of an existing specification. This option provides a value for a sub-field of the JSON option 'hardware-specification'. It is mutually exclusive with that option.
+
+`--hardware-specification-type` (string)
+:   Always "referenced". This option provides a value for a sub-field of the JSON option 'hardware-specification'. It is mutually exclusive with that option.
+
+    Allowable values are: `referenced`.
+
+`--software-specification-guid` (string)
+:   A UUID of an existing specification. This option provides a value for a sub-field of the JSON option 'software-specification'. It is mutually exclusive with that option.
+
+`--software-specification-type` (string)
+:   Always "referenced". This option provides a value for a sub-field of the JSON option 'software-specification'. It is mutually exclusive with that option.
+
+    Allowable values are: `referenced`.
 
 <a id='environment_delete'></a>
 ## &#8226; environment delete
@@ -4229,7 +5033,7 @@ Authorization rules for (1) and (2) follow those for `/v2/assets` for projects a
 You can only provide exactly one of `nodes`, `spark` or `datastage`, not at the same time.
 
 ```sh
-cpdctl environment hardware-specification create --name NAME [--datastage DATASTAGE] [--description DESCRIPTION] [--nodes NODES] [--spark SPARK] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+cpdctl environment hardware-specification create --name NAME [--datastage DATASTAGE | --datastage-compute DATASTAGE-COMPUTE --datastage-conductor DATASTAGE-CONDUCTOR --datastage-num-computes DATASTAGE-NUM-COMPUTES --datastage-num-conductors DATASTAGE-NUM-CONDUCTORS] [--description DESCRIPTION] [--nodes NODES | --nodes-cpu NODES-CPU --nodes-gpu NODES-GPU --nodes-mem NODES-MEM --nodes-num-nodes NODES-NUM-NODES] [--spark SPARK | --spark-driver SPARK-DRIVER --spark-executor SPARK-EXECUTOR --spark-num-drivers SPARK-NUM-DRIVERS --spark-num-executors SPARK-NUM-EXECUTORS] [--space-id SPACE-ID] [--project-id PROJECT-ID]
 ```
 
 
@@ -4239,7 +5043,7 @@ cpdctl environment hardware-specification create --name NAME [--datastage DATAST
 :   Name of hardware specification. Required.
 
 `--datastage` (<a href="#cli-hardware-specification-data-stage-definition-example-schema-environment">`HardwareSpecificationDataStageDefinition`</a>)
-:   DataStage definition of hardware specification.
+:   DataStage definition of hardware specification. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--datastage=@path/to/file.json`.
 
@@ -4247,12 +5051,12 @@ cpdctl environment hardware-specification create --name NAME [--datastage DATAST
 :   Description of hardware specification.
 
 `--nodes` (<a href="#cli-hardware-specification-nodes-definition-example-schema-environment">`HardwareSpecificationNodesDefinition`</a>)
-:   Compute node definition of hardware specification.
+:   Compute node definition of hardware specification. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--nodes=@path/to/file.json`.
 
 `--spark` (<a href="#cli-hardware-specification-spark-definition-example-schema-environment">`HardwareSpecificationSparkDefinition`</a>)
-:   Spark definition of hardware specification.
+:   Spark definition of hardware specification. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--spark=@path/to/file.json`.
 
@@ -4261,6 +5065,56 @@ cpdctl environment hardware-specification create --name NAME [--datastage DATAST
 
 `--project-id` (string)
 :   The id of the project in which to create the hardware specification.
+
+`--datastage-compute` (<a href="#cli-hardware-specification-data-stage-compute-definition-example-schema-environment">`HardwareSpecificationDataStageComputeDefinition`</a>)
+:   DataStage compute definition of hardware specification. This option provides a value for a sub-field of the JSON option 'datastage'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--datastage-compute=@path/to/file.json`.
+
+`--datastage-conductor` (<a href="#cli-hardware-specification-data-stage-conductor-definition-example-schema-environment">`HardwareSpecificationDataStageConductorDefinition`</a>)
+:   DataStage conductor definition of hardware specification. This option provides a value for a sub-field of the JSON option 'datastage'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--datastage-conductor=@path/to/file.json`.
+
+`--datastage-num-computes` (int64)
+:   Number of computes. This option provides a value for a sub-field of the JSON option 'datastage'. It is mutually exclusive with that option.
+
+`--datastage-num-conductors` (int64)
+:   Number of conductors. This option provides a value for a sub-field of the JSON option 'datastage'. It is mutually exclusive with that option.
+
+`--nodes-cpu` (<a href="#cli-hardware-specification-cpu-definition-example-schema-environment">`HardwareSpecificationCpuDefinition`</a>)
+:   (Fraction of) number of CPUs of hardware specification. This option provides a value for a sub-field of the JSON option 'nodes'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--nodes-cpu=@path/to/file.json`.
+
+`--nodes-gpu` (<a href="#cli-hardware-specification-gpu-definition-example-schema-environment">`HardwareSpecificationGpuDefinition`</a>)
+:   GPU definition of hardware specification. This option provides a value for a sub-field of the JSON option 'nodes'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--nodes-gpu=@path/to/file.json`.
+
+`--nodes-mem` (<a href="#cli-hardware-specification-memory-definition-example-schema-environment">`HardwareSpecificationMemoryDefinition`</a>)
+:   Memory size of hardware specification. This option provides a value for a sub-field of the JSON option 'nodes'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--nodes-mem=@path/to/file.json`.
+
+`--nodes-num-nodes` (int64)
+:   Number of compute nodes. This option provides a value for a sub-field of the JSON option 'nodes'. It is mutually exclusive with that option.
+
+`--spark-driver` (<a href="#cli-hardware-specification-spark-driver-definition-example-schema-environment">`HardwareSpecificationSparkDriverDefinition`</a>)
+:   Spark driver definition of hardware specification. This option provides a value for a sub-field of the JSON option 'spark'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--spark-driver=@path/to/file.json`.
+
+`--spark-executor` (<a href="#cli-hardware-specification-spark-executor-definition-example-schema-environment">`HardwareSpecificationSparkExecutorDefinition`</a>)
+:   Spark executor definition of hardware specification. This option provides a value for a sub-field of the JSON option 'spark'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--spark-executor=@path/to/file.json`.
+
+`--spark-num-drivers` (int64)
+:   Number of drivers. This option provides a value for a sub-field of the JSON option 'spark'. It is mutually exclusive with that option.
+
+`--spark-num-executors` (int64)
+:   Number of executors. This option provides a value for a sub-field of the JSON option 'spark'. It is mutually exclusive with that option.
 
 <a id='environment_hardware-specification_delete'></a>
 ## &#8226; environment hardware-specification delete
@@ -4301,11 +5155,11 @@ Retrieve a particular hardware specification.
 Specify either space_id or project_id, or none of them. This makes 4 valid cases, which are:
 
 (1) When specifying project_id, the returned hardware specification can be a
-(a) Hardware specification that is scoped to that project only.
-(b) Global hardware specification as global hardware specifications are valid in any scope.
+  (a) Hardware specification that is scoped to that project only.
+  (b) Global hardware specification as global hardware specifications are valid in any scope.
 (2) When specifying space_id, the returned hardware specification can be a
-(a) Hardware specification that is scoped to that space only.
-(b) Global hardware specification as global hardware specifications are valid in any scope.
+  (a) Hardware specification that is scoped to that space only.
+  (b) Global hardware specification as global hardware specifications are valid in any scope.
 (3) When specifying no scope (neither project_id nor space_id), and the hardware specification is a global custom hardware specification.
 (4) When specifying no scope (neither project_id nor space_id), and the hardware specification is a global default hardware specification.
 
@@ -4659,7 +5513,7 @@ You can add any number of references to package extensions while creating a soft
 Authorization rules for (1) and (2) follow those for `/v2/assets` for projects and spaces, respectively. Alternatively, the request is authorized for a valid authentication by Service Auth. Only WSL/CPD administrators are authorized to make a request of type (3) - global custom software specifications. Alternatively, the request is authorized for a valid authentication by Service Auth.
 
 ```sh
-cpdctl environment software-specification create --name NAME --software-configuration SOFTWARE-CONFIGURATION [--base-software-specification BASE-SOFTWARE-SPECIFICATION] [--description DESCRIPTION] [--package-extensions PACKAGE-EXTENSIONS] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+cpdctl environment software-specification create --name NAME [--software-configuration SOFTWARE-CONFIGURATION | --software-configuration-included-packages SOFTWARE-CONFIGURATION-INCLUDED-PACKAGES --software-configuration-platform SOFTWARE-CONFIGURATION-PLATFORM] [--base-software-specification BASE-SOFTWARE-SPECIFICATION | --base-software-specification-guid BASE-SOFTWARE-SPECIFICATION-GUID --base-software-specification-href BASE-SOFTWARE-SPECIFICATION-HREF] [--description DESCRIPTION] [--package-extensions PACKAGE-EXTENSIONS] [--space-id SPACE-ID] [--project-id PROJECT-ID]
 ```
 
 
@@ -4669,12 +5523,12 @@ cpdctl environment software-specification create --name NAME --software-configur
 :   Name of the software specification. Required.
 
 `--software-configuration` (<a href="#cli-software-specification-entity-software-configuration-definition-example-schema-environment">`SoftwareSpecificationEntitySoftwareConfigurationDefinition`</a>)
-:   Software configuration. Required.
+:   Software configuration. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--software-configuration=@path/to/file.json`.
 
 `--base-software-specification` (<a href="#cli-base-software-specification-reference-example-schema-environment">`BaseSoftwareSpecificationReference`</a>)
-:   A reference to a base software specification.
+:   A reference to a base software specification. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--base-software-specification=@path/to/file.json`.
 
@@ -4691,6 +5545,22 @@ cpdctl environment software-specification create --name NAME --software-configur
 
 `--project-id` (string)
 :   The id of the project in which to create the software specification.
+
+`--software-configuration-included-packages` (<a href="#cli-included-packages-definition-example-schema-environment">`IncludedPackagesDefinition[]`</a>)
+:   An array of included packages. This option provides a value for a sub-field of the JSON option 'software-configuration'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--software-configuration-included-packages=@path/to/file.json`.
+
+`--software-configuration-platform` (<a href="#cli-platform-definition-example-schema-environment">`PlatformDefinition`</a>)
+:   A platform definition. This option provides a value for a sub-field of the JSON option 'software-configuration'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--software-configuration-platform=@path/to/file.json`.
+
+`--base-software-specification-guid` (string)
+:   The UUID of software specification. This option provides a value for a sub-field of the JSON option 'base-software-specification'. It is mutually exclusive with that option.
+
+`--base-software-specification-href` (string)
+:   The href of the software specification. This option provides a value for a sub-field of the JSON option 'base-software-specification'. It is mutually exclusive with that option.
 
 <a id='environment_software-specification_delete'></a>
 ## &#8226; environment software-specification delete
@@ -4731,11 +5601,11 @@ Retrieve a particular software specification.
 Specify either space_id or project_id, or none of them. This makes 4 valid cases, which are:
 
 (1) When specifying project_id, the returned software specification can be a
-(a) 'Derived' software specification that is scoped to that project only.
-(b) 'Base' software specification as global software specifications are valid in any scope.
+  (a) 'Derived' software specification that is scoped to that project only.
+  (b) 'Base' software specification as global software specifications are valid in any scope.
 (2) When specifying space_id, the returned software specification can be a
-(a) 'Derived' software specification that is scoped to that space only.
-(b) 'Base' software specification as global software specifications are valid in any scope.
+  (a) 'Derived' software specification that is scoped to that space only.
+  (b) 'Base' software specification as global software specifications are valid in any scope.
 (3) When specifying no scope (neither project_id nor space_id), and the software specification is a global custom software specification (and therefore of type 'base').
 (4) When specifying no scope (neither project_id nor space_id), and the software specification is a global default software specification (and therefore of type 'base').
 
@@ -4835,9 +5705,9 @@ Add a particular package extension to a particular software specification. When 
 Specify either `project_id`, or `space_id`.
 
 The request is valid if and only if:
-1. The software specification identified by `software_specification_guid` and the package extension identified by `package_extension_guid` exist in the same scope (either project or space).
-2. A successful POST `/v2/package_extensions/{package_extension_guid}/upload_complete` has been called before this request is initiated, i.e., the upload of the referenced pip_zip or conda_yml file has been indicated to have been successful.
-3. The user is authorized to update the software specification asset.
+  1. The software specification identified by `software_specification_guid` and the package extension identified by `package_extension_guid` exist in the same scope (either project or space).
+  2. A successful POST `/v2/package_extensions/{package_extension_guid}/upload_complete` has been called before this request is initiated, i.e., the upload of the referenced pip_zip or conda_yml file has been indicated to have been successful.
+  3. The user is authorized to update the software specification asset.
 
 ```sh
 cpdctl environment software-specification add-package-extensions --software-specification-id SOFTWARE-SPECIFICATION-ID --package-extension-id PACKAGE-EXTENSION-ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
@@ -4859,7 +5729,7 @@ cpdctl environment software-specification add-package-extensions --software-spec
 :   The id of the project.
 
 <a id='find_'></a>
-## &#8226; find
+## &#8226; find 
 ```sh
    cpdctl find --cpd-path PATH
 ```
@@ -4873,9 +5743,6 @@ cpdctl environment software-specification add-package-extensions --software-spec
 
 `--name` (string          )
 :    Resource name
-
-`--output` (json          )
-:    Choose an output format - can be json, `yaml`, or `table`. (default "table")
 
 `--resource-type` (string )
 :    Resource type used when resolving paths with a resource ID only
@@ -4924,14 +5791,14 @@ cpdctl job list [--project-id PROJECT-ID] [--space-id SPACE-ID] [--asset-ref ASS
 Creates a new job in the specified project or space (either project_id or space_id must be set).
 
 ```sh
-cpdctl job create [--job JOB] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl job create [--job JOB | --job-asset-ref JOB-ASSET-REF --job-asset-ref-type JOB-ASSET-REF-TYPE --job-configuration JOB-CONFIGURATION --job-description JOB-DESCRIPTION --job-job-parameters JOB-JOB-PARAMETERS --job-name JOB-NAME --job-parameter-sets JOB-PARAMETER-SETS --job-retention-policy JOB-RETENTION-POLICY --job-schedule JOB-SCHEDULE --job-schedule-info JOB-SCHEDULE-INFO --job-serving-name JOB-SERVING-NAME] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 
 
 #### Command options
 
 `--job` (<a href="#cli-job-post-body-job-example-schema-job">`JobPostBodyJob`</a>)
-:   &nbsp;
+:   This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--job=@path/to/file.json`.
 
@@ -4940,6 +5807,49 @@ cpdctl job create [--job JOB] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 
 `--space-id` (string)
 :   The ID of the space to use. project_id or space_id is required.
+
+`--job-asset-ref` (string)
+:   ID of associated asset to run (provide either asset_ref or asset_ref_type). This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
+
+`--job-asset-ref-type` (string)
+:   The type of asset to run (provide either asset_ref or asset_ref_type). This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
+
+`--job-configuration` (<a href="#cli-job-post-body-configuration-example-schema-job">`JobPostBodyConfiguration`</a>)
+:   This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--job-configuration=@path/to/file.json`.
+
+`--job-description` (string)
+:   The description of the job. This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
+
+`--job-job-parameters` (<a href="#cli-job-parameter-example-schema-job">`JobParameter[]`</a>)
+:   Array of job parameters. This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--job-job-parameters=@path/to/file.json`.
+
+`--job-name` (string)
+:   The name of the job. This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
+
+`--job-parameter-sets` (<a href="#cli-parameter-sets-example-schema-job">`ParameterSets[]`</a>)
+:   Array of parameter sets. This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--job-parameter-sets=@path/to/file.json`.
+
+`--job-retention-policy` (<a href="#cli-job-post-body-job-retention-policy-example-schema-job">`JobPostBodyJobRetentionPolicy`</a>)
+:   This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--job-retention-policy=@path/to/file.json`.
+
+`--job-schedule` (string)
+:   A cron string defining when the job should be run. If an empty string is provided it means the job is not scheduled to run. This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
+
+`--job-schedule-info` (<a href="#cli-job-post-body-job-schedule-info-example-schema-job">`JobPostBodyJobScheduleInfo`</a>)
+:   This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--job-schedule-info=@path/to/file.json`.
+
+`--job-serving-name` (string)
+:   A globally unique attribute to be used in place of the job id when sending calls. Must be a combination of lowercase alphanumeric and underscore characters, and must be between 1 and 36 characters. This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
 
 <a id='job_serving-name'></a>
 ## &#8226; job serving-name
@@ -5073,7 +5983,7 @@ cpdctl job run list --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-
 Starts the specified job contained in a project or space (either project_id or space_id must be set).
 
 ```sh
-cpdctl job run create --job-id JOB-ID --job-run JOB-RUN [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl job run create --job-id JOB-ID [--job-run JOB-RUN | --job-run-configuration JOB-RUN-CONFIGURATION --job-run-description JOB-RUN-DESCRIPTION --job-run-job-parameters JOB-RUN-JOB-PARAMETERS --job-run-name JOB-RUN-NAME --job-run-parameter-sets JOB-RUN-PARAMETER-SETS] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 
 
@@ -5083,7 +5993,7 @@ cpdctl job run create --job-id JOB-ID --job-run JOB-RUN [--project-id PROJECT-ID
 :   The ID of the job to use. Each job has a unique ID. Alternatively, the serving_name value can be used. Required.
 
 `--job-run` (<a href="#cli-job-run-post-body-job-run-example-schema-job">`JobRunPostBodyJobRun`</a>)
-:   &nbsp; Required.
+:   This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--job-run=@path/to/file.json`.
 
@@ -5092,6 +6002,27 @@ cpdctl job run create --job-id JOB-ID --job-run JOB-RUN [--project-id PROJECT-ID
 
 `--space-id` (string)
 :   The ID of the space to use. project_id or space_id is required.
+
+`--job-run-configuration` (<a href="#cli-job-run-post-body-job-run-configuration-example-schema-job">`JobRunPostBodyJobRunConfiguration`</a>)
+:   This option provides a value for a sub-field of the JSON option 'job-run'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--job-run-configuration=@path/to/file.json`.
+
+`--job-run-description` (string)
+:   The description of the job run. This option provides a value for a sub-field of the JSON option 'job-run'. It is mutually exclusive with that option.
+
+`--job-run-job-parameters` (<a href="#cli-job-parameter-example-schema-job">`JobParameter[]`</a>)
+:   Array of job parameters. This option provides a value for a sub-field of the JSON option 'job-run'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--job-run-job-parameters=@path/to/file.json`.
+
+`--job-run-name` (string)
+:   The name of the job run. This option provides a value for a sub-field of the JSON option 'job-run'. It is mutually exclusive with that option.
+
+`--job-run-parameter-sets` (<a href="#cli-parameter-sets-example-schema-job">`ParameterSets[]`</a>)
+:   Array of parameter sets. This option provides a value for a sub-field of the JSON option 'job-run'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--job-run-parameter-sets=@path/to/file.json`.
 
 <a id='job_run_delete'></a>
 ## &#8226; job run delete
@@ -5294,7 +6225,7 @@ Wait until the job run becomes completed, failed, or canceled.
 #### Command options
 
 `--cpd-scope` (string  )
-:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--job-id` (string     )
 :    The ID of the job to use. Each job has a unique ID.
@@ -5318,7 +6249,7 @@ Downloads the results of the complete job run to the locations pointed in `outpu
 #### Command options
 
 `--cpd-scope` (string  )
-:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--outputs` (string    )
 :    The list of results to be downloaded (JSON array with objects: '{"name": "<variable-name>", "path": "<output-path>"}').
@@ -5355,7 +6286,7 @@ For `online` and `r_shiny` deployments, `serving_name` can be provided in
 See the documentation [supported frameworks](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=specifications-supported-deployment-frameworks) for details about which frameworks can be used in a deployment.
 
 ```sh
-cpdctl ml deployment create --space-id SPACE-ID [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--asset ASSET] [--hardware-spec HARDWARE-SPEC] [--hybrid-pipeline-hardware-specs HYBRID-PIPELINE-HARDWARE-SPECS] [--online ONLINE] [--batch BATCH] [--r-shiny R-SHINY]
+cpdctl ml deployment create --space-id SPACE-ID [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--asset ASSET | --asset-id ASSET-ID --asset-rev ASSET-REV] [--hardware-spec HARDWARE-SPEC | --hardware-spec-id HARDWARE-SPEC-ID --hardware-spec-rev HARDWARE-SPEC-REV --hardware-spec-name HARDWARE-SPEC-NAME --hardware-spec-num-nodes HARDWARE-SPEC-NUM-NODES] [--hybrid-pipeline-hardware-specs HYBRID-PIPELINE-HARDWARE-SPECS] [--online ONLINE | --online-parameters ONLINE-PARAMETERS] [--batch BATCH | --batch-parameters BATCH-PARAMETERS] [--r-shiny R-SHINY | --r-shiny-authentication R-SHINY-AUTHENTICATION --r-shiny-parameters R-SHINY-PARAMETERS]
 ```
 
 
@@ -5379,16 +6310,16 @@ cpdctl ml deployment create --space-id SPACE-ID [--tags TAGS] [--name NAME] [--d
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--custom=@path/to/file.json`.
 
 `--asset` (<a href="#cli-rel-example-schema-ml">`Rel`</a>)
-:   A reference to a resource.
+:   A reference to a resource. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--asset=@path/to/file.json`.
 
 `--hardware-spec` (<a href="#cli-hardware-spec-rel-example-schema-ml">`HardwareSpecRel`</a>)
-:   A hardware specification.
+:   A hardware specification. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--hardware-spec=@path/to/file.json`.
 
-`--hybrid-pipeline-hardware-specs` (<a href="#cli-job-entity-result-hybrid-pipeline-hardware-specs-item-example-schema-ml">`JobEntityResultHybridPipelineHardwareSpecsItem[]`</a>)
+`--hybrid-pipeline-hardware-specs` (<a href="#cli-hybrid-pipeline-hardware-specs-item-example-schema-ml">`HybridPipelineHardwareSpecsItem[]`</a>)
 :   Hybrid pipeline hardware specification.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--hybrid-pipeline-hardware-specs=@path/to/file.json`.
@@ -5396,22 +6327,60 @@ cpdctl ml deployment create --space-id SPACE-ID [--tags TAGS] [--name NAME] [--d
 `--online` (<a href="#cli-deployment-entity-request-online-example-schema-ml">`DeploymentEntityRequestOnline`</a>)
 :   Indicates that this is an online deployment. An empty object has to be specified.
 More properties will be added later on to setup the online deployment.
-The `serving_name` can be provided in the `online.parameters`. The serving name can only have the characters [a-z,0-9,_]
+The `serving_name` can be provided in the `online.parameters`. The serving name can only have the characters [a-z,0-9,_] 
 and the length should not be more than 36 characters. The `serving_name` can be used in the prediction URL in place of the `deployment_id`.
-If the online scoring schema has a `type` of `DataFrame` then the scoring payload will be converted to a `Pandas` data frame.
+If the online scoring schema has a `type` of `DataFrame` then the scoring payload will be converted to a `Pandas` data frame. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--online=@path/to/file.json`.
 
 `--batch` (<a href="#cli-deployment-entity-request-batch-example-schema-ml">`DeploymentEntityRequestBatch`</a>)
 :   Indicates that this is a batch deployment. An empty object has to be specified.
-More properties will be added later on to setup the batch deployment.
+More properties will be added later on to setup the batch deployment. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--batch=@path/to/file.json`.
 
 `--r-shiny` (<a href="#cli-deployment-entity-request-r-shiny-example-schema-ml">`DeploymentEntityRequestRShiny`</a>)
-:   Indicates that this is a Shiny application deployment.
+:   Indicates that this is a Shiny application deployment. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--r-shiny=@path/to/file.json`.
+
+`--asset-id` (string)
+:   The id of the referenced resource. This option provides a value for a sub-field of the JSON option 'asset'. It is mutually exclusive with that option.
+
+`--asset-rev` (string)
+:   The revision of the referenced resource. This option provides a value for a sub-field of the JSON option 'asset'. It is mutually exclusive with that option.
+
+`--hardware-spec-id` (string)
+:   The id of the hardware specification. One, and only one, of `id` or `name` must be set. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--hardware-spec-rev` (string)
+:   The revision of the hardware specification. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--hardware-spec-name` (string)
+:   The name of the hardware specification. One, and only one, of `id` or `name` must be set. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--hardware-spec-num-nodes` (int64)
+:   The number of nodes applied to a computation. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--online-parameters` (generic map)
+:   A set of key-value pairs where `key` is the parameter name. This option provides a value for a sub-field of the JSON option 'online'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--online-parameters=@path/to/file.json`.
+
+`--batch-parameters` (generic map)
+:   A set of key-value pairs where `key` is the parameter name. This option provides a value for a sub-field of the JSON option 'batch'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--batch-parameters=@path/to/file.json`.
+
+`--r-shiny-authentication` (string)
+:   Specifies the type of users who can access the Shiny application. This option provides a value for a sub-field of the JSON option 'r-shiny'. It is mutually exclusive with that option.
+
+    Allowable values are: `anyone_with_url`, `any_valid_user`, `members_of_deployment_space`.
+
+`--r-shiny-parameters` (<a href="#cli-deployment-entity-request-r-shiny-parameters-example-schema-ml">`DeploymentEntityRequestRShinyParameters`</a>)
+:   A set of parameters that specify details about the Shiny deployment. This option provides a value for a sub-field of the JSON option 'r-shiny'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--r-shiny-parameters=@path/to/file.json`.
 
 <a id='ml_deployment_list'></a>
 ## &#8226; ml deployment list
@@ -5553,7 +6522,7 @@ cpdctl ml deployment update --version VERSION --deployment-id DEPLOYMENT-ID --sp
 `--hardware-spec` (<a href="#cli-hardware-spec-rel-example-schema-ml">`HardwareSpecRel`</a>)
 :   A hardware specification.
 
-`--hybrid-pipeline-hardware-specs` (<a href="#cli-job-entity-result-hybrid-pipeline-hardware-specs-item-example-schema-ml">`JobEntityResultHybridPipelineHardwareSpecsItem[]`</a>)
+`--hybrid-pipeline-hardware-specs` (<a href="#cli-hybrid-pipeline-hardware-specs-item-example-schema-ml">`HybridPipelineHardwareSpecsItem[]`</a>)
 :   Hybrid pipeline hardware specification.
 
 `--r-shiny` (<a href="#cli-deployment-patch-request-helper-r-shiny-example-schema-ml">`DeploymentPatchRequestHelperRShiny`</a>)
@@ -5589,7 +6558,7 @@ Wait until the deployment becomes ready or failed.
 #### Command options
 
 `--cpd-scope` (string     )
-:    CPD space scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--deployment-id` (string )
 :    The deployment ID.
@@ -5631,7 +6600,7 @@ cpdctl ml deployment-job list --space-id SPACE-ID [--tag-value TAG-VALUE] [--sta
 Start a deployment job asynchronously. This can perform batch scoring, streaming, or other types of batch operations, such as solving a Decision Optimization problem. Depending on the `version` date passed, the `platform_jobs` section in the response may or may not be populated. Use the GET call to retrieve the deployment job, this GET call will eventually populate the `platform_jobs` section. Refer to the `version date` description for more details.
 
 ```sh
-cpdctl ml deployment-job create --space-id SPACE-ID --name NAME --deployment DEPLOYMENT [--description DESCRIPTION] [--tags TAGS] [--custom CUSTOM] [--hardware-spec HARDWARE-SPEC] [--hybrid-pipeline-hardware-specs HYBRID-PIPELINE-HARDWARE-SPECS] [--scoring SCORING] [--decision-optimization DECISION-OPTIMIZATION] [--retention RETENTION]
+cpdctl ml deployment-job create --space-id SPACE-ID --name NAME [--deployment DEPLOYMENT | --deployment-id DEPLOYMENT-ID] [--description DESCRIPTION] [--tags TAGS] [--custom CUSTOM] [--hardware-spec HARDWARE-SPEC | --hardware-spec-id HARDWARE-SPEC-ID --hardware-spec-rev HARDWARE-SPEC-REV --hardware-spec-name HARDWARE-SPEC-NAME --hardware-spec-num-nodes HARDWARE-SPEC-NUM-NODES] [--hybrid-pipeline-hardware-specs HYBRID-PIPELINE-HARDWARE-SPECS] [--scoring SCORING | --scoring-input-data SCORING-INPUT-DATA --scoring-input-data-references SCORING-INPUT-DATA-REFERENCES --scoring-output-data-reference SCORING-OUTPUT-DATA-REFERENCE --scoring-evaluations SCORING-EVALUATIONS --scoring-environment-variables SCORING-ENVIRONMENT-VARIABLES] [--decision-optimization DECISION-OPTIMIZATION | --decision-optimization-solve-parameters DECISION-OPTIMIZATION-SOLVE-PARAMETERS --decision-optimization-input-data DECISION-OPTIMIZATION-INPUT-DATA --decision-optimization-input-data-references DECISION-OPTIMIZATION-INPUT-DATA-REFERENCES --decision-optimization-output-data DECISION-OPTIMIZATION-OUTPUT-DATA --decision-optimization-output-data-references DECISION-OPTIMIZATION-OUTPUT-DATA-REFERENCES] [--retention RETENTION]
 ```
 
 
@@ -5644,7 +6613,7 @@ cpdctl ml deployment-job create --space-id SPACE-ID --name NAME --deployment DEP
 :   The name of the resource. Required.
 
 `--deployment` (<a href="#cli-simple-rel-example-schema-ml">`SimpleRel`</a>)
-:   A reference to a resource. Required.
+:   A reference to a resource. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--deployment=@path/to/file.json`.
 
@@ -5660,11 +6629,11 @@ cpdctl ml deployment-job create --space-id SPACE-ID --name NAME --deployment DEP
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--custom=@path/to/file.json`.
 
 `--hardware-spec` (<a href="#cli-hardware-spec-rel-example-schema-ml">`HardwareSpecRel`</a>)
-:   A hardware specification.
+:   A hardware specification. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--hardware-spec=@path/to/file.json`.
 
-`--hybrid-pipeline-hardware-specs` (<a href="#cli-job-entity-request-hybrid-pipeline-hardware-specs-item-example-schema-ml">`JobEntityRequestHybridPipelineHardwareSpecsItem[]`</a>)
+`--hybrid-pipeline-hardware-specs` (<a href="#cli-hybrid-pipeline-hardware-specs-item-example-schema-ml">`HybridPipelineHardwareSpecsItem[]`</a>)
 :   Hybrid pipeline hardware specification.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--hybrid-pipeline-hardware-specs=@path/to/file.json`.
@@ -5687,7 +6656,7 @@ property is not supported for batch deployment job of Spark models and Python Fu
 Use `output_data_references` property to specify the details pertaining to the remote source where the input
 data for batch deployment job is available. `output_data_references` must be used with `input_data_references`.
 The `output_data_references`
-property is not supported for batch deployment job of Spark models and Python Functions.
+property is not supported for batch deployment job of Spark models and Python Functions. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--scoring=@path/to/file.json`.
 
@@ -5706,12 +6675,81 @@ with `output_data_references`.
 The `input_data_references` property is mutually exclusive with `input_data` property, only use one of these.
 
 Use `output_data_references` property to specify the details pertaining to the remote source where the
-input data for batch deployment job is available. The `output_data_references` must be used with `input_data_references`.
+input data for batch deployment job is available. The `output_data_references` must be used with `input_data_references`. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--decision-optimization=@path/to/file.json`.
 
 `--retention` (string)
 :   Defines number of days to retain the job meta. Job meta will be auto deleted after that. Value '-1' sets the meta to be never auto deleted. accepted values are positive integer and '-1'. The default value if the parameter is not passed is '30' days.
+
+`--deployment-id` (string)
+:   The id of the referenced resource. This option provides a value for a sub-field of the JSON option 'deployment'. It is mutually exclusive with that option.
+
+`--hardware-spec-id` (string)
+:   The id of the hardware specification. One, and only one, of `id` or `name` must be set. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--hardware-spec-rev` (string)
+:   The revision of the hardware specification. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--hardware-spec-name` (string)
+:   The name of the hardware specification. One, and only one, of `id` or `name` must be set. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--hardware-spec-num-nodes` (int64)
+:   The number of nodes applied to a computation. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--scoring-input-data` (<a href="#cli-scoring-payload-example-schema-ml">`ScoringPayload[]`</a>)
+:   A list of payloads. This option provides a value for a sub-field of the JSON option 'scoring'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--scoring-input-data=@path/to/file.json`.
+
+`--scoring-input-data-references` (<a href="#cli-data-connection-reference-example-schema-ml">`DataConnectionReference[]`</a>)
+:   A list of input data references. This option provides a value for a sub-field of the JSON option 'scoring'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--scoring-input-data-references=@path/to/file.json`.
+
+`--scoring-output-data-reference` (<a href="#cli-data-connection-reference-example-schema-ml">`DataConnectionReference`</a>)
+:   A reference to data with an optional data schema.
+If necessary, it is possible to provide a data connection that contains
+just the data schema. This option provides a value for a sub-field of the JSON option 'scoring'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--scoring-output-data-reference=@path/to/file.json`.
+
+`--scoring-evaluations` (<a href="#cli-evaluations-spec-item-example-schema-ml">`EvaluationsSpecItem[]`</a>)
+:   A list of evaluation specifications. This option provides a value for a sub-field of the JSON option 'scoring'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--scoring-evaluations=@path/to/file.json`.
+
+`--scoring-environment-variables` (map[string]string)
+:   This property is used to specify environment variables and their values required to be consumed by the batch deployment job. The environment variables and values must be specified as key-value pairs.
+
+This property is currently supported only for Python Scripts in batch deployment jobs. This option provides a value for a sub-field of the JSON option 'scoring'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--scoring-environment-variables=@path/to/file.json`.
+
+`--decision-optimization-solve-parameters` (generic map)
+:   To control solve behavior, you can specify solve parameters in your request as key-value pairs. This option provides a value for a sub-field of the JSON option 'decision-optimization'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--decision-optimization-solve-parameters=@path/to/file.json`.
+
+`--decision-optimization-input-data` (<a href="#cli-scoring-payload-optim-example-schema-ml">`ScoringPayloadOptim[]`</a>)
+:   A list of payloads. This option provides a value for a sub-field of the JSON option 'decision-optimization'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--decision-optimization-input-data=@path/to/file.json`.
+
+`--decision-optimization-input-data-references` (<a href="#cli-object-location-optim-example-schema-ml">`ObjectLocationOptim[]`</a>)
+:   A list of input data references. This option provides a value for a sub-field of the JSON option 'decision-optimization'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--decision-optimization-input-data-references=@path/to/file.json`.
+
+`--decision-optimization-output-data` (<a href="#cli-scoring-payload-optim-example-schema-ml">`ScoringPayloadOptim[]`</a>)
+:   A list of output payloads. This option provides a value for a sub-field of the JSON option 'decision-optimization'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--decision-optimization-output-data=@path/to/file.json`.
+
+`--decision-optimization-output-data-references` (<a href="#cli-object-location-optim-example-schema-ml">`ObjectLocationOptim[]`</a>)
+:   A list of output data references. This option provides a value for a sub-field of the JSON option 'decision-optimization'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--decision-optimization-output-data-references=@path/to/file.json`.
 
 <a id='ml_deployment-job_delete'></a>
 ## &#8226; ml deployment-job delete
@@ -5762,7 +6800,7 @@ cpdctl ml deployment-job get --job-id JOB-ID --space-id SPACE-ID [--include INCL
 Create a new deployment job definition with the given payload. A deployment job definition represents the deployment metadata information in order to create a batch job in WML. This contains the same metadata used by the /ml/v4/deployment_jobs endpoint. This means that when submitting batch deployment jobs the user can either provide the job definition inline or reference a job definition in a query parameter.
 
 ```sh
-cpdctl ml deployment-job-definition create --space-id SPACE-ID --name NAME --deployment DEPLOYMENT [--description DESCRIPTION] [--tags TAGS] [--custom CUSTOM] [--hardware-spec HARDWARE-SPEC] [--hybrid-pipeline-hardware-specs HYBRID-PIPELINE-HARDWARE-SPECS] [--scoring SCORING] [--decision-optimization DECISION-OPTIMIZATION]
+cpdctl ml deployment-job-definition create --space-id SPACE-ID --name NAME [--deployment DEPLOYMENT | --deployment-id DEPLOYMENT-ID] [--description DESCRIPTION] [--tags TAGS] [--custom CUSTOM] [--hardware-spec HARDWARE-SPEC | --hardware-spec-id HARDWARE-SPEC-ID --hardware-spec-rev HARDWARE-SPEC-REV --hardware-spec-name HARDWARE-SPEC-NAME --hardware-spec-num-nodes HARDWARE-SPEC-NUM-NODES] [--hybrid-pipeline-hardware-specs HYBRID-PIPELINE-HARDWARE-SPECS] [--scoring SCORING | --scoring-input-data SCORING-INPUT-DATA --scoring-input-data-references SCORING-INPUT-DATA-REFERENCES --scoring-output-data-reference SCORING-OUTPUT-DATA-REFERENCE --scoring-evaluations SCORING-EVALUATIONS --scoring-environment-variables SCORING-ENVIRONMENT-VARIABLES] [--decision-optimization DECISION-OPTIMIZATION | --decision-optimization-solve-parameters DECISION-OPTIMIZATION-SOLVE-PARAMETERS --decision-optimization-input-data DECISION-OPTIMIZATION-INPUT-DATA --decision-optimization-input-data-references DECISION-OPTIMIZATION-INPUT-DATA-REFERENCES --decision-optimization-output-data DECISION-OPTIMIZATION-OUTPUT-DATA --decision-optimization-output-data-references DECISION-OPTIMIZATION-OUTPUT-DATA-REFERENCES]
 ```
 
 
@@ -5775,7 +6813,7 @@ cpdctl ml deployment-job-definition create --space-id SPACE-ID --name NAME --dep
 :   The name of the resource. Required.
 
 `--deployment` (<a href="#cli-simple-rel-example-schema-ml">`SimpleRel`</a>)
-:   A reference to a resource. Required.
+:   A reference to a resource. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--deployment=@path/to/file.json`.
 
@@ -5791,11 +6829,11 @@ cpdctl ml deployment-job-definition create --space-id SPACE-ID --name NAME --dep
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--custom=@path/to/file.json`.
 
 `--hardware-spec` (<a href="#cli-hardware-spec-rel-example-schema-ml">`HardwareSpecRel`</a>)
-:   A hardware specification.
+:   A hardware specification. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--hardware-spec=@path/to/file.json`.
 
-`--hybrid-pipeline-hardware-specs` (<a href="#cli-job-entity-request-hybrid-pipeline-hardware-specs-item-example-schema-ml">`JobEntityRequestHybridPipelineHardwareSpecsItem[]`</a>)
+`--hybrid-pipeline-hardware-specs` (<a href="#cli-hybrid-pipeline-hardware-specs-item-example-schema-ml">`HybridPipelineHardwareSpecsItem[]`</a>)
 :   Hybrid pipeline hardware specification.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--hybrid-pipeline-hardware-specs=@path/to/file.json`.
@@ -5818,7 +6856,7 @@ property is not supported for batch deployment job of Spark models and Python Fu
 Use `output_data_references` property to specify the details pertaining to the remote source where the input
 data for batch deployment job is available. `output_data_references` must be used with `input_data_references`.
 The `output_data_references`
-property is not supported for batch deployment job of Spark models and Python Functions.
+property is not supported for batch deployment job of Spark models and Python Functions. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--scoring=@path/to/file.json`.
 
@@ -5837,9 +6875,78 @@ with `output_data_references`.
 The `input_data_references` property is mutually exclusive with `input_data` property, only use one of these.
 
 Use `output_data_references` property to specify the details pertaining to the remote source where the
-input data for batch deployment job is available. The `output_data_references` must be used with `input_data_references`.
+input data for batch deployment job is available. The `output_data_references` must be used with `input_data_references`. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--decision-optimization=@path/to/file.json`.
+
+`--deployment-id` (string)
+:   The id of the referenced resource. This option provides a value for a sub-field of the JSON option 'deployment'. It is mutually exclusive with that option.
+
+`--hardware-spec-id` (string)
+:   The id of the hardware specification. One, and only one, of `id` or `name` must be set. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--hardware-spec-rev` (string)
+:   The revision of the hardware specification. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--hardware-spec-name` (string)
+:   The name of the hardware specification. One, and only one, of `id` or `name` must be set. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--hardware-spec-num-nodes` (int64)
+:   The number of nodes applied to a computation. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--scoring-input-data` (<a href="#cli-scoring-payload-example-schema-ml">`ScoringPayload[]`</a>)
+:   A list of payloads. This option provides a value for a sub-field of the JSON option 'scoring'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--scoring-input-data=@path/to/file.json`.
+
+`--scoring-input-data-references` (<a href="#cli-data-connection-reference-example-schema-ml">`DataConnectionReference[]`</a>)
+:   A list of input data references. This option provides a value for a sub-field of the JSON option 'scoring'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--scoring-input-data-references=@path/to/file.json`.
+
+`--scoring-output-data-reference` (<a href="#cli-data-connection-reference-example-schema-ml">`DataConnectionReference`</a>)
+:   A reference to data with an optional data schema.
+If necessary, it is possible to provide a data connection that contains
+just the data schema. This option provides a value for a sub-field of the JSON option 'scoring'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--scoring-output-data-reference=@path/to/file.json`.
+
+`--scoring-evaluations` (<a href="#cli-evaluations-spec-item-example-schema-ml">`EvaluationsSpecItem[]`</a>)
+:   A list of evaluation specifications. This option provides a value for a sub-field of the JSON option 'scoring'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--scoring-evaluations=@path/to/file.json`.
+
+`--scoring-environment-variables` (map[string]string)
+:   This property is used to specify environment variables and their values required to be consumed by the batch deployment job. The environment variables and values must be specified as key-value pairs.
+
+This property is currently supported only for Python Scripts in batch deployment jobs. This option provides a value for a sub-field of the JSON option 'scoring'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--scoring-environment-variables=@path/to/file.json`.
+
+`--decision-optimization-solve-parameters` (generic map)
+:   To control solve behavior, you can specify solve parameters in your request as key-value pairs. This option provides a value for a sub-field of the JSON option 'decision-optimization'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--decision-optimization-solve-parameters=@path/to/file.json`.
+
+`--decision-optimization-input-data` (<a href="#cli-scoring-payload-optim-example-schema-ml">`ScoringPayloadOptim[]`</a>)
+:   A list of payloads. This option provides a value for a sub-field of the JSON option 'decision-optimization'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--decision-optimization-input-data=@path/to/file.json`.
+
+`--decision-optimization-input-data-references` (<a href="#cli-object-location-optim-example-schema-ml">`ObjectLocationOptim[]`</a>)
+:   A list of input data references. This option provides a value for a sub-field of the JSON option 'decision-optimization'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--decision-optimization-input-data-references=@path/to/file.json`.
+
+`--decision-optimization-output-data` (<a href="#cli-scoring-payload-optim-example-schema-ml">`ScoringPayloadOptim[]`</a>)
+:   A list of output payloads. This option provides a value for a sub-field of the JSON option 'decision-optimization'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--decision-optimization-output-data=@path/to/file.json`.
+
+`--decision-optimization-output-data-references` (<a href="#cli-object-location-optim-example-schema-ml">`ObjectLocationOptim[]`</a>)
+:   A list of output data references. This option provides a value for a sub-field of the JSON option 'decision-optimization'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--decision-optimization-output-data-references=@path/to/file.json`.
 
 <a id='ml_deployment-job-definition_list'></a>
 ## &#8226; ml deployment-job-definition list
@@ -6016,7 +7123,7 @@ cpdctl ml deployment-job-definition list-revisions --job-definition-id JOB-DEFIN
 Create a new experiment with the given payload. An experiment represents an asset that captures a set of `pipeline` or `model definition` assets that will be trained at the same time on the same data set.
 
 ```sh
-cpdctl ml experiment create --name NAME [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--label-column LABEL-COLUMN] [--evaluation-definition EVALUATION-DEFINITION] [--training-references TRAINING-REFERENCES] [--custom CUSTOM]
+cpdctl ml experiment create --name NAME [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--label-column LABEL-COLUMN] [--evaluation-definition EVALUATION-DEFINITION | --evaluation-definition-method EVALUATION-DEFINITION-METHOD --evaluation-definition-metrics EVALUATION-DEFINITION-METRICS] [--training-references TRAINING-REFERENCES] [--custom CUSTOM]
 ```
 
 
@@ -6041,7 +7148,7 @@ cpdctl ml experiment create --name NAME [--project-id PROJECT-ID] [--space-id SP
 :   The label column.
 
 `--evaluation-definition` (<a href="#cli-evaluation-definition-example-schema-ml">`EvaluationDefinition`</a>)
-:   The optional evaluation definition.
+:   The optional evaluation definition. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--evaluation-definition=@path/to/file.json`.
 
@@ -6054,6 +7161,16 @@ cpdctl ml experiment create --name NAME [--project-id PROJECT-ID] [--space-id SP
 :   User defined properties specified as key-value pairs.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--custom=@path/to/file.json`.
+
+`--evaluation-definition-method` (string)
+:   The evaluation method. This option provides a value for a sub-field of the JSON option 'evaluation-definition'. It is mutually exclusive with that option.
+
+    Allowable values are: `binary`, `regression`, `multiclass`.
+
+`--evaluation-definition-metrics` (<a href="#cli-evaluation-metric-example-schema-ml">`EvaluationMetric[]`</a>)
+:   The evaluation metrics. This option provides a value for a sub-field of the JSON option 'evaluation-definition'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--evaluation-definition-metrics=@path/to/file.json`.
 
 <a id='ml_experiment_list'></a>
 ## &#8226; ml experiment list
@@ -6244,7 +7361,7 @@ cpdctl ml experiment list-revisions --experiment-id EXPERIMENT-ID [--space-id SP
 Create a new function with the given payload. A function is some code that can be deployed as an online, or batch deployment.
 
 ```sh
-cpdctl ml function create --name NAME --software-spec SOFTWARE-SPEC [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--type TYPE] [--sample-scoring-input SAMPLE-SCORING-INPUT] [--schemas SCHEMAS] [--custom CUSTOM] [--model-references MODEL-REFERENCES]
+cpdctl ml function create --name NAME [--software-spec SOFTWARE-SPEC | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--type TYPE] [--sample-scoring-input SAMPLE-SCORING-INPUT | --sample-scoring-input-input-data SAMPLE-SCORING-INPUT-INPUT-DATA] [--schemas SCHEMAS | --schemas-input SCHEMAS-INPUT --schemas-output SCHEMAS-OUTPUT] [--custom CUSTOM] [--model-references MODEL-REFERENCES]
 ```
 
 
@@ -6254,7 +7371,7 @@ cpdctl ml function create --name NAME --software-spec SOFTWARE-SPEC [--project-i
 :   The name of the resource. Required.
 
 `--software-spec` (<a href="#cli-software-spec-rel-example-schema-ml">`SoftwareSpecRel`</a>)
-:   A software specification. Required.
+:   A software specification. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--software-spec=@path/to/file.json`.
 
@@ -6289,12 +7406,12 @@ This is illustrated in the example below:
     The default value is `python`.
 
 `--sample-scoring-input` (<a href="#cli-sync-scoring-data-example-schema-ml">`SyncScoringData`</a>)
-:   Scoring data.
+:   Scoring data. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--sample-scoring-input=@path/to/file.json`.
 
 `--schemas` (<a href="#cli-function-entity-schemas-example-schema-ml">`FunctionEntitySchemas`</a>)
-:   The schemas of the expected data.
+:   The schemas of the expected data. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--schemas=@path/to/file.json`.
 
@@ -6307,6 +7424,30 @@ This is illustrated in the example below:
 :   This is a list of references of the models that are used by this function, if any. These references are provided by the owner of the function and are used for usage tracking only.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--model-references=@path/to/file.json`.
+
+`--software-spec-id` (string)
+:   The id of the software specification. One, and only one, of `id` or `name` must be set. This option provides a value for a sub-field of the JSON option 'software-spec'. It is mutually exclusive with that option.
+
+`--software-spec-rev` (string)
+:   The revision of the software specification. This option provides a value for a sub-field of the JSON option 'software-spec'. It is mutually exclusive with that option.
+
+`--software-spec-name` (string)
+:   The name of the software specification. One, and only one, of `id` or `name` must be set. This option provides a value for a sub-field of the JSON option 'software-spec'. It is mutually exclusive with that option.
+
+`--sample-scoring-input-input-data` (<a href="#cli-input-data-array-example-schema-ml">`InputDataArray[]`</a>)
+:   The input data. This option provides a value for a sub-field of the JSON option 'sample-scoring-input'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--sample-scoring-input-input-data=@path/to/file.json`.
+
+`--schemas-input` (<a href="#cli-data-schema-example-schema-ml">`DataSchema[]`</a>)
+:   The schema of the expected input data. This option provides a value for a sub-field of the JSON option 'schemas'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--schemas-input=@path/to/file.json`.
+
+`--schemas-output` (<a href="#cli-data-schema-example-schema-ml">`DataSchema[]`</a>)
+:   The schema of the expected output data. This option provides a value for a sub-field of the JSON option 'schemas'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--schemas-output=@path/to/file.json`.
 
 <a id='ml_function_list'></a>
 ## &#8226; ml function list
@@ -6546,7 +7687,7 @@ Create a new model with the given payload. A model represents a machine learning
 `content_import_state` in the model status (/ml/v4/models/{model_id}) is `completed`. If `content_import_state` is not used then a `201` status is returned.
 
 ```sh
-cpdctl ml model create --name NAME --type TYPE --software-spec SOFTWARE-SPEC [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--pipeline PIPELINE] [--model-definition MODEL-DEFINITION] [--hyper-parameters HYPER-PARAMETERS] [--domain DOMAIN] [--training-data-references TRAINING-DATA-REFERENCES] [--test-data-references TEST-DATA-REFERENCES] [--schemas SCHEMAS] [--label-column LABEL-COLUMN] [--transformed-label-column TRANSFORMED-LABEL-COLUMN] [--size SIZE] [--metrics METRICS] [--custom CUSTOM] [--user-defined-objects USER-DEFINED-OBJECTS] [--hybrid-pipeline-software-specs HYBRID-PIPELINE-SOFTWARE-SPECS] [--model-version MODEL-VERSION] [--training-id TRAINING-ID] [--data-preprocessing DATA-PREPROCESSING] [--content-location CONTENT-LOCATION]
+cpdctl ml model create --name NAME --type TYPE [--software-spec SOFTWARE-SPEC | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--pipeline PIPELINE | --pipeline-id PIPELINE-ID --pipeline-rev PIPELINE-REV] [--model-definition MODEL-DEFINITION | --model-definition-id MODEL-DEFINITION-ID] [--hyper-parameters HYPER-PARAMETERS] [--domain DOMAIN] [--training-data-references TRAINING-DATA-REFERENCES] [--test-data-references TEST-DATA-REFERENCES] [--schemas SCHEMAS | --schemas-input SCHEMAS-INPUT --schemas-output SCHEMAS-OUTPUT] [--label-column LABEL-COLUMN] [--transformed-label-column TRANSFORMED-LABEL-COLUMN] [--size SIZE | --size-in-memory SIZE-IN-MEMORY --size-content SIZE-CONTENT] [--metrics METRICS] [--custom CUSTOM] [--user-defined-objects USER-DEFINED-OBJECTS] [--hybrid-pipeline-software-specs HYBRID-PIPELINE-SOFTWARE-SPECS] [--model-version MODEL-VERSION | --model-version-number MODEL-VERSION-NUMBER --model-version-tag MODEL-VERSION-TAG --model-version-description MODEL-VERSION-DESCRIPTION] [--training-id TRAINING-ID] [--data-preprocessing DATA-PREPROCESSING] [--content-location CONTENT-LOCATION | --content-location-contents CONTENT-LOCATION-CONTENTS --content-location-type CONTENT-LOCATION-TYPE --content-location-connection CONTENT-LOCATION-CONNECTION --content-location-location CONTENT-LOCATION-LOCATION]
 ```
 
 
@@ -6560,7 +7701,7 @@ cpdctl ml model create --name NAME --type TYPE --software-spec SOFTWARE-SPEC [--
 [here](https://dataplatform.cloud.ibm.com/docs/content/wsj/wmls/wmls-deploy-python-types.html?context=analytics). Required.
 
 `--software-spec` (<a href="#cli-software-spec-rel-example-schema-ml">`SoftwareSpecRel`</a>)
-:   A software specification. Required.
+:   A software specification. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--software-spec=@path/to/file.json`.
 
@@ -6577,12 +7718,12 @@ cpdctl ml model create --name NAME --type TYPE --software-spec SOFTWARE-SPEC [--
 :   A list of tags for this resource.
 
 `--pipeline` (<a href="#cli-rel-example-schema-ml">`Rel`</a>)
-:   A reference to a resource.
+:   A reference to a resource. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline=@path/to/file.json`.
 
 `--model-definition` (<a href="#cli-model-definition-id-example-schema-ml">`ModelDefinitionID`</a>)
-:   The model definition.
+:   The model definition. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--model-definition=@path/to/file.json`.
 
@@ -6610,7 +7751,7 @@ provided in the data references. Note that data references contain the schema fo
 associated data and this object contains the schema(s) for the associated prediction, if any.
 In the case that the prediction input data matches exactly the schema of the training data
 references then the prediction schema can be omitted. However it is highly recommended to
-always specify the prediction schemas using this field.
+always specify the prediction schemas using this field. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--schemas=@path/to/file.json`.
 
@@ -6621,7 +7762,7 @@ always specify the prediction schemas using this field.
 :   The name of the  label column seen by the estimator, which may have been transformed by the previous transformers in the pipeline. This is not necessarily the same column as the `label_column` in the initial data set.
 
 `--size` (<a href="#cli-model-entity-size-example-schema-ml">`ModelEntitySize`</a>)
-:   This will be used by scoring to record the size of the model.
+:   This will be used by scoring to record the size of the model. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--size=@path/to/file.json`.
 
@@ -6648,7 +7789,7 @@ always specify the prediction schemas using this field.
 `--model-version` (<a href="#cli-model-entity-model-version-example-schema-ml">`ModelEntityModelVersion`</a>)
 :   Optional metadata that can be used to provide information
 about this model that can be tracked with IBM AI Factsheets.
-See [Using AI Factsheets](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/factsheets-model-inventory.html) for more details.
+See [Using AI Factsheets](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/factsheets-model-inventory.html) for more details. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--model-version=@path/to/file.json`.
 
@@ -6665,9 +7806,76 @@ Since CloudPak for Data `4.7.0`.
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--data-preprocessing=@path/to/file.json`.
 
 `--content-location` (<a href="#cli-content-location-example-schema-ml">`ContentLocation`</a>)
-:   Details about the attachments that should be uploaded with this model.
+:   Details about the attachments that should be uploaded with this model. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--content-location=@path/to/file.json`.
+
+`--software-spec-id` (string)
+:   The id of the software specification. One, and only one, of `id` or `name` must be set. This option provides a value for a sub-field of the JSON option 'software-spec'. It is mutually exclusive with that option.
+
+`--software-spec-rev` (string)
+:   The revision of the software specification. This option provides a value for a sub-field of the JSON option 'software-spec'. It is mutually exclusive with that option.
+
+`--software-spec-name` (string)
+:   The name of the software specification. One, and only one, of `id` or `name` must be set. This option provides a value for a sub-field of the JSON option 'software-spec'. It is mutually exclusive with that option.
+
+`--pipeline-id` (string)
+:   The id of the referenced resource. This option provides a value for a sub-field of the JSON option 'pipeline'. It is mutually exclusive with that option.
+
+`--pipeline-rev` (string)
+:   The revision of the referenced resource. This option provides a value for a sub-field of the JSON option 'pipeline'. It is mutually exclusive with that option.
+
+`--model-definition-id` (string)
+:   The id of the model definition. This option provides a value for a sub-field of the JSON option 'model-definition'. It is mutually exclusive with that option.
+
+`--schemas-input` (<a href="#cli-data-schema-example-schema-ml">`DataSchema[]`</a>)
+:   The schema of the expected prediction input data, see
+[datarecord-metadata-v2-schema](https://raw.githubusercontent.com/elyra-ai/pipeline-schemas/master/common-pipeline/datarecord-metadata/datarecord-metadata-v2-schema.json) for the schema definition. This option provides a value for a sub-field of the JSON option 'schemas'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--schemas-input=@path/to/file.json`.
+
+`--schemas-output` (<a href="#cli-data-schema-example-schema-ml">`DataSchema[]`</a>)
+:   The schema of the expected prediction output data, see
+[datarecord-metadata-v2-schema](https://raw.githubusercontent.com/elyra-ai/pipeline-schemas/master/common-pipeline/datarecord-metadata/datarecord-metadata-v2-schema.json) for the schema definition. This option provides a value for a sub-field of the JSON option 'schemas'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--schemas-output=@path/to/file.json`.
+
+`--size-in-memory` (float64)
+:   The memory size of the model. This option provides a value for a sub-field of the JSON option 'size'. It is mutually exclusive with that option.
+
+`--size-content` (float64)
+:   The size of the model on disk. This option provides a value for a sub-field of the JSON option 'size'. It is mutually exclusive with that option.
+
+`--model-version-number` (string)
+:   This is the user-provided version which should follow semantic versioning. This option provides a value for a sub-field of the JSON option 'model-version'. It is mutually exclusive with that option.
+
+`--model-version-tag` (string)
+:   This is the user-provided tag for the model. This option provides a value for a sub-field of the JSON option 'model-version'. It is mutually exclusive with that option.
+
+`--model-version-description` (string)
+:   This is the user provided description that provides context for the change in the model version.
+
+Since CloudPak for Data `4.7.0`. This option provides a value for a sub-field of the JSON option 'model-version'. It is mutually exclusive with that option.
+
+`--content-location-contents` (<a href="#cli-content-info-example-schema-ml">`ContentInfo[]`</a>)
+:   The content information to be uploaded. This option provides a value for a sub-field of the JSON option 'content-location'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--content-location-contents=@path/to/file.json`.
+
+`--content-location-type` (string)
+:   The data source type like `connection_asset` or `data_asset`. This option provides a value for a sub-field of the JSON option 'content-location'. It is mutually exclusive with that option.
+
+    Allowable values are: `connection_asset`, `data_asset`, `url`, `fs`.
+
+`--content-location-connection` (map[string]string)
+:   Connection properties. This option provides a value for a sub-field of the JSON option 'content-location'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--content-location-connection=@path/to/file.json`.
+
+`--content-location-location` (map[string]string)
+:   Location properties. This option provides a value for a sub-field of the JSON option 'content-location'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--content-location-location=@path/to/file.json`.
 
 <a id='ml_model_list'></a>
 ## &#8226; ml model list
@@ -7037,7 +8245,7 @@ Wait until the model upload becomes completed or failed.
 #### Command options
 
 `--cpd-scope` (string  )
-:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--model-id` (string   )
 :    The model ID.
@@ -7054,7 +8262,7 @@ Wait until the model upload becomes completed or failed.
 Create a new model definition with the given payload. A model definition represents the code that is used to train one or more models. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition create --name NAME --version VERSION --platform PLATFORM [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--command COMMAND] [--software-spec SOFTWARE-SPEC] [--custom CUSTOM]
+cpdctl ml model-definition create --name NAME --version VERSION [--platform PLATFORM | --platform-name PLATFORM-NAME --platform-versions PLATFORM-VERSIONS] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--command COMMAND] [--software-spec SOFTWARE-SPEC | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME] [--custom CUSTOM]
 ```
 
 
@@ -7067,7 +8275,7 @@ cpdctl ml model-definition create --name NAME --version VERSION --platform PLATF
 :   The package version. Required.
 
 `--platform` (<a href="#cli-model-definition-entity-request-platform-example-schema-ml">`ModelDefinitionEntityRequestPlatform`</a>)
-:   &nbsp; Required.
+:   This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--platform=@path/to/file.json`.
 
@@ -7087,7 +8295,7 @@ cpdctl ml model-definition create --name NAME --version VERSION --platform PLATF
 :   The command used to run the model.
 
 `--software-spec` (<a href="#cli-software-spec-rel-example-schema-ml">`SoftwareSpecRel`</a>)
-:   A software specification.
+:   A software specification. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--software-spec=@path/to/file.json`.
 
@@ -7095,6 +8303,21 @@ cpdctl ml model-definition create --name NAME --version VERSION --platform PLATF
 :   User defined properties specified as key-value pairs.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--custom=@path/to/file.json`.
+
+`--platform-name` (string)
+:   The name of the platform. This option provides a value for a sub-field of the JSON option 'platform'. It is mutually exclusive with that option.
+
+`--platform-versions` ([]string)
+:   The supported versions. This option provides a value for a sub-field of the JSON option 'platform'. It is mutually exclusive with that option.
+
+`--software-spec-id` (string)
+:   The id of the software specification. One, and only one, of `id` or `name` must be set. This option provides a value for a sub-field of the JSON option 'software-spec'. It is mutually exclusive with that option.
+
+`--software-spec-rev` (string)
+:   The revision of the software specification. This option provides a value for a sub-field of the JSON option 'software-spec'. It is mutually exclusive with that option.
+
+`--software-spec-name` (string)
+:   The name of the software specification. One, and only one, of `id` or `name` must be set. This option provides a value for a sub-field of the JSON option 'software-spec'. It is mutually exclusive with that option.
 
 <a id='ml_model-definition_list'></a>
 ## &#8226; ml model-definition list
@@ -7554,19 +8777,19 @@ cpdctl ml pipeline list-revisions --pipeline-id PIPELINE-ID [--space-id SPACE-ID
 Create a new WML training.
 
 ```sh
-cpdctl ml training create --results-reference RESULTS-REFERENCE [--experiment EXPERIMENT] [--pipeline PIPELINE] [--model-definition MODEL-DEFINITION] [--federated-learning FEDERATED-LEARNING] [--training-data-references TRAINING-DATA-REFERENCES] [--test-data-references TEST-DATA-REFERENCES] [--custom CUSTOM] [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+cpdctl ml training create [--results-reference RESULTS-REFERENCE | --results-reference-id RESULTS-REFERENCE-ID --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-connection RESULTS-REFERENCE-CONNECTION --results-reference-location RESULTS-REFERENCE-LOCATION] [--experiment EXPERIMENT | --experiment-id EXPERIMENT-ID --experiment-rev EXPERIMENT-REV] [--pipeline PIPELINE | --pipeline-id PIPELINE-ID --pipeline-rev PIPELINE-REV --pipeline-model-type PIPELINE-MODEL-TYPE --pipeline-data-bindings PIPELINE-DATA-BINDINGS --pipeline-nodes-parameters PIPELINE-NODES-PARAMETERS --pipeline-hardware-spec PIPELINE-HARDWARE-SPEC --pipeline-hybrid-pipeline-hardware-specs PIPELINE-HYBRID-PIPELINE-HARDWARE-SPECS] [--model-definition MODEL-DEFINITION | --model-definition-id MODEL-DEFINITION-ID --model-definition-rev MODEL-DEFINITION-REV --model-definition-model-type MODEL-DEFINITION-MODEL-TYPE --model-definition-hardware-spec MODEL-DEFINITION-HARDWARE-SPEC --model-definition-software-spec MODEL-DEFINITION-SOFTWARE-SPEC --model-definition-command MODEL-DEFINITION-COMMAND --model-definition-parameters MODEL-DEFINITION-PARAMETERS] [--federated-learning FEDERATED-LEARNING | --federated-learning-model FEDERATED-LEARNING-MODEL --federated-learning-fusion-type FEDERATED-LEARNING-FUSION-TYPE --federated-learning-remote-training FEDERATED-LEARNING-REMOTE-TRAINING --federated-learning-rounds FEDERATED-LEARNING-ROUNDS --federated-learning-termination-predicate FEDERATED-LEARNING-TERMINATION-PREDICATE --federated-learning-epochs FEDERATED-LEARNING-EPOCHS --federated-learning-optimizer FEDERATED-LEARNING-OPTIMIZER --federated-learning-loss FEDERATED-LEARNING-LOSS --federated-learning-metrics FEDERATED-LEARNING-METRICS --federated-learning-max-depth FEDERATED-LEARNING-MAX-DEPTH --federated-learning-learning-rate FEDERATED-LEARNING-LEARNING-RATE --federated-learning-l2-regularization FEDERATED-LEARNING-L2-REGULARIZATION --federated-learning-max-bins FEDERATED-LEARNING-MAX-BINS --federated-learning-max-leaf-nodes FEDERATED-LEARNING-MAX-LEAF-NODES --federated-learning-min-samples-leaf FEDERATED-LEARNING-MIN-SAMPLES-LEAF --federated-learning-random-state FEDERATED-LEARNING-RANDOM-STATE --federated-learning-verbose FEDERATED-LEARNING-VERBOSE --federated-learning-num-classes FEDERATED-LEARNING-NUM-CLASSES --federated-learning-byzantine-threshold FEDERATED-LEARNING-BYZANTINE-THRESHOLD --federated-learning-sigma FEDERATED-LEARNING-SIGMA --federated-learning-sigma0 FEDERATED-LEARNING-SIGMA0 --federated-learning-gamma FEDERATED-LEARNING-GAMMA --federated-learning-iters FEDERATED-LEARNING-ITERS --federated-learning-save-intermediate-models FEDERATED-LEARNING-SAVE-INTERMEDIATE-MODELS --federated-learning-crypto FEDERATED-LEARNING-CRYPTO --federated-learning-hardware-spec FEDERATED-LEARNING-HARDWARE-SPEC --federated-learning-software-spec FEDERATED-LEARNING-SOFTWARE-SPEC --federated-learning-version FEDERATED-LEARNING-VERSION --federated-learning-log-level FEDERATED-LEARNING-LOG-LEVEL --federated-learning-sketch-accuracy-vs-privacy FEDERATED-LEARNING-SKETCH-ACCURACY-VS-PRIVACY] [--training-data-references TRAINING-DATA-REFERENCES] [--test-data-references TEST-DATA-REFERENCES] [--custom CUSTOM] [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--space-id SPACE-ID] [--project-id PROJECT-ID]
 ```
 
 
 #### Command options
 
 `--results-reference` (<a href="#cli-object-location-example-schema-ml">`ObjectLocation`</a>)
-:   The training results. Required.
+:   The training results. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference=@path/to/file.json`.
 
 `--experiment` (<a href="#cli-rel-example-schema-ml">`Rel`</a>)
-:   A reference to a resource.
+:   A reference to a resource. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--experiment=@path/to/file.json`.
 
@@ -7574,19 +8797,19 @@ cpdctl ml training create --results-reference RESULTS-REFERENCE [--experiment EX
 :   A pipeline.
 The `hardware_spec` is a reference to the hardware specification.
 The `hybrid_pipeline_hardware_specs` are used only when training a hybrid pipeline in order to
-specify compute requirement for each pipeline node.
+specify compute requirement for each pipeline node. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline=@path/to/file.json`.
 
 `--model-definition` (<a href="#cli-model-definition-rel-example-schema-ml">`ModelDefinitionRel`</a>)
 :   A model.
 The `software_spec` is a reference to a software specification.
-The `hardware_spec` is a reference to a hardware specification.
+The `hardware_spec` is a reference to a hardware specification. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--model-definition=@path/to/file.json`.
 
 `--federated-learning` (<a href="#cli-federated-learning-example-schema-ml">`FederatedLearning`</a>)
-:   Federated Learning.
+:   Federated Learning. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--federated-learning=@path/to/file.json`.
 
@@ -7619,6 +8842,205 @@ The `hardware_spec` is a reference to a hardware specification.
 
 `--project-id` (string)
 :   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+`--results-reference-id` (string)
+:   Item identification inside a collection. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+`--results-reference-type` (string)
+:   The data source type like `connection_asset` or `data_asset`. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Allowable values are: `connection_asset`, `data_asset`, `url`, `fs`.
+
+`--results-reference-connection` (generic map)
+:   Contains a set of fields specific to each connection. See here for [details about specifying connections](#datareferences). This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference-connection=@path/to/file.json`.
+
+`--results-reference-location` (map[string]string)
+:   Contains a set of fields specific to each connection. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference-location=@path/to/file.json`.
+
+`--experiment-id` (string)
+:   The id of the referenced resource. This option provides a value for a sub-field of the JSON option 'experiment'. It is mutually exclusive with that option.
+
+`--experiment-rev` (string)
+:   The revision of the referenced resource. This option provides a value for a sub-field of the JSON option 'experiment'. It is mutually exclusive with that option.
+
+`--pipeline-id` (string)
+:   The id of the referenced resource. This option provides a value for a sub-field of the JSON option 'pipeline'. It is mutually exclusive with that option.
+
+`--pipeline-rev` (string)
+:   The revision of the referenced resource. This option provides a value for a sub-field of the JSON option 'pipeline'. It is mutually exclusive with that option.
+
+`--pipeline-model-type` (string)
+:   The underlying model type produced by the pipeline or by the model_definition. This option provides a value for a sub-field of the JSON option 'pipeline'. It is mutually exclusive with that option.
+
+`--pipeline-data-bindings` (<a href="#cli-pipeline-rel-data-bindings-item-example-schema-ml">`PipelineRelDataBindingsItem[]`</a>)
+:   The data bindings. This option provides a value for a sub-field of the JSON option 'pipeline'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-data-bindings=@path/to/file.json`.
+
+`--pipeline-nodes-parameters` (<a href="#cli-pipeline-rel-nodes-parameters-item-example-schema-ml">`PipelineRelNodesParametersItem[]`</a>)
+:   The node parameters. This option provides a value for a sub-field of the JSON option 'pipeline'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-nodes-parameters=@path/to/file.json`.
+
+`--pipeline-hardware-spec` (<a href="#cli-hardware-spec-rel-example-schema-ml">`HardwareSpecRel`</a>)
+:   A hardware specification. This option provides a value for a sub-field of the JSON option 'pipeline'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-hardware-spec=@path/to/file.json`.
+
+`--pipeline-hybrid-pipeline-hardware-specs` (<a href="#cli-hybrid-pipeline-hardware-specs-item-example-schema-ml">`HybridPipelineHardwareSpecsItem[]`</a>)
+:   Hybrid pipeline hardware specification. This option provides a value for a sub-field of the JSON option 'pipeline'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-hybrid-pipeline-hardware-specs=@path/to/file.json`.
+
+`--model-definition-id` (string)
+:   The id of the referenced resource. This option provides a value for a sub-field of the JSON option 'model-definition'. It is mutually exclusive with that option.
+
+`--model-definition-rev` (string)
+:   The revision of the referenced resource. This option provides a value for a sub-field of the JSON option 'model-definition'. It is mutually exclusive with that option.
+
+`--model-definition-model-type` (string)
+:   The underlying model type produced by the pipeline or by the model_definition. This option provides a value for a sub-field of the JSON option 'model-definition'. It is mutually exclusive with that option.
+
+`--model-definition-hardware-spec` (<a href="#cli-hardware-spec-rel-example-schema-ml">`HardwareSpecRel`</a>)
+:   A hardware specification. This option provides a value for a sub-field of the JSON option 'model-definition'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--model-definition-hardware-spec=@path/to/file.json`.
+
+`--model-definition-software-spec` (<a href="#cli-software-spec-rel-example-schema-ml">`SoftwareSpecRel`</a>)
+:   A software specification. This option provides a value for a sub-field of the JSON option 'model-definition'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--model-definition-software-spec=@path/to/file.json`.
+
+`--model-definition-command` (string)
+:   If present, it overrides the command specified to the library resource itself. This option provides a value for a sub-field of the JSON option 'model-definition'. It is mutually exclusive with that option.
+
+`--model-definition-parameters` (generic map)
+:   Optional key-value pairs parameters. This option provides a value for a sub-field of the JSON option 'model-definition'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--model-definition-parameters=@path/to/file.json`.
+
+`--federated-learning-model` (<a href="#cli-federated-learning-model-example-schema-ml">`FederatedLearningModel`</a>)
+:   The model type for federated_learning. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--federated-learning-model=@path/to/file.json`.
+
+`--federated-learning-fusion-type` (string)
+:   The fusion type for federated learning. For an in-depth description of each fusion type, please refer to [here](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fl-frames.html).
+ * `iter_avg` - Simple Avg, simplest aggregation that is used as a baseline where all parties' model updates are equally weighted.
+ * `avg` - Weighted Avg, weights the average of updates based on the number of each party sample. Use with training data sets of widely differing sizes.
+ * `pfnm` - Probabilistic Federated Neural Matching (PFNM), communication-efficient method for fully connected neural networks when parties have heterogeneous data sets.
+ * `spahm` - K-Means/SPAHM, used to train KMeans (unsupervised learning) models when parties have heterogeneous data sets.
+ * `xgb_classifier` - XGBoost Classification, used to build classification models that use XGBoost.
+ * `xgb_regressor` - XGBoost Regression, used to build regression models that use XGBoost.
+ * `crypto_iter_avg` - Iterative averaging based fusion implemented with a crypto system.
+
+Since CloudPak for Data `4.7.0`. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    Allowable values are: `iter_avg`, `avg`, `pfnm`, `spahm`, `xgb_classifier`, `xgb_regressor`, `crypto_iter_avg`.
+
+`--federated-learning-remote-training` (<a href="#cli-federated-learning-remote-training-example-schema-ml">`FederatedLearningRemoteTraining`</a>)
+:   The remote training for federated learning. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--federated-learning-remote-training=@path/to/file.json`.
+
+`--federated-learning-rounds` (int64)
+:   The number of training iterations to complete between the aggregator and the remote systems unless termination accuracy is achieved first. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-termination-predicate` (string)
+:   A boolean expression that describes the conditions, in terms of model metrics, under which training should complete. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-epochs` (int64)
+:   The total number of passes over the local training dataset to train a model. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-optimizer` (<a href="#cli-federated-learning-optimizer-example-schema-ml">`FederatedLearningOptimizer`</a>)
+:   The optimizer for federated learning. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--federated-learning-optimizer=@path/to/file.json`.
+
+`--federated-learning-loss` (string)
+:   The loss function to use in the boosting process. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-metrics` (string)
+:   The metrics for federated learning. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-max-depth` (int64)
+:   The maximum depth of each tree. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-learning-rate` (float64)
+:   Controls how rapidly to change the model in response to the estimated error each time the model weights are updated. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-l2-regularization` (float64)
+:   The coefficient for the L2 regularizer. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-max-bins` (int64)
+:   The maximum number of bins to use for non-missing values across all features. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-max-leaf-nodes` (int64)
+:   The maximum number of leaves for each tree. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-min-samples-leaf` (int64)
+:   The minimum number of samples per leaf. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-random-state` (int64)
+:   Seed used to set the pseudo-random number generator. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-verbose` (bool)
+:   A general programming term to produce logging output. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-num-classes` (int64)
+:   Number of target classes for the classification model. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-byzantine-threshold` (int64)
+:   Specifies the failure tolerance, for example the maximum number of parties that would possibly be failing during training. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-sigma` (float64)
+:   Specifies how far the local model neurons are allowed from the global model. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-sigma0` (float64)
+:   Specifies the standard deviation of the global network neurons. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-gamma` (float64)
+:   Specifies the expected number of features present in each observation. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-iters` (int64)
+:   Specifies the number of iterations of randomly initialized matching-unmatching procedure is to be performed. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-save-intermediate-models` (bool)
+:   If true, save the model generated at the end of each round of training. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-crypto` (<a href="#cli-federated-learning-crypto-example-schema-ml">`FederatedLearningCrypto`</a>)
+:   Settings for cryptographic fusion for federated learning. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--federated-learning-crypto=@path/to/file.json`.
+
+`--federated-learning-hardware-spec` (<a href="#cli-hardware-spec-rel-example-schema-ml">`HardwareSpecRel`</a>)
+:   A hardware specification. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--federated-learning-hardware-spec=@path/to/file.json`.
+
+`--federated-learning-software-spec` (<a href="#cli-software-spec-rel-example-schema-ml">`SoftwareSpecRel`</a>)
+:   A software specification. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--federated-learning-software-spec=@path/to/file.json`.
+
+`--federated-learning-version` (string)
+:   The version for federated learning. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-log-level` (string)
+:   The log level (`critical`, `error`, `warning`, `info`, `debug`) for federated learning. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    Allowable values are: `critical`, `error`, `warning`, `info`, `debug`.
+
+`--federated-learning-sketch-accuracy-vs-privacy` (float64)
+:   Used with XGBoost training to control the relative accuracy of sketched data sent to the aggregator. Higher values will result in higher quality models but with a reduction in data privacy and increase in resource consumption.
+
+Since CloudPak for Data `4.7.0`. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    The default value is `0.01`. The maximum value is `1`. The minimum value is `0`.
 
 <a id='ml_training_list'></a>
 ## &#8226; ml training list
@@ -7720,7 +9142,7 @@ Wait until the training becomes completed, failed, or canceled.
 #### Command options
 
 `--cpd-scope` (string   )
-:    CPD space or project scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--project-id` (string  )
 :    The ID of the project to use.
@@ -7737,7 +9159,7 @@ Wait until the training becomes completed, failed, or canceled.
 Create a new training definition with the given payload. A training definition represents the training meta-data necessary to start a training job. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition create --name NAME --results-reference RESULTS-REFERENCE [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--experiment EXPERIMENT] [--pipeline PIPELINE] [--model-definition MODEL-DEFINITION] [--federated-learning FEDERATED-LEARNING] [--training-data-references TRAINING-DATA-REFERENCES] [--test-data-references TEST-DATA-REFERENCES] [--custom CUSTOM]
+cpdctl ml training-definition create --name NAME [--results-reference RESULTS-REFERENCE | --results-reference-id RESULTS-REFERENCE-ID --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-connection RESULTS-REFERENCE-CONNECTION --results-reference-location RESULTS-REFERENCE-LOCATION] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--experiment EXPERIMENT | --experiment-id EXPERIMENT-ID --experiment-rev EXPERIMENT-REV] [--pipeline PIPELINE | --pipeline-id PIPELINE-ID --pipeline-rev PIPELINE-REV --pipeline-model-type PIPELINE-MODEL-TYPE --pipeline-data-bindings PIPELINE-DATA-BINDINGS --pipeline-nodes-parameters PIPELINE-NODES-PARAMETERS --pipeline-hardware-spec PIPELINE-HARDWARE-SPEC --pipeline-hybrid-pipeline-hardware-specs PIPELINE-HYBRID-PIPELINE-HARDWARE-SPECS] [--model-definition MODEL-DEFINITION | --model-definition-id MODEL-DEFINITION-ID --model-definition-rev MODEL-DEFINITION-REV --model-definition-model-type MODEL-DEFINITION-MODEL-TYPE --model-definition-hardware-spec MODEL-DEFINITION-HARDWARE-SPEC --model-definition-software-spec MODEL-DEFINITION-SOFTWARE-SPEC --model-definition-command MODEL-DEFINITION-COMMAND --model-definition-parameters MODEL-DEFINITION-PARAMETERS] [--federated-learning FEDERATED-LEARNING | --federated-learning-model FEDERATED-LEARNING-MODEL --federated-learning-fusion-type FEDERATED-LEARNING-FUSION-TYPE --federated-learning-remote-training FEDERATED-LEARNING-REMOTE-TRAINING --federated-learning-rounds FEDERATED-LEARNING-ROUNDS --federated-learning-termination-predicate FEDERATED-LEARNING-TERMINATION-PREDICATE --federated-learning-epochs FEDERATED-LEARNING-EPOCHS --federated-learning-optimizer FEDERATED-LEARNING-OPTIMIZER --federated-learning-loss FEDERATED-LEARNING-LOSS --federated-learning-metrics FEDERATED-LEARNING-METRICS --federated-learning-max-depth FEDERATED-LEARNING-MAX-DEPTH --federated-learning-learning-rate FEDERATED-LEARNING-LEARNING-RATE --federated-learning-l2-regularization FEDERATED-LEARNING-L2-REGULARIZATION --federated-learning-max-bins FEDERATED-LEARNING-MAX-BINS --federated-learning-max-leaf-nodes FEDERATED-LEARNING-MAX-LEAF-NODES --federated-learning-min-samples-leaf FEDERATED-LEARNING-MIN-SAMPLES-LEAF --federated-learning-random-state FEDERATED-LEARNING-RANDOM-STATE --federated-learning-verbose FEDERATED-LEARNING-VERBOSE --federated-learning-num-classes FEDERATED-LEARNING-NUM-CLASSES --federated-learning-byzantine-threshold FEDERATED-LEARNING-BYZANTINE-THRESHOLD --federated-learning-sigma FEDERATED-LEARNING-SIGMA --federated-learning-sigma0 FEDERATED-LEARNING-SIGMA0 --federated-learning-gamma FEDERATED-LEARNING-GAMMA --federated-learning-iters FEDERATED-LEARNING-ITERS --federated-learning-save-intermediate-models FEDERATED-LEARNING-SAVE-INTERMEDIATE-MODELS --federated-learning-crypto FEDERATED-LEARNING-CRYPTO --federated-learning-hardware-spec FEDERATED-LEARNING-HARDWARE-SPEC --federated-learning-software-spec FEDERATED-LEARNING-SOFTWARE-SPEC --federated-learning-version FEDERATED-LEARNING-VERSION --federated-learning-log-level FEDERATED-LEARNING-LOG-LEVEL --federated-learning-sketch-accuracy-vs-privacy FEDERATED-LEARNING-SKETCH-ACCURACY-VS-PRIVACY] [--training-data-references TRAINING-DATA-REFERENCES] [--test-data-references TEST-DATA-REFERENCES] [--custom CUSTOM]
 ```
 
 
@@ -7747,7 +9169,7 @@ cpdctl ml training-definition create --name NAME --results-reference RESULTS-REF
 :   The name of the resource. Required.
 
 `--results-reference` (<a href="#cli-object-location-example-schema-ml">`ObjectLocation`</a>)
-:   The training results. Required.
+:   The training results. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference=@path/to/file.json`.
 
@@ -7764,7 +9186,7 @@ cpdctl ml training-definition create --name NAME --results-reference RESULTS-REF
 :   A list of tags for this resource.
 
 `--experiment` (<a href="#cli-rel-example-schema-ml">`Rel`</a>)
-:   A reference to a resource.
+:   A reference to a resource. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--experiment=@path/to/file.json`.
 
@@ -7772,19 +9194,19 @@ cpdctl ml training-definition create --name NAME --results-reference RESULTS-REF
 :   A pipeline.
 The `hardware_spec` is a reference to the hardware specification.
 The `hybrid_pipeline_hardware_specs` are used only when training a hybrid pipeline in order to
-specify compute requirement for each pipeline node.
+specify compute requirement for each pipeline node. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline=@path/to/file.json`.
 
 `--model-definition` (<a href="#cli-model-definition-rel-example-schema-ml">`ModelDefinitionRel`</a>)
 :   A model.
 The `software_spec` is a reference to a software specification.
-The `hardware_spec` is a reference to a hardware specification.
+The `hardware_spec` is a reference to a hardware specification. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--model-definition=@path/to/file.json`.
 
 `--federated-learning` (<a href="#cli-federated-learning-example-schema-ml">`FederatedLearning`</a>)
-:   Federated Learning.
+:   Federated Learning. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--federated-learning=@path/to/file.json`.
 
@@ -7802,6 +9224,205 @@ The `hardware_spec` is a reference to a hardware specification.
 :   User defined properties specified as key-value pairs.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--custom=@path/to/file.json`.
+
+`--results-reference-id` (string)
+:   Item identification inside a collection. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+`--results-reference-type` (string)
+:   The data source type like `connection_asset` or `data_asset`. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Allowable values are: `connection_asset`, `data_asset`, `url`, `fs`.
+
+`--results-reference-connection` (generic map)
+:   Contains a set of fields specific to each connection. See here for [details about specifying connections](#datareferences). This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference-connection=@path/to/file.json`.
+
+`--results-reference-location` (map[string]string)
+:   Contains a set of fields specific to each connection. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference-location=@path/to/file.json`.
+
+`--experiment-id` (string)
+:   The id of the referenced resource. This option provides a value for a sub-field of the JSON option 'experiment'. It is mutually exclusive with that option.
+
+`--experiment-rev` (string)
+:   The revision of the referenced resource. This option provides a value for a sub-field of the JSON option 'experiment'. It is mutually exclusive with that option.
+
+`--pipeline-id` (string)
+:   The id of the referenced resource. This option provides a value for a sub-field of the JSON option 'pipeline'. It is mutually exclusive with that option.
+
+`--pipeline-rev` (string)
+:   The revision of the referenced resource. This option provides a value for a sub-field of the JSON option 'pipeline'. It is mutually exclusive with that option.
+
+`--pipeline-model-type` (string)
+:   The underlying model type produced by the pipeline or by the model_definition. This option provides a value for a sub-field of the JSON option 'pipeline'. It is mutually exclusive with that option.
+
+`--pipeline-data-bindings` (<a href="#cli-pipeline-rel-data-bindings-item-example-schema-ml">`PipelineRelDataBindingsItem[]`</a>)
+:   The data bindings. This option provides a value for a sub-field of the JSON option 'pipeline'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-data-bindings=@path/to/file.json`.
+
+`--pipeline-nodes-parameters` (<a href="#cli-pipeline-rel-nodes-parameters-item-example-schema-ml">`PipelineRelNodesParametersItem[]`</a>)
+:   The node parameters. This option provides a value for a sub-field of the JSON option 'pipeline'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-nodes-parameters=@path/to/file.json`.
+
+`--pipeline-hardware-spec` (<a href="#cli-hardware-spec-rel-example-schema-ml">`HardwareSpecRel`</a>)
+:   A hardware specification. This option provides a value for a sub-field of the JSON option 'pipeline'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-hardware-spec=@path/to/file.json`.
+
+`--pipeline-hybrid-pipeline-hardware-specs` (<a href="#cli-hybrid-pipeline-hardware-specs-item-example-schema-ml">`HybridPipelineHardwareSpecsItem[]`</a>)
+:   Hybrid pipeline hardware specification. This option provides a value for a sub-field of the JSON option 'pipeline'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--pipeline-hybrid-pipeline-hardware-specs=@path/to/file.json`.
+
+`--model-definition-id` (string)
+:   The id of the referenced resource. This option provides a value for a sub-field of the JSON option 'model-definition'. It is mutually exclusive with that option.
+
+`--model-definition-rev` (string)
+:   The revision of the referenced resource. This option provides a value for a sub-field of the JSON option 'model-definition'. It is mutually exclusive with that option.
+
+`--model-definition-model-type` (string)
+:   The underlying model type produced by the pipeline or by the model_definition. This option provides a value for a sub-field of the JSON option 'model-definition'. It is mutually exclusive with that option.
+
+`--model-definition-hardware-spec` (<a href="#cli-hardware-spec-rel-example-schema-ml">`HardwareSpecRel`</a>)
+:   A hardware specification. This option provides a value for a sub-field of the JSON option 'model-definition'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--model-definition-hardware-spec=@path/to/file.json`.
+
+`--model-definition-software-spec` (<a href="#cli-software-spec-rel-example-schema-ml">`SoftwareSpecRel`</a>)
+:   A software specification. This option provides a value for a sub-field of the JSON option 'model-definition'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--model-definition-software-spec=@path/to/file.json`.
+
+`--model-definition-command` (string)
+:   If present, it overrides the command specified to the library resource itself. This option provides a value for a sub-field of the JSON option 'model-definition'. It is mutually exclusive with that option.
+
+`--model-definition-parameters` (generic map)
+:   Optional key-value pairs parameters. This option provides a value for a sub-field of the JSON option 'model-definition'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--model-definition-parameters=@path/to/file.json`.
+
+`--federated-learning-model` (<a href="#cli-federated-learning-model-example-schema-ml">`FederatedLearningModel`</a>)
+:   The model type for federated_learning. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--federated-learning-model=@path/to/file.json`.
+
+`--federated-learning-fusion-type` (string)
+:   The fusion type for federated learning. For an in-depth description of each fusion type, please refer to [here](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fl-frames.html).
+ * `iter_avg` - Simple Avg, simplest aggregation that is used as a baseline where all parties' model updates are equally weighted.
+ * `avg` - Weighted Avg, weights the average of updates based on the number of each party sample. Use with training data sets of widely differing sizes.
+ * `pfnm` - Probabilistic Federated Neural Matching (PFNM), communication-efficient method for fully connected neural networks when parties have heterogeneous data sets.
+ * `spahm` - K-Means/SPAHM, used to train KMeans (unsupervised learning) models when parties have heterogeneous data sets.
+ * `xgb_classifier` - XGBoost Classification, used to build classification models that use XGBoost.
+ * `xgb_regressor` - XGBoost Regression, used to build regression models that use XGBoost.
+ * `crypto_iter_avg` - Iterative averaging based fusion implemented with a crypto system.
+
+Since CloudPak for Data `4.7.0`. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    Allowable values are: `iter_avg`, `avg`, `pfnm`, `spahm`, `xgb_classifier`, `xgb_regressor`, `crypto_iter_avg`.
+
+`--federated-learning-remote-training` (<a href="#cli-federated-learning-remote-training-example-schema-ml">`FederatedLearningRemoteTraining`</a>)
+:   The remote training for federated learning. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--federated-learning-remote-training=@path/to/file.json`.
+
+`--federated-learning-rounds` (int64)
+:   The number of training iterations to complete between the aggregator and the remote systems unless termination accuracy is achieved first. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-termination-predicate` (string)
+:   A boolean expression that describes the conditions, in terms of model metrics, under which training should complete. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-epochs` (int64)
+:   The total number of passes over the local training dataset to train a model. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-optimizer` (<a href="#cli-federated-learning-optimizer-example-schema-ml">`FederatedLearningOptimizer`</a>)
+:   The optimizer for federated learning. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--federated-learning-optimizer=@path/to/file.json`.
+
+`--federated-learning-loss` (string)
+:   The loss function to use in the boosting process. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-metrics` (string)
+:   The metrics for federated learning. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-max-depth` (int64)
+:   The maximum depth of each tree. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-learning-rate` (float64)
+:   Controls how rapidly to change the model in response to the estimated error each time the model weights are updated. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-l2-regularization` (float64)
+:   The coefficient for the L2 regularizer. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-max-bins` (int64)
+:   The maximum number of bins to use for non-missing values across all features. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-max-leaf-nodes` (int64)
+:   The maximum number of leaves for each tree. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-min-samples-leaf` (int64)
+:   The minimum number of samples per leaf. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-random-state` (int64)
+:   Seed used to set the pseudo-random number generator. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-verbose` (bool)
+:   A general programming term to produce logging output. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-num-classes` (int64)
+:   Number of target classes for the classification model. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-byzantine-threshold` (int64)
+:   Specifies the failure tolerance, for example the maximum number of parties that would possibly be failing during training. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-sigma` (float64)
+:   Specifies how far the local model neurons are allowed from the global model. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-sigma0` (float64)
+:   Specifies the standard deviation of the global network neurons. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-gamma` (float64)
+:   Specifies the expected number of features present in each observation. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-iters` (int64)
+:   Specifies the number of iterations of randomly initialized matching-unmatching procedure is to be performed. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-save-intermediate-models` (bool)
+:   If true, save the model generated at the end of each round of training. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-crypto` (<a href="#cli-federated-learning-crypto-example-schema-ml">`FederatedLearningCrypto`</a>)
+:   Settings for cryptographic fusion for federated learning. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--federated-learning-crypto=@path/to/file.json`.
+
+`--federated-learning-hardware-spec` (<a href="#cli-hardware-spec-rel-example-schema-ml">`HardwareSpecRel`</a>)
+:   A hardware specification. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--federated-learning-hardware-spec=@path/to/file.json`.
+
+`--federated-learning-software-spec` (<a href="#cli-software-spec-rel-example-schema-ml">`SoftwareSpecRel`</a>)
+:   A software specification. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--federated-learning-software-spec=@path/to/file.json`.
+
+`--federated-learning-version` (string)
+:   The version for federated learning. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+`--federated-learning-log-level` (string)
+:   The log level (`critical`, `error`, `warning`, `info`, `debug`) for federated learning. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    Allowable values are: `critical`, `error`, `warning`, `info`, `debug`.
+
+`--federated-learning-sketch-accuracy-vs-privacy` (float64)
+:   Used with XGBoost training to control the relative accuracy of sketched data sent to the aggregator. Higher values will result in higher quality models but with a reduction in data privacy and increase in resource consumption.
+
+Since CloudPak for Data `4.7.0`. This option provides a value for a sub-field of the JSON option 'federated-learning'. It is mutually exclusive with that option.
+
+    The default value is `0.01`. The maximum value is `1`. The minimum value is `0`.
 
 <a id='ml_training-definition_list'></a>
 ## &#8226; ml training-definition list
@@ -7993,16 +9614,16 @@ cpdctl ml training-definition list-revisions --training-definition-id TRAINING-D
 <a id='notebook_create'></a>
 ## &#8226; notebook create
 
-The creation of a notebook requires to first upload the notebook content('ipynb' format) to the project or space Cloud Object Storage (COS) with the following command:
-`cpdctl assets files upload --path <your remote path to the notebook content> --file <your local path to the notebook content> --project-id <your project id>`.  Similar for space. Please specifiy either project or space, they are mutually exclusive, cannot both be provided.    Usually the remote path could be 'notebook/<your file name>'.
+The creation of a notebook requires to first upload the notebook content('ipynb' format) to the project or space Cloud Object Storage (COS) with the following command: 
+`cpdctl assets files upload --path <your remote path to the notebook content> --file <your local path to the notebook content> --project-id <your project id>`.  Similar for space. Please specifiy either project or space, they are mutually exclusive, cannot both be provided.    Usually the remote path could be 'notebook/<your file name>'. 
 
 Then you can create a notebook by referencing the notebook content with the attribute 'file-reference'.  The other required attributes are 'name', either 'project-id' or 'space-id', and 'runtime'/'compute', e.g.
-`cpdctl notebooks create --name <your notebook name> --project-id <your project id> --file-reference <your remote path to the notebook content> --runtime '{"environment": "<your environment id>"}'`.
+`cpdctl notebooks create --name <your notebook name> --project-id <your project id> --file-reference <your remote path to the notebook content> --runtime '{"environment": "<your environment id>"}'`. 
 
 The attributes 'runtime' and 'compute' are used to specify the environment on which the notebook runs.  You can specify the environment either by the attribute 'runtime' if the engine is a 'default environment', 'Spark default environment' or a 'GPU environment' or by the attribute 'compute' if the engine is a 'Spark-aaS'.  A basic runtime can be defined as '{"environment": <your environment id>}'.
 
 ```sh
-cpdctl notebook create --file-reference FILE-REFERENCE --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--kernel KERNEL] [--originates-from ORIGINATES-FROM] [--project-id PROJECT-ID] [--runtime RUNTIME] [--space-id SPACE-ID]
+cpdctl notebook create --file-reference FILE-REFERENCE --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--kernel KERNEL | --kernel-display-name KERNEL-DISPLAY-NAME --kernel-language KERNEL-LANGUAGE --kernel-name KERNEL-NAME] [--originates-from ORIGINATES-FROM | --originates-from-type ORIGINATES-FROM-TYPE] [--project-id PROJECT-ID] [--runtime RUNTIME | --runtime-environment RUNTIME-ENVIRONMENT --runtime-spark-monitoring-enabled RUNTIME-SPARK-MONITORING-ENABLED] [--space-id SPACE-ID]
 ```
 
 
@@ -8021,12 +9642,12 @@ cpdctl notebook create --file-reference FILE-REFERENCE --name NAME [--compute CO
 :   A more verbose description of the notebook.
 
 `--kernel` (<a href="#cli-notebook-kernel-example-schema-notebook">`NotebookKernel`</a>)
-:   A notebook kernel.
+:   A notebook kernel. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--kernel=@path/to/file.json`.
 
 `--originates-from` (<a href="#cli-notebook-origin-example-schema-notebook">`NotebookOrigin`</a>)
-:   The notebook origin.
+:   The notebook origin. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--originates-from=@path/to/file.json`.
 
@@ -8034,12 +9655,30 @@ cpdctl notebook create --file-reference FILE-REFERENCE --name NAME [--compute CO
 :   The id of the project in which to create the notebook.
 
 `--runtime` (<a href="#cli-notebook-runtime-example-schema-notebook">`NotebookRuntime`</a>)
-:   A notebook runtime.
+:   A notebook runtime. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--runtime=@path/to/file.json`.
 
 `--space-id` (string)
 :   The id of the space in which to create the notebook.
+
+`--kernel-display-name` (string)
+:   The display name of the environment kernel. This option provides a value for a sub-field of the JSON option 'kernel'. It is mutually exclusive with that option.
+
+`--kernel-language` (string)
+:   The language of the environment kernel. This option provides a value for a sub-field of the JSON option 'kernel'. It is mutually exclusive with that option.
+
+`--kernel-name` (string)
+:   The name of the environment kernel. This option provides a value for a sub-field of the JSON option 'kernel'. It is mutually exclusive with that option.
+
+`--originates-from-type` (string)
+:   The orgin type of the notebook, either blank, file or url. This option provides a value for a sub-field of the JSON option 'originates-from'. It is mutually exclusive with that option.
+
+`--runtime-environment` (string)
+:   The id of the environment on which the notebook runs. This option provides a value for a sub-field of the JSON option 'runtime'. It is mutually exclusive with that option.
+
+`--runtime-spark-monitoring-enabled` (bool)
+:   Spark monitoring enabled or not. This option provides a value for a sub-field of the JSON option 'runtime'. It is mutually exclusive with that option.
 
 <a id='notebook_delete'></a>
 ## &#8226; notebook delete
@@ -8062,7 +9701,7 @@ cpdctl notebook delete --notebook-id NOTEBOOK-ID
 Update a particular notebook.
 
 ```sh
-cpdctl notebook update --notebook-id NOTEBOOK-ID [--compute COMPUTE] [--environment ENVIRONMENT] [--kernel KERNEL] [--schedule SCHEDULE] [--shares SHARES] [--spark-monitoring-enabled SPARK-MONITORING-ENABLED]
+cpdctl notebook update --notebook-id NOTEBOOK-ID [--compute COMPUTE] [--environment ENVIRONMENT] [--kernel KERNEL | --kernel-display-name KERNEL-DISPLAY-NAME --kernel-language KERNEL-LANGUAGE --kernel-name KERNEL-NAME] [--schedule SCHEDULE] [--shares SHARES | --shares-gist SHARES-GIST --shares-github SHARES-GITHUB --shares-public SHARES-PUBLIC] [--spark-monitoring-enabled SPARK-MONITORING-ENABLED]
 ```
 
 
@@ -8078,7 +9717,7 @@ cpdctl notebook update --notebook-id NOTEBOOK-ID [--compute COMPUTE] [--environm
 :   The id of the environment on which the notebook runs.
 
 `--kernel` (<a href="#cli-notebook-kernel-example-schema-notebook">`NotebookKernel`</a>)
-:   A notebook kernel.
+:   A notebook kernel. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--kernel=@path/to/file.json`.
 
@@ -8086,12 +9725,36 @@ cpdctl notebook update --notebook-id NOTEBOOK-ID [--compute COMPUTE] [--environm
 :   The id of the schedule of the notebook.
 
 `--shares` (<a href="#cli-notebook-shares-example-schema-notebook">`NotebookShares`</a>)
-:   Share and repository information for a notebook.
+:   Share and repository information for a notebook. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--shares=@path/to/file.json`.
 
 `--spark-monitoring-enabled` (bool)
 :   Spark monitoring enabled or not.
+
+`--kernel-display-name` (string)
+:   The display name of the environment kernel. This option provides a value for a sub-field of the JSON option 'kernel'. It is mutually exclusive with that option.
+
+`--kernel-language` (string)
+:   The language of the environment kernel. This option provides a value for a sub-field of the JSON option 'kernel'. It is mutually exclusive with that option.
+
+`--kernel-name` (string)
+:   The name of the environment kernel. This option provides a value for a sub-field of the JSON option 'kernel'. It is mutually exclusive with that option.
+
+`--shares-gist` (<a href="#cli-notebook-shares-gist-example-schema-notebook">`NotebookSharesGist`</a>)
+:   Gist URL for a notebook. This option provides a value for a sub-field of the JSON option 'shares'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--shares-gist=@path/to/file.json`.
+
+`--shares-github` (<a href="#cli-notebook-shares-github-example-schema-notebook">`NotebookSharesGithub`</a>)
+:   Github repository information for a notebook. This option provides a value for a sub-field of the JSON option 'shares'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--shares-github=@path/to/file.json`.
+
+`--shares-public` (<a href="#cli-notebook-shares-public-example-schema-notebook">`NotebookSharesPublic`</a>)
+:   Public sharing information for a notebook. This option provides a value for a sub-field of the JSON option 'shares'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--shares-public=@path/to/file.json`.
 
 <a id='notebook_revert'></a>
 ## &#8226; notebook revert
@@ -8183,7 +9846,7 @@ cpdctl notebook version get --notebook-id NOTEBOOK-ID --version-id VERSION-ID
 Update a version of a given notebook.
 
 ```sh
-cpdctl notebook version update --notebook-id NOTEBOOK-ID --version-id VERSION-ID [--kernel KERNEL] [--schedule SCHEDULE]
+cpdctl notebook version update --notebook-id NOTEBOOK-ID --version-id VERSION-ID [--kernel KERNEL | --kernel-display-name KERNEL-DISPLAY-NAME --kernel-language KERNEL-LANGUAGE --kernel-name KERNEL-NAME] [--schedule SCHEDULE]
 ```
 
 
@@ -8196,20 +9859,875 @@ cpdctl notebook version update --notebook-id NOTEBOOK-ID --version-id VERSION-ID
 :   The guid of the version. Required.
 
 `--kernel` (<a href="#cli-notebook-kernel-example-schema-notebook">`NotebookKernel`</a>)
-:   A notebook kernel.
+:   A notebook kernel. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--kernel=@path/to/file.json`.
 
 `--schedule` (string)
 :   The schedule id of the notebook.
 
+`--kernel-display-name` (string)
+:   The display name of the environment kernel. This option provides a value for a sub-field of the JSON option 'kernel'. It is mutually exclusive with that option.
+
+`--kernel-language` (string)
+:   The language of the environment kernel. This option provides a value for a sub-field of the JSON option 'kernel'. It is mutually exclusive with that option.
+
+`--kernel-name` (string)
+:   The name of the environment kernel. This option provides a value for a sub-field of the JSON option 'kernel'. It is mutually exclusive with that option.
+
+<a id='pipeline_version_list'></a>
+## &#8226; pipeline version list
+
+Lists all pipeline versions of a given pipeline. You need to specify either `project_id` or `space_id`.
+
+```sh
+cpdctl pipeline version list --pipeline-id PIPELINE-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--page-size PAGE-SIZE] [--page-token PAGE-TOKEN] [--sort-by SORT-BY]
+```
+
+
+#### Command options
+
+`--pipeline-id` (string)
+:   The ID of the pipeline. Required.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--page-size` (int64)
+:   The number of pipeline versions to be listed per page. If there are more pipeline versions than this number, the response message will contain a nextPageToken field you can use to fetch the next page.
+
+`--page-token` (string)
+:   A page token to request the next page of results. The token is acquired from the nextPageToken field of the response from the previous ListPipelineVersions call or can be omitted when fetching the first page.
+
+`--sort-by` (string)
+:   Can be format of "field_name", "field_name asc" or "field_name desc" Ascending by default.
+
+<a id='pipeline_version_delete'></a>
+## &#8226; pipeline version delete
+
+Deletes a pipeline version by pipeline version ID. You need to specify either `project_id` or `space_id`.
+
+```sh
+cpdctl pipeline version delete --version-id VERSION-ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--version-id` (string)
+:   The ID of the pipeline version to be deleted. Required.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+<a id='pipeline_version_get'></a>
+## &#8226; pipeline version get
+
+Gets a pipeline version by pipeline version ID. You need to specify either `project_id` or `space_id`.
+
+```sh
+cpdctl pipeline version get --version-id VERSION-ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--version-id` (string)
+:   The ID of the pipeline version to be retrieved. Required.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+<a id='pipeline_version_get-template'></a>
+## &#8226; pipeline version get-template
+
+Returns code (YAML template, Orchestration Flow json embedded in a string) that contains the specified pipeline version's description, parameters and metadata. You need to specify either `project_id` or `space_id`.
+
+```sh
+cpdctl pipeline version get-template --version-id VERSION-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--format FORMAT]
+```
+
+
+#### Command options
+
+`--version-id` (string)
+:   The ID of the pipeline version whose template is to be retrieved. Required.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--format` (string)
+:   What code should be get.
+
+    The default value is `template`. Allowable values are: `template`, `flow`, `all`.
+
+<a id='pipeline_version_get-template-format'></a>
+## &#8226; pipeline version get-template-format
+
+Returns code (YAML template, Orchestration Flow json) that contains the specified pipeline version's description, parameters and metadata.
+
+```sh
+cpdctl pipeline version get-template-format --version-id VERSION-ID --format FORMAT [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--version-id` (string)
+:   The ID of the pipeline version whose template is to be retrieved. Required.
+
+`--format` (string)
+:   What code should be get. Required.
+
+    Allowable values are: `template`, `flow`.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+<a id='pipeline_version_upload'></a>
+## &#8226; pipeline version upload
+
+Uploads a pipeline file and creates a new pipeline version (or updates a volatile one). You need to specify either `project_id` or `space_id`.
+
+```sh
+cpdctl pipeline version upload --file FILE [--uploadfile-content-type UPLOADFILE-CONTENT-TYPE] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--name NAME] [--pipeline-id PIPELINE-ID] [--volatile VOLATILE]
+```
+
+
+#### Command options
+
+`--file` (io.ReadCloser)
+:   Pipeline file to be uploaded.
+
+The supported file formats are pipeline.json and zip which contains pipeline.json inside, with content-type being absent, equal to "application/json" or "application/zip". Required.
+
+`--uploadfile-content-type` (string)
+:   The content type of Uploadfile.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--name` (string)
+:   Name of the pipeline, defaults to file's name.
+
+    The maximum length is `255` characters. The minimum length is `1` character. The value must match regular expression `/^[\\w-]*$/`.
+
+`--pipeline-id` (strfmt.UUID)
+:   ID of the pipeline the version should be attached to.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--volatile` (bool)
+:   When set to true, indicates the version is or will be work-in-progress.
+
+Work-in-progress pipeline versions can be updated (with this flag still set to true) multiple times before committed as finished state.
+
+If it's used while the default version is already volatile, it updates that version instead of creating a new one.
+
+If it's not used while a volatile version is the default one, upload will fail with error.
+
+<a id='pipeline_run_get'></a>
+## &#8226; pipeline run get
+
+Finds a specific run by ID. You need to specify either `project_id` or `space_id`.
+
+```sh
+cpdctl pipeline run get --run-id RUN-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--job-id JOB-ID]
+```
+
+
+#### Command options
+
+`--run-id` (strfmt.UUID)
+:   The ID of the run. Required.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--job-id` (strfmt.UUID)
+:   The ID of the job related to run. Adding this may improve response time.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+<a id='pipeline_run_get-artifact'></a>
+## &#8226; pipeline run get-artifact
+
+Gets artifact on path from the specified run.
+
+```sh
+cpdctl pipeline run get-artifact --run-id RUN-ID --artifact-path ARTIFACT-PATH [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--run-id` (strfmt.UUID)
+:   The ID of the run. Required.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--artifact-path` (string)
+:   The artifact path relative to run storage location. Required.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+<a id='pipeline_run_get-logs'></a>
+## &#8226; pipeline run get-logs
+
+Finds logs related to the specified run. You need to specify either `project_id` or `space_id`.
+
+```sh
+cpdctl pipeline run get-logs --run-id RUN-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--job-id JOB-ID] [--filter FILTER]
+```
+
+
+#### Command options
+
+`--run-id` (strfmt.UUID)
+:   The ID of the run. Required.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--job-id` (strfmt.UUID)
+:   The ID of the job related to run. Adding this may improve response time.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--filter` (string)
+:   An url-encoded, JSON-serialized Filter protocol buffer.
+
+<a id='pipeline_run_get-log'></a>
+## &#8226; pipeline run get-log
+
+Finds log by its id. You need to specify either `project_id` or `space_id`.
+
+```sh
+cpdctl pipeline run get-log --run-id RUN-ID --log-id LOG-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--job-id JOB-ID]
+```
+
+
+#### Command options
+
+`--run-id` (strfmt.UUID)
+:   The ID of the run. Required.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--log-id` (string)
+:   Log identifier. For a node it is equal to a name of the `TaskRun` or `Run` corresponding to this node. Required.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--job-id` (strfmt.UUID)
+:   The ID of the job related to run. Adding this may improve response time.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+<a id='pipeline_run_list-parameter'></a>
+## &#8226; pipeline run list-parameter
+
+Lists parameters of the run.
+
+```sh
+cpdctl pipeline run list-parameter --run-id RUN-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--job-id JOB-ID]
+```
+
+
+#### Command options
+
+`--run-id` (strfmt.UUID)
+:   The ID of the run. Required.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--job-id` (strfmt.UUID)
+:   The ID of the job related to run. Adding this may improve response time.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+<a id='pipeline_run_task-result_head'></a>
+## &#8226; pipeline run task-result head
+Gets metadata about task result given by output name and `TaskRun` or `Run` name.
+
+```sh
+   cpdctl pipeline run task-result head --run-id RUN-ID --task-run-name TASK-RUN-NAME --name NAME [--job-id JOB-ID] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--pipeline-id PIPELINE-ID] [--pipeline-run-name PIPELINE-RUN-NAME]
+```
+#### Command options
+
+`--cpd-scope` (string         )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--job-id` (string            )
+:    The ID of the job related to run. Adding this may improve response time. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--name` (string              )
+:    Required. Name of the result e.g. 'env-variables'.
+
+`--pipeline-id` (string       )
+:    Pipeline ID. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--pipeline-run-name` (string )
+:    Pipeline run name.
+
+`--project-id` (string        )
+:    The id of the project. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--run-id` (string            )
+:    Required. The ID of the run. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--space-id` (string          )
+:    The id of the space. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--task-run-name` (string     )
+:    Required. Name of the 'TaskRun' or 'Run' from which the results come from e.g. 'pipeline-90bc031ef1009d53527cf454db0160ed3cca-run-bash-script-1'.
+
+<a id='pipeline_run_task-result_list'></a>
+## &#8226; pipeline run task-result list
+Gets information about all task results given by `TaskRun` or `Run` name.
+
+```sh
+   cpdctl pipeline run task-result list --run-id RUN-ID --task-run-name TASK-RUN-NAME [--job-id JOB-ID] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--pipeline-id PIPELINE-ID] [--pipeline-run-name PIPELINE-RUN-NAME]
+```
+#### Command options
+
+`--cpd-scope` (string         )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--job-id` (string            )
+:    The ID of the job related to run. Adding this may improve response time. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--pipeline-id` (string       )
+:    Pipeline ID. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--pipeline-run-name` (string )
+:    Pipeline run name.
+
+`--project-id` (string        )
+:    The id of the project. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--run-id` (string            )
+:    Required. The ID of the run. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--space-id` (string          )
+:    The id of the space. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--task-run-name` (string     )
+:    Required. Name of the 'TaskRun' or 'Run' from which the results come from e.g. 'pipeline-90bc031ef1009d53527cf454db0160ed3cca-run-bash-script-1'.
+
+<a id='pipeline_run_task-result_get'></a>
+## &#8226; pipeline run task-result get
+Gets information about task result given by output name and `TaskRun` or `Run` name.
+
+```sh
+   cpdctl pipeline run task-result get --run-id RUN-ID --task-run-name TASK-RUN-NAME --name NAME [--job-id JOB-ID] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--pipeline-id PIPELINE-ID] [--pipeline-run-name PIPELINE-RUN-NAME]
+```
+#### Command options
+
+`--cpd-scope` (string         )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--job-id` (string            )
+:    The ID of the job related to run. Adding this may improve response time. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--name` (string              )
+:    Required. Name of the result e.g. 'env-variables'.
+
+`--pipeline-id` (string       )
+:    Pipeline ID. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--pipeline-run-name` (string )
+:    Pipeline run name.
+
+`--project-id` (string        )
+:    The id of the project. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--run-id` (string            )
+:    Required. The ID of the run. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--space-id` (string          )
+:    The id of the space. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--task-run-name` (string     )
+:    Required. Name of the 'TaskRun' or 'Run' from which the results come from e.g. 'pipeline-90bc031ef1009d53527cf454db0160ed3cca-run-bash-script-1'.
+
+<a id='pipeline_run_migrate-cache'></a>
+## &#8226; pipeline run migrate-cache
+This command migrate old pipeline run execution cache data created by Watson Pipeline pipeline runs to the new location.  Identifiers of pipeline runs whose cache data are migrated are preserved in the output file. Cache data can be migrated to mounted filesystem. To enable that option specify --assets-dir-path parameter
+
+```sh
+   cpdctl pipeline run migrate-cache --output-file OUTPUT-FILE [--project-id PROJECT-ID] [--assets-dir-path ASSET-DIR-PATH]
+```
+#### Command options
+
+`--assets-dir-path` (string )
+:    Path to mounted filesystem where CPD projects assets are stored
+
+`--cpd-scope` (string       )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--output-file` (string     )
+:    Path to a file where the identifiers of pipeline, pipeline run are preserved after execution cache data are migrated
+
+`--project-id` (string      )
+:    Specific project in which old pipeline run execution cache data will be migrated
+
+`--space-id` (string        )
+:    Specific space in which old pipeline run execution cache data will be migrated
+
+`--verbose` (               )
+:    Whether to display detailed processing information (default: false)
+
+<a id='pipeline_run_get-status'></a>
+## &#8226; pipeline run get-status
+Gets job run status for pipeline and it's subpipelines.
+
+```sh
+   cpdctl pipeline run get-status --job-id JOB-ID --run-id RUN-ID [--with-subpipelines WITH-SUBPIPELINES] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+#### Command options
+
+`--cpd-scope` (string  )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--job-id` (string     )
+:    The ID of the job.
+
+`--project-id` (string )
+:    The id of the project.
+
+`--run-id` (string     )
+:    The ID of the job run.
+
+`--space-id` (string   )
+:    The id of the space.
+
+`--with-subpipelines` ()
+:    include also subpipelines statuses
+
+<a id='pipeline_cleanup_delete-cache'></a>
+## &#8226; pipeline cleanup delete-cache
+This command deletes execution cache data created by Watson Pipeline runs for a specific pipeline. Identifiers of pipeline whose cache data are deleted are preserved in the output file. This action applies to cache data stored on mounted filesystem. To enable that option specify --assets-dir-path parameter Only files from job runs that started before a specific point in time are deleted.
+
+```sh
+   cpdctl pipeline cleanup delete-cache --output-file OUTPUT-FILE [--project-id PROJECT-ID] [--pipeline-id PIPELINE-ID] [--assets-dir-path ASSET-DIR-PATH]
+```
+#### Command options
+
+`--assets-dir-path` (string )
+:    Path to mounted filesystem where CPD projects assets are stored
+
+`--cpd-scope` (string       )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--output-file` (string     )
+:    Path to a file where the identifiers of pipeline are preserved after execution cache data are deleted
+
+`--pipeline-id` (string     )
+:    Specific pipeline in which pipeline run execution cache data will be deleted
+
+`--project-id` (string      )
+:    Specific project in which pipeline run execution cache data will be deleted
+
+`--retention-time` (string  )
+:    The cache content older than the specified retention period will be deleted. Retention time is defined as (time now - job run creation date)
+
+`--space-id` (string        )
+:    Specific space in which pipeline run execution cache data will be deleted
+
+`--verbose` (               )
+:    Whether to display detailed processing information (default: false)
+
+<a id='pipeline_cleanup_delete-artifacts'></a>
+## &#8226; pipeline cleanup delete-artifacts
+This command deletes artifact files created by Watson Pipeline job runs. Only files from job runs that started before a specific point in time are deleted. Identifiers of jobs and runs whose artifacts are deleted are preserved in the output file. The number of job runs can be limited (--limit parameter). Artifacts can be deleted directly from a mounted filesystem (--assets-dir-path).
+
+```sh
+   cpdctl pipeline cleanup delete-artifacts --retention-time RETENTION --output-file OUTPUT-FILE [--project-id PROJECT-ID] [--space-id SPACE-ID] [--assets-dir-path ASSETS-DIR-PATH] [--limit LIMIT] [---clean-job-runs]
+```
+#### Command options
+
+`--assets-dir-path` (string )
+:    The path to mounted assets directory (e.g. /mnt/asset_file_api/projects/{project-id}/assets/)
+
+`--clean-job-runs` (        )
+:    Delete job runs along with artifacts
+
+`--cpd-scope` (string       )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--limit` (int              )
+:    Max number of job runs for which artifacts are deleted (default 9223372036854775807)
+
+`--output-file` (string     )
+:    Path to the file where the identifiers of pipelines, jobs, and job runs are saved after the artifacts are deleted
+
+`--project-id` (string      )
+:    ID of the project to delete artifacts
+
+`--retention-time` (string  )
+:    All the artifacts older than the specified retention period will be deleted. Retention time is defined as (time now - job run creation date)
+
+`--space-id` (string        )
+:    ID of the space to delete artifacts
+
+<a id='pipeline_list'></a>
+## &#8226; pipeline list
+
+Finds all pipelines. You need to specify either `project_id` or `space_id`.
+
+```sh
+cpdctl pipeline list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--page-token PAGE-TOKEN] [--page-size PAGE-SIZE] [--sort-by SORT-BY]
+```
+
+
+#### Command options
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--page-token` (string)
+:   A page token to request the next page of results. The token is acquired from the nextPageToken field of the response from the previous ListPipelines call.
+
+`--page-size` (int64)
+:   The number of pipelines to be listed per page. If there are more pipelines than this number, the response message will contain a valid value in the nextPageToken field.
+
+`--sort-by` (string)
+:   Accepted formats: "field_name" or "field_name sort_order". Accepted field names: "id", "name", "created_at". Accepted sort orders: "asc" (ascending), "desc" (descending). Default sort order is "asc".
+
+<a id='pipeline_delete'></a>
+## &#8226; pipeline delete
+
+Deletes a pipeline and its pipeline versions. You need to specify either `project_id` or `space_id`.
+
+```sh
+cpdctl pipeline delete --pipeline-id PIPELINE-ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--pipeline-id` (strfmt.UUID)
+:   The ID of the pipeline to be deleted. Required.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+<a id='pipeline_get'></a>
+## &#8226; pipeline get
+
+Finds a specific pipeline by ID. You need to specify either `project_id` or `space_id`.
+
+```sh
+cpdctl pipeline get --pipeline-id PIPELINE-ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--pipeline-id` (strfmt.UUID)
+:   The ID of the pipeline to be retrieved. Required.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+<a id='pipeline_get-template'></a>
+## &#8226; pipeline get-template
+
+Returns code (YAML template, Orchestration Flow json) that contains the specified pipeline's description, parameters and metadata. You need to specify either `project_id` or `space_id`.
+
+```sh
+cpdctl pipeline get-template --pipeline-id PIPELINE-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--format FORMAT] [--volatile VOLATILE] [--version VERSION]
+```
+
+
+#### Command options
+
+`--pipeline-id` (strfmt.UUID)
+:   The ID of the pipeline whose template is to be retrieved. Required.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--format` (string)
+:   What code should be get.
+
+    The default value is `template`. Allowable values are: `template`, `flow`, `all`.
+
+`--volatile` (bool)
+:   Whenever the version to be retrieved should be volatile or not. In case this is set to false, last non-volatile version will be get. In case it's set to true, volatile version will be get.
+
+`--version` (string)
+:   The version of the pipeline to be retrieved. One of: 
+* 'any' (return the volatile version if it exists, and the latest non-volatile version otherwise).
+* 'latest' (retrieve the latest non-volatile version), or 
+* 'volatile' (retrieve the volatile version),.
+
+    Allowable values are: `any`, `latest`, `volatile`.
+
+<a id='pipeline_commit'></a>
+## &#8226; pipeline commit
+
+Commits a pre-existing volatile default version to finished state. You need to specify either `project_id` or `space_id`.
+
+```sh
+cpdctl pipeline commit --pipeline-id PIPELINE-ID [--commit-message COMMIT-MESSAGE] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--pipeline-id` (strfmt.UUID)
+:   ID of the pipeline the version is attached to. Required.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--commit-message` (string)
+:   commit message.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+<a id='pipeline_copy'></a>
+## &#8226; pipeline copy
+
+Creates a new pipeline from existing pipeline. You need to specify either `project_id` or `space_id`.
+
+```sh
+cpdctl pipeline copy --name NAME --pipeline-id PIPELINE-ID [--description DESCRIPTION] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--name` (string)
+:   Name of the created pipeline. Required.
+
+`--pipeline-id` (string)
+:   Id of the source pipeline. Required.
+
+`--description` (string)
+:   Description of the created pipeline.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+<a id='pipeline_upload'></a>
+## &#8226; pipeline upload
+
+Uploads a pipeline file and create a new pipeline. You need to specify either `project_id` or `space_id`.
+
+```sh
+cpdctl pipeline upload --file FILE [--uploadfile-content-type UPLOADFILE-CONTENT-TYPE] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--name NAME] [--description DESCRIPTION] [--volatile VOLATILE]
+```
+
+
+#### Command options
+
+`--file` (io.ReadCloser)
+:   Pipeline file to be uploaded.
+
+The supported file formats are pipeline.json and zip which contains pipeline.json inside, with content-type being absent, equal to "application/json" or "application/zip". Required.
+
+`--uploadfile-content-type` (string)
+:   The content type of Uploadfile.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--name` (string)
+:   Name of the pipeline, defaults to file's name.
+
+    The maximum length is `255` characters. The minimum length is `1` character. The value must match regular expression `/^[\\w-]*$/`.
+
+`--description` (string)
+:   Description of the pipelines, defaults to "".
+
+    The maximum length is `65535` characters. The minimum length is `0` characters. The value must match regular expression `/^.*$/`.
+
+`--volatile` (bool)
+:   When set to true, indicates the new pipeline's default version will be work-in-progress.
+
+Work-in-progress pipeline versions can be updated (with this flag still set to true) multiple times before committed as finished state.
+
+<a id='pipeline_validate'></a>
+## &#8226; pipeline validate
+
+Validates a pipeline file.
+
+```sh
+cpdctl pipeline validate --file FILE [--uploadfile-content-type UPLOADFILE-CONTENT-TYPE] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--file` (io.ReadCloser)
+:   Pipeline file to be uploaded.
+
+The supported file formats are pipeline.json and zip which contains pipeline.json inside, with content-type being absent, equal to "application/json" or "application/zip". Required.
+
+`--uploadfile-content-type` (string)
+:   The content type of Uploadfile.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
 <a id='project_list'></a>
 ## &#8226; project list
 
-Returns a list of projects that are meeting the provided query parameters. By default, the list returns projects that the authenticated user is a member of. This command lists only Analytics projects. Data Quality projects are not supported.
+Returns a list of projects filtered by the specified query parameters. By default, only projects that the authenticated user is a member of are returned. In IBM Cloud Pak for Data (CPD), all projects in the cluster are returned (regardless of project membership) if the authenticated user is assigned either the "Manage projects" or "Monitor project workloads" CPD permission. In IBM Cloud Pak for Data (CPDaaS), all projects associated with an IBM Cloud Account are returned (regardless of project membership) if the authenticated user is added to the IBM Cloud Account and assigned the IAM "Manager" role. This command lists only Analytics projects. Data Quality projects are not supported.
 
 ```sh
-cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--member MEMBER] [--roles ROLES] [--name NAME] [--match MATCH] [--guids GUIDS] [--include INCLUDE] [--limit LIMIT] [--bookmark BOOKMARK] [--skip SKIP]
+cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--type TYPE] [--member MEMBER] [--roles ROLES] [--name NAME] [--match MATCH] [--guids GUIDS] [--include INCLUDE] [--limit LIMIT] [--bookmark BOOKMARK] [--skip SKIP] [--cpdaas-include-permissions CPDAAS-INCLUDE-PERMISSIONS]
 ```
 
 
@@ -8220,15 +10738,20 @@ cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--member MEMBER] [--roles
 
     The value must match regular expression `/^[0-9a-f]{32}$/`.
 
+`-T`, `--type` (string)
+:   The project type.
+
+    Allowable values are: `cpd`, `wx`, `wca`.
+
 `-m`, `--member` (string)
-:   A project member to use to filter the query results by membership.
+:   A project member to use to filter the query results.
 
     The maximum length is `100` characters. The minimum length is `1` character.
 
 `-r`, `--roles` ([]string)
 :   A list of comma-separated project roles to use to filter the query results. Must be used in conjunction with the "member" query parameter.
 
-    Allowable list items are: `admin`, `editor`, `viewer`.
+    The default value is `[]`. Allowable list items are: `admin`, `editor`, `viewer`.
 
 `-n`, `--name` (string)
 :   A full or partial project name to use to filter the query results. This query parameter must be used in conjunction with the 'bss_account_id' query parameter. Use the 'match' query parameter to control they type of text matching performed. Project names are not unique and should not be used in place of project IDs.
@@ -8241,14 +10764,14 @@ cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--member MEMBER] [--roles
     The default value is `exact`. Allowable values are: `exact`, `keyword`.
 
 `-g`, `--guids` ([]string)
-:   A list of comma-separated project IDs to use to filter the query results.
+:   A list of comma-separated project IDs to use to filter the query results. This query parameter only works in conjunction with the 'member' query parameter.
 
     The list items must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`.
 
 `-I`, `--include` ([]string)
 :   A list of comma-separated project metadata sections to include in the query results.
 
-    The default value is `["fields"]`. Allowable list items are: `name`, `fields`, `members`, `everything`, `nothing`.
+    The default value is `["fields"]`. Allowable list items are: `name`, `fields`, `members`, `settings`, `everything`, `nothing`.
 
 `-l`, `--limit` (int64)
 :   The limit used to specify the maximum number of projects returned in the query results. Used for pagination in conjunction with the "bookmark" query parameter.
@@ -8264,6 +10787,11 @@ cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--member MEMBER] [--roles
 :   Deprecated. Use of this query parameter exhibits poor performance characteristics. Use the more efficient "bookmark" query parameter instead. The offset to use to define the starting index of projects to return in the query results. Used for pagination in conjunction with the "limit" query parameter.
 
     The default value is `0`. The minimum value is `0`.
+
+`--cpdaas-include-permissions` (bool)
+:   A CPDaaS specific flag indicating whether to fetch IAM permissions for the authenticated user as part of the request. Used to determine superuser access via the "manage_project" permission.
+
+    The default value is `false`.
 
 <a id='project_get'></a>
 ## &#8226; project get
@@ -8285,7 +10813,7 @@ cpdctl project get --project-id PROJECT-ID [--include INCLUDE]
 `-I`, `--include` ([]string)
 :   A list of comma-separated project metadata sections to include in the query results.
 
-    Allowable list items are: `name`, `fields`, `members`, `settings`, `integrations`, `storage`, `everything`, `nothing`.
+    The default value is `["fields"]`. Allowable list items are: `name`, `fields`, `members`, `settings`, `integrations`, `storage`, `credentials`, `everything`, `nothing`.
 
 <a id='project_update'></a>
 ## &#8226; project update
@@ -8293,7 +10821,7 @@ cpdctl project get --project-id PROJECT-ID [--include INCLUDE]
 Partially updates the project with only a subset of properties.
 
 ```sh
-cpdctl project update --project-id PROJECT-ID [--catalog CATALOG] [--compute COMPUTE] [--description DESCRIPTION] [--name NAME] [--public PUBLIC] [--tools TOOLS]
+cpdctl project update --project-id PROJECT-ID [--catalog CATALOG | --catalog-guid CATALOG-GUID --catalog-public CATALOG-PUBLIC] [--compute COMPUTE] [--description DESCRIPTION] [--name NAME] [--public PUBLIC] [--tools TOOLS] [--type TYPE]
 ```
 
 
@@ -8305,7 +10833,7 @@ cpdctl project update --project-id PROJECT-ID [--catalog CATALOG] [--compute COM
     The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`.
 
 `-C`, `--catalog` (<a href="#cli-project-catalog-example-schema-project">`ProjectCatalog`</a>)
-:   A catalog associated with the project.
+:   A catalog associated with the project. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--catalog=@path/to/file.json`.
 
@@ -8333,6 +10861,21 @@ cpdctl project update --project-id PROJECT-ID [--catalog CATALOG] [--compute COM
 :   The tools associated with the project.
 
     Allowable list items are: `jupyter_notebooks`, `watson_visual_recognition`, `dashboards`, `streams_designer`, `spss_modeler`, `experiments`, `data_refinery`.
+
+`--type` (string)
+:   The project type. The "cpd" project type is used to classify IBM Cloud Pak for Data (CPD) projects. The "wx" project type is used to classify IBM watsonx projects. The "wca" project type is used to classify IBM watsonx Code Assistant projects.
+
+    Allowable values are: `cpd`, `wx`, `wca`.
+
+`--catalog-guid` (string)
+:   The catalog ID represented as a version 4 UUID. This option provides a value for a sub-field of the JSON option 'catalog'. It is mutually exclusive with that option.
+
+    The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`.
+
+`--catalog-public` (bool)
+:   A boolean value indicating whether the catalog is public (true) or private (false). This option provides a value for a sub-field of the JSON option 'catalog'. It is mutually exclusive with that option.
+
+    The default value is `false`.
 
 <a id='project_member_delete'></a>
 ## &#8226; project member delete
@@ -8374,7 +10917,7 @@ cpdctl project member list --project-id PROJECT-ID [--roles ROLES] [--user-names
 `-r`, `--roles` ([]string)
 :   A list of comma-separated project roles to use to filter the query results.
 
-    Allowable list items are: `admin`, `editor`, `viewer`.
+    The default value is `[]`. Allowable list items are: `admin`, `editor`, `viewer`.
 
 `-u`, `--user-names` ([]string)
 :   A list of comma-separated usernames corresponding to project members that are used to filter the query results.
@@ -8385,7 +10928,7 @@ cpdctl project member list --project-id PROJECT-ID [--roles ROLES] [--user-names
 Change project member roles in a batch.
 
 ```sh
-cpdctl project member update --project-id PROJECT-ID --members MEMBERS
+cpdctl project member update --project-id PROJECT-ID --members MEMBERS [--cpdaas-include-permissions CPDAAS-INCLUDE-PERMISSIONS]
 ```
 
 
@@ -8401,13 +10944,18 @@ cpdctl project member update --project-id PROJECT-ID --members MEMBERS
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--members=@path/to/file.json`.
 
+`--cpdaas-include-permissions` (bool)
+:   A CPDaaS specific flag indicating whether to fetch IAM permissions for the authenticated user as part of the request. Used to determine superuser access via the "manage_project" permission.
+
+    The default value is `false`.
+
 <a id='project_member_create'></a>
 ## &#8226; project member create
 
 Adds new project members with the provided roles. A project must always have at least one admin.
 
 ```sh
-cpdctl project member create --project-id PROJECT-ID --members MEMBERS
+cpdctl project member create --project-id PROJECT-ID --members MEMBERS [--cpdaas-include-permissions CPDAAS-INCLUDE-PERMISSIONS]
 ```
 
 
@@ -8422,6 +10970,11 @@ cpdctl project member create --project-id PROJECT-ID --members MEMBERS
 :   A list of project members. Required.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--members=@path/to/file.json`.
+
+`--cpdaas-include-permissions` (bool)
+:   A CPDaaS specific flag indicating whether to fetch IAM permissions for the authenticated user as part of the request. Used to determine superuser access via the "manage_project" permission.
+
+    The default value is `false`.
 
 <a id='project_member_get'></a>
 ## &#8226; project member get
@@ -8456,7 +11009,7 @@ cpdctl project member get --project-id PROJECT-ID --user-name USER-NAME [--resol
 Creates a new project with the provided parameters, including all the storage and credentials in a single transaction. This endpoint will create a new COS bucket using generated unique name, all credentials, asset container and call all the required atomic APIs to fully configure a new project. Attempts to use the duplicate project names will result in an error. <b>NOTE</b>:  when creating projects programmatically, always use this endpoint, not /v2/projects. <br/><br/><br/> This endpoint can also be used to create a project from an exported Watson Studio .zip file. In this case, a new transaction is initiated to create assets under the project. A Transaction ID along with a URL is returned as a response of this API. As this transaction can take time, you can view the current status of the transaction using the returned URL.<br><b>NOTE</b>: This feature is only available in the private cloud.
 
 ```sh
-cpdctl project create --generator GENERATOR --name NAME --storage STORAGE [--compute COMPUTE] [--description DESCRIPTION] [--enforce-members ENFORCE-MEMBERS] [--public PUBLIC] [--tags TAGS] [--tools TOOLS]
+cpdctl project create --generator GENERATOR --name NAME [--storage STORAGE | --storage-delegated STORAGE-DELEGATED --storage-guid STORAGE-GUID --storage-plan-id STORAGE-PLAN-ID --storage-properties STORAGE-PROPERTIES --storage-resource-crn STORAGE-RESOURCE-CRN --storage-type STORAGE-TYPE] [--compute COMPUTE] [--description DESCRIPTION] [--enforce-members ENFORCE-MEMBERS] [--public PUBLIC] [--tags TAGS] [--tools TOOLS] [--type TYPE] [--verify-unique-name VERIFY-UNIQUE-NAME]
 ```
 
 
@@ -8469,7 +11022,7 @@ cpdctl project create --generator GENERATOR --name NAME --storage STORAGE [--com
 :   The name of the new project. The name must be a non-empty String. This does not need to be unique. Required.
 
 `-s`, `--storage` (<a href="#cli-transactional-project-storage-object-example-schema-project">`TransactionalProjectStorageObject`</a>)
-:   Object storage properties to be associated with the project. Required.
+:   Object storage properties to be associated with the project. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--storage=@path/to/file.json`.
 
@@ -8498,6 +11051,40 @@ cpdctl project create --generator GENERATOR --name NAME --storage STORAGE [--com
 :   List of tools to be associated with the project.
 
     Allowable list items are: `watson_visual_recognition`, `jupyter_notebooks`, `dashboards`, `streams_designer`, `spss_modeler`, `experiments`, `data_refinery`.
+
+`-y`, `--type` (string)
+:   The project type. The "cpd" project type is used to classify IBM Cloud Pak for Data (CPD) projects. The "wx" project type is used to classify IBM watsonx projects. The "wca" project type is used to classify IBM watsonx Code Assistant projects. The "dpx" project type is used to classify IBM Data Product Exchange projects. The "wxbi" project type is used to classify IBM watsonx BI Assistant projects.
+
+    The default value is `cpd`. Allowable values are: `cpd`, `wx`, `wca`, `dpx`, `wxbi`.
+
+`--verify-unique-name` (bool)
+:   If enabled, the transaction fails if the project name is not unique.
+
+    The default value is `true`.
+
+`--storage-delegated` (bool)
+:   Set to true of the COS instance is delegated by the account admin. This option provides a value for a sub-field of the JSON option 'storage'. It is mutually exclusive with that option.
+
+    The default value is `false`.
+
+`--storage-guid` (string)
+:   Unique guid of the associated project storage object. This option provides a value for a sub-field of the JSON option 'storage'. It is mutually exclusive with that option.
+
+`--storage-plan-id` (string)
+:   The unique ID of the plan associated with the COS instance. The value is 1e4e33e4-cfa6-4f12-9016-be594a6d5f87 for the One Rate plan. This option provides a value for a sub-field of the JSON option 'storage'. It is mutually exclusive with that option.
+
+`--storage-properties` (<a href="#cli-transactional-project-storage-object-properties-example-schema-project">`TransactionalProjectStorageObjectProperties`</a>)
+:   This option provides a value for a sub-field of the JSON option 'storage'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--storage-properties=@path/to/file.json`.
+
+`--storage-resource-crn` (string)
+:   A cloud resource name of the Cloud Object Storage instance in WSC (not required in CP4D or in AWS). This option provides a value for a sub-field of the JSON option 'storage'. It is mutually exclusive with that option.
+
+`--storage-type` (string)
+:   The type of the associated project storage. This option provides a value for a sub-field of the JSON option 'storage'. It is mutually exclusive with that option.
+
+    The default value is `bmcos_object_storage`. Allowable values are: `bmcos_object_storage`, `assetfiles`, `local_git_storage`, `amazon_s3`.
 
 <a id='project_delete'></a>
 ## &#8226; project delete
@@ -8546,8 +11133,8 @@ cpdctl space list [--start START] [--limit LIMIT] [--total-count TOTAL-COUNT] [-
 :   A list of comma-separated space sections to include in the query results. Example: '?include=members'.
 
 Available fields:
-* members (returns up to 100 members)
-* nothing (does not return space entity and metadata).
+ * members (returns up to 100 members)
+ * nothing (does not return space entity and metadata).
 
 `--member` (string)
 :   Filters the result list to only include spaces where the user with a matching user id is a member.
@@ -8557,9 +11144,9 @@ Available fields:
 
 Values:
 
-* admin
-* editor
-* viewer.
+  * admin
+  * editor
+  * viewer.
 
 `--bss-account-id` (string)
 :   Filtering by bss_account_id is allowed only for accredited services.
@@ -8589,7 +11176,7 @@ Creates a new space to scope other assets. Authorized user must have the followi
 On Public Cloud user is required to provide Cloud Object Storage instance details in the 'storage' property. On private CPD installations the default storage is used instead.
 
 ```sh
-cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--generator GENERATOR] [--stage STAGE] [--storage STORAGE] [--tags TAGS] [--type TYPE]
+cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--generator GENERATOR] [--stage STAGE | --stage-name STAGE-NAME --stage-production STAGE-PRODUCTION] [--storage STORAGE | --storage-delegated STORAGE-DELEGATED --storage-resource-crn STORAGE-RESOURCE-CRN] [--tags TAGS] [--type TYPE]
 ```
 
 
@@ -8612,12 +11199,12 @@ cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] 
     The maximum length is `50` characters. The minimum length is `8` characters.
 
 `--stage` (<a href="#cli-stage-request-example-schema-space">`StageRequest`</a>)
-:   Space production and stage name.
+:   Space production and stage name. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--stage=@path/to/file.json`.
 
 `--storage` (<a href="#cli-storage-request-example-schema-space">`StorageRequest`</a>)
-:   Cloud Object Storage instance is required for spaces created on Public Cloud. On private CPD installations default storage is used instead. This flag is not supported on CPD.
+:   Cloud Object Storage instance is required for spaces created on Public Cloud. On private CPD installations default storage is used instead. This flag is not supported on CPD. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--storage=@path/to/file.json`.
 
@@ -8628,6 +11215,22 @@ cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] 
 :   Space type.
 
     The default value is `cpd`. Allowable values are: `cpd`, `wx`, `wca`.
+
+`--stage-name` (string)
+:   Stage name. E.g. development, test, pre-production, production. This option provides a value for a sub-field of the JSON option 'stage'. It is mutually exclusive with that option.
+
+`--stage-production` (bool)
+:   A boolean flag which specifies if a space is production or not. It cannot be modified. This option provides a value for a sub-field of the JSON option 'stage'. It is mutually exclusive with that option.
+
+    The default value is `false`.
+
+`--storage-delegated` (bool)
+:   Set to true of the COS instance is delegated by the account admin. This option provides a value for a sub-field of the JSON option 'storage'. It is mutually exclusive with that option.
+
+    The default value is `false`.
+
+`--storage-resource-crn` (string)
+:   A cloud resource name of the Cloud Object Storage instance. This option provides a value for a sub-field of the JSON option 'storage'. It is mutually exclusive with that option.
 
 <a id='space_delete'></a>
 ## &#8226; space delete
@@ -8663,18 +11266,18 @@ cpdctl space get --space-id SPACE-ID [--include INCLUDE]
 :   A list of comma-separated space sections to include in the query results. Example: '?include=members'.
 
 Available fields:
-* members (returns up to 100 members)
-* nothing (does not return space entity and metadata).
+ * members (returns up to 100 members)
+ * nothing (does not return space entity and metadata).
 
 <a id='space_update'></a>
 ## &#8226; space update
 
 Partially update this space. Allowed paths are:
-- /name
-- /description
-- /compute
-- /stage/name
-- /type.
+  - /name
+  - /description
+  - /compute
+  - /stage/name
+  - /type.
 
 ```sh
 cpdctl space update --space-id SPACE-ID [--compute COMPUTE] [--description DESCRIPTION] [--name NAME] [--stage-name STAGE-NAME]
@@ -8800,8 +11403,8 @@ cpdctl space member get --space-id SPACE-ID --member-id MEMBER-ID
 ## &#8226; space member update
 
 Partially update the member selected with the specified identifier. Allowed paths are:
-- /role
-- /state.
+  - /role
+  - /state.
 
 ```sh
 cpdctl space member update --space-id SPACE-ID --member-id MEMBER-ID --role ROLE [--state STATE]
@@ -8841,16 +11444,1615 @@ Wait until the space creation or deletion is finished.
 #### Command options
 
 `--cpd-scope` (string )
-:    CPD space scope, e.g. 'cpd://default-context/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:    CPD space scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--space-id` (string  )
 :    The space identification.
 
 <a id='version_'></a>
-## &#8226; version
+## &#8226; version 
 ```sh
    cpdctl version
 ```
+
+<a id='wx-ai_deployment_create'></a>
+## &#8226; wx-ai deployment create
+
+Create a new deployment, currently the only supported type is `online`. If this is a deployment for a prompt tune then the `asset` object must exist and the `id` must be the `id` of the `model` that was created after the prompt training. If this is a deployment for a prompt template then the `prompt_template` object should exist and the `id` must be the `id` of the prompt template to be deployed.
+
+```sh
+cpdctl wx-ai deployment create --name NAME [--online ONLINE | --online-parameters ONLINE-PARAMETERS] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--custom CUSTOM] [--asset ASSET | --asset-id ASSET-ID --asset-rev ASSET-REV] [--prompt-template PROMPT-TEMPLATE | --prompt-template-id PROMPT-TEMPLATE-ID] [--hardware-spec HARDWARE-SPEC | --hardware-spec-id HARDWARE-SPEC-ID --hardware-spec-rev HARDWARE-SPEC-REV --hardware-spec-name HARDWARE-SPEC-NAME --hardware-spec-num-nodes HARDWARE-SPEC-NUM-NODES] [--base-model-id BASE-MODEL-ID]
+```
+
+
+#### Command options
+
+`--name` (string)
+:   The name of the resource. Required.
+
+`--online` (<a href="#cli-online-deployment-example-schema-wx-ai">`OnlineDeployment`</a>)
+:   Indicates that this is an online deployment. An object has to be specified but can be empty.
+The `serving_name` can be provided in the `online.parameters`. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--online=@path/to/file.json`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--description` (string)
+:   A description of the resource.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--custom=@path/to/file.json`.
+
+`--asset` (<a href="#cli-rel-example-schema-wx-ai">`Rel`</a>)
+:   A reference to a resource. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--asset=@path/to/file.json`.
+
+`--prompt-template` (<a href="#cli-simple-rel-example-schema-wx-ai">`SimpleRel`</a>)
+:   A reference to a resource. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-template=@path/to/file.json`.
+
+`--hardware-spec` (<a href="#cli-hardware-spec-example-schema-wx-ai">`HardwareSpec`</a>)
+:   A hardware specification. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--hardware-spec=@path/to/file.json`.
+
+`--base-model-id` (string)
+:   The base model that is required for this deployment if this is for a prompt template or a prompt tune for an IBM foundation model.
+
+`--online-parameters` (<a href="#cli-online-deployment-parameters-example-schema-wx-ai">`OnlineDeploymentParameters`</a>)
+:   A set of key-value pairs that are used to configure the deployment. This option provides a value for a sub-field of the JSON option 'online'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--online-parameters=@path/to/file.json`.
+
+`--asset-id` (string)
+:   The id of the referenced resource. This option provides a value for a sub-field of the JSON option 'asset'. It is mutually exclusive with that option.
+
+`--asset-rev` (string)
+:   The revision of the referenced resource. This option provides a value for a sub-field of the JSON option 'asset'. It is mutually exclusive with that option.
+
+`--prompt-template-id` (string)
+:   The id of the referenced resource. This option provides a value for a sub-field of the JSON option 'prompt-template'. It is mutually exclusive with that option.
+
+`--hardware-spec-id` (string)
+:   The id of the hardware specification. One, and only one, of `id` or `name` must be set. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--hardware-spec-rev` (string)
+:   The revision of the hardware specification if `id` is used. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--hardware-spec-name` (string)
+:   The name of the hardware specification. One, and only one, of `id` or `name` must be set. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--hardware-spec-num-nodes` (int64)
+:   The number of nodes applied to a computation. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+<a id='wx-ai_deployment_list'></a>
+## &#8226; wx-ai deployment list
+
+Retrieve the list of deployments for the specified space or project.
+
+```sh
+cpdctl wx-ai deployment list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--serving-name SERVING-NAME] [--tag-value TAG-VALUE] [--asset-id ASSET-ID] [--prompt-template-id PROMPT-TEMPLATE-ID] [--name NAME] [--type TYPE] [--state STATE] [--conflict CONFLICT]
+```
+
+
+#### Command options
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--serving-name` (string)
+:   Retrieves the deployment, if any, that contains this `serving_name`.
+
+`--tag-value` (string)
+:   Retrieves only the resources with the given tag value.
+
+`--asset-id` (string)
+:   Retrieves only the resources with the given asset_id, asset_id would be the model id.
+
+`--prompt-template-id` (string)
+:   Retrieves only the resources with the given prompt_template_id.
+
+`--name` (string)
+:   Retrieves only the resources with the given name.
+
+`--type` (string)
+:   Retrieves the resources filtered with the given type. There are the deployment types as well as an additional
+`prompt_template` if the deployment type includes a prompt template.
+
+The supported deployment types are (see the description for `deployed_asset_type` in the deployment entity):
+
+1. `prompt_tune` - when a prompt tuned model is deployed. 2. `foundation_model` - when a prompt template is used on a pre-deployed IBM provided model.
+
+These can be combined with the flag `prompt_template` like this:
+
+1. `type=prompt_tune` - return all prompt tuned model deployments. 2. `type=prompt_tune and prompt_template` - return all prompt tuned model deployments with a prompt template. 3. `type=foundation_model` - return all prompt template deployments. 4. `type=foundation_model and prompt_template` - return all prompt template deployments - this is the same as the previous query because a `foundation_model` can only exist with a prompt template. 5. `type=prompt_template` - return all deployments with a prompt template.
+
+`--state` (string)
+:   Retrieves the resources filtered by state. Allowed values are `initializing`, `updating`, `ready` and `failed`.
+
+`--conflict` (bool)
+:   Returns whether `serving_name` is available for use or not. This query parameter cannot be combined with any other parameter except for `serving_name`.
+
+    The default value is `false`.
+
+<a id='wx-ai_deployment_get'></a>
+## &#8226; wx-ai deployment get
+
+Retrieve the deployment details with the specified identifier.
+
+```sh
+cpdctl wx-ai deployment get --deployment-id DEPLOYMENT-ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--deployment-id` (string)
+:   The deployment id. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+<a id='wx-ai_deployment_update'></a>
+## &#8226; wx-ai deployment update
+
+Update the deployment metadata. The following parameters of deployment metadata are supported for the patch operation.
+
+- `/name`
+- `/description`
+- `/tags`
+- `/custom`
+- `/online/parameters`
+- `/asset`
+- `/prompt_template`
+- `/hardware_spec`
+
+The PATCH operation with path specified as `/online/parameters` can be used to update the `serving_name`.
+
+Patching `/asset` or `/prompt_template` should normally be used in the case when these fields already exist.
+
+```sh
+cpdctl wx-ai deployment update --version VERSION --deployment-id DEPLOYMENT-ID [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--asset ASSET] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--deployment-id` (string)
+:   The deployment id. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-wx-ai">`JSONPatchOperation[]`</a>)
+:   The json patch.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--json-patch=@path/to/file.json`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--name` (string)
+:   The name of the resource.
+
+`--description` (string)
+:   A description of the resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
+
+`--asset` (<a href="#cli-rel-example-schema-wx-ai">`Rel`</a>)
+:   A reference to a resource.
+
+<a id='wx-ai_deployment_delete'></a>
+## &#8226; wx-ai deployment delete
+
+Delete the deployment with the specified identifier.
+
+```sh
+cpdctl wx-ai deployment delete --deployment-id DEPLOYMENT-ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--deployment-id` (string)
+:   The deployment id. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+<a id='wx-ai_deployment_text-generate'></a>
+## &#8226; wx-ai deployment text-generate
+Infer the next tokens for a given deployed model with a set of parameters. If a `serving_name` is used then it must match the `serving_name` that is returned in the `inference` when the deployment was created.
+
+```sh
+   cpdctl wx-ai deployment text-generate [command options]
+```
+#### Command options
+
+`--id-or-name` (string                    )
+:    Required. The 'id_or_name' can be either the 'deployment_id' that identifies the deployment or a 'serving_name' that allows a predefined URL to be used to post a prediction.
+
+`--input` (string                         )
+:    The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces.
+
+`--moderations` (string                   )
+:    Properties that control the moderations, for usages such as 'Hate and profanity' (HAP) and 'Personal identifiable information' (PII) filtering. This list can be extended with new types of moderations.
+
+`--parameters` (string                    )
+:    The template properties if this request refers to a prompt template.
+
+`--parameters-decoding-method` (string    )
+:    Represents the strategy used for picking the tokens during generation of the output text.
+
+`--parameters-include-stop-sequence` (    )
+:    Pass 'false' to omit matched stop sequences from the end of the output text. The default is 'true', meaning that the output will end with the stop sequence text when matched. The default value is true.
+
+`--parameters-length-penalty` (string     )
+:    It can be used to exponentially increase the likelihood of the text generation terminating once a specified number of tokens have been generated.
+
+`--parameters-max-new-tokens` (int        )
+:    The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.
+
+`--parameters-min-new-tokens` (int        )
+:    If stop sequences are given, they are ignored until minimum tokens are generated. The default value is 0. The minimum value is 0.
+
+`--parameters-prompt-variables` (string   )
+:    The prompt variables.
+
+`--parameters-random-seed` (int           )
+:    Random number generator seed to use in sampling mode for experimental repeatability. The minimum value is 1.
+
+`--parameters-repetition-penalty` (float  )
+:    Represents the penalty for penalizing tokens that have already been generated or belong to the context. The value 1.0 means that there is no penalty. The default value is 1. The maximum value is 2. The minimum value is 1.
+
+`--parameters-return-options` (string     )
+:    Properties that control what is returned.
+
+`--parameters-stop-sequences` (string     )
+:    Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 6 items. The minimum length is 0 items.
+
+`--parameters-temperature` (float         )
+:    A value used to modify the next-token probabilities in sampling mode. Values less than 1.0 sharpen the probability distribution, resulting in "less random" output. Values greater than 1.0 flatten the probability distribution, resulting in "more random" output. A value of 1.0 has no effect. The default value is 1. The maximum value is 2. The minimum value is 0.
+
+`--parameters-time-limit` (int            )
+:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.
+
+`--parameters-top-k` (int                 )
+:    The number of highest probability vocabulary tokens to keep for top-k-filtering. Only applies for sampling mode. When decoding_strategy is set to sample, only the top_k most likely tokens are considered as candidates for the next generated token. The maximum value is 100. The minimum value is 1.
+
+`--parameters-top-p` (float               )
+:    Similar to top_k except the candidates to generate the next token are the most likely tokens with probabilities that add up to at least top_p. Also known as nucleus sampling. A value of 1.0 is equivalent to disabled. The default value is 1. The maximum value is 1. The value must be greater than 0.
+
+`--parameters-truncate-input-tokens` (int )
+:    Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the start of the input (on the left), so the end of the input will remain the same. If this value exceeds the 'maximum sequence length' (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the 'maximum sequence length'. Zero means don't truncate. The minimum value is 0.
+
+`--parameters-typical-p` (float           )
+:    Local typicality measures how similar the conditional probability of predicting a target token next is to the expected conditional probability of predicting a random token next, given the partial text already generated. If less than 1, the smallest set of the most locally typical tokens with probabilities that add up to typical_p or higher are kept for generation. The maximum value is 1. The value must be greater than 0.
+
+<a id='wx-ai_deployment_text-generate-stream'></a>
+## &#8226; wx-ai deployment text-generate-stream
+Infer the next tokens for a given deployed model with a set of parameters. This operation will return the output tokens as a stream of events. If a `serving_name` is used then it must match the `serving_name` that is returned in the `inference` when the deployment was created.
+
+```sh
+   cpdctl wx-ai deployment text-generate-stream [command options]
+```
+#### Command options
+
+`--id-or-name` (string                    )
+:    Required. The 'id_or_name' can be either the 'deployment_id' that identifies the deployment or a 'serving_name' that allows a predefined URL to be used to post a prediction.
+
+`--input` (string                         )
+:    The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces.
+
+`--moderations` (string                   )
+:    Properties that control the moderations, for usages such as 'Hate and profanity' (HAP) and 'Personal identifiable information' (PII) filtering. This list can be extended with new types of moderations.
+
+`--parameters` (string                    )
+:    The template properties if this request refers to a prompt template.
+
+`--parameters-decoding-method` (string    )
+:    Represents the strategy used for picking the tokens during generation of the output text.
+
+`--parameters-include-stop-sequence` (    )
+:    Pass 'false' to omit matched stop sequences from the end of the output text. The default is 'true', meaning that the output will end with the stop sequence text when matched. The default value is true.
+
+`--parameters-length-penalty` (string     )
+:    It can be used to exponentially increase the likelihood of the text generation terminating once a specified number of tokens have been generated.
+
+`--parameters-max-new-tokens` (int        )
+:    The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.
+
+`--parameters-min-new-tokens` (int        )
+:    If stop sequences are given, they are ignored until minimum tokens are generated. The default value is 0. The minimum value is 0.
+
+`--parameters-prompt-variables` (string   )
+:    The prompt variables.
+
+`--parameters-random-seed` (int           )
+:    Random number generator seed to use in sampling mode for experimental repeatability. The minimum value is 1.
+
+`--parameters-repetition-penalty` (float  )
+:    Represents the penalty for penalizing tokens that have already been generated or belong to the context. The value 1.0 means that there is no penalty. The default value is 1. The maximum value is 2. The minimum value is 1.
+
+`--parameters-return-options` (string     )
+:    Properties that control what is returned.
+
+`--parameters-stop-sequences` (string     )
+:    Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 6 items. The minimum length is 0 items.
+
+`--parameters-temperature` (float         )
+:    A value used to modify the next-token probabilities in sampling mode. Values less than 1.0 sharpen the probability distribution, resulting in "less random" output. Values greater than 1.0 flatten the probability distribution, resulting in "more random" output. A value of 1.0 has no effect. The default value is 1. The maximum value is 2. The minimum value is 0.
+
+`--parameters-time-limit` (int            )
+:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.
+
+`--parameters-top-k` (int                 )
+:    The number of highest probability vocabulary tokens to keep for top-k-filtering. Only applies for sampling mode. When decoding_strategy is set to sample, only the top_k most likely tokens are considered as candidates for the next generated token. The maximum value is 100. The minimum value is 1.
+
+`--parameters-top-p` (float               )
+:    Similar to top_k except the candidates to generate the next token are the most likely tokens with probabilities that add up to at least top_p. Also known as nucleus sampling. A value of 1.0 is equivalent to disabled. The default value is 1. The maximum value is 1. The value must be greater than 0.
+
+`--parameters-truncate-input-tokens` (int )
+:    Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the start of the input (on the left), so the end of the input will remain the same. If this value exceeds the 'maximum sequence length' (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the 'maximum sequence length'. Zero means don't truncate. The minimum value is 0.
+
+`--parameters-typical-p` (float           )
+:    Local typicality measures how similar the conditional probability of predicting a target token next is to the expected conditional probability of predicting a random token next, given the partial text already generated. If less than 1, the smallest set of the most locally typical tokens with probabilities that add up to typical_p or higher are kept for generation. The maximum value is 1. The value must be greater than 0.
+
+<a id='wx-ai_deployment_wait'></a>
+## &#8226; wx-ai deployment wait
+Wait until the deployment becomes ready or failed.
+
+```sh
+   cpdctl wx-ai deployment wait --deployment-id DEPLOYMENT_ID --space-id SPACE_ID
+```
+#### Command options
+
+`--cpd-scope` (string     )
+:    CPD space scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--deployment-id` (string )
+:    The deployment ID.
+
+`--space-id` (string      )
+:    The ID of the space to use.
+
+<a id='wx-ai_foundation-model_list-models'></a>
+## &#8226; wx-ai foundation-model list-models
+Retrieve the list of deployed foundation models.
+
+```sh
+   cpdctl wx-ai foundation-model list-models [--start START] [--limit LIMIT] [--filters FILTERS]
+```
+#### Command options
+
+`--all-pages` (     )
+:    Invoke multiple requests to display all pages of the collection for foundation-model-list-models.
+
+`--filters` (string )
+:    A set of filters to specify the list of models, filters are described as the 'pattern' shown below.
+
+`--limit` (int      )
+:    How many resources should be returned. By default limit is 100. Max limit allowed is 200. The default value is 100. The maximum value is 200. The minimum value is 1.
+
+`--start` (string   )
+:    Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
+
+<a id='wx-ai_foundation-model_list-tasks'></a>
+## &#8226; wx-ai foundation-model list-tasks
+Retrieve the list of tasks that are supported by the foundation models.
+
+```sh
+   cpdctl wx-ai foundation-model list-tasks [--start START] [--limit LIMIT]
+```
+#### Command options
+
+`--all-pages` (   )
+:    Invoke multiple requests to display all pages of the collection for foundation-model-list-tasks.
+
+`--limit` (int    )
+:    How many resources should be returned. By default limit is 100. Max limit allowed is 200. The default value is 100. The maximum value is 200. The minimum value is 1.
+
+`--start` (string )
+:    Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
+
+<a id='wx-ai_prompt_create'></a>
+## &#8226; wx-ai prompt create
+This creates a new prompt with the provided parameters.
+
+```sh
+   cpdctl wx-ai prompt create [command options]
+```
+#### Command options
+
+`--cpd-scope` (string                   )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--created-at` (int                     )
+:    Time the prompt was created.
+
+`--description` (string                 )
+:    An optional description for the prompt. 
+
+`--input-mode` (string                  )
+:    Input mode in use for the prompt. Allowable values are: structured, freeform, chat, detached.
+
+`--lock` (string                        )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--lock-lock-type` (string              )
+:    Lock type: 'edit' for working on prompts/templates or 'governance'. Can only be supplied in PUT /lock requests. Allowable values are: edit, governance.
+
+`--lock-locked` (                       )
+:    True if the prompt is currently locked.
+
+`--lock-locked-by` (string              )
+:    Locked by is computed by the server and shouldn't be passed. 
+
+`--model-version` (string               )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--model-version-description` (string   )
+:    Description of the version. 
+
+`--model-version-number` (string        )
+:    User provided semvar version for tracking in IBM AI Factsheets. 
+
+`--model-version-tag` (string           )
+:    User provived tag. 
+
+`--name` (string                        )
+:    Required. Name used to display the prompt. 
+
+`--project-id` (string                  )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--prompt` (string                      )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--prompt-chat-items` (string           )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--prompt-data` (string                 )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--prompt-external-information` (string )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--prompt-input` (string                 )
+:    The default value is [].
+
+`--prompt-model-id` (string              )
+:    
+
+`--prompt-model-parameters` (string     )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--prompt-system-prompt` (string         )
+:    
+
+`--prompt-variables` (string            )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--space-id` (string                    )
+:    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request. 
+
+`--task-ids` (string                     )
+:    The maximum length is 1 item. The minimum length is 1 item.
+
+<a id='wx-ai_prompt_get'></a>
+## &#8226; wx-ai prompt get
+This retrieves a prompt / prompt template with the given id.
+
+```sh
+   cpdctl wx-ai prompt get --prompt-id PROMPT-ID [--project-id PROJECT-ID] [--space-id SPACE-ID] [--restrict-model-parameters RESTRICT-MODEL-PARAMETERS]
+```
+#### Command options
+
+`--cpd-scope` (string                 )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--project-id` (string                )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--prompt-id` (string                 )
+:    Required. Prompt ID. 
+
+`--restrict-model-parameters` (string )
+:    Only return a set of model parameters compatiable with inferencing. The default value is true.
+
+`--space-id` (string                  )
+:    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+
+<a id='wx-ai_prompt_update'></a>
+## &#8226; wx-ai prompt update
+This updates a prompt / prompt template with the given id.
+
+```sh
+   cpdctl wx-ai prompt update [command options]
+```
+#### Command options
+
+`--cpd-scope` (string                 )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--description` (string               )
+:    An optional description for the prompt. 
+
+`--governance-tracked` (              )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--id` (string                        )
+:    The prompt's id. This value cannot be set. It is returned in responses only. 
+
+`--input-mode` (string                )
+:    Input mode in use for the prompt. Allowable values are: structured, freeform.
+
+`--model-version` (string             )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--model-version-description` (string )
+:    Description of the version. 
+
+`--model-version-number` (string      )
+:    User provided semvar version for tracking in IBM AI Factsheets. 
+
+`--model-version-tag` (string         )
+:    User provived tag. 
+
+`--name` (string                      )
+:    Required. Name used to display the prompt. 
+
+`--project-id` (string                )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--prompt` (string                    )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--prompt-chat-items` (string         )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--prompt-data` (string               )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--prompt-id` (string                 )
+:    Required. Prompt ID. 
+
+`--prompt-input` (string               )
+:    The default value is [].
+
+`--prompt-model-id` (string            )
+:    
+
+`--prompt-model-parameters` (string   )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--prompt-system-prompt` (string       )
+:    
+
+`--prompt-variable` (string           )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--space-id` (string                  )
+:    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request. 
+
+`--task-ids` (string                   )
+:    The maximum length is 1 item. The minimum length is 1 item.
+
+<a id='wx-ai_prompt_delete'></a>
+## &#8226; wx-ai prompt delete
+This delets a prompt / prompt template with the given id.
+
+```sh
+   cpdctl wx-ai prompt delete --prompt-id PROMPT-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
+```
+#### Command options
+
+`--cpd-scope` (string  )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--project-id` (string )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--prompt-id` (string  )
+:    Required. Prompt ID. 
+
+`--space-id` (string   )
+:    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+
+<a id='wx-ai_prompt_update-lock'></a>
+## &#8226; wx-ai prompt update-lock
+Modifies the current locked state of a prompt.
+
+```sh
+   cpdctl wx-ai prompt update-lock --prompt-id PROMPT-ID --locked LOCKED [--lock-type LOCK-TYPE] [--locked-by LOCKED-BY] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--force FORCE]
+```
+#### Command options
+
+`--cpd-scope` (string  )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--force` (            )
+:    Override a lock if it is currently taken.
+
+`--lock-type` (string  )
+:    Lock type: 'edit' for working on prompts/templates or 'governance'. Can only be supplied in PUT /lock requests. Allowable values are: edit, governance.
+
+`--locked` (           )
+:    Required. True if the prompt is currently locked.
+
+`--locked-by` (string  )
+:    Locked by is computed by the server and shouldn't be passed. 
+
+`--project-id` (string )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--prompt-id` (string  )
+:    Required. Prompt ID. 
+
+`--space-id` (string   )
+:    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+
+<a id='wx-ai_prompt_get-lock'></a>
+## &#8226; wx-ai prompt get-lock
+Retrieves the current locked state of a prompt.
+
+```sh
+   cpdctl wx-ai prompt get-lock --prompt-id PROMPT-ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+#### Command options
+
+`--cpd-scope` (string  )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--project-id` (string )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--prompt-id` (string  )
+:    Required. Prompt ID. 
+
+`--space-id` (string   )
+:    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+
+<a id='wx-ai_prompt_get-input'></a>
+## &#8226; wx-ai prompt get-input
+Computes the inference input string based on state of a prompt. Optionally replaces template params.
+
+```sh
+   cpdctl wx-ai prompt get-input --prompt-id PROMPT-ID [--input INPUT] [--prompt-variable PROMPT-VARIABLE] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+#### Command options
+
+`--cpd-scope` (string       )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--input` (string           )
+:    Override input string that will be used to generate the response. The string can contain template parameters. 
+
+`--project-id` (string      )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--prompt-id` (string       )
+:    Required. Prompt ID. 
+
+`--prompt-variable` (string )
+:    Supply only to replace placeholders. Object content must be key:value pairs where the 'key' is the parameter to replace and 'value' is the value to use.
+
+`--space-id` (string        )
+:    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+
+<a id='wx-ai_prompt_add-chat-item'></a>
+## &#8226; wx-ai prompt add-chat-item
+This adds new chat items to the given prompt.
+
+```sh
+   cpdctl wx-ai prompt add-chat-item --prompt-id PROMPT-ID --chat-item CHAT-ITEM [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+#### Command options
+
+`--chat-item` (string  )
+:    Required. An array containing a question chat item and an answer chat item. The maximum length is 2 items. The minimum length is 2 items.
+
+`--cpd-scope` (string  )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--project-id` (string )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--prompt-id` (string  )
+:    Required. Prompt ID. 
+
+`--space-id` (string   )
+:    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+
+<a id='wx-ai_prompt-session_create'></a>
+## &#8226; wx-ai prompt-session create
+This creates a new prompt session.
+
+```sh
+   cpdctl wx-ai prompt-session create --name NAME [--id ID] [--description DESCRIPTION] [--created-at CREATED-AT] [--created-by CREATED-BY] [--last-updated-at LAST-UPDATED-AT] [--last-updated-by LAST-UPDATED-BY] [--lock LOCK | --lock-locked LOCK-LOCKED --lock-lock-type LOCK-LOCK-TYPE --lock-locked-by LOCK-LOCKED-BY] [--prompts PROMPTS] [--project-id PROJECT-ID]
+```
+#### Command options
+
+`--cpd-scope` (string       )
+:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--created-at` (int         )
+:    Time the session was created.
+
+`--created-by` (string      )
+:    The ID of the original session creator. 
+
+`--description` (string     )
+:    An optional description for the prompt session. 
+
+`--id` (string              )
+:    The prompt session's id. This value cannot be set. It is returned in responses only. 
+
+`--last-updated-at` (int    )
+:    Time the session was updated.
+
+`--last-updated-by` (string )
+:    The ID of the last user that modifed the session. 
+
+`--lock` (string            )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--lock-lock-type` (string  )
+:    Lock type: 'edit' for working on prompts/templates or 'governance'. Can only be supplied in PUT /lock requests. Allowable values are: edit, governance.
+
+`--lock-locked` (           )
+:    True if the prompt is currently locked.
+
+`--lock-locked-by` (string  )
+:    Locked by is computed by the server and shouldn't be passed. 
+
+`--name` (string            )
+:    Required. Name used to display the prompt session. 
+
+`--project-id` (string      )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--prompts` (string          )
+:    The maximum length is 50 items. The minimum length is 0 items.
+
+<a id='wx-ai_prompt-session_get'></a>
+## &#8226; wx-ai prompt-session get
+This retrieves a prompt session with the given id.
+
+```sh
+   cpdctl wx-ai prompt-session get --session-id SESSION-ID [--project-id PROJECT-ID] [--prefetch PREFETCH]
+```
+#### Command options
+
+`--cpd-scope` (string  )
+:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--prefetch` (         )
+:    Include the most recent entry.
+
+`--project-id` (string )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--session-id` (string )
+:    Required. Prompt Session ID.
+
+<a id='wx-ai_prompt-session_update'></a>
+## &#8226; wx-ai prompt-session update
+This updates a prompt session with the given id.
+
+```sh
+   cpdctl wx-ai prompt-session update --session-id SESSION-ID [--name NAME] [--description DESCRIPTION] [--project-id PROJECT-ID]
+```
+#### Command options
+
+`--cpd-scope` (string   )
+:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--description` (string )
+:    An optional description for the prompt. 
+
+`--name` (string         )
+:    
+
+`--project-id` (string  )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--session-id` (string  )
+:    Required. Prompt Session ID.
+
+<a id='wx-ai_prompt-session_delete'></a>
+## &#8226; wx-ai prompt-session delete
+This deletes a prompt session with the given id.
+
+```sh
+   cpdctl wx-ai prompt-session delete --session-id SESSION-ID [--project-id PROJECT-ID]
+```
+#### Command options
+
+`--cpd-scope` (string  )
+:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--project-id` (string )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--session-id` (string )
+:    Required. Prompt Session ID.
+
+<a id='wx-ai_prompt-session_add-entry'></a>
+## &#8226; wx-ai prompt-session add-entry
+This creates a new prompt associated with the given session.
+
+```sh
+   cpdctl wx-ai prompt-session add-entry [command options]
+```
+#### Command options
+
+`--cpd-scope` (string               )
+:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--created-at` (int                 )
+:    Required. Time the prompt was created.
+
+`--description` (string             )
+:    An optional description for the prompt. 
+
+`--id` (string                      )
+:    The prompt's id. This value cannot be set. It is returned in responses only. 
+
+`--input-mode` (string              )
+:    Input mode in use for the prompt. Allowable values are: structured, freeform, chat.
+
+`--is-template` (                   )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--name` (string                    )
+:    Required. Name used to display the prompt. 
+
+`--project-id` (string              )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--prompt` (string                  )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--prompt-chat-items` (string       )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--prompt-data` (string             )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--prompt-input` (string             )
+:    The default value is [].
+
+`--prompt-model-id` (string          )
+:    
+
+`--prompt-model-parameters` (string )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--prompt-system-prompt` (string     )
+:    
+
+`--prompt-variables` (string        )
+:    !!i18N_MESSAGE_NOT_FOUND!!
+
+`--session-id` (string              )
+:    Required. Prompt Session ID.
+
+<a id='wx-ai_prompt-session_list-entries'></a>
+## &#8226; wx-ai prompt-session list-entries
+List entries from a given session.
+
+```sh
+   cpdctl wx-ai prompt-session list-entries --session-id SESSION-ID [--project-id PROJECT-ID] [--bookmark BOOKMARK] [--limit LIMIT]
+```
+#### Command options
+
+`--bookmark` (string   )
+:    Bookmark from a previously limited get request. 
+
+`--cpd-scope` (string  )
+:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--limit` (string      )
+:    Limit for results to retrieve, default 20. 
+
+`--project-id` (string )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--session-id` (string )
+:    Required. Prompt Session ID.
+
+<a id='wx-ai_prompt-session_add-chat-item'></a>
+## &#8226; wx-ai prompt-session add-chat-item
+This adds new chat items to the given entry.
+
+```sh
+   cpdctl wx-ai prompt-session add-chat-item --session-id SESSION-ID --entry-id ENTRY-ID --chat-item CHAT-ITEM [--project-id PROJECT-ID]
+```
+#### Command options
+
+`--chat-item` (string  )
+:    Required. An array containing a question chat item and an answer chat item. The maximum length is 2 items. The minimum length is 2 items.
+
+`--cpd-scope` (string  )
+:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--entry-id` (string   )
+:    Required. Prompt Session Entry ID. 
+
+`--project-id` (string )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--session-id` (string )
+:    Required. Prompt Session ID.
+
+<a id='wx-ai_prompt-session_update-lock'></a>
+## &#8226; wx-ai prompt-session update-lock
+Modifies the current locked state of a prompt session.
+
+```sh
+   cpdctl wx-ai prompt-session update-lock --session-id SESSION-ID --locked LOCKED [--lock-type LOCK-TYPE] [--locked-by LOCKED-BY] [--project-id PROJECT-ID] [--force FORCE]
+```
+#### Command options
+
+`--cpd-scope` (string  )
+:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--force` (            )
+:    Override a lock if it is currently taken.
+
+`--lock-type` (string  )
+:    Lock type: 'edit' for working on prompts/templates or 'governance'. Can only be supplied in PUT /lock requests. Allowable values are: edit, governance.
+
+`--locked` (           )
+:    Required. True if the prompt is currently locked.
+
+`--locked-by` (string  )
+:    Locked by is computed by the server and shouldn't be passed. 
+
+`--project-id` (string )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--session-id` (string )
+:    Required. Prompt Session ID.
+
+<a id='wx-ai_prompt-session_get-lock'></a>
+## &#8226; wx-ai prompt-session get-lock
+Retrieves the current locked state of a prompt session.
+
+```sh
+   cpdctl wx-ai prompt-session get-lock --session-id SESSION-ID [--project-id PROJECT-ID]
+```
+#### Command options
+
+`--cpd-scope` (string  )
+:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--project-id` (string )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--session-id` (string )
+:    Required. Prompt Session ID.
+
+<a id='wx-ai_prompt-session_get-entry'></a>
+## &#8226; wx-ai prompt-session get-entry
+This retrieves a prompt session entry with the given id.
+
+```sh
+   cpdctl wx-ai prompt-session get-entry --session-id SESSION-ID --entry-id ENTRY-ID [--project-id PROJECT-ID]
+```
+#### Command options
+
+`--cpd-scope` (string  )
+:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--entry-id` (string   )
+:    Required. Prompt Session Entry ID. 
+
+`--project-id` (string )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--session-id` (string )
+:    Required. Prompt Session ID.
+
+<a id='wx-ai_prompt-session_delete-entry'></a>
+## &#8226; wx-ai prompt-session delete-entry
+This deletes a prompt session entry with the given id.
+
+```sh
+   cpdctl wx-ai prompt-session delete-entry --session-id SESSION-ID --entry-id ENTRY-ID [--project-id PROJECT-ID]
+```
+#### Command options
+
+`--cpd-scope` (string  )
+:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--entry-id` (string   )
+:    Required. Prompt Session Entry ID. 
+
+`--project-id` (string )
+:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+
+`--session-id` (string )
+:    Required. Prompt Session ID.
+
+<a id='wx-ai_training_create'></a>
+## &#8226; wx-ai training create
+
+Create a new watsonx.ai training in a project or a space.
+
+The details of the base model and parameters for the training must be provided in the `prompt_tuning` object.
+
+
+In order to deploy the tuned model you need to follow the following steps:
+
+  1. Create a WML model asset, in a space or a project,
+     by providing the `request.json` as shown below:
+       ```
+       curl -X POST "https://{cpd_cluster}/ml/v4/models?version=2024-01-29" \
+         -H "Authorization: Bearer <replace with your token>" \
+         -H "content-type: application/json" \
+         --data '{
+            "name": "replace_with_a_meaningful_name",
+            "space_id": "replace_with_your_space_id",
+            "type": "prompt_tune_1.0",
+            "software_spec": {
+              "name": "watsonx-textgen-fm-1.0"
+            },
+            "metrics": [ from the training job ],
+            "training": {
+              "id": "05859469-b25b-420e-aefe-4a5cb6b595eb",
+              "base_model": {
+                "model_id": "google/flan-t5-xl"
+              },
+              "task_id": "generation",
+              "verbalizer": "Input: {{input}} Output:"
+            },
+            "training_data_references": [
+              {
+                "connection": {
+                  "id": "20933468-7e8a-4706-bc90-f0a09332b263"
+                },
+                "id": "file_to_tune1.json",
+                "location": {
+                  "bucket": "wxproject-donotdelete-pr-xeyivy0rx3vrbl",
+                  "path": "file_to_tune1.json"
+                },
+                "type": "connection_asset"
+              }
+            ]
+          }'
+       ```
+
+
+       **Notes:**
+
+       1. If you used the training request field `auto_update_model: true`
+       then you can skip this step as the model will have been saved at
+       the end of the training job.
+       1. Rather than creating the payload for the model you can use the
+          generated `request.json` that was stored in the `results_reference`
+          field, look for the path in the field
+          `entity.results_reference.location.model_request_path`.
+       1. The model `type` must be `prompt_tune_1.0`.
+       1. The software spec name must be `watsonx-textgen-fm-1.0`.
+
+  1. Create a tuned model deployment as described in the
+     [create deployment documentation](#create-deployment).
+
+```sh
+cpdctl wx-ai training create --name NAME [--results-reference RESULTS-REFERENCE | --results-reference-id RESULTS-REFERENCE-ID --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-connection RESULTS-REFERENCE-CONNECTION --results-reference-location RESULTS-REFERENCE-LOCATION] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--description DESCRIPTION] [--tags TAGS] [--prompt-tuning PROMPT-TUNING | --prompt-tuning-base-model PROMPT-TUNING-BASE-MODEL --prompt-tuning-task-id PROMPT-TUNING-TASK-ID --prompt-tuning-tuning-type PROMPT-TUNING-TUNING-TYPE --prompt-tuning-num-epochs PROMPT-TUNING-NUM-EPOCHS --prompt-tuning-learning-rate PROMPT-TUNING-LEARNING-RATE --prompt-tuning-accumulate-steps PROMPT-TUNING-ACCUMULATE-STEPS --prompt-tuning-verbalizer PROMPT-TUNING-VERBALIZER --prompt-tuning-batch-size PROMPT-TUNING-BATCH-SIZE --prompt-tuning-max-input-tokens PROMPT-TUNING-MAX-INPUT-TOKENS --prompt-tuning-max-output-tokens PROMPT-TUNING-MAX-OUTPUT-TOKENS --prompt-tuning-init-method PROMPT-TUNING-INIT-METHOD --prompt-tuning-init-text PROMPT-TUNING-INIT-TEXT] [--training-data-references TRAINING-DATA-REFERENCES] [--custom CUSTOM] [--auto-update-model AUTO-UPDATE-MODEL]
+```
+
+
+#### Command options
+
+`--name` (string)
+:   The name of the training. Required.
+
+`--results-reference` (<a href="#cli-object-location-example-schema-wx-ai">`ObjectLocation`</a>)
+:   The training results. Normally this is specified as `type=container` which
+means that it is stored in the space or project. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference=@path/to/file.json`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--description` (string)
+:   A description of the training.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--prompt-tuning` (<a href="#cli-prompt-tuning-example-schema-wx-ai">`PromptTuning`</a>)
+:   Properties to control the prompt tuning. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-tuning=@path/to/file.json`.
+
+`--training-data-references` (<a href="#cli-data-connection-reference-example-schema-wx-ai">`DataConnectionReference[]`</a>)
+:   Training datasets.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--training-data-references=@path/to/file.json`.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--custom=@path/to/file.json`.
+
+`--auto-update-model` (bool)
+:   If set to `true` then the result of the training, if successful, will be uploaded to the repository as a model.
+
+    The default value is `false`.
+
+`--results-reference-id` (string)
+:   Item identification inside a collection. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+`--results-reference-type` (string)
+:   The data source type like `connection_asset` or `data_asset`. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Allowable values are: `connection_asset`, `data_asset`, `container`, `url`.
+
+`--results-reference-connection` (<a href="#cli-data-connection-example-schema-wx-ai">`DataConnection`</a>)
+:   Contains a set of fields specific to each connection.
+See here for [details about specifying connections](#datareferences). This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference-connection=@path/to/file.json`.
+
+`--results-reference-location` (map[string]string)
+:   Contains a set of fields that describe the location of the data with respect to the `connection`. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference-location=@path/to/file.json`.
+
+`--prompt-tuning-base-model` (<a href="#cli-base-model-example-schema-wx-ai">`BaseModel`</a>)
+:   The model id of the base model for this job. This option provides a value for a sub-field of the JSON option 'prompt-tuning'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-tuning-base-model=@path/to/file.json`.
+
+`--prompt-tuning-task-id` (string)
+:   The task that is targeted for this model. This option provides a value for a sub-field of the JSON option 'prompt-tuning'. It is mutually exclusive with that option.
+
+`--prompt-tuning-tuning-type` (string)
+:   Type of Peft (Parameter-Efficient Fine-Tuning) config to build. This option provides a value for a sub-field of the JSON option 'prompt-tuning'. It is mutually exclusive with that option.
+
+    The default value is `prompt_tuning`. Allowable values are: `prompt_tuning`.
+
+`--prompt-tuning-num-epochs` (int64)
+:   Number of epochs to tune the prompt vectors, this affects the quality of the trained model. This option provides a value for a sub-field of the JSON option 'prompt-tuning'. It is mutually exclusive with that option.
+
+    The default value is `20`. The maximum value is `50`. The minimum value is `1`.
+
+`--prompt-tuning-learning-rate` (float64)
+:   Learning rate to be used while tuning prompt vectors. This option provides a value for a sub-field of the JSON option 'prompt-tuning'. It is mutually exclusive with that option.
+
+    The default value is `0.3`. The maximum value is `0.5`. The minimum value is `0.01`.
+
+`--prompt-tuning-accumulate-steps` (int64)
+:   Number of steps to be used for gradient accumulation. Gradient accumulation refers to a method of collecting gradient for configured number of steps instead of updating the model variables at every step and then applying the update to model variables. This can be used as a tool to overcome smaller batch size limitation. Often also referred in conjunction with "effective batch size". This option provides a value for a sub-field of the JSON option 'prompt-tuning'. It is mutually exclusive with that option.
+
+    The default value is `16`. The maximum value is `128`. The minimum value is `1`.
+
+`--prompt-tuning-verbalizer` (string)
+:   Verbalizer template to be used for formatting data at train and inference time. This template may use brackets to indicate where fields from the data model must be rendered. This option provides a value for a sub-field of the JSON option 'prompt-tuning'. It is mutually exclusive with that option.
+
+    The default value is `Input: {{input}} Output:`.
+
+`--prompt-tuning-batch-size` (int64)
+:   The batch size is a number of samples processed before the model is updated. This option provides a value for a sub-field of the JSON option 'prompt-tuning'. It is mutually exclusive with that option.
+
+    The default value is `16`. The maximum value is `16`. The minimum value is `1`.
+
+`--prompt-tuning-max-input-tokens` (int64)
+:   Maximum length of input tokens being considered. This option provides a value for a sub-field of the JSON option 'prompt-tuning'. It is mutually exclusive with that option.
+
+    The default value is `256`. The maximum value is `256`. The minimum value is `1`.
+
+`--prompt-tuning-max-output-tokens` (int64)
+:   Maximum length of output tokens being predicted. This option provides a value for a sub-field of the JSON option 'prompt-tuning'. It is mutually exclusive with that option.
+
+    The default value is `128`. The maximum value is `128`. The minimum value is `1`.
+
+`--prompt-tuning-init-method` (string)
+:   The `text` method requires `init_text` to be set. This option provides a value for a sub-field of the JSON option 'prompt-tuning'. It is mutually exclusive with that option.
+
+    The default value is `random`. Allowable values are: `random`, `text`.
+
+`--prompt-tuning-init-text` (string)
+:   Initialization text to be used if `init_method` is set to `text` otherwise this will be ignored. This option provides a value for a sub-field of the JSON option 'prompt-tuning'. It is mutually exclusive with that option.
+
+<a id='wx-ai_training_list'></a>
+## &#8226; wx-ai training list
+
+Retrieve the list of trainings for the specified space or project.
+Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
+
+```sh
+cpdctl wx-ai training list [--start START] [--limit LIMIT] [--total-count TOTAL-COUNT] [--tag-value TAG-VALUE] [--state STATE] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
+
+`--total-count` (bool)
+:   Compute the total count. May have performance impact.
+
+`--tag-value` (string)
+:   Return only the resources with the given tag value.
+
+`--state` (string)
+:   Filter based on on the training job state.
+
+    Allowable values are: `queued`, `pending`, `running`, `storing`, `completed`, `failed`, `canceled`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--all-pages` (bool)
+:   Invoke multiple requests to display all pages of the collection for training-list.
+
+<a id='wx-ai_training_get'></a>
+## &#8226; wx-ai training get
+
+Retrieve the training with the specified identifier.
+
+```sh
+cpdctl wx-ai training get --training-id TRAINING-ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--training-id` (string)
+:   The training identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+<a id='wx-ai_training_delete'></a>
+## &#8226; wx-ai training delete
+
+Cancel the specified training and remove it.
+
+```sh
+cpdctl wx-ai training delete --training-id TRAINING-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--hard-delete HARD-DELETE]
+```
+
+
+#### Command options
+
+`--training-id` (string)
+:   The training identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--hard-delete` (bool)
+:   Set to true in order to also delete the job metadata information.
+
+<a id='wx-ai_training_wait'></a>
+## &#8226; wx-ai training wait
+Wait until the training becomes completed, failed, or canceled.
+
+```sh
+   cpdctl wx-ai training wait --training-id TRAINING_ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+#### Command options
+
+`--cpd-scope` (string   )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--project-id` (string  )
+:    The ID of the project to use.
+
+`--space-id` (string    )
+:    The ID of the space to use.
+
+`--training-id` (string )
+:    The training ID.
+
+<a id='wx-ai_text_generate'></a>
+## &#8226; wx-ai text generate
+Infer the next tokens for a given deployed model with a set of parameters.
+
+```sh
+   cpdctl wx-ai text generate [command options]
+```
+#### Command options
+
+`--cpd-scope` (string                     )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--input` (string                         )
+:    Required. The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces.
+
+`--model-id` (string                      )
+:    Required. The 'id' of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx).
+
+`--moderations` (string                   )
+:    Properties that control the moderations, for usages such as 'Hate and profanity' (HAP) and 'Personal identifiable information' (PII) filtering. This list can be extended with new types of moderations.
+
+`--parameters` (string                    )
+:    Properties that control the model and response.
+
+`--parameters-decoding-method` (string    )
+:    Represents the strategy used for picking the tokens during generation of the output text.
+
+`--parameters-include-stop-sequence` (    )
+:    Pass 'false' to omit matched stop sequences from the end of the output text. The default is 'true', meaning that the output will end with the stop sequence text when matched. The default value is true.
+
+`--parameters-length-penalty` (string     )
+:    It can be used to exponentially increase the likelihood of the text generation terminating once a specified number of tokens have been generated.
+
+`--parameters-max-new-tokens` (int        )
+:    The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.
+
+`--parameters-min-new-tokens` (int        )
+:    If stop sequences are given, they are ignored until minimum tokens are generated. The default value is 0. The minimum value is 0.
+
+`--parameters-random-seed` (int           )
+:    Random number generator seed to use in sampling mode for experimental repeatability. The minimum value is 1.
+
+`--parameters-repetition-penalty` (float  )
+:    Represents the penalty for penalizing tokens that have already been generated or belong to the context. The value 1.0 means that there is no penalty. The default value is 1. The maximum value is 2. The minimum value is 1.
+
+`--parameters-return-options` (string     )
+:    Properties that control what is returned.
+
+`--parameters-stop-sequences` (string     )
+:    Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 6 items. The minimum length is 0 items.
+
+`--parameters-temperature` (float         )
+:    A value used to modify the next-token probabilities in sampling mode. Values less than 1.0 sharpen the probability distribution, resulting in "less random" output. Values greater than 1.0 flatten the probability distribution, resulting in "more random" output. A value of 1.0 has no effect. The default value is 1. The maximum value is 2. The minimum value is 0.
+
+`--parameters-time-limit` (int            )
+:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.
+
+`--parameters-top-k` (int                 )
+:    The number of highest probability vocabulary tokens to keep for top-k-filtering. Only applies for sampling mode. When decoding_strategy is set to sample, only the top_k most likely tokens are considered as candidates for the next generated token. The maximum value is 100. The minimum value is 1.
+
+`--parameters-top-p` (float               )
+:    Similar to top_k except the candidates to generate the next token are the most likely tokens with probabilities that add up to at least top_p. Also known as nucleus sampling. A value of 1.0 is equivalent to disabled. The default value is 1. The maximum value is 1. The value must be greater than 0.
+
+`--parameters-truncate-input-tokens` (int )
+:    Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the start of the input (on the left), so the end of the input will remain the same. If this value exceeds the 'maximum sequence length' (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the 'maximum sequence length'. Zero means don't truncate. The minimum value is 0.
+
+`--project-id` (string                    )
+:    The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--space-id` (string                      )
+:    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+
+<a id='wx-ai_text_generate-stream'></a>
+## &#8226; wx-ai text generate-stream
+Infer the next tokens for a given deployed model with a set of parameters. This operation will return the output tokens as a stream of events.
+
+```sh
+   cpdctl wx-ai text generate-stream [command options]
+```
+#### Command options
+
+`--cpd-scope` (string                     )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--input` (string                         )
+:    Required. The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces.
+
+`--model-id` (string                      )
+:    Required. The 'id' of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx).
+
+`--moderations` (string                   )
+:    Properties that control the moderations, for usages such as 'Hate and profanity' (HAP) and 'Personal identifiable information' (PII) filtering. This list can be extended with new types of moderations.
+
+`--parameters` (string                    )
+:    Properties that control the model and response.
+
+`--parameters-decoding-method` (string    )
+:    Represents the strategy used for picking the tokens during generation of the output text.
+
+`--parameters-include-stop-sequence` (    )
+:    Pass 'false' to omit matched stop sequences from the end of the output text. The default is 'true', meaning that the output will end with the stop sequence text when matched. The default value is true.
+
+`--parameters-length-penalty` (string     )
+:    It can be used to exponentially increase the likelihood of the text generation terminating once a specified number of tokens have been generated.
+
+`--parameters-max-new-tokens` (int        )
+:    The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.
+
+`--parameters-min-new-tokens` (int        )
+:    If stop sequences are given, they are ignored until minimum tokens are generated. The default value is 0. The minimum value is 0.
+
+`--parameters-random-seed` (int           )
+:    Random number generator seed to use in sampling mode for experimental repeatability. The minimum value is 1.
+
+`--parameters-repetition-penalty` (float  )
+:    Represents the penalty for penalizing tokens that have already been generated or belong to the context. The value 1.0 means that there is no penalty. The default value is 1. The maximum value is 2. The minimum value is 1.
+
+`--parameters-return-options` (string     )
+:    Properties that control what is returned.
+
+`--parameters-stop-sequences` (string     )
+:    Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 6 items. The minimum length is 0 items.
+
+`--parameters-temperature` (float         )
+:    A value used to modify the next-token probabilities in sampling mode. Values less than 1.0 sharpen the probability distribution, resulting in "less random" output. Values greater than 1.0 flatten the probability distribution, resulting in "more random" output. A value of 1.0 has no effect. The default value is 1. The maximum value is 2. The minimum value is 0.
+
+`--parameters-time-limit` (int            )
+:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.
+
+`--parameters-top-k` (int                 )
+:    The number of highest probability vocabulary tokens to keep for top-k-filtering. Only applies for sampling mode. When decoding_strategy is set to sample, only the top_k most likely tokens are considered as candidates for the next generated token. The maximum value is 100. The minimum value is 1.
+
+`--parameters-top-p` (float               )
+:    Similar to top_k except the candidates to generate the next token are the most likely tokens with probabilities that add up to at least top_p. Also known as nucleus sampling. A value of 1.0 is equivalent to disabled. The default value is 1. The maximum value is 1. The value must be greater than 0.
+
+`--parameters-truncate-input-tokens` (int )
+:    Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the start of the input (on the left), so the end of the input will remain the same. If this value exceeds the 'maximum sequence length' (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the 'maximum sequence length'. Zero means don't truncate. The minimum value is 0.
+
+`--project-id` (string                    )
+:    The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--space-id` (string                      )
+:    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+
+<a id='wx-ai_text_tokenize'></a>
+## &#8226; wx-ai text tokenize
+The text tokenize operation allows you to check the conversion of provided input to tokens for a given model. It splits text into words or sub-words, which then are converted to ids through a look-up table (vocabulary). Tokenization allows the model to have a reasonable vocabulary size.
+
+```sh
+   cpdctl wx-ai text tokenize --model-id MODEL-ID --input INPUT [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parameters PARAMETERS | --parameters-return-tokens PARAMETERS-RETURN-TOKENS]
+```
+#### Command options
+
+`--cpd-scope` (string         )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--input` (string             )
+:    Required. The input string to tokenize.
+
+`--model-id` (string          )
+:    Required. The 'id' of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx).
+
+`--parameters` (string        )
+:    The parameters for text tokenization.
+
+`--parameters-return-tokens` ()
+:    If this is 'true' then the actual tokens will also be returned in the response. The default value is false.
+
+`--project-id` (string        )
+:    The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--space-id` (string          )
+:    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+
+<a id='wx-ai_text_calculate-embeddings'></a>
+## &#8226; wx-ai text calculate-embeddings
+Generate embeddings from text input.
+
+```sh
+   cpdctl wx-ai text calculate-embeddings --model-id MODEL-ID --inputs INPUTS [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parameters PARAMETERS | --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS]
+```
+#### Command options
+
+`--cpd-scope` (string                     )
+:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--inputs` (string                        )
+:    Required. The input text. The maximum length is 1000 items.
+
+`--model-id` (string                      )
+:    Required. The 'id' of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models-embed.html?context=wx&audience=wdp).
+
+`--parameters` (string                    )
+:    Parameters for text embedding requests.
+
+`--parameters-return-options` (string     )
+:    The return options for text embeddings.
+
+`--parameters-truncate-input-tokens` (int )
+:    Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the end of the input (on the right), so the start of the input will remain the same. If this value exceeds the 'maximum sequence length' (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the 'maximum sequence length'. Zero means don't truncate. The minimum value is 0.
+
+`--project-id` (string                    )
+:    The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+
+`--space-id` (string                      )
+:    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+
+<a id='wx-ai_custom-foundation-model_list'></a>
+## &#8226; wx-ai custom-foundation-model list
+Retrieve the custom foundation models.
+
+```sh
+   cpdctl wx-ai custom-foundation-model list [--start START] [--limit LIMIT]
+```
+#### Command options
+
+`--limit` (int    )
+:    How many resources should be returned. By default limit is 100. Max limit allowed is 200. The default value is 100. The maximum value is 200. The minimum value is 1.
+
+`--start` (string )
+:    Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
 
 # Schema examples
 ### &#8226; AssetMetadata
@@ -8861,7 +13063,7 @@ The following example shows the format of the AssetMetadata object.
 ```json
 
 {
-  "asset_attributes" : [ "exampleString" ],
+  "asset_attributes" : [ "exampleString", "anotherExampleString" ],
   "asset_category" : "USER",
   "asset_id" : "exampleString",
   "asset_state" : "available",
@@ -8897,7 +13099,7 @@ The following example shows the format of the AssetMetadata object.
     "source" : "DASHDB",
     "source_system_id" : "String"
   },
-  "tags" : [ "exampleString" ]
+  "tags" : [ "exampleString", "anotherExampleString" ]
 }
 ```
 ### &#8226; AssetAttachment
@@ -8925,6 +13127,29 @@ The following example shows the format of the AssetAttachment[] object.
   "id" : "exampleString"
 } ]
 ```
+### &#8226; SourceSystem
+<a id="cli-source-system-example-schema-asset"></a>
+
+The following example shows the format of the SourceSystem object.
+
+```json
+
+{
+  "asset_identifier" : "String",
+  "created" : 1531854592,
+  "creation_timestamp" : "2018-03-21T12:47:43",
+  "last_modification_timestamp" : "2018-03-21T12:47:43",
+  "last_modified" : 1531854592,
+  "source" : "DASHDB",
+  "source_system_id" : "String"
+}
+```
+### &#8226; CommitInfo
+<a id="cli-commit-info-example-schema-asset"></a>
+
+### &#8226; AssetRov
+<a id="cli-asset-rov-example-schema-asset"></a>
+
 ### &#8226; JSONPatchOperation
 <a id="cli-json-patch-operation-example-schema-asset"></a>
 
@@ -8953,23 +13178,6 @@ The following example shows the format of the Classification object.
   }
 }
 ```
-### &#8226; SourceSystem
-<a id="cli-source-system-example-schema-asset"></a>
-
-The following example shows the format of the SourceSystem object.
-
-```json
-
-{
-  "asset_identifier" : "String",
-  "created" : 1531854592,
-  "creation_timestamp" : "2018-03-21T12:47:43",
-  "last_modification_timestamp" : "2018-03-21T12:47:43",
-  "last_modified" : 1531854592,
-  "source" : "DASHDB",
-  "source_system_id" : "String"
-}
-```
 ### &#8226; AssetTypeField
 <a id="cli-asset-type-field-example-schema-asset"></a>
 
@@ -8996,7 +13204,7 @@ The following example shows the format of the ExternalAssetPreview object.
 {
   "base_client_url" : "https://ibm.com",
   "url_parameters_fixed" : "allow_login_screen=true",
-  "url_parameters_from_asset_attributes" : [ "exampleString" ],
+  "url_parameters_from_asset_attributes" : [ "exampleString", "anotherExampleString" ],
   "url_path_from_asset_attributes" : "id"
 }
 ```
@@ -9033,8 +13241,8 @@ The following example shows the format of the ExportAssets object.
 
 {
   "all_assets" : true,
-  "asset_ids" : [ "exampleString" ],
-  "asset_types" : [ "exampleString" ]
+  "asset_ids" : [ "exampleString", "anotherExampleString" ],
+  "asset_types" : [ "exampleString", "anotherExampleString" ]
 }
 ```
 ### &#8226; ConnectionInteractionProperties
@@ -9048,7 +13256,7 @@ The following example shows the format of the ConnectionInteractionProperties ob
   "source" : [ {
     "aliases" : [ {
       "name" : "exampleString",
-      "supported_products" : [ "exampleString" ]
+      "supported_products" : [ "exampleString", "anotherExampleString" ]
     } ],
     "default_from_env" : "exampleString",
     "default_value" : "exampleString",
@@ -9057,7 +13265,7 @@ The following example shows the format of the ConnectionInteractionProperties ob
         "condition" : "contains",
         "property_name" : "exampleString",
         "uiOnly" : true,
-        "values" : [ "exampleString" ]
+        "values" : [ "exampleString", "anotherExampleString" ]
       },
       "value" : "exampleString"
     } ],
@@ -9074,23 +13282,23 @@ The following example shows the format of the ConnectionInteractionProperties ob
     "placeholder" : "exampleString",
     "readonly" : true,
     "required" : true,
-    "supported_environments" : [ "exampleString" ],
-    "supported_products" : [ "exampleString" ],
-    "tags" : [ "exampleString" ],
+    "supported_environments" : [ "exampleString", "anotherExampleString" ],
+    "supported_products" : [ "exampleString", "anotherExampleString" ],
+    "tags" : [ "exampleString", "anotherExampleString" ],
     "type" : "boolean",
     "uiOnly" : true,
     "user_defined" : true,
     "values" : [ {
       "label" : "exampleString",
-      "supported_environments" : [ "exampleString" ],
-      "supported_products" : [ "exampleString" ],
+      "supported_environments" : [ "exampleString", "anotherExampleString" ],
+      "supported_products" : [ "exampleString", "anotherExampleString" ],
       "value" : "exampleString"
     } ]
   } ],
   "target" : [ {
     "aliases" : [ {
       "name" : "exampleString",
-      "supported_products" : [ "exampleString" ]
+      "supported_products" : [ "exampleString", "anotherExampleString" ]
     } ],
     "default_from_env" : "exampleString",
     "default_value" : "exampleString",
@@ -9099,7 +13307,7 @@ The following example shows the format of the ConnectionInteractionProperties ob
         "condition" : "contains",
         "property_name" : "exampleString",
         "uiOnly" : true,
-        "values" : [ "exampleString" ]
+        "values" : [ "exampleString", "anotherExampleString" ]
       },
       "value" : "exampleString"
     } ],
@@ -9116,16 +13324,16 @@ The following example shows the format of the ConnectionInteractionProperties ob
     "placeholder" : "exampleString",
     "readonly" : true,
     "required" : true,
-    "supported_environments" : [ "exampleString" ],
-    "supported_products" : [ "exampleString" ],
-    "tags" : [ "exampleString" ],
+    "supported_environments" : [ "exampleString", "anotherExampleString" ],
+    "supported_products" : [ "exampleString", "anotherExampleString" ],
+    "tags" : [ "exampleString", "anotherExampleString" ],
     "type" : "boolean",
     "uiOnly" : true,
     "user_defined" : true,
     "values" : [ {
       "label" : "exampleString",
-      "supported_environments" : [ "exampleString" ],
-      "supported_products" : [ "exampleString" ],
+      "supported_environments" : [ "exampleString", "anotherExampleString" ],
+      "supported_products" : [ "exampleString", "anotherExampleString" ],
       "value" : "exampleString"
     } ]
   } ]
@@ -9154,6 +13362,9 @@ The following example shows the format of the ConnectionRov object.
   "mode" : 38
 }
 ```
+### &#8226; DatasourceTypeProperty
+<a id="cli-datasource-type-property-example-schema-connection"></a>
+
 ### &#8226; JSONPatchOperation
 <a id="cli-json-patch-operation-example-schema-connection"></a>
 
@@ -9182,6 +13393,8 @@ The following example shows the format of the PipelineJSON object.
   "doc_type" : "pipeline",
   "external_paramsets" : [ {
     "anyKey" : "anyValue"
+  }, {
+    "anotherAnyKey" : "anotherAnyValue"
   } ],
   "id" : "84c2b6fb-1dd5-4114-b4ba-9bb2cb364fff",
   "json_schema" : "http://api.dataplatform.ibm.com/schemas/common-pipeline/pipeline-flow/pipeline-flow-v3-schema.json",
@@ -9197,19 +13410,28 @@ The following example shows the format of the PipelineJSON object.
     "name" : "ContainerC1",
     "nodes" : [ {
       "anyKey" : "anyValue"
+    }, {
+      "anotherAnyKey" : "anotherAnyValue"
     } ],
     "runtime_ref" : "pxOsh"
   } ],
   "primary_pipeline" : "fa1b859a-d592-474d-b56c-2137e4efa4bc",
   "runtimes" : [ {
     "anyKey" : "anyValue"
+  }, {
+    "anotherAnyKey" : "anotherAnyValue"
   } ],
   "schemas" : [ {
     "anyKey" : "anyValue"
+  }, {
+    "anotherAnyKey" : "anotherAnyValue"
   } ],
   "version" : "3.0"
 }
 ```
+### &#8226; Pipelines
+<a id="cli-pipelines-example-schema-datastage"></a>
+
 ### &#8226; FlowDependencyTree
 <a id="cli-flow-dependency-tree-example-schema-datastage"></a>
 
@@ -9257,8 +13479,11 @@ The following example shows the format of the TableDefinitionEntity object.
   "data_definition" : {
     "anyKey" : "anyValue"
   },
+  "directory_asset" : {
+    "path" : "exampleString"
+  },
   "ds_info" : {
-    "data_types" : [ "exampleString" ],
+    "data_types" : [ "exampleString", "anotherExampleString" ],
     "field_defaults" : {
       "anyKey" : "anyValue"
     },
@@ -9303,6 +13528,15 @@ The following example shows the format of the TableDefinitionMetadata object.
   "name" : "exampleString"
 }
 ```
+### &#8226; TableDefinitionDataAsset
+<a id="cli-table-definition-data-asset-example-schema-datastage"></a>
+
+### &#8226; DirectoryAsset
+<a id="cli-directory-asset-example-schema-datastage"></a>
+
+### &#8226; TableDefinitionDSInfo
+<a id="cli-table-definition-ds-info-example-schema-datastage"></a>
+
 ### &#8226; PatchDocument
 <a id="cli-patch-document-example-schema-datastage"></a>
 
@@ -9459,6 +13693,18 @@ The following example shows the format of the BuildopWrapped object.
   }
 }
 ```
+### &#8226; BuildopBuildInterfaces
+<a id="cli-buildop-build-interfaces-example-schema-datastage"></a>
+
+### &#8226; BuildopBuildLogic
+<a id="cli-buildop-build-logic-example-schema-datastage"></a>
+
+### &#8226; BuildopWrappedEnvironment
+<a id="cli-buildop-wrapped-environment-example-schema-datastage"></a>
+
+### &#8226; BuildopWrappedInterfaces
+<a id="cli-buildop-wrapped-interfaces-example-schema-datastage"></a>
+
 ### &#8226; ReferencedSpecification
 <a id="cli-referenced-specification-example-schema-environment"></a>
 
@@ -9553,6 +13799,27 @@ The following example shows the format of the HardwareSpecificationSparkDefiniti
   "num_executors" : 2
 }
 ```
+### &#8226; HardwareSpecificationDataStageComputeDefinition
+<a id="cli-hardware-specification-data-stage-compute-definition-example-schema-environment"></a>
+
+### &#8226; HardwareSpecificationDataStageConductorDefinition
+<a id="cli-hardware-specification-data-stage-conductor-definition-example-schema-environment"></a>
+
+### &#8226; HardwareSpecificationCpuDefinition
+<a id="cli-hardware-specification-cpu-definition-example-schema-environment"></a>
+
+### &#8226; HardwareSpecificationGpuDefinition
+<a id="cli-hardware-specification-gpu-definition-example-schema-environment"></a>
+
+### &#8226; HardwareSpecificationMemoryDefinition
+<a id="cli-hardware-specification-memory-definition-example-schema-environment"></a>
+
+### &#8226; HardwareSpecificationSparkDriverDefinition
+<a id="cli-hardware-specification-spark-driver-definition-example-schema-environment"></a>
+
+### &#8226; HardwareSpecificationSparkExecutorDefinition
+<a id="cli-hardware-specification-spark-executor-definition-example-schema-environment"></a>
+
 ### &#8226; SoftwareSpecificationEntitySoftwareConfigurationDefinition
 <a id="cli-software-specification-entity-software-configuration-definition-example-schema-environment"></a>
 
@@ -9595,6 +13862,12 @@ The following example shows the format of the PackageExtensionReference[] object
   "href" : "/v2/package_extensions/b82b95df-fc3e-4273-98f7-473d62a03c2b"
 } ]
 ```
+### &#8226; IncludedPackagesDefinition
+<a id="cli-included-packages-definition-example-schema-environment"></a>
+
+### &#8226; PlatformDefinition
+<a id="cli-platform-definition-example-schema-environment"></a>
+
 ### &#8226; JobPostBodyJob
 <a id="cli-job-post-body-job-example-schema-job"></a>
 
@@ -9646,6 +13919,21 @@ The following example shows the format of the JobPostBodyJob object.
   "serving_name" : "my_job_1_2_3"
 }
 ```
+### &#8226; JobPostBodyConfiguration
+<a id="cli-job-post-body-configuration-example-schema-job"></a>
+
+### &#8226; JobParameter
+<a id="cli-job-parameter-example-schema-job"></a>
+
+### &#8226; ParameterSets
+<a id="cli-parameter-sets-example-schema-job"></a>
+
+### &#8226; JobPostBodyJobRetentionPolicy
+<a id="cli-job-post-body-job-retention-policy-example-schema-job"></a>
+
+### &#8226; JobPostBodyJobScheduleInfo
+<a id="cli-job-post-body-job-schedule-info-example-schema-job"></a>
+
 ### &#8226; JSONPatchOperation
 <a id="cli-json-patch-operation-example-schema-job"></a>
 
@@ -9715,6 +14003,9 @@ The following example shows the format of the JobRunPostBodyJobRun object.
   } ]
 }
 ```
+### &#8226; JobRunPostBodyJobRunConfiguration
+<a id="cli-job-run-post-body-job-run-configuration-example-schema-job"></a>
+
 ### &#8226; JSONJobRunPatchModelItem
 <a id="cli-json-job-run-patch-model-item-example-schema-job"></a>
 
@@ -9756,10 +14047,10 @@ The following example shows the format of the HardwareSpecRel object.
   "num_nodes" : 2
 }
 ```
-### &#8226; JobEntityResultHybridPipelineHardwareSpecsItem
-<a id="cli-job-entity-result-hybrid-pipeline-hardware-specs-item-example-schema-ml"></a>
+### &#8226; HybridPipelineHardwareSpecsItem
+<a id="cli-hybrid-pipeline-hardware-specs-item-example-schema-ml"></a>
 
-The following example shows the format of the JobEntityResultHybridPipelineHardwareSpecsItem[] object.
+The following example shows the format of the HybridPipelineHardwareSpecsItem[] object.
 
 ```json
 
@@ -9816,6 +14107,9 @@ The following example shows the format of the DeploymentEntityRequestRShiny obje
   }
 }
 ```
+### &#8226; DeploymentEntityRequestRShinyParameters
+<a id="cli-deployment-entity-request-r-shiny-parameters-example-schema-ml"></a>
+
 ### &#8226; JSONPatchOperation
 <a id="cli-json-patch-operation-example-schema-ml"></a>
 
@@ -9856,7 +14150,7 @@ The following example shows the format of the InputDataArray[] object.
 [ {
   "id" : "exampleString",
   "fields" : [ "name", "age", "occupation" ],
-  "values" : [ [ "exampleString" ] ]
+  "values" : [ [ "exampleString", "anotherExampleString" ], [ "exampleString", "anotherExampleString" ] ]
 } ]
 ```
 ### &#8226; SimpleRel
@@ -9870,125 +14164,50 @@ The following example shows the format of the SimpleRel object.
   "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"
 }
 ```
-### &#8226; JobEntityRequestHybridPipelineHardwareSpecsItem
-<a id="cli-job-entity-request-hybrid-pipeline-hardware-specs-item-example-schema-ml"></a>
+### &#8226; JobScoringRequest
+<a id="cli-job-scoring-request-example-schema-ml"></a>
 
-The following example shows the format of the JobEntityRequestHybridPipelineHardwareSpecsItem[] object.
+### &#8226; JobDecisionOptimizationRequest
+<a id="cli-job-decision-optimization-request-example-schema-ml"></a>
+
+### &#8226; ScoringPayload
+<a id="cli-scoring-payload-example-schema-ml"></a>
+
+### &#8226; DataConnectionReference
+<a id="cli-data-connection-reference-example-schema-ml"></a>
+
+The following example shows the format of the DataConnectionReference[] object.
 
 ```json
 
 [ {
-  "node_runtime_id" : "auto_ai.kb",
-  "hardware_spec" : {
-    "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
-    "rev" : "2",
-    "name" : "exampleString",
-    "num_nodes" : 2
+  "id" : "8d3682dd-2858-43c9-bfd7-12a79abcfb0c",
+  "type" : "connection_asset",
+  "connection" : {
+    "anyKey" : "anyValue"
+  },
+  "location" : { },
+  "schema" : {
+    "id" : "t1",
+    "name" : "Tasks",
+    "fields" : [ {
+      "anyKey" : "anyValue"
+    }, {
+      "anotherAnyKey" : "anotherAnyValue"
+    } ],
+    "type" : "struct"
   }
 } ]
 ```
-### &#8226; JobScoringRequest
-<a id="cli-job-scoring-request-example-schema-ml"></a>
+### &#8226; EvaluationsSpecItem
+<a id="cli-evaluations-spec-item-example-schema-ml"></a>
 
-The following example shows the format of the JobScoringRequest object.
+### &#8226; ScoringPayloadOptim
+<a id="cli-scoring-payload-optim-example-schema-ml"></a>
 
-```json
+### &#8226; ObjectLocationOptim
+<a id="cli-object-location-optim-example-schema-ml"></a>
 
-{
-  "input_data" : [ {
-    "id" : "exampleString",
-    "type" : "target",
-    "fields" : [ "exampleString" ],
-    "values" : [ [ "exampleString" ] ],
-    "targets" : [ [ {
-      "anyKey" : "anyValue"
-    } ] ]
-  } ],
-  "input_data_references" : [ {
-    "id" : "8d3682dd-2858-43c9-bfd7-12a79abcfb0c",
-    "type" : "connection_asset",
-    "connection" : {
-      "anyKey" : "anyValue"
-    },
-    "location" : { },
-    "schema" : {
-      "id" : "t1",
-      "name" : "Tasks",
-      "fields" : [ {
-        "anyKey" : "anyValue"
-      } ],
-      "type" : "struct"
-    }
-  } ],
-  "output_data_reference" : {
-    "id" : "8d3682dd-2858-43c9-bfd7-12a79abcfb0c",
-    "type" : "connection_asset",
-    "connection" : {
-      "anyKey" : "anyValue"
-    },
-    "location" : { },
-    "schema" : {
-      "id" : "t1",
-      "name" : "Tasks",
-      "fields" : [ {
-        "anyKey" : "anyValue"
-      } ],
-      "type" : "struct"
-    }
-  },
-  "evaluations" : [ {
-    "id" : "exampleString",
-    "input_target" : "exampleString",
-    "metrics_names" : [ "auroc", "accuracy" ]
-  } ],
-  "environment_variables" : { }
-}
-```
-### &#8226; JobDecisionOptimizationRequest
-<a id="cli-job-decision-optimization-request-example-schema-ml"></a>
-
-The following example shows the format of the JobDecisionOptimizationRequest object.
-
-```json
-
-{
-  "solve_parameters" : {
-    "anyKey" : "anyValue"
-  },
-  "input_data" : [ {
-    "id" : "exampleString",
-    "fields" : [ "exampleString" ],
-    "values" : [ [ {
-      "anyKey" : "anyValue"
-    } ] ],
-    "content" : "exampleString"
-  } ],
-  "input_data_references" : [ {
-    "id" : "b6e37189-90e8-4260-86d8-0a6d2a02aa99",
-    "type" : "connection_asset",
-    "connection" : {
-      "anyKey" : "anyValue"
-    },
-    "location" : { }
-  } ],
-  "output_data" : [ {
-    "id" : "exampleString",
-    "fields" : [ "exampleString" ],
-    "values" : [ [ {
-      "anyKey" : "anyValue"
-    } ] ],
-    "content" : "exampleString"
-  } ],
-  "output_data_references" : [ {
-    "id" : "b6e37189-90e8-4260-86d8-0a6d2a02aa99",
-    "type" : "connection_asset",
-    "connection" : {
-      "anyKey" : "anyValue"
-    },
-    "location" : { }
-  } ]
-}
-```
 ### &#8226; EvaluationDefinition
 <a id="cli-evaluation-definition-example-schema-ml"></a>
 
@@ -10059,6 +14278,9 @@ The following example shows the format of the TrainingReference[] object.
   }
 } ]
 ```
+### &#8226; EvaluationMetric
+<a id="cli-evaluation-metric-example-schema-ml"></a>
+
 ### &#8226; SoftwareSpecRel
 <a id="cli-software-spec-rel-example-schema-ml"></a>
 
@@ -10083,7 +14305,7 @@ The following example shows the format of the SyncScoringData object.
   "input_data" : [ {
     "id" : "exampleString",
     "fields" : [ "name", "age", "occupation" ],
-    "values" : [ [ "exampleString" ] ]
+    "values" : [ [ "exampleString", "anotherExampleString" ], [ "exampleString", "anotherExampleString" ] ]
   } ]
 }
 ```
@@ -10100,6 +14322,8 @@ The following example shows the format of the FunctionEntitySchemas object.
     "name" : "Tasks",
     "fields" : [ {
       "anyKey" : "anyValue"
+    }, {
+      "anotherAnyKey" : "anotherAnyValue"
     } ],
     "type" : "struct"
   } ],
@@ -10108,6 +14332,8 @@ The following example shows the format of the FunctionEntitySchemas object.
     "name" : "Tasks",
     "fields" : [ {
       "anyKey" : "anyValue"
+    }, {
+      "anotherAnyKey" : "anotherAnyValue"
     } ],
     "type" : "struct"
   } ]
@@ -10127,6 +14353,9 @@ The following example shows the format of the ModelReference[] object.
   "rev" : "exampleString"
 } ]
 ```
+### &#8226; DataSchema
+<a id="cli-data-schema-example-schema-ml"></a>
+
 ### &#8226; ModelDefinitionID
 <a id="cli-model-definition-id-example-schema-ml"></a>
 
@@ -10137,30 +14366,6 @@ The following example shows the format of the ModelDefinitionID object.
 {
   "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"
 }
-```
-### &#8226; DataConnectionReference
-<a id="cli-data-connection-reference-example-schema-ml"></a>
-
-The following example shows the format of the DataConnectionReference[] object.
-
-```json
-
-[ {
-  "id" : "8d3682dd-2858-43c9-bfd7-12a79abcfb0c",
-  "type" : "connection_asset",
-  "connection" : {
-    "anyKey" : "anyValue"
-  },
-  "location" : { },
-  "schema" : {
-    "id" : "t1",
-    "name" : "Tasks",
-    "fields" : [ {
-      "anyKey" : "anyValue"
-    } ],
-    "type" : "struct"
-  }
-} ]
 ```
 ### &#8226; ModelEntitySchemas
 <a id="cli-model-entity-schemas-example-schema-ml"></a>
@@ -10175,6 +14380,8 @@ The following example shows the format of the ModelEntitySchemas object.
     "name" : "Tasks",
     "fields" : [ {
       "anyKey" : "anyValue"
+    }, {
+      "anotherAnyKey" : "anotherAnyValue"
     } ],
     "type" : "struct"
   } ],
@@ -10183,6 +14390,8 @@ The following example shows the format of the ModelEntitySchemas object.
     "name" : "Tasks",
     "fields" : [ {
       "anyKey" : "anyValue"
+    }, {
+      "anotherAnyKey" : "anotherAnyValue"
     } ],
     "type" : "struct"
   } ]
@@ -10368,8 +14577,8 @@ The following example shows the format of the Metric[] object.
       },
       "notebook_location" : "exampleString",
       "sdk_notebook_location" : "exampleString",
-      "pipeline_nodes" : [ "exampleString" ],
-      "composition_steps" : [ "exampleString" ],
+      "pipeline_nodes" : [ "exampleString", "anotherExampleString" ],
+      "composition_steps" : [ "exampleString", "anotherExampleString" ],
       "duration" : 38,
       "model_asset" : "exampleString"
     },
@@ -10398,9 +14607,9 @@ The following example shows the format of the Metric[] object.
       } ],
       "roc_curves" : [ {
         "true_class" : "exampleString",
-        "tpr" : [ 72.5 ],
-        "fpr" : [ 72.5 ],
-        "thresholds" : [ 72.5 ]
+        "tpr" : [ 72.5, 73.9 ],
+        "fpr" : [ 72.5, 73.9 ],
+        "thresholds" : [ 72.5, 73.9 ]
       } ]
     },
     "multi_class_classification" : {
@@ -10417,9 +14626,9 @@ The following example shows the format of the Metric[] object.
         "roc_curve_location" : "data/7d9ac934-9073-4ffd-846c-7b1f912b1ab2/data/autoai/pre_hpo_d_output/Pipeline1/roc_curve.json",
         "roc_curve" : {
           "true_class" : "exampleString",
-          "tpr" : [ 72.5 ],
-          "fpr" : [ 72.5 ],
-          "thresholds" : [ 72.5 ]
+          "tpr" : [ 72.5, 73.9 ],
+          "fpr" : [ 72.5, 73.9 ],
+          "thresholds" : [ 72.5, 73.9 ]
         }
       } ],
       "one_vs_all_location" : "data/7d9ac934-9073-4ffd-846c-7b1f912b1ab2/data/autoai/pre_hpo_d_output/Pipeline1/one_vs_all.json"
@@ -10432,7 +14641,7 @@ The following example shows the format of the Metric[] object.
       }
     } ],
     "schema" : "exampleString",
-    "estimators" : [ "exampleString" ],
+    "estimators" : [ "exampleString", "anotherExampleString" ],
     "incremental_training" : {
       "iteration" : 10,
       "total_iterations" : 30,
@@ -10500,6 +14709,9 @@ The following example shows the format of the ContentLocation object.
   "location" : { }
 }
 ```
+### &#8226; ContentInfo
+<a id="cli-content-info-example-schema-ml"></a>
+
 ### &#8226; ModelDefinitionEntityRequestPlatform
 <a id="cli-model-definition-entity-request-platform-example-schema-ml"></a>
 
@@ -10509,7 +14721,7 @@ The following example shows the format of the ModelDefinitionEntityRequestPlatfo
 
 {
   "name" : "exampleString",
-  "versions" : [ "exampleString" ]
+  "versions" : [ "exampleString", "anotherExampleString" ]
 }
 ```
 ### &#8226; ObjectLocation
@@ -10666,6 +14878,24 @@ The following example shows the format of the FederatedLearning object.
   "sketch_accuracy_vs_privacy" : 0.01
 }
 ```
+### &#8226; PipelineRelDataBindingsItem
+<a id="cli-pipeline-rel-data-bindings-item-example-schema-ml"></a>
+
+### &#8226; PipelineRelNodesParametersItem
+<a id="cli-pipeline-rel-nodes-parameters-item-example-schema-ml"></a>
+
+### &#8226; FederatedLearningModel
+<a id="cli-federated-learning-model-example-schema-ml"></a>
+
+### &#8226; FederatedLearningRemoteTraining
+<a id="cli-federated-learning-remote-training-example-schema-ml"></a>
+
+### &#8226; FederatedLearningOptimizer
+<a id="cli-federated-learning-optimizer-example-schema-ml"></a>
+
+### &#8226; FederatedLearningCrypto
+<a id="cli-federated-learning-crypto-example-schema-ml"></a>
+
 ### &#8226; NotebookKernel
 <a id="cli-notebook-kernel-example-schema-notebook"></a>
 
@@ -10734,6 +14964,15 @@ The following example shows the format of the NotebookShares object.
   }
 }
 ```
+### &#8226; NotebookSharesGist
+<a id="cli-notebook-shares-gist-example-schema-notebook"></a>
+
+### &#8226; NotebookSharesGithub
+<a id="cli-notebook-shares-github-example-schema-notebook"></a>
+
+### &#8226; NotebookSharesPublic
+<a id="cli-notebook-shares-public-example-schema-notebook"></a>
+
 ### &#8226; ProjectCatalog
 <a id="cli-project-catalog-example-schema-project"></a>
 
@@ -10757,11 +14996,11 @@ The following example shows the format of the ProjectCompute[] object.
   "credentials" : {
     "anyKey" : "anyValue"
   },
-  "crn" : "crn:v1:staging:public:watson-vision-combined:us-south:a/1438bf1daef49e20401d0179818ebef5:6874282b-42d6-40fa-869b-95a3c0f04125::",
-  "guid" : "eddc2f0c-4401-49d1-b632-dee2ec33dcc0",
-  "label" : "service_label",
-  "name" : "Analytics Engine",
-  "type" : "analytics_engine"
+  "crn" : "crn:v1:staging:public:code-assistant:us-south:a/0e79133675a31dbfd10504847a9e174f:630ced06-9675-4e35-a44f-d88197cc10c3::",
+  "guid" : "630ced06-9675-4e35-a44f-d88197cc10c3",
+  "label" : "code-assistant",
+  "name" : "IBM watsonx Code Assistant",
+  "type" : "code-assistant"
 } ]
 ```
 ### &#8226; UpdateMemberBody
@@ -10803,6 +15042,10 @@ The following example shows the format of the TransactionalProjectStorageObject 
 {
   "delegated" : false,
   "guid" : "d0e410a0-b358-42fc-b402-dba83316413a",
+  "plan_id" : "1e4e33e4-cfa6-4f12-9016-be594a6d5f87",
+  "properties" : {
+    "shared" : true
+  },
   "resource_crn" : "crn:v1:staging:public:cloud-object-storage:global:a/a7026b374f39f570d20984c1ac6ecf63:5778e94f-c8c7-46a8-9878-d5eeadb51161::",
   "type" : "bmcos_object_storage"
 }
@@ -10822,6 +15065,9 @@ The following example shows the format of the TransactionalProjectComputeObjectC
   "type" : "spark"
 } ]
 ```
+### &#8226; TransactionalProjectStorageObjectProperties
+<a id="cli-transactional-project-storage-object-properties-example-schema-project"></a>
+
 ### &#8226; ComputeRequest
 <a id="cli-compute-request-example-schema-space"></a>
 
@@ -10900,3 +15146,159 @@ The following example shows the format of the MemberResource[] object.
   "type" : "user"
 } ]
 ```
+### &#8226; OnlineDeployment
+<a id="cli-online-deployment-example-schema-wx-ai"></a>
+
+The following example shows the format of the OnlineDeployment object.
+
+```json
+
+{
+  "parameters" : {
+    "serving_name" : "churn"
+  }
+}
+```
+### &#8226; Rel
+<a id="cli-rel-example-schema-wx-ai"></a>
+
+The following example shows the format of the Rel object.
+
+```json
+
+{
+  "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
+  "rev" : "2"
+}
+```
+### &#8226; SimpleRel
+<a id="cli-simple-rel-example-schema-wx-ai"></a>
+
+The following example shows the format of the SimpleRel object.
+
+```json
+
+{
+  "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"
+}
+```
+### &#8226; HardwareSpec
+<a id="cli-hardware-spec-example-schema-wx-ai"></a>
+
+The following example shows the format of the HardwareSpec object.
+
+```json
+
+{
+  "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
+  "rev" : "2",
+  "name" : "exampleString",
+  "num_nodes" : 2
+}
+```
+### &#8226; OnlineDeploymentParameters
+<a id="cli-online-deployment-parameters-example-schema-wx-ai"></a>
+
+### &#8226; JSONPatchOperation
+<a id="cli-json-patch-operation-example-schema-wx-ai"></a>
+
+The following example shows the format of the JSONPatchOperation[] object.
+
+```json
+
+[ {
+  "op" : "add",
+  "path" : "exampleString",
+  "from" : "exampleString",
+  "value" : "exampleString"
+} ]
+```
+### &#8226; ObjectLocation
+<a id="cli-object-location-example-schema-wx-ai"></a>
+
+The following example shows the format of the ObjectLocation object.
+
+```json
+
+{
+  "id" : "exampleString",
+  "type" : "container",
+  "connection" : { },
+  "location" : { }
+}
+```
+### &#8226; PromptTuning
+<a id="cli-prompt-tuning-example-schema-wx-ai"></a>
+
+The following example shows the format of the PromptTuning object.
+
+```json
+
+{
+  "base_model" : {
+    "model_id" : "google/flan-t5-xl"
+  },
+  "task_id" : "classification",
+  "tuning_type" : "prompt_tuning",
+  "num_epochs" : 30,
+  "learning_rate" : 0.4,
+  "accumulate_steps" : 3,
+  "verbalizer" : "rte { 0 : entailment, 1 : not entailment } {{input}}",
+  "batch_size" : 10,
+  "max_input_tokens" : 100,
+  "max_output_tokens" : 100,
+  "init_method" : "text",
+  "init_text" : "exampleString"
+}
+```
+### &#8226; DataConnectionReference
+<a id="cli-data-connection-reference-example-schema-wx-ai"></a>
+
+The following example shows the format of the DataConnectionReference[] object.
+
+```json
+
+[ {
+  "id" : "tune1_data.json",
+  "type" : "container",
+  "connection" : { },
+  "location" : { },
+  "schema" : {
+    "id" : "t1",
+    "name" : "Tasks",
+    "fields" : [ {
+      "anyKey" : "anyValue"
+    }, {
+      "anotherAnyKey" : "anotherAnyValue"
+    } ],
+    "type" : "struct"
+  }
+} ]
+```
+### &#8226; DataConnection
+<a id="cli-data-connection-example-schema-wx-ai"></a>
+
+The following example shows the format of the DataConnectionReference[] object.
+
+```json
+
+[ {
+  "id" : "tune1_data.json",
+  "type" : "container",
+  "connection" : { },
+  "location" : { },
+  "schema" : {
+    "id" : "t1",
+    "name" : "Tasks",
+    "fields" : [ {
+      "anyKey" : "anyValue"
+    }, {
+      "anotherAnyKey" : "anotherAnyValue"
+    } ],
+    "type" : "struct"
+  }
+} ]
+```
+### &#8226; BaseModel
+<a id="cli-base-model-example-schema-wx-ai"></a>
+
