@@ -31,6 +31,9 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [asset data-asset create](#asset_data-asset_create)
 #### &#8226; [asset data-asset get](#asset_data-asset_get)
 #### &#8226; [asset data-asset upload](#asset_data-asset_upload)
+#### &#8226; [asset relationship get](#asset_relationship_get)
+#### &#8226; [asset relationship set](#asset_relationship_set)
+#### &#8226; [asset relationship unset](#asset_relationship_unset)
 #### &#8226; [asset file download](#asset_file_download)
 #### &#8226; [asset file list](#asset_file_list)
 #### &#8226; [asset file upload](#asset_file_upload)
@@ -1148,31 +1151,31 @@ Use this command to download the asset attachment to the local path
 ```
 #### Command options
 
-`--asset-id` (string      )
+`--asset-id` (string)
 :    ID of the asset
 
-`--attachment-id` (string )
+`--attachment-id` (string)
 :    ID of the attachment
 
-`--catalog-id` (string    )
+`--catalog-id` (string)
 :    You must provide either a catalog id, a project id, or a space id, but not more than one.
 
-`--cpd-scope` (string     )
+`--cpd-scope` (string)
 :    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--output-file` (string   )
+`--output-file` (string)
 :    Path to a file where the downloaded attachment is stored. Use '-' to print attachment contents to standard output.
 
-`--output-path` (string   )
+`--output-path` (string)
 :    Path where the downloaded attachment is stored. (DEPRECATED: use --output-file instead)
 
-`--progress` (            )
+`--progress` ()
 :    Show download progress. (default true)
 
-`--project-id` (string    )
+`--project-id` (string)
 :    You must provide either a catalog id, a project id, or a space id, but not more than one.
 
-`--space-id` (string      )
+`--space-id` (string)
 :    You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 <a id='asset_data-asset_create'></a>
@@ -1330,41 +1333,122 @@ Use this command to upload the local path as an asset attachment
 ```
 #### Command options
 
-`--asset-id` (string       )
+`--asset-id` (string)
 :    ID of the asset
 
-`--catalog-id` (string     )
+`--catalog-id` (string)
 :    You must provide either a catalog id, a project id, or a space id, but not more than one.
 
-`--cpd-scope` (string      )
+`--cpd-scope` (string)
 :    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--description` (string    )
+`--description` (string)
 :    Description of the data asset.
 
-`--file` (strings          )
+`--file` (strings)
 :    Path to the file to upload.
 
-`--mime` (string           )
+`--mime` (string)
 :    The content type of the file.
 
-`--name` (string           )
+`--name` (string)
 :    Name of the data asset (defaults to the uploaded file name).
 
-`--origin-country` (string )
+`--origin-country` (string)
 :    Origin country of the data asset. (default "us")
 
-`--progress` (             )
+`--progress` ()
 :    Show upload progress. (default true)
 
-`--project-id` (string     )
+`--project-id` (string)
 :    You must provide either a catalog id, a project id, or a space id, but not more than one.
 
-`--space-id` (string       )
+`--space-id` (string)
 :    You must provide either a catalog id, a project id, or a space id, but not more than one.
 
-`--tag` (strings           )
+`--tag` (strings)
 :    Tag(s) of the data asset. Multiple can be provided
+
+<a id='asset_relationship_get'></a>
+## &#8226; asset relationship get
+
+Finds assets related to a given asset or a given governance artifact.
+
+```sh
+cpdctl asset relationship get --asset-id ASSET-ID --relationship-names RELATIONSHIP-NAMES [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--limit LIMIT] [--bookmark BOOKMARK]
+```
+
+
+#### Command options
+
+`--asset-id` (string)
+:   Asset ID. Required.
+
+`--relationship-names` (string)
+:   Limits results to only include the specified relationships. By default, all relationships are included. Required.
+
+`--x-open-id-connect-id-token` (string)
+:   (DEPRECATED) X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
+
+`--project-id` (string)
+:   You must provide either a a project id, or a space id, but not more than one.
+
+`--space-id` (string)
+:   You must provide either a a project id, or a space id, but not more than one.
+
+`--limit` (int64)
+:   limit.
+
+    The default value is `25`.
+
+`--bookmark` (string)
+:   bookmark.
+
+<a id='asset_relationship_set'></a>
+## &#8226; asset relationship set
+
+Use this API to create up to 20 asset relationships. - The relationship name must correspond to a relationship type defined on the source type. - The source must be an asset, column or governance artifact of the type specified in the relationship type definition. - Relationships created with a governance artifact as the source cannot be retrieved, modified, or deleted in the IKC UI. - These relationships can only be accessed through API calls such as POST /v2/assets/search_relationships, POST /v2/assets/get_relationships, and POST /v2/assets/unset_relationships. - The target must be an asset, column or governance artifact of the type specified in the relationship type definition. - If the specified relationship does not exist between a source and target, a new relationship is created. - If either end of the relationship is defined as multiplicity-one, any existing value of a multiplicity-one end is replaced.
+
+```sh
+cpdctl asset relationship set [--relationships RELATIONSHIPS] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN]
+```
+
+
+#### Command options
+
+`--relationships` (<a href="#cli-asset-relationship-request-spec-example-schema-asset">`AssetRelationshipRequestSpec[]`</a>)
+:   &nbsp;
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--relationships=@path/to/file.json`.
+
+`--x-open-id-connect-id-token` (string)
+:   (DEPRECATED) X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
+
+<a id='asset_relationship_unset'></a>
+## &#8226; asset relationship unset
+
+Use this API to delete up to 20 asset relationships. - The relationship name must correspond to a relationship type defined on the source type. - The source must be an asset, column or governance artifact of the type specified in the relationship type definition. - The target must be an asset, column or governance artifact of the type specified in the relationship type definition. - If the specified relationship does not exist between the source and the target, it will be ignored.
+
+```sh
+cpdctl asset relationship unset [--relationships RELATIONSHIPS] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN]
+```
+
+
+#### Command options
+
+`--relationships` (<a href="#cli-asset-relationship-request-spec-example-schema-asset">`AssetRelationshipRequestSpec[]`</a>)
+:   &nbsp;
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--relationships=@path/to/file.json`.
+
+`--x-open-id-connect-id-token` (string)
+:   (DEPRECATED) X-OpenID-Connect-ID-Token.
+
+    The default value is `Bearer <token>`.
 
 <a id='asset_file_download'></a>
 ## &#8226; asset file download
@@ -1375,68 +1459,68 @@ Streams the content of the specified file, with the appropriate HTTP headers for
 ```
 #### Command options
 
-`--accept` (string        The type of the response:)
-:    or *_/_*.
+`--accept` (string)
+:    The type of the response:  or *_/_*.
 
-`--account-id` (string  )
+`--account-id` (string)
 :    Make request relative to the specified account.
 
-`--byte-limit` (int     )
+`--byte-limit` (int)
 :    If passed, indicates how many bytes of data is to be returned.
 
-`--byte-range` (string  )
+`--byte-range` (string)
 :    If passed, indicates the bytes that should be returned. Must be in format ('x-y': bytes x to y inclusive, '-y': the last y bytes, 'x-': everything from and including the xth byte). Does not support multiple ranges.
 
-`--catalog-id` (string  )
+`--catalog-id` (string)
 :    Make request relative to the specified catalog.
 
-`--cpd-scope` (string   )
+`--cpd-scope` (string)
 :    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--flat` (              )
+`--flat` ()
 :    If true, folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory. Only works for directories.
 
-`--force` (             )
+`--force` ()
 :    Only used when &inflate=true. Tells asset files to skip validation on whether the target is a zip. Inflate will be run regardless.
 
-`--hidden-files` (      )
+`--hidden-files` ()
 :    Whether or not to return hidden files. If false, hidden files files will be left out of the response object. Only works when the path being retrieved is a directory. Default is true.
 
-`--iam-id` (string      )
+`--iam-id` (string)
 :    (Internal use only) Make request relative to the specific iam id. Respected only when 'userfs' is also supplied.
 
-`--inflate` (           )
+`--inflate` ()
 :    If '&inflate=true' ALL other query params except the target are ignored. The file being retrieved must be an archive. If all checks pass the archive will be expanded to a temp location and the results will be returned as if flat=true was supplied. If the target archive has previously be inflated any existing inflate preview will be overwritten if the zip is newer. Otherwise the previous preview will be returned.
 
-`--output-file` (string )
+`--output-file` (string)
 :    Filename/path to write the resulting output to. Use '-' to print file contents to standard output.
 
-`--path` (string        )
+`--path` (string)
 :    Asset file path.
 
-`--project-id` (string  )
+`--project-id` (string)
 :    Make request relative to the specified project.
 
-`--range` (string       )
+`--range` (string)
 :    Similar to byte_range query param. Currently only supports bytes. See https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35 for more info. Can be used to limit the bytes of a file being returned. Ranges are inclusive. If set will take precedence over anything in byte_limit or byte_range.
 
-`--retry` (             )
+`--retry` ()
 :    Allow retries to account for disk syncronization across replicas. The default value is true.
 
-`--root` (              )
+`--root` ()
 :    (Internal use only) If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of standard assets directory. Note, there is one exception. If '&root=true' is supplied along with 'userfs' param targeting a project where the user has correct permissions standard auth will work.'.
 
-`--signature` (string   )
+`--signature` (string)
 :    Additional auth method. Signed string obtained by making presigned API request.
 
-`--size-limit` (int     )
+`--size-limit` (int)
 :    Returns 400 bad request if asset is larger than the value provided here. In MB.
 
-`--space-id` (string    )
+`--space-id` (string)
 :    Make request relative to the specified space.
 
-`--stream` (              Only works for directories. The content will be streamed out instead of being fully constructed and sent out all at once.)
-:    Used mainly for when there are a large number of files are expected.
+`--stream` ()
+:    Only works for directories. The content will be streamed out instead of being fully constructed and sent out all at once.  Used mainly for when there are a large number of files are expected.
 
 <a id='asset_file_list'></a>
 ## &#8226; asset file list
@@ -1447,49 +1531,49 @@ Returns a list of file paths (similar to S3 listObjects) for the provided projec
 ```
 #### Command options
 
-`--account-id` (string )
+`--account-id` (string)
 :    Make request relative to the specified account.
 
-`--all-pages` (        )
+`--all-pages` ()
 :    Invoke multiple requests to display all pages of the collection for asset-files-list.
 
-`--catalog-id` (string )
+`--catalog-id` (string)
 :    Make request relative to the specified catalog.
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--flat` (             )
+`--flat` ()
 :    If true folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory.
 
-`--hidden-files` (     )
+`--hidden-files` ()
 :    Whether or not to return hidden files. If false, hidden files files will be left out of the response object. Only works when the path being retrieved is a directory. Default is true.
 
-`--iam-id` (string     )
+`--iam-id` (string)
 :    (Internal use only) Make request relative to the specific iam id. Respected only when 'userfs' is also supplied.
 
-`--limit` (string      )
+`--limit` (string)
 :    Pagination param, limit number of resources returned.
 
-`--minimal` (          )
+`--minimal` ()
 :    If true, the response will contain less info. (ex// no etag) Only works with flat param set to true.
 
-`--offset` (string     )
+`--offset` (string)
 :    Pagination param, resources returned wil be offset by this value.
 
-`--path` (string       )
+`--path` (string)
 :    List files from the given folder path
 
-`--project-id` (string )
+`--project-id` (string)
 :    Make request relative to the specified project.
 
-`--root` (             )
+`--root` ()
 :    (Internal use only) If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of standard assets directory. Note, there is one exception. If '&root=true' is supplied along with 'userfs' param targeting a project where the user has correct permissions standard auth will work.'.
 
-`--space-id` (string   )
+`--space-id` (string)
 :    Make request relative to the specified space.
 
-`--stream` (           )
+`--stream` ()
 :    The content will be streamed out instead of being fully constructed and sent out all at once. Used mainly when there are a large number of files are expected.
 
 <a id='asset_file_upload'></a>
@@ -1501,49 +1585,49 @@ Uploads the bytes into the file with the provided file name using HTTP multi-par
 ```
 #### Command options
 
-`--account-id` (string        )
+`--account-id` (string)
 :    Make request relative to the specified account.
 
-`--catalog-id` (string        )
+`--catalog-id` (string)
 :    Make request relative to the specified catalog.
 
-`--cpd-scope` (string         )
+`--cpd-scope` (string)
 :    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--ensure-dir` (              )
+`--ensure-dir` ()
 :    Override functionality. If true will ensure the directory specified by 'path' exists (instead of uploading any file provided). 201 will be returned ig created, 200 if already exists and 409 if it is present and not a directory. Will take precedence over other query params except 'inflate'.
 
-`--file` (string              )
+`--file` (string)
 :    File to upload.
 
-`--file-content-type` (string )
+`--file-content-type` (string)
 :    The content type of File.
 
-`--iam-id` (string            )
+`--iam-id` (string)
 :    (Internal use only) Make request relative to the specific iam id. Respected only when 'userfs' is also supplied.
 
-`--inflate` (                 )
+`--inflate` ()
 :    Root dir must be created. Will take supplied file and decompress into target directory tree. Inflate is only acceptable for project, space and catalog targets. If inflate is selected it will take precedence over any and all other params.
 
-`--inflate-mode` (string      )
-:    Type of inflate to perform:
+`--inflate-mode` (string)
+:    Type of inflate to perform: * 'default' - Default mode, the target extract location must be empty. Same as if no inflate_mode were provided. * 'inline' - Extract into non-empty location. Files will be added inline. If a file in the archive already exists at the extract location the zip will stop being extracted and an error returned. * 'overwrite' - Extract into non-empty location. Similar to inline but if a file exists it will be deleted and the archived version will replace it. For a FULL overwrite delete the extract location manually. * 'skip' - Extract into non-empty location. Similar to inline but if a file exists it will be skipped and left unextracted. * 'rename' - Extract into non-empty location. Similar to inline but if a file exists the conflicting file will still be extracted but under a different name.
 
-`--override` (                )
+`--override` ()
 :    Default true. If set to false will not overwrite file.
 
-`--path` (string              )
+`--path` (string)
 :    Asset file path.
 
-`--project-id` (string        )
+`--project-id` (string)
 :    Make request relative to the specified project.
 
-`--root` (                    )
+`--root` ()
 :    (Internal use only) If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of standard assets directory. Note, there is one exception. If '&root=true' is supplied along with 'userfs' param targeting a project where the user has correct permissions standard auth will work.'.
 
-`--signature` (string         )
+`--signature` (string)
 :    Additional auth method. Signed string obtained by making API request to signing endpoint.
 
-`--space-id` (string          )
+`--space-id` (string)
 :    Make request relative to the specified space.
 
 <a id='asset_script_create'></a>
@@ -1555,37 +1639,37 @@ Use this command to create a script asset from a local file.
 ```
 #### Command options
 
-`--catalog-id` (string                )
+`--catalog-id` (string)
 :    You must provide either a catalog id, a project id, or a space id, but not more than one.
 
-`--cpd-scope` (string                 )
+`--cpd-scope` (string)
 :    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--description` (string               )
+`--description` (string)
 :    Description of the script asset
 
-`--file` (string                      )
+`--file` (string)
 :    File to upload
 
-`--language` (string                  )
+`--language` (string)
 :    Language of the script (default "python3" for Python scripts or "R" for R scripts)
 
-`--mime` (string                      )
+`--mime` (string)
 :    The content type of the file (default is detected from the file contents)
 
-`--origin-country` (string            )
+`--origin-country` (string)
 :    Origin country of the script asset (default "us")
 
-`--project-id` (string                )
+`--project-id` (string)
 :    You must provide either a catalog id, a project id, or a space id, but not more than one.
 
-`--software-specification-id` (string )
+`--software-specification-id` (string)
 :    ID of the software environment for the script.
 
-`--space-id` (string                  )
+`--space-id` (string)
 :    You must provide either a catalog id, a project id, or a space id, but not more than one.
 
-`--tag` (strings                      )
+`--tag` (strings)
 :    Tag(s) of the script asset. Multiple can be provided
 
 <a id='asset_export_list'></a>
@@ -1757,19 +1841,19 @@ Wait until the asset export becomes completed, failed, or cancelled.
 ```
 #### Command options
 
-`--catalog-id` (string )
+`--catalog-id` (string)
 :    This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--export-id` (string  )
+`--export-id` (string)
 :    The export identification.
 
-`--project-id` (string )
+`--project-id` (string)
 :    The ID of the project to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
 
-`--space-id` (string   )
+`--space-id` (string)
 :    The ID of the space to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
 
 <a id='asset_import_list'></a>
@@ -1900,19 +1984,19 @@ Wait until the asset import becomes completed, failed, or canceled.
 ```
 #### Command options
 
-`--catalog-id` (string )
+`--catalog-id` (string)
 :    This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--import-id` (string  )
+`--import-id` (string)
 :    The import identification.
 
-`--project-id` (string )
+`--project-id` (string)
 :    The ID of the project to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
 
-`--space-id` (string   )
+`--space-id` (string)
 :    The ID of the space to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
 
 <a id='code-package_list'></a>
@@ -1924,13 +2008,13 @@ List all code packages in a given project or space. You must specify either `pro
 ```
 #### Command options
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--project-id` (string )
+`--project-id` (string)
 :    The id of the project.
 
-`--space-id` (string   )
+`--space-id` (string)
 :    The id of the space.
 
 <a id='code-package_create'></a>
@@ -1942,25 +2026,25 @@ Create a new code package in a given project or space. You must specify either `
 ```
 #### Command options
 
-`--cpd-scope` (string           )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--description` (string         )
+`--description` (string)
 :    Description of the code package.
 
-`--file-reference` (string      )
+`--file-reference` (string)
 :    The reference to the file in the object storage.
 
-`--json-file-reference` (string )
+`--json-file-reference` (string)
 :    The reference to the metadata (json file) in the object storage.
 
-`--name` (string                )
+`--name` (string)
 :    Name of the code package.
 
-`--project-id` (string          )
+`--project-id` (string)
 :    The id of the project.
 
-`--space-id` (string            )
+`--space-id` (string)
 :    The id of the space.
 
 <a id='code-package_delete'></a>
@@ -1972,16 +2056,16 @@ Delete a code package in a given project or space. You must specify either `proj
 ```
 #### Command options
 
-`--code-package-id` (string )
+`--code-package-id` (string)
 :    The id of the code package.
 
-`--cpd-scope` (string       )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--project-id` (string      )
+`--project-id` (string)
 :    The id of the project.
 
-`--space-id` (string        )
+`--space-id` (string)
 :    The id of the space.
 
 <a id='code-package_get'></a>
@@ -1993,16 +2077,16 @@ Retrieve a code package in a given project or space. You must specify either `pr
 ```
 #### Command options
 
-`--code-package-id` (string )
+`--code-package-id` (string)
 :    The id of the code package.
 
-`--cpd-scope` (string       )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--project-id` (string      )
+`--project-id` (string)
 :    The id of the project.
 
-`--space-id` (string        )
+`--space-id` (string)
 :    The id of the space.
 
 <a id='code-package_promote'></a>
@@ -2014,25 +2098,25 @@ Promote a code package from a project to a space.
 ```
 #### Command options
 
-`--code-package-id` (string )
+`--code-package-id` (string)
 :    The id of the code package.
 
-`--cpd-scope` (string       )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--description` (string     )
+`--description` (string)
 :    The description of the new code package in space. If not specified, the description of the code package in project will be used.
 
-`--name` (string            )
+`--name` (string)
 :    The name of the new code package in space. If not specified, the name of the code package in project will be used.
 
-`--project-id` (string      )
+`--project-id` (string)
 :    The id of the project from which a code package will be promoted.
 
-`--revision-id` (string     )
+`--revision-id` (string)
 :    The id of the code package revision.
 
-`--space-id` (string        )
+`--space-id` (string)
 :    The id of the space to which a code package will be promoted.
 
 <a id='code-package_revision_list'></a>
@@ -2147,16 +2231,16 @@ cpdctl code-package revision get --code-package-id CODE-PACKAGE-ID --revision-id
 ```
 #### Command options
 
-`--apikey` (string     )
+`--apikey` (string)
 :    Set user apikey
 
-`--password` (string   )
+`--password` (string)
 :    Set user password
 
-`--token-file` (string )
+`--token-file` (string)
 :    Set location of a file that contains user token
 
-`--username` (string   )
+`--username` (string)
 :    Set user name
 
 <a id='config_user_unset'></a>
@@ -2186,37 +2270,37 @@ Create or update profile.
 ```
 #### Command options
 
-`--apikey` (string                     )
+`--apikey` (string)
 :    Create a user having this API key and associate it with the profile.
 
-`--common-services-url` (string        )
+`--common-services-url` (string)
 :    Set Common Services URL for the profile
 
-`--iam-integration-enabled` (          )
+`--iam-integration-enabled` ()
 :    Set if IAM integration is enabled on CP4D
 
-`--ibmcloud` (string                   )
+`--ibmcloud` (string)
 :    Connect the profile to IBM Cloud CLI session metadata. Flag value specifies IBM Cloud CLI configuration directory. If no value is given, default IBM Cloud CLI configuration directory is assumed.
 
-`--password` (string                   )
+`--password` (string)
 :    Create a user having this password and associate it with the profile.
 
-`--region` (string                     )
+`--region` (string)
 :    IBM cloud region.
 
-`--token-file` (string                 )
+`--token-file` (string)
 :    Create a user having this token location and associate it with the profile.
 
-`--url` (string                        )
+`--url` (string)
 :    Set URL for the profile
 
-`--user` (string                       )
+`--user` (string)
 :    Set user for the profile
 
-`--username` (string                   )
+`--username` (string)
 :    Create a user having this name and associate it with the profile.
 
-`--watson-studio-url` (string          )
+`--watson-studio-url` (string)
 :    URL of the Watson Studio service.
 
 <a id='config_profile_unset'></a>
@@ -5735,19 +5819,22 @@ cpdctl environment software-specification add-package-extensions --software-spec
 ```
 #### Command options
 
-`--asset-type` (string    )
+`--asset-type` (string)
 :    Asset type used when resolving paths with an asset ID only
 
-`--ignore` (              )
+`-p, --cpd-path` (string)
+:    CPD Path
+
+`--ignore` ()
 :    Ignore errors and return empty result (default: false)
 
-`--name` (string          )
+`--name` (string)
 :    Resource name
 
-`--resource-type` (string )
+`--resource-type` (string)
 :    Resource type used when resolving paths with a resource ID only
 
-`--result` (              )
+`--result` ()
 :    Include result metadata in output (default: false)
 
 <a id='job_list'></a>
@@ -6224,19 +6311,19 @@ Wait until the job run becomes completed, failed, or canceled.
 ```
 #### Command options
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--job-id` (string     )
+`--job-id` (string)
 :    The ID of the job to use. Each job has a unique ID.
 
-`--project-id` (string )
+`--project-id` (string)
 :    The ID of the project to use. project-id or space-id is required.
 
-`--run-id` (string     )
+`--run-id` (string)
 :    The ID of the job run.
 
-`--space-id` (string   )
+`--space-id` (string)
 :    The ID of the space to use. project-id or space-id is required.
 
 <a id='job_run_download-results'></a>
@@ -6248,22 +6335,22 @@ Downloads the results of the complete job run to the locations pointed in `outpu
 ```
 #### Command options
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--outputs` (string    )
+`--outputs` (string)
 :    The list of results to be downloaded (JSON array with objects: '{"name": "<variable-name>", "path": "<output-path>"}').
 
-`--progress` (         )
+`--progress` ()
 :    Show download progress. (default true)
 
-`--project-id` (string )
+`--project-id` (string)
 :    The ID of the project to use. project-id or space-id is required.
 
-`--run-id` (string     )
+`--run-id` (string)
 :    The ID of the job run.
 
-`--space-id` (string   )
+`--space-id` (string)
 :    The ID of the space to use. project-id or space-id is required.
 
 <a id='ml_deployment_create'></a>
@@ -6557,13 +6644,13 @@ Wait until the deployment becomes ready or failed.
 ```
 #### Command options
 
-`--cpd-scope` (string     )
+`--cpd-scope` (string)
 :    CPD space scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--deployment-id` (string )
+`--deployment-id` (string)
 :    The deployment ID.
 
-`--space-id` (string      )
+`--space-id` (string)
 :    The ID of the space to use.
 
 <a id='ml_deployment-job_list'></a>
@@ -8244,16 +8331,16 @@ Wait until the model upload becomes completed or failed.
 ```
 #### Command options
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--model-id` (string   )
+`--model-id` (string)
 :    The model ID.
 
-`--project-id` (string )
+`--project-id` (string)
 :    The ID of the project to use.
 
-`--space-id` (string   )
+`--space-id` (string)
 :    The ID of the space to use.
 
 <a id='ml_model-definition_create'></a>
@@ -9141,16 +9228,16 @@ Wait until the training becomes completed, failed, or canceled.
 ```
 #### Command options
 
-`--cpd-scope` (string   )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--project-id` (string  )
+`--project-id` (string)
 :    The ID of the project to use.
 
-`--space-id` (string    )
+`--space-id` (string)
 :    The ID of the space to use.
 
-`--training-id` (string )
+`--training-id` (string)
 :    The training ID.
 
 <a id='ml_training-definition_create'></a>
@@ -10168,10 +10255,10 @@ cpdctl pipeline run get-logs --run-id RUN-ID [--space-id SPACE-ID] [--project-id
 <a id='pipeline_run_get-log'></a>
 ## &#8226; pipeline run get-log
 
-Finds log by its id. You need to specify either `project_id` or `space_id`.
+Gets execution log for given task run name. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline run get-log --run-id RUN-ID --log-id LOG-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--job-id JOB-ID]
+cpdctl pipeline run get-log --run-id RUN-ID --task-run-name TASK-RUN-NAME [--space-id SPACE-ID] [--project-id PROJECT-ID] [--job-id JOB-ID]
 ```
 
 
@@ -10182,8 +10269,10 @@ cpdctl pipeline run get-log --run-id RUN-ID --log-id LOG-ID [--space-id SPACE-ID
 
     The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
 
-`--log-id` (string)
-:   Log identifier. For a node it is equal to a name of the `TaskRun` or `Run` corresponding to this node. Required.
+`--task-run-name` (string)
+:   Name of executed `TaskRun` or `Run`. Required.
+
+    The maximum length is `255` characters. The minimum length is `1` character. The value must match regular expression `/^[\\w-]*$/`.
 
 `--space-id` (strfmt.UUID)
 :   The id of the space.
@@ -10241,31 +10330,31 @@ Gets metadata about task result given by output name and `TaskRun` or `Run` name
 ```
 #### Command options
 
-`--cpd-scope` (string         )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--job-id` (string            )
+`--job-id` (string)
 :    The ID of the job related to run. Adding this may improve response time. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--name` (string              )
+`--name` (string)
 :    Required. Name of the result e.g. 'env-variables'.
 
-`--pipeline-id` (string       )
+`--pipeline-id` (string)
 :    Pipeline ID. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--pipeline-run-name` (string )
+`--pipeline-run-name` (string)
 :    Pipeline run name.
 
-`--project-id` (string        )
+`--project-id` (string)
 :    The id of the project. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--run-id` (string            )
+`--run-id` (string)
 :    Required. The ID of the run. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--space-id` (string          )
+`--space-id` (string)
 :    The id of the space. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--task-run-name` (string     )
+`--task-run-name` (string)
 :    Required. Name of the 'TaskRun' or 'Run' from which the results come from e.g. 'pipeline-90bc031ef1009d53527cf454db0160ed3cca-run-bash-script-1'.
 
 <a id='pipeline_run_task-result_list'></a>
@@ -10277,28 +10366,28 @@ Gets information about all task results given by `TaskRun` or `Run` name.
 ```
 #### Command options
 
-`--cpd-scope` (string         )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--job-id` (string            )
+`--job-id` (string)
 :    The ID of the job related to run. Adding this may improve response time. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--pipeline-id` (string       )
+`--pipeline-id` (string)
 :    Pipeline ID. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--pipeline-run-name` (string )
+`--pipeline-run-name` (string)
 :    Pipeline run name.
 
-`--project-id` (string        )
+`--project-id` (string)
 :    The id of the project. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--run-id` (string            )
+`--run-id` (string)
 :    Required. The ID of the run. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--space-id` (string          )
+`--space-id` (string)
 :    The id of the space. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--task-run-name` (string     )
+`--task-run-name` (string)
 :    Required. Name of the 'TaskRun' or 'Run' from which the results come from e.g. 'pipeline-90bc031ef1009d53527cf454db0160ed3cca-run-bash-script-1'.
 
 <a id='pipeline_run_task-result_get'></a>
@@ -10310,31 +10399,31 @@ Gets information about task result given by output name and `TaskRun` or `Run` n
 ```
 #### Command options
 
-`--cpd-scope` (string         )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--job-id` (string            )
+`--job-id` (string)
 :    The ID of the job related to run. Adding this may improve response time. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--name` (string              )
+`--name` (string)
 :    Required. Name of the result e.g. 'env-variables'.
 
-`--pipeline-id` (string       )
+`--pipeline-id` (string)
 :    Pipeline ID. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--pipeline-run-name` (string )
+`--pipeline-run-name` (string)
 :    Pipeline run name.
 
-`--project-id` (string        )
+`--project-id` (string)
 :    The id of the project. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--run-id` (string            )
+`--run-id` (string)
 :    Required. The ID of the run. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--space-id` (string          )
+`--space-id` (string)
 :    The id of the space. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--task-run-name` (string     )
+`--task-run-name` (string)
 :    Required. Name of the 'TaskRun' or 'Run' from which the results come from e.g. 'pipeline-90bc031ef1009d53527cf454db0160ed3cca-run-bash-script-1'.
 
 <a id='pipeline_run_migrate-cache'></a>
@@ -10346,22 +10435,22 @@ This command migrate old pipeline run execution cache data created by Watson Pip
 ```
 #### Command options
 
-`--assets-dir-path` (string )
+`--assets-dir-path` (string)
 :    Path to mounted filesystem where CPD projects assets are stored
 
-`--cpd-scope` (string       )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--output-file` (string     )
+`--output-file` (string)
 :    Path to a file where the identifiers of pipeline, pipeline run are preserved after execution cache data are migrated
 
-`--project-id` (string      )
+`--project-id` (string)
 :    Specific project in which old pipeline run execution cache data will be migrated
 
-`--space-id` (string        )
+`--space-id` (string)
 :    Specific space in which old pipeline run execution cache data will be migrated
 
-`--verbose` (               )
+`--verbose` ()
 :    Whether to display detailed processing information (default: false)
 
 <a id='pipeline_run_get-status'></a>
@@ -10373,19 +10462,19 @@ Gets job run status for pipeline and it's subpipelines.
 ```
 #### Command options
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--job-id` (string     )
+`--job-id` (string)
 :    The ID of the job.
 
-`--project-id` (string )
+`--project-id` (string)
 :    The id of the project.
 
-`--run-id` (string     )
+`--run-id` (string)
 :    The ID of the job run.
 
-`--space-id` (string   )
+`--space-id` (string)
 :    The id of the space.
 
 `--with-subpipelines` ()
@@ -10396,32 +10485,41 @@ Gets job run status for pipeline and it's subpipelines.
 This command deletes execution cache data created by Watson Pipeline runs for a specific pipeline. Identifiers of pipeline whose cache data are deleted are preserved in the output file. This action applies to cache data stored on mounted filesystem. To enable that option specify --assets-dir-path parameter Only files from job runs that started before a specific point in time are deleted.
 
 ```sh
-   cpdctl pipeline cleanup delete-cache --output-file OUTPUT-FILE [--project-id PROJECT-ID] [--pipeline-id PIPELINE-ID] [--assets-dir-path ASSET-DIR-PATH]
+   cpdctl pipeline cleanup delete-cache --output-file OUTPUT-FILE [--project-id PROJECT-ID] [--pipeline-id PIPELINE-ID] [--assets-dir-path ASSET-DIR-PATH] [--recursive] [--revision-id REVISION-ID]
 ```
 #### Command options
 
-`--assets-dir-path` (string )
+`--assets-dir-path` (string)
 :    Path to mounted filesystem where CPD projects assets are stored
 
-`--cpd-scope` (string       )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--output-file` (string     )
+`--file-api-mount-path` (string)
+:    Path to mounted filesystem with access to all CPD projects assets
+
+`--output-file` (string)
 :    Path to a file where the identifiers of pipeline are preserved after execution cache data are deleted
 
-`--pipeline-id` (string     )
+`--pipeline-id` (string)
 :    Specific pipeline in which pipeline run execution cache data will be deleted
 
-`--project-id` (string      )
+`--project-id` (string)
 :    Specific project in which pipeline run execution cache data will be deleted
 
-`--retention-time` (string  )
+`-R, --recursive` ()
+:    Whether to also delete caches for pipelines used by jobs in this flow run (default: false)
+
+`--retention-time` (string)
 :    The cache content older than the specified retention period will be deleted. Retention time is defined as (time now - job run creation date)
 
-`--space-id` (string        )
+`--revision-id` (string)
+:    Specific pipeline version for which to delete child runs when using --recursive. For volatile version you can use either 0 or 'volatile' (default: delete for all versions of the pipeline)
+
+`--space-id` (string)
 :    Specific space in which pipeline run execution cache data will be deleted
 
-`--verbose` (               )
+`--verbose` ()
 :    Whether to display detailed processing information (default: false)
 
 <a id='pipeline_cleanup_delete-artifacts'></a>
@@ -10433,28 +10531,31 @@ This command deletes artifact files created by Watson Pipeline job runs. Only fi
 ```
 #### Command options
 
-`--assets-dir-path` (string )
+`--assets-dir-path` (string)
 :    The path to mounted assets directory (e.g. /mnt/asset_file_api/projects/{project-id}/assets/)
 
-`--clean-job-runs` (        )
+`--clean-job-runs` ()
 :    Delete job runs along with artifacts
 
-`--cpd-scope` (string       )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--limit` (int              )
+`--force` ()
+:    Force delete artifacts even if metadata are missing
+
+`--limit` (int)
 :    Max number of job runs for which artifacts are deleted (default 9223372036854775807)
 
-`--output-file` (string     )
+`--output-file` (string)
 :    Path to the file where the identifiers of pipelines, jobs, and job runs are saved after the artifacts are deleted
 
-`--project-id` (string      )
+`--project-id` (string)
 :    ID of the project to delete artifacts
 
-`--retention-time` (string  )
+`--retention-time` (string)
 :    All the artifacts older than the specified retention period will be deleted. Retention time is defined as (time now - job run creation date)
 
-`--space-id` (string        )
+`--space-id` (string)
 :    ID of the space to delete artifacts
 
 <a id='pipeline_list'></a>
@@ -11443,10 +11544,10 @@ Wait until the space creation or deletion is finished.
 ```
 #### Command options
 
-`--cpd-scope` (string )
+`--cpd-scope` (string)
 :    CPD space scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--space-id` (string  )
+`--space-id` (string)
 :    The space identification.
 
 <a id='version_'></a>
@@ -11715,64 +11816,64 @@ Infer the next tokens for a given deployed model with a set of parameters. If a 
 ```
 #### Command options
 
-`--id-or-name` (string                    )
-:    Required. The 'id_or_name' can be either the 'deployment_id' that identifies the deployment or a 'serving_name' that allows a predefined URL to be used to post a prediction.
+`--id-or-name` (string)
+:    Required. The 'id_or_name' can be either the 'deployment_id' that identifies the deployment or a 'serving_name' that allows a predefined URL to be used to post a prediction.  The 'project' or 'space' for the deployment must have a WML instance that will be used for limits and billing (if a paid plan).
 
-`--input` (string                         )
-:    The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces.
+`--input` (string)
+:    The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces.   This field is ignored if there is a prompt template.
 
-`--moderations` (string                   )
+`--moderations` (string)
 :    Properties that control the moderations, for usages such as 'Hate and profanity' (HAP) and 'Personal identifiable information' (PII) filtering. This list can be extended with new types of moderations.
 
-`--parameters` (string                    )
+`--parameters` (string)
 :    The template properties if this request refers to a prompt template.
 
-`--parameters-decoding-method` (string    )
-:    Represents the strategy used for picking the tokens during generation of the output text.
+`--parameters-decoding-method` (string)
+:    Represents the strategy used for picking the tokens during generation of the output text.  During text generation when parameter value is set to greedy, each successive token corresponds to the highest probability token given the text that has already been generated. This strategy can lead to repetitive results especially for longer output sequences. The alternative sample strategy generates text by picking subsequent tokens based on the probability distribution of possible next tokens defined by (i.e., conditioned on) the already-generated text and the top_k and top_p parameters described below. See this [url](https://huggingface.co/blog/how-to-generate) for an informative article about text generation. The default value is sample. Allowable values are: sample, greedy.
 
-`--parameters-include-stop-sequence` (    )
+`--parameters-include-stop-sequence` ()
 :    Pass 'false' to omit matched stop sequences from the end of the output text. The default is 'true', meaning that the output will end with the stop sequence text when matched. The default value is true.
 
-`--parameters-length-penalty` (string     )
+`--parameters-length-penalty` (string)
 :    It can be used to exponentially increase the likelihood of the text generation terminating once a specified number of tokens have been generated.
 
-`--parameters-max-new-tokens` (int        )
-:    The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.
+`--parameters-max-new-tokens` (int)
+:    The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.  How the "token" is defined depends on the tokenizer and vocabulary size, which in turn depends on the model. Often the tokens are a mix of full words and sub-words. To learn more about tokenization, [see here](https://huggingface.co/course/chapter2/4).  Depending on the users plan, and on the model being used, there may be an enforced maximum number of new tokens. The default value is 20. The minimum value is 0.
 
-`--parameters-min-new-tokens` (int        )
+`--parameters-min-new-tokens` (int)
 :    If stop sequences are given, they are ignored until minimum tokens are generated. The default value is 0. The minimum value is 0.
 
-`--parameters-prompt-variables` (string   )
+`--parameters-prompt-variables` (string)
 :    The prompt variables.
 
-`--parameters-random-seed` (int           )
+`--parameters-random-seed` (int)
 :    Random number generator seed to use in sampling mode for experimental repeatability. The minimum value is 1.
 
-`--parameters-repetition-penalty` (float  )
+`--parameters-repetition-penalty` (float)
 :    Represents the penalty for penalizing tokens that have already been generated or belong to the context. The value 1.0 means that there is no penalty. The default value is 1. The maximum value is 2. The minimum value is 1.
 
-`--parameters-return-options` (string     )
+`--parameters-return-options` (string)
 :    Properties that control what is returned.
 
-`--parameters-stop-sequences` (string     )
+`--parameters-stop-sequences` (string)
 :    Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 6 items. The minimum length is 0 items.
 
-`--parameters-temperature` (float         )
+`--parameters-temperature` (float)
 :    A value used to modify the next-token probabilities in sampling mode. Values less than 1.0 sharpen the probability distribution, resulting in "less random" output. Values greater than 1.0 flatten the probability distribution, resulting in "more random" output. A value of 1.0 has no effect. The default value is 1. The maximum value is 2. The minimum value is 0.
 
-`--parameters-time-limit` (int            )
-:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.
+`--parameters-time-limit` (int)
+:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.  Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. The value must be greater than 0.
 
-`--parameters-top-k` (int                 )
+`--parameters-top-k` (int)
 :    The number of highest probability vocabulary tokens to keep for top-k-filtering. Only applies for sampling mode. When decoding_strategy is set to sample, only the top_k most likely tokens are considered as candidates for the next generated token. The maximum value is 100. The minimum value is 1.
 
-`--parameters-top-p` (float               )
+`--parameters-top-p` (float)
 :    Similar to top_k except the candidates to generate the next token are the most likely tokens with probabilities that add up to at least top_p. Also known as nucleus sampling. A value of 1.0 is equivalent to disabled. The default value is 1. The maximum value is 1. The value must be greater than 0.
 
-`--parameters-truncate-input-tokens` (int )
+`--parameters-truncate-input-tokens` (int)
 :    Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the start of the input (on the left), so the end of the input will remain the same. If this value exceeds the 'maximum sequence length' (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the 'maximum sequence length'. Zero means don't truncate. The minimum value is 0.
 
-`--parameters-typical-p` (float           )
+`--parameters-typical-p` (float)
 :    Local typicality measures how similar the conditional probability of predicting a target token next is to the expected conditional probability of predicting a random token next, given the partial text already generated. If less than 1, the smallest set of the most locally typical tokens with probabilities that add up to typical_p or higher are kept for generation. The maximum value is 1. The value must be greater than 0.
 
 <a id='wx-ai_deployment_text-generate-stream'></a>
@@ -11784,64 +11885,64 @@ Infer the next tokens for a given deployed model with a set of parameters. This 
 ```
 #### Command options
 
-`--id-or-name` (string                    )
-:    Required. The 'id_or_name' can be either the 'deployment_id' that identifies the deployment or a 'serving_name' that allows a predefined URL to be used to post a prediction.
+`--id-or-name` (string)
+:    Required. The 'id_or_name' can be either the 'deployment_id' that identifies the deployment or a 'serving_name' that allows a predefined URL to be used to post a prediction.  The 'project' or 'space' for the deployment must have a WML instance that will be used for limits and billing (if a paid plan).
 
-`--input` (string                         )
-:    The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces.
+`--input` (string)
+:    The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces.   This field is ignored if there is a prompt template.
 
-`--moderations` (string                   )
+`--moderations` (string)
 :    Properties that control the moderations, for usages such as 'Hate and profanity' (HAP) and 'Personal identifiable information' (PII) filtering. This list can be extended with new types of moderations.
 
-`--parameters` (string                    )
+`--parameters` (string)
 :    The template properties if this request refers to a prompt template.
 
-`--parameters-decoding-method` (string    )
-:    Represents the strategy used for picking the tokens during generation of the output text.
+`--parameters-decoding-method` (string)
+:    Represents the strategy used for picking the tokens during generation of the output text.  During text generation when parameter value is set to greedy, each successive token corresponds to the highest probability token given the text that has already been generated. This strategy can lead to repetitive results especially for longer output sequences. The alternative sample strategy generates text by picking subsequent tokens based on the probability distribution of possible next tokens defined by (i.e., conditioned on) the already-generated text and the top_k and top_p parameters described below. See this [url](https://huggingface.co/blog/how-to-generate) for an informative article about text generation. The default value is sample. Allowable values are: sample, greedy.
 
-`--parameters-include-stop-sequence` (    )
+`--parameters-include-stop-sequence` ()
 :    Pass 'false' to omit matched stop sequences from the end of the output text. The default is 'true', meaning that the output will end with the stop sequence text when matched. The default value is true.
 
-`--parameters-length-penalty` (string     )
+`--parameters-length-penalty` (string)
 :    It can be used to exponentially increase the likelihood of the text generation terminating once a specified number of tokens have been generated.
 
-`--parameters-max-new-tokens` (int        )
-:    The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.
+`--parameters-max-new-tokens` (int)
+:    The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.  How the "token" is defined depends on the tokenizer and vocabulary size, which in turn depends on the model. Often the tokens are a mix of full words and sub-words. To learn more about tokenization, [see here](https://huggingface.co/course/chapter2/4).  Depending on the users plan, and on the model being used, there may be an enforced maximum number of new tokens. The default value is 20. The minimum value is 0.
 
-`--parameters-min-new-tokens` (int        )
+`--parameters-min-new-tokens` (int)
 :    If stop sequences are given, they are ignored until minimum tokens are generated. The default value is 0. The minimum value is 0.
 
-`--parameters-prompt-variables` (string   )
+`--parameters-prompt-variables` (string)
 :    The prompt variables.
 
-`--parameters-random-seed` (int           )
+`--parameters-random-seed` (int)
 :    Random number generator seed to use in sampling mode for experimental repeatability. The minimum value is 1.
 
-`--parameters-repetition-penalty` (float  )
+`--parameters-repetition-penalty` (float)
 :    Represents the penalty for penalizing tokens that have already been generated or belong to the context. The value 1.0 means that there is no penalty. The default value is 1. The maximum value is 2. The minimum value is 1.
 
-`--parameters-return-options` (string     )
+`--parameters-return-options` (string)
 :    Properties that control what is returned.
 
-`--parameters-stop-sequences` (string     )
+`--parameters-stop-sequences` (string)
 :    Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 6 items. The minimum length is 0 items.
 
-`--parameters-temperature` (float         )
+`--parameters-temperature` (float)
 :    A value used to modify the next-token probabilities in sampling mode. Values less than 1.0 sharpen the probability distribution, resulting in "less random" output. Values greater than 1.0 flatten the probability distribution, resulting in "more random" output. A value of 1.0 has no effect. The default value is 1. The maximum value is 2. The minimum value is 0.
 
-`--parameters-time-limit` (int            )
-:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.
+`--parameters-time-limit` (int)
+:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.  Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. The value must be greater than 0.
 
-`--parameters-top-k` (int                 )
+`--parameters-top-k` (int)
 :    The number of highest probability vocabulary tokens to keep for top-k-filtering. Only applies for sampling mode. When decoding_strategy is set to sample, only the top_k most likely tokens are considered as candidates for the next generated token. The maximum value is 100. The minimum value is 1.
 
-`--parameters-top-p` (float               )
+`--parameters-top-p` (float)
 :    Similar to top_k except the candidates to generate the next token are the most likely tokens with probabilities that add up to at least top_p. Also known as nucleus sampling. A value of 1.0 is equivalent to disabled. The default value is 1. The maximum value is 1. The value must be greater than 0.
 
-`--parameters-truncate-input-tokens` (int )
+`--parameters-truncate-input-tokens` (int)
 :    Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the start of the input (on the left), so the end of the input will remain the same. If this value exceeds the 'maximum sequence length' (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the 'maximum sequence length'. Zero means don't truncate. The minimum value is 0.
 
-`--parameters-typical-p` (float           )
+`--parameters-typical-p` (float)
 :    Local typicality measures how similar the conditional probability of predicting a target token next is to the expected conditional probability of predicting a random token next, given the partial text already generated. If less than 1, the smallest set of the most locally typical tokens with probabilities that add up to typical_p or higher are kept for generation. The maximum value is 1. The value must be greater than 0.
 
 <a id='wx-ai_deployment_wait'></a>
@@ -11853,13 +11954,13 @@ Wait until the deployment becomes ready or failed.
 ```
 #### Command options
 
-`--cpd-scope` (string     )
+`--cpd-scope` (string)
 :    CPD space scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--deployment-id` (string )
+`--deployment-id` (string)
 :    The deployment ID.
 
-`--space-id` (string      )
+`--space-id` (string)
 :    The ID of the space to use.
 
 <a id='wx-ai_foundation-model_list-models'></a>
@@ -11871,16 +11972,16 @@ Retrieve the list of deployed foundation models.
 ```
 #### Command options
 
-`--all-pages` (     )
+`--all-pages` ()
 :    Invoke multiple requests to display all pages of the collection for foundation-model-list-models.
 
-`--filters` (string )
-:    A set of filters to specify the list of models, filters are described as the 'pattern' shown below.
+`--filters` (string)
+:    A set of filters to specify the list of models, filters are described as the 'pattern' shown below. '''text pattern: tfilter[,tfilter][:(or|and)] tfilter: filter | !filter filter: Requires existence of the filter. !filter: Requires absence of the filter. filter: one of modelid_*:     Filters by model id. Namely, select a model with a specific model id. provider_*:    Filters by provider. Namely, select all models with a specific provider. source_*:      Filters by source. Namely, select all models with a specific source. input_tier_*:  Filters by input tier. Namely, select all models with a specific input tier. output_tier_*: Filters by output tier. Namely, select all models with a specific output tier. tier_*:        Filters by tier. Namely, select all models with a specific input or output tier. task_*:        Filters by task id. Namely, select all models that support a specific task id. lifecycle_*:   Filters by lifecycle state. Namely, select all models that are currently in the specified lifecycle state. function_*:    Filters by function. Namely, select all models that support a specific function. '''. The maximum length is 1000 characters. The minimum length is 1 character.
 
-`--limit` (int      )
+`--limit` (int)
 :    How many resources should be returned. By default limit is 100. Max limit allowed is 200. The default value is 100. The maximum value is 200. The minimum value is 1.
 
-`--start` (string   )
+`--start` (string)
 :    Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
 
 <a id='wx-ai_foundation-model_list-tasks'></a>
@@ -11892,13 +11993,13 @@ Retrieve the list of tasks that are supported by the foundation models.
 ```
 #### Command options
 
-`--all-pages` (   )
+`--all-pages` ()
 :    Invoke multiple requests to display all pages of the collection for foundation-model-list-tasks.
 
-`--limit` (int    )
+`--limit` (int)
 :    How many resources should be returned. By default limit is 100. Max limit allowed is 200. The default value is 100. The maximum value is 200. The minimum value is 1.
 
-`--start` (string )
+`--start` (string)
 :    Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
 
 <a id='wx-ai_prompt_create'></a>
@@ -11910,79 +12011,79 @@ This creates a new prompt with the provided parameters.
 ```
 #### Command options
 
-`--cpd-scope` (string                   )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--created-at` (int                     )
+`--created-at` (int)
 :    Time the prompt was created.
 
-`--description` (string                 )
+`--description` (string)
 :    An optional description for the prompt. 
 
-`--input-mode` (string                  )
+`--input-mode` (string)
 :    Input mode in use for the prompt. Allowable values are: structured, freeform, chat, detached.
 
-`--lock` (string                        )
+`--lock` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--lock-lock-type` (string              )
+`--lock-lock-type` (string)
 :    Lock type: 'edit' for working on prompts/templates or 'governance'. Can only be supplied in PUT /lock requests. Allowable values are: edit, governance.
 
-`--lock-locked` (                       )
+`--lock-locked` ()
 :    True if the prompt is currently locked.
 
-`--lock-locked-by` (string              )
+`--lock-locked-by` (string)
 :    Locked by is computed by the server and shouldn't be passed. 
 
-`--model-version` (string               )
+`--model-version` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--model-version-description` (string   )
+`--model-version-description` (string)
 :    Description of the version. 
 
-`--model-version-number` (string        )
+`--model-version-number` (string)
 :    User provided semvar version for tracking in IBM AI Factsheets. 
 
-`--model-version-tag` (string           )
+`--model-version-tag` (string)
 :    User provived tag. 
 
-`--name` (string                        )
+`--name` (string)
 :    Required. Name used to display the prompt. 
 
-`--project-id` (string                  )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--prompt` (string                      )
+`--prompt` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--prompt-chat-items` (string           )
+`--prompt-chat-items` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--prompt-data` (string                 )
+`--prompt-data` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--prompt-external-information` (string )
+`--prompt-external-information` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--prompt-input` (string                 )
+`--prompt-input` (string)
 :    The default value is [].
 
-`--prompt-model-id` (string              )
+`--prompt-model-id` (string)
 :    
 
-`--prompt-model-parameters` (string     )
+`--prompt-model-parameters` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--prompt-system-prompt` (string         )
+`--prompt-system-prompt` (string)
 :    
 
-`--prompt-variables` (string            )
+`--prompt-variables` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--space-id` (string                    )
+`--space-id` (string)
 :    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request. 
 
-`--task-ids` (string                     )
+`--task-ids` (string)
 :    The maximum length is 1 item. The minimum length is 1 item.
 
 <a id='wx-ai_prompt_get'></a>
@@ -11994,19 +12095,19 @@ This retrieves a prompt / prompt template with the given id.
 ```
 #### Command options
 
-`--cpd-scope` (string                 )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--project-id` (string                )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--prompt-id` (string                 )
+`--prompt-id` (string)
 :    Required. Prompt ID. 
 
-`--restrict-model-parameters` (string )
+`--restrict-model-parameters` (string)
 :    Only return a set of model parameters compatiable with inferencing. The default value is true.
 
-`--space-id` (string                  )
+`--space-id` (string)
 :    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
 
 <a id='wx-ai_prompt_update'></a>
@@ -12018,70 +12119,70 @@ This updates a prompt / prompt template with the given id.
 ```
 #### Command options
 
-`--cpd-scope` (string                 )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--description` (string               )
+`--description` (string)
 :    An optional description for the prompt. 
 
-`--governance-tracked` (              )
+`--governance-tracked` ()
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--id` (string                        )
+`--id` (string)
 :    The prompt's id. This value cannot be set. It is returned in responses only. 
 
-`--input-mode` (string                )
+`--input-mode` (string)
 :    Input mode in use for the prompt. Allowable values are: structured, freeform.
 
-`--model-version` (string             )
+`--model-version` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--model-version-description` (string )
+`--model-version-description` (string)
 :    Description of the version. 
 
-`--model-version-number` (string      )
+`--model-version-number` (string)
 :    User provided semvar version for tracking in IBM AI Factsheets. 
 
-`--model-version-tag` (string         )
+`--model-version-tag` (string)
 :    User provived tag. 
 
-`--name` (string                      )
+`--name` (string)
 :    Required. Name used to display the prompt. 
 
-`--project-id` (string                )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--prompt` (string                    )
+`--prompt` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--prompt-chat-items` (string         )
+`--prompt-chat-items` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--prompt-data` (string               )
+`--prompt-data` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--prompt-id` (string                 )
+`--prompt-id` (string)
 :    Required. Prompt ID. 
 
-`--prompt-input` (string               )
+`--prompt-input` (string)
 :    The default value is [].
 
-`--prompt-model-id` (string            )
+`--prompt-model-id` (string)
 :    
 
-`--prompt-model-parameters` (string   )
+`--prompt-model-parameters` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--prompt-system-prompt` (string       )
+`--prompt-system-prompt` (string)
 :    
 
-`--prompt-variable` (string           )
+`--prompt-variable` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--space-id` (string                  )
+`--space-id` (string)
 :    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request. 
 
-`--task-ids` (string                   )
+`--task-ids` (string)
 :    The maximum length is 1 item. The minimum length is 1 item.
 
 <a id='wx-ai_prompt_delete'></a>
@@ -12093,16 +12194,16 @@ This delets a prompt / prompt template with the given id.
 ```
 #### Command options
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--project-id` (string )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--prompt-id` (string  )
+`--prompt-id` (string)
 :    Required. Prompt ID. 
 
-`--space-id` (string   )
+`--space-id` (string)
 :    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
 
 <a id='wx-ai_prompt_update-lock'></a>
@@ -12114,28 +12215,28 @@ Modifies the current locked state of a prompt.
 ```
 #### Command options
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--force` (            )
+`--force` ()
 :    Override a lock if it is currently taken.
 
-`--lock-type` (string  )
+`--lock-type` (string)
 :    Lock type: 'edit' for working on prompts/templates or 'governance'. Can only be supplied in PUT /lock requests. Allowable values are: edit, governance.
 
-`--locked` (           )
+`--locked` ()
 :    Required. True if the prompt is currently locked.
 
-`--locked-by` (string  )
+`--locked-by` (string)
 :    Locked by is computed by the server and shouldn't be passed. 
 
-`--project-id` (string )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--prompt-id` (string  )
+`--prompt-id` (string)
 :    Required. Prompt ID. 
 
-`--space-id` (string   )
+`--space-id` (string)
 :    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
 
 <a id='wx-ai_prompt_get-lock'></a>
@@ -12147,16 +12248,16 @@ Retrieves the current locked state of a prompt.
 ```
 #### Command options
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--project-id` (string )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--prompt-id` (string  )
+`--prompt-id` (string)
 :    Required. Prompt ID. 
 
-`--space-id` (string   )
+`--space-id` (string)
 :    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
 
 <a id='wx-ai_prompt_get-input'></a>
@@ -12168,22 +12269,22 @@ Computes the inference input string based on state of a prompt. Optionally repla
 ```
 #### Command options
 
-`--cpd-scope` (string       )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--input` (string           )
+`--input` (string)
 :    Override input string that will be used to generate the response. The string can contain template parameters. 
 
-`--project-id` (string      )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--prompt-id` (string       )
+`--prompt-id` (string)
 :    Required. Prompt ID. 
 
-`--prompt-variable` (string )
+`--prompt-variable` (string)
 :    Supply only to replace placeholders. Object content must be key:value pairs where the 'key' is the parameter to replace and 'value' is the value to use.
 
-`--space-id` (string        )
+`--space-id` (string)
 :    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
 
 <a id='wx-ai_prompt_add-chat-item'></a>
@@ -12195,19 +12296,19 @@ This adds new chat items to the given prompt.
 ```
 #### Command options
 
-`--chat-item` (string  )
+`--chat-item` (string)
 :    Required. An array containing a question chat item and an answer chat item. The maximum length is 2 items. The minimum length is 2 items.
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--project-id` (string )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--prompt-id` (string  )
+`--prompt-id` (string)
 :    Required. Prompt ID. 
 
-`--space-id` (string   )
+`--space-id` (string)
 :    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
 
 <a id='wx-ai_prompt-session_create'></a>
@@ -12219,46 +12320,46 @@ This creates a new prompt session.
 ```
 #### Command options
 
-`--cpd-scope` (string       )
+`--cpd-scope` (string)
 :    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--created-at` (int         )
+`--created-at` (int)
 :    Time the session was created.
 
-`--created-by` (string      )
+`--created-by` (string)
 :    The ID of the original session creator. 
 
-`--description` (string     )
+`--description` (string)
 :    An optional description for the prompt session. 
 
-`--id` (string              )
+`--id` (string)
 :    The prompt session's id. This value cannot be set. It is returned in responses only. 
 
-`--last-updated-at` (int    )
+`--last-updated-at` (int)
 :    Time the session was updated.
 
-`--last-updated-by` (string )
+`--last-updated-by` (string)
 :    The ID of the last user that modifed the session. 
 
-`--lock` (string            )
+`--lock` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--lock-lock-type` (string  )
+`--lock-lock-type` (string)
 :    Lock type: 'edit' for working on prompts/templates or 'governance'. Can only be supplied in PUT /lock requests. Allowable values are: edit, governance.
 
-`--lock-locked` (           )
+`--lock-locked` ()
 :    True if the prompt is currently locked.
 
-`--lock-locked-by` (string  )
+`--lock-locked-by` (string)
 :    Locked by is computed by the server and shouldn't be passed. 
 
-`--name` (string            )
+`--name` (string)
 :    Required. Name used to display the prompt session. 
 
-`--project-id` (string      )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--prompts` (string          )
+`--prompts` (string)
 :    The maximum length is 50 items. The minimum length is 0 items.
 
 <a id='wx-ai_prompt-session_get'></a>
@@ -12270,16 +12371,16 @@ This retrieves a prompt session with the given id.
 ```
 #### Command options
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--prefetch` (         )
+`--prefetch` ()
 :    Include the most recent entry.
 
-`--project-id` (string )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--session-id` (string )
+`--session-id` (string)
 :    Required. Prompt Session ID.
 
 <a id='wx-ai_prompt-session_update'></a>
@@ -12291,19 +12392,19 @@ This updates a prompt session with the given id.
 ```
 #### Command options
 
-`--cpd-scope` (string   )
+`--cpd-scope` (string)
 :    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--description` (string )
+`--description` (string)
 :    An optional description for the prompt. 
 
-`--name` (string         )
+`--name` (string)
 :    
 
-`--project-id` (string  )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--session-id` (string  )
+`--session-id` (string)
 :    Required. Prompt Session ID.
 
 <a id='wx-ai_prompt-session_delete'></a>
@@ -12315,13 +12416,13 @@ This deletes a prompt session with the given id.
 ```
 #### Command options
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--project-id` (string )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--session-id` (string )
+`--session-id` (string)
 :    Required. Prompt Session ID.
 
 <a id='wx-ai_prompt-session_add-entry'></a>
@@ -12333,55 +12434,55 @@ This creates a new prompt associated with the given session.
 ```
 #### Command options
 
-`--cpd-scope` (string               )
+`--cpd-scope` (string)
 :    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--created-at` (int                 )
+`--created-at` (int)
 :    Required. Time the prompt was created.
 
-`--description` (string             )
+`--description` (string)
 :    An optional description for the prompt. 
 
-`--id` (string                      )
+`--id` (string)
 :    The prompt's id. This value cannot be set. It is returned in responses only. 
 
-`--input-mode` (string              )
+`--input-mode` (string)
 :    Input mode in use for the prompt. Allowable values are: structured, freeform, chat.
 
-`--is-template` (                   )
+`--is-template` ()
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--name` (string                    )
+`--name` (string)
 :    Required. Name used to display the prompt. 
 
-`--project-id` (string              )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--prompt` (string                  )
+`--prompt` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--prompt-chat-items` (string       )
+`--prompt-chat-items` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--prompt-data` (string             )
+`--prompt-data` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--prompt-input` (string             )
+`--prompt-input` (string)
 :    The default value is [].
 
-`--prompt-model-id` (string          )
+`--prompt-model-id` (string)
 :    
 
-`--prompt-model-parameters` (string )
+`--prompt-model-parameters` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--prompt-system-prompt` (string     )
+`--prompt-system-prompt` (string)
 :    
 
-`--prompt-variables` (string        )
+`--prompt-variables` (string)
 :    !!i18N_MESSAGE_NOT_FOUND!!
 
-`--session-id` (string              )
+`--session-id` (string)
 :    Required. Prompt Session ID.
 
 <a id='wx-ai_prompt-session_list-entries'></a>
@@ -12393,19 +12494,19 @@ List entries from a given session.
 ```
 #### Command options
 
-`--bookmark` (string   )
+`--bookmark` (string)
 :    Bookmark from a previously limited get request. 
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--limit` (string      )
+`--limit` (string)
 :    Limit for results to retrieve, default 20. 
 
-`--project-id` (string )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--session-id` (string )
+`--session-id` (string)
 :    Required. Prompt Session ID.
 
 <a id='wx-ai_prompt-session_add-chat-item'></a>
@@ -12417,19 +12518,19 @@ This adds new chat items to the given entry.
 ```
 #### Command options
 
-`--chat-item` (string  )
+`--chat-item` (string)
 :    Required. An array containing a question chat item and an answer chat item. The maximum length is 2 items. The minimum length is 2 items.
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--entry-id` (string   )
+`--entry-id` (string)
 :    Required. Prompt Session Entry ID. 
 
-`--project-id` (string )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--session-id` (string )
+`--session-id` (string)
 :    Required. Prompt Session ID.
 
 <a id='wx-ai_prompt-session_update-lock'></a>
@@ -12441,25 +12542,25 @@ Modifies the current locked state of a prompt session.
 ```
 #### Command options
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--force` (            )
+`--force` ()
 :    Override a lock if it is currently taken.
 
-`--lock-type` (string  )
+`--lock-type` (string)
 :    Lock type: 'edit' for working on prompts/templates or 'governance'. Can only be supplied in PUT /lock requests. Allowable values are: edit, governance.
 
-`--locked` (           )
+`--locked` ()
 :    Required. True if the prompt is currently locked.
 
-`--locked-by` (string  )
+`--locked-by` (string)
 :    Locked by is computed by the server and shouldn't be passed. 
 
-`--project-id` (string )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--session-id` (string )
+`--session-id` (string)
 :    Required. Prompt Session ID.
 
 <a id='wx-ai_prompt-session_get-lock'></a>
@@ -12471,13 +12572,13 @@ Retrieves the current locked state of a prompt session.
 ```
 #### Command options
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--project-id` (string )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--session-id` (string )
+`--session-id` (string)
 :    Required. Prompt Session ID.
 
 <a id='wx-ai_prompt-session_get-entry'></a>
@@ -12489,16 +12590,16 @@ This retrieves a prompt session entry with the given id.
 ```
 #### Command options
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--entry-id` (string   )
+`--entry-id` (string)
 :    Required. Prompt Session Entry ID. 
 
-`--project-id` (string )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--session-id` (string )
+`--session-id` (string)
 :    Required. Prompt Session ID.
 
 <a id='wx-ai_prompt-session_delete-entry'></a>
@@ -12510,16 +12611,16 @@ This deletes a prompt session entry with the given id.
 ```
 #### Command options
 
-`--cpd-scope` (string  )
+`--cpd-scope` (string)
 :    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--entry-id` (string   )
+`--entry-id` (string)
 :    Required. Prompt Session Entry ID. 
 
-`--project-id` (string )
+`--project-id` (string)
 :    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
 
-`--session-id` (string )
+`--session-id` (string)
 :    Required. Prompt Session ID.
 
 <a id='wx-ai_training_create'></a>
@@ -12820,16 +12921,16 @@ Wait until the training becomes completed, failed, or canceled.
 ```
 #### Command options
 
-`--cpd-scope` (string   )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--project-id` (string  )
+`--project-id` (string)
 :    The ID of the project to use.
 
-`--space-id` (string    )
+`--space-id` (string)
 :    The ID of the space to use.
 
-`--training-id` (string )
+`--training-id` (string)
 :    The training ID.
 
 <a id='wx-ai_text_generate'></a>
@@ -12841,67 +12942,67 @@ Infer the next tokens for a given deployed model with a set of parameters.
 ```
 #### Command options
 
-`--cpd-scope` (string                     )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--input` (string                         )
+`--input` (string)
 :    Required. The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces.
 
-`--model-id` (string                      )
+`--model-id` (string)
 :    Required. The 'id' of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx).
 
-`--moderations` (string                   )
+`--moderations` (string)
 :    Properties that control the moderations, for usages such as 'Hate and profanity' (HAP) and 'Personal identifiable information' (PII) filtering. This list can be extended with new types of moderations.
 
-`--parameters` (string                    )
+`--parameters` (string)
 :    Properties that control the model and response.
 
-`--parameters-decoding-method` (string    )
-:    Represents the strategy used for picking the tokens during generation of the output text.
+`--parameters-decoding-method` (string)
+:    Represents the strategy used for picking the tokens during generation of the output text.  During text generation when parameter value is set to greedy, each successive token corresponds to the highest probability token given the text that has already been generated. This strategy can lead to repetitive results especially for longer output sequences. The alternative sample strategy generates text by picking subsequent tokens based on the probability distribution of possible next tokens defined by (i.e., conditioned on) the already-generated text and the top_k and top_p parameters described below. See this [url](https://huggingface.co/blog/how-to-generate) for an informative article about text generation. The default value is sample. Allowable values are: sample, greedy.
 
-`--parameters-include-stop-sequence` (    )
+`--parameters-include-stop-sequence` ()
 :    Pass 'false' to omit matched stop sequences from the end of the output text. The default is 'true', meaning that the output will end with the stop sequence text when matched. The default value is true.
 
-`--parameters-length-penalty` (string     )
+`--parameters-length-penalty` (string)
 :    It can be used to exponentially increase the likelihood of the text generation terminating once a specified number of tokens have been generated.
 
-`--parameters-max-new-tokens` (int        )
-:    The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.
+`--parameters-max-new-tokens` (int)
+:    The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.  How the "token" is defined depends on the tokenizer and vocabulary size, which in turn depends on the model. Often the tokens are a mix of full words and sub-words. To learn more about tokenization, [see here](https://huggingface.co/course/chapter2/4).  Depending on the users plan, and on the model being used, there may be an enforced maximum number of new tokens. The default value is 20. The minimum value is 0.
 
-`--parameters-min-new-tokens` (int        )
+`--parameters-min-new-tokens` (int)
 :    If stop sequences are given, they are ignored until minimum tokens are generated. The default value is 0. The minimum value is 0.
 
-`--parameters-random-seed` (int           )
+`--parameters-random-seed` (int)
 :    Random number generator seed to use in sampling mode for experimental repeatability. The minimum value is 1.
 
-`--parameters-repetition-penalty` (float  )
+`--parameters-repetition-penalty` (float)
 :    Represents the penalty for penalizing tokens that have already been generated or belong to the context. The value 1.0 means that there is no penalty. The default value is 1. The maximum value is 2. The minimum value is 1.
 
-`--parameters-return-options` (string     )
+`--parameters-return-options` (string)
 :    Properties that control what is returned.
 
-`--parameters-stop-sequences` (string     )
+`--parameters-stop-sequences` (string)
 :    Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 6 items. The minimum length is 0 items.
 
-`--parameters-temperature` (float         )
+`--parameters-temperature` (float)
 :    A value used to modify the next-token probabilities in sampling mode. Values less than 1.0 sharpen the probability distribution, resulting in "less random" output. Values greater than 1.0 flatten the probability distribution, resulting in "more random" output. A value of 1.0 has no effect. The default value is 1. The maximum value is 2. The minimum value is 0.
 
-`--parameters-time-limit` (int            )
-:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.
+`--parameters-time-limit` (int)
+:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.  Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. The value must be greater than 0.
 
-`--parameters-top-k` (int                 )
+`--parameters-top-k` (int)
 :    The number of highest probability vocabulary tokens to keep for top-k-filtering. Only applies for sampling mode. When decoding_strategy is set to sample, only the top_k most likely tokens are considered as candidates for the next generated token. The maximum value is 100. The minimum value is 1.
 
-`--parameters-top-p` (float               )
+`--parameters-top-p` (float)
 :    Similar to top_k except the candidates to generate the next token are the most likely tokens with probabilities that add up to at least top_p. Also known as nucleus sampling. A value of 1.0 is equivalent to disabled. The default value is 1. The maximum value is 1. The value must be greater than 0.
 
-`--parameters-truncate-input-tokens` (int )
+`--parameters-truncate-input-tokens` (int)
 :    Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the start of the input (on the left), so the end of the input will remain the same. If this value exceeds the 'maximum sequence length' (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the 'maximum sequence length'. Zero means don't truncate. The minimum value is 0.
 
-`--project-id` (string                    )
+`--project-id` (string)
 :    The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--space-id` (string                      )
+`--space-id` (string)
 :    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
 
 <a id='wx-ai_text_generate-stream'></a>
@@ -12913,67 +13014,67 @@ Infer the next tokens for a given deployed model with a set of parameters. This 
 ```
 #### Command options
 
-`--cpd-scope` (string                     )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--input` (string                         )
+`--input` (string)
 :    Required. The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces.
 
-`--model-id` (string                      )
+`--model-id` (string)
 :    Required. The 'id' of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx).
 
-`--moderations` (string                   )
+`--moderations` (string)
 :    Properties that control the moderations, for usages such as 'Hate and profanity' (HAP) and 'Personal identifiable information' (PII) filtering. This list can be extended with new types of moderations.
 
-`--parameters` (string                    )
+`--parameters` (string)
 :    Properties that control the model and response.
 
-`--parameters-decoding-method` (string    )
-:    Represents the strategy used for picking the tokens during generation of the output text.
+`--parameters-decoding-method` (string)
+:    Represents the strategy used for picking the tokens during generation of the output text.  During text generation when parameter value is set to greedy, each successive token corresponds to the highest probability token given the text that has already been generated. This strategy can lead to repetitive results especially for longer output sequences. The alternative sample strategy generates text by picking subsequent tokens based on the probability distribution of possible next tokens defined by (i.e., conditioned on) the already-generated text and the top_k and top_p parameters described below. See this [url](https://huggingface.co/blog/how-to-generate) for an informative article about text generation. The default value is sample. Allowable values are: sample, greedy.
 
-`--parameters-include-stop-sequence` (    )
+`--parameters-include-stop-sequence` ()
 :    Pass 'false' to omit matched stop sequences from the end of the output text. The default is 'true', meaning that the output will end with the stop sequence text when matched. The default value is true.
 
-`--parameters-length-penalty` (string     )
+`--parameters-length-penalty` (string)
 :    It can be used to exponentially increase the likelihood of the text generation terminating once a specified number of tokens have been generated.
 
-`--parameters-max-new-tokens` (int        )
-:    The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.
+`--parameters-max-new-tokens` (int)
+:    The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.  How the "token" is defined depends on the tokenizer and vocabulary size, which in turn depends on the model. Often the tokens are a mix of full words and sub-words. To learn more about tokenization, [see here](https://huggingface.co/course/chapter2/4).  Depending on the users plan, and on the model being used, there may be an enforced maximum number of new tokens. The default value is 20. The minimum value is 0.
 
-`--parameters-min-new-tokens` (int        )
+`--parameters-min-new-tokens` (int)
 :    If stop sequences are given, they are ignored until minimum tokens are generated. The default value is 0. The minimum value is 0.
 
-`--parameters-random-seed` (int           )
+`--parameters-random-seed` (int)
 :    Random number generator seed to use in sampling mode for experimental repeatability. The minimum value is 1.
 
-`--parameters-repetition-penalty` (float  )
+`--parameters-repetition-penalty` (float)
 :    Represents the penalty for penalizing tokens that have already been generated or belong to the context. The value 1.0 means that there is no penalty. The default value is 1. The maximum value is 2. The minimum value is 1.
 
-`--parameters-return-options` (string     )
+`--parameters-return-options` (string)
 :    Properties that control what is returned.
 
-`--parameters-stop-sequences` (string     )
+`--parameters-stop-sequences` (string)
 :    Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 6 items. The minimum length is 0 items.
 
-`--parameters-temperature` (float         )
+`--parameters-temperature` (float)
 :    A value used to modify the next-token probabilities in sampling mode. Values less than 1.0 sharpen the probability distribution, resulting in "less random" output. Values greater than 1.0 flatten the probability distribution, resulting in "more random" output. A value of 1.0 has no effect. The default value is 1. The maximum value is 2. The minimum value is 0.
 
-`--parameters-time-limit` (int            )
-:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.
+`--parameters-time-limit` (int)
+:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.  Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. The value must be greater than 0.
 
-`--parameters-top-k` (int                 )
+`--parameters-top-k` (int)
 :    The number of highest probability vocabulary tokens to keep for top-k-filtering. Only applies for sampling mode. When decoding_strategy is set to sample, only the top_k most likely tokens are considered as candidates for the next generated token. The maximum value is 100. The minimum value is 1.
 
-`--parameters-top-p` (float               )
+`--parameters-top-p` (float)
 :    Similar to top_k except the candidates to generate the next token are the most likely tokens with probabilities that add up to at least top_p. Also known as nucleus sampling. A value of 1.0 is equivalent to disabled. The default value is 1. The maximum value is 1. The value must be greater than 0.
 
-`--parameters-truncate-input-tokens` (int )
+`--parameters-truncate-input-tokens` (int)
 :    Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the start of the input (on the left), so the end of the input will remain the same. If this value exceeds the 'maximum sequence length' (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the 'maximum sequence length'. Zero means don't truncate. The minimum value is 0.
 
-`--project-id` (string                    )
+`--project-id` (string)
 :    The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--space-id` (string                      )
+`--space-id` (string)
 :    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
 
 <a id='wx-ai_text_tokenize'></a>
@@ -12985,25 +13086,25 @@ The text tokenize operation allows you to check the conversion of provided input
 ```
 #### Command options
 
-`--cpd-scope` (string         )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--input` (string             )
+`--input` (string)
 :    Required. The input string to tokenize.
 
-`--model-id` (string          )
+`--model-id` (string)
 :    Required. The 'id' of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx).
 
-`--parameters` (string        )
+`--parameters` (string)
 :    The parameters for text tokenization.
 
 `--parameters-return-tokens` ()
 :    If this is 'true' then the actual tokens will also be returned in the response. The default value is false.
 
-`--project-id` (string        )
+`--project-id` (string)
 :    The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--space-id` (string          )
+`--space-id` (string)
 :    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
 
 <a id='wx-ai_text_calculate-embeddings'></a>
@@ -13015,28 +13116,28 @@ Generate embeddings from text input.
 ```
 #### Command options
 
-`--cpd-scope` (string                     )
+`--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--inputs` (string                        )
+`--inputs` (string)
 :    Required. The input text. The maximum length is 1000 items.
 
-`--model-id` (string                      )
+`--model-id` (string)
 :    Required. The 'id' of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models-embed.html?context=wx&audience=wdp).
 
-`--parameters` (string                    )
+`--parameters` (string)
 :    Parameters for text embedding requests.
 
-`--parameters-return-options` (string     )
+`--parameters-return-options` (string)
 :    The return options for text embeddings.
 
-`--parameters-truncate-input-tokens` (int )
+`--parameters-truncate-input-tokens` (int)
 :    Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the end of the input (on the right), so the start of the input will remain the same. If this value exceeds the 'maximum sequence length' (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the 'maximum sequence length'. Zero means don't truncate. The minimum value is 0.
 
-`--project-id` (string                    )
+`--project-id` (string)
 :    The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
 
-`--space-id` (string                      )
+`--space-id` (string)
 :    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
 
 <a id='wx-ai_custom-foundation-model_list'></a>
@@ -13048,10 +13149,10 @@ Retrieve the custom foundation models.
 ```
 #### Command options
 
-`--limit` (int    )
+`--limit` (int)
 :    How many resources should be returned. By default limit is 100. Max limit allowed is 200. The default value is 100. The maximum value is 200. The minimum value is 1.
 
-`--start` (string )
+`--start` (string)
 :    Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
 
 # Schema examples
@@ -13230,6 +13331,35 @@ The following example shows the format of the AssetTypeRelationship[] object.
   "on_delete" : "CASCADE",
   "on_delete_target" : "CASCADE",
   "target_asset_type" : "connection"
+} ]
+```
+### &#8226; AssetRelationshipRequestSpec
+<a id="cli-asset-relationship-request-spec-example-schema-asset"></a>
+
+The following example shows the format of the AssetRelationshipRequestSpec[] object.
+
+```json
+
+[ {
+  "relationship_name" : "exampleString",
+  "source" : {
+    "artifact_id" : "exampleString",
+    "artifact_name" : "exampleString",
+    "artifact_type" : "exampleString",
+    "asset_id" : "exampleString",
+    "catalog_id" : "exampleString",
+    "project_id" : "exampleString",
+    "space_id" : "exampleString"
+  },
+  "target" : {
+    "artifact_id" : "exampleString",
+    "artifact_name" : "exampleString",
+    "artifact_type" : "exampleString",
+    "asset_id" : "exampleString",
+    "catalog_id" : "exampleString",
+    "project_id" : "exampleString",
+    "space_id" : "exampleString"
+  }
 } ]
 ```
 ### &#8226; ExportAssets
