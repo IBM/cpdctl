@@ -1,5 +1,5 @@
 # IBM Cloud Pak for Data Command Line Interface
-**IBM Cloud Pak for Data Command Line Interface** (**IBM cpdctl**) is a command-line interface (CLI) you can use to manage the lifecycle of a model from IBM Cloud Pak for Data 3.0.1, 3.5, and 4.x.
+**IBM Cloud Pak for Data Command Line Interface** (**IBM cpdctl**) is a command-line interface (CLI) you can use to manage the lifecycle of a model from IBM Cloud Pak for Data 3.0.1, 3.5, 4.x, and 5.x.
 > ![New in 1.4.0](https://img.shields.io/badge/New%20in-1.4.0-blue)
 
 > **IBM cpdctl** now supports installation of Cloud Pak for Data on private cloud as well as Cloud Pak for Data as a Service (Cloud Pak for Data running on IBM Cloud).
@@ -8,24 +8,23 @@ Using the CLI, you can manage configuration settings and automate an end-to-end 
 
 **Note**: in Cloud Pak for Data two types of projects are used: Analytics Projects and Data Quality Projects. **IBM cpdctl** supports only Analytics Projects.
 
+### Compatibility with IBM Cloud Pak for Data releases
+Always use most recent **IBM cpdctl** version available. It is backward compatible with all supported Cloud Pak for Data releases.
 
 ## Quick start
 ### Download for Linux and macOS:
-These commands download and install latest release of `cpdctl` executable to the current directory.
 ```shell
-platform=$(uname -s | tr '[A-Z]' '[a-z]')
+platform=$(uname -s | tr [A-Z] [a-z])
 arch=$(uname -m | sed 's/x86_64/amd64/')
-curl -LOs "https://github.com/IBM/cpdctl/releases/latest/download/cpdctl_${platform}_${arch}.tar.gz"
+curl -LOs https://github.com/IBM/cpdctl/releases/latest/download/cpdctl_${platform}_${arch}.tar.gz
 tar zxf cpdctl_${platform}_${arch}.tar.gz
 ```
 ### Configure connection with on-premise Cloud Pak for Data:
-**Note**: set variables `cpd_url`, `cpd_username`, and `cpd_apikey` before running these commands.
 ```shell
 ./cpdctl config profile set cpd --url $cpd_url --username $cpd_username --apikey $cpd_apikey
 ./cpdctl config profile use cpd
 ```
 ### Configure connection with Cloud Pak for Data as a Service:
-**Note**: set variable `ibmcloud_apikey` before running these commands.
 ```shell
 ./cpdctl config profile set cpdaas --url https://cloud.ibm.com --apikey $ibmcloud_apikey
 ./cpdctl config profile use cpdaas
@@ -87,9 +86,10 @@ Download the appropriate archive from [IBM cpdctl repository](https://github.com
    * access token for currently logged-in user is read from environment variable `USER_ACCESS_TOKEN`.
 
 > ![New in 1.4.0](https://img.shields.io/badge/New%20in-1.4.0-blue)
+> 
 > 2. Method 2 is based on session metadata of [IBM Cloud CLI](https://www.ibm.com/cloud/cli) (`ibmcloud`).
-     >
-     >   On a machine where `ibmcloud` is configured to connect to IBM Cloud, **IBM cpdctl** can use its session metadata to connect to Cloud Pak for Data as a Service. An auto-configuration mechanism honors the environment variable `IBMCLOUD_HOME` to indicate a non-default location for `ibmcloud` session metadata.
+>
+>   On a machine where `ibmcloud` is configured to connect to IBM Cloud, **IBM cpdctl** can use its session metadata to connect to Cloud Pak for Data as a Service. An auto-configuration mechanism honors the environment variable `IBMCLOUD_HOME` to indicate a non-default location for `ibmcloud` session metadata.
 
 
 ### Manual configuration
@@ -134,7 +134,8 @@ COMMANDS:
 > **IBM cpdctl** releases prior to 1.2.0 supported configuration of contexts and services. These two concepts have been deprecated and will be removed in the future. From now on profiles take over the role previously fulfilled by contexts and services.
 > #### Backward compatibility
 > * Configuration files created with earlier **IBM cpdctl** releases remain valid for releases following the deprecation.
-    >   * Profiles are directly associated with users to which they were previously linked via contexts.
+> 
+>   * Profiles are directly associated with users to which they were previously linked via contexts.
 >   * A profile associated with current context becomes the current profile.
 >   * Service URLs (if defined) are stored directly in the corresponding profile.
 >   * All context information is removed from configuration file.
