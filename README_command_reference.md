@@ -397,6 +397,24 @@ cpdctl asset search --type-name TYPE-NAME --query QUERY [--bookmark BOOKMARK] [-
 `--space-id` (string)
 :   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
+#### Example
+
+```sh
+cpdctl asset search \
+    --type-name exampleString \
+    --query exampleString \
+    --bookmark exampleString \
+    --counts exampleString,anotherTestString \
+    --drilldown '[{}]' \
+    --include entity \
+    --limit 38 \
+    --sort exampleString \
+    --x-open-id-connect-id-token 'Bearer <token>' \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='asset_create'></a>
 ## &#8226; asset create
 
@@ -503,6 +521,19 @@ cpdctl asset create [--metadata METADATA | --metadata-asset-attributes METADATA-
 `--metadata-tags` ([]string)
 :   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl asset create \
+    --metadata '{"asset_attributes": ["exampleString","anotherTestString"], "asset_category": "USER", "asset_id": "exampleString", "asset_state": "available", "asset_type": "data-asset", "child_source_systems": [{"asset_identifier": "String", "created": 1531854592, "creation_timestamp": "2018-03-21T12:47:43", "last_modification_timestamp": "2018-03-21T12:47:43", "last_modified": 1531854592, "source": "DASHDB", "source_system_id": "String"}], "commit_info": {"previous_revision": 1}, "created_at": "2019-01-01T12:00:00.000Z", "description": "A description more fully describes an asset.  It can also be much longer than the asset name.", "name": "Choose Any Name for your Asset", "origin_country": "us", "owner_id": "exampleString", "resource_key": "exampleString", "rov": {"mode": 38}, "size": 38, "source_system": {"asset_identifier": "String", "created": 1531854592, "creation_timestamp": "2018-03-21T12:47:43", "last_modification_timestamp": "2018-03-21T12:47:43", "last_modified": 1531854592, "source": "DASHDB", "source_system_id": "String"}, "tags": ["exampleString","anotherTestString"]}' \
+    --attachments '[{"asset_type": "exampleString", "connection_id": "exampleString", "connection_path": "exampleString", "data_partitions": 38, "description": "exampleString", "is_partitioned": true, "mime": "exampleString", "name": "exampleString", "object_key": "exampleString", "object_key_is_read_only": true, "private_url": true, "test_doc": 26, "url": "exampleString", "user_data": "exampleString", "id": "exampleString"}]' \
+    --entity "exampleString" \
+    --x-open-id-connect-id-token 'Bearer <token>' \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='asset_delete'></a>
 ## &#8226; asset delete
 
@@ -537,6 +568,18 @@ cpdctl asset delete --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-
 
     The default value is `false`.
 
+#### Example
+
+```sh
+cpdctl asset delete \
+    --asset-id exampleString \
+    --x-open-id-connect-id-token 'Bearer <token>' \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString \
+    --purge-on-delete false
+```
+
 <a id='asset_get'></a>
 ## &#8226; asset get
 
@@ -568,6 +611,18 @@ cpdctl asset get --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CON
 
 `--revision-id` (string)
 :   Revision id (1, 2, 3, ...), or leave empty for the current asset version. Use 'latest' for the most recent revision.
+
+#### Example
+
+```sh
+cpdctl asset get \
+    --asset-id exampleString \
+    --x-open-id-connect-id-token 'Bearer <token>' \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString \
+    --revision-id exampleString
+```
 
 <a id='asset_update'></a>
 ## &#8226; asset update
@@ -622,6 +677,18 @@ cpdctl asset update --asset-id ASSET-ID [--classification CLASSIFICATION] [--des
 `--tags` ([]string)
 :   Updated tag.
 
+#### Example
+
+```sh
+cpdctl asset update \
+    --classification '{"classificationName": "exampleString", "classificationProperties": {"anyKey": "anyValue"}}' \
+    --description exampleString \
+    --name exampleString \
+    --resource-key exampleString \
+    --source-system '{"asset_identifier": "String", "created": 1531854592, "creation_timestamp": "2018-03-21T12:47:43", "last_modification_timestamp": "2018-03-21T12:47:43", "last_modified": 1531854592, "source": "DASHDB", "source_system_id": "String"}' \
+    --tags exampleString,anotherTestString
+```
+
 <a id='asset_promote'></a>
 ## &#8226; asset promote
 
@@ -657,6 +724,17 @@ cpdctl asset promote --project-id PROJECT-ID --asset-id ASSET-ID --request-body 
 `--revision-id` (string)
 :   Revision id (1, 2, 3, ...), or leave empty for the current asset version. Use 'latest' for the most recent revision.
 
+#### Example
+
+```sh
+cpdctl asset promote \
+    --project-id exampleString \
+    --asset-id exampleString \
+    --request-body '{"anyKey": "anyValue"}' \
+    --x-open-id-connect-id-token 'Bearer <token>' \
+    --revision-id exampleString
+```
+
 <a id='asset_type_list'></a>
 ## &#8226; asset type list
 
@@ -682,6 +760,16 @@ cpdctl asset type list [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN]
 
 `--space-id` (string)
 :   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+#### Example
+
+```sh
+cpdctl asset type list \
+    --x-open-id-connect-id-token 'Bearer <token>' \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
 
 <a id='asset_type_get'></a>
 ## &#8226; asset type get
@@ -711,6 +799,17 @@ cpdctl asset type get --type-name TYPE-NAME [--x-open-id-connect-id-token X-OPEN
 
 `--space-id` (string)
 :   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+#### Example
+
+```sh
+cpdctl asset type get \
+    --type-name exampleString \
+    --x-open-id-connect-id-token 'Bearer <token>' \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
 
 <a id='asset_type_replace'></a>
 ## &#8226; asset type replace
@@ -777,6 +876,22 @@ cpdctl asset type replace --type-name TYPE-NAME --fields FIELDS [--description D
 `--external-asset-preview-url-path-from-asset-attributes` (string)
 :   URL path. This option provides a value for a sub-field of the JSON option 'external-asset-preview'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl asset type replace \
+    --type-name exampleString \
+    --fields '[{"facet": false, "is_array": false, "is_searchable_across_types": false, "key": "host", "search_path": "asset.columns[].*.name", "type": "string"}]' \
+    --description 'Connection asset type' \
+    --external-asset-preview '{"base_client_url": "https://ibm.com", "url_parameters_fixed": "allow_login_screen=true", "url_parameters_from_asset_attributes": ["exampleString","anotherTestString"], "url_path_from_asset_attributes": "id"}' \
+    --properties '{}' \
+    --relationships '[{"key": "connection_id", "on_clone_target": "CASCADE", "on_delete": "CASCADE", "on_delete_target": "CASCADE", "target_asset_type": "connection"}]' \
+    --x-open-id-connect-id-token 'Bearer <token>' \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='asset_attribute_list'></a>
 ## &#8226; asset attribute list
 
@@ -808,6 +923,18 @@ cpdctl asset attribute list --asset-id ASSET-ID [--x-open-id-connect-id-token X-
 
 `--revision-id` (string)
 :   Revision id (1, 2, 3, ...), or leave empty for the current asset version. Use 'latest' for the most recent revision.
+
+#### Example
+
+```sh
+cpdctl asset attribute list \
+    --asset-id exampleString \
+    --x-open-id-connect-id-token 'Bearer <token>' \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString \
+    --revision-id exampleString
+```
 
 <a id='asset_attribute_create'></a>
 ## &#8226; asset attribute create
@@ -846,6 +973,19 @@ cpdctl asset attribute create --asset-id ASSET-ID --name NAME [--entity ENTITY] 
 `--space-id` (string)
 :   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
+#### Example
+
+```sh
+cpdctl asset attribute create \
+    --asset-id exampleString \
+    --name TestAttribute \
+    --entity "exampleString" \
+    --x-open-id-connect-id-token 'Bearer <token>' \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='asset_attribute_delete'></a>
 ## &#8226; asset attribute delete
 
@@ -877,6 +1017,18 @@ cpdctl asset attribute delete --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY 
 
 `--space-id` (string)
 :   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+#### Example
+
+```sh
+cpdctl asset attribute delete \
+    --asset-id exampleString \
+    --attribute-key exampleString \
+    --x-open-id-connect-id-token 'Bearer <token>' \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
 
 <a id='asset_attribute_get'></a>
 ## &#8226; asset attribute get
@@ -912,6 +1064,19 @@ cpdctl asset attribute get --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY [--
 
 `--revision-id` (string)
 :   Revision id (1, 2, 3, ...), or leave empty for the current asset version. Use 'latest' for the most recent revision.
+
+#### Example
+
+```sh
+cpdctl asset attribute get \
+    --asset-id exampleString \
+    --attribute-key exampleString \
+    --x-open-id-connect-id-token 'Bearer <token>' \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString \
+    --revision-id exampleString
+```
 
 <a id='asset_attribute_update'></a>
 ## &#8226; asset attribute update
@@ -949,6 +1114,19 @@ cpdctl asset attribute update --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY 
 
 `--space-id` (string)
 :   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+#### Example
+
+```sh
+cpdctl asset attribute update \
+    --asset-id exampleString \
+    --attribute-key exampleString \
+    --json-patch '[{"op": "add", "path": "exampleString", "from": "exampleString", "value": "exampleString"}]' \
+    --x-open-id-connect-id-token 'Bearer <token>' \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
 
 <a id='asset_attachment_create'></a>
 ## &#8226; asset attachment create
@@ -1018,6 +1196,30 @@ cpdctl asset attachment create --asset-id ASSET-ID --asset-type ASSET-TYPE [--co
 `--space-id` (string)
 :   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
+#### Example
+
+```sh
+cpdctl asset attachment create \
+    --asset-id exampleString \
+    --asset-type exampleString \
+    --connection-id exampleString \
+    --connection-path exampleString \
+    --data-partitions 38 \
+    --description exampleString \
+    --is-partitioned true \
+    --mime exampleString \
+    --name exampleString \
+    --object-key exampleString \
+    --object-key-is-read-only true \
+    --private-url true \
+    --test-doc 26 \
+    --url exampleString \
+    --user-data "exampleString" \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='asset_attachment_delete'></a>
 ## &#8226; asset attachment delete
 
@@ -1044,6 +1246,17 @@ cpdctl asset attachment delete --asset-id ASSET-ID --attachment-id ATTACHMENT-ID
 
 `--space-id` (string)
 :   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+#### Example
+
+```sh
+cpdctl asset attachment delete \
+    --asset-id exampleString \
+    --attachment-id exampleString \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
 
 <a id='asset_attachment_get'></a>
 ## &#8226; asset attachment get
@@ -1086,6 +1299,21 @@ cpdctl asset attachment get --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [-
 `--response-content-type` (string)
 :   response-content-type.
 
+#### Example
+
+```sh
+cpdctl asset attachment get \
+    --asset-id exampleString \
+    --attachment-id exampleString \
+    --revision-id exampleString \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString \
+    --private-url false \
+    --response-content-disposition exampleString \
+    --response-content-type exampleString
+```
+
 <a id='asset_attachment_update'></a>
 ## &#8226; asset attachment update
 
@@ -1122,6 +1350,18 @@ cpdctl asset attachment update --asset-id ASSET-ID --attachment-id ATTACHMENT-ID
 `--space-id` (string)
 :   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
+#### Example
+
+```sh
+cpdctl asset attachment update \
+    --asset-id exampleString \
+    --attachment-id exampleString \
+    --json-patch '[{"op": "add", "path": "exampleString", "from": "exampleString", "value": "exampleString"}]' \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='asset_attachment_mark-complete'></a>
 ## &#8226; asset attachment mark-complete
 
@@ -1148,6 +1388,17 @@ cpdctl asset attachment mark-complete --asset-id ASSET-ID --attachment-id ATTACH
 
 `--space-id` (string)
 :   You must provide either a catalog id, a project id, or a space id, but not more than one.
+
+#### Example
+
+```sh
+cpdctl asset attachment mark-complete \
+    --asset-id exampleString \
+    --attachment-id exampleString \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
 
 <a id='asset_attachment_download'></a>
 ## &#8226; asset attachment download
@@ -1285,6 +1536,19 @@ cpdctl asset data-asset create --entity ENTITY [--metadata METADATA | --metadata
 `--metadata-tags` ([]string)
 :   This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl asset data-asset create \
+    --entity '{"anyKey": "anyValue"}' \
+    --metadata '{"asset_attributes": ["exampleString","anotherTestString"], "asset_category": "USER", "asset_id": "exampleString", "asset_state": "available", "asset_type": "data-asset", "child_source_systems": [{"asset_identifier": "String", "created": 1531854592, "creation_timestamp": "2018-03-21T12:47:43", "last_modification_timestamp": "2018-03-21T12:47:43", "last_modified": 1531854592, "source": "DASHDB", "source_system_id": "String"}], "commit_info": {"previous_revision": 1}, "created_at": "2019-01-01T12:00:00.000Z", "description": "A description more fully describes an asset.  It can also be much longer than the asset name.", "name": "Choose Any Name for your Asset", "origin_country": "us", "owner_id": "exampleString", "resource_key": "exampleString", "rov": {"mode": 38}, "size": 38, "source_system": {"asset_identifier": "String", "created": 1531854592, "creation_timestamp": "2018-03-21T12:47:43", "last_modification_timestamp": "2018-03-21T12:47:43", "last_modified": 1531854592, "source": "DASHDB", "source_system_id": "String"}, "tags": ["exampleString","anotherTestString"]}' \
+    --attachments '[{"asset_type": "exampleString", "connection_id": "exampleString", "connection_path": "exampleString", "data_partitions": 38, "description": "exampleString", "is_partitioned": true, "mime": "exampleString", "name": "exampleString", "object_key": "exampleString", "object_key_is_read_only": true, "private_url": true, "test_doc": 26, "url": "exampleString", "user_data": "exampleString", "id": "exampleString"}]' \
+    --x-open-id-connect-id-token 'Bearer <token>' \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='asset_data-asset_get'></a>
 ## &#8226; asset data-asset get
 
@@ -1330,6 +1594,18 @@ cpdctl asset data-asset get --data-asset-id DATA-ASSET-ID [--x-open-id-connect-i
 
 `--space-id` (string)
 :   space_id (only catalog_id is supported at this time).
+
+#### Example
+
+```sh
+cpdctl asset data-asset get \
+    --data-asset-id exampleString \
+    --x-open-id-connect-id-token 'Bearer <token>' \
+    --revision-id exampleString \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
 
 <a id='asset_data-asset_upload'></a>
 ## &#8226; asset data-asset upload
@@ -1413,6 +1689,19 @@ cpdctl asset relationship get --asset-id ASSET-ID --relationship-names RELATIONS
 `--bookmark` (string)
 :   bookmark.
 
+#### Example
+
+```sh
+cpdctl asset relationship get \
+    --asset-id exampleString \
+    --relationship-names exampleString \
+    --x-open-id-connect-id-token 'Bearer <token>' \
+    --project-id exampleString \
+    --space-id exampleString \
+    --limit 25 \
+    --bookmark exampleString
+```
+
 <a id='asset_relationship_set'></a>
 ## &#8226; asset relationship set
 
@@ -1435,6 +1724,14 @@ cpdctl asset relationship set [--relationships RELATIONSHIPS] [--x-open-id-conne
 
     The default value is `Bearer <token>`.
 
+#### Example
+
+```sh
+cpdctl asset relationship set \
+    --relationships '[{"relationship_name": "exampleString", "source": {"artifact_id": "exampleString", "artifact_name": "exampleString", "artifact_type": "exampleString", "asset_id": "exampleString", "catalog_id": "exampleString", "project_id": "exampleString", "space_id": "exampleString"}, "target": {"artifact_id": "exampleString", "artifact_name": "exampleString", "artifact_type": "exampleString", "asset_id": "exampleString", "catalog_id": "exampleString", "project_id": "exampleString", "space_id": "exampleString"}}]' \
+    --x-open-id-connect-id-token 'Bearer <token>'
+```
+
 <a id='asset_relationship_unset'></a>
 ## &#8226; asset relationship unset
 
@@ -1456,6 +1753,14 @@ cpdctl asset relationship unset [--relationships RELATIONSHIPS] [--x-open-id-con
 :   (DEPRECATED) X-OpenID-Connect-ID-Token.
 
     The default value is `Bearer <token>`.
+
+#### Example
+
+```sh
+cpdctl asset relationship unset \
+    --relationships '[{"relationship_name": "exampleString", "source": {"artifact_id": "exampleString", "artifact_name": "exampleString", "artifact_type": "exampleString", "asset_id": "exampleString", "catalog_id": "exampleString", "project_id": "exampleString", "space_id": "exampleString"}, "target": {"artifact_id": "exampleString", "artifact_name": "exampleString", "artifact_type": "exampleString", "asset_id": "exampleString", "catalog_id": "exampleString", "project_id": "exampleString", "space_id": "exampleString"}}]' \
+    --x-open-id-connect-id-token 'Bearer <token>'
+```
 
 <a id='asset_file_download'></a>
 ## &#8226; asset file download
@@ -1529,6 +1834,31 @@ Streams the content of the specified file, with the appropriate HTTP headers for
 `--stream` ()
 :    Only works for directories. The content will be streamed out instead of being fully constructed and sent out all at once.  Used mainly for when there are a large number of files are expected.
 
+#### Example
+```sh
+   cpdctl asset file download \
+    --path exampleString \
+    --accept exampleString \
+    --project-id exampleString \
+    --catalog-id exampleString \
+    --account-id exampleString \
+    --space-id exampleString \
+    --iam-id exampleString \
+    --byte-limit 38 \
+    --byte-range exampleString \
+    --size-limit 38 \
+    --signature exampleString \
+    --flat true \
+    --hidden-files true \
+    --root true \
+    --inflate true \
+    --force true \
+    --stream true \
+    --range 'Range 0-100' \
+    --retry true \
+    --output-file tempdir/example-output.txt
+```
+
 <a id='asset_file_list'></a>
 ## &#8226; asset file list
 Returns a list of file paths (similar to S3 listObjects) for the provided project, catalog, space or account. Requires viewer or higher permission. Assets for a catalog are not retrievable by external users.
@@ -1583,6 +1913,23 @@ Returns a list of file paths (similar to S3 listObjects) for the provided projec
 `--stream` ()
 :    The content will be streamed out instead of being fully constructed and sent out all at once. Used mainly when there are a large number of files are expected.
 
+#### Example
+```sh
+   cpdctl asset file list \
+    --project-id exampleString \
+    --catalog-id exampleString \
+    --account-id exampleString \
+    --space-id exampleString \
+    --iam-id exampleString \
+    --limit 10 \
+    --offset exampleString \
+    --flat true \
+    --hidden-files true \
+    --minimal true \
+    --root true \
+    --stream true
+```
+
 <a id='asset_file_upload'></a>
 ## &#8226; asset file upload
 Uploads the bytes into the file with the provided file name using HTTP multi-part format, creating a new file if missing, overriding if existing (unless override=false). Assets cannot be uploaded to a catalog by external users. Adding project or space assets accepts all formats that grant editor access or higher. Adding to accounts requires a user with account admin access. This endpoint supports authentication via signature parameter. See 'Get auth signature' call for more info on signed urls.
@@ -1636,6 +1983,25 @@ Uploads the bytes into the file with the provided file name using HTTP multi-par
 
 `--space-id` (string)
 :    Make request relative to the specified space.
+
+#### Example
+```sh
+   cpdctl asset file upload \
+    --path exampleString \
+    --file tempdir/test-file.txt \
+    --file-content-type exampleString \
+    --project-id exampleString \
+    --catalog-id exampleString \
+    --account-id exampleString \
+    --space-id exampleString \
+    --iam-id exampleString \
+    --override true \
+    --signature exampleString \
+    --inflate true \
+    --inflate-mode default \
+    --ensure-dir true \
+    --root true
+```
 
 <a id='asset_script_create'></a>
 ## &#8226; asset script create
@@ -1710,6 +2076,17 @@ cpdctl asset export list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--cata
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for export-list.
 
+#### Example
+
+```sh
+cpdctl asset export list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
+    --catalog-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
+    --start exampleString \
+    --limit 10
+```
+
 <a id='asset_export_start'></a>
 ## &#8226; asset export start
 
@@ -1762,6 +2139,21 @@ cpdctl asset export start [--assets ASSETS | --assets-all-assets ASSETS-ALL-ASSE
 `--assets-asset-types` ([]string)
 :   This option provides a value for a sub-field of the JSON option 'assets'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl asset export start \
+    --assets '{"all_assets": true, "asset_ids": ["exampleString","anotherTestString"], "asset_types": ["exampleString","anotherTestString"]}' \
+    --description exampleString \
+    --encryption-key exampleString \
+    --format json \
+    --module-keys exampleString,anotherTestString \
+    --name exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
+    --catalog-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84
+```
+
 <a id='asset_export_cancel'></a>
 ## &#8226; asset export cancel
 
@@ -1791,6 +2183,17 @@ cpdctl asset export cancel --export-id EXPORT-ID [--space-id SPACE-ID] [--projec
 
     The default value is `false`.
 
+#### Example
+
+```sh
+cpdctl asset export cancel \
+    --export-id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
+    --catalog-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
+    --hard-delete false
+```
+
 <a id='asset_export_get'></a>
 ## &#8226; asset export get
 
@@ -1815,6 +2218,16 @@ cpdctl asset export get --export-id EXPORT-ID [--space-id SPACE-ID] [--project-i
 `--catalog-id` (string)
 :   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
 
+#### Example
+
+```sh
+cpdctl asset export get \
+    --export-id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
+    --catalog-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84
+```
+
 <a id='asset_export_download'></a>
 ## &#8226; asset export download
 
@@ -1838,6 +2251,17 @@ cpdctl asset export download --export-id EXPORT-ID [--space-id SPACE-ID] [--proj
 
 `--catalog-id` (string)
 :   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+#### Example
+
+```sh
+cpdctl asset export download \
+    --export-id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
+    --catalog-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
+    --output-file tempdir/example-output.txt
+```
 
 <a id='asset_export_wait'></a>
 ## &#8226; asset export wait
@@ -1894,6 +2318,17 @@ cpdctl asset import list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--cata
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for import-list.
 
+#### Example
+
+```sh
+cpdctl asset import list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
+    --catalog-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
+    --start exampleString \
+    --limit 10
+```
+
 <a id='asset_import_start'></a>
 ## &#8226; asset import start
 
@@ -1929,6 +2364,19 @@ cpdctl asset import start --import-file IMPORT-FILE [--file-content-type FILE-CO
 `--catalog-id` (string)
 :   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
 
+#### Example
+
+```sh
+cpdctl asset import start \
+    --import-file tempdir/test-file.txt \
+    --file-content-type exampleString \
+    --encryption-key exampleString \
+    --format json \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
+    --catalog-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84
+```
+
 <a id='asset_import_cancel'></a>
 ## &#8226; asset import cancel
 
@@ -1958,6 +2406,17 @@ cpdctl asset import cancel --import-id IMPORT-ID [--space-id SPACE-ID] [--projec
 
     The default value is `false`.
 
+#### Example
+
+```sh
+cpdctl asset import cancel \
+    --import-id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
+    --catalog-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
+    --hard-delete false
+```
+
 <a id='asset_import_get'></a>
 ## &#8226; asset import get
 
@@ -1981,6 +2440,16 @@ cpdctl asset import get --import-id IMPORT-ID [--space-id SPACE-ID] [--project-i
 
 `--catalog-id` (string)
 :   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
+
+#### Example
+
+```sh
+cpdctl asset import get \
+    --import-id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
+    --catalog-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84
+```
 
 <a id='asset_import_wait'></a>
 ## &#8226; asset import wait
@@ -2024,6 +2493,13 @@ List all code packages in a given project or space. You must specify either `pro
 `--space-id` (string)
 :    The id of the space.
 
+#### Example
+```sh
+   cpdctl code-package list \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='code-package_create'></a>
 ## &#8226; code-package create
 Create a new code package in a given project or space. You must specify either `project_id` or `space_id`. If you create a code package from an existing zip file, you need to first upload the zip file to the project or space Cloud Object Storage (COS) and then reference it in the body of the creation request.
@@ -2054,6 +2530,17 @@ Create a new code package in a given project or space. You must specify either `
 `--space-id` (string)
 :    The id of the space.
 
+#### Example
+```sh
+   cpdctl code-package create \
+    --name 'my code package' \
+    --description 'this is my code package' \
+    --file-reference code_package/my_code.zip \
+    --json-file-reference code_package/my_metadata.json \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='code-package_delete'></a>
 ## &#8226; code-package delete
 Delete a code package in a given project or space. You must specify either `project_id` or `space_id`.
@@ -2075,6 +2562,14 @@ Delete a code package in a given project or space. You must specify either `proj
 `--space-id` (string)
 :    The id of the space.
 
+#### Example
+```sh
+   cpdctl code-package delete \
+    --code-package-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='code-package_get'></a>
 ## &#8226; code-package get
 Retrieve a code package in a given project or space. You must specify either `project_id` or `space_id`.
@@ -2095,6 +2590,14 @@ Retrieve a code package in a given project or space. You must specify either `pr
 
 `--space-id` (string)
 :    The id of the space.
+
+#### Example
+```sh
+   cpdctl code-package get \
+    --code-package-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
 
 <a id='code-package_promote'></a>
 ## &#8226; code-package promote
@@ -2126,6 +2629,17 @@ Promote a code package from a project to a space.
 `--space-id` (string)
 :    The id of the space to which a code package will be promoted.
 
+#### Example
+```sh
+   cpdctl code-package promote \
+    --code-package-id exampleString \
+    --revision-id exampleString \
+    --project-id exampleString \
+    --space-id b275be5f-10ff-47ee-bfc9-63f1ce5addbf \
+    --description 'this is my code package in space' \
+    --name 'my code package'
+```
+
 <a id='code-package_revision_list'></a>
 ## &#8226; code-package revision list
 
@@ -2146,6 +2660,15 @@ cpdctl code-package revision list --code-package-id CODE-PACKAGE-ID [--project-i
 
 `--space-id` (string)
 :   The id of the space.
+
+#### Example
+
+```sh
+cpdctl code-package revision list \
+    --code-package-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
 
 <a id='code-package_revision_create'></a>
 ## &#8226; code-package revision create
@@ -2171,6 +2694,16 @@ cpdctl code-package revision create --code-package-id CODE-PACKAGE-ID [--commit-
 `--space-id` (string)
 :   The id of the space.
 
+#### Example
+
+```sh
+cpdctl code-package revision create \
+    --code-package-id exampleString \
+    --commit-message 'initial commit' \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='code-package_revision_delete'></a>
 ## &#8226; code-package revision delete
 
@@ -2195,6 +2728,16 @@ cpdctl code-package revision delete --code-package-id CODE-PACKAGE-ID --revision
 `--space-id` (string)
 :   The id of the space.
 
+#### Example
+
+```sh
+cpdctl code-package revision delete \
+    --code-package-id exampleString \
+    --revision-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='code-package_revision_get'></a>
 ## &#8226; code-package revision get
 
@@ -2218,6 +2761,16 @@ cpdctl code-package revision get --code-package-id CODE-PACKAGE-ID --revision-id
 
 `--space-id` (string)
 :   The id of the space.
+
+#### Example
+
+```sh
+cpdctl code-package revision get \
+    --code-package-id exampleString \
+    --revision-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
 
 <a id='config_user_list'></a>
 ## &#8226; config user list
@@ -2419,6 +2972,25 @@ cpdctl connection list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--sp
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for list.
 
+#### Example
+
+```sh
+cpdctl connection list \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString \
+    --sort exampleString \
+    --start exampleString \
+    --limit 10 \
+    --metadata-creator exampleString \
+    --entity-name exampleString \
+    --entity-datasource-type exampleString \
+    --entity-context exampleString \
+    --entity-properties exampleString \
+    --entity-flags exampleString \
+    --inject-token false
+```
+
 <a id='connection_create'></a>
 ## &#8226; connection create
 
@@ -2544,6 +3116,34 @@ cpdctl connection create --datasource-type DATASOURCE-TYPE --name NAME [--asset-
 | 0    | Connection is searchable and viewable by everyone with access to the catalog or project associated with this connection |
 | 8    | Connection is searchable by everyone and cannot be viewed unless the user has proper view permissions |
 | 16   | Connection is searchable by users with proper view permissions |. This option provides a value for a sub-field of the JSON option 'rov'. It is mutually exclusive with that option.
+
+#### Examples
+
+```sh
+cpdctl connection create \
+    --datasource-type exampleString \
+    --name exampleString \
+    --asset-category user \
+    --child-source-systems '[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}]' \
+    --description exampleString \
+    --flags restricted,internal_use_only,personal_credentials \
+    --gateway-id exampleString \
+    --interaction-properties '{"source": [{"aliases": [{"name": "exampleString", "supported_products": ["exampleString","anotherTestString"]}], "default_from_env": "exampleString", "default_value": "exampleString", "default_value_conditions": [{"evaluate": {"condition": "contains", "property_name": "exampleString", "uiOnly": true, "values": ["exampleString","anotherTestString"]}, "value": "exampleString"}], "description": "exampleString", "displayGroup": "exampleString", "displayOrdinal": 38, "group": "exampleString", "hidden": true, "label": "exampleString", "masked": true, "multichoice": true, "multiline": true, "name": "exampleString", "placeholder": "exampleString", "readonly": true, "required": true, "supported_environments": ["exampleString","anotherTestString"], "supported_products": ["exampleString","anotherTestString"], "tags": ["exampleString","anotherTestString"], "type": "boolean", "uiOnly": true, "user_defined": true, "values": [{"label": "exampleString", "supported_environments": ["exampleString","anotherTestString"], "supported_products": ["exampleString","anotherTestString"], "value": "exampleString"}]}], "target": [{"aliases": [{"name": "exampleString", "supported_products": ["exampleString","anotherTestString"]}], "default_from_env": "exampleString", "default_value": "exampleString", "default_value_conditions": [{"evaluate": {"condition": "contains", "property_name": "exampleString", "uiOnly": true, "values": ["exampleString","anotherTestString"]}, "value": "exampleString"}], "description": "exampleString", "displayGroup": "exampleString", "displayOrdinal": 38, "group": "exampleString", "hidden": true, "label": "exampleString", "masked": true, "multichoice": true, "multiline": true, "name": "exampleString", "placeholder": "exampleString", "readonly": true, "required": true, "supported_environments": ["exampleString","anotherTestString"], "supported_products": ["exampleString","anotherTestString"], "tags": ["exampleString","anotherTestString"], "type": "boolean", "uiOnly": true, "user_defined": true, "values": [{"label": "exampleString", "supported_environments": ["exampleString","anotherTestString"], "supported_products": ["exampleString","anotherTestString"], "value": "exampleString"}]}]}' \
+    --location-definition '{"physical_location_code": "exampleString", "sovereign_location_code": "exampleString"}' \
+    --origin-country exampleString \
+    --owner-id exampleString \
+    --properties '{"anyKey": "anyValue"}' \
+    --ref-asset-id exampleString \
+    --ref-catalog-id exampleString \
+    --rov '{"mode": 38}' \
+    --source-system '{"anyKey": "anyValue"}' \
+    --tags exampleString,anotherTestString \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString \
+    --test true \
+    --skip-enforcement false
+```
 
 <a id='connection_discover-adhoc'></a>
 ## &#8226; connection discover-adhoc
@@ -2678,6 +3278,37 @@ cpdctl connection discover-adhoc --path PATH --datasource-type DATASOURCE-TYPE -
 | 8    | Connection is searchable by everyone and cannot be viewed unless the user has proper view permissions |
 | 16   | Connection is searchable by users with proper view permissions |. This option provides a value for a sub-field of the JSON option 'rov'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl connection discover-adhoc \
+    --path exampleString \
+    --datasource-type exampleString \
+    --name exampleString \
+    --asset-category user \
+    --child-source-systems '[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}]' \
+    --description exampleString \
+    --flags restricted,internal_use_only,personal_credentials \
+    --gateway-id exampleString \
+    --interaction-properties '{"source": [{"aliases": [{"name": "exampleString", "supported_products": ["exampleString","anotherTestString"]}], "default_from_env": "exampleString", "default_value": "exampleString", "default_value_conditions": [{"evaluate": {"condition": "contains", "property_name": "exampleString", "uiOnly": true, "values": ["exampleString","anotherTestString"]}, "value": "exampleString"}], "description": "exampleString", "displayGroup": "exampleString", "displayOrdinal": 38, "group": "exampleString", "hidden": true, "label": "exampleString", "masked": true, "multichoice": true, "multiline": true, "name": "exampleString", "placeholder": "exampleString", "readonly": true, "required": true, "supported_environments": ["exampleString","anotherTestString"], "supported_products": ["exampleString","anotherTestString"], "tags": ["exampleString","anotherTestString"], "type": "boolean", "uiOnly": true, "user_defined": true, "values": [{"label": "exampleString", "supported_environments": ["exampleString","anotherTestString"], "supported_products": ["exampleString","anotherTestString"], "value": "exampleString"}]}], "target": [{"aliases": [{"name": "exampleString", "supported_products": ["exampleString","anotherTestString"]}], "default_from_env": "exampleString", "default_value": "exampleString", "default_value_conditions": [{"evaluate": {"condition": "contains", "property_name": "exampleString", "uiOnly": true, "values": ["exampleString","anotherTestString"]}, "value": "exampleString"}], "description": "exampleString", "displayGroup": "exampleString", "displayOrdinal": 38, "group": "exampleString", "hidden": true, "label": "exampleString", "masked": true, "multichoice": true, "multiline": true, "name": "exampleString", "placeholder": "exampleString", "readonly": true, "required": true, "supported_environments": ["exampleString","anotherTestString"], "supported_products": ["exampleString","anotherTestString"], "tags": ["exampleString","anotherTestString"], "type": "boolean", "uiOnly": true, "user_defined": true, "values": [{"label": "exampleString", "supported_environments": ["exampleString","anotherTestString"], "supported_products": ["exampleString","anotherTestString"], "value": "exampleString"}]}]}' \
+    --new-location-definition '{"physical_location_code": "exampleString", "sovereign_location_code": "exampleString"}' \
+    --origin-country exampleString \
+    --owner-id exampleString \
+    --properties '{"anyKey": "anyValue"}' \
+    --ref-asset-id exampleString \
+    --ref-catalog-id exampleString \
+    --rov '{"mode": 38}' \
+    --new-source-system '{"anyKey": "anyValue"}' \
+    --tags exampleString,anotherTestString \
+    --limit 100 \
+    --offset 0 \
+    --fetch exampleString \
+    --detail true \
+    --discovery-context source \
+    --asset-properties exampleString \
+    --filters exampleString
+```
+
 <a id='connection_discover-data-asset'></a>
 ## &#8226; connection discover-data-asset
 
@@ -2732,6 +3363,24 @@ cpdctl connection discover-data-asset --data-asset-id DATA-ASSET-ID [--catalog-i
 `--path` (string)
 :   Path of the asset.
 
+#### Example
+
+```sh
+cpdctl connection discover-data-asset \
+    --data-asset-id exampleString \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString \
+    --limit 100 \
+    --offset 0 \
+    --fetch exampleString \
+    --detail true \
+    --context source \
+    --properties exampleString \
+    --filters exampleString \
+    --path exampleString
+```
+
 <a id='connection_delete'></a>
 ## &#8226; connection delete
 
@@ -2755,6 +3404,16 @@ cpdctl connection delete --connection-id CONNECTION-ID [--catalog-id CATALOG-ID]
 
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, project_id, or space_id is required.
+
+#### Example
+
+```sh
+cpdctl connection delete \
+    --connection-id exampleString \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
 
 <a id='connection_get'></a>
 ## &#8226; connection get
@@ -2791,6 +3450,18 @@ cpdctl connection get --connection-id CONNECTION-ID [--catalog-id CATALOG-ID] [-
 
 `--entity-product` (string)
 :   Specify the product the data source type must support to be returned. The available products are 'catalog', 'cpd', 'datastage', 'dv', 'igc', 'mdi', 'ml' and 'studio'. If no entity.product is specified, no filtering is applied. To specify multiple products, use a comma-separated string, such as entity.product=catalog,studio.
+
+#### Example
+
+```sh
+cpdctl connection get \
+    --connection-id exampleString \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString \
+    --inject-token false \
+    --entity-product exampleString
+```
 
 <a id='connection_update'></a>
 ## &#8226; connection update
@@ -2831,6 +3502,19 @@ cpdctl connection update --connection-id CONNECTION-ID --patch-request PATCH-REQ
 
     The default value is `false`.
 
+#### Example
+
+```sh
+cpdctl connection update \
+    --connection-id exampleString \
+    --patch-request '[{"op": "add", "path": "exampleString", "from": "exampleString", "value": "exampleString"}]' \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString \
+    --test true \
+    --skip-enforcement false
+```
+
 <a id='connection_list-actions'></a>
 ## &#8226; connection list-actions
 
@@ -2859,6 +3543,17 @@ cpdctl connection list-actions --connection-id CONNECTION-ID [--accept-language 
 
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, project_id, or space_id is required.
+
+#### Example
+
+```sh
+cpdctl connection list-actions \
+    --connection-id exampleString \
+    --accept-language en-US \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
 
 <a id='connection_perform-action'></a>
 ## &#8226; connection perform-action
@@ -2901,6 +3596,18 @@ cpdctl connection perform-action --connection-id CONNECTION-ID --action-name ACT
 
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, project_id, or space_id is required.
+
+#### Example
+
+```sh
+cpdctl connection perform-action \
+    --connection-id exampleString \
+    --action-name get_oauth2_tokens \
+    --request '{"anyKey": "anyValue"}' \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
 
 <a id='connection_discover'></a>
 ## &#8226; connection discover
@@ -2967,6 +3674,28 @@ cpdctl connection discover --connection-id CONNECTION-ID --path PATH [--catalog-
 
 `--filters` (string)
 :   A JSON object containing a set of properties to define filtering of the assets to be returned.
+
+#### Example
+
+```sh
+cpdctl connection discover \
+    --connection-id exampleString \
+    --path exampleString \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString \
+    --data-asset-id exampleString \
+    --data-asset-catalog-id exampleString \
+    --data-asset-project-id exampleString \
+    --data-asset-space-id exampleString \
+    --limit 100 \
+    --offset 0 \
+    --fetch exampleString \
+    --detail true \
+    --context source \
+    --properties exampleString \
+    --filters exampleString
+```
 
 <a id='connection_datasource-type_list'></a>
 ## &#8226; connection datasource-type list
@@ -3037,6 +3766,24 @@ cpdctl connection datasource-type list [--accept-language ACCEPT-LANGUAGE] [--so
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for datasource-type-list.
 
+#### Example
+
+```sh
+cpdctl connection datasource-type list \
+    --accept-language en-US \
+    --sort exampleString \
+    --offset 0 \
+    --limit 10 \
+    --connection-properties true \
+    --interaction-properties true \
+    --discovery true \
+    --actions true \
+    --entity-environment exampleString \
+    --entity-product exampleString \
+    --product-selector-scope global \
+    --generate-transitive-conditions false
+```
+
 <a id='connection_datasource-type_get'></a>
 ## &#8226; connection datasource-type get
 
@@ -3085,6 +3832,22 @@ cpdctl connection datasource-type get --datasource-type DATASOURCE-TYPE [--accep
 
     The default value is `false`.
 
+#### Example
+
+```sh
+cpdctl connection datasource-type get \
+    --datasource-type exampleString \
+    --accept-language en-US \
+    --connection-properties true \
+    --interaction-properties true \
+    --discovery true \
+    --actions true \
+    --entity-environment exampleString \
+    --entity-product exampleString \
+    --product-selector-scope global \
+    --generate-transitive-conditions false
+```
+
 <a id='datastage_flow_delete'></a>
 ## &#8226; datastage flow delete
 
@@ -3114,6 +3877,17 @@ cpdctl datastage flow delete --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--proj
 
 `--force` (bool)
 :   Whether to stop all running data flows. Running DataStage flows must be stopped before the DataStage flows can be deleted.
+
+#### Example
+
+```sh
+cpdctl datastage flow delete \
+    --flow-id exampleString,anotherTestString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --force true
+```
 
 <a id='datastage_flow_list'></a>
 ## &#8226; datastage flow list
@@ -3172,6 +3946,20 @@ cpdctl datastage flow list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for flow-list.
+
+#### Example
+
+```sh
+cpdctl datastage flow list \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --sort exampleString \
+    --start bd0dbbfd-810d-4f0e-b0a9-228c328a8e2 \
+    --limit 100 \
+    --name exampleString \
+    --description exampleString
+```
 
 <a id='datastage_flow_create'></a>
 ## &#8226; datastage flow create
@@ -3250,6 +4038,18 @@ cpdctl datastage flow create --name NAME [--pipeline-flow PIPELINE-FLOW | --pipe
 `--pipeline-flows-version` (string)
 :   Pipeline flow version. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl datastage flow create \
+    --name exampleString \
+    --pipeline-flow '{"app_data": {"anyKey": "anyValue"}, "doc_type": "pipeline", "external_paramsets": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "id": "84c2b6fb-1dd5-4114-b4ba-9bb2cb364fff", "json_schema": "http://api.dataplatform.ibm.com/schemas/common-pipeline/pipeline-flow/pipeline-flow-v3-schema.json", "parameters": {"anyKey": "anyValue"}, "pipelines": [{"app_data": {"anyKey": "anyValue"}, "description": "A test DataStage flow.", "id": "fa1b859a-d592-474d-b56c-2137e4efa4bc", "name": "ContainerC1", "nodes": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "runtime_ref": "pxOsh"}], "primary_pipeline": "fa1b859a-d592-474d-b56c-2137e4efa4bc", "runtimes": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "schemas": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "version": "3.0"}' \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --directory-asset-id exampleString
+```
+
 <a id='datastage_flow_get'></a>
 ## &#8226; datastage flow get
 
@@ -3273,6 +4073,16 @@ cpdctl datastage flow get --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project
 
 `--space-id` (string)
 :   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+#### Example
+
+```sh
+cpdctl datastage flow get \
+    --flow-id exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f
+```
 
 <a id='datastage_flow_update'></a>
 ## &#8226; datastage flow update
@@ -3354,6 +4164,19 @@ cpdctl datastage flow update --flow-id FLOW-ID --name NAME [--pipeline-flow PIPE
 `--pipeline-flows-version` (string)
 :   Pipeline flow version. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl datastage flow update \
+    --flow-id exampleString \
+    --name exampleString \
+    --pipeline-flow '{"app_data": {"anyKey": "anyValue"}, "doc_type": "pipeline", "external_paramsets": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "id": "84c2b6fb-1dd5-4114-b4ba-9bb2cb364fff", "json_schema": "http://api.dataplatform.ibm.com/schemas/common-pipeline/pipeline-flow/pipeline-flow-v3-schema.json", "parameters": {"anyKey": "anyValue"}, "pipelines": [{"app_data": {"anyKey": "anyValue"}, "description": "A test DataStage flow.", "id": "fa1b859a-d592-474d-b56c-2137e4efa4bc", "name": "ContainerC1", "nodes": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "runtime_ref": "pxOsh"}], "primary_pipeline": "fa1b859a-d592-474d-b56c-2137e4efa4bc", "runtimes": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "schemas": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "version": "3.0"}' \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --directory-asset-id exampleString
+```
+
 <a id='datastage_flow_patch-attributes'></a>
 ## &#8226; datastage flow patch-attributes
 
@@ -3387,6 +4210,19 @@ cpdctl datastage flow patch-attributes --flow-id FLOW-ID [--description DESCRIPT
 `--space-id` (string)
 :   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
 
+#### Example
+
+```sh
+cpdctl datastage flow patch-attributes \
+    --flow-id exampleString \
+    --description exampleString \
+    --directory-asset-id exampleString \
+    --name exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f
+```
+
 <a id='datastage_flow_clone'></a>
 ## &#8226; datastage flow clone
 
@@ -3414,6 +4250,17 @@ cpdctl datastage flow clone --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--proje
 `--directory-asset-id` (string)
 :   The directory asset ID.
 
+#### Example
+
+```sh
+cpdctl datastage flow clone \
+    --flow-id exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --directory-asset-id exampleString
+```
+
 <a id='datastage_flow_get-compile-status'></a>
 ## &#8226; datastage flow get-compile-status
 
@@ -3440,6 +4287,17 @@ cpdctl datastage flow get-compile-status --flow-id FLOW-ID [--catalog-id CATALOG
 
 `--enable-sql-pushdown` (bool)
 :   Whether to enable the SQL pushdown code generation or not.
+
+#### Example
+
+```sh
+cpdctl datastage flow get-compile-status \
+    --flow-id exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --enable-sql-pushdown true
+```
 
 <a id='datastage_flow_compile'></a>
 ## &#8226; datastage flow compile
@@ -3483,6 +4341,22 @@ cpdctl datastage flow compile --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--pro
 `--enable-push-join-to-source` (bool)
 :   Whether to enable pushing join/lookup stages to source connectors or not. Setting this flag to true will automatically set enable_native_sql_pushdown to true if the latter is not specified or is explicitly set to false.
 
+#### Example
+
+```sh
+cpdctl datastage flow compile \
+    --flow-id exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --runtime-type exampleString \
+    --enable-sql-pushdown true \
+    --enable-async-compile true \
+    --enable-native-sql-pushdown true \
+    --enable-push-processing-to-source true \
+    --enable-push-join-to-source true
+```
+
 <a id='datastage_subflow_delete'></a>
 ## &#8226; datastage subflow delete
 
@@ -3508,6 +4382,16 @@ cpdctl datastage subflow delete --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID
 
 `--space-id` (string)
 :   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+#### Example
+
+```sh
+cpdctl datastage subflow delete \
+    --subflow-id exampleString,anotherTestString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f
+```
 
 <a id='datastage_subflow_list'></a>
 ## &#8226; datastage subflow list
@@ -3566,6 +4450,20 @@ cpdctl datastage subflow list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for subflow-list.
+
+#### Example
+
+```sh
+cpdctl datastage subflow list \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --sort exampleString \
+    --start bd0dbbfd-810d-4f0e-b0a9-228c328a8e2 \
+    --limit 100 \
+    --name exampleString \
+    --description exampleString
+```
 
 <a id='datastage_subflow_create'></a>
 ## &#8226; datastage subflow create
@@ -3644,6 +4542,18 @@ cpdctl datastage subflow create --name NAME [--pipeline-flow PIPELINE-FLOW | --p
 `--pipeline-flows-version` (string)
 :   Pipeline flow version. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl datastage subflow create \
+    --name exampleString \
+    --pipeline-flow '{"app_data": {"anyKey": "anyValue"}, "doc_type": "pipeline", "external_paramsets": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "id": "84c2b6fb-1dd5-4114-b4ba-9bb2cb364fff", "json_schema": "http://api.dataplatform.ibm.com/schemas/common-pipeline/pipeline-flow/pipeline-flow-v3-schema.json", "parameters": {"anyKey": "anyValue"}, "pipelines": [{"app_data": {"anyKey": "anyValue"}, "description": "A test DataStage flow.", "id": "fa1b859a-d592-474d-b56c-2137e4efa4bc", "name": "ContainerC1", "nodes": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "runtime_ref": "pxOsh"}], "primary_pipeline": "fa1b859a-d592-474d-b56c-2137e4efa4bc", "runtimes": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "schemas": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "version": "3.0"}' \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --directory-asset-id exampleString
+```
+
 <a id='datastage_subflow_get'></a>
 ## &#8226; datastage subflow get
 
@@ -3667,6 +4577,16 @@ cpdctl datastage subflow get --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID] [
 
 `--space-id` (string)
 :   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+#### Example
+
+```sh
+cpdctl datastage subflow get \
+    --subflow-id exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f
+```
 
 <a id='datastage_subflow_update'></a>
 ## &#8226; datastage subflow update
@@ -3748,6 +4668,19 @@ cpdctl datastage subflow update --subflow-id SUBFLOW-ID --name NAME [--pipeline-
 `--pipeline-flows-version` (string)
 :   Pipeline flow version. This option provides a value for a sub-field of the JSON option 'pipeline-flow'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl datastage subflow update \
+    --subflow-id exampleString \
+    --name exampleString \
+    --pipeline-flow '{"app_data": {"anyKey": "anyValue"}, "doc_type": "pipeline", "external_paramsets": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "id": "84c2b6fb-1dd5-4114-b4ba-9bb2cb364fff", "json_schema": "http://api.dataplatform.ibm.com/schemas/common-pipeline/pipeline-flow/pipeline-flow-v3-schema.json", "parameters": {"anyKey": "anyValue"}, "pipelines": [{"app_data": {"anyKey": "anyValue"}, "description": "A test DataStage flow.", "id": "fa1b859a-d592-474d-b56c-2137e4efa4bc", "name": "ContainerC1", "nodes": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "runtime_ref": "pxOsh"}], "primary_pipeline": "fa1b859a-d592-474d-b56c-2137e4efa4bc", "runtimes": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "schemas": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "version": "3.0"}' \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --directory-asset-id exampleString
+```
+
 <a id='datastage_subflow_patch-attributes'></a>
 ## &#8226; datastage subflow patch-attributes
 
@@ -3781,6 +4714,19 @@ cpdctl datastage subflow patch-attributes --subflow-id SUBFLOW-ID [--description
 `--space-id` (string)
 :   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
 
+#### Example
+
+```sh
+cpdctl datastage subflow patch-attributes \
+    --subflow-id exampleString \
+    --description exampleString \
+    --directory-asset-id exampleString \
+    --name exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f
+```
+
 <a id='datastage_subflow_clone'></a>
 ## &#8226; datastage subflow clone
 
@@ -3808,6 +4754,17 @@ cpdctl datastage subflow clone --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID]
 `--directory-asset-id` (string)
 :   The directory asset ID.
 
+#### Example
+
+```sh
+cpdctl datastage subflow clone \
+    --subflow-id exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --directory-asset-id exampleString
+```
+
 <a id='datastage_xml-schema-library_list'></a>
 ## &#8226; datastage xml-schema-library list
 
@@ -3828,6 +4785,15 @@ cpdctl datastage xml-schema-library list [--catalog-id CATALOG-ID] [--project-id
 
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, space_id, or project_id is required.
+
+#### Example
+
+```sh
+cpdctl datastage xml-schema-library list \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString
+```
 
 <a id='datastage_xml-schema-library_create'></a>
 ## &#8226; datastage xml-schema-library create
@@ -3862,6 +4828,19 @@ cpdctl datastage xml-schema-library create --name NAME [--catalog-id CATALOG-ID]
 `--description` (string)
 :   The description of the new XML schema library.
 
+#### Example
+
+```sh
+cpdctl datastage xml-schema-library create \
+    --name exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString \
+    --directory-asset-id exampleString \
+    --folder exampleString \
+    --description exampleString
+```
+
 <a id='datastage_xml-schema-library_delete'></a>
 ## &#8226; datastage xml-schema-library delete
 
@@ -3886,6 +4865,16 @@ cpdctl datastage xml-schema-library delete --library-id LIBRARY-ID [--catalog-id
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
+#### Example
+
+```sh
+cpdctl datastage xml-schema-library delete \
+    --library-id exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString
+```
+
 <a id='datastage_xml-schema-library_get'></a>
 ## &#8226; datastage xml-schema-library get
 
@@ -3909,6 +4898,16 @@ cpdctl datastage xml-schema-library get --library-id LIBRARY-ID [--catalog-id CA
 
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, space_id, or project_id is required.
+
+#### Example
+
+```sh
+cpdctl datastage xml-schema-library get \
+    --library-id exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString
+```
 
 <a id='datastage_xml-schema-library_upload'></a>
 ## &#8226; datastage xml-schema-library upload
@@ -3940,6 +4939,18 @@ cpdctl datastage xml-schema-library upload --library-id LIBRARY-ID --body BODY [
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
+#### Example
+
+```sh
+cpdctl datastage xml-schema-library upload \
+    --library-id exampleString \
+    --body tempdir/test-file.txt \
+    --file-name exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString
+```
+
 <a id='datastage_xml-schema-library_clone'></a>
 ## &#8226; datastage xml-schema-library clone
 
@@ -3963,6 +4974,16 @@ cpdctl datastage xml-schema-library clone --library-id LIBRARY-ID [--catalog-id 
 
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, space_id, or project_id is required.
+
+#### Example
+
+```sh
+cpdctl datastage xml-schema-library clone \
+    --library-id exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString
+```
 
 <a id='datastage_xml-schema-library_delete-files'></a>
 ## &#8226; datastage xml-schema-library delete-files
@@ -3991,6 +5012,17 @@ cpdctl datastage xml-schema-library delete-files --file-name FILE-NAME --library
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
+#### Example
+
+```sh
+cpdctl datastage xml-schema-library delete-files \
+    --file-name exampleString \
+    --library-id exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString
+```
+
 <a id='datastage_xml-schema-library_download'></a>
 ## &#8226; datastage xml-schema-library download
 
@@ -4017,6 +5049,18 @@ cpdctl datastage xml-schema-library download --library-id LIBRARY-ID [--file-nam
 
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, space_id, or project_id is required.
+
+#### Example
+
+```sh
+cpdctl datastage xml-schema-library download \
+    --library-id exampleString \
+    --file-name exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString \
+    --output-file tempdir/example-output.txt
+```
 
 <a id='datastage_xml-schema-library_rename'></a>
 ## &#8226; datastage xml-schema-library rename
@@ -4045,6 +5089,17 @@ cpdctl datastage xml-schema-library rename --library-id LIBRARY-ID --name NAME [
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, space_id, or project_id is required.
 
+#### Example
+
+```sh
+cpdctl datastage xml-schema-library rename \
+    --library-id exampleString \
+    --name exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString
+```
+
 <a id='datastage_xml-schema-library_export-datastage-library-zip'></a>
 ## &#8226; datastage xml-schema-library export-datastage-library-zip
 
@@ -4071,6 +5126,18 @@ cpdctl datastage xml-schema-library export-datastage-library-zip --library-name 
 
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, space_id, or project_id is required.
+
+#### Example
+
+```sh
+cpdctl datastage xml-schema-library export-datastage-library-zip \
+    --library-name exampleString \
+    --folder exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString \
+    --output-file tempdir/example-output.txt
+```
 
 <a id='datastage_xml-schema-library_import-datastage-library-zip'></a>
 ## &#8226; datastage xml-schema-library import-datastage-library-zip
@@ -4108,6 +5175,20 @@ cpdctl datastage xml-schema-library import-datastage-library-zip --library-name 
 `--directory-asset-id` (string)
 :   The directory asset id to create the asset in or move to.
 
+#### Example
+
+```sh
+cpdctl datastage xml-schema-library import-datastage-library-zip \
+    --library-name exampleString \
+    --body tempdir/test-file.txt \
+    --folder exampleString \
+    --conflict-option exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString \
+    --directory-asset-id exampleString
+```
+
 <a id='datastage_migration_encrypt'></a>
 ## &#8226; datastage migration encrypt
 
@@ -4122,6 +5203,13 @@ cpdctl datastage migration encrypt --input-text INPUT-TEXT
 
 `--input-text` (string)
 :   Text phrase to encrypt. Required.
+
+#### Example
+
+```sh
+cpdctl datastage migration encrypt \
+    --input-text exampleString
+```
 
 <a id='datastage_migration_create'></a>
 ## &#8226; datastage migration create
@@ -4216,6 +5304,36 @@ cpdctl datastage migration create --body BODY [--catalog-id CATALOG-ID] [--proje
 `--to` (string)
 :   Migrate to which stage.
 
+#### Example
+
+```sh
+cpdctl datastage migration create \
+    --body tempdir/test-file.txt \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --on-failure continue \
+    --conflict-resolution rename \
+    --attachment-type isx \
+    --file-name myFlows.isx \
+    --enable-notification false \
+    --import-only false \
+    --create-missing-parameters false \
+    --enable-rulestage-integration false \
+    --enable-local-connection false \
+    --asset-type data_intg_flow,parameter_set \
+    --create-connection-parametersets false \
+    --storage-path /mnts/my-script-storage \
+    --replace-mode hard \
+    --migrate-to-platform-connection false \
+    --use-dsn-name false \
+    --migrate-to-send-email false \
+    --enable-folder false \
+    --migrate-hive-impala false \
+    --from Db2ConnectorPX \
+    --to Db2zos
+```
+
 <a id='datastage_migration_delete'></a>
 ## &#8226; datastage migration delete
 
@@ -4239,6 +5357,16 @@ cpdctl datastage migration delete --import-id IMPORT-ID [--catalog-id CATALOG-ID
 
 `--space-id` (string)
 :   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+#### Example
+
+```sh
+cpdctl datastage migration delete \
+    --import-id cc6dbbfd-810d-4f0e-b0a9-228c328aff29 \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f
+```
 
 <a id='datastage_migration_get'></a>
 ## &#8226; datastage migration get
@@ -4268,6 +5396,17 @@ cpdctl datastage migration get --import-id IMPORT-ID [--catalog-id CATALOG-ID] [
 :   format of isx import report.
 
     Allowable values are: `json`, `csv`.
+
+#### Example
+
+```sh
+cpdctl datastage migration get \
+    --import-id exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --format json
+```
 
 <a id='datastage_migration_export-flows-with-dependencies'></a>
 ## &#8226; datastage migration export-flows-with-dependencies
@@ -4315,6 +5454,24 @@ cpdctl datastage migration export-flows-with-dependencies --flows FLOWS [--catal
 
 `--x-migration-enc-key` (string)
 :   The encryption key to encrypt credentials on export or to decrypt them on import.
+
+#### Example
+
+```sh
+cpdctl datastage migration export-flows-with-dependencies \
+    --flows '[{"dependencies": [{"id": "exampleString", "name": "exampleString", "type": "exampleString"}], "id": "exampleString", "name": "exampleString", "type": "data_intg_flow", "volatile": true}]' \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --remove-secrets false \
+    --include-dependencies false \
+    --id exampleString,anotherTestString \
+    --type exampleString \
+    --include-data-assets false \
+    --exclude-data-files false \
+    --x-migration-enc-key exampleString \
+    --output-file tempdir/example-output.txt
+```
 
 <a id='datastage_migration_create-from-zip'></a>
 ## &#8226; datastage migration create-from-zip
@@ -4377,6 +5534,26 @@ cpdctl datastage migration create-from-zip --body BODY [--catalog-id CATALOG-ID]
 `--x-migration-enc-key` (string)
 :   The encryption key to encrypt credentials on export or to decrypt them on import.
 
+#### Example
+
+```sh
+cpdctl datastage migration create-from-zip \
+    --body tempdir/test-file.txt \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --on-failure continue \
+    --conflict-resolution rename \
+    --file-name myFlows.isx \
+    --enable-notification false \
+    --import-only false \
+    --include-dependencies false \
+    --asset-type data_intg_flow,parameter_set \
+    --skip-dependencies connection,parameter_set,subflow \
+    --replace-mode hard \
+    --x-migration-enc-key exampleString
+```
+
 <a id='datastage_migration_delete-zip'></a>
 ## &#8226; datastage migration delete-zip
 
@@ -4400,6 +5577,16 @@ cpdctl datastage migration delete-zip --import-id IMPORT-ID [--catalog-id CATALO
 
 `--space-id` (string)
 :   The ID of the space to use. `catalog_id` or `project_id` or `space_id` is required.
+
+#### Example
+
+```sh
+cpdctl datastage migration delete-zip \
+    --import-id cc6dbbfd-810d-4f0e-b0a9-228c328aff29 \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f
+```
 
 <a id='datastage_migration_get-zip'></a>
 ## &#8226; datastage migration get-zip
@@ -4430,6 +5617,17 @@ cpdctl datastage migration get-zip --import-id IMPORT-ID [--catalog-id CATALOG-I
 
     Allowable values are: `json`, `csv`.
 
+#### Example
+
+```sh
+cpdctl datastage migration get-zip \
+    --import-id exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --format json
+```
+
 <a id='datastage_table-definition_delete'></a>
 ## &#8226; datastage table-definition delete
 
@@ -4453,6 +5651,16 @@ cpdctl datastage table-definition delete --table-definition-id TABLE-DEFINITION-
 
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, space_id, or project_id is required.
+
+#### Example
+
+```sh
+cpdctl datastage table-definition delete \
+    --table-definition-id exampleString,anotherTestString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString
+```
 
 <a id='datastage_table-definition_list'></a>
 ## &#8226; datastage table-definition list
@@ -4511,6 +5719,20 @@ cpdctl datastage table-definition list [--catalog-id CATALOG-ID] [--project-id P
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for table-definition-list.
+
+#### Example
+
+```sh
+cpdctl datastage table-definition list \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString \
+    --sort exampleString \
+    --start exampleString \
+    --limit 100 \
+    --name exampleString \
+    --description exampleString
+```
 
 <a id='datastage_table-definition_create'></a>
 ## &#8226; datastage table-definition create
@@ -4582,6 +5804,19 @@ cpdctl datastage table-definition create [--entity ENTITY | --entity-column-info
 `--metadata-name` (string)
 :   table definition name. This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl datastage table-definition create \
+    --entity '{"column_info": {"anyKey": "anyValue"}, "data_asset": {"additionalProperties": "exampleString", "columns": [{"name": "exampleString", "properties": {"anyKey": "anyValue"}, "type": {"anyKey": "anyValue"}}], "dataset": true, "mime_type": "exampleString"}, "data_definition": {"anyKey": "anyValue"}, "directory_asset": {"path": "exampleString"}, "ds_info": {"data_types": ["exampleString","anotherTestString"], "field_defaults": {"anyKey": "anyValue"}, "record_level": {"anyKey": "anyValue"}, "type_defaults": {"date": {"anyKey": "anyValue"}, "decimal": {"anyKey": "anyValue"}, "general": {"anyKey": "anyValue"}, "numeric": {"anyKey": "anyValue"}, "string": {"anyKey": "anyValue"}, "time": {"anyKey": "anyValue"}, "timestamp": {"anyKey": "anyValue"}}}}' \
+    --metadata '{"description": "exampleString", "name": "exampleString"}' \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString \
+    --directory-asset-id exampleString \
+    --asset-category SYSTEM
+```
+
 <a id='datastage_table-definition_get'></a>
 ## &#8226; datastage table-definition get
 
@@ -4605,6 +5840,16 @@ cpdctl datastage table-definition get --table-definition-id TABLE-DEFINITION-ID 
 
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, space_id, or project_id is required.
+
+#### Example
+
+```sh
+cpdctl datastage table-definition get \
+    --table-definition-id exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString
+```
 
 <a id='datastage_table-definition_update'></a>
 ## &#8226; datastage table-definition update
@@ -4634,6 +5879,17 @@ cpdctl datastage table-definition update --table-definition-id TABLE-DEFINITION-
 
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, space_id, or project_id is required.
+
+#### Example
+
+```sh
+cpdctl datastage table-definition update \
+    --table-definition-id exampleString \
+    --json-patch '[{"op": "add", "path": "exampleString", "value": {"anyKey": "anyValue"}}]' \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString
+```
 
 <a id='datastage_table-definition_replace'></a>
 ## &#8226; datastage table-definition replace
@@ -4700,6 +5956,18 @@ cpdctl datastage table-definition replace --table-definition-id TABLE-DEFINITION
 `--metadata-name` (string)
 :   table definition name. This option provides a value for a sub-field of the JSON option 'metadata'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl datastage table-definition replace \
+    --table-definition-id exampleString \
+    --entity '{"column_info": {"anyKey": "anyValue"}, "data_asset": {"additionalProperties": "exampleString", "columns": [{"name": "exampleString", "properties": {"anyKey": "anyValue"}, "type": {"anyKey": "anyValue"}}], "dataset": true, "mime_type": "exampleString"}, "data_definition": {"anyKey": "anyValue"}, "directory_asset": {"path": "exampleString"}, "ds_info": {"data_types": ["exampleString","anotherTestString"], "field_defaults": {"anyKey": "anyValue"}, "record_level": {"anyKey": "anyValue"}, "type_defaults": {"date": {"anyKey": "anyValue"}, "decimal": {"anyKey": "anyValue"}, "general": {"anyKey": "anyValue"}, "numeric": {"anyKey": "anyValue"}, "string": {"anyKey": "anyValue"}, "time": {"anyKey": "anyValue"}, "timestamp": {"anyKey": "anyValue"}}}}' \
+    --metadata '{"description": "exampleString", "name": "exampleString"}' \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString
+```
+
 <a id='datastage_table-definition_clone'></a>
 ## &#8226; datastage table-definition clone
 
@@ -4723,6 +5991,16 @@ cpdctl datastage table-definition clone --table-definition-id TABLE-DEFINITION-I
 
 `--space-id` (string)
 :   The ID of the space to use. catalog_id, space_id, or project_id is required.
+
+#### Example
+
+```sh
+cpdctl datastage table-definition clone \
+    --table-definition-id exampleString \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id exampleString
+```
 
 <a id='datastage_codegen_generate-buildop'></a>
 ## &#8226; datastage codegen generate-buildop
@@ -4844,6 +6122,27 @@ cpdctl datastage codegen generate-buildop --buildop-id BUILDOP-ID [--build BUILD
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--wrapped-interfaces=@path/to/file.json`.
 
+#### Examples
+
+```sh
+cpdctl datastage codegen generate-buildop \
+    --buildop-id exampleString \
+    --build '{"interfaces": {"input": [{"alias": "alias", "auto_read": true, "id": "inpGUID", "port_name": "input_port", "runtime_column_propagation": false, "table_name": "table_name"}], "inputs_order": "GUID|GUID|...", "output": [{"alias": "alias", "auto_write": true, "id": "outpGUID", "port_name": "output_port", "runtime_column_propagation": false, "table_name": "table_name"}], "outputs_order": "GUID|GUID|...", "transfer": [{"auto_transfer": true, "input": "input1", "output": "output1", "separate": false}]}, "logic": {"definitions": "variable-definitions", "per_record": "logic-for-each-record", "post_loop": "post-loop-logic", "pre_loop": "pre-loop-logic"}}' \
+    --creator '{"author": "IBM", "vendor": "IBM Corporation", "version": "1.0"}' \
+    --directory-asset '{"anyKey": "anyValue"}' \
+    --general '{"class_name": "TestBld01", "command": "sort", "execmode": "default_par", "node_type_name": "nodename", "operator_name": "OpBld01", "wrapped_name": "SortValues"}' \
+    --properties '[{"category": "Category-string", "conditions": "Condition-string", "conversion": "Value-string", "data_type": "Integer", "default_value": "9", "description": "DESCR", "hidden": "false", "list_values": "list-values", "parents": "Parents-string", "prompt": "prompt", "property_name": "stagePropName", "repeats": "false", "required": "false", "template": "Template-string", "use_quoting": "false"}]' \
+    --schemas '[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}]' \
+    --type buildop \
+    --ui-data '{"anyKey": "anyValue"}' \
+    --wrapped '{"environment": {"exit_codes": {"all_exit_codes_successful": true, "failure_codes": ["error","-1","fail"], "success_codes": ["ok","0","success"]}, "name_value": [{"name": "name1", "value": "value1"}]}, "interfaces": {"input": [{"argument_variable_name": "arg1", "file_descriptor": "stdin", "id": "inpGUID", "is_command_line": true, "link_name": "input_link", "named_pipe": "test_pipe", "table_name": "table_name", "use_stream": true}], "inputs_order": "GUID|GUID|...", "output": [{"argument_variable_name": "arg1", "file_descriptor": "stdin", "id": "outpGUID", "is_command_line": true, "link_name": "output_link", "named_pipe": "test_pipe", "table_name": "table_name", "use_stream": true}], "outputs_order": "GUID|GUID|..."}}' \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --runtime-type exampleString \
+    --enable-async-compile true
+```
+
 <a id='environment_list'></a>
 ## &#8226; environment list
 
@@ -4873,6 +6172,18 @@ cpdctl environment list [--project-id PROJECT-ID] [--space-id SPACE-ID] [--types
 
 `--spark-versions` (string)
 :   Comma-separated list of Spark versions. If provided, the response only contains default_spark environments of that version. Defaults to all supported Spark versions.
+
+#### Example
+
+```sh
+cpdctl environment list \
+    --project-id 92ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --types notebook,wml_flow \
+    --exclude-types notebook,wml_flow \
+    --exclude-languages python2,python3 \
+    --spark-versions 2.3,2.4
+```
 
 <a id='environment_create'></a>
 ## &#8226; environment create
@@ -4968,6 +6279,27 @@ cpdctl environment create --display-name DISPLAY-NAME [--hardware-specification 
 
     Allowable values are: `referenced`.
 
+#### Examples
+
+```sh
+cpdctl environment create \
+    --display-name 'my notebook environment with special chars!' \
+    --hardware-specification '{"guid": "b82b95df-fc3e-4273-98f7-473d62a03c2b", "type": "referenced"}' \
+    --name 'my notebook environment' \
+    --software-specification '{"guid": "b82b95df-fc3e-4273-98f7-473d62a03c2b", "type": "referenced"}' \
+    --type notebook \
+    --authorization-variables '{"anyKey": "anyValue"}' \
+    --compute-specification '{"anyKey": "anyValue"}' \
+    --description 'this is my notebook environment' \
+    --environment-variables '{"anyKey": "anyValue"}' \
+    --location '{"anyKey": "anyValue"}' \
+    --runtime-definition 204dac19-7d94-4692-a4c8-2acd77e28792 \
+    --runtime-idle-time 1800000 \
+    --tools-specification '{"anyKey": "anyValue"}' \
+    --project-id 92ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4
+```
+
 <a id='environment_delete'></a>
 ## &#8226; environment delete
 
@@ -4988,6 +6320,15 @@ cpdctl environment delete --environment-id ENVIRONMENT-ID [--project-id PROJECT-
 
 `--space-id` (string)
 :   The id of the space.
+
+#### Example
+
+```sh
+cpdctl environment delete \
+    --environment-id a1da1d73-5eb5-4dfb-808e-174eb153c20e \
+    --project-id 92ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4
+```
 
 <a id='environment_get'></a>
 ## &#8226; environment get
@@ -5012,6 +6353,16 @@ cpdctl environment get --environment-id ENVIRONMENT-ID [--project-id PROJECT-ID]
 
 `--response-format` (string)
 :   Format the response. Defaults to none.
+
+#### Example
+
+```sh
+cpdctl environment get \
+    --environment-id a1da1d73-5eb5-4dfb-808e-174eb153c20e \
+    --project-id 92ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --response-format default_spark
+```
 
 <a id='environment_update'></a>
 ## &#8226; environment update
@@ -5078,6 +6429,25 @@ cpdctl environment update --environment-id ENVIRONMENT-ID --project-id PROJECT-I
 `--name` (string)
 :   Name of the environment.
 
+#### Example
+
+```sh
+cpdctl environment update \
+    --environment-id a1da1d73-5eb5-4dfb-808e-174eb153c20e \
+    --project-id 92ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --authorization-variables '{"anyKey": "anyValue"}' \
+    --compute-specification '{"anyKey": "anyValue"}' \
+    --display-name 'a new display name with special chars!' \
+    --environment-variables '{"anyKey": "anyValue"}' \
+    --hardware-specification '{"anyKey": "anyValue"}' \
+    --location '{"anyKey": "anyValue"}' \
+    --runtime-idle-time 38 \
+    --software-specification '{"anyKey": "anyValue"}' \
+    --tools-specification '{"anyKey": "anyValue"}' \
+    --description 'a new description' \
+    --name 'a new name'
+```
+
 <a id='environment_hardware-specification_list'></a>
 ## &#8226; environment hardware-specification list
 
@@ -5105,6 +6475,15 @@ cpdctl environment hardware-specification list [--space-id SPACE-ID] [--project-
 
 `--name` (string)
 :   The name of the hardware specification. If specified, each of the hardware specification in the returned list will have the specified name.
+
+#### Example
+
+```sh
+cpdctl environment hardware-specification list \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id 92ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --name exampleString
+```
 
 <a id='environment_hardware-specification_create'></a>
 ## &#8226; environment hardware-specification create
@@ -5207,6 +6586,19 @@ cpdctl environment hardware-specification create --name NAME [--datastage DATAST
 `--spark-num-executors` (int64)
 :   Number of executors. This option provides a value for a sub-field of the JSON option 'spark'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl environment hardware-specification create \
+    --name 'my hardware specification' \
+    --datastage '{"compute": {"cpu": {"model": "exampleString", "units": "100m"}, "mem": {"size": "4Gi"}}, "conductor": {"cpu": {"model": "exampleString", "units": "100m"}, "mem": {"size": "4Gi"}}, "num_computes": 2, "num_conductors": 1}' \
+    --description 'this is my hardware specification' \
+    --nodes '{"cpu": {"model": "exampleString", "units": "100m"}, "gpu": {"name": "v100", "num_gpu": 2}, "mem": {"size": "4Gi"}, "num_nodes": 1}' \
+    --spark '{"driver": {"cpu": {"model": "exampleString", "units": "100m"}, "mem": {"size": "4Gi"}}, "executor": {"cpu": {"model": "exampleString", "units": "100m"}, "mem": {"size": "4Gi"}}, "num_drivers": 1, "num_executors": 2}' \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id exampleString
+```
+
 <a id='environment_hardware-specification_delete'></a>
 ## &#8226; environment hardware-specification delete
 
@@ -5237,6 +6629,15 @@ cpdctl environment hardware-specification delete --hardware-specification-id HAR
 
 `--project-id` (string)
 :   The id of the project.
+
+#### Example
+
+```sh
+cpdctl environment hardware-specification delete \
+    --hardware-specification-id a1da1d73-5eb5-4dfb-808e-174eb153c20e \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id 92ae0e27-9b11-4de9-a646-d46ca3c183d4
+```
 
 <a id='environment_hardware-specification_get'></a>
 ## &#8226; environment hardware-specification get
@@ -5272,6 +6673,15 @@ cpdctl environment hardware-specification get --hardware-specification-id HARDWA
 
 `--project-id` (string)
 :   The id of the project.
+
+#### Example
+
+```sh
+cpdctl environment hardware-specification get \
+    --hardware-specification-id a1da1d73-5eb5-4dfb-808e-174eb153c20e \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id 92ae0e27-9b11-4de9-a646-d46ca3c183d4
+```
 
 <a id='environment_hardware-specification_update'></a>
 ## &#8226; environment hardware-specification update
@@ -5352,6 +6762,31 @@ cpdctl environment hardware-specification update --hardware-specification-id HAR
 `--project-id` (string)
 :   The id of the project.
 
+#### Example
+
+```sh
+cpdctl environment hardware-specification update \
+    --hardware-specification-id a1da1d73-5eb5-4dfb-808e-174eb153c20e \
+    --cpu-model exampleString \
+    --cpu-units exampleString \
+    --gpu-name exampleString \
+    --gpu-num exampleString \
+    --mem-size exampleString \
+    --nodes-num 1 \
+    --spark-driver-cpu-model exampleString \
+    --spark-driver-cpu-units exampleString \
+    --spark-driver-mem-size 38 \
+    --spark-executor-cpu-model exampleString \
+    --spark-executor-cpu-units exampleString \
+    --spark-executor-mem-size 38 \
+    --spark-drivers-num 38 \
+    --spark-executors-num 38 \
+    --description 'a new description' \
+    --name 'a new name' \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id 92ae0e27-9b11-4de9-a646-d46ca3c183d4
+```
+
 <a id='environment_package-extension_list'></a>
 ## &#8226; environment package-extension list
 
@@ -5379,6 +6814,16 @@ cpdctl environment package-extension list [--space-id SPACE-ID] [--project-id PR
 :   Returning only those package extensions that have a particular type.
 
     Allowable values are: `conda_yml`, `pip_zip`.
+
+#### Example
+
+```sh
+cpdctl environment package-extension list \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id 103d3fc4-2e46-4581-a23a-b4484e13519e \
+    --name 'my Package Extension' \
+    --type 'conda_yml or pip_zip'
+```
 
 <a id='environment_package-extension_create'></a>
 ## &#8226; environment package-extension create
@@ -5412,6 +6857,17 @@ cpdctl environment package-extension create --name NAME --type TYPE [--descripti
 `--project-id` (string)
 :   The id of the project in which to create the package extension.
 
+#### Example
+
+```sh
+cpdctl environment package-extension create \
+    --name 'my-regex-parser v1.0.5' \
+    --type pip_zip \
+    --description 'a regex parser that I wrote' \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id 103d3fc4-2e46-4581-a23a-b4484e13519e
+```
+
 <a id='environment_package-extension_delete'></a>
 ## &#8226; environment package-extension delete
 
@@ -5435,6 +6891,15 @@ cpdctl environment package-extension delete --package-extension-id PACKAGE-EXTEN
 `--project-id` (string)
 :   The id of the project.
 
+#### Example
+
+```sh
+cpdctl environment package-extension delete \
+    --package-extension-id b82b95df-fc3e-4273-98f7-473d62a03c2b \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id 103d3fc4-2e46-4581-a23a-b4484e13519e
+```
+
 <a id='environment_package-extension_get'></a>
 ## &#8226; environment package-extension get
 
@@ -5457,6 +6922,15 @@ cpdctl environment package-extension get --package-extension-id PACKAGE-EXTENSIO
 
 `--project-id` (string)
 :   The id of the project.
+
+#### Example
+
+```sh
+cpdctl environment package-extension get \
+    --package-extension-id b82b95df-fc3e-4273-98f7-473d62a03c2b \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id 103d3fc4-2e46-4581-a23a-b4484e13519e
+```
 
 <a id='environment_package-extension_update'></a>
 ## &#8226; environment package-extension update
@@ -5490,6 +6964,18 @@ cpdctl environment package-extension update --package-extension-id PACKAGE-EXTEN
 `--project-id` (string)
 :   The id of the project.
 
+#### Example
+
+```sh
+cpdctl environment package-extension update \
+    --package-extension-id b82b95df-fc3e-4273-98f7-473d62a03c2b \
+    --type pip_zip \
+    --description 'A custom library I uploaded.' \
+    --name 'My custom library' \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id 103d3fc4-2e46-4581-a23a-b4484e13519e
+```
+
 <a id='environment_package-extension_upload-complete'></a>
 ## &#8226; environment package-extension upload-complete
 
@@ -5513,6 +6999,15 @@ cpdctl environment package-extension upload-complete --package-extension-id PACK
 `--project-id` (string)
 :   The id of the project.
 
+#### Example
+
+```sh
+cpdctl environment package-extension upload-complete \
+    --package-extension-id b82b95df-fc3e-4273-98f7-473d62a03c2b \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id 103d3fc4-2e46-4581-a23a-b4484e13519e
+```
+
 <a id='environment_runtime-definition_list'></a>
 ## &#8226; environment runtime-definition list
 
@@ -5534,6 +7029,15 @@ cpdctl environment runtime-definition list [--project-id PROJECT-ID] [--runtime-
 `--include` (string)
 :   Opt-in more details to return. Possible value is 'launch_configuration'; when specified, the request must be secured by a service ID bearer token.
 
+#### Example
+
+```sh
+cpdctl environment runtime-definition list \
+    --project-id 103d3fc4-2e46-4581-a23a-b4484e13519e \
+    --runtime-type notebook \
+    --include launch_configuration
+```
+
 <a id='environment_runtime-definition_get'></a>
 ## &#8226; environment runtime-definition get
 
@@ -5554,6 +7058,15 @@ cpdctl environment runtime-definition get --runtime-definition-id RUNTIME-DEFINI
 
 `--include` (string)
 :   Opt-in more details to return. Possible value is 'launch_configuration'; when specified, the request must be secured by a service ID bearer token.
+
+#### Example
+
+```sh
+cpdctl environment runtime-definition get \
+    --runtime-definition-id c82b95df-fc3e-4273-98f7-473d62a03c2b \
+    --project-id 103d3fc4-2e46-4581-a23a-b4484e13519e \
+    --include launch_configuration
+```
 
 <a id='environment_software-specification_list'></a>
 ## &#8226; environment software-specification list
@@ -5585,6 +7098,16 @@ cpdctl environment software-specification list [--space-id SPACE-ID] [--project-
 
 `--name` (string)
 :   The name of the software specification. If specified, each of the software specification in the returned list will have the specified name.
+
+#### Example
+
+```sh
+cpdctl environment software-specification list \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id 103d3fc4-2e46-4581-a23a-b4484e13519e \
+    --include-packages pytorch,scikit-learn \
+    --name exampleString
+```
 
 <a id='environment_software-specification_create'></a>
 ## &#8226; environment software-specification create
@@ -5653,6 +7176,19 @@ cpdctl environment software-specification create --name NAME [--software-configu
 `--base-software-specification-href` (string)
 :   The href of the software specification. This option provides a value for a sub-field of the JSON option 'base-software-specification'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl environment software-specification create \
+    --name 'Python 3.6 with pre-installed ML packages' \
+    --software-configuration '{"included_packages": [{"name": "scikit-learn", "version": "0.20.0"}], "platform": {"name": "python", "version": "3.6"}}' \
+    --base-software-specification '{"guid": "903d3fc4-2e46-4581-a23a-b4484e13519e", "href": "/v2/software_specifications/903d3fc4-2e46-4581-a23a-b4484e13519e"}' \
+    --description 'ML on Python 3.6' \
+    --package-extensions '[{"guid": "b82b95df-fc3e-4273-98f7-473d62a03c2b", "href": "/v2/package_extensions/b82b95df-fc3e-4273-98f7-473d62a03c2b"}]' \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id 103d3fc4-2e46-4581-a23a-b4484e13519e
+```
+
 <a id='environment_software-specification_delete'></a>
 ## &#8226; environment software-specification delete
 
@@ -5683,6 +7219,15 @@ cpdctl environment software-specification delete --software-specification-id SOF
 
 `--project-id` (string)
 :   The id of the project. The deleted software specification must be scoped to the specified project.
+
+#### Example
+
+```sh
+cpdctl environment software-specification delete \
+    --software-specification-id c82b95df-fc3e-4273-98f7-473d62a03c2b \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id 103d3fc4-2e46-4581-a23a-b4484e13519e
+```
 
 <a id='environment_software-specification_get'></a>
 ## &#8226; environment software-specification get
@@ -5720,6 +7265,15 @@ cpdctl environment software-specification get --software-specification-id SOFTWA
 
 `--project-id` (string)
 :   The id of the project.
+
+#### Example
+
+```sh
+cpdctl environment software-specification get \
+    --software-specification-id c82b95df-fc3e-4273-98f7-473d62a03c2b \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id 103d3fc4-2e46-4581-a23a-b4484e13519e
+```
 
 <a id='environment_software-specification_update'></a>
 ## &#8226; environment software-specification update
@@ -5762,6 +7316,18 @@ cpdctl environment software-specification update --software-specification-id SOF
 `--project-id` (string)
 :   The id of the project.
 
+#### Example
+
+```sh
+cpdctl environment software-specification update \
+    --software-specification-id c82b95df-fc3e-4273-98f7-473d62a03c2b \
+    --display-name 'Jupyter Notebook Server 4.4' \
+    --description 'Jupyter Notebook Server 4.4 with Python 3.5 for GPU (CUDA 8.0)' \
+    --name jupyter-gpu-py35 \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id 103d3fc4-2e46-4581-a23a-b4484e13519e
+```
+
 <a id='environment_software-specification_remove-package-extensions'></a>
 ## &#8226; environment software-specification remove-package-extensions
 
@@ -5787,6 +7353,16 @@ cpdctl environment software-specification remove-package-extensions --software-s
 
 `--project-id` (string)
 :   The id of the project.
+
+#### Example
+
+```sh
+cpdctl environment software-specification remove-package-extensions \
+    --software-specification-id c82b95df-fc3e-4273-98f7-473d62a03c2b \
+    --package-extension-id b82b95df-fc3e-4273-98f7-473d62a03c2b \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id 103d3fc4-2e46-4581-a23a-b4484e13519e
+```
 
 <a id='environment_software-specification_add-package-extensions'></a>
 ## &#8226; environment software-specification add-package-extensions
@@ -5818,6 +7394,16 @@ cpdctl environment software-specification add-package-extensions --software-spec
 
 `--project-id` (string)
 :   The id of the project.
+
+#### Example
+
+```sh
+cpdctl environment software-specification add-package-extensions \
+    --software-specification-id c82b95df-fc3e-4273-98f7-473d62a03c2b \
+    --package-extension-id b82b95df-fc3e-4273-98f7-473d62a03c2b \
+    --space-id 82ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --project-id 103d3fc4-2e46-4581-a23a-b4484e13519e
+```
 
 <a id='find_'></a>
 ## &#8226; find 
@@ -5878,6 +7464,19 @@ cpdctl job list [--project-id PROJECT-ID] [--space-id SPACE-ID] [--asset-ref ASS
 
 `--next` (string)
 :   The optional 'next' field from the response in string format, can be used to get the next batch. The response can contain up to 200 results in a batch, if there are more results, a 'next' field is returned in the response which can be used to get the next batch.
+
+#### Example
+
+```sh
+cpdctl job list \
+    --project-id exampleString \
+    --space-id exampleString \
+    --asset-ref exampleString \
+    --asset-ref-type exampleString \
+    --run-id exampleString \
+    --limit 100 \
+    --next exampleString
+```
 
 <a id='job_create'></a>
 ## &#8226; job create
@@ -5945,6 +7544,15 @@ cpdctl job create [--job JOB | --job-asset-ref JOB-ASSET-REF --job-asset-ref-typ
 `--job-serving-name` (string)
 :   A globally unique attribute to be used in place of the job id when sending calls. Must be a combination of lowercase alphanumeric and underscore characters, and must be between 1 and 36 characters. This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl job create \
+    --job '{"asset_ref": "ff1ab70b-0553-409a-93f9-ccc31471c218", "asset_ref_type": "notebook", "configuration": {"deployment_job_definition_id": "ff1ab70b-0553-409a-93f9-ccc31471c218", "env_id": "defaultsparkr1x4-18ce241b-c9e8-43ed-94a1-9f5585764924", "env_variables": ["key1=value1","key2=value2"], "version": "d00a9d88-4394-48f8-86db-d9b8360f8a72"}, "description": "Description.", "job_parameters": [{"name": "job_param_1", "value": "The value could be of any type"}], "name": "Name", "parameter_sets": [{"name": "paramset_1", "ref": "31abfd90-5497-4605-8ac1-d85896fe6c6f", "value_set": "red", "values": [{"name": "job_param_1", "value": "The value could be of any type"}], "values_from": {"parameter_set": {"name": "paramset_1", "ref": "31abfd90-5497-4605-8ac1-d85896fe6c6f", "value_set": "red"}}}], "retention_policy": {"amount": 38, "days": 38}, "schedule": "0 0 1 * *", "schedule_info": {"endOn": 1547578689512, "repeat": true, "startOn": 1547578689512}, "serving_name": "my_job_1_2_3"}' \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='job_serving-name'></a>
 ## &#8226; job serving-name
 
@@ -5959,6 +7567,13 @@ cpdctl job serving-name --name NAME
 
 `--name` (string)
 :   The serving_name value of the job to be used in place of the job ID. Required.
+
+#### Example
+
+```sh
+cpdctl job serving-name \
+    --name exampleString
+```
 
 <a id='job_delete'></a>
 ## &#8226; job delete
@@ -5981,6 +7596,15 @@ cpdctl job delete --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-ID
 `--space-id` (string)
 :   The ID of the space to use. project_id or space_id is required.
 
+#### Example
+
+```sh
+cpdctl job delete \
+    --job-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='job_get'></a>
 ## &#8226; job get
 
@@ -6001,6 +7625,15 @@ cpdctl job get --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
 
 `--space-id` (string)
 :   The ID of the space to use. project_id or space_id is required.
+
+#### Example
+
+```sh
+cpdctl job get \
+    --job-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
 
 <a id='job_update'></a>
 ## &#8226; job update
@@ -6037,6 +7670,15 @@ cpdctl job update --job-id JOB-ID [--configuration CONFIGURATION] [--description
 `--name` (string)
 :   Updated name.
 
+#### Example
+
+```sh
+cpdctl job update \
+    --configuration '{"deployment_job_definition_id": "ff1ab70b-0553-409a-93f9-ccc31471c218", "env_id": "defaultsparkr1x4-18ce241b-c9e8-43ed-94a1-9f5585764924", "env_type": "default_spark", "env_variables": ["key1=value1","key2=value2"], "outputs": {"total_bytes_read": 64582, "total_bytes_written": 594346, "total_rows_read": 1000, "total_rows_written": 1846}, "version": "d00a9d88-4394-48f8-86db-d9b8360f8a72"}' \
+    --description exampleString \
+    --name exampleString
+```
+
 <a id='job_run_list'></a>
 ## &#8226; job run list
 
@@ -6070,6 +7712,18 @@ cpdctl job run list --job-id JOB-ID [--project-id PROJECT-ID] [--space-id SPACE-
 :   A list of comma-separated job run states. Availble values: Completed, Failed, Canceled, Starting, Running, Queued, Canceling, Paused, Resuming, CompletedWithWarnings, CompletedWithErrors.
 
     Allowable list items are: `Queued`, `Starting`, `Running`, `Paused`, `Resuming`, `Canceling`, `Canceled`, `Failed`, `Completed`, `CompletedWithErrors`, `CompletedWithWarnings`.
+
+#### Example
+
+```sh
+cpdctl job run list \
+    --job-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString \
+    --next exampleString \
+    --limit 100 \
+    --states Queued,Starting,Running,Paused,Resuming,Canceling,Canceled,Failed,Completed,CompletedWithErrors,CompletedWithWarnings
+```
 
 <a id='job_run_create'></a>
 ## &#8226; job run create
@@ -6118,6 +7772,16 @@ cpdctl job run create --job-id JOB-ID [--job-run JOB-RUN | --job-run-configurati
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--job-run-parameter-sets=@path/to/file.json`.
 
+#### Examples
+
+```sh
+cpdctl job run create \
+    --job-id exampleString \
+    --job-run '{"configuration": {"env_variables": ["key1=value1","key2=value2"]}, "description": "Description", "job_parameters": [{"name": "job_param_1", "value": "The value could be of any type"}], "name": "Name", "parameter_sets": [{"name": "paramset_1", "ref": "31abfd90-5497-4605-8ac1-d85896fe6c6f", "value_set": "red", "values": [{"name": "job_param_1", "value": "The value could be of any type"}], "values_from": {"parameter_set": {"name": "paramset_1", "ref": "31abfd90-5497-4605-8ac1-d85896fe6c6f", "value_set": "red"}}}]}' \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='job_run_delete'></a>
 ## &#8226; job run delete
 
@@ -6142,6 +7806,16 @@ cpdctl job run delete --job-id JOB-ID --run-id RUN-ID [--project-id PROJECT-ID] 
 `--space-id` (string)
 :   The ID of the space to use. project_id or space_id is required.
 
+#### Example
+
+```sh
+cpdctl job run delete \
+    --job-id exampleString \
+    --run-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='job_run_get'></a>
 ## &#8226; job run get
 
@@ -6165,6 +7839,16 @@ cpdctl job run get --job-id JOB-ID --run-id RUN-ID [--project-id PROJECT-ID] [--
 
 `--space-id` (string)
 :   The ID of the space to use. project_id or space_id is required.
+
+#### Example
+
+```sh
+cpdctl job run get \
+    --job-id exampleString \
+    --run-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
 
 <a id='job_run_update'></a>
 ## &#8226; job run update
@@ -6195,6 +7879,17 @@ cpdctl job run update --job-id JOB-ID --run-id RUN-ID --body BODY [--project-id 
 `--space-id` (string)
 :   The ID of the space to use. project_id or space_id is required.
 
+#### Example
+
+```sh
+cpdctl job run update \
+    --job-id exampleString \
+    --run-id exampleString \
+    --body '[{"logLocation": "exampleString", "logStr": "exampleString", "op": "replace", "path": "/entity/runtime_job_id (or /entity/job_run/configuration)", "value": "Completed"}]' \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='job_run_cancel'></a>
 ## &#8226; job run cancel
 
@@ -6224,6 +7919,17 @@ cpdctl job run cancel --job-id JOB-ID --run-id RUN-ID --body BODY [--project-id 
 `--space-id` (string)
 :   The ID of the space to use. project_id or space_id is required.
 
+#### Example
+
+```sh
+cpdctl job run cancel \
+    --job-id exampleString \
+    --run-id exampleString \
+    --body '{"anyKey": "anyValue"}' \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='job_run_logs'></a>
 ## &#8226; job run logs
 
@@ -6250,6 +7956,17 @@ cpdctl job run logs --job-id JOB-ID --run-id RUN-ID [--project-id PROJECT-ID] [-
 
 `--limit` (int64)
 :   The limit of the number of lines to return, for example limit=50. If not specified, all log will be returned.
+
+#### Example
+
+```sh
+cpdctl job run logs \
+    --job-id exampleString \
+    --run-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString \
+    --limit 26
+```
 
 <a id='job_run_pause'></a>
 ## &#8226; job run pause
@@ -6280,6 +7997,17 @@ cpdctl job run pause --job-id JOB-ID --run-id RUN-ID --body BODY [--project-id P
 `--space-id` (string)
 :   The ID of the space to use. project_id or space_id is required.
 
+#### Example
+
+```sh
+cpdctl job run pause \
+    --job-id exampleString \
+    --run-id exampleString \
+    --body '{"anyKey": "anyValue"}' \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='job_run_resume'></a>
 ## &#8226; job run resume
 
@@ -6308,6 +8036,17 @@ cpdctl job run resume --job-id JOB-ID --run-id RUN-ID --body BODY [--project-id 
 
 `--space-id` (string)
 :   The ID of the space to use. project_id or space_id is required.
+
+#### Example
+
+```sh
+cpdctl job run resume \
+    --job-id exampleString \
+    --run-id exampleString \
+    --body '{"anyKey": "anyValue"}' \
+    --project-id exampleString \
+    --space-id exampleString
+```
 
 <a id='job_run_wait'></a>
 ## &#8226; job run wait
@@ -6476,6 +8215,23 @@ More properties will be added later on to setup the batch deployment. This JSON 
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--r-shiny-parameters=@path/to/file.json`.
 
+#### Examples
+
+```sh
+cpdctl ml deployment create \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --tags dev,TF \
+    --name customer_churn \
+    --description 'Customer churn prediction model deployment' \
+    --custom '{"anyKey": "anyValue"}' \
+    --asset '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}' \
+    --hardware-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}' \
+    --hybrid-pipeline-hardware-specs '[{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}}]' \
+    --online '{"parameters": {"anyKey": "anyValue"}}' \
+    --batch '{"parameters": {"anyKey": "anyValue"}}' \
+    --r-shiny '{"authentication": "members_of_deployment_space", "parameters": {"serving_name": "churn", "code_package": {"path": "RShiny/apps/app1"}}}'
+```
+
 <a id='ml_deployment_list'></a>
 ## &#8226; ml deployment list
 
@@ -6517,6 +8273,21 @@ cpdctl ml deployment list [--space-id SPACE-ID] [--serving-name SERVING-NAME] [-
 
     The default value is `false`.
 
+#### Example
+
+```sh
+cpdctl ml deployment list \
+    --space-id 2ae804f8-fa85-4106-8228-cbc7e408ad79 \
+    --serving-name churn \
+    --tag-value exampleString \
+    --asset-id exampleString \
+    --name exampleString \
+    --type exampleString \
+    --state exampleString \
+    --stats true \
+    --conflict false
+```
+
 <a id='ml_deployment_get'></a>
 ## &#8226; ml deployment get
 
@@ -6535,6 +8306,14 @@ cpdctl ml deployment get --deployment-id DEPLOYMENT-ID --space-id SPACE-ID
 `--space-id` (string)
 :   Retrieves the deployments of assets that belong to this space. Required.
 
+#### Example
+
+```sh
+cpdctl ml deployment get \
+    --deployment-id exampleString \
+    --space-id 2ae804f8-fa85-4106-8228-cbc7e408ad79
+```
+
 <a id='ml_deployment_delete'></a>
 ## &#8226; ml deployment delete
 
@@ -6552,6 +8331,14 @@ cpdctl ml deployment delete --deployment-id DEPLOYMENT-ID --space-id SPACE-ID
 
 `--space-id` (string)
 :   Retrieves the deployments of assets that belong to this space. Required.
+
+#### Example
+
+```sh
+cpdctl ml deployment delete \
+    --deployment-id exampleString \
+    --space-id 2ae804f8-fa85-4106-8228-cbc7e408ad79
+```
 
 <a id='ml_deployment_update'></a>
 ## &#8226; ml deployment update
@@ -6622,6 +8409,20 @@ cpdctl ml deployment update --version VERSION --deployment-id DEPLOYMENT-ID --sp
 `--r-shiny` (<a href="#cli-deployment-patch-request-helper-r-shiny-example-schema-ml">`DeploymentPatchRequestHelperRShiny`</a>)
 :   Specify this section if deploying an Shiny application.
 
+#### Example
+
+```sh
+cpdctl ml deployment update \
+    --tags t1,t2 \
+    --name my-resource \
+    --description 'This is my first resource.' \
+    --custom '{"anyKey": "anyValue"}' \
+    --asset '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}' \
+    --hardware-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}' \
+    --hybrid-pipeline-hardware-specs '[{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}}]' \
+    --r-shiny '{"authentication": "members_of_deployment_space", "parameters": {"serving_name": "churn", "code_package": {"path": "RShiny/apps/app1"}}}'
+```
+
 <a id='ml_deployment_compute-predictions'></a>
 ## &#8226; ml deployment compute-predictions
 
@@ -6641,6 +8442,14 @@ cpdctl ml deployment compute-predictions --deployment-id DEPLOYMENT-ID --input-d
 :   The input data. Required.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--input-data=@path/to/file.json`.
+
+#### Example
+
+```sh
+cpdctl ml deployment compute-predictions \
+    --deployment-id exampleString \
+    --input-data '[{"id": "exampleString", "fields": ["name","age","occupation"], "values": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]]}]'
+```
 
 <a id='ml_deployment_wait'></a>
 ## &#8226; ml deployment wait
@@ -6687,6 +8496,17 @@ cpdctl ml deployment-job list --space-id SPACE-ID [--tag-value TAG-VALUE] [--sta
 `--include` (string)
 :   Retrieves only fields from 'decision_optimization' and 'scoring' section mentioned as value(s)
 (comma separated) as output response fields. Retrieves all the fields if not mentioned.
+
+#### Example
+
+```sh
+cpdctl ml deployment-job list \
+    --space-id exampleString \
+    --tag-value exampleString \
+    --state exampleString \
+    --deployment-id exampleString \
+    --include exampleString
+```
 
 <a id='ml_deployment-job_create'></a>
 ## &#8226; ml deployment-job create
@@ -6845,6 +8665,23 @@ This property is currently supported only for Python Scripts in batch deployment
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--decision-optimization-output-data-references=@path/to/file.json`.
 
+#### Examples
+
+```sh
+cpdctl ml deployment-job create \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --name my-resource \
+    --deployment '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"}' \
+    --description 'This is my first resource.' \
+    --tags t1,t2 \
+    --custom '{"anyKey": "anyValue"}' \
+    --hardware-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}' \
+    --hybrid-pipeline-hardware-specs '[{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}}]' \
+    --scoring '{"input_data": [{"id": "exampleString", "type": "target", "fields": ["exampleString","anotherTestString"], "values": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]], "targets": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}]}], "input_data_references": [{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}], "output_data_reference": {"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}, "evaluations": [{"id": "exampleString", "input_target": "exampleString", "metrics_names": ["auroc","accuracy"]}], "environment_variables": {}}' \
+    --decision-optimization '{"solve_parameters": {"anyKey": "anyValue"}, "input_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "content": "exampleString"}], "input_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}], "output_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "content": "exampleString"}], "output_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}]}' \
+    --retention exampleString
+```
+
 <a id='ml_deployment-job_delete'></a>
 ## &#8226; ml deployment-job delete
 
@@ -6865,6 +8702,15 @@ cpdctl ml deployment-job delete --job-id JOB-ID --space-id SPACE-ID [--hard-dele
 
 `--hard-delete` (bool)
 :   Set to true in order to also delete the job metadata information.
+
+#### Example
+
+```sh
+cpdctl ml deployment-job delete \
+    --job-id exampleString \
+    --space-id exampleString \
+    --hard-delete true
+```
 
 <a id='ml_deployment-job_get'></a>
 ## &#8226; ml deployment-job get
@@ -6887,6 +8733,15 @@ cpdctl ml deployment-job get --job-id JOB-ID --space-id SPACE-ID [--include INCL
 `--include` (string)
 :   Retrieves only fields from 'decision_optimization' and 'scoring' section mentioned as value(s)
 (comma separated) as output response fields. Retrieves all the fields if not mentioned.
+
+#### Example
+
+```sh
+cpdctl ml deployment-job get \
+    --job-id exampleString \
+    --space-id exampleString \
+    --include exampleString
+```
 
 <a id='ml_deployment-job-definition_create'></a>
 ## &#8226; ml deployment-job-definition create
@@ -7042,6 +8897,22 @@ This property is currently supported only for Python Scripts in batch deployment
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--decision-optimization-output-data-references=@path/to/file.json`.
 
+#### Examples
+
+```sh
+cpdctl ml deployment-job-definition create \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --name my-resource \
+    --deployment '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"}' \
+    --description 'This is my first resource.' \
+    --tags t1,t2 \
+    --custom '{"anyKey": "anyValue"}' \
+    --hardware-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}' \
+    --hybrid-pipeline-hardware-specs '[{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}}]' \
+    --scoring '{"input_data": [{"id": "exampleString", "type": "target", "fields": ["exampleString","anotherTestString"], "values": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]], "targets": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}]}], "input_data_references": [{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}], "output_data_reference": {"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}, "evaluations": [{"id": "exampleString", "input_target": "exampleString", "metrics_names": ["auroc","accuracy"]}], "environment_variables": {}}' \
+    --decision-optimization '{"solve_parameters": {"anyKey": "anyValue"}, "input_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "content": "exampleString"}], "input_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}], "output_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "content": "exampleString"}], "output_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}]}'
+```
+
 <a id='ml_deployment-job-definition_list'></a>
 ## &#8226; ml deployment-job-definition list
 
@@ -7077,6 +8948,17 @@ cpdctl ml deployment-job-definition list --space-id SPACE-ID [--start START] [--
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for deployment-job-definition-list.
 
+#### Example
+
+```sh
+cpdctl ml deployment-job-definition list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --start exampleString \
+    --limit 50 \
+    --tag-value 'tf2.0 or tf2.1' \
+    --search exampleString
+```
+
 <a id='ml_deployment-job-definition_get'></a>
 ## &#8226; ml deployment-job-definition get
 
@@ -7098,6 +8980,15 @@ cpdctl ml deployment-job-definition get --job-definition-id JOB-DEFINITION-ID --
 
 `--rev` (string)
 :   The revision number of the resource.
+
+#### Example
+
+```sh
+cpdctl ml deployment-job-definition get \
+    --job-definition-id 212fadf1-252f-424b-b52d-5cdd98ecfa0 \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --rev 2
+```
 
 <a id='ml_deployment-job-definition_update'></a>
 ## &#8226; ml deployment-job-definition update
@@ -7142,6 +9033,17 @@ cpdctl ml deployment-job-definition update --job-definition-id JOB-DEFINITION-ID
 `--deployment` (<a href="#cli-simple-rel-example-schema-ml">`SimpleRel`</a>)
 :   A reference to a resource.
 
+#### Example
+
+```sh
+cpdctl ml deployment-job-definition update \
+    --tags t1,t2 \
+    --name my-resource \
+    --description 'This is my first resource.' \
+    --custom '{"anyKey": "anyValue"}' \
+    --deployment '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"}'
+```
+
 <a id='ml_deployment-job-definition_delete'></a>
 ## &#8226; ml deployment-job-definition delete
 
@@ -7159,6 +9061,14 @@ cpdctl ml deployment-job-definition delete --job-definition-id JOB-DEFINITION-ID
 
 `--space-id` (string)
 :   The space that contains the resource. Required.
+
+#### Example
+
+```sh
+cpdctl ml deployment-job-definition delete \
+    --job-definition-id 212fadf1-252f-424b-b52d-5cdd98ecfa0 \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+```
 
 <a id='ml_deployment-job-definition_create-revision'></a>
 ## &#8226; ml deployment-job-definition create-revision
@@ -7180,6 +9090,15 @@ cpdctl ml deployment-job-definition create-revision --job-definition-id JOB-DEFI
 
 `--commit-message` (string)
 :   An optional commit message for the revision.
+
+#### Example
+
+```sh
+cpdctl ml deployment-job-definition create-revision \
+    --job-definition-id 212fadf1-252f-424b-b52d-5cdd98ecfa0 \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --commit-message exampleString
+```
 
 <a id='ml_deployment-job-definition_list-revisions'></a>
 ## &#8226; ml deployment-job-definition list-revisions
@@ -7210,6 +9129,16 @@ cpdctl ml deployment-job-definition list-revisions --job-definition-id JOB-DEFIN
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for deployment-job-definition-list-revisions.
+
+#### Example
+
+```sh
+cpdctl ml deployment-job-definition list-revisions \
+    --job-definition-id 212fadf1-252f-424b-b52d-5cdd98ecfa0 \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --start exampleString \
+    --limit 50
+```
 
 <a id='ml_experiment_create'></a>
 ## &#8226; ml experiment create
@@ -7266,6 +9195,21 @@ cpdctl ml experiment create --name NAME [--project-id PROJECT-ID] [--space-id SP
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--evaluation-definition-metrics=@path/to/file.json`.
 
+#### Examples
+
+```sh
+cpdctl ml experiment create \
+    --name my-resource \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --description 'This is my first resource.' \
+    --tags t1,t2 \
+    --label-column exampleString \
+    --evaluation-definition '{"method": "binary", "metrics": [{"name": "areaUnderROC", "maximize": true}]}' \
+    --training-references '[{"pipeline": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "model_type": "exampleString", "data_bindings": [{"data_reference_name": "exampleString", "node_id": "exampleString"}], "nodes_parameters": [{"node_id": "exampleString", "parameters": {"anyKey": "anyValue"}}], "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "hybrid_pipeline_hardware_specs": [{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}}]}, "model_definition": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"}, "hyper_parameters_optimization": {"method": {"name": "random", "parameters": {"anyKey": "anyValue"}}, "hyper_parameters": [{"name": "learning_rate", "items": "exampleString"}]}}]' \
+    --custom '{"anyKey": "anyValue"}'
+```
+
 <a id='ml_experiment_list'></a>
 ## &#8226; ml experiment list
 
@@ -7304,6 +9248,18 @@ cpdctl ml experiment list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--sta
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for experiment-list.
 
+#### Example
+
+```sh
+cpdctl ml experiment list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --start exampleString \
+    --limit 50 \
+    --tag-value 'tf2.0 or tf2.1' \
+    --search exampleString
+```
+
 <a id='ml_experiment_get'></a>
 ## &#8226; ml experiment get
 
@@ -7328,6 +9284,16 @@ cpdctl ml experiment get --experiment-id EXPERIMENT-ID [--space-id SPACE-ID] [--
 
 `--rev` (string)
 :   The revision number of the resource.
+
+#### Example
+
+```sh
+cpdctl ml experiment get \
+    --experiment-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --rev 2
+```
 
 <a id='ml_experiment_update'></a>
 ## &#8226; ml experiment update
@@ -7371,6 +9337,16 @@ cpdctl ml experiment update --experiment-id EXPERIMENT-ID --version VERSION [--t
 `--custom` (generic map)
 :   User defined properties specified as key-value pairs.
 
+#### Example
+
+```sh
+cpdctl ml experiment update \
+    --tags t1,t2 \
+    --name my-resource \
+    --description 'This is my first resource.' \
+    --custom '{"anyKey": "anyValue"}'
+```
+
 <a id='ml_experiment_delete'></a>
 ## &#8226; ml experiment delete
 
@@ -7391,6 +9367,15 @@ cpdctl ml experiment delete --experiment-id EXPERIMENT-ID [--space-id SPACE-ID] 
 
 `--project-id` (string)
 :   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+#### Example
+
+```sh
+cpdctl ml experiment delete \
+    --experiment-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+```
 
 <a id='ml_experiment_create-revision'></a>
 ## &#8226; ml experiment create-revision
@@ -7415,6 +9400,16 @@ cpdctl ml experiment create-revision --experiment-id EXPERIMENT-ID [--space-id S
 
 `--commit-message` (string)
 :   An optional commit message for the revision.
+
+#### Example
+
+```sh
+cpdctl ml experiment create-revision \
+    --experiment-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --commit-message exampleString
+```
 
 <a id='ml_experiment_list-revisions'></a>
 ## &#8226; ml experiment list-revisions
@@ -7448,6 +9443,17 @@ cpdctl ml experiment list-revisions --experiment-id EXPERIMENT-ID [--space-id SP
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for experiment-list-revisions.
+
+#### Example
+
+```sh
+cpdctl ml experiment list-revisions \
+    --experiment-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --start exampleString \
+    --limit 50
+```
 
 <a id='ml_function_create'></a>
 ## &#8226; ml function create
@@ -7543,6 +9549,23 @@ This is illustrated in the example below:
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--schemas-output=@path/to/file.json`.
 
+#### Examples
+
+```sh
+cpdctl ml function create \
+    --name my-resource \
+    --software-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}' \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --description 'This is my first resource.' \
+    --tags t1,t2 \
+    --type python \
+    --sample-scoring-input '{"input_data": [{"id": "exampleString", "fields": ["name","age","occupation"], "values": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]]}]}' \
+    --schemas '{"input": [{"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}], "output": [{"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}]}' \
+    --custom '{"anyKey": "anyValue"}' \
+    --model-references '[{"space_id": "3fc54cf1-252f-424b-b52d-5cdd9814987f", "project_id": "12ac4cf1-252f-424b-b52d-5cdd9814987f", "id": "exampleString", "rev": "exampleString"}]'
+```
+
 <a id='ml_function_list'></a>
 ## &#8226; ml function list
 
@@ -7581,6 +9604,18 @@ cpdctl ml function list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for function-list.
 
+#### Example
+
+```sh
+cpdctl ml function list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --start exampleString \
+    --limit 50 \
+    --tag-value 'tf2.0 or tf2.1' \
+    --search exampleString
+```
+
 <a id='ml_function_get'></a>
 ## &#8226; ml function get
 
@@ -7605,6 +9640,16 @@ cpdctl ml function get --function-id FUNCTION-ID [--space-id SPACE-ID] [--projec
 
 `--rev` (string)
 :   The revision number of the resource.
+
+#### Example
+
+```sh
+cpdctl ml function get \
+    --function-id 64dc8921-345f-234b-462d-78e41246987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --rev 2
+```
 
 <a id='ml_function_update'></a>
 ## &#8226; ml function update
@@ -7648,6 +9693,16 @@ cpdctl ml function update --function-id FUNCTION-ID --version VERSION [--tags TA
 `--custom` (generic map)
 :   User defined properties specified as key-value pairs.
 
+#### Example
+
+```sh
+cpdctl ml function update \
+    --tags t1,t2 \
+    --name my-resource \
+    --description 'This is my first resource.' \
+    --custom '{"anyKey": "anyValue"}'
+```
+
 <a id='ml_function_delete'></a>
 ## &#8226; ml function delete
 
@@ -7668,6 +9723,15 @@ cpdctl ml function delete --function-id FUNCTION-ID [--space-id SPACE-ID] [--pro
 
 `--project-id` (string)
 :   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+#### Example
+
+```sh
+cpdctl ml function delete \
+    --function-id 64dc8921-345f-234b-462d-78e41246987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+```
 
 <a id='ml_function_create-revision'></a>
 ## &#8226; ml function create-revision
@@ -7692,6 +9756,16 @@ cpdctl ml function create-revision --function-id FUNCTION-ID [--space-id SPACE-I
 
 `--commit-message` (string)
 :   An optional commit message for the revision.
+
+#### Example
+
+```sh
+cpdctl ml function create-revision \
+    --function-id 64dc8921-345f-234b-462d-78e41246987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --commit-message exampleString
+```
 
 <a id='ml_function_list-revisions'></a>
 ## &#8226; ml function list-revisions
@@ -7726,6 +9800,17 @@ cpdctl ml function list-revisions --function-id FUNCTION-ID [--space-id SPACE-ID
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for function-list-revisions.
 
+#### Example
+
+```sh
+cpdctl ml function list-revisions \
+    --function-id 64dc8921-345f-234b-462d-78e41246987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --start exampleString \
+    --limit 50
+```
+
 <a id='ml_function_upload-code'></a>
 ## &#8226; ml function upload-code
 
@@ -7750,6 +9835,16 @@ cpdctl ml function upload-code --function-id FUNCTION-ID --upload-code UPLOAD-CO
 `--project-id` (string)
 :   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
 
+#### Example
+
+```sh
+cpdctl ml function upload-code \
+    --function-id 64dc8921-345f-234b-462d-78e41246987f \
+    --upload-code tempdir/test-file.txt \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+```
+
 <a id='ml_function_download-code'></a>
 ## &#8226; ml function download-code
 
@@ -7773,6 +9868,17 @@ cpdctl ml function download-code --function-id FUNCTION-ID [--space-id SPACE-ID]
 
 `--rev` (string)
 :   The revision number of the resource.
+
+#### Example
+
+```sh
+cpdctl ml function download-code \
+    --function-id 64dc8921-345f-234b-462d-78e41246987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --rev 2 \
+    --output-file tempdir/example-output.txt
+```
 
 <a id='ml_model_create'></a>
 ## &#8226; ml model create
@@ -7971,6 +10077,37 @@ Since CloudPak for Data `4.7.0`. This option provides a value for a sub-field of
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--content-location-location=@path/to/file.json`.
 
+#### Examples
+
+```sh
+cpdctl ml model create \
+    --name my-resource \
+    --type tensorflow_1.5 \
+    --software-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}' \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --description 'This is my first resource.' \
+    --tags t1,t2 \
+    --pipeline '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}' \
+    --model-definition '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"}' \
+    --hyper-parameters '{"anyKey": "anyValue"}' \
+    --domain exampleString \
+    --training-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
+    --test-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
+    --schemas '{"input": [{"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}], "output": [{"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}]}' \
+    --label-column exampleString \
+    --transformed-label-column exampleString \
+    --size '{"in_memory": 72.5, "content": 72.5}' \
+    --metrics '[{"timestamp": "2018-12-01T10:11:12.000Z", "iteration": 2, "ml_metrics": {}, "ts_metrics": {"training": {"neg_symmetric_mean_absolute_percentage_error": -38.35790647931252}}, "tsad_metrics": {"iterations": [{"average_precision": {"localized_extreme": 0.5294117647058824, "level_shift": 1, "variance": 0.5471792823589406, "trend": 0.8183221870721871}, "roc_auc": {"anyKey": "anyValue"}, "f1": {"anyKey": "anyValue"}, "precision": {"anyKey": "anyValue"}, "recall": {"anyKey": "anyValue"}}], "agg": {"average_precision": {"level_shift": {"mean": 1, "range": [1,1]}, "localized_extreme": {"mean": 1, "range": [1,1]}, "trend": {"mean": 1, "range": [1,1]}, "variance": {"mean": 1, "range": [1,1]}}, "f1": {"level_shift": {"anyKey": "anyValue"}, "localized_extreme": {"anyKey": "anyValue"}, "trend": {"anyKey": "anyValue"}, "variance": {"anyKey": "anyValue"}}, "precision": {"level_shift": {"anyKey": "anyValue"}, "localized_extreme": {"anyKey": "anyValue"}, "trend": {"anyKey": "anyValue"}, "variance": {"anyKey": "anyValue"}}, "recall": {"level_shift": {"anyKey": "anyValue"}, "localized_extreme": {"anyKey": "anyValue"}, "trend": {"anyKey": "anyValue"}, "variance": {"anyKey": "anyValue"}}, "roc_auc": {"level_shift": {"anyKey": "anyValue"}, "localized_extreme": {"anyKey": "anyValue"}, "trend": {"anyKey": "anyValue"}, "variance": {"anyKey": "anyValue"}}}, "supporting_rank": {"average_precision": {"level_shift": {"p1": 2, "p2": 2, "p3": 2, "p4": 5, "p5": 5, "p6": 6}, "localized_extreme": {"anyKey": "anyValue"}, "trend": {"anyKey": "anyValue"}, "variance": {"anyKey": "anyValue"}}, "f1": {"anyKey": "anyValue"}, "roc_auc": {"anyKey": "anyValue"}, "precision": {"anyKey": "anyValue"}, "recall": {"anyKey": "anyValue"}}, "aggregated_score": [{"p1": 14.5, "p2": 12, "p3": 12, "p4": 10, "p5": 6, "p6": 5}]}, "ml_federated_metrics": {}, "context": {"deployment_id": "exampleString", "intermediate_model": {"name": "my_pipeline", "process": "exampleString", "location": {"pipeline": "exampleString", "pipeline_model": "exampleString", "model": "exampleString"}, "notebook_location": "exampleString", "sdk_notebook_location": "exampleString", "pipeline_nodes": ["exampleString","anotherTestString"], "composition_steps": ["exampleString","anotherTestString"], "duration": 38, "model_asset": "exampleString"}, "phase": "exampleString", "step": {"id": "exampleString", "name": "exampleString", "started_at": "2019-01-01T12:00:00.000Z", "completed_at": "2019-01-01T12:00:00.000Z", "hyper_parameters": {"anyKey": "anyValue"}, "data_allocation": 38, "estimator": "exampleString", "transformer": "exampleString", "score": 72.5}, "classes": ["positive", "negative", "neutral"], "binary_classification": {"confusion_matrices": [{"true_class": "exampleString", "tp": 38, "tn": 38, "fp": 38, "fn": 38}], "roc_curves": [{"true_class": "exampleString", "tpr": [72.5,73.9], "fpr": [72.5,73.9], "thresholds": [72.5,73.9]}]}, "multi_class_classification": {"one_vs_all": [{"class": "exampleString", "confusion_matrix_location": "data/7d9ac934-9073-4ffd-846c-7b1f912b1ab2/data/autoai/pre_hpo_d_output/Pipeline1/confusion_matrix.json", "confusion_matrix": {"true_class": "exampleString", "tp": 38, "tn": 38, "fp": 38, "fn": 38}, "roc_curve_location": "data/7d9ac934-9073-4ffd-846c-7b1f912b1ab2/data/autoai/pre_hpo_d_output/Pipeline1/roc_curve.json", "roc_curve": {"true_class": "exampleString", "tpr": [72.5,73.9], "fpr": [72.5,73.9], "thresholds": [72.5,73.9]}}], "one_vs_all_location": "data/7d9ac934-9073-4ffd-846c-7b1f912b1ab2/data/autoai/pre_hpo_d_output/Pipeline1/one_vs_all.json"}, "features_importance": [{"stage": "exampleString", "computation_type": "exampleString", "features": {"anyKey": "anyValue"}}], "schema": "exampleString", "estimators": ["exampleString","anotherTestString"], "incremental_training": {"iteration": 10, "total_iterations": 30, "measures_location": "/path_to_csv", "train_batch_samples_count": 10786, "holdout_samples_count": 6784, "early_stop_triggered": true}, "prediction_type": "regression"}}]' \
+    --custom '{"anyKey": "anyValue"}' \
+    --user-defined-objects '{}' \
+    --hybrid-pipeline-software-specs '[{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}]' \
+    --model-version '{"number": "1.0.0", "tag": "xgb classifier", "description": "Providing an update to the version."}' \
+    --training-id b8e64f4b-ead1-47f3-abf6-8247b2826763 \
+    --data-preprocessing '[{"stage": "sampling", "input": {"rows": 50000, "columns": 81}, "output": {"rows": 1463, "columns": 81}, "props": {"anyKey": "anyValue"}}]' \
+    --content-location '{"contents": [{"content_format": "exampleString", "location": "exampleString", "file_name": "exampleString", "pipeline_node_id": "exampleString", "deployment_id": "exampleString"}], "type": "connection_asset", "connection": {}, "location": {}}'
+```
+
 <a id='ml_model_list'></a>
 ## &#8226; ml model list
 
@@ -8009,6 +10146,18 @@ cpdctl ml model list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start ST
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for model-list.
 
+#### Example
+
+```sh
+cpdctl ml model list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --start exampleString \
+    --limit 50 \
+    --tag-value 'tf2.0 or tf2.1' \
+    --search exampleString
+```
+
 <a id='ml_model_get'></a>
 ## &#8226; ml model get
 
@@ -8033,6 +10182,16 @@ cpdctl ml model get --model-id MODEL-ID [--space-id SPACE-ID] [--project-id PROJ
 
 `--rev` (string)
 :   The revision number of the resource.
+
+#### Example
+
+```sh
+cpdctl ml model get \
+    --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --rev 2
+```
 
 <a id='ml_model_update'></a>
 ## &#8226; ml model update
@@ -8077,6 +10236,16 @@ cpdctl ml model update --model-id MODEL-ID --version VERSION [--tags TAGS] [--na
 `--custom` (generic map)
 :   User defined properties specified as key-value pairs.
 
+#### Example
+
+```sh
+cpdctl ml model update \
+    --tags t1,t2 \
+    --name my-resource \
+    --description 'This is my first resource.' \
+    --custom '{"anyKey": "anyValue"}'
+```
+
 <a id='ml_model_delete'></a>
 ## &#8226; ml model delete
 
@@ -8097,6 +10266,15 @@ cpdctl ml model delete --model-id MODEL-ID [--space-id SPACE-ID] [--project-id P
 
 `--project-id` (string)
 :   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+#### Example
+
+```sh
+cpdctl ml model delete \
+    --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+```
 
 <a id='ml_model_create-revision'></a>
 ## &#8226; ml model create-revision
@@ -8121,6 +10299,16 @@ cpdctl ml model create-revision --model-id MODEL-ID [--space-id SPACE-ID] [--pro
 
 `--commit-message` (string)
 :   An optional commit message for the revision.
+
+#### Example
+
+```sh
+cpdctl ml model create-revision \
+    --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --commit-message exampleString
+```
 
 <a id='ml_model_list-revisions'></a>
 ## &#8226; ml model list-revisions
@@ -8155,6 +10343,17 @@ cpdctl ml model list-revisions --model-id MODEL-ID [--space-id SPACE-ID] [--proj
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for model-list-revisions.
 
+#### Example
+
+```sh
+cpdctl ml model list-revisions \
+    --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --start exampleString \
+    --limit 50
+```
+
 <a id='ml_model_list-attachments'></a>
 ## &#8226; ml model list-attachments
 
@@ -8184,6 +10383,18 @@ cpdctl ml model list-attachments --model-id MODEL-ID [--space-id SPACE-ID] [--pr
 
 `--content-format` (string)
 :   This is the format of the content. Any value can be used for the format and is there to be able to easily find content by format.
+
+#### Example
+
+```sh
+cpdctl ml model list-attachments \
+    --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --rev 2 \
+    --name my_model \
+    --content-format native
+```
 
 <a id='ml_model_upload-content'></a>
 ## &#8226; ml model upload-content
@@ -8231,6 +10442,21 @@ cpdctl ml model upload-content --model-id MODEL-ID --content-format CONTENT-FORM
 `--name` (string)
 :   Provide the name of the attachment.
 
+#### Example
+
+```sh
+cpdctl ml model upload-content \
+    --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --content-format native \
+    --upload-content '{"anyKey": "anyValue"}' \
+    --content-type application/json \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --pipeline-node-id 62344cf1-252f-424b-b52d-5cdd9814aacd \
+    --deployment-id 62344cf1-252f-424b-b52d-5cdd9814aacd \
+    --name my_models
+```
+
 <a id='ml_model_download-content'></a>
 ## &#8226; ml model download-content
 
@@ -8263,6 +10489,19 @@ cpdctl ml model download-content --model-id MODEL-ID --attachment-id ATTACHMENT-
 `--rev` (string)
 :   The revision number of the resource.
 
+#### Example
+
+```sh
+cpdctl ml model download-content \
+    --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --attachment-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --accept application/zip \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --rev 2 \
+    --output-file tempdir/example-output.txt
+```
+
 <a id='ml_model_delete-content'></a>
 ## &#8226; ml model delete-content
 
@@ -8286,6 +10525,16 @@ cpdctl ml model delete-content --model-id MODEL-ID --attachment-id ATTACHMENT-ID
 
 `--project-id` (string)
 :   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+#### Example
+
+```sh
+cpdctl ml model delete-content \
+    --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --attachment-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+```
 
 <a id='ml_model_filtered-download'></a>
 ## &#8226; ml model filtered-download
@@ -8328,6 +10577,22 @@ cpdctl ml model filtered-download --model-id MODEL-ID [--accept ACCEPT] [--space
 
 `--content-format` (string)
 :   This is the format of the content. Any value can be used for the format and is there to be able to easily find content by format.
+
+#### Example
+
+```sh
+cpdctl ml model filtered-download \
+    --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --accept application/zip \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --rev 2 \
+    --pipeline-node-id 62344cf1-252f-424b-b52d-5cdd9814aacd \
+    --deployment-id 62344cf1-252f-424b-b52d-5cdd9814aacd \
+    --name my_model \
+    --content-format native \
+    --output-file tempdir/example-output.txt
+```
 
 <a id='ml_model_wait'></a>
 ## &#8226; ml model wait
@@ -8413,6 +10678,22 @@ cpdctl ml model-definition create --name NAME --version VERSION [--platform PLAT
 `--software-spec-name` (string)
 :   The name of the software specification. One, and only one, of `id` or `name` must be set. This option provides a value for a sub-field of the JSON option 'software-spec'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl ml model-definition create \
+    --name my-resource \
+    --version exampleString \
+    --platform '{"name": "exampleString", "versions": ["exampleString","anotherTestString"]}' \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --description 'This is my first resource.' \
+    --tags t1,t2 \
+    --command exampleString \
+    --software-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}' \
+    --custom '{"anyKey": "anyValue"}'
+```
+
 <a id='ml_model-definition_list'></a>
 ## &#8226; ml model-definition list
 
@@ -8451,6 +10732,18 @@ cpdctl ml model-definition list [--space-id SPACE-ID] [--project-id PROJECT-ID] 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for model-definition-list.
 
+#### Example
+
+```sh
+cpdctl ml model-definition list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --start exampleString \
+    --limit 50 \
+    --tag-value 'tf2.0 or tf2.1' \
+    --search exampleString
+```
+
 <a id='ml_model-definition_get'></a>
 ## &#8226; ml model-definition get
 
@@ -8475,6 +10768,16 @@ cpdctl ml model-definition get --model-definition-id MODEL-DEFINITION-ID [--spac
 
 `--rev` (string)
 :   The revision number of the resource.
+
+#### Example
+
+```sh
+cpdctl ml model-definition get \
+    --model-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --rev 2
+```
 
 <a id='ml_model-definition_update'></a>
 ## &#8226; ml model-definition update
@@ -8518,6 +10821,16 @@ cpdctl ml model-definition update --model-definition-id MODEL-DEFINITION-ID --ve
 `--custom` (generic map)
 :   User defined properties specified as key-value pairs.
 
+#### Example
+
+```sh
+cpdctl ml model-definition update \
+    --tags t1,t2 \
+    --name my-resource \
+    --description 'This is my first resource.' \
+    --custom '{"anyKey": "anyValue"}'
+```
+
 <a id='ml_model-definition_delete'></a>
 ## &#8226; ml model-definition delete
 
@@ -8538,6 +10851,15 @@ cpdctl ml model-definition delete --model-definition-id MODEL-DEFINITION-ID [--s
 
 `--project-id` (string)
 :   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+#### Example
+
+```sh
+cpdctl ml model-definition delete \
+    --model-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+```
 
 <a id='ml_model-definition_create-revision'></a>
 ## &#8226; ml model-definition create-revision
@@ -8562,6 +10884,16 @@ cpdctl ml model-definition create-revision --model-definition-id MODEL-DEFINITIO
 
 `--commit-message` (string)
 :   An optional commit message for the revision.
+
+#### Example
+
+```sh
+cpdctl ml model-definition create-revision \
+    --model-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --commit-message exampleString
+```
 
 <a id='ml_model-definition_list-revisions'></a>
 ## &#8226; ml model-definition list-revisions
@@ -8596,6 +10928,17 @@ cpdctl ml model-definition list-revisions --model-definition-id MODEL-DEFINITION
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for model-definition-list-revisions.
 
+#### Example
+
+```sh
+cpdctl ml model-definition list-revisions \
+    --model-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --start exampleString \
+    --limit 50
+```
+
 <a id='ml_model-definition_upload-model'></a>
 ## &#8226; ml model-definition upload-model
 
@@ -8620,6 +10963,16 @@ cpdctl ml model-definition upload-model --model-definition-id MODEL-DEFINITION-I
 `--project-id` (string)
 :   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
 
+#### Example
+
+```sh
+cpdctl ml model-definition upload-model \
+    --model-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --upload-model tempdir/test-file.txt \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+```
+
 <a id='ml_model-definition_download-model'></a>
 ## &#8226; ml model-definition download-model
 
@@ -8643,6 +10996,17 @@ cpdctl ml model-definition download-model --model-definition-id MODEL-DEFINITION
 
 `--rev` (string)
 :   The revision number of the resource.
+
+#### Example
+
+```sh
+cpdctl ml model-definition download-model \
+    --model-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --rev 2 \
+    --output-file tempdir/example-output.txt
+```
 
 <a id='ml_pipeline_create'></a>
 ## &#8226; ml pipeline create
@@ -8682,6 +11046,19 @@ cpdctl ml pipeline create --name NAME --document DOCUMENT [--project-id PROJECT-
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--custom=@path/to/file.json`.
 
+#### Example
+
+```sh
+cpdctl ml pipeline create \
+    --name my-resource \
+    --document '{"anyKey": "anyValue"}' \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --description 'This is my first resource.' \
+    --tags t1,t2 \
+    --custom '{"anyKey": "anyValue"}'
+```
+
 <a id='ml_pipeline_list'></a>
 ## &#8226; ml pipeline list
 
@@ -8720,6 +11097,18 @@ cpdctl ml pipeline list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for pipeline-list.
 
+#### Example
+
+```sh
+cpdctl ml pipeline list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --start exampleString \
+    --limit 50 \
+    --tag-value 'tf2.0 or tf2.1' \
+    --search exampleString
+```
+
 <a id='ml_pipeline_get'></a>
 ## &#8226; ml pipeline get
 
@@ -8744,6 +11133,16 @@ cpdctl ml pipeline get --pipeline-id PIPELINE-ID [--space-id SPACE-ID] [--projec
 
 `--rev` (string)
 :   The revision number of the resource.
+
+#### Example
+
+```sh
+cpdctl ml pipeline get \
+    --pipeline-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --rev 2
+```
 
 <a id='ml_pipeline_update'></a>
 ## &#8226; ml pipeline update
@@ -8787,6 +11186,16 @@ cpdctl ml pipeline update --pipeline-id PIPELINE-ID --version VERSION [--tags TA
 `--custom` (generic map)
 :   User defined properties specified as key-value pairs.
 
+#### Example
+
+```sh
+cpdctl ml pipeline update \
+    --tags t1,t2 \
+    --name my-resource \
+    --description 'This is my first resource.' \
+    --custom '{"anyKey": "anyValue"}'
+```
+
 <a id='ml_pipeline_delete'></a>
 ## &#8226; ml pipeline delete
 
@@ -8807,6 +11216,15 @@ cpdctl ml pipeline delete --pipeline-id PIPELINE-ID [--space-id SPACE-ID] [--pro
 
 `--project-id` (string)
 :   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+#### Example
+
+```sh
+cpdctl ml pipeline delete \
+    --pipeline-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+```
 
 <a id='ml_pipeline_create-revision'></a>
 ## &#8226; ml pipeline create-revision
@@ -8831,6 +11249,16 @@ cpdctl ml pipeline create-revision --pipeline-id PIPELINE-ID [--space-id SPACE-I
 
 `--commit-message` (string)
 :   An optional commit message for the revision.
+
+#### Example
+
+```sh
+cpdctl ml pipeline create-revision \
+    --pipeline-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --commit-message exampleString
+```
 
 <a id='ml_pipeline_list-revisions'></a>
 ## &#8226; ml pipeline list-revisions
@@ -8864,6 +11292,17 @@ cpdctl ml pipeline list-revisions --pipeline-id PIPELINE-ID [--space-id SPACE-ID
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for pipeline-list-revisions.
+
+#### Example
+
+```sh
+cpdctl ml pipeline list-revisions \
+    --pipeline-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --start exampleString \
+    --limit 50
+```
 
 <a id='ml_training_create'></a>
 ## &#8226; ml training create
@@ -9136,6 +11575,25 @@ Since CloudPak for Data `4.7.0`. This option provides a value for a sub-field of
 
     The default value is `0.01`. The maximum value is `1`. The minimum value is `0`.
 
+#### Examples
+
+```sh
+cpdctl ml training create \
+    --results-reference '{"id": "exampleString", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}' \
+    --experiment '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}' \
+    --pipeline '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "model_type": "exampleString", "data_bindings": [{"data_reference_name": "exampleString", "node_id": "exampleString"}], "nodes_parameters": [{"node_id": "exampleString", "parameters": {"anyKey": "anyValue"}}], "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "hybrid_pipeline_hardware_specs": [{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}}]}' \
+    --model-definition '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "model_type": "exampleString", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}, "command": "exampleString", "parameters": {"anyKey": "anyValue"}}' \
+    --federated-learning '{"model": {"type": "keras", "spec": {"href": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}}, "model_file": "exampleString"}, "fusion_type": "iter_avg", "remote_training": {"quorum": 0.9, "max_timeout": 60, "remote_training_systems": [{"id": "1918939c-2660-4f6a-b727-4b402383dc63", "required": true}]}, "rounds": 3, "termination_predicate": "accuracy > 0.9", "epochs": 3, "optimizer": {"name": "exampleString", "spec": {"anyKey": "anyValue"}}, "loss": "exampleString", "metrics": "exampleString", "max_depth": 38, "learning_rate": 72.5, "l2_regularization": 72.5, "max_bins": 38, "max_leaf_nodes": 38, "min_samples_leaf": 38, "random_state": 38, "verbose": true, "num_classes": 38, "byzantine_threshold": 38, "sigma": 72.5, "sigma0": 72.5, "gamma": 72.5, "iters": 38, "save_intermediate_models": true, "crypto": {"cipher_spec": "encryption_level_1"}, "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}, "version": "exampleString", "log_level": "info", "sketch_accuracy_vs_privacy": 0.01}' \
+    --training-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
+    --test-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
+    --custom '{"anyKey": "anyValue"}' \
+    --tags t1,t2 \
+    --name my-training \
+    --description 'My first training.' \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f
+```
+
 <a id='ml_training_list'></a>
 ## &#8226; ml training list
 
@@ -9181,6 +11639,21 @@ cpdctl ml training list [--start START] [--limit LIMIT] [--total-count TOTAL-COU
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for training-list.
 
+#### Example
+
+```sh
+cpdctl ml training list \
+    --start exampleString \
+    --limit 10 \
+    --total-count true \
+    --tag-value exampleString \
+    --type exampleString \
+    --state exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --parent-id exampleString
+```
+
 <a id='ml_training_get'></a>
 ## &#8226; ml training get
 
@@ -9201,6 +11674,15 @@ cpdctl ml training get --training-id TRAINING-ID [--space-id SPACE-ID] [--projec
 
 `--project-id` (string)
 :   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+#### Example
+
+```sh
+cpdctl ml training get \
+    --training-id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+```
 
 <a id='ml_training_delete'></a>
 ## &#8226; ml training delete
@@ -9225,6 +11707,16 @@ cpdctl ml training delete --training-id TRAINING-ID [--space-id SPACE-ID] [--pro
 
 `--hard-delete` (bool)
 :   Set to true in order to also delete the job metadata information.
+
+#### Example
+
+```sh
+cpdctl ml training delete \
+    --training-id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --hard-delete true
+```
 
 <a id='ml_training_wait'></a>
 ## &#8226; ml training wait
@@ -9518,6 +12010,25 @@ Since CloudPak for Data `4.7.0`. This option provides a value for a sub-field of
 
     The default value is `0.01`. The maximum value is `1`. The minimum value is `0`.
 
+#### Examples
+
+```sh
+cpdctl ml training-definition create \
+    --name my-resource \
+    --results-reference '{"id": "exampleString", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}' \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --description 'This is my first resource.' \
+    --tags t1,t2 \
+    --experiment '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}' \
+    --pipeline '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "model_type": "exampleString", "data_bindings": [{"data_reference_name": "exampleString", "node_id": "exampleString"}], "nodes_parameters": [{"node_id": "exampleString", "parameters": {"anyKey": "anyValue"}}], "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "hybrid_pipeline_hardware_specs": [{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}}]}' \
+    --model-definition '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "model_type": "exampleString", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}, "command": "exampleString", "parameters": {"anyKey": "anyValue"}}' \
+    --federated-learning '{"model": {"type": "keras", "spec": {"href": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}}, "model_file": "exampleString"}, "fusion_type": "iter_avg", "remote_training": {"quorum": 0.9, "max_timeout": 60, "remote_training_systems": [{"id": "1918939c-2660-4f6a-b727-4b402383dc63", "required": true}]}, "rounds": 3, "termination_predicate": "accuracy > 0.9", "epochs": 3, "optimizer": {"name": "exampleString", "spec": {"anyKey": "anyValue"}}, "loss": "exampleString", "metrics": "exampleString", "max_depth": 38, "learning_rate": 72.5, "l2_regularization": 72.5, "max_bins": 38, "max_leaf_nodes": 38, "min_samples_leaf": 38, "random_state": 38, "verbose": true, "num_classes": 38, "byzantine_threshold": 38, "sigma": 72.5, "sigma0": 72.5, "gamma": 72.5, "iters": 38, "save_intermediate_models": true, "crypto": {"cipher_spec": "encryption_level_1"}, "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}, "version": "exampleString", "log_level": "info", "sketch_accuracy_vs_privacy": 0.01}' \
+    --training-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
+    --test-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
+    --custom '{"anyKey": "anyValue"}'
+```
+
 <a id='ml_training-definition_list'></a>
 ## &#8226; ml training-definition list
 
@@ -9556,6 +12067,18 @@ cpdctl ml training-definition list [--space-id SPACE-ID] [--project-id PROJECT-I
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for training-definition-list.
 
+#### Example
+
+```sh
+cpdctl ml training-definition list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --start exampleString \
+    --limit 50 \
+    --tag-value 'tf2.0 or tf2.1' \
+    --search exampleString
+```
+
 <a id='ml_training-definition_get'></a>
 ## &#8226; ml training-definition get
 
@@ -9580,6 +12103,16 @@ cpdctl ml training-definition get --training-definition-id TRAINING-DEFINITION-I
 
 `--rev` (string)
 :   The revision number of the resource.
+
+#### Example
+
+```sh
+cpdctl ml training-definition get \
+    --training-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --rev 2
+```
 
 <a id='ml_training-definition_update'></a>
 ## &#8226; ml training-definition update
@@ -9627,6 +12160,17 @@ cpdctl ml training-definition update --training-definition-id TRAINING-DEFINITIO
 `--federated-learning` (<a href="#cli-federated-learning-example-schema-ml">`FederatedLearning`</a>)
 :   Federated Learning.
 
+#### Example
+
+```sh
+cpdctl ml training-definition update \
+    --tags t1,t2 \
+    --name my-resource \
+    --description 'This is my first resource.' \
+    --custom '{"anyKey": "anyValue"}' \
+    --federated-learning '{"model": {"type": "keras", "spec": {"href": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}}, "model_file": "exampleString"}, "fusion_type": "iter_avg", "remote_training": {"quorum": 0.9, "max_timeout": 60, "remote_training_systems": [{"id": "1918939c-2660-4f6a-b727-4b402383dc63", "required": true}]}, "rounds": 3, "termination_predicate": "accuracy > 0.9", "epochs": 3, "optimizer": {"name": "exampleString", "spec": {"anyKey": "anyValue"}}, "loss": "exampleString", "metrics": "exampleString", "max_depth": 38, "learning_rate": 72.5, "l2_regularization": 72.5, "max_bins": 38, "max_leaf_nodes": 38, "min_samples_leaf": 38, "random_state": 38, "verbose": true, "num_classes": 38, "byzantine_threshold": 38, "sigma": 72.5, "sigma0": 72.5, "gamma": 72.5, "iters": 38, "save_intermediate_models": true, "crypto": {"cipher_spec": "encryption_level_1"}, "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}, "version": "exampleString", "log_level": "info", "sketch_accuracy_vs_privacy": 0.01}'
+```
+
 <a id='ml_training-definition_delete'></a>
 ## &#8226; ml training-definition delete
 
@@ -9647,6 +12191,15 @@ cpdctl ml training-definition delete --training-definition-id TRAINING-DEFINITIO
 
 `--project-id` (string)
 :   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+#### Example
+
+```sh
+cpdctl ml training-definition delete \
+    --training-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+```
 
 <a id='ml_training-definition_create-revision'></a>
 ## &#8226; ml training-definition create-revision
@@ -9671,6 +12224,16 @@ cpdctl ml training-definition create-revision --training-definition-id TRAINING-
 
 `--commit-message` (string)
 :   An optional commit message for the revision.
+
+#### Example
+
+```sh
+cpdctl ml training-definition create-revision \
+    --training-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --commit-message exampleString
+```
 
 <a id='ml_training-definition_list-revisions'></a>
 ## &#8226; ml training-definition list-revisions
@@ -9704,6 +12267,17 @@ cpdctl ml training-definition list-revisions --training-definition-id TRAINING-D
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for training-definition-list-revisions.
+
+#### Example
+
+```sh
+cpdctl ml training-definition list-revisions \
+    --training-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --start exampleString \
+    --limit 50
+```
 
 <a id='notebook_create'></a>
 ## &#8226; notebook create
@@ -9774,6 +12348,21 @@ cpdctl notebook create --file-reference FILE-REFERENCE --name NAME [--compute CO
 `--runtime-spark-monitoring-enabled` (bool)
 :   Spark monitoring enabled or not. This option provides a value for a sub-field of the JSON option 'runtime'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl notebook create \
+    --file-reference notebooks/my_notebook.ipynb \
+    --name 'my notebook' \
+    --compute a6463c18-9b11-4de9-e0e2-d40e27c183d4 \
+    --description 'this is my notebook' \
+    --kernel '{"display_name": "Python 3.5 with Spark", "language": "python3", "name": "python3"}' \
+    --originates-from '{"type": "blank"}' \
+    --project-id 92ae0e27-9b11-4de9-a646-d46ca3c183d4 \
+    --runtime '{"environment": "conda4x16-d46ca0e27-a646-4de9-a646-9b113c183d4", "spark_monitoring_enabled": true}' \
+    --space-id 92ae0e27-9b11-4de9-a646-d46ca3c183d4
+```
+
 <a id='notebook_delete'></a>
 ## &#8226; notebook delete
 
@@ -9788,6 +12377,13 @@ cpdctl notebook delete --notebook-id NOTEBOOK-ID
 
 `--notebook-id` (string)
 :   The guid of the notebook. Required.
+
+#### Example
+
+```sh
+cpdctl notebook delete \
+    --notebook-id exampleString
+```
 
 <a id='notebook_update'></a>
 ## &#8226; notebook update
@@ -9850,6 +12446,19 @@ cpdctl notebook update --notebook-id NOTEBOOK-ID [--compute COMPUTE] [--environm
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--shares-public=@path/to/file.json`.
 
+#### Examples
+
+```sh
+cpdctl notebook update \
+    --notebook-id exampleString \
+    --compute 299993bf-9a42-48ae-aadd-1336f31d5556 \
+    --environment d46ca0e27-a646-4de9-a646-9b113c183d4 \
+    --kernel '{"display_name": "Python 3.5 with Spark", "language": "python3", "name": "python3"}' \
+    --schedule 9a4293bf-1336-48ae-aadd-2999f31d31d5 \
+    --shares '{"gist": {"content_filter": "none", "enabled": false, "html_url": "http://gist.ibm.com", "visibility": "all"}, "github": {"api_url": "http://api.github.ibm.com/v2", "branch": "dev", "commit_sha": "4f0c9d366173a0a322b032e01c989831a3287145", "content_filter": "none", "content_sha": "d89e37f1502717207e7f423c65e414e6b4645687", "enabled": false, "html_url": "http://github.ibm.com", "path": "blob/foo", "repo_name": "Data Science Experience", "repo_org": "dsx"}, "public": {"content_filter": "none", "enabled": false}}' \
+    --spark-monitoring-enabled false
+```
+
 <a id='notebook_revert'></a>
 ## &#8226; notebook revert
 
@@ -9868,6 +12477,14 @@ cpdctl notebook revert --notebook-id NOTEBOOK-ID [--source SOURCE]
 `--source` (string)
 :   The id of the notebook version.
 
+#### Example
+
+```sh
+cpdctl notebook revert \
+    --notebook-id exampleString \
+    --source ca3c0e27-46ca-83d4-a646-d49b11c14de9
+```
+
 <a id='notebook_version_list'></a>
 ## &#8226; notebook version list
 
@@ -9883,6 +12500,13 @@ cpdctl notebook version list --notebook-id NOTEBOOK-ID
 `--notebook-id` (string)
 :   The guid of the notebook. Required.
 
+#### Example
+
+```sh
+cpdctl notebook version list \
+    --notebook-id exampleString
+```
+
 <a id='notebook_version_create'></a>
 ## &#8226; notebook version create
 
@@ -9897,6 +12521,13 @@ cpdctl notebook version create --notebook-id NOTEBOOK-ID
 
 `--notebook-id` (string)
 :   The guid of the notebook. Required.
+
+#### Example
+
+```sh
+cpdctl notebook version create \
+    --notebook-id exampleString
+```
 
 <a id='notebook_version_delete'></a>
 ## &#8226; notebook version delete
@@ -9916,6 +12547,14 @@ cpdctl notebook version delete --notebook-id NOTEBOOK-ID --version-id VERSION-ID
 `--version-id` (string)
 :   The guid of the version. Required.
 
+#### Example
+
+```sh
+cpdctl notebook version delete \
+    --notebook-id exampleString \
+    --version-id exampleString
+```
+
 <a id='notebook_version_get'></a>
 ## &#8226; notebook version get
 
@@ -9933,6 +12572,14 @@ cpdctl notebook version get --notebook-id NOTEBOOK-ID --version-id VERSION-ID
 
 `--version-id` (string)
 :   The guid of the version. Required.
+
+#### Example
+
+```sh
+cpdctl notebook version get \
+    --notebook-id exampleString \
+    --version-id exampleString
+```
 
 <a id='notebook_version_update'></a>
 ## &#8226; notebook version update
@@ -9969,6 +12616,16 @@ cpdctl notebook version update --notebook-id NOTEBOOK-ID --version-id VERSION-ID
 `--kernel-name` (string)
 :   The name of the environment kernel. This option provides a value for a sub-field of the JSON option 'kernel'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl notebook version update \
+    --notebook-id exampleString \
+    --version-id exampleString \
+    --kernel '{"display_name": "Python 3.5 with Spark", "language": "python3", "name": "python3"}' \
+    --schedule ca3c0e27-46ca-83d4-a646-d49b11c14de9
+```
+
 <a id='pipeline_version_list'></a>
 ## &#8226; pipeline version list
 
@@ -10003,6 +12660,18 @@ cpdctl pipeline version list --pipeline-id PIPELINE-ID [--space-id SPACE-ID] [--
 `--sort-by` (string)
 :   Can be format of "field_name", "field_name asc" or "field_name desc" Ascending by default.
 
+#### Example
+
+```sh
+cpdctl pipeline version list \
+    --pipeline-id exampleString \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --page-size 38 \
+    --page-token exampleString \
+    --sort-by exampleString
+```
+
 <a id='pipeline_version_delete'></a>
 ## &#8226; pipeline version delete
 
@@ -10028,6 +12697,15 @@ cpdctl pipeline version delete --version-id VERSION-ID [--space-id SPACE-ID] [--
 
     The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
 
+#### Example
+
+```sh
+cpdctl pipeline version delete \
+    --version-id exampleString \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673
+```
+
 <a id='pipeline_version_get'></a>
 ## &#8226; pipeline version get
 
@@ -10052,6 +12730,15 @@ cpdctl pipeline version get --version-id VERSION-ID [--space-id SPACE-ID] [--pro
 :   The id of the project.
 
     The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+#### Example
+
+```sh
+cpdctl pipeline version get \
+    --version-id exampleString \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673
+```
 
 <a id='pipeline_version_get-template'></a>
 ## &#8226; pipeline version get-template
@@ -10083,6 +12770,16 @@ cpdctl pipeline version get-template --version-id VERSION-ID [--space-id SPACE-I
 
     The default value is `template`. Allowable values are: `template`, `flow`, `all`.
 
+#### Example
+
+```sh
+cpdctl pipeline version get-template \
+    --version-id exampleString \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --format template
+```
+
 <a id='pipeline_version_get-template-format'></a>
 ## &#8226; pipeline version get-template-format
 
@@ -10112,6 +12809,16 @@ cpdctl pipeline version get-template-format --version-id VERSION-ID --format FOR
 :   The id of the project.
 
     The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+#### Example
+
+```sh
+cpdctl pipeline version get-template-format \
+    --version-id exampleString \
+    --format template \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673
+```
 
 <a id='pipeline_version_upload'></a>
 ## &#8226; pipeline version upload
@@ -10162,6 +12869,19 @@ If it's used while the default version is already volatile, it updates that vers
 
 If it's not used while a volatile version is the default one, upload will fail with error.
 
+#### Example
+
+```sh
+cpdctl pipeline version upload \
+    --file tempdir/test-file.txt \
+    --uploadfile-content-type exampleString \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --name exampleString \
+    --pipeline-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --volatile true
+```
+
 <a id='pipeline_run_get'></a>
 ## &#8226; pipeline run get
 
@@ -10194,6 +12914,16 @@ cpdctl pipeline run get --run-id RUN-ID [--space-id SPACE-ID] [--project-id PROJ
 
     The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
 
+#### Example
+
+```sh
+cpdctl pipeline run get \
+    --run-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --job-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673
+```
+
 <a id='pipeline_run_get-artifact'></a>
 ## &#8226; pipeline run get-artifact
 
@@ -10223,6 +12953,16 @@ cpdctl pipeline run get-artifact --run-id RUN-ID --artifact-path ARTIFACT-PATH [
 :   The id of the project.
 
     The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+#### Example
+
+```sh
+cpdctl pipeline run get-artifact \
+    --run-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --artifact-path pipeline-b9eb6393-control-user-variables/outputs/variables-x \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673
+```
 
 <a id='pipeline_run_get-logs'></a>
 ## &#8226; pipeline run get-logs
@@ -10258,6 +12998,17 @@ cpdctl pipeline run get-logs --run-id RUN-ID [--space-id SPACE-ID] [--project-id
 
 `--filter` (string)
 :   An url-encoded, JSON-serialized Filter protocol buffer.
+
+#### Example
+
+```sh
+cpdctl pipeline run get-logs \
+    --run-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --job-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --filter exampleString
+```
 
 <a id='pipeline_run_get-log'></a>
 ## &#8226; pipeline run get-log
@@ -10296,6 +13047,17 @@ cpdctl pipeline run get-log --run-id RUN-ID --task-run-name TASK-RUN-NAME [--spa
 
     The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
 
+#### Example
+
+```sh
+cpdctl pipeline run get-log \
+    --run-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --task-run-name pipeline-90bc031ef1009d53527cf454db0160ed3cca-run-bash-script-1 \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --job-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673
+```
+
 <a id='pipeline_run_list-parameter'></a>
 ## &#8226; pipeline run list-parameter
 
@@ -10327,6 +13089,16 @@ cpdctl pipeline run list-parameter --run-id RUN-ID [--space-id SPACE-ID] [--proj
 :   The ID of the job related to run. Adding this may improve response time.
 
     The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+#### Example
+
+```sh
+cpdctl pipeline run list-parameter \
+    --run-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --job-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673
+```
 
 <a id='pipeline_run_task-result_head'></a>
 ## &#8226; pipeline run task-result head
@@ -10364,6 +13136,19 @@ Gets metadata about task result given by output name and `TaskRun` or `Run` name
 `--task-run-name` (string)
 :    Required. Name of the 'TaskRun' or 'Run' from which the results come from e.g. 'pipeline-90bc031ef1009d53527cf454db0160ed3cca-run-bash-script-1'.
 
+#### Example
+```sh
+   cpdctl pipeline run task-result head \
+    --run-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --task-run-name exampleString \
+    --name exampleString \
+    --job-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --pipeline-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --pipeline-run-name exampleString
+```
+
 <a id='pipeline_run_task-result_list'></a>
 ## &#8226; pipeline run task-result list
 Gets information about all task results given by `TaskRun` or `Run` name.
@@ -10396,6 +13181,18 @@ Gets information about all task results given by `TaskRun` or `Run` name.
 
 `--task-run-name` (string)
 :    Required. Name of the 'TaskRun' or 'Run' from which the results come from e.g. 'pipeline-90bc031ef1009d53527cf454db0160ed3cca-run-bash-script-1'.
+
+#### Example
+```sh
+   cpdctl pipeline run task-result list \
+    --run-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --task-run-name exampleString \
+    --job-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --pipeline-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --pipeline-run-name exampleString
+```
 
 <a id='pipeline_run_task-result_get'></a>
 ## &#8226; pipeline run task-result get
@@ -10433,6 +13230,19 @@ Gets information about task result given by output name and `TaskRun` or `Run` n
 `--task-run-name` (string)
 :    Required. Name of the 'TaskRun' or 'Run' from which the results come from e.g. 'pipeline-90bc031ef1009d53527cf454db0160ed3cca-run-bash-script-1'.
 
+#### Example
+```sh
+   cpdctl pipeline run task-result get \
+    --run-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --task-run-name exampleString \
+    --name exampleString \
+    --job-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --pipeline-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --pipeline-run-name exampleString
+```
+
 <a id='pipeline_run_migrate-cache'></a>
 ## &#8226; pipeline run migrate-cache
 This command migrate old pipeline run execution cache data created by Watson Pipeline pipeline runs to the new location.  Identifiers of pipeline runs whose cache data are migrated are preserved in the output file. Cache data can be migrated to mounted filesystem. To enable that option specify --assets-dir-path parameter.
@@ -10460,6 +13270,14 @@ This command migrate old pipeline run execution cache data created by Watson Pip
 `--verbose` ()
 :    Whether to display detailed processing information (default: false)
 
+#### Example
+```sh
+   cpdctl pipeline run migrate-cache \
+	--project-id=exampleString \
+	--output-file=exampleString \
+	--assets-dir-path=exampleString
+```
+
 <a id='pipeline_run_get-status'></a>
 ## &#8226; pipeline run get-status
 Gets job run status for pipeline and it's subpipelines.
@@ -10486,6 +13304,16 @@ Gets job run status for pipeline and it's subpipelines.
 
 `--with-subpipelines` ()
 :    include also subpipelines statuses
+
+#### Example
+```sh
+   cpdctl pipeline run get-status \
+    --job-id exampleString \
+    --run-id exampleString \
+    --with-subpipelines exampleString \
+    --space-id exampleString \
+    --project-id exampleString
+```
 
 <a id='pipeline_cleanup_delete-cache'></a>
 ## &#8226; pipeline cleanup delete-cache
@@ -10529,6 +13357,20 @@ This command deletes execution cache data created by Watson Pipeline runs for a 
 `--verbose` ()
 :    Whether to display detailed processing information (default: false)
 
+#### Example
+```sh
+   cpdctl pipeline cleanup delete-cache \
+	--project-id=ad40927e-b499-4841-93dc-ff31b5d8e7a3-74de0cc0 \
+	--space-id=f465e7f6-feb7-47ff-bbd5-8671217e3cfb \
+	--pipeline-id=a70af6a7-ba76-4738-a8cc-f89897625194 \
+	--assets-dir-path=/mnt/asset_file_api/projects/${project}/assets/ \
+	--file-api-mount-path=/mnt/asset_file_api/ \
+	--retention-time=100h0m0s \
+	--output-file=/tmp/delete-cache.log \
+	--recursive \
+	--revision-id=1
+```
+
 <a id='pipeline_cleanup_delete-artifacts'></a>
 ## &#8226; pipeline cleanup delete-artifacts
 This command deletes artifact files created by Watson Pipeline job runs. Only files from job runs that started before a specific point in time are deleted. Identifiers of jobs and runs whose artifacts are deleted are preserved in the output file. The number of job runs can be limited (--limit parameter). Artifacts can be deleted directly from a mounted filesystem (--assets-dir-path).
@@ -10565,6 +13407,19 @@ This command deletes artifact files created by Watson Pipeline job runs. Only fi
 `--space-id` (string)
 :    ID of the space to delete artifacts
 
+#### Example
+```sh
+   cpdctl pipeline cleanup delete-artifacts \
+	--project-id=ad40927e-b499-4841-93dc-ff31b5d8e7a3-74de0cc0 \
+	--space-id=f465e7f6-feb7-47ff-bbd5-8671217e3cfb \
+	--assets-dir-path=/mnt/asset_file_api/projects/${project}/assets/ \
+	--retention-time=100h0m0s \
+	--output-file=/tmp/delete-artifacts.log \
+	--limit=100 \
+	--clean-job-runs
+	--force
+```
+
 <a id='pipeline_list'></a>
 ## &#8226; pipeline list
 
@@ -10596,6 +13451,17 @@ cpdctl pipeline list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--page-tok
 `--sort-by` (string)
 :   Accepted formats: "field_name" or "field_name sort_order". Accepted field names: "id", "name", "created_at". Accepted sort orders: "asc" (ascending), "desc" (descending). Default sort order is "asc".
 
+#### Example
+
+```sh
+cpdctl pipeline list \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --page-token exampleString \
+    --page-size 38 \
+    --sort-by exampleString
+```
+
 <a id='pipeline_delete'></a>
 ## &#8226; pipeline delete
 
@@ -10623,6 +13489,15 @@ cpdctl pipeline delete --pipeline-id PIPELINE-ID [--space-id SPACE-ID] [--projec
 
     The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
 
+#### Example
+
+```sh
+cpdctl pipeline delete \
+    --pipeline-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673
+```
+
 <a id='pipeline_get'></a>
 ## &#8226; pipeline get
 
@@ -10649,6 +13524,15 @@ cpdctl pipeline get --pipeline-id PIPELINE-ID [--space-id SPACE-ID] [--project-i
 :   The id of the project.
 
     The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+#### Example
+
+```sh
+cpdctl pipeline get \
+    --pipeline-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673
+```
 
 <a id='pipeline_get-template'></a>
 ## &#8226; pipeline get-template
@@ -10693,6 +13577,18 @@ cpdctl pipeline get-template --pipeline-id PIPELINE-ID [--space-id SPACE-ID] [--
 
     Allowable values are: `any`, `latest`, `volatile`.
 
+#### Example
+
+```sh
+cpdctl pipeline get-template \
+    --pipeline-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --format template \
+    --volatile true \
+    --version any
+```
+
 <a id='pipeline_commit'></a>
 ## &#8226; pipeline commit
 
@@ -10722,6 +13618,16 @@ cpdctl pipeline commit --pipeline-id PIPELINE-ID [--commit-message COMMIT-MESSAG
 :   The id of the project.
 
     The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+#### Example
+
+```sh
+cpdctl pipeline commit \
+    --pipeline-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --commit-message exampleString \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673
+```
 
 <a id='pipeline_copy'></a>
 ## &#8226; pipeline copy
@@ -10753,6 +13659,17 @@ cpdctl pipeline copy --name NAME --pipeline-id PIPELINE-ID [--description DESCRI
 :   The id of the project.
 
     The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+#### Example
+
+```sh
+cpdctl pipeline copy \
+    --name exampleString \
+    --pipeline-id exampleString \
+    --description exampleString \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673
+```
 
 <a id='pipeline_upload'></a>
 ## &#8226; pipeline upload
@@ -10799,6 +13716,19 @@ The supported file formats are pipeline.json and zip which contains pipeline.jso
 
 Work-in-progress pipeline versions can be updated (with this flag still set to true) multiple times before committed as finished state.
 
+#### Example
+
+```sh
+cpdctl pipeline upload \
+    --file tempdir/test-file.txt \
+    --uploadfile-content-type exampleString \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --name exampleString \
+    --description exampleString \
+    --volatile true
+```
+
 <a id='pipeline_validate'></a>
 ## &#8226; pipeline validate
 
@@ -10828,6 +13758,16 @@ The supported file formats are pipeline.json and zip which contains pipeline.jso
 :   The id of the project.
 
     The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+#### Example
+
+```sh
+cpdctl pipeline validate \
+    --file tempdir/test-file.txt \
+    --uploadfile-content-type exampleString \
+    --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
+    --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673
+```
 
 <a id='project_list'></a>
 ## &#8226; project list
@@ -10901,6 +13841,24 @@ cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--type TYPE] [--member ME
 
     The default value is `false`.
 
+#### Example
+
+```sh
+cpdctl project list \
+    --bss-account-id 0821fa9f9ebcc7b7c9a0d6e9bfa72aa4 \
+    --type cpd \
+    --member zapp.brannigan@ibm.com \
+    --roles admin,editor,viewer \
+    --name 'Sentiment Analysis' \
+    --match exact \
+    --guids 46a19524-bfbf-4810-a1f0-b131f12bc773,46a19524-bfbf-4810-a1f0-b131f12bc773 \
+    --include name,fields,members,settings,everything,nothing \
+    --limit 10 \
+    --bookmark g1AAAAE6eJzLYWBgYMlgTmHQTElKzi9KdUhJMtdLytVNTtYtLdYtzi8tydA1MNVLzskvTUnMK9HLSy3JAWphSnIAkkn-____z8pgcrP_afo-ASiQyIhqlAlRRoF0JuXDjPrBf0cBZBQzGa7KYwGSDAeAFNC082DjvnclHgAZx4RqnAXxxl2AGHcfxaNMWQBvIGVg \
+    --skip 0 \
+    --cpdaas-include-permissions false
+```
+
 <a id='project_get'></a>
 ## &#8226; project get
 
@@ -10922,6 +13880,14 @@ cpdctl project get --project-id PROJECT-ID [--include INCLUDE]
 :   A list of comma-separated project metadata sections to include in the query results.
 
     The default value is `["fields"]`. Allowable list items are: `name`, `fields`, `members`, `settings`, `integrations`, `storage`, `credentials`, `everything`, `nothing`.
+
+#### Example
+
+```sh
+cpdctl project get \
+    --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
+    --include name,fields,members,settings,integrations,storage,credentials,everything,nothing
+```
 
 <a id='project_update'></a>
 ## &#8226; project update
@@ -10985,6 +13951,20 @@ cpdctl project update --project-id PROJECT-ID [--catalog CATALOG | --catalog-gui
 
     The default value is `false`.
 
+#### Examples
+
+```sh
+cpdctl project update \
+    --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
+    --catalog '{"guid": "fcce617b-1fc9-4965-8820-272864f58399", "public": false}' \
+    --compute '[{"credentials": {"anyKey": "anyValue"}, "crn": "crn:v1:staging:public:code-assistant:us-south:a/0e79133675a31dbfd10504847a9e174f:630ced06-9675-4e35-a44f-d88197cc10c3::", "guid": "630ced06-9675-4e35-a44f-d88197cc10c3", "label": "code-assistant", "name": "IBM watsonx Code Assistant", "type": "code-assistant"}]' \
+    --description 'A project description.' \
+    --name 'Project Name' \
+    --public false \
+    --tools jupyter_notebooks,watson_visual_recognition,dashboards,streams_designer,spss_modeler,experiments,data_refinery \
+    --type cpd
+```
+
 <a id='project_member_delete'></a>
 ## &#8226; project member delete
 
@@ -11004,6 +13984,14 @@ cpdctl project member delete --project-id PROJECT-ID --user-names USER-NAMES
 
 `-u`, `--user-names` ([]string)
 :   A list of comma-separated usernames corresponding to project members to remove from the project. Required.
+
+#### Example
+
+```sh
+cpdctl project member delete \
+    --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
+    --user-names zapp.brannigan@ibm.com,zapp.brannigan@ibm.com
+```
 
 <a id='project_member_list'></a>
 ## &#8226; project member list
@@ -11029,6 +14017,15 @@ cpdctl project member list --project-id PROJECT-ID [--roles ROLES] [--user-names
 
 `-u`, `--user-names` ([]string)
 :   A list of comma-separated usernames corresponding to project members that are used to filter the query results.
+
+#### Example
+
+```sh
+cpdctl project member list \
+    --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
+    --roles admin,editor,viewer \
+    --user-names zapp.brannigan@ibm.com,zapp.brannigan@ibm.com
+```
 
 <a id='project_member_update'></a>
 ## &#8226; project member update
@@ -11057,6 +14054,15 @@ cpdctl project member update --project-id PROJECT-ID --members MEMBERS [--cpdaas
 
     The default value is `false`.
 
+#### Example
+
+```sh
+cpdctl project member update \
+    --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
+    --members '[{"id": "IBMid-55000353XF", "role": "admin", "state": "ACTIVE", "user_name": "zapp.brannigan@ibm.com"}]' \
+    --cpdaas-include-permissions false
+```
+
 <a id='project_member_create'></a>
 ## &#8226; project member create
 
@@ -11084,6 +14090,15 @@ cpdctl project member create --project-id PROJECT-ID --members MEMBERS [--cpdaas
 
     The default value is `false`.
 
+#### Example
+
+```sh
+cpdctl project member create \
+    --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
+    --members '[{"id": "IBMid-55000353XF", "role": "admin", "state": "ACTIVE", "type": "user", "user_name": "zapp.brannigan@ibm.com"}]' \
+    --cpdaas-include-permissions false
+```
+
 <a id='project_member_get'></a>
 ## &#8226; project member get
 
@@ -11110,6 +14125,15 @@ cpdctl project member get --project-id PROJECT-ID --user-name USER-NAME [--resol
 :   A flag indicating whether to return a derived project member based on resolving user groups.
 
     The default value is `true`.
+
+#### Example
+
+```sh
+cpdctl project member get \
+    --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
+    --user-name zapp.brannigan@ibm.com \
+    --resolve-groups true
+```
 
 <a id='project_create'></a>
 ## &#8226; project create
@@ -11194,6 +14218,23 @@ cpdctl project create --generator GENERATOR --name NAME [--storage STORAGE | --s
 
     The default value is `bmcos_object_storage`. Allowable values are: `bmcos_object_storage`, `assetfiles`, `local_git_storage`, `amazon_s3`.
 
+#### Examples
+
+```sh
+cpdctl project create \
+    --generator DAP-Projects \
+    --name 'Project Name' \
+    --storage '{"delegated": false, "guid": "d0e410a0-b358-42fc-b402-dba83316413a", "plan_id": "1e4e33e4-cfa6-4f12-9016-be594a6d5f87", "properties": {"shared": true}, "resource_crn": "crn:v1:staging:public:cloud-object-storage:global:a/a7026b374f39f570d20984c1ac6ecf63:5778e94f-c8c7-46a8-9878-d5eeadb51161::", "type": "bmcos_object_storage"}' \
+    --compute '[{"crn": "crn:v1:staging:public:watson-vision-combined:us-south:a/1438bf1daef49e20401d0179818ebef5:6874282b-42d6-40fa-869b-95a3c0f04125::", "guid": "eddc2f0c-4401-49d1-b632-dee2ec33dcc0", "label": "watson_vision_combined", "name": "Apache Spark", "type": "spark"}]' \
+    --description 'A project description.' \
+    --enforce-members false \
+    --public false \
+    --tags exampleString,anotherTestString \
+    --tools watson_visual_recognition,jupyter_notebooks,dashboards,streams_designer,spss_modeler,experiments,data_refinery \
+    --type cpd \
+    --verify-unique-name true
+```
+
 <a id='project_delete'></a>
 ## &#8226; project delete
 
@@ -11208,6 +14249,13 @@ cpdctl project delete --project-id PROJECT-ID
 
 `-i`, `--project-id` (string)
 :   The ID of the project to be deleted. Required.
+
+#### Example
+
+```sh
+cpdctl project delete \
+    --project-id 6ee2c24f-d0a9-4e30-b0fc-5ae36a66c1a8
+```
 
 <a id='space_list'></a>
 ## &#8226; space list
@@ -11273,6 +14321,25 @@ Values:
 
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for list.
+
+#### Example
+
+```sh
+cpdctl space list \
+    --start exampleString \
+    --limit 10 \
+    --total-count true \
+    --id exampleString \
+    --tags exampleString \
+    --include exampleString \
+    --member exampleString \
+    --roles exampleString \
+    --bss-account-id exampleString \
+    --name name=QA \
+    --sub-name sub_name=substring \
+    --compute-crn compute.crn=crn:v1:staging:public:pm-20-devops:us-south:a/eb484b0080c04ee0b0889afd679273bd:a8f87602-b71a-4085-95d2-3027873352b3:: \
+    --type type=cpd
+```
 
 <a id='space_create'></a>
 ## &#8226; space create
@@ -11340,6 +14407,20 @@ cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] 
 `--storage-resource-crn` (string)
 :   A cloud resource name of the Cloud Object Storage instance. This option provides a value for a sub-field of the JSON option 'storage'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl space create \
+    --name exampleString \
+    --compute '[{"crn": "exampleString", "name": "exampleString"}]' \
+    --description exampleString \
+    --generator Spaces-API_Swagger-Docs \
+    --stage '{"name": "exampleString", "production": false}' \
+    --storage '{"delegated": false, "resource_crn": "exampleString"}' \
+    --tags exampleString,anotherTestString \
+    --type cpd
+```
+
 <a id='space_delete'></a>
 ## &#8226; space delete
 
@@ -11354,6 +14435,13 @@ cpdctl space delete --space-id SPACE-ID
 
 `--space-id` (string)
 :   The space identification. Required.
+
+#### Example
+
+```sh
+cpdctl space delete \
+    --space-id exampleString
+```
 
 <a id='space_get'></a>
 ## &#8226; space get
@@ -11376,6 +14464,14 @@ cpdctl space get --space-id SPACE-ID [--include INCLUDE]
 Available fields:
  * members (returns up to 100 members)
  * nothing (does not return space entity and metadata).
+
+#### Example
+
+```sh
+cpdctl space get \
+    --space-id exampleString \
+    --include exampleString
+```
 
 <a id='space_update'></a>
 ## &#8226; space update
@@ -11414,6 +14510,16 @@ cpdctl space update --space-id SPACE-ID [--compute COMPUTE] [--description DESCR
 `--stage-name` (string)
 :   Updated stage name.
 
+#### Example
+
+```sh
+cpdctl space update \
+    --compute '[{"crn": "exampleString", "name": "exampleString", "guid": "exampleString", "type": "machine_learning"}]' \
+    --description exampleString \
+    --name exampleString \
+    --stage-name exampleString
+```
+
 <a id='space_member_list'></a>
 ## &#8226; space member list
 
@@ -11451,6 +14557,19 @@ cpdctl space member list --space-id SPACE-ID [--start START] [--limit LIMIT] [--
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for member-list.
 
+#### Example
+
+```sh
+cpdctl space member list \
+    --space-id exampleString \
+    --start exampleString \
+    --limit 10 \
+    --total-count true \
+    --type exampleString \
+    --role exampleString \
+    --state exampleString
+```
+
 <a id='space_member_create'></a>
 ## &#8226; space member create
 
@@ -11471,6 +14590,14 @@ cpdctl space member create --space-id SPACE-ID --members MEMBERS
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--members=@path/to/file.json`.
 
+#### Example
+
+```sh
+cpdctl space member create \
+    --space-id exampleString \
+    --members '[{"id": "exampleString", "role": "viewer", "state": "active", "type": "user"}]'
+```
+
 <a id='space_member_delete'></a>
 ## &#8226; space member delete
 
@@ -11489,6 +14616,14 @@ cpdctl space member delete --space-id SPACE-ID --member-id MEMBER-ID
 `--member-id` (string)
 :   The member identification. Required.
 
+#### Example
+
+```sh
+cpdctl space member delete \
+    --space-id exampleString \
+    --member-id exampleString
+```
+
 <a id='space_member_get'></a>
 ## &#8226; space member get
 
@@ -11506,6 +14641,14 @@ cpdctl space member get --space-id SPACE-ID --member-id MEMBER-ID
 
 `--member-id` (string)
 :   The member identification. Required.
+
+#### Example
+
+```sh
+cpdctl space member get \
+    --space-id exampleString \
+    --member-id exampleString
+```
 
 <a id='space_member_update'></a>
 ## &#8226; space member update
@@ -11542,6 +14685,14 @@ cpdctl space member update --space-id SPACE-ID --member-id MEMBER-ID --role ROLE
 
     Allowable values are: `active`, `pending`.
 
+#### Example
+
+```sh
+cpdctl space member update \
+    --role viewer \
+    --state active
+```
+
 <a id='space_wait'></a>
 ## &#8226; space wait
 Wait until the space creation or deletion is finished.
@@ -11566,17 +14717,14 @@ Wait until the space creation or deletion is finished.
 <a id='wx-ai_deployment_create'></a>
 ## &#8226; wx-ai deployment create
 
-Create a new deployment, currently the only supported type is `online`. If this is a deployment for a prompt tune then the `asset` object must exist and the `id` must be the `id` of the `model` that was created after the prompt training. If this is a deployment for a prompt template then the `prompt_template` object should exist and the `id` must be the `id` of the prompt template to be deployed. If this is a deployment for a custom foundation model then the `online` object must exist, the `asset` object must exist and point to the model object that describes the custom foundation model, and the `hardware_spec` is mandatory. Note that the `base_model_id` will be returned and will be the base model id that is defined in the model asset (`asset.id`). If this is a deployment for a fine tuned model then the `asset.id` must point to the model that was created after the fine tuning. In case of a fine tuned model with a template, the field `base_deployment_id` will be the tuned model deployment. Pre-defined hardware specifications are provided for custom foundation model deployments:
+Create a new deployment, currently the only supported type is `online`.
 
-  - `WX-S`:  1 GPU, Request 1 CPU, Limit 2 CPU and 60 GB (Request and Limit) - 1B to 20B parameters
-  - `WX-M`:  2 GPU, Request 2 CPU, Limit 3 CPU and 120 GB (Request and Limit) - 21B to 40B parameters
-  - `WX-L`:  4 GPU, Request 4 CPU, Limit 5 CPU and 240 GB (Request and Limit) - 41B to 80B parameters
-  - `WX-XL`: 8 GPU, Request 8 CPU, Limit 9 CPU and 600 GB (Request and Limit) - 81B to 200B parameters
+If this is a deployment for a prompt tune then the `asset` object must exist and the `id` must be the `id` of the `model` that was created after the prompt training.
 
-A prompt template can be used in conjunction with a custom foundation model by specifying the `prompt_template` object with the `id` point to the prompt template.
+If this is a deployment for a prompt template then the `prompt_template` object should exist and the `id` must be the `id` of the prompt template to be deployed.
 
 ```sh
-cpdctl wx-ai deployment create --name NAME [--online ONLINE | --online-parameters ONLINE-PARAMETERS] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--custom CUSTOM] [--prompt-template PROMPT-TEMPLATE | --prompt-template-id PROMPT-TEMPLATE-ID] [--hardware-spec HARDWARE-SPEC | --hardware-spec-id HARDWARE-SPEC-ID --hardware-spec-rev HARDWARE-SPEC-REV --hardware-spec-name HARDWARE-SPEC-NAME --hardware-spec-num-nodes HARDWARE-SPEC-NUM-NODES] [--hardware-request HARDWARE-REQUEST | --hardware-request-size HARDWARE-REQUEST-SIZE --hardware-request-num-nodes HARDWARE-REQUEST-NUM-NODES] [--asset ASSET | --asset-id ASSET-ID --asset-rev ASSET-REV] [--base-model-id BASE-MODEL-ID] [--base-deployment-id BASE-DEPLOYMENT-ID]
+cpdctl wx-ai deployment create --name NAME [--online ONLINE | --online-parameters ONLINE-PARAMETERS] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--custom CUSTOM] [--prompt-template PROMPT-TEMPLATE | --prompt-template-id PROMPT-TEMPLATE-ID] [--hardware-spec HARDWARE-SPEC | --hardware-spec-id HARDWARE-SPEC-ID --hardware-spec-rev HARDWARE-SPEC-REV --hardware-spec-name HARDWARE-SPEC-NAME --hardware-spec-num-nodes HARDWARE-SPEC-NUM-NODES] [--hardware-request HARDWARE-REQUEST | --hardware-request-size HARDWARE-REQUEST-SIZE --hardware-request-num-nodes HARDWARE-REQUEST-NUM-NODES] [--asset ASSET | --asset-id ASSET-ID --asset-rev ASSET-REV] [--base-model-id BASE-MODEL-ID]
 ```
 
 
@@ -11633,12 +14781,7 @@ The `serving_name` can be provided in the `online.parameters`. This JSON option 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--asset=@path/to/file.json`.
 
 `--base-model-id` (string)
-:   The base model that is required for this deployment if this is for a prompt template or a prompt tune for an IBM foundation model (so this does not apply for custom foundation models).
-
-`--base-deployment-id` (string)
-:   The base deployment when this is a custom foundation model with a prompt template. The `id` must be the id of the custom foundation model deployment.
-
-    The maximum length is `128` characters. The value must match regular expression `/^[-0-9a-z]+$/`.
+:   The base model that is required for this deployment if this is for a prompt template or a prompt tune for an IBM foundation model.
 
 `--online-parameters` (<a href="#cli-online-deployment-parameters-example-schema-wx-ai">`OnlineDeploymentParameters`</a>)
 :   A set of key-value pairs that are used to configure the deployment. This option provides a value for a sub-field of the JSON option 'online'. It is mutually exclusive with that option.
@@ -11673,6 +14816,24 @@ The `serving_name` can be provided in the `online.parameters`. This JSON option 
 
 `--asset-rev` (string)
 :   The revision of the referenced resource. This option provides a value for a sub-field of the JSON option 'asset'. It is mutually exclusive with that option.
+
+#### Examples
+
+```sh
+cpdctl wx-ai deployment create \
+    --name text_classification \
+    --online '{"parameters": {"serving_name": "churn"}}' \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id exampleString \
+    --description exampleString \
+    --tags exampleString,anotherTestString \
+    --custom '{"anyKey": "anyValue"}' \
+    --prompt-template '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"}' \
+    --hardware-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}' \
+    --hardware-request '{"size": "gpu_s", "num_nodes": 72.5}' \
+    --asset '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}' \
+    --base-model-id exampleString
+```
 
 <a id='wx-ai_deployment_list'></a>
 ## &#8226; wx-ai deployment list
@@ -11721,7 +14882,7 @@ The supported deployment types are (see the description for `deployed_asset_type
 
 These can be combined with the flag `prompt_template` like this:
 
-1. `type=prompt_tune` - return all prompt tuned model deployments. 2. `type=prompt_tune and prompt_template` - return all prompt tuned model deployments with a prompt template. 3. `type=foundation_model` - return all prompt template deployments. 4. `type=foundation_model and prompt_template` - return all prompt template deployments - this is the same as the previous query because a `foundation_model` can only exist with a prompt template. 5. `type=custom_foundation_model` - return all custom model deployments. 6. `type=custom_foundation_model and prompt_template` - return all custom model deployments with a prompt template. 7. `type=prompt_template` - return all deployments with a prompt template.
+1. `type=prompt_tune` - return all prompt tuned model deployments. 2. `type=prompt_tune and prompt_template` - return all prompt tuned model deployments with a prompt template. 3. `type=foundation_model` - return all prompt template deployments. 4. `type=foundation_model and prompt_template` - return all prompt template deployments - this is the same as the previous query because a `foundation_model` can only exist with a prompt template. 5. `type=prompt_template` - return all deployments with a prompt template.
 
 `--state` (string)
 :   Retrieves the resources filtered by state. Allowed values are `initializing`, `updating`, `ready` and `failed`.
@@ -11730,6 +14891,22 @@ These can be combined with the flag `prompt_template` like this:
 :   Returns whether `serving_name` is available for use or not. This query parameter cannot be combined with any other parameter except for `serving_name`.
 
     The default value is `false`.
+
+#### Example
+
+```sh
+cpdctl wx-ai deployment list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --serving-name classification \
+    --tag-value exampleString \
+    --asset-id exampleString \
+    --prompt-template-id exampleString \
+    --name exampleString \
+    --type exampleString \
+    --state exampleString \
+    --conflict false
+```
 
 <a id='wx-ai_deployment_get'></a>
 ## &#8226; wx-ai deployment get
@@ -11756,6 +14933,15 @@ cpdctl wx-ai deployment get --deployment-id DEPLOYMENT-ID [--space-id SPACE-ID] 
 
     The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
 
+#### Example
+
+```sh
+cpdctl wx-ai deployment get \
+    --deployment-id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+```
+
 <a id='wx-ai_deployment_update'></a>
 ## &#8226; wx-ai deployment update
 
@@ -11770,7 +14956,7 @@ Update the deployment metadata. The following parameters of deployment metadata 
 - `/prompt_template` - `replace` only
 - `/hardware_spec`
 - `/hardware_request`
-- `/base_model_id` - `replace` only (applicable only to prompt template deployments referring to IBM base foundation models) Since CloudPak for Data `5.0.3`.
+- `/base_model_id` - `replace` only (applicable only to prompt template deployments referring to IBM base foundation models) 
 
 The PATCH operation with path specified as `/online/parameters` can be used to update the `serving_name`.
 
@@ -11814,6 +15000,17 @@ cpdctl wx-ai deployment update --version VERSION --deployment-id DEPLOYMENT-ID [
 `--asset` (<a href="#cli-rel-example-schema-wx-ai">`Rel`</a>)
 :   A reference to a resource.
 
+#### Example
+
+```sh
+cpdctl wx-ai deployment update \
+    --tags t1,t2 \
+    --name my-resource \
+    --description 'This is my first resource.' \
+    --custom '{"anyKey": "anyValue"}' \
+    --asset '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}'
+```
+
 <a id='wx-ai_deployment_delete'></a>
 ## &#8226; wx-ai deployment delete
 
@@ -11838,6 +15035,15 @@ cpdctl wx-ai deployment delete --deployment-id DEPLOYMENT-ID [--space-id SPACE-I
 :   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
 
     The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+#### Example
+
+```sh
+cpdctl wx-ai deployment delete \
+    --deployment-id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+```
 
 <a id='wx-ai_deployment_text-generate'></a>
 ## &#8226; wx-ai deployment text-generate
@@ -11914,6 +15120,15 @@ Infer the next tokens for a given deployed model with a set of parameters. If a 
 `--space-id` (string)
 :    Deployment space identifier.
 
+#### Example
+```sh
+   cpdctl wx-ai deployment text-generate \
+    --id-or-name classification \
+    --input 'how far is paris from bangalore:\n' \
+    --parameters '{"decoding_method": "greedy", "length_penalty": {"decay_factor": 2.5, "start_index": 5}, "max_new_tokens": 100, "min_new_tokens": 5, "random_seed": 1, "stop_sequences": ["fail"], "temperature": 1.5, "time_limit": 600000, "top_k": 50, "top_p": 0.5, "repetition_penalty": 1.5, "truncate_input_tokens": 1, "return_options": {"input_text": true, "generated_tokens": true, "input_tokens": true, "token_logprobs": true, "token_ranks": true, "top_n_tokens": 2}, "include_stop_sequence": true, "typical_p": 0.5, "prompt_variables": {}}' \
+    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}'
+```
+
 <a id='wx-ai_deployment_text-generate-stream'></a>
 ## &#8226; wx-ai deployment text-generate-stream
 Infer the next tokens for a given deployed model with a set of parameters. This operation will return the output tokens as a stream of events. If a `serving_name` is used then it must match the `serving_name` that is returned in the `inference` when the deployment was created.
@@ -11989,6 +15204,15 @@ Infer the next tokens for a given deployed model with a set of parameters. This 
 `--space-id` (string)
 :    Deployment space identifier.
 
+#### Example
+```sh
+   cpdctl wx-ai deployment text-generate-stream \
+    --id-or-name classification \
+    --input exampleString \
+    --parameters '{"decoding_method": "greedy", "length_penalty": {"decay_factor": 2.5, "start_index": 5}, "max_new_tokens": 30, "min_new_tokens": 5, "random_seed": 1, "stop_sequences": ["fail"], "temperature": 1.5, "time_limit": 600000, "top_k": 50, "top_p": 0.5, "repetition_penalty": 1.5, "truncate_input_tokens": 1, "return_options": {"input_text": true, "generated_tokens": true, "input_tokens": true, "token_logprobs": true, "token_ranks": true, "top_n_tokens": 2}, "include_stop_sequence": true, "typical_p": 0.5, "prompt_variables": {}}' \
+    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}'
+```
+
 <a id='wx-ai_deployment_wait'></a>
 ## &#8226; wx-ai deployment wait
 Wait until the deployment becomes ready or failed.
@@ -12031,6 +15255,15 @@ Retrieve the list of deployed foundation models.
 `--tech-preview` ()
 :    See all the 'Tech Preview' models if entitled. The default value is false.
 
+#### Example
+```sh
+   cpdctl wx-ai foundation-model list-models \
+    --start exampleString \
+    --limit 50 \
+    --filters modelid_ibm/granite-13b-instruct-v2 \
+    --tech-preview false
+```
+
 <a id='wx-ai_foundation-model_list-tasks'></a>
 ## &#8226; wx-ai foundation-model list-tasks
 Retrieve the list of tasks that are supported by the foundation models.
@@ -12048,6 +15281,13 @@ Retrieve the list of tasks that are supported by the foundation models.
 
 `--start` (string)
 :    Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
+
+#### Example
+```sh
+   cpdctl wx-ai foundation-model list-tasks \
+    --start exampleString \
+    --limit 50
+```
 
 <a id='wx-ai_prompt_create'></a>
 ## &#8226; wx-ai prompt create
@@ -12133,6 +15373,22 @@ This creates a new prompt with the provided parameters.
 `--task-ids` (string)
 :    The maximum length is 1 item. The minimum length is 1 item.
 
+#### Example
+```sh
+   cpdctl wx-ai prompt create \
+    --name 'My Prompt' \
+    --prompt '{"input": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}], "external_information": {"external_prompt_id": "exampleString", "external_model_id": "exampleString", "external_model_provider": "exampleString", "external_prompt": {"url": "exampleString", "additional_information": [[{"key": "exampleString"}]]}, "external_model": {"name": "exampleString", "url": "exampleString"}}}' \
+    --description 'My First Prompt' \
+    --created-at 1711504485261 \
+    --task-ids exampleString,anotherTestString \
+    --lock '{"locked": true, "lock_type": "edit", "locked_by": "IBMid-000000YYY0"}' \
+    --model-version '{"number": "2.0.0-rc.7", "tag": "tag", "description": "Description of the model version."}' \
+    --prompt-variables '{}' \
+    --input-mode structured \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='wx-ai_prompt_get'></a>
 ## &#8226; wx-ai prompt get
 This retrieves a prompt / prompt template with the given id.
@@ -12156,6 +15412,15 @@ This retrieves a prompt / prompt template with the given id.
 
 `--space-id` (string)
 :    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+
+#### Example
+```sh
+   cpdctl wx-ai prompt get \
+    --prompt-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString \
+    --restrict-model-parameters true
+```
 
 <a id='wx-ai_prompt_update'></a>
 ## &#8226; wx-ai prompt update
@@ -12232,6 +15497,23 @@ This updates a prompt / prompt template with the given id.
 `--task-ids` (string)
 :    The maximum length is 1 item. The minimum length is 1 item.
 
+#### Example
+```sh
+   cpdctl wx-ai prompt update \
+    --prompt-id exampleString \
+    --name 'My Prompt' \
+    --prompt '{"input": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]}' \
+    --id 1c29d9a1-9ba6-422d-aa39-517b26adc147 \
+    --description 'My First Prompt' \
+    --task-ids generation,generation \
+    --governance-tracked true \
+    --model-version '{"number": "2.0.0-rc.7", "tag": "tag", "description": "Description of the model version."}' \
+    --prompt-variables '{}' \
+    --input-mode structured \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='wx-ai_prompt_delete'></a>
 ## &#8226; wx-ai prompt delete
 This delets a prompt / prompt template with the given id.
@@ -12252,6 +15534,14 @@ This delets a prompt / prompt template with the given id.
 
 `--space-id` (string)
 :    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+
+#### Example
+```sh
+   cpdctl wx-ai prompt delete \
+    --prompt-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString
+```
 
 <a id='wx-ai_prompt_update-lock'></a>
 ## &#8226; wx-ai prompt update-lock
@@ -12286,6 +15576,18 @@ Modifies the current locked state of a prompt.
 `--space-id` (string)
 :    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
 
+#### Example
+```sh
+   cpdctl wx-ai prompt update-lock \
+    --prompt-id exampleString \
+    --locked true \
+    --lock-type edit \
+    --locked-by IBMid-000000YYY0 \
+    --project-id exampleString \
+    --space-id exampleString \
+    --force true
+```
+
 <a id='wx-ai_prompt_get-lock'></a>
 ## &#8226; wx-ai prompt get-lock
 Retrieves the current locked state of a prompt.
@@ -12306,6 +15608,14 @@ Retrieves the current locked state of a prompt.
 
 `--space-id` (string)
 :    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+
+#### Example
+```sh
+   cpdctl wx-ai prompt get-lock \
+    --prompt-id exampleString \
+    --space-id exampleString \
+    --project-id exampleString
+```
 
 <a id='wx-ai_prompt_get-input'></a>
 ## &#8226; wx-ai prompt get-input
@@ -12334,6 +15644,16 @@ Computes the inference input string based on state of a prompt. Optionally repla
 `--space-id` (string)
 :    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
 
+#### Example
+```sh
+   cpdctl wx-ai prompt get-input \
+    --prompt-id exampleString \
+    --input 'Some text with variables.' \
+    --prompt-variables '{}' \
+    --space-id exampleString \
+    --project-id exampleString
+```
+
 <a id='wx-ai_prompt_add-chat-item'></a>
 ## &#8226; wx-ai prompt add-chat-item
 This adds new chat items to the given prompt.
@@ -12357,6 +15677,15 @@ This adds new chat items to the given prompt.
 
 `--space-id` (string)
 :    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+
+#### Example
+```sh
+   cpdctl wx-ai prompt add-chat-item \
+    --prompt-id exampleString \
+    --chat-item '[{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]' \
+    --space-id exampleString \
+    --project-id exampleString
+```
 
 <a id='wx-ai_prompt-session_create'></a>
 ## &#8226; wx-ai prompt-session create
@@ -12409,6 +15738,21 @@ This creates a new prompt session.
 `--prompts` (string)
 :    The maximum length is 50 items. The minimum length is 0 items.
 
+#### Example
+```sh
+   cpdctl wx-ai prompt-session create \
+    --name 'Session 1' \
+    --id 1c29d9a1-9ba6-422d-aa39-517b26adc147 \
+    --description 'My First Prompt Session' \
+    --created-at 1711504485261 \
+    --created-by IBMid-000000YYY0 \
+    --last-updated-at 1711504485261 \
+    --last-updated-by IBMid-000000YYY0 \
+    --lock '{"locked": true, "lock_type": "edit", "locked_by": "IBMid-000000YYY0"}' \
+    --prompts '[{"id": "1c29d9a1-9ba6-422d-aa39-517b26adc147", "name": "My Prompt", "description": "My First Prompt", "prompt_variables": {}, "is_template": true, "created_at": 1711504485261, "input_mode": "structured", "prompt": {"input": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]}}]' \
+    --project-id exampleString
+```
+
 <a id='wx-ai_prompt-session_get'></a>
 ## &#8226; wx-ai prompt-session get
 This retrieves a prompt session with the given id.
@@ -12429,6 +15773,14 @@ This retrieves a prompt session with the given id.
 
 `--session-id` (string)
 :    Required. Prompt Session ID.
+
+#### Example
+```sh
+   cpdctl wx-ai prompt-session get \
+    --session-id exampleString \
+    --project-id exampleString \
+    --prefetch true
+```
 
 <a id='wx-ai_prompt-session_update'></a>
 ## &#8226; wx-ai prompt-session update
@@ -12454,6 +15806,15 @@ This updates a prompt session with the given id.
 `--session-id` (string)
 :    Required. Prompt Session ID.
 
+#### Example
+```sh
+   cpdctl wx-ai prompt-session update \
+    --session-id exampleString \
+    --name 'Session 1' \
+    --description 'My First Prompt Session' \
+    --project-id exampleString
+```
+
 <a id='wx-ai_prompt-session_delete'></a>
 ## &#8226; wx-ai prompt-session delete
 This deletes a prompt session with the given id.
@@ -12471,6 +15832,13 @@ This deletes a prompt session with the given id.
 
 `--session-id` (string)
 :    Required. Prompt Session ID.
+
+#### Example
+```sh
+   cpdctl wx-ai prompt-session delete \
+    --session-id exampleString \
+    --project-id exampleString
+```
 
 <a id='wx-ai_prompt-session_add-entry'></a>
 ## &#8226; wx-ai prompt-session add-entry
@@ -12532,6 +15900,21 @@ This creates a new prompt associated with the given session.
 `--session-id` (string)
 :    Required. Prompt Session ID.
 
+#### Example
+```sh
+   cpdctl wx-ai prompt-session add-entry \
+    --session-id exampleString \
+    --name 'My Prompt' \
+    --created-at 1711504485261 \
+    --prompt '{"input": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]}' \
+    --id 1c29d9a1-9ba6-422d-aa39-517b26adc147 \
+    --description 'My First Prompt' \
+    --prompt-variables '{}' \
+    --is-template true \
+    --input-mode structured \
+    --project-id exampleString
+```
+
 <a id='wx-ai_prompt-session_list-entries'></a>
 ## &#8226; wx-ai prompt-session list-entries
 List entries from a given session.
@@ -12556,6 +15939,15 @@ List entries from a given session.
 `--session-id` (string)
 :    Required. Prompt Session ID.
 
+#### Example
+```sh
+   cpdctl wx-ai prompt-session list-entries \
+    --session-id exampleString \
+    --project-id exampleString \
+    --bookmark exampleString \
+    --limit exampleString
+```
+
 <a id='wx-ai_prompt-session_add-chat-item'></a>
 ## &#8226; wx-ai prompt-session add-chat-item
 This adds new chat items to the given entry.
@@ -12579,6 +15971,15 @@ This adds new chat items to the given entry.
 
 `--session-id` (string)
 :    Required. Prompt Session ID.
+
+#### Example
+```sh
+   cpdctl wx-ai prompt-session add-chat-item \
+    --session-id exampleString \
+    --entry-id exampleString \
+    --chat-item '[{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]' \
+    --project-id exampleString
+```
 
 <a id='wx-ai_prompt-session_update-lock'></a>
 ## &#8226; wx-ai prompt-session update-lock
@@ -12610,6 +16011,17 @@ Modifies the current locked state of a prompt session.
 `--session-id` (string)
 :    Required. Prompt Session ID.
 
+#### Example
+```sh
+   cpdctl wx-ai prompt-session update-lock \
+    --session-id exampleString \
+    --locked true \
+    --lock-type edit \
+    --locked-by IBMid-000000YYY0 \
+    --project-id exampleString \
+    --force true
+```
+
 <a id='wx-ai_prompt-session_get-lock'></a>
 ## &#8226; wx-ai prompt-session get-lock
 Retrieves the current locked state of a prompt session.
@@ -12627,6 +16039,13 @@ Retrieves the current locked state of a prompt session.
 
 `--session-id` (string)
 :    Required. Prompt Session ID.
+
+#### Example
+```sh
+   cpdctl wx-ai prompt-session get-lock \
+    --session-id exampleString \
+    --project-id exampleString
+```
 
 <a id='wx-ai_prompt-session_get-entry'></a>
 ## &#8226; wx-ai prompt-session get-entry
@@ -12649,6 +16068,14 @@ This retrieves a prompt session entry with the given id.
 `--session-id` (string)
 :    Required. Prompt Session ID.
 
+#### Example
+```sh
+   cpdctl wx-ai prompt-session get-entry \
+    --session-id exampleString \
+    --entry-id exampleString \
+    --project-id exampleString
+```
+
 <a id='wx-ai_prompt-session_delete-entry'></a>
 ## &#8226; wx-ai prompt-session delete-entry
 This deletes a prompt session entry with the given id.
@@ -12669,6 +16096,14 @@ This deletes a prompt session entry with the given id.
 
 `--session-id` (string)
 :    Required. Prompt Session ID.
+
+#### Example
+```sh
+   cpdctl wx-ai prompt-session delete-entry \
+    --session-id exampleString \
+    --entry-id exampleString \
+    --project-id exampleString
+```
 
 <a id='wx-ai_text-extraction_create'></a>
 ## &#8226; wx-ai text-extraction create
@@ -12727,6 +16162,18 @@ Start a request to extract text and metadata from documents.
 `--steps-tables-processing` (string)
 :    The tables processing text extraction step.
 
+#### Example
+```sh
+   cpdctl wx-ai text-extraction create \
+    --document-reference '{"type": "connection_asset", "connection": {"id": "6f5688fd-f3bf-42c2-a18b-49c0d8a1920d"}, "location": {"file_name": "files/document.pdf", "bucket": "exampleString"}}' \
+    --results-reference '{"type": "connection_asset", "connection": {"id": "6f5688fd-f3bf-42c2-a18b-49c0d8a1920d"}, "location": {"file_name": "files/document.pdf", "bucket": "exampleString"}}' \
+    --steps '{"ocr": {"languages_list": ["en"]}, "tables_processing": {"enabled": true}}' \
+    --assembly-json '{"anyKey": "anyValue"}' \
+    --custom '{"anyKey": "anyValue"}' \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id exampleString
+```
+
 <a id='wx-ai_text-extraction_list'></a>
 ## &#8226; wx-ai text-extraction list
 Retrieve the list of text extraction requests for the specified space or project.
@@ -12754,6 +16201,15 @@ Retrieve the list of text extraction requests for the specified space or project
 `--start` (string)
 :    Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
 
+#### Example
+```sh
+   cpdctl wx-ai text-extraction list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --start exampleString \
+    --limit 50
+```
+
 <a id='wx-ai_text-extraction_get'></a>
 ## &#8226; wx-ai text-extraction get
 Retrieve the text extraction request with the specified identifier.
@@ -12774,6 +16230,14 @@ Retrieve the text extraction request with the specified identifier.
 
 `--space-id` (string)
 :    The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+
+#### Example
+```sh
+   cpdctl wx-ai text-extraction get \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+```
 
 <a id='wx-ai_text-extraction_delete'></a>
 ## &#8226; wx-ai text-extraction delete
@@ -12798,6 +16262,15 @@ Cancel the specified text extraction request and delete any associated results.
 
 `--space-id` (string)
 :    The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+
+#### Example
+```sh
+   cpdctl wx-ai text-extraction delete \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --hard-delete true
+```
 
 <a id='wx-ai_training_create'></a>
 ## &#8226; wx-ai training create
@@ -12921,7 +16394,7 @@ means that it is stored in the space or project. This JSON option can instead be
 `--results-reference-type` (string)
 :   The data source type like `connection_asset` or `data_asset`. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
 
-    Allowable values are: `connection_asset`, `data_asset`, `container`, `url`, `fs`.
+    Allowable values are: `connection_asset`, `data_asset`, `container`, `url`.
 
 `--results-reference-connection` (<a href="#cli-data-connection-example-schema-wx-ai">`DataConnection`</a>)
 :   Contains a set of fields specific to each connection.
@@ -12990,6 +16463,22 @@ See here for [details about specifying connections](#datareferences). This optio
 `--prompt-tuning-init-text` (string)
 :   Initialization text to be used if `init_method` is set to `text` otherwise this will be ignored. This option provides a value for a sub-field of the JSON option 'prompt-tuning'. It is mutually exclusive with that option.
 
+#### Examples
+
+```sh
+cpdctl wx-ai training create \
+    --name my-prompt-tune-training \
+    --results-reference '{"id": "exampleString", "type": "container", "connection": {}, "location": {}}' \
+    --space-id exampleString \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --description exampleString \
+    --tags exampleString,anotherTestString \
+    --prompt-tuning '{"base_model": {"model_id": "google/flan-t5-xl"}, "task_id": "classification", "tuning_type": "prompt_tuning", "num_epochs": 30, "learning_rate": 0.4, "accumulate_steps": 3, "verbalizer": "rte { 0 : entailment, 1 : not entailment } {{input}}", "batch_size": 10, "max_input_tokens": 100, "max_output_tokens": 100, "init_method": "text", "init_text": "exampleString"}' \
+    --training-data-references '[{"id": "tune1_data.json", "type": "container", "connection": {}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
+    --custom '{"anyKey": "anyValue"}' \
+    --auto-update-model true
+```
+
 <a id='wx-ai_training_list'></a>
 ## &#8226; wx-ai training list
 
@@ -13035,6 +16524,19 @@ cpdctl wx-ai training list [--start START] [--limit LIMIT] [--total-count TOTAL-
 `--all-pages` (bool)
 :   Invoke multiple requests to display all pages of the collection for training-list.
 
+#### Example
+
+```sh
+cpdctl wx-ai training list \
+    --start exampleString \
+    --limit 50 \
+    --total-count true \
+    --tag-value exampleString \
+    --state queued \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+```
+
 <a id='wx-ai_training_get'></a>
 ## &#8226; wx-ai training get
 
@@ -13059,6 +16561,15 @@ cpdctl wx-ai training get --training-id TRAINING-ID [--space-id SPACE-ID] [--pro
 :   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
 
     The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+#### Example
+
+```sh
+cpdctl wx-ai training get \
+    --training-id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+```
 
 <a id='wx-ai_training_delete'></a>
 ## &#8226; wx-ai training delete
@@ -13087,6 +16598,16 @@ cpdctl wx-ai training delete --training-id TRAINING-ID [--space-id SPACE-ID] [--
 
 `--hard-delete` (bool)
 :   Set to true in order to also delete the job or request metadata.
+
+#### Example
+
+```sh
+cpdctl wx-ai training delete \
+    --training-id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --hard-delete true
+```
 
 <a id='wx-ai_training_wait'></a>
 ## &#8226; wx-ai training wait
@@ -13181,6 +16702,17 @@ Infer the next tokens for a given deployed model with a set of parameters.
 `--space-id` (string)
 :    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
 
+#### Example
+```sh
+   cpdctl wx-ai text generate \
+    --input 'Generate a marketing email advertising a new sale with the following characteristics:\n\nCompany: Swimwear Unlimited\n\nOffer Keywords: {Select customers only, mid-summer fun, swimwear sale}\n\nOffer End Date: July 15\n\nAdvertisement Tone: Exciting!\n\nInclude no URLs.\n\nInclude no telephone numbers.\n' \
+    --model-id google/flan-ul2 \
+    --space-id exampleString \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --parameters '{"decoding_method": "greedy", "length_penalty": {"decay_factor": 2.5, "start_index": 5}, "max_new_tokens": 30, "min_new_tokens": 5, "random_seed": 1, "stop_sequences": ["fail"], "temperature": 0.8, "time_limit": 600000, "top_k": 50, "top_p": 0.5, "repetition_penalty": 1.5, "truncate_input_tokens": 1, "return_options": {"input_text": true, "generated_tokens": true, "input_tokens": true, "token_logprobs": true, "token_ranks": true, "top_n_tokens": 2}, "include_stop_sequence": true}' \
+    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}'
+```
+
 <a id='wx-ai_text_generate-stream'></a>
 ## &#8226; wx-ai text generate-stream
 Infer the next tokens for a given deployed model with a set of parameters. This operation will return the output tokens as a stream of events.
@@ -13253,6 +16785,17 @@ Infer the next tokens for a given deployed model with a set of parameters. This 
 `--space-id` (string)
 :    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
 
+#### Example
+```sh
+   cpdctl wx-ai text generate-stream \
+    --input 'Generate a marketing email advertising a new sale with the following characteristics:\n\nCompany: Swimwear Unlimited\n\nOffer Keywords: {Select customers only, mid-summer fun, swimwear sale}\n\nOffer End Date: July 15\n\nAdvertisement Tone: Exciting!\n\nInclude no URLs.\n\nInclude no telephone numbers.\n' \
+    --model-id google/flan-ul2 \
+    --space-id exampleString \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --parameters '{"decoding_method": "greedy", "length_penalty": {"decay_factor": 2.5, "start_index": 5}, "max_new_tokens": 30, "min_new_tokens": 5, "random_seed": 1, "stop_sequences": ["fail"], "temperature": 0.8, "time_limit": 600000, "top_k": 50, "top_p": 0.5, "repetition_penalty": 1.5, "truncate_input_tokens": 1, "return_options": {"input_text": true, "generated_tokens": true, "input_tokens": true, "token_logprobs": true, "token_ranks": true, "top_n_tokens": 2}, "include_stop_sequence": true}' \
+    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}'
+```
+
 <a id='wx-ai_text_tokenize'></a>
 ## &#8226; wx-ai text tokenize
 The text tokenize operation allows you to check the conversion of provided input to tokens for a given model. It splits text into words or sub-words, which then are converted to ids through a look-up table (vocabulary). Tokenization allows the model to have a reasonable vocabulary size.
@@ -13282,6 +16825,16 @@ The text tokenize operation allows you to check the conversion of provided input
 
 `--space-id` (string)
 :    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+
+#### Example
+```sh
+   cpdctl wx-ai text tokenize \
+    --model-id google/flan-ul2 \
+    --input 'Write a tagline for an alumni association: Together we' \
+    --space-id exampleString \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --parameters '{"return_tokens": true}'
+```
 
 <a id='wx-ai_text_calculate-embeddings'></a>
 ## &#8226; wx-ai text calculate-embeddings
@@ -13315,6 +16868,16 @@ Generate embeddings from text input.
 
 `--space-id` (string)
 :    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+
+#### Example
+```sh
+   cpdctl wx-ai text calculate-embeddings \
+    --model-id slate \
+    --inputs 'Youth craves thrills while adulthood cherishes wisdom.' \
+    --space-id exampleString \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --parameters '{"truncate_input_tokens": 1, "return_options": {"input_text": true}}'
+```
 
 <a id='wx-ai_text_rerank'></a>
 ## &#8226; wx-ai text rerank
@@ -13351,6 +16914,17 @@ Rerank texts based on some queries.
 
 `--space-id` (string)
 :    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+
+#### Example
+```sh
+   cpdctl wx-ai text rerank \
+    --model-id cross-encoder/ms-marco-minilm-l-12-v2 \
+    --inputs '[{"text": "In my younger years, I often reveled in the excitement of spontaneous adventures and embraced the thrill of the unknown, whereas in my grownup life, I\'ve come to appreciate the comforting stability of a well-established routine."}]' \
+    --query 'As a Youth, I craved excitement while in adulthood I followed Enthusiastic Pursuit.' \
+    --space-id exampleString \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --parameters '{"truncate_input_tokens": 1, "return_options": {"top_n": 2, "inputs": false, "query": false}}'
+```
 
 <a id='wx-ai_text_chat'></a>
 ## &#8226; wx-ai text chat
@@ -13424,6 +16998,28 @@ Infer the next tokens for a given deployed model with a set of parameters.
 `--top-p` (float)
 :    An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or 'temperature' but not both. The default value is 1. The value must be less than 1. The value must be greater than 0.
 
+#### Example
+```sh
+   cpdctl wx-ai text chat \
+    --model-id meta-llama/llama-3-8b-instruct \
+    --messages '[{"role": "TextChatMessageAssistant", "content": "You are a helpful assistant.", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
+    --space-id exampleString \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --tools '[{"type": "function", "function": {"name": "exampleString", "description": "exampleString", "parameters": {"anyKey": "anyValue"}}}]' \
+    --tool-choice-option exampleString \
+    --tool-choice '{"type": "function", "function": {"name": "exampleString"}}' \
+    --frequency-penalty 0 \
+    --logprobs false \
+    --top-logprobs 0 \
+    --max-tokens 100 \
+    --n 1 \
+    --presence-penalty 0 \
+    --response-format '{"type": "json_object"}' \
+    --temperature 0 \
+    --top-p 1 \
+    --time-limit 1000
+```
+
 <a id='wx-ai_text_chat-stream'></a>
 ## &#8226; wx-ai text chat-stream
 Infer the next tokens for a given deployed model with a set of parameters. This operation will return the output tokens as a stream of events.
@@ -13496,6 +17092,28 @@ Infer the next tokens for a given deployed model with a set of parameters. This 
 `--top-p` (float)
 :    An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or 'temperature' but not both. The default value is 1. The value must be less than 1. The value must be greater than 0.
 
+#### Example
+```sh
+   cpdctl wx-ai text chat-stream \
+    --model-id exampleString \
+    --messages '[{"role": "TextChatMessageAssistant", "content": "exampleString", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --tools '[{"type": "function", "function": {"name": "exampleString", "description": "exampleString", "parameters": {"anyKey": "anyValue"}}}]' \
+    --tool-choice-option exampleString \
+    --tool-choice '{"type": "function", "function": {"name": "exampleString"}}' \
+    --frequency-penalty 0 \
+    --logprobs false \
+    --top-logprobs 0 \
+    --max-tokens 1024 \
+    --n 1 \
+    --presence-penalty 0 \
+    --response-format '{"type": "json_object"}' \
+    --temperature 1 \
+    --top-p 1 \
+    --time-limit 600000
+```
+
 <a id='wx-ai_custom-foundation-model_list'></a>
 ## &#8226; wx-ai custom-foundation-model list
 Retrieve the custom foundation models.
@@ -13510,6 +17128,13 @@ Retrieve the custom foundation models.
 
 `--start` (string)
 :    Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
+
+#### Example
+```sh
+   cpdctl wx-ai custom-foundation-model list \
+    --start exampleString \
+    --limit 50
+```
 
 # Schema examples
 ### &#8226; AssetMetadata
@@ -15641,10 +19266,7 @@ The following example shows the format of the OnlineDeployment object.
 
 {
   "parameters" : {
-    "serving_name" : "churn",
-    "foundation_model" : {
-      "anyKey" : "anyValue"
-    }
+    "serving_name" : "churn"
   }
 }
 ```
