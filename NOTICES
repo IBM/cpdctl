@@ -39,6 +39,7 @@ A) Apache Software License 2.0
 The Program includes some or all of the following that IBM obtained under the Apache License Version 2.0:
 
 - github.com/cloudfoundry/jibber_jabber
+- github.com/containerd/console
 - github.com/go-logr/logr
 - github.com/go-openapi/errors
 - github.com/go-openapi/strfmt
@@ -47,7 +48,6 @@ The Program includes some or all of the following that IBM obtained under the Ap
 - github.com/inconshreveable/mousetrap
 - github.com/jmespath/go-jmespath
 - github.com/looplab/fsm
-- github.com/matttproud/golang_protobuf_extensions
 - github.com/modern-go/concurrent
 - github.com/modern-go/reflect2
 - github.com/oklog/ulid
@@ -202,6 +202,9 @@ B) BSD License
 
 The Program includes some or all of the following that IBM obtained under the BSD License:
 
+- github.com/atotto/clipboard
+  Copyright (c) 2013 Ato Araki. All rights reserved.
+
 - github.com/cheggaaa/pb/v3
   Copyright (c) 2012-2015, Sergey Cherepanov
   All rights reserved
@@ -214,9 +217,6 @@ The Program includes some or all of the following that IBM obtained under the BS
   Copyright (c) 2013, The GoGo Authors. All rights reserved.
   Copyright 2010 The Go Authors.  All rights reserved.
 
-- github.com/golang/protobuf
-  Copyright 2010 The Go Authors.  All rights reserved.
-
 - github.com/google/go-cmp
   Copyright (c) 2017 The Go Authors. All rights reserved.
 
@@ -226,6 +226,10 @@ The Program includes some or all of the following that IBM obtained under the BS
 - github.com/imdario/mergo
   Copyright (c) 2013 Dario Castañé. All rights reserved.
   Copyright (c) 2012 The Go Authors. All rights reserved.
+
+- github.com/munnerz/goautoneg
+  Copyright (c) 2011, Open Knowledge Foundation Ltd.
+  All rights reserved.
 
 - github.com/pkg/errors
   Copyright (c) 2015, Dave Cheney <dave@cheney.net>
@@ -247,6 +251,9 @@ The Program includes some or all of the following that IBM obtained under the BS
 
 - golang.org/x/net
   Copyright (c) 2009 The Go Authors. All rights reserved.
+
+- golang.org/x/sync
+  Copyright 2009 The Go Authors.
 
 - golang.org/x/sys
   Copyright (c) 2009 The Go Authors. All rights reserved.
@@ -333,6 +340,12 @@ The Program includes some or all of the following that IBM obtained under the MI
 - github.com/cespare/xxhash/v2
   Copyright (c) 2016 Caleb Spare
 
+- github.com/charmbracelet/bubbles
+  Copyright (c) 2020-2023 Charmbracelet, Inc
+
+- github.com/charmbracelet/lipgloss
+  Copyright (c) 2021-2023 Charmbracelet, Inc
+
 - github.com/eko/gocache/lib/v4
   Copyright (c) 2022 Vincent Composieux <gocache@composieux.fr>
 
@@ -345,6 +358,9 @@ The Program includes some or all of the following that IBM obtained under the MI
 - github.com/fatih/structs
   Copyright (c) 2014 Fatih Arslan
 
+- github.com/fxamacker/cbor/v2
+  Copyright (c) 2019-present Faye Amacker
+
 - github.com/gabriel-vasile/mimetype
   Copyright (c) 2018-2020 Gabriel Vasile
 
@@ -356,6 +372,9 @@ The Program includes some or all of the following that IBM obtained under the MI
 
 - github.com/go-playground/universal-translator
   Copyright (c) 2016 Go Playground
+
+- github.com/go-playground/validator/v10
+  Copyright (c) 2015 Dean Karn
 
 - github.com/golang-jwt/jwt/v4
   Copyright (c) 2012 Dave Grijalva
@@ -371,6 +390,9 @@ The Program includes some or all of the following that IBM obtained under the MI
 - github.com/leodido/go-urn
   Copyright (c) 2018 Leonardo Di Donato
 
+- github.com/lucasb-eyer/go-colorful
+  Copyright (c) 2013 Lucas Beyer
+
 - github.com/mattn/go-colorable
   Copyright (c) 2016 Yasuhiro Matsumoto
 
@@ -385,6 +407,15 @@ The Program includes some or all of the following that IBM obtained under the MI
 
 - github.com/mkmueller/aes256
   Copyright 2016 Mark K Mueller github.com/mkmueller
+
+- github.com/muesli/ansi
+  Copyright (c) 2021 Christian Muehlhaeuser
+
+- github.com/muesli/cancelreader
+  Copyright (c) 2022 Erik Geiser and Christian Muehlhaeuser
+
+- github.com/muesli/reflow
+  Copyright (c) 2019 Christian Muehlhaeuser
 
 - github.com/nicksnyder/go-i18n/v2
   Copyright (c) 2014 Nick Snyder https://github.com/nicksnyder
@@ -411,20 +442,30 @@ The Program includes some or all of the following that IBM obtained under the MI
 - github.com/patrickmn/go-cache
   Copyright (c) 2012-2017 Patrick Mylund Nielsen and the go-cache contributors
 
+- github.com/robfig/cron/v3
+  Copyright (C) 2012 Rob Figueiredo
+  All Rights Reserved.
+
 - github.com/stretchr/testify
   Copyright (c) 2012-2020 Mat Ryer, Tyler Bunnell and contributors.
+
+- github.com/tidwall/gjson
+  Copyright (c) 2016 Josh Baker
+
+- github.com/tidwall/match
+  Copyright (c) 2016 Josh Baker
+
+- github.com/tidwall/pretty
+  Copyright (c) 2017 Josh Baker
 
 - github.com/VividCortex/ewma
   Copyright (c) 2013 VividCortex
 
-- go.uber.org/atomic
-  Copyright (c) 2016 Uber Technologies, Inc.
+- github.com/x448/float16
+  Copyright (c) 2019 Montgomery Edwards⁴⁴⁸ and Faye Amacker
 
 - go.uber.org/multierr
   Copyright (c) 2017 Uber Technologies, Inc.
-
-- gopkg.in/go-playground/validator.v9
-  Copyright (c) 2015 Dean Karn
 
 Copyright <YEAR> <COPYRIGHT HOLDER>
 
