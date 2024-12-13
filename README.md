@@ -13,18 +13,21 @@ Always use most recent **IBM cpdctl** version available. It is backward compatib
 
 ## Quick start
 ### Download for Linux and macOS:
+These commands download and install the latest release of `cpdctl` executable to the current directory.
 ```shell
-platform=$(uname -s | tr [A-Z] [a-z])
+platform=$(uname -s | tr '[A-Z]' '[a-z]')
 arch=$(uname -m | sed 's/x86_64/amd64/')
-curl -LOs https://github.com/IBM/cpdctl/releases/latest/download/cpdctl_${platform}_${arch}.tar.gz
+curl -LOs "https://github.com/IBM/cpdctl/releases/latest/download/cpdctl_${platform}_${arch}.tar.gz"
 tar zxf cpdctl_${platform}_${arch}.tar.gz
 ```
 ### Configure connection with on-premise Cloud Pak for Data:
+**Note**: set variables `cpd_url`, `cpd_username`, and `cpd_apikey` before running these commands.
 ```shell
 ./cpdctl config profile set cpd --url $cpd_url --username $cpd_username --apikey $cpd_apikey
 ./cpdctl config profile use cpd
 ```
 ### Configure connection with Cloud Pak for Data as a Service:
+**Note**: set variable `ibmcloud_apikey` before running these commands.
 ```shell
 ./cpdctl config profile set cpdaas --url https://cloud.ibm.com --apikey $ibmcloud_apikey
 ./cpdctl config profile use cpdaas
