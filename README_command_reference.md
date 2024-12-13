@@ -298,6 +298,15 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [space member update](#space_member_update)
 #### &#8226; [space wait](#space_wait)
 #### &#8226; [version ](#version_)
+#### &#8226; [wx-ai ai-service create](#wx-ai_ai-service_create)
+#### &#8226; [wx-ai ai-service list](#wx-ai_ai-service_list)
+#### &#8226; [wx-ai ai-service get](#wx-ai_ai-service_get)
+#### &#8226; [wx-ai ai-service update](#wx-ai_ai-service_update)
+#### &#8226; [wx-ai ai-service delete](#wx-ai_ai-service_delete)
+#### &#8226; [wx-ai ai-service upload-code](#wx-ai_ai-service_upload-code)
+#### &#8226; [wx-ai ai-service download-code](#wx-ai_ai-service_download-code)
+#### &#8226; [wx-ai ai-service create-revision](#wx-ai_ai-service_create-revision)
+#### &#8226; [wx-ai ai-service list-revisions](#wx-ai_ai-service_list-revisions)
 #### &#8226; [wx-ai deployment create](#wx-ai_deployment_create)
 #### &#8226; [wx-ai deployment list](#wx-ai_deployment_list)
 #### &#8226; [wx-ai deployment get](#wx-ai_deployment_get)
@@ -343,6 +352,7 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [wx-ai text rerank](#wx-ai_text_rerank)
 #### &#8226; [wx-ai text chat](#wx-ai_text_chat)
 #### &#8226; [wx-ai text chat-stream](#wx-ai_text_chat-stream)
+#### &#8226; [wx-ai time-series forecast](#wx-ai_time-series_forecast)
 #### &#8226; [wx-ai custom-foundation-model list](#wx-ai_custom-foundation-model_list)
 # Command descriptions
 <a id='asset_search'></a>
@@ -1764,79 +1774,81 @@ cpdctl asset relationship unset \
 
 <a id='asset_file_download'></a>
 ## &#8226; asset file download
+
 Streams the content of the specified file, with the appropriate HTTP headers for etag, file size, mime type etc. If the asset file is a directory, response will be JSON listing the content of the directory. If the asset is a file, response will be contents of the file. Requires viewer permission or higher. Assets for a catalog are not available to external users. This endpoint supports authentication via signature parameter. See 'Get auth signature' call for more info.
 
 ```sh
-   cpdctl asset file download [command options]
+cpdctl asset file download --path PATH [--accept ACCEPT] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--space-id SPACE-ID] [--iam-id IAM-ID] [--byte-limit BYTE-LIMIT] [--byte-range BYTE-RANGE] [--size-limit SIZE-LIMIT] [--signature SIGNATURE] [--flat FLAT] [--hidden-files HIDDEN-FILES] [--root ROOT] [--inflate INFLATE] [--force FORCE] [--stream STREAM] [--range RANGE] [--retry RETRY]
 ```
+
+
 #### Command options
 
-`--accept` (string)
-:    The type of the response:  or *_/_*.
-
-`--account-id` (string)
-:    Make request relative to the specified account.
-
-`--byte-limit` (int)
-:    If passed, indicates how many bytes of data is to be returned.
-
-`--byte-range` (string)
-:    If passed, indicates the bytes that should be returned. Must be in format ('x-y': bytes x to y inclusive, '-y': the last y bytes, 'x-': everything from and including the xth byte). Does not support multiple ranges.
-
-`--catalog-id` (string)
-:    Make request relative to the specified catalog.
-
-`--cpd-scope` (string)
-:    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
-`--flat` ()
-:    If true, folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory. Only works for directories.
-
-`--force` ()
-:    Only used when &inflate=true. Tells asset files to skip validation on whether the target is a zip. Inflate will be run regardless.
-
-`--hidden-files` ()
-:    Whether or not to return hidden files. If false, hidden files files will be left out of the response object. Only works when the path being retrieved is a directory. Default is true.
-
-`--iam-id` (string)
-:    (Internal use only) Make request relative to the specific iam id. Respected only when 'userfs' is also supplied.
-
-`--inflate` ()
-:    If '&inflate=true' ALL other query params except the target are ignored. The file being retrieved must be an archive. If all checks pass the archive will be expanded to a temp location and the results will be returned as if flat=true was supplied. If the target archive has previously be inflated any existing inflate preview will be overwritten if the zip is newer. Otherwise the previous preview will be returned.
-
-`--output-file` (string)
-:    Filename/path to write the resulting output to. Use '-' to print file contents to standard output.
-
 `--path` (string)
-:    Asset file path.
+:   Asset file path. Required.
+
+`--accept` (string)
+:   The type of the response:  or *_/_*.
 
 `--project-id` (string)
-:    Make request relative to the specified project.
+:   Make request relative to the specified project.
 
-`--range` (string)
-:    Similar to byte_range query param. Currently only supports bytes. See https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35 for more info. Can be used to limit the bytes of a file being returned. Ranges are inclusive. If set will take precedence over anything in byte_limit or byte_range.
+`--catalog-id` (string)
+:   Make request relative to the specified catalog.
 
-`--retry` ()
-:    Allow retries to account for disk syncronization across replicas. The default value is true.
-
-`--root` ()
-:    (Internal use only) If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of standard assets directory. Note, there is one exception. If '&root=true' is supplied along with 'userfs' param targeting a project where the user has correct permissions standard auth will work.'.
-
-`--signature` (string)
-:    Additional auth method. Signed string obtained by making presigned API request.
-
-`--size-limit` (int)
-:    Returns 400 bad request if asset is larger than the value provided here. In MB.
+`--account-id` (string)
+:   Make request relative to the specified account.
 
 `--space-id` (string)
-:    Make request relative to the specified space.
+:   Make request relative to the specified space.
 
-`--stream` ()
-:    Only works for directories. The content will be streamed out instead of being fully constructed and sent out all at once.  Used mainly for when there are a large number of files are expected.
+`--iam-id` (string)
+:   (Internal use only) Make request relative to the specific iam id. Respected only when 'userfs' is also supplied.
+
+`--byte-limit` (int64)
+:   If passed, indicates how many bytes of data is to be returned.
+
+`--byte-range` (string)
+:   If passed, indicates the bytes that should be returned. Must be in format ('x-y': bytes x to y inclusive, '-y': the last y bytes, 'x-': everything from and including the xth byte). Does not support multiple ranges.
+
+`--size-limit` (int64)
+:   Returns 400 bad request if asset is larger than the value provided here. In MB.
+
+`--signature` (string)
+:   Additional auth method. Signed string obtained by making presigned API request.
+
+`--flat` (bool)
+:   If true, folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory. Only works for directories.
+
+`--hidden-files` (bool)
+:   Whether or not to return hidden files. If false, hidden files files will be left out of the response object. Only works when the path being retrieved is a directory. Default is true.
+
+`--root` (bool)
+:   (Internal use only) If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of standard assets directory. Note, there is one exception. If '&root=true' is supplied along with 'userfs' param targeting a project where the user has correct permissions standard auth will work.'.
+
+`--inflate` (bool)
+:   If '&inflate=true' ALL other query params except the target are ignored. The file being retrieved must be an archive. If all checks pass the archive will be expanded to a temp location and the results will be returned as if flat=true was supplied. If the target archive has previously be inflated any existing inflate preview will be overwritten if the zip is newer. Otherwise the previous preview will be returned.
+
+`--force` (bool)
+:   Only used when &inflate=true. Tells asset files to skip validation on whether the target is a zip. Inflate will be run regardless.
+
+`--stream` (bool)
+:   Only works for directories. The content will be streamed out instead of being fully constructed and sent out all at once.  Used mainly for when there are a large number of files are expected.
+
+`--range` (string)
+:   Similar to byte_range query param. Currently only supports bytes. See https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35 for more info. Can be used to limit the bytes of a file being returned. Ranges are inclusive. If set will take precedence over anything in byte_limit or byte_range.
+
+    The default value is `Range 0-100`.
+
+`--retry` (bool)
+:   Allow retries to account for disk syncronization across replicas.
+
+    The default value is `true`.
 
 #### Example
+
 ```sh
-   cpdctl asset file download \
+cpdctl asset file download \
     --path exampleString \
     --accept exampleString \
     --project-id exampleString \
@@ -1861,61 +1873,60 @@ Streams the content of the specified file, with the appropriate HTTP headers for
 
 <a id='asset_file_list'></a>
 ## &#8226; asset file list
+
 Returns a list of file paths (similar to S3 listObjects) for the provided project, catalog, space or account. Requires viewer or higher permission. Assets for a catalog are not retrievable by external users.
+Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
 
 ```sh
-   cpdctl asset file list [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--space-id SPACE-ID] [--iam-id IAM-ID] [--limit LIMIT] [--offset OFFSET] [--flat FLAT] [--hidden-files HIDDEN-FILES] [--minimal MINIMAL] [--root ROOT] [--stream STREAM]
+cpdctl asset file list [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--space-id SPACE-ID] [--iam-id IAM-ID] [--limit LIMIT] [--offset OFFSET] [--flat FLAT] [--hidden-files HIDDEN-FILES] [--minimal MINIMAL] [--root ROOT] [--stream STREAM]
 ```
+
+
 #### Command options
 
-`--account-id` (string)
-:    Make request relative to the specified account.
-
-`--all-pages` ()
-:    Invoke multiple requests to display all pages of the collection for asset-files-list.
+`--project-id` (string)
+:   Make request relative to the specified project.
 
 `--catalog-id` (string)
-:    Make request relative to the specified catalog.
+:   Make request relative to the specified catalog.
 
-`--cpd-scope` (string)
-:    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
-`--flat` ()
-:    If true folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory.
-
-`--hidden-files` ()
-:    Whether or not to return hidden files. If false, hidden files files will be left out of the response object. Only works when the path being retrieved is a directory. Default is true.
-
-`--iam-id` (string)
-:    (Internal use only) Make request relative to the specific iam id. Respected only when 'userfs' is also supplied.
-
-`--limit` (string)
-:    Pagination param, limit number of resources returned.
-
-`--minimal` ()
-:    If true, the response will contain less info. (ex// no etag) Only works with flat param set to true.
-
-`--offset` (string)
-:    Pagination param, resources returned wil be offset by this value.
-
-`--path` (string)
-:    List files from the given folder path
-
-`--project-id` (string)
-:    Make request relative to the specified project.
-
-`--root` ()
-:    (Internal use only) If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of standard assets directory. Note, there is one exception. If '&root=true' is supplied along with 'userfs' param targeting a project where the user has correct permissions standard auth will work.'.
+`--account-id` (string)
+:   Make request relative to the specified account.
 
 `--space-id` (string)
-:    Make request relative to the specified space.
+:   Make request relative to the specified space.
 
-`--stream` ()
-:    The content will be streamed out instead of being fully constructed and sent out all at once. Used mainly when there are a large number of files are expected.
+`--iam-id` (string)
+:   (Internal use only) Make request relative to the specific iam id. Respected only when 'userfs' is also supplied.
+
+`--limit` (string)
+:   Pagination param, limit number of resources returned.
+
+`--offset` (string)
+:   Pagination param, resources returned wil be offset by this value.
+
+`--flat` (bool)
+:   If true folder structures are recursively flattened and the response is a list of files of all files in parent and child directories. The 'path' will show the resource full path from starting directory.
+
+`--hidden-files` (bool)
+:   Whether or not to return hidden files. If false, hidden files files will be left out of the response object. Only works when the path being retrieved is a directory. Default is true.
+
+`--minimal` (bool)
+:   If true, the response will contain less info. (ex// no etag) Only works with flat param set to true.
+
+`--root` (bool)
+:   (Internal use only) If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of standard assets directory. Note, there is one exception. If '&root=true' is supplied along with 'userfs' param targeting a project where the user has correct permissions standard auth will work.'.
+
+`--stream` (bool)
+:   The content will be streamed out instead of being fully constructed and sent out all at once. Used mainly when there are a large number of files are expected.
+
+`--all-pages` (bool)
+:   Invoke multiple requests to display all pages of the collection for asset-files-list.
 
 #### Example
+
 ```sh
-   cpdctl asset file list \
+cpdctl asset file list \
     --project-id exampleString \
     --catalog-id exampleString \
     --account-id exampleString \
@@ -1932,61 +1943,69 @@ Returns a list of file paths (similar to S3 listObjects) for the provided projec
 
 <a id='asset_file_upload'></a>
 ## &#8226; asset file upload
+
 Uploads the bytes into the file with the provided file name using HTTP multi-part format, creating a new file if missing, overriding if existing (unless override=false). Assets cannot be uploaded to a catalog by external users. Adding project or space assets accepts all formats that grant editor access or higher. Adding to accounts requires a user with account admin access. This endpoint supports authentication via signature parameter. See 'Get auth signature' call for more info on signed urls.
 
 ```sh
-   cpdctl asset file upload --path PATH [--file FILE] [--file-content-type FILE-CONTENT-TYPE] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--space-id SPACE-ID] [--iam-id IAM-ID] [--override OVERRIDE] [--signature SIGNATURE] [--inflate INFLATE] [--inflate-mode INFLATE-MODE] [--ensure-dir ENSURE-DIR] [--root ROOT]
+cpdctl asset file upload --path PATH [--file FILE] [--file-content-type FILE-CONTENT-TYPE] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--space-id SPACE-ID] [--iam-id IAM-ID] [--override OVERRIDE] [--signature SIGNATURE] [--inflate INFLATE] [--inflate-mode INFLATE-MODE] [--ensure-dir ENSURE-DIR] [--root ROOT]
 ```
+
+
 #### Command options
 
-`--account-id` (string)
-:    Make request relative to the specified account.
+`--path` (string)
+:   Asset file path. Required.
 
-`--catalog-id` (string)
-:    Make request relative to the specified catalog.
-
-`--cpd-scope` (string)
-:    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
-`--ensure-dir` ()
-:    Override functionality. If true will ensure the directory specified by 'path' exists (instead of uploading any file provided). 201 will be returned ig created, 200 if already exists and 409 if it is present and not a directory. Will take precedence over other query params except 'inflate'.
-
-`--file` (string)
-:    File to upload.
+`--file` (io.ReadCloser)
+:   File to upload.
 
 `--file-content-type` (string)
-:    The content type of File.
-
-`--iam-id` (string)
-:    (Internal use only) Make request relative to the specific iam id. Respected only when 'userfs' is also supplied.
-
-`--inflate` ()
-:    Root dir must be created. Will take supplied file and decompress into target directory tree. Inflate is only acceptable for project, space and catalog targets. If inflate is selected it will take precedence over any and all other params.
-
-`--inflate-mode` (string)
-:    Type of inflate to perform: * 'default' - Default mode, the target extract location must be empty. Same as if no inflate_mode were provided. * 'inline' - Extract into non-empty location. Files will be added inline. If a file in the archive already exists at the extract location the zip will stop being extracted and an error returned. * 'overwrite' - Extract into non-empty location. Similar to inline but if a file exists it will be deleted and the archived version will replace it. For a FULL overwrite delete the extract location manually. * 'skip' - Extract into non-empty location. Similar to inline but if a file exists it will be skipped and left unextracted. * 'rename' - Extract into non-empty location. Similar to inline but if a file exists the conflicting file will still be extracted but under a different name.
-
-`--override` ()
-:    Default true. If set to false will not overwrite file.
-
-`--path` (string)
-:    Asset file path.
+:   The content type of File.
 
 `--project-id` (string)
-:    Make request relative to the specified project.
+:   Make request relative to the specified project.
 
-`--root` ()
-:    (Internal use only) If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of standard assets directory. Note, there is one exception. If '&root=true' is supplied along with 'userfs' param targeting a project where the user has correct permissions standard auth will work.'.
+`--catalog-id` (string)
+:   Make request relative to the specified catalog.
 
-`--signature` (string)
-:    Additional auth method. Signed string obtained by making API request to signing endpoint.
+`--account-id` (string)
+:   Make request relative to the specified account.
 
 `--space-id` (string)
-:    Make request relative to the specified space.
+:   Make request relative to the specified space.
+
+`--iam-id` (string)
+:   (Internal use only) Make request relative to the specific iam id. Respected only when 'userfs' is also supplied.
+
+`--override` (bool)
+:   Default true. If set to false will not overwrite file.
+
+`--signature` (string)
+:   Additional auth method. Signed string obtained by making API request to signing endpoint.
+
+`--inflate` (bool)
+:   Root dir must be created. Will take supplied file and decompress into target directory tree. Inflate is only acceptable for project, space and catalog targets. If inflate is selected it will take precedence over any and all other params.
+
+`--inflate-mode` (string)
+:   Type of inflate to perform:
+ * `default` - Default mode, the target extract location must be empty. Same as if no inflate_mode were provided.
+ * `inline` - Extract into non-empty location. Files will be added inline. If a file in the archive already exists at the extract location the zip will stop being extracted and an error returned.
+ * `overwrite` - Extract into non-empty location. Similar to inline but if a file exists it will be deleted and the archived version will replace it. For a FULL overwrite delete the extract location manually.
+ * `skip` - Extract into non-empty location. Similar to inline but if a file exists it will be skipped and left unextracted.
+ * `rename` - Extract into non-empty location. Similar to inline but if a file exists the conflicting file will still be extracted but under a different name.
+
+    Allowable values are: `default`, `inline`, `overwrite`, `skip`, `rename`.
+
+`--ensure-dir` (bool)
+:   Override functionality. If true will ensure the directory specified by 'path' exists (instead of uploading any file provided). 201 will be returned ig created, 200 if already exists and 409 if it is present and not a directory. Will take precedence over other query params except 'inflate'.
+
+`--root` (bool)
+:   (Internal use only) If '&root=true' is supplied in request URL the api will return relative to target container's root directory instead of standard assets directory. Note, there is one exception. If '&root=true' is supplied along with 'userfs' param targeting a project where the user has correct permissions standard auth will work.'.
 
 #### Example
+
 ```sh
-   cpdctl asset file upload \
+cpdctl asset file upload \
     --path exampleString \
     --file tempdir/test-file.txt \
     --file-content-type exampleString \
@@ -2477,62 +2496,64 @@ Wait until the asset import becomes completed, failed, or canceled.
 
 <a id='code-package_list'></a>
 ## &#8226; code-package list
+
 List all code packages in a given project or space. You must specify either `project_id` or `space_id`.
 
 ```sh
-   cpdctl code-package list [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl code-package list [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
 `--project-id` (string)
-:    The id of the project.
+:   The id of the project.
 
 `--space-id` (string)
-:    The id of the space.
+:   The id of the space.
 
 #### Example
+
 ```sh
-   cpdctl code-package list \
+cpdctl code-package list \
     --project-id exampleString \
     --space-id exampleString
 ```
 
 <a id='code-package_create'></a>
 ## &#8226; code-package create
-Create a new code package in a given project or space. You must specify either `project_id` or `space_id`. If you create a code package from an existing zip file, you need to first upload the zip file to the project or space Cloud Object Storage (COS) and then reference it in the body of the creation request.
+
+Create a new code package in a given project or space. You must specify either `project_id` or `space_id`. If you create a code package from an existing zip file, you need to first upload the zip file to the project or space storage using Assets-files API and then reference it in the body of the creation request.
 
 ```sh
-   cpdctl code-package create --name NAME [--description DESCRIPTION] [--file-reference FILE-REFERENCE] [--json-file-reference JSON-FILE-REFERENCE] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl code-package create --name NAME [--description DESCRIPTION] [--file-reference FILE-REFERENCE] [--json-file-reference JSON-FILE-REFERENCE] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+`--name` (string)
+:   Name of the code package. Required.
 
 `--description` (string)
-:    Description of the code package.
+:   Description of the code package.
 
 `--file-reference` (string)
-:    The reference to the file in the object storage.
+:   The reference to the file in the object storage.
 
 `--json-file-reference` (string)
-:    The reference to the metadata (json file) in the object storage.
-
-`--name` (string)
-:    Name of the code package.
+:   The reference to the metadata (json file) in the object storage.
 
 `--project-id` (string)
-:    The id of the project.
+:   The id of the project.
 
 `--space-id` (string)
-:    The id of the space.
+:   The id of the space.
 
 #### Example
+
 ```sh
-   cpdctl code-package create \
+cpdctl code-package create \
     --name 'my code package' \
     --description 'this is my code package' \
     --file-reference code_package/my_code.zip \
@@ -2543,28 +2564,29 @@ Create a new code package in a given project or space. You must specify either `
 
 <a id='code-package_delete'></a>
 ## &#8226; code-package delete
+
 Delete a code package in a given project or space. You must specify either `project_id` or `space_id`.
 
 ```sh
-   cpdctl code-package delete --code-package-id CODE-PACKAGE-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl code-package delete --code-package-id CODE-PACKAGE-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
+
+
 #### Command options
 
 `--code-package-id` (string)
-:    The id of the code package.
-
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:   The id of the code package. Required.
 
 `--project-id` (string)
-:    The id of the project.
+:   The id of the project.
 
 `--space-id` (string)
-:    The id of the space.
+:   The id of the space.
 
 #### Example
+
 ```sh
-   cpdctl code-package delete \
+cpdctl code-package delete \
     --code-package-id exampleString \
     --project-id exampleString \
     --space-id exampleString
@@ -2572,28 +2594,29 @@ Delete a code package in a given project or space. You must specify either `proj
 
 <a id='code-package_get'></a>
 ## &#8226; code-package get
+
 Retrieve a code package in a given project or space. You must specify either `project_id` or `space_id`.
 
 ```sh
-   cpdctl code-package get --code-package-id CODE-PACKAGE-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl code-package get --code-package-id CODE-PACKAGE-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
+
+
 #### Command options
 
 `--code-package-id` (string)
-:    The id of the code package.
-
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+:   The id of the code package. Required.
 
 `--project-id` (string)
-:    The id of the project.
+:   The id of the project.
 
 `--space-id` (string)
-:    The id of the space.
+:   The id of the space.
 
 #### Example
+
 ```sh
-   cpdctl code-package get \
+cpdctl code-package get \
     --code-package-id exampleString \
     --project-id exampleString \
     --space-id exampleString
@@ -2601,37 +2624,38 @@ Retrieve a code package in a given project or space. You must specify either `pr
 
 <a id='code-package_promote'></a>
 ## &#8226; code-package promote
+
 Promote a code package from a project to a space.
 
 ```sh
-   cpdctl code-package promote --code-package-id CODE-PACKAGE-ID --revision-id REVISION-ID --project-id PROJECT-ID --space-id SPACE-ID [--description DESCRIPTION] [--name NAME]
+cpdctl code-package promote --code-package-id CODE-PACKAGE-ID --revision-id REVISION-ID --project-id PROJECT-ID --space-id SPACE-ID [--description DESCRIPTION] [--name NAME]
 ```
+
+
 #### Command options
 
 `--code-package-id` (string)
-:    The id of the code package.
-
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
-`--description` (string)
-:    The description of the new code package in space. If not specified, the description of the code package in project will be used.
-
-`--name` (string)
-:    The name of the new code package in space. If not specified, the name of the code package in project will be used.
-
-`--project-id` (string)
-:    The id of the project from which a code package will be promoted.
+:   The id of the code package. Required.
 
 `--revision-id` (string)
-:    The id of the code package revision.
+:   The id of the code package revision. Required.
+
+`--project-id` (string)
+:   The id of the project from which a code package will be promoted. Required.
 
 `--space-id` (string)
-:    The id of the space to which a code package will be promoted.
+:   The id of the space to which a code package will be promoted. Required.
+
+`--description` (string)
+:   The description of the new code package in space. If not specified, the description of the code package in project will be used.
+
+`--name` (string)
+:   The name of the new code package in space. If not specified, the name of the code package in project will be used.
 
 #### Example
+
 ```sh
-   cpdctl code-package promote \
+cpdctl code-package promote \
     --code-package-id exampleString \
     --revision-id exampleString \
     --project-id exampleString \
@@ -13102,43 +13126,54 @@ cpdctl pipeline run list-parameter \
 
 <a id='pipeline_run_task-result_head'></a>
 ## &#8226; pipeline run task-result head
+
 Gets metadata about task result given by output name and `TaskRun` or `Run` name.
 
 ```sh
-   cpdctl pipeline run task-result head --run-id RUN-ID --task-run-name TASK-RUN-NAME --name NAME [--job-id JOB-ID] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--pipeline-id PIPELINE-ID] [--pipeline-run-name PIPELINE-RUN-NAME]
+cpdctl pipeline run task-result head --run-id RUN-ID --task-run-name TASK-RUN-NAME --name NAME [--job-id JOB-ID] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--pipeline-id PIPELINE-ID] [--pipeline-run-name PIPELINE-RUN-NAME]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+`--run-id` (strfmt.UUID)
+:   The ID of the run. Required.
 
-`--job-id` (string)
-:    The ID of the job related to run. Adding this may improve response time. The maximum length is 36 characters. The minimum length is 36 characters.
-
-`--name` (string)
-:    Required. Name of the result e.g. 'env-variables'.
-
-`--pipeline-id` (string)
-:    Pipeline ID. The maximum length is 36 characters. The minimum length is 36 characters.
-
-`--pipeline-run-name` (string)
-:    Pipeline run name.
-
-`--project-id` (string)
-:    The id of the project. The maximum length is 36 characters. The minimum length is 36 characters.
-
-`--run-id` (string)
-:    Required. The ID of the run. The maximum length is 36 characters. The minimum length is 36 characters.
-
-`--space-id` (string)
-:    The id of the space. The maximum length is 36 characters. The minimum length is 36 characters.
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
 
 `--task-run-name` (string)
-:    Required. Name of the 'TaskRun' or 'Run' from which the results come from e.g. 'pipeline-90bc031ef1009d53527cf454db0160ed3cca-run-bash-script-1'.
+:   Name of the `TaskRun` or `Run` from which the results come from e.g. `pipeline-90bc031ef1009d53527cf454db0160ed3cca-run-bash-script-1`. Required.
+
+`--name` (string)
+:   Name of the result e.g. `env-variables`. Required.
+
+`--job-id` (strfmt.UUID)
+:   The ID of the job related to run. Adding this may improve response time.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--pipeline-id` (strfmt.UUID)
+:   Pipeline ID.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--pipeline-run-name` (string)
+:   Pipeline run name.
 
 #### Example
+
 ```sh
-   cpdctl pipeline run task-result head \
+cpdctl pipeline run task-result head \
     --run-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
     --task-run-name exampleString \
     --name exampleString \
@@ -13151,40 +13186,51 @@ Gets metadata about task result given by output name and `TaskRun` or `Run` name
 
 <a id='pipeline_run_task-result_list'></a>
 ## &#8226; pipeline run task-result list
+
 Gets information about all task results given by `TaskRun` or `Run` name.
 
 ```sh
-   cpdctl pipeline run task-result list --run-id RUN-ID --task-run-name TASK-RUN-NAME [--job-id JOB-ID] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--pipeline-id PIPELINE-ID] [--pipeline-run-name PIPELINE-RUN-NAME]
+cpdctl pipeline run task-result list --run-id RUN-ID --task-run-name TASK-RUN-NAME [--job-id JOB-ID] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--pipeline-id PIPELINE-ID] [--pipeline-run-name PIPELINE-RUN-NAME]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+`--run-id` (strfmt.UUID)
+:   The ID of the run. Required.
 
-`--job-id` (string)
-:    The ID of the job related to run. Adding this may improve response time. The maximum length is 36 characters. The minimum length is 36 characters.
-
-`--pipeline-id` (string)
-:    Pipeline ID. The maximum length is 36 characters. The minimum length is 36 characters.
-
-`--pipeline-run-name` (string)
-:    Pipeline run name.
-
-`--project-id` (string)
-:    The id of the project. The maximum length is 36 characters. The minimum length is 36 characters.
-
-`--run-id` (string)
-:    Required. The ID of the run. The maximum length is 36 characters. The minimum length is 36 characters.
-
-`--space-id` (string)
-:    The id of the space. The maximum length is 36 characters. The minimum length is 36 characters.
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
 
 `--task-run-name` (string)
-:    Required. Name of the 'TaskRun' or 'Run' from which the results come from e.g. 'pipeline-90bc031ef1009d53527cf454db0160ed3cca-run-bash-script-1'.
+:   Name of the `TaskRun` or `Run` from which the results come from e.g. `pipeline-90bc031ef1009d53527cf454db0160ed3cca-run-bash-script-1`. Required.
+
+`--job-id` (strfmt.UUID)
+:   The ID of the job related to run. Adding this may improve response time.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--pipeline-id` (strfmt.UUID)
+:   Pipeline ID.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--pipeline-run-name` (string)
+:   Pipeline run name.
 
 #### Example
+
 ```sh
-   cpdctl pipeline run task-result list \
+cpdctl pipeline run task-result list \
     --run-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
     --task-run-name exampleString \
     --job-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
@@ -13196,43 +13242,54 @@ Gets information about all task results given by `TaskRun` or `Run` name.
 
 <a id='pipeline_run_task-result_get'></a>
 ## &#8226; pipeline run task-result get
+
 Gets information about task result given by output name and `TaskRun` or `Run` name.
 
 ```sh
-   cpdctl pipeline run task-result get --run-id RUN-ID --task-run-name TASK-RUN-NAME --name NAME [--job-id JOB-ID] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--pipeline-id PIPELINE-ID] [--pipeline-run-name PIPELINE-RUN-NAME]
+cpdctl pipeline run task-result get --run-id RUN-ID --task-run-name TASK-RUN-NAME --name NAME [--job-id JOB-ID] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--pipeline-id PIPELINE-ID] [--pipeline-run-name PIPELINE-RUN-NAME]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+`--run-id` (strfmt.UUID)
+:   The ID of the run. Required.
 
-`--job-id` (string)
-:    The ID of the job related to run. Adding this may improve response time. The maximum length is 36 characters. The minimum length is 36 characters.
-
-`--name` (string)
-:    Required. Name of the result e.g. 'env-variables'.
-
-`--pipeline-id` (string)
-:    Pipeline ID. The maximum length is 36 characters. The minimum length is 36 characters.
-
-`--pipeline-run-name` (string)
-:    Pipeline run name.
-
-`--project-id` (string)
-:    The id of the project. The maximum length is 36 characters. The minimum length is 36 characters.
-
-`--run-id` (string)
-:    Required. The ID of the run. The maximum length is 36 characters. The minimum length is 36 characters.
-
-`--space-id` (string)
-:    The id of the space. The maximum length is 36 characters. The minimum length is 36 characters.
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
 
 `--task-run-name` (string)
-:    Required. Name of the 'TaskRun' or 'Run' from which the results come from e.g. 'pipeline-90bc031ef1009d53527cf454db0160ed3cca-run-bash-script-1'.
+:   Name of the `TaskRun` or `Run` from which the results come from e.g. `pipeline-90bc031ef1009d53527cf454db0160ed3cca-run-bash-script-1`. Required.
+
+`--name` (string)
+:   Name of the result e.g. `env-variables`. Required.
+
+`--job-id` (strfmt.UUID)
+:   The ID of the job related to run. Adding this may improve response time.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--space-id` (strfmt.UUID)
+:   The id of the space.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--project-id` (strfmt.UUID)
+:   The id of the project.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--pipeline-id` (strfmt.UUID)
+:   Pipeline ID.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/`.
+
+`--pipeline-run-name` (string)
+:   Pipeline run name.
 
 #### Example
+
 ```sh
-   cpdctl pipeline run task-result get \
+cpdctl pipeline run task-result get \
     --run-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
     --task-run-name exampleString \
     --name exampleString \
@@ -14714,6 +14771,436 @@ Wait until the space creation or deletion is finished.
    cpdctl version
 ```
 
+<a id='wx-ai_ai-service_create'></a>
+## &#8226; wx-ai ai-service create
+
+Create a new AI service with the given payload. A AI service is some code that can be deployed as a deployment.
+
+```sh
+cpdctl wx-ai ai-service create --space-id SPACE-ID --name NAME [--software-spec SOFTWARE-SPEC | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME] [--description DESCRIPTION] [--tags TAGS] [--code-type CODE-TYPE] [--documentation DOCUMENTATION | --documentation-request DOCUMENTATION-REQUEST --documentation-response DOCUMENTATION-RESPONSE] [--custom CUSTOM]
+```
+
+
+#### Command options
+
+`--space-id` (string)
+:   The space that contains the resource. Required.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--name` (string)
+:   The name of the resource. Required.
+
+`--software-spec` (<a href="#cli-software-spec-rel-example-schema-wx-ai">`SoftwareSpecRel`</a>)
+:   A software specification. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--software-spec=@path/to/file.json`.
+
+`--description` (string)
+:   A description of the resource.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+    The maximum length is `64` items.
+
+`--code-type` (string)
+:   The type that allows the deployment service to know how to setup the code during deployment.
+
+    Allowable values are: `python`.
+
+`--documentation` (<a href="#cli-ai-service-documentation-example-schema-wx-ai">`AIServiceDocumentation`</a>)
+:   The documentation of the AI service request body and response body. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--documentation=@path/to/file.json`.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--custom=@path/to/file.json`.
+
+`--software-spec-id` (string)
+:   The id of the software specification. This option provides a value for a sub-field of the JSON option 'software-spec'. It is mutually exclusive with that option.
+
+`--software-spec-rev` (string)
+:   The revision of the software specification. This option provides a value for a sub-field of the JSON option 'software-spec'. It is mutually exclusive with that option.
+
+`--software-spec-name` (string)
+:   The name of the software specification. This option provides a value for a sub-field of the JSON option 'software-spec'. It is mutually exclusive with that option.
+
+`--documentation-request` (map[string]map[string]interface{})
+:   The schema for a given content type. Each property defines the content type and the sub-object is the JSON schema that describes the content. This option provides a value for a sub-field of the JSON option 'documentation'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--documentation-request=@path/to/file.json`.
+
+`--documentation-response` (map[string]map[string]interface{})
+:   The schema for a given content type. Each property defines the content type and the sub-object is the JSON schema that describes the content. This option provides a value for a sub-field of the JSON option 'documentation'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--documentation-response=@path/to/file.json`.
+
+#### Examples
+
+```sh
+cpdctl wx-ai ai-service create \
+    --space-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --name ai-app-1 \
+    --software-spec '{"id": "45f12dfe-aa78-5b8d-9f38-0ee223c47309", "rev": "2", "name": "exampleString"}' \
+    --description exampleString \
+    --tags exampleString,anotherTestString \
+    --code-type python \
+    --documentation '{"request": {}, "response": {}}' \
+    --custom '{"anyKey": "anyValue"}'
+```
+
+<a id='wx-ai_ai-service_list'></a>
+## &#8226; wx-ai ai-service list
+
+Retrieve the AI services for the specified space or project.
+Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
+
+```sh
+cpdctl wx-ai ai-service list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
+```
+
+
+#### Command options
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
+
+`--tag-value` (string)
+:   Return only the resources with the given tag values, separated by `or` or `and` to support multiple tags.
+
+`--search` (string)
+:   Returns only resources that match this search string. The path to the field must be the complete path to the field, and this field must be one of the indexed fields for this resource type. Note that the search string must be URL encoded.
+
+    The minimum length is `1` character.
+
+`--all-pages` (bool)
+:   Invoke multiple requests to display all pages of the collection for ai-service-list.
+
+#### Example
+
+```sh
+cpdctl wx-ai ai-service list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --start exampleString \
+    --limit 50 \
+    --tag-value 'tf2.0 or tf2.1' \
+    --search exampleString
+```
+
+<a id='wx-ai_ai-service_get'></a>
+## &#8226; wx-ai ai-service get
+
+Retrieve the AI service with the specified identifier. If `rev` query parameter is provided,
+`rev=latest` will fetch the latest revision. A call with `rev={revision_number}` will fetch the given revision_number record. Either `space_id` or `project_id` has to be provided and is mandatory.
+
+```sh
+cpdctl wx-ai ai-service get --ai-service-id AI-SERVICE-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--rev REV]
+```
+
+
+#### Command options
+
+`--ai-service-id` (string)
+:   AI service identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--rev` (string)
+:   The revision number of the resource.
+
+#### Example
+
+```sh
+cpdctl wx-ai ai-service get \
+    --ai-service-id 64dc8921-345f-234b-462d-78e41246987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --rev 2
+```
+
+<a id='wx-ai_ai-service_update'></a>
+## &#8226; wx-ai ai-service update
+
+Update the AI service with the provided patch data. The following fields can be patched:
+- `/tags`
+- `/name`
+- `/description`
+- `/custom`.
+
+```sh
+cpdctl wx-ai ai-service update --ai-service-id AI-SERVICE-ID --version VERSION [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--ai-service-id` (string)
+:   AI service identifier. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-wx-ai">`JSONPatchOperation[]`</a>)
+:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--json-patch=@path/to/file.json`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+    The maximum length is `64` items.
+
+`--name` (string)
+:   The name of the resource.
+
+`--description` (string)
+:   A description of the resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
+
+#### Example
+
+```sh
+cpdctl wx-ai ai-service update \
+    --tags t1,t2 \
+    --name my-resource \
+    --description 'This is my first resource.' \
+    --custom '{"anyKey": "anyValue"}'
+```
+
+<a id='wx-ai_ai-service_delete'></a>
+## &#8226; wx-ai ai-service delete
+
+Delete the AI service with the specified identifier. This will delete all revisions of this flow as well. For each revision all attachments will also be deleted.
+
+```sh
+cpdctl wx-ai ai-service delete --ai-service-id AI-SERVICE-ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--ai-service-id` (string)
+:   AI service identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+#### Example
+
+```sh
+cpdctl wx-ai ai-service delete \
+    --ai-service-id 64dc8921-345f-234b-462d-78e41246987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+```
+
+<a id='wx-ai_ai-service_upload-code'></a>
+## &#8226; wx-ai ai-service upload-code
+
+Upload the flow code. AI services expect a zip file that contains the code files that make up the flow.
+
+```sh
+cpdctl wx-ai ai-service upload-code --ai-service-id AI-SERVICE-ID --upload-code UPLOAD-CODE [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--ai-service-id` (string)
+:   AI service identifier. Required.
+
+`--upload-code` (io.ReadCloser)
+:   A gzip file containing code files. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+#### Example
+
+```sh
+cpdctl wx-ai ai-service upload-code \
+    --ai-service-id 64dc8921-345f-234b-462d-78e41246987f \
+    --upload-code tempdir/test-file.txt \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+```
+
+<a id='wx-ai_ai-service_download-code'></a>
+## &#8226; wx-ai ai-service download-code
+
+Download the AI service code. It is possible to download the `code` for a given revision of the `flow`. AI services expect a zip file that contains the code files that make up the flow.
+
+```sh
+cpdctl wx-ai ai-service download-code --ai-service-id AI-SERVICE-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--rev REV]
+```
+
+
+#### Command options
+
+`--ai-service-id` (string)
+:   AI service identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--rev` (string)
+:   The revision number of the resource.
+
+#### Example
+
+```sh
+cpdctl wx-ai ai-service download-code \
+    --ai-service-id 64dc8921-345f-234b-462d-78e41246987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --rev 2 \
+    --output-file tempdir/example-output.txt
+```
+
+<a id='wx-ai_ai-service_create-revision'></a>
+## &#8226; wx-ai ai-service create-revision
+
+Create a new AI service revision. The current metadata and content for
+`id` will be taken and a new revision created. Either `space_id` or `project_id` has to be provided and is mandatory.
+
+```sh
+cpdctl wx-ai ai-service create-revision --ai-service-id AI-SERVICE-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--commit-message COMMIT-MESSAGE]
+```
+
+
+#### Command options
+
+`--ai-service-id` (string)
+:   AI service identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--commit-message` (string)
+:   An optional commit message for the revision.
+
+#### Example
+
+```sh
+cpdctl wx-ai ai-service create-revision \
+    --ai-service-id 64dc8921-345f-234b-462d-78e41246987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --commit-message exampleString
+```
+
+<a id='wx-ai_ai-service_list-revisions'></a>
+## &#8226; wx-ai ai-service list-revisions
+
+Retrieve the AI service revisions.
+Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
+
+```sh
+cpdctl wx-ai ai-service list-revisions --ai-service-id AI-SERVICE-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT]
+```
+
+
+#### Command options
+
+`--ai-service-id` (string)
+:   AI service identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
+
+`--all-pages` (bool)
+:   Invoke multiple requests to display all pages of the collection for ai-service-list-revisions.
+
+#### Example
+
+```sh
+cpdctl wx-ai ai-service list-revisions \
+    --ai-service-id 64dc8921-345f-234b-462d-78e41246987f \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --start exampleString \
+    --limit 50
+```
+
 <a id='wx-ai_deployment_create'></a>
 ## &#8226; wx-ai deployment create
 
@@ -14732,6 +15219,8 @@ cpdctl wx-ai deployment create --name NAME [--online ONLINE | --online-parameter
 
 `--name` (string)
 :   The name of the resource. Required.
+
+    The maximum length is `250` characters. The minimum length is `1` character.
 
 `--online` (<a href="#cli-online-deployment-example-schema-wx-ai">`OnlineDeployment`</a>)
 :   Indicates that this is an online deployment. An object has to be specified but can be empty.
@@ -14752,8 +15241,12 @@ The `serving_name` can be provided in the `online.parameters`. This JSON option 
 `--description` (string)
 :   A description of the resource.
 
+    The maximum length is `1000` characters.
+
 `--tags` ([]string)
 :   A list of tags for this resource.
+
+    The maximum length is `64` items.
 
 `--custom` (generic map)
 :   User defined properties specified as key-value pairs.
@@ -14988,6 +15481,8 @@ cpdctl wx-ai deployment update --version VERSION --deployment-id DEPLOYMENT-ID [
 `--tags` ([]string)
 :   A list of tags for this resource.
 
+    The maximum length is `64` items.
+
 `--name` (string)
 :   The name of the resource.
 
@@ -15047,83 +15542,134 @@ cpdctl wx-ai deployment delete \
 
 <a id='wx-ai_deployment_text-generate'></a>
 ## &#8226; wx-ai deployment text-generate
-Infer the next tokens for a given deployed model with a set of parameters. If a `serving_name` is used then it must match the `serving_name` that is returned in the `inference` when the deployment was created.
+
+Infer the next tokens for a given deployed model with a set of parameters. If a `serving_name` is used then it must match the `serving_name` that is returned in the `inference` section when the deployment was created.
+
+### Return options
+
+Note that there is currently a limitation in this operation when using `return_options`, for input only `input_text` will be returned if requested, for output the `input_tokens` and `generated_tokens` will not be returned.
 
 ```sh
-   cpdctl wx-ai deployment text-generate [command options]
+cpdctl wx-ai deployment text-generate --id-or-name ID-OR-NAME [--input INPUT] [--parameters PARAMETERS | --parameters-decoding-method PARAMETERS-DECODING-METHOD --parameters-length-penalty PARAMETERS-LENGTH-PENALTY --parameters-max-new-tokens PARAMETERS-MAX-NEW-TOKENS --parameters-min-new-tokens PARAMETERS-MIN-NEW-TOKENS --parameters-random-seed PARAMETERS-RANDOM-SEED --parameters-stop-sequences PARAMETERS-STOP-SEQUENCES --parameters-temperature PARAMETERS-TEMPERATURE --parameters-time-limit PARAMETERS-TIME-LIMIT --parameters-top-k PARAMETERS-TOP-K --parameters-top-p PARAMETERS-TOP-P --parameters-repetition-penalty PARAMETERS-REPETITION-PENALTY --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS --parameters-include-stop-sequence PARAMETERS-INCLUDE-STOP-SEQUENCE --parameters-typical-p PARAMETERS-TYPICAL-P --parameters-prompt-variables PARAMETERS-PROMPT-VARIABLES] [--moderations MODERATIONS]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
 `--id-or-name` (string)
-:    Required. The 'id_or_name' can be either the 'deployment_id' that identifies the deployment or a 'serving_name' that allows a predefined URL to be used to post a prediction.  The 'project' or 'space' for the deployment must have a WML instance that will be used for limits and billing (if a paid plan).
+:   The `id_or_name` can be either the `deployment_id` that identifies the deployment or a `serving_name` that allows a predefined URL to be used to post a prediction.
+
+The WML instance that is associated with the deployment will be used for limits and billing (if a paid plan). Required.
 
 `--input` (string)
-:    The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces.   This field is ignored if there is a prompt template.
+:   The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces.
 
-`--moderations` (string)
-:    Properties that control the moderations, for usages such as 'Hate and profanity' (HAP) and 'Personal identifiable information' (PII) filtering. This list can be extended with new types of moderations.
 
-`--parameters` (string)
-:    The template properties if this request refers to a prompt template.
+This field is ignored if there is a prompt template.
+
+`--parameters` (<a href="#cli-deployment-text-gen-properties-example-schema-wx-ai">`DeploymentTextGenProperties`</a>)
+:   The template properties if this request refers to a prompt template. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters=@path/to/file.json`.
+
+`--moderations` (<a href="#cli-moderations-example-schema-wx-ai">`Moderations`</a>)
+:   Properties that control the moderations, for usages such as `Hate and profanity` (HAP) and `Personal identifiable information` (PII) filtering. This list can be extended with new types of moderations.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--moderations=@path/to/file.json`.
 
 `--parameters-decoding-method` (string)
-:    Represents the strategy used for picking the tokens during generation of the output text.  During text generation when parameter value is set to greedy, each successive token corresponds to the highest probability token given the text that has already been generated. This strategy can lead to repetitive results especially for longer output sequences. The alternative sample strategy generates text by picking subsequent tokens based on the probability distribution of possible next tokens defined by (i.e., conditioned on) the already-generated text and the top_k and top_p parameters described below. See this [url](https://huggingface.co/blog/how-to-generate) for an informative article about text generation. The default value is sample. Allowable values are: sample, greedy.
+:   Represents the strategy used for picking the tokens during generation of the output text.
 
-`--parameters-include-stop-sequence` ()
-:    Pass 'false' to omit matched stop sequences from the end of the output text. The default is 'true', meaning that the output will end with the stop sequence text when matched. The default value is true.
+During text generation when parameter value is set to greedy, each successive token corresponds to the highest probability token given the text that has already been generated. This strategy can lead to repetitive results especially for longer output sequences. The alternative sample strategy generates text by picking subsequent tokens based on the probability distribution of possible next tokens defined by (i.e., conditioned on) the already-generated text and the top_k and top_p parameters described below. See this [url](https://huggingface.co/blog/how-to-generate) for an informative article about text generation. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
 
-`--parameters-length-penalty` (string)
-:    It can be used to exponentially increase the likelihood of the text generation terminating once a specified number of tokens have been generated.
+    The default value is `sample`. Allowable values are: `sample`, `greedy`.
 
-`--parameters-max-new-tokens` (int)
-:    The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.  How the "token" is defined depends on the tokenizer and vocabulary size, which in turn depends on the model. Often the tokens are a mix of full words and sub-words. To learn more about tokenization, [see here](https://huggingface.co/course/chapter2/4).  Depending on the users plan, and on the model being used, there may be an enforced maximum number of new tokens. The default value is 20. The minimum value is 0.
+`--parameters-length-penalty` (<a href="#cli-text-gen-length-penalty-example-schema-wx-ai">`TextGenLengthPenalty`</a>)
+:   It can be used to exponentially increase the likelihood of the text generation terminating once a specified number of tokens have been generated. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
 
-`--parameters-min-new-tokens` (int)
-:    If stop sequences are given, they are ignored until minimum tokens are generated. The default value is 0. The minimum value is 0.
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters-length-penalty=@path/to/file.json`.
 
-`--parameters-prompt-variables` (string)
-:    The prompt variables.
+`--parameters-max-new-tokens` (int64)
+:   The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.
 
-`--parameters-random-seed` (int)
-:    Random number generator seed to use in sampling mode for experimental repeatability. The minimum value is 1.
+How the "token" is defined depends on the tokenizer and vocabulary size, which in turn depends on the model. Often the tokens are a mix of full words and sub-words. To learn more about tokenization, [see here](https://huggingface.co/course/chapter2/4).
 
-`--parameters-repetition-penalty` (float)
-:    Represents the penalty for penalizing tokens that have already been generated or belong to the context. The value 1.0 means that there is no penalty. The default value is 1. The maximum value is 2. The minimum value is 1.
+Depending on the users plan, and on the model being used, there may be an enforced maximum number of new tokens. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
 
-`--parameters-return-options` (string)
-:    Properties that control what is returned.
+    The default value is `20`. The minimum value is `0`.
 
-`--parameters-stop-sequences` (string)
-:    Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 6 items. The minimum length is 0 items.
+`--parameters-min-new-tokens` (int64)
+:   If stop sequences are given, they are ignored until minimum tokens are generated. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
 
-`--parameters-temperature` (float)
-:    A value used to modify the next-token probabilities in sampling mode. Values less than 1.0 sharpen the probability distribution, resulting in "less random" output. Values greater than 1.0 flatten the probability distribution, resulting in "more random" output. A value of 1.0 has no effect. The default value is 1. The maximum value is 2. The minimum value is 0.
+    The default value is `0`. The minimum value is `0`.
 
-`--parameters-time-limit` (int)
-:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.  Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. The value must be greater than 0.
+`--parameters-random-seed` (int64)
+:   Random number generator seed to use in sampling mode for experimental repeatability. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
 
-`--parameters-top-k` (int)
-:    The number of highest probability vocabulary tokens to keep for top-k-filtering. Only applies for sampling mode. When decoding_strategy is set to sample, only the top_k most likely tokens are considered as candidates for the next generated token. The maximum value is 100. The minimum value is 1.
+    The minimum value is `1`.
 
-`--parameters-top-p` (float)
-:    Similar to top_k except the candidates to generate the next token are the most likely tokens with probabilities that add up to at least top_p. Also known as nucleus sampling. A value of 1.0 is equivalent to disabled. The default value is 1. The maximum value is 1. The value must be greater than 0.
+`--parameters-stop-sequences` ([]string)
+:   Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
 
-`--parameters-truncate-input-tokens` (int)
-:    Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the start of the input (on the left), so the end of the input will remain the same. If this value exceeds the 'maximum sequence length' (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the 'maximum sequence length'. Zero means don't truncate. The minimum value is 0.
+    The maximum length is `6` items. The minimum length is `0` items.
 
-`--parameters-typical-p` (float)
-:    Local typicality measures how similar the conditional probability of predicting a target token next is to the expected conditional probability of predicting a random token next, given the partial text already generated. If less than 1, the smallest set of the most locally typical tokens with probabilities that add up to typical_p or higher are kept for generation. The maximum value is 1. The value must be greater than 0.
+`--parameters-temperature` (float64)
+:   A value used to modify the next-token probabilities in sampling mode. Values less than 1.0 sharpen the probability distribution, resulting in "less random" output. Values greater than 1.0 flatten the probability distribution, resulting in "more random" output. A value of 1.0 has no effect. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
 
-`--space-id` (string)
-:    Deployment space identifier.
+    The default value is `1`. The maximum value is `2`. The minimum value is `0.05`.
 
-#### Example
+`--parameters-time-limit` (int64)
+:   Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.
+
+Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The value must be greater than `0`.
+
+`--parameters-top-k` (int64)
+:   The number of highest probability vocabulary tokens to keep for top-k-filtering. Only applies for sampling mode. When decoding_strategy is set to sample, only the top_k most likely tokens are considered as candidates for the next generated token. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The maximum value is `100`. The minimum value is `1`.
+
+`--parameters-top-p` (float64)
+:   Similar to top_k except the candidates to generate the next token are the most likely tokens with probabilities that add up to at least top_p. Also known as nucleus sampling. A value of 1.0 is equivalent to disabled. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `1`. The maximum value is `1`. The value must be greater than `0`.
+
+`--parameters-repetition-penalty` (float64)
+:   Represents the penalty for penalizing tokens that have already been generated or belong to the context. The value 1.0 means that there is no penalty. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `1`. The maximum value is `2`. The minimum value is `1`.
+
+`--parameters-truncate-input-tokens` (int64)
+:   Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the start of the input (on the left), so the end of the input will remain the same. If this value exceeds the `maximum sequence length` (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the `maximum sequence length`. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The minimum value is `1`.
+
+`--parameters-return-options` (<a href="#cli-return-option-properties-example-schema-wx-ai">`ReturnOptionProperties`</a>)
+:   Properties that control what is returned. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters-return-options=@path/to/file.json`.
+
+`--parameters-include-stop-sequence` (bool)
+:   Pass `false` to omit matched stop sequences from the end of the output text. The default is `true`, meaning that the output will end with the stop sequence text when matched. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `true`.
+
+`--parameters-typical-p` (float64)
+:   Local typicality measures how similar the conditional probability of predicting a target token next is to the expected conditional probability of predicting a random token next, given the partial text already generated. If less than 1, the smallest set of the most locally typical tokens with probabilities that add up to typical_p or higher are kept for generation. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The maximum value is `1`. The value must be greater than `0`.
+
+`--parameters-prompt-variables` (map[string]string)
+:   The prompt variables. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters-prompt-variables=@path/to/file.json`.
+
+#### Examples
+
 ```sh
-   cpdctl wx-ai deployment text-generate \
-    --id-or-name classification \
+cpdctl wx-ai deployment text-generate \
+    --id-or-name exampleString \
     --input 'how far is paris from bangalore:\n' \
     --parameters '{"decoding_method": "greedy", "length_penalty": {"decay_factor": 2.5, "start_index": 5}, "max_new_tokens": 100, "min_new_tokens": 5, "random_seed": 1, "stop_sequences": ["fail"], "temperature": 1.5, "time_limit": 600000, "top_k": 50, "top_p": 0.5, "repetition_penalty": 1.5, "truncate_input_tokens": 1, "return_options": {"input_text": true, "generated_tokens": true, "input_tokens": true, "token_logprobs": true, "token_ranks": true, "top_n_tokens": 2}, "include_stop_sequence": true, "typical_p": 0.5, "prompt_variables": {}}' \
     --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}'
@@ -15131,83 +15677,135 @@ Infer the next tokens for a given deployed model with a set of parameters. If a 
 
 <a id='wx-ai_deployment_text-generate-stream'></a>
 ## &#8226; wx-ai deployment text-generate-stream
-Infer the next tokens for a given deployed model with a set of parameters. This operation will return the output tokens as a stream of events. If a `serving_name` is used then it must match the `serving_name` that is returned in the `inference` when the deployment was created.
+
+Infer the next tokens for a given deployed model with a set of parameters. This operation will return the output tokens as a stream of events. If a `serving_name` is used then it must match the `serving_name` that is returned in the `inference` section when the deployment was created.
+
+### Return options
+
+Note that there is currently a limitation in this operation when using `return_options`, for input only `input_text` will be returned if requested, for output the `input_tokens` and `generated_tokens` will not be returned, also the
+`rank` and `top_tokens` will not be returned.
 
 ```sh
-   cpdctl wx-ai deployment text-generate-stream [command options]
+cpdctl wx-ai deployment text-generate-stream --id-or-name ID-OR-NAME [--input INPUT] [--parameters PARAMETERS | --parameters-decoding-method PARAMETERS-DECODING-METHOD --parameters-length-penalty PARAMETERS-LENGTH-PENALTY --parameters-max-new-tokens PARAMETERS-MAX-NEW-TOKENS --parameters-min-new-tokens PARAMETERS-MIN-NEW-TOKENS --parameters-random-seed PARAMETERS-RANDOM-SEED --parameters-stop-sequences PARAMETERS-STOP-SEQUENCES --parameters-temperature PARAMETERS-TEMPERATURE --parameters-time-limit PARAMETERS-TIME-LIMIT --parameters-top-k PARAMETERS-TOP-K --parameters-top-p PARAMETERS-TOP-P --parameters-repetition-penalty PARAMETERS-REPETITION-PENALTY --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS --parameters-include-stop-sequence PARAMETERS-INCLUDE-STOP-SEQUENCE --parameters-typical-p PARAMETERS-TYPICAL-P --parameters-prompt-variables PARAMETERS-PROMPT-VARIABLES] [--moderations MODERATIONS]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
 `--id-or-name` (string)
-:    Required. The 'id_or_name' can be either the 'deployment_id' that identifies the deployment or a 'serving_name' that allows a predefined URL to be used to post a prediction.  The 'project' or 'space' for the deployment must have a WML instance that will be used for limits and billing (if a paid plan).
+:   The `id_or_name` can be either the `deployment_id` that identifies the deployment or a `serving_name` that allows a predefined URL to be used to post a prediction.
+
+The WML instance that is associated with the deployment will be used for limits and billing (if a paid plan). Required.
 
 `--input` (string)
-:    The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces.   This field is ignored if there is a prompt template.
+:   The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces.
 
-`--moderations` (string)
-:    Properties that control the moderations, for usages such as 'Hate and profanity' (HAP) and 'Personal identifiable information' (PII) filtering. This list can be extended with new types of moderations.
 
-`--parameters` (string)
-:    The template properties if this request refers to a prompt template.
+This field is ignored if there is a prompt template.
+
+`--parameters` (<a href="#cli-deployment-text-gen-properties-example-schema-wx-ai">`DeploymentTextGenProperties`</a>)
+:   The template properties if this request refers to a prompt template. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters=@path/to/file.json`.
+
+`--moderations` (<a href="#cli-moderations-example-schema-wx-ai">`Moderations`</a>)
+:   Properties that control the moderations, for usages such as `Hate and profanity` (HAP) and `Personal identifiable information` (PII) filtering. This list can be extended with new types of moderations.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--moderations=@path/to/file.json`.
 
 `--parameters-decoding-method` (string)
-:    Represents the strategy used for picking the tokens during generation of the output text.  During text generation when parameter value is set to greedy, each successive token corresponds to the highest probability token given the text that has already been generated. This strategy can lead to repetitive results especially for longer output sequences. The alternative sample strategy generates text by picking subsequent tokens based on the probability distribution of possible next tokens defined by (i.e., conditioned on) the already-generated text and the top_k and top_p parameters described below. See this [url](https://huggingface.co/blog/how-to-generate) for an informative article about text generation. The default value is sample. Allowable values are: sample, greedy.
+:   Represents the strategy used for picking the tokens during generation of the output text.
 
-`--parameters-include-stop-sequence` ()
-:    Pass 'false' to omit matched stop sequences from the end of the output text. The default is 'true', meaning that the output will end with the stop sequence text when matched. The default value is true.
+During text generation when parameter value is set to greedy, each successive token corresponds to the highest probability token given the text that has already been generated. This strategy can lead to repetitive results especially for longer output sequences. The alternative sample strategy generates text by picking subsequent tokens based on the probability distribution of possible next tokens defined by (i.e., conditioned on) the already-generated text and the top_k and top_p parameters described below. See this [url](https://huggingface.co/blog/how-to-generate) for an informative article about text generation. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
 
-`--parameters-length-penalty` (string)
-:    It can be used to exponentially increase the likelihood of the text generation terminating once a specified number of tokens have been generated.
+    The default value is `sample`. Allowable values are: `sample`, `greedy`.
 
-`--parameters-max-new-tokens` (int)
-:    The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.  How the "token" is defined depends on the tokenizer and vocabulary size, which in turn depends on the model. Often the tokens are a mix of full words and sub-words. To learn more about tokenization, [see here](https://huggingface.co/course/chapter2/4).  Depending on the users plan, and on the model being used, there may be an enforced maximum number of new tokens. The default value is 20. The minimum value is 0.
+`--parameters-length-penalty` (<a href="#cli-text-gen-length-penalty-example-schema-wx-ai">`TextGenLengthPenalty`</a>)
+:   It can be used to exponentially increase the likelihood of the text generation terminating once a specified number of tokens have been generated. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
 
-`--parameters-min-new-tokens` (int)
-:    If stop sequences are given, they are ignored until minimum tokens are generated. The default value is 0. The minimum value is 0.
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters-length-penalty=@path/to/file.json`.
 
-`--parameters-prompt-variables` (string)
-:    The prompt variables.
+`--parameters-max-new-tokens` (int64)
+:   The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.
 
-`--parameters-random-seed` (int)
-:    Random number generator seed to use in sampling mode for experimental repeatability. The minimum value is 1.
+How the "token" is defined depends on the tokenizer and vocabulary size, which in turn depends on the model. Often the tokens are a mix of full words and sub-words. To learn more about tokenization, [see here](https://huggingface.co/course/chapter2/4).
 
-`--parameters-repetition-penalty` (float)
-:    Represents the penalty for penalizing tokens that have already been generated or belong to the context. The value 1.0 means that there is no penalty. The default value is 1. The maximum value is 2. The minimum value is 1.
+Depending on the users plan, and on the model being used, there may be an enforced maximum number of new tokens. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
 
-`--parameters-return-options` (string)
-:    Properties that control what is returned.
+    The default value is `20`. The minimum value is `0`.
 
-`--parameters-stop-sequences` (string)
-:    Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 6 items. The minimum length is 0 items.
+`--parameters-min-new-tokens` (int64)
+:   If stop sequences are given, they are ignored until minimum tokens are generated. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
 
-`--parameters-temperature` (float)
-:    A value used to modify the next-token probabilities in sampling mode. Values less than 1.0 sharpen the probability distribution, resulting in "less random" output. Values greater than 1.0 flatten the probability distribution, resulting in "more random" output. A value of 1.0 has no effect. The default value is 1. The maximum value is 2. The minimum value is 0.
+    The default value is `0`. The minimum value is `0`.
 
-`--parameters-time-limit` (int)
-:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.  Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. The value must be greater than 0.
+`--parameters-random-seed` (int64)
+:   Random number generator seed to use in sampling mode for experimental repeatability. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
 
-`--parameters-top-k` (int)
-:    The number of highest probability vocabulary tokens to keep for top-k-filtering. Only applies for sampling mode. When decoding_strategy is set to sample, only the top_k most likely tokens are considered as candidates for the next generated token. The maximum value is 100. The minimum value is 1.
+    The minimum value is `1`.
 
-`--parameters-top-p` (float)
-:    Similar to top_k except the candidates to generate the next token are the most likely tokens with probabilities that add up to at least top_p. Also known as nucleus sampling. A value of 1.0 is equivalent to disabled. The default value is 1. The maximum value is 1. The value must be greater than 0.
+`--parameters-stop-sequences` ([]string)
+:   Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
 
-`--parameters-truncate-input-tokens` (int)
-:    Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the start of the input (on the left), so the end of the input will remain the same. If this value exceeds the 'maximum sequence length' (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the 'maximum sequence length'. Zero means don't truncate. The minimum value is 0.
+    The maximum length is `6` items. The minimum length is `0` items.
 
-`--parameters-typical-p` (float)
-:    Local typicality measures how similar the conditional probability of predicting a target token next is to the expected conditional probability of predicting a random token next, given the partial text already generated. If less than 1, the smallest set of the most locally typical tokens with probabilities that add up to typical_p or higher are kept for generation. The maximum value is 1. The value must be greater than 0.
+`--parameters-temperature` (float64)
+:   A value used to modify the next-token probabilities in sampling mode. Values less than 1.0 sharpen the probability distribution, resulting in "less random" output. Values greater than 1.0 flatten the probability distribution, resulting in "more random" output. A value of 1.0 has no effect. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
 
-`--space-id` (string)
-:    Deployment space identifier.
+    The default value is `1`. The maximum value is `2`. The minimum value is `0.05`.
 
-#### Example
+`--parameters-time-limit` (int64)
+:   Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.
+
+Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The value must be greater than `0`.
+
+`--parameters-top-k` (int64)
+:   The number of highest probability vocabulary tokens to keep for top-k-filtering. Only applies for sampling mode. When decoding_strategy is set to sample, only the top_k most likely tokens are considered as candidates for the next generated token. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The maximum value is `100`. The minimum value is `1`.
+
+`--parameters-top-p` (float64)
+:   Similar to top_k except the candidates to generate the next token are the most likely tokens with probabilities that add up to at least top_p. Also known as nucleus sampling. A value of 1.0 is equivalent to disabled. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `1`. The maximum value is `1`. The value must be greater than `0`.
+
+`--parameters-repetition-penalty` (float64)
+:   Represents the penalty for penalizing tokens that have already been generated or belong to the context. The value 1.0 means that there is no penalty. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `1`. The maximum value is `2`. The minimum value is `1`.
+
+`--parameters-truncate-input-tokens` (int64)
+:   Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the start of the input (on the left), so the end of the input will remain the same. If this value exceeds the `maximum sequence length` (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the `maximum sequence length`. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The minimum value is `1`.
+
+`--parameters-return-options` (<a href="#cli-return-option-properties-example-schema-wx-ai">`ReturnOptionProperties`</a>)
+:   Properties that control what is returned. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters-return-options=@path/to/file.json`.
+
+`--parameters-include-stop-sequence` (bool)
+:   Pass `false` to omit matched stop sequences from the end of the output text. The default is `true`, meaning that the output will end with the stop sequence text when matched. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `true`.
+
+`--parameters-typical-p` (float64)
+:   Local typicality measures how similar the conditional probability of predicting a target token next is to the expected conditional probability of predicting a random token next, given the partial text already generated. If less than 1, the smallest set of the most locally typical tokens with probabilities that add up to typical_p or higher are kept for generation. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The maximum value is `1`. The value must be greater than `0`.
+
+`--parameters-prompt-variables` (map[string]string)
+:   The prompt variables. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters-prompt-variables=@path/to/file.json`.
+
+#### Examples
+
 ```sh
-   cpdctl wx-ai deployment text-generate-stream \
-    --id-or-name classification \
+cpdctl wx-ai deployment text-generate-stream \
+    --id-or-name exampleString \
     --input exampleString \
     --parameters '{"decoding_method": "greedy", "length_penalty": {"decay_factor": 2.5, "start_index": 5}, "max_new_tokens": 30, "min_new_tokens": 5, "random_seed": 1, "stop_sequences": ["fail"], "temperature": 1.5, "time_limit": 600000, "top_k": 50, "top_p": 0.5, "repetition_penalty": 1.5, "truncate_input_tokens": 1, "return_options": {"input_text": true, "generated_tokens": true, "input_tokens": true, "token_logprobs": true, "token_ranks": true, "top_n_tokens": 2}, "include_stop_sequence": true, "typical_p": 0.5, "prompt_variables": {}}' \
     --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}'
@@ -15233,31 +15831,67 @@ Wait until the deployment becomes ready or failed.
 
 <a id='wx-ai_foundation-model_list-models'></a>
 ## &#8226; wx-ai foundation-model list-models
+
 Retrieve the list of deployed foundation models.
+Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
 
 ```sh
-   cpdctl wx-ai foundation-model list-models [--start START] [--limit LIMIT] [--filters FILTERS] [--tech-preview TECH-PREVIEW]
+cpdctl wx-ai foundation-model list-models [--start START] [--limit LIMIT] [--filters FILTERS] [--tech-preview TECH-PREVIEW]
 ```
+
+
 #### Command options
 
-`--all-pages` ()
-:    Invoke multiple requests to display all pages of the collection for foundation-model-list-models.
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
 
 `--filters` (string)
-:    A set of filters to specify the list of models, filters are described as the 'pattern' shown below. '''text pattern: tfilter[,tfilter][:(or|and)] tfilter: filter | !filter filter: Requires existence of the filter. !filter: Requires absence of the filter. filter: one of modelid_*:     Filters by model id. Namely, select a model with a specific model id. provider_*:    Filters by provider. Namely, select all models with a specific provider. source_*:      Filters by source. Namely, select all models with a specific source. input_tier_*:  Filters by input tier. Namely, select all models with a specific input tier. output_tier_*: Filters by output tier. Namely, select all models with a specific output tier. tier_*:        Filters by tier. Namely, select all models with a specific input or output tier. task_*:        Filters by task id. Namely, select all models that support a specific task id. lifecycle_*:   Filters by lifecycle state. Namely, select all models that are currently in the specified lifecycle state. function_*:    Filters by function. Namely, select all models that support a specific function. '''. The maximum length is 1000 characters. The minimum length is 1 character.
+:   A set of filters to specify the list of models, filters are described as the `pattern` shown below.
+```text
+ pattern: tfilter[,tfilter][:(or|and)]
+ tfilter: filter | !filter
+   filter: Requires existence of the filter.
+   !filter: Requires absence of the filter.
+ filter: one of
+   modelid_*:     Filters by model id.
+                  Namely, select a model with a specific model id.
+   provider_*:    Filters by provider.
+                  Namely, select all models with a specific provider.
+   source_*:      Filters by source.
+                  Namely, select all models with a specific source.
+   input_tier_*:  Filters by input tier.
+                  Namely, select all models with a specific input tier.
+   output_tier_*: Filters by output tier.
+                  Namely, select all models with a specific output tier.
+   tier_*:        Filters by tier.
+                  Namely, select all models with a specific input or output tier.
+   task_*:        Filters by task id.
+                  Namely, select all models that support a specific task id.
+   lifecycle_*:   Filters by lifecycle state.
+                  Namely, select all models that are currently in the specified lifecycle state.
+   function_*:    Filters by function. 
+                  Namely, select all models that support a specific function.
+```.
 
-`--limit` (int)
-:    How many resources should be returned. By default limit is 100. Max limit allowed is 200. The default value is 100. The maximum value is 200. The minimum value is 1.
+    The maximum length is `1000` characters. The minimum length is `1` character. The value must match regular expression `/^([!]?[^,!]+)(,[!]?[^,!]+)*(:(or|and))?$/`.
 
-`--start` (string)
-:    Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
+`--tech-preview` (bool)
+:   See all the `Tech Preview` models if entitled.
 
-`--tech-preview` ()
-:    See all the 'Tech Preview' models if entitled. The default value is false.
+    The default value is `false`.
+
+`--all-pages` (bool)
+:   Invoke multiple requests to display all pages of the collection for foundation-model-list-models.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai foundation-model list-models \
+cpdctl wx-ai foundation-model list-models \
     --start exampleString \
     --limit 50 \
     --filters modelid_ibm/granite-13b-instruct-v2 \
@@ -15266,116 +15900,170 @@ Retrieve the list of deployed foundation models.
 
 <a id='wx-ai_foundation-model_list-tasks'></a>
 ## &#8226; wx-ai foundation-model list-tasks
+
 Retrieve the list of tasks that are supported by the foundation models.
+Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
 
 ```sh
-   cpdctl wx-ai foundation-model list-tasks [--start START] [--limit LIMIT]
+cpdctl wx-ai foundation-model list-tasks [--start START] [--limit LIMIT]
 ```
+
+
 #### Command options
 
-`--all-pages` ()
-:    Invoke multiple requests to display all pages of the collection for foundation-model-list-tasks.
-
-`--limit` (int)
-:    How many resources should be returned. By default limit is 100. Max limit allowed is 200. The default value is 100. The maximum value is 200. The minimum value is 1.
-
 `--start` (string)
-:    Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
+
+`--all-pages` (bool)
+:   Invoke multiple requests to display all pages of the collection for foundation-model-list-tasks.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai foundation-model list-tasks \
+cpdctl wx-ai foundation-model list-tasks \
     --start exampleString \
     --limit 50
 ```
 
 <a id='wx-ai_prompt_create'></a>
 ## &#8226; wx-ai prompt create
+
 This creates a new prompt with the provided parameters.
 
 ```sh
-   cpdctl wx-ai prompt create [command options]
+cpdctl wx-ai prompt create --name NAME [--prompt PROMPT | --prompt-input PROMPT-INPUT --prompt-model-id PROMPT-MODEL-ID --prompt-model-parameters PROMPT-MODEL-PARAMETERS --prompt-data PROMPT-DATA --prompt-system-prompt PROMPT-SYSTEM-PROMPT --prompt-chat-items PROMPT-CHAT-ITEMS --prompt-external-information PROMPT-EXTERNAL-INFORMATION] [--description DESCRIPTION] [--created-at CREATED-AT] [--task-ids TASK-IDS] [--lock LOCK | --lock-locked LOCK-LOCKED --lock-lock-type LOCK-LOCK-TYPE --lock-locked-by LOCK-LOCKED-BY] [--model-version MODEL-VERSION | --model-version-number MODEL-VERSION-NUMBER --model-version-tag MODEL-VERSION-TAG --model-version-description MODEL-VERSION-DESCRIPTION] [--prompt-variables PROMPT-VARIABLES] [--input-mode INPUT-MODE] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+`--name` (string)
+:   Name used to display the prompt. Required.
 
-`--created-at` (int)
-:    Time the prompt was created.
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--prompt` (<a href="#cli-prompt-with-external-example-schema-wx-ai">`PromptWithExternal`</a>)
+:   This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt=@path/to/file.json`.
 
 `--description` (string)
-:    An optional description for the prompt. 
+:   An optional description for the prompt.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--created-at` (int64)
+:   Time the prompt was created.
+
+`--task-ids` ([]string)
+:   &nbsp;
+
+    The list items must match regular expression `/[a-zA-Z0-9-]*/`. The maximum length is `1` item. The minimum length is `1` item.
+
+`--lock` (<a href="#cli-prompt-lock-example-schema-wx-ai">`PromptLock`</a>)
+:   This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--lock=@path/to/file.json`.
+
+`--model-version` (<a href="#cli-wx-prompt-post-model-version-example-schema-wx-ai">`WxPromptPostModelVersion`</a>)
+:   This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--model-version=@path/to/file.json`.
+
+`--prompt-variables` (map[string]map[string]interface{})
+:   &nbsp;
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-variables=@path/to/file.json`.
 
 `--input-mode` (string)
-:    Input mode in use for the prompt. Allowable values are: structured, freeform, chat, detached.
+:   Input mode in use for the prompt.
 
-`--lock` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
-
-`--lock-lock-type` (string)
-:    Lock type: 'edit' for working on prompts/templates or 'governance'. Can only be supplied in PUT /lock requests. Allowable values are: edit, governance.
-
-`--lock-locked` ()
-:    True if the prompt is currently locked.
-
-`--lock-locked-by` (string)
-:    Locked by is computed by the server and shouldn't be passed. 
-
-`--model-version` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
-
-`--model-version-description` (string)
-:    Description of the version. 
-
-`--model-version-number` (string)
-:    User provided semvar version for tracking in IBM AI Factsheets. 
-
-`--model-version-tag` (string)
-:    User provived tag. 
-
-`--name` (string)
-:    Required. Name used to display the prompt. 
+    Allowable values are: `structured`, `freeform`, `chat`, `detached`.
 
 `--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
 
-`--prompt` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
-
-`--prompt-chat-items` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
-
-`--prompt-data` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
-
-`--prompt-external-information` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
-
-`--prompt-input` (string)
-:    The default value is [].
-
-`--prompt-model-id` (string)
-:    
-
-`--prompt-model-parameters` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
-
-`--prompt-system-prompt` (string)
-:    
-
-`--prompt-variables` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--space-id` (string)
-:    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
 
-`--task-ids` (string)
-:    The maximum length is 1 item. The minimum length is 1 item.
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
-#### Example
+`--prompt-input` ([][]string)
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
+
+    The default value is `[]`.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-input=@path/to/file.json`.
+
+`--prompt-model-id` (string)
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
+
+    The value must match regular expression `/[a-zA-Z0-9-\/\/]*/`.
+
+`--prompt-model-parameters` (<a href="#cli-prompt-with-external-model-parameters-example-schema-wx-ai">`PromptWithExternalModelParameters`</a>)
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-model-parameters=@path/to/file.json`.
+
+`--prompt-data` (<a href="#cli-prompt-data-example-schema-wx-ai">`PromptData`</a>)
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-data=@path/to/file.json`.
+
+`--prompt-system-prompt` (string)
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--prompt-chat-items` (<a href="#cli-chat-item-example-schema-wx-ai">`ChatItem[]`</a>)
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-chat-items=@path/to/file.json`.
+
+`--prompt-external-information` (<a href="#cli-external-information-example-schema-wx-ai">`ExternalInformation`</a>)
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-external-information=@path/to/file.json`.
+
+`--lock-locked` (bool)
+:   True if the prompt is currently locked. This option provides a value for a sub-field of the JSON option 'lock'. It is mutually exclusive with that option.
+
+`--lock-lock-type` (string)
+:   Lock type: 'edit' for working on prompts/templates or 'governance'. Can only be supplied in PUT /lock requests. This option provides a value for a sub-field of the JSON option 'lock'. It is mutually exclusive with that option.
+
+    Allowable values are: `edit`, `governance`.
+
+`--lock-locked-by` (string)
+:   Locked by is computed by the server and shouldn't be passed. This option provides a value for a sub-field of the JSON option 'lock'. It is mutually exclusive with that option.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--model-version-number` (string)
+:   User provided semantic version for tracking in IBM AI Factsheets. This option provides a value for a sub-field of the JSON option 'model-version'. It is mutually exclusive with that option.
+
+    The value must match regular expression `/^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$/`.
+
+`--model-version-tag` (string)
+:   User provived tag. This option provides a value for a sub-field of the JSON option 'model-version'. It is mutually exclusive with that option.
+
+    The value must match regular expression `/.*/`.
+
+`--model-version-description` (string)
+:   Description of the version. This option provides a value for a sub-field of the JSON option 'model-version'. It is mutually exclusive with that option.
+
+    The value must match regular expression `/.*/`.
+
+#### Examples
+
 ```sh
-   cpdctl wx-ai prompt create \
+cpdctl wx-ai prompt create \
     --name 'My Prompt' \
     --prompt '{"input": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}], "external_information": {"external_prompt_id": "exampleString", "external_model_id": "exampleString", "external_model_provider": "exampleString", "external_prompt": {"url": "exampleString", "additional_information": [[{"key": "exampleString"}]]}, "external_model": {"name": "exampleString", "url": "exampleString"}}}' \
     --description 'My First Prompt' \
@@ -15391,31 +16079,40 @@ This creates a new prompt with the provided parameters.
 
 <a id='wx-ai_prompt_get'></a>
 ## &#8226; wx-ai prompt get
+
 This retrieves a prompt / prompt template with the given id.
 
 ```sh
-   cpdctl wx-ai prompt get --prompt-id PROMPT-ID [--project-id PROJECT-ID] [--space-id SPACE-ID] [--restrict-model-parameters RESTRICT-MODEL-PARAMETERS]
+cpdctl wx-ai prompt get --prompt-id PROMPT-ID [--project-id PROJECT-ID] [--space-id SPACE-ID] [--restrict-model-parameters RESTRICT-MODEL-PARAMETERS]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+`--prompt-id` (string)
+:   Prompt ID. Required.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
 
-`--prompt-id` (string)
-:    Required. Prompt ID. 
-
-`--restrict-model-parameters` (string)
-:    Only return a set of model parameters compatiable with inferencing. The default value is true.
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--space-id` (string)
-:    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+:   [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--restrict-model-parameters` (string)
+:   Only return a set of model parameters compatiable with inferencing.
+
+    The default value is `true`.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai prompt get \
+cpdctl wx-ai prompt get \
     --prompt-id exampleString \
     --project-id exampleString \
     --space-id exampleString \
@@ -15424,82 +16121,125 @@ This retrieves a prompt / prompt template with the given id.
 
 <a id='wx-ai_prompt_update'></a>
 ## &#8226; wx-ai prompt update
+
 This updates a prompt / prompt template with the given id.
 
 ```sh
-   cpdctl wx-ai prompt update [command options]
+cpdctl wx-ai prompt update --prompt-id PROMPT-ID --name NAME [--prompt PROMPT | --prompt-input PROMPT-INPUT --prompt-model-id PROMPT-MODEL-ID --prompt-model-parameters PROMPT-MODEL-PARAMETERS --prompt-data PROMPT-DATA --prompt-system-prompt PROMPT-SYSTEM-PROMPT --prompt-chat-items PROMPT-CHAT-ITEMS] [--id ID] [--description DESCRIPTION] [--task-ids TASK-IDS] [--governance-tracked GOVERNANCE-TRACKED] [--model-version MODEL-VERSION | --model-version-number MODEL-VERSION-NUMBER --model-version-tag MODEL-VERSION-TAG --model-version-description MODEL-VERSION-DESCRIPTION] [--prompt-variables PROMPT-VARIABLES] [--input-mode INPUT-MODE] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+`--prompt-id` (string)
+:   Prompt ID. Required.
 
-`--description` (string)
-:    An optional description for the prompt. 
-
-`--governance-tracked` ()
-:    !!i18N_MESSAGE_NOT_FOUND!!
-
-`--id` (string)
-:    The prompt's id. This value cannot be set. It is returned in responses only. 
-
-`--input-mode` (string)
-:    Input mode in use for the prompt. Allowable values are: structured, freeform.
-
-`--model-version` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
-
-`--model-version-description` (string)
-:    Description of the version. 
-
-`--model-version-number` (string)
-:    User provided semvar version for tracking in IBM AI Factsheets. 
-
-`--model-version-tag` (string)
-:    User provived tag. 
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--name` (string)
-:    Required. Name used to display the prompt. 
+:   Name used to display the prompt. Required.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--prompt` (<a href="#cli-prompt-example-schema-wx-ai">`Prompt`</a>)
+:   This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt=@path/to/file.json`.
+
+`--id` (string)
+:   The prompt's id. This value cannot be set. It is returned in responses only.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--description` (string)
+:   An optional description for the prompt.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--task-ids` ([]string)
+:   &nbsp;
+
+    The list items must match regular expression `/[a-zA-Z0-9-]*/`. The maximum length is `1` item. The minimum length is `1` item.
+
+`--governance-tracked` (bool)
+:   &nbsp;
+
+`--model-version` (<a href="#cli-wx-prompt-patch-model-version-example-schema-wx-ai">`WxPromptPatchModelVersion`</a>)
+:   This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--model-version=@path/to/file.json`.
+
+`--prompt-variables` (map[string]map[string]interface{})
+:   &nbsp;
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-variables=@path/to/file.json`.
+
+`--input-mode` (string)
+:   Input mode in use for the prompt.
+
+    Allowable values are: `structured`, `freeform`.
 
 `--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
 
-`--prompt` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
-
-`--prompt-chat-items` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
-
-`--prompt-data` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
-
-`--prompt-id` (string)
-:    Required. Prompt ID. 
-
-`--prompt-input` (string)
-:    The default value is [].
-
-`--prompt-model-id` (string)
-:    
-
-`--prompt-model-parameters` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
-
-`--prompt-system-prompt` (string)
-:    
-
-`--prompt-variables` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--space-id` (string)
-:    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
 
-`--task-ids` (string)
-:    The maximum length is 1 item. The minimum length is 1 item.
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
-#### Example
+`--prompt-input` ([][]string)
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
+
+    The default value is `[]`.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-input=@path/to/file.json`.
+
+`--prompt-model-id` (string)
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
+
+    The value must match regular expression `/[a-zA-Z0-9-\/\/]*/`.
+
+`--prompt-model-parameters` (<a href="#cli-prompt-model-parameters-example-schema-wx-ai">`PromptModelParameters`</a>)
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-model-parameters=@path/to/file.json`.
+
+`--prompt-data` (<a href="#cli-prompt-data-example-schema-wx-ai">`PromptData`</a>)
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-data=@path/to/file.json`.
+
+`--prompt-system-prompt` (string)
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--prompt-chat-items` (<a href="#cli-chat-item-example-schema-wx-ai">`ChatItem[]`</a>)
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-chat-items=@path/to/file.json`.
+
+`--model-version-number` (string)
+:   User provided semantic version for tracking in IBM AI Factsheets. This option provides a value for a sub-field of the JSON option 'model-version'. It is mutually exclusive with that option.
+
+    The value must match regular expression `/^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$/`.
+
+`--model-version-tag` (string)
+:   User provived tag. This option provides a value for a sub-field of the JSON option 'model-version'. It is mutually exclusive with that option.
+
+    The value must match regular expression `/.*/`.
+
+`--model-version-description` (string)
+:   Description of the version. This option provides a value for a sub-field of the JSON option 'model-version'. It is mutually exclusive with that option.
+
+    The value must match regular expression `/.*/`.
+
+#### Examples
+
 ```sh
-   cpdctl wx-ai prompt update \
+cpdctl wx-ai prompt update \
     --prompt-id exampleString \
     --name 'My Prompt' \
     --prompt '{"input": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]}' \
@@ -15516,28 +16256,35 @@ This updates a prompt / prompt template with the given id.
 
 <a id='wx-ai_prompt_delete'></a>
 ## &#8226; wx-ai prompt delete
+
 This delets a prompt / prompt template with the given id.
 
 ```sh
-   cpdctl wx-ai prompt delete --prompt-id PROMPT-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl wx-ai prompt delete --prompt-id PROMPT-ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+`--prompt-id` (string)
+:   Prompt ID. Required.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
 
-`--prompt-id` (string)
-:    Required. Prompt ID. 
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--space-id` (string)
-:    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+:   [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai prompt delete \
+cpdctl wx-ai prompt delete \
     --prompt-id exampleString \
     --project-id exampleString \
     --space-id exampleString
@@ -15545,40 +16292,51 @@ This delets a prompt / prompt template with the given id.
 
 <a id='wx-ai_prompt_update-lock'></a>
 ## &#8226; wx-ai prompt update-lock
+
 Modifies the current locked state of a prompt.
 
 ```sh
-   cpdctl wx-ai prompt update-lock --prompt-id PROMPT-ID --locked LOCKED [--lock-type LOCK-TYPE] [--locked-by LOCKED-BY] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--force FORCE]
+cpdctl wx-ai prompt update-lock --prompt-id PROMPT-ID --locked LOCKED [--lock-type LOCK-TYPE] [--locked-by LOCKED-BY] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--force FORCE]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+`--prompt-id` (string)
+:   Prompt ID. Required.
 
-`--force` ()
-:    Override a lock if it is currently taken.
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--locked` (bool)
+:   True if the prompt is currently locked. Required.
 
 `--lock-type` (string)
-:    Lock type: 'edit' for working on prompts/templates or 'governance'. Can only be supplied in PUT /lock requests. Allowable values are: edit, governance.
+:   Lock type: 'edit' for working on prompts/templates or 'governance'. Can only be supplied in PUT /lock requests.
 
-`--locked` ()
-:    Required. True if the prompt is currently locked.
+    Allowable values are: `edit`, `governance`.
 
 `--locked-by` (string)
-:    Locked by is computed by the server and shouldn't be passed. 
+:   Locked by is computed by the server and shouldn't be passed.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
 
-`--prompt-id` (string)
-:    Required. Prompt ID. 
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--space-id` (string)
-:    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+:   [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--force` (bool)
+:   Override a lock if it is currently taken.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai prompt update-lock \
+cpdctl wx-ai prompt update-lock \
     --prompt-id exampleString \
     --locked true \
     --lock-type edit \
@@ -15590,28 +16348,35 @@ Modifies the current locked state of a prompt.
 
 <a id='wx-ai_prompt_get-lock'></a>
 ## &#8226; wx-ai prompt get-lock
+
 Retrieves the current locked state of a prompt.
 
 ```sh
-   cpdctl wx-ai prompt get-lock --prompt-id PROMPT-ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+cpdctl wx-ai prompt get-lock --prompt-id PROMPT-ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
-`--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
-
 `--prompt-id` (string)
-:    Required. Prompt ID. 
+:   Prompt ID. Required.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--space-id` (string)
-:    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+:   [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--project-id` (string)
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai prompt get-lock \
+cpdctl wx-ai prompt get-lock \
     --prompt-id exampleString \
     --space-id exampleString \
     --project-id exampleString
@@ -15619,34 +16384,45 @@ Retrieves the current locked state of a prompt.
 
 <a id='wx-ai_prompt_get-input'></a>
 ## &#8226; wx-ai prompt get-input
+
 Computes the inference input string based on state of a prompt. Optionally replaces template params.
 
 ```sh
-   cpdctl wx-ai prompt get-input --prompt-id PROMPT-ID [--input INPUT] [--prompt-variables PROMPT-VARIABLES] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+cpdctl wx-ai prompt get-input --prompt-id PROMPT-ID [--input INPUT] [--prompt-variables PROMPT-VARIABLES] [--space-id SPACE-ID] [--project-id PROJECT-ID]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+`--prompt-id` (string)
+:   Prompt ID. Required.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--input` (string)
-:    Override input string that will be used to generate the response. The string can contain template parameters. 
+:   Override input string that will be used to generate the response. The string can contain template parameters.
 
-`--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+    The value must match regular expression `/.*/`.
 
-`--prompt-id` (string)
-:    Required. Prompt ID. 
+`--prompt-variables` (map[string]string)
+:   Supply only to replace placeholders. Object content must be key:value pairs where the 'key' is the parameter to replace and 'value' is the value to use.
 
-`--prompt-variables` (string)
-:    Supply only to replace placeholders. Object content must be key:value pairs where the 'key' is the parameter to replace and 'value' is the value to use.
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-variables=@path/to/file.json`.
 
 `--space-id` (string)
-:    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+:   [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--project-id` (string)
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai prompt get-input \
+cpdctl wx-ai prompt get-input \
     --prompt-id exampleString \
     --input 'Some text with variables.' \
     --prompt-variables '{}' \
@@ -15656,31 +16432,42 @@ Computes the inference input string based on state of a prompt. Optionally repla
 
 <a id='wx-ai_prompt_add-chat-item'></a>
 ## &#8226; wx-ai prompt add-chat-item
+
 This adds new chat items to the given prompt.
 
 ```sh
-   cpdctl wx-ai prompt add-chat-item --prompt-id PROMPT-ID --chat-item CHAT-ITEM [--space-id SPACE-ID] [--project-id PROJECT-ID]
+cpdctl wx-ai prompt add-chat-item --prompt-id PROMPT-ID --chat-item CHAT-ITEM [--space-id SPACE-ID] [--project-id PROJECT-ID]
 ```
+
+
 #### Command options
 
-`--chat-item` (string)
-:    Required. An array containing a question chat item and an answer chat item. The maximum length is 2 items. The minimum length is 2 items.
-
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
-`--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
-
 `--prompt-id` (string)
-:    Required. Prompt ID. 
+:   Prompt ID. Required.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--chat-item` (<a href="#cli-chat-item-example-schema-wx-ai">`ChatItem[]`</a>)
+:   An array containing a question chat item and an answer chat item. Required.
+
+    The maximum length is `2` items. The minimum length is `2` items.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--chat-item=@path/to/file.json`.
 
 `--space-id` (string)
-:    [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+:   [REQUIRED] Specifies the space ID as the target. One target must be supplied per request.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--project-id` (string)
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai prompt add-chat-item \
+cpdctl wx-ai prompt add-chat-item \
     --prompt-id exampleString \
     --chat-item '[{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]' \
     --space-id exampleString \
@@ -15689,58 +16476,81 @@ This adds new chat items to the given prompt.
 
 <a id='wx-ai_prompt-session_create'></a>
 ## &#8226; wx-ai prompt-session create
+
 This creates a new prompt session.
 
 ```sh
-   cpdctl wx-ai prompt-session create --name NAME [--id ID] [--description DESCRIPTION] [--created-at CREATED-AT] [--created-by CREATED-BY] [--last-updated-at LAST-UPDATED-AT] [--last-updated-by LAST-UPDATED-BY] [--lock LOCK | --lock-locked LOCK-LOCKED --lock-lock-type LOCK-LOCK-TYPE --lock-locked-by LOCK-LOCKED-BY] [--prompts PROMPTS] [--project-id PROJECT-ID]
+cpdctl wx-ai prompt-session create --name NAME [--id ID] [--description DESCRIPTION] [--created-at CREATED-AT] [--created-by CREATED-BY] [--last-updated-at LAST-UPDATED-AT] [--last-updated-by LAST-UPDATED-BY] [--lock LOCK | --lock-locked LOCK-LOCKED --lock-lock-type LOCK-LOCK-TYPE --lock-locked-by LOCK-LOCKED-BY] [--prompts PROMPTS] [--project-id PROJECT-ID]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+`--name` (string)
+:   Name used to display the prompt session. Required.
 
-`--created-at` (int)
-:    Time the session was created.
-
-`--created-by` (string)
-:    The ID of the original session creator. 
-
-`--description` (string)
-:    An optional description for the prompt session. 
+    The value must match regular expression `/^.{0,100}$/`.
 
 `--id` (string)
-:    The prompt session's id. This value cannot be set. It is returned in responses only. 
+:   The prompt session's id. This value cannot be set. It is returned in responses only.
 
-`--last-updated-at` (int)
-:    Time the session was updated.
+    The value must match regular expression `/[a-zA-Z0-9-]{32}/`.
+
+`--description` (string)
+:   An optional description for the prompt session.
+
+    The value must match regular expression `/^[\\s\\S]{0,250}/`.
+
+`--created-at` (int64)
+:   Time the session was created.
+
+`--created-by` (string)
+:   The ID of the original session creator.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--last-updated-at` (int64)
+:   Time the session was updated.
 
 `--last-updated-by` (string)
-:    The ID of the last user that modifed the session. 
+:   The ID of the last user that modifed the session.
 
-`--lock` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
-`--lock-lock-type` (string)
-:    Lock type: 'edit' for working on prompts/templates or 'governance'. Can only be supplied in PUT /lock requests. Allowable values are: edit, governance.
+`--lock` (<a href="#cli-prompt-lock-example-schema-wx-ai">`PromptLock`</a>)
+:   This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
-`--lock-locked` ()
-:    True if the prompt is currently locked.
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--lock=@path/to/file.json`.
 
-`--lock-locked-by` (string)
-:    Locked by is computed by the server and shouldn't be passed. 
+`--prompts` (<a href="#cli-wx-prompt-session-entry-example-schema-wx-ai">`WxPromptSessionEntry[]`</a>)
+:   &nbsp;
 
-`--name` (string)
-:    Required. Name used to display the prompt session. 
+    The maximum length is `50` items. The minimum length is `0` items.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompts=@path/to/file.json`.
 
 `--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
 
-`--prompts` (string)
-:    The maximum length is 50 items. The minimum length is 0 items.
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
-#### Example
+`--lock-locked` (bool)
+:   True if the prompt is currently locked. This option provides a value for a sub-field of the JSON option 'lock'. It is mutually exclusive with that option.
+
+`--lock-lock-type` (string)
+:   Lock type: 'edit' for working on prompts/templates or 'governance'. Can only be supplied in PUT /lock requests. This option provides a value for a sub-field of the JSON option 'lock'. It is mutually exclusive with that option.
+
+    Allowable values are: `edit`, `governance`.
+
+`--lock-locked-by` (string)
+:   Locked by is computed by the server and shouldn't be passed. This option provides a value for a sub-field of the JSON option 'lock'. It is mutually exclusive with that option.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+#### Examples
+
 ```sh
-   cpdctl wx-ai prompt-session create \
+cpdctl wx-ai prompt-session create \
     --name 'Session 1' \
     --id 1c29d9a1-9ba6-422d-aa39-517b26adc147 \
     --description 'My First Prompt Session' \
@@ -15755,28 +16565,33 @@ This creates a new prompt session.
 
 <a id='wx-ai_prompt-session_get'></a>
 ## &#8226; wx-ai prompt-session get
+
 This retrieves a prompt session with the given id.
 
 ```sh
-   cpdctl wx-ai prompt-session get --session-id SESSION-ID [--project-id PROJECT-ID] [--prefetch PREFETCH]
+cpdctl wx-ai prompt-session get --session-id SESSION-ID [--project-id PROJECT-ID] [--prefetch PREFETCH]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+`--session-id` (string)
+:   Prompt Session ID. Required.
 
-`--prefetch` ()
-:    Include the most recent entry.
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
 
-`--session-id` (string)
-:    Required. Prompt Session ID.
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--prefetch` (bool)
+:   Include the most recent entry.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai prompt-session get \
+cpdctl wx-ai prompt-session get \
     --session-id exampleString \
     --project-id exampleString \
     --prefetch true
@@ -15784,31 +16599,40 @@ This retrieves a prompt session with the given id.
 
 <a id='wx-ai_prompt-session_update'></a>
 ## &#8226; wx-ai prompt-session update
+
 This updates a prompt session with the given id.
 
 ```sh
-   cpdctl wx-ai prompt-session update --session-id SESSION-ID [--name NAME] [--description DESCRIPTION] [--project-id PROJECT-ID]
+cpdctl wx-ai prompt-session update --session-id SESSION-ID [--name NAME] [--description DESCRIPTION] [--project-id PROJECT-ID]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+`--session-id` (string)
+:   Prompt Session ID. Required.
 
-`--description` (string)
-:    An optional description for the prompt. 
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--name` (string)
-:    
+:   &nbsp;
+
+    The value must match regular expression `/^.{0,100}$/`.
+
+`--description` (string)
+:   An optional description for the prompt.
+
+    The value must match regular expression `/^[\\s\\S]{0,250}/`.
 
 `--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
 
-`--session-id` (string)
-:    Required. Prompt Session ID.
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai prompt-session update \
+cpdctl wx-ai prompt-session update \
     --session-id exampleString \
     --name 'Session 1' \
     --description 'My First Prompt Session' \
@@ -15817,92 +16641,128 @@ This updates a prompt session with the given id.
 
 <a id='wx-ai_prompt-session_delete'></a>
 ## &#8226; wx-ai prompt-session delete
+
 This deletes a prompt session with the given id.
 
 ```sh
-   cpdctl wx-ai prompt-session delete --session-id SESSION-ID [--project-id PROJECT-ID]
+cpdctl wx-ai prompt-session delete --session-id SESSION-ID [--project-id PROJECT-ID]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+`--session-id` (string)
+:   Prompt Session ID. Required.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
 
-`--session-id` (string)
-:    Required. Prompt Session ID.
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai prompt-session delete \
+cpdctl wx-ai prompt-session delete \
     --session-id exampleString \
     --project-id exampleString
 ```
 
 <a id='wx-ai_prompt-session_add-entry'></a>
 ## &#8226; wx-ai prompt-session add-entry
+
 This creates a new prompt associated with the given session.
 
 ```sh
-   cpdctl wx-ai prompt-session add-entry [command options]
+cpdctl wx-ai prompt-session add-entry --session-id SESSION-ID --name NAME --created-at CREATED-AT [--prompt PROMPT | --prompt-input PROMPT-INPUT --prompt-model-id PROMPT-MODEL-ID --prompt-model-parameters PROMPT-MODEL-PARAMETERS --prompt-data PROMPT-DATA --prompt-system-prompt PROMPT-SYSTEM-PROMPT --prompt-chat-items PROMPT-CHAT-ITEMS] [--id ID] [--description DESCRIPTION] [--prompt-variables PROMPT-VARIABLES] [--is-template IS-TEMPLATE] [--input-mode INPUT-MODE] [--project-id PROJECT-ID]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+`--session-id` (string)
+:   Prompt Session ID. Required.
 
-`--created-at` (int)
-:    Required. Time the prompt was created.
-
-`--description` (string)
-:    An optional description for the prompt. 
-
-`--id` (string)
-:    The prompt's id. This value cannot be set. It is returned in responses only. 
-
-`--input-mode` (string)
-:    Input mode in use for the prompt. Allowable values are: structured, freeform, chat.
-
-`--is-template` ()
-:    !!i18N_MESSAGE_NOT_FOUND!!
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--name` (string)
-:    Required. Name used to display the prompt. 
+:   Name used to display the prompt. Required.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--created-at` (int64)
+:   Time the prompt was created. Required.
+
+`--prompt` (<a href="#cli-prompt-example-schema-wx-ai">`Prompt`</a>)
+:   This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt=@path/to/file.json`.
+
+`--id` (string)
+:   The prompt's id. This value cannot be set. It is returned in responses only.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--description` (string)
+:   An optional description for the prompt.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--prompt-variables` (map[string]map[string]interface{})
+:   &nbsp;
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-variables=@path/to/file.json`.
+
+`--is-template` (bool)
+:   &nbsp;
+
+`--input-mode` (string)
+:   Input mode in use for the prompt.
+
+    Allowable values are: `structured`, `freeform`, `chat`.
 
 `--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
 
-`--prompt` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
-`--prompt-chat-items` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
+`--prompt-input` ([][]string)
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
 
-`--prompt-data` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
+    The default value is `[]`.
 
-`--prompt-input` (string)
-:    The default value is [].
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-input=@path/to/file.json`.
 
 `--prompt-model-id` (string)
-:    
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
 
-`--prompt-model-parameters` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
+    The value must match regular expression `/[a-zA-Z0-9-\/\/]*/`.
+
+`--prompt-model-parameters` (<a href="#cli-prompt-model-parameters-example-schema-wx-ai">`PromptModelParameters`</a>)
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-model-parameters=@path/to/file.json`.
+
+`--prompt-data` (<a href="#cli-prompt-data-example-schema-wx-ai">`PromptData`</a>)
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-data=@path/to/file.json`.
 
 `--prompt-system-prompt` (string)
-:    
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
 
-`--prompt-variables` (string)
-:    !!i18N_MESSAGE_NOT_FOUND!!
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
-`--session-id` (string)
-:    Required. Prompt Session ID.
+`--prompt-chat-items` (<a href="#cli-chat-item-example-schema-wx-ai">`ChatItem[]`</a>)
+:   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
 
-#### Example
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--prompt-chat-items=@path/to/file.json`.
+
+#### Examples
+
 ```sh
-   cpdctl wx-ai prompt-session add-entry \
+cpdctl wx-ai prompt-session add-entry \
     --session-id exampleString \
     --name 'My Prompt' \
     --created-at 1711504485261 \
@@ -15917,31 +16777,40 @@ This creates a new prompt associated with the given session.
 
 <a id='wx-ai_prompt-session_list-entries'></a>
 ## &#8226; wx-ai prompt-session list-entries
+
 List entries from a given session.
 
 ```sh
-   cpdctl wx-ai prompt-session list-entries --session-id SESSION-ID [--project-id PROJECT-ID] [--bookmark BOOKMARK] [--limit LIMIT]
+cpdctl wx-ai prompt-session list-entries --session-id SESSION-ID [--project-id PROJECT-ID] [--bookmark BOOKMARK] [--limit LIMIT]
 ```
+
+
 #### Command options
 
-`--bookmark` (string)
-:    Bookmark from a previously limited get request. 
+`--session-id` (string)
+:   Prompt Session ID. Required.
 
-`--cpd-scope` (string)
-:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
-
-`--limit` (string)
-:    Limit for results to retrieve, default 20. 
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
 
-`--session-id` (string)
-:    Required. Prompt Session ID.
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--bookmark` (string)
+:   Bookmark from a previously limited get request.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--limit` (string)
+:   Limit for results to retrieve, default 20.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai prompt-session list-entries \
+cpdctl wx-ai prompt-session list-entries \
     --session-id exampleString \
     --project-id exampleString \
     --bookmark exampleString \
@@ -15950,31 +16819,42 @@ List entries from a given session.
 
 <a id='wx-ai_prompt-session_add-chat-item'></a>
 ## &#8226; wx-ai prompt-session add-chat-item
+
 This adds new chat items to the given entry.
 
 ```sh
-   cpdctl wx-ai prompt-session add-chat-item --session-id SESSION-ID --entry-id ENTRY-ID --chat-item CHAT-ITEM [--project-id PROJECT-ID]
+cpdctl wx-ai prompt-session add-chat-item --session-id SESSION-ID --entry-id ENTRY-ID --chat-item CHAT-ITEM [--project-id PROJECT-ID]
 ```
+
+
 #### Command options
 
-`--chat-item` (string)
-:    Required. An array containing a question chat item and an answer chat item. The maximum length is 2 items. The minimum length is 2 items.
+`--session-id` (string)
+:   Prompt Session ID. Required.
 
-`--cpd-scope` (string)
-:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--entry-id` (string)
-:    Required. Prompt Session Entry ID. 
+:   Prompt Session Entry ID. Required.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--chat-item` (<a href="#cli-chat-item-example-schema-wx-ai">`ChatItem[]`</a>)
+:   An array containing a question chat item and an answer chat item. Required.
+
+    The maximum length is `2` items. The minimum length is `2` items.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--chat-item=@path/to/file.json`.
 
 `--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
 
-`--session-id` (string)
-:    Required. Prompt Session ID.
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai prompt-session add-chat-item \
+cpdctl wx-ai prompt-session add-chat-item \
     --session-id exampleString \
     --entry-id exampleString \
     --chat-item '[{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]' \
@@ -15983,37 +16863,46 @@ This adds new chat items to the given entry.
 
 <a id='wx-ai_prompt-session_update-lock'></a>
 ## &#8226; wx-ai prompt-session update-lock
+
 Modifies the current locked state of a prompt session.
 
 ```sh
-   cpdctl wx-ai prompt-session update-lock --session-id SESSION-ID --locked LOCKED [--lock-type LOCK-TYPE] [--locked-by LOCKED-BY] [--project-id PROJECT-ID] [--force FORCE]
+cpdctl wx-ai prompt-session update-lock --session-id SESSION-ID --locked LOCKED [--lock-type LOCK-TYPE] [--locked-by LOCKED-BY] [--project-id PROJECT-ID] [--force FORCE]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+`--session-id` (string)
+:   Prompt Session ID. Required.
 
-`--force` ()
-:    Override a lock if it is currently taken.
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--locked` (bool)
+:   True if the prompt is currently locked. Required.
 
 `--lock-type` (string)
-:    Lock type: 'edit' for working on prompts/templates or 'governance'. Can only be supplied in PUT /lock requests. Allowable values are: edit, governance.
+:   Lock type: 'edit' for working on prompts/templates or 'governance'. Can only be supplied in PUT /lock requests.
 
-`--locked` ()
-:    Required. True if the prompt is currently locked.
+    Allowable values are: `edit`, `governance`.
 
 `--locked-by` (string)
-:    Locked by is computed by the server and shouldn't be passed. 
+:   Locked by is computed by the server and shouldn't be passed.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
 
-`--session-id` (string)
-:    Required. Prompt Session ID.
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--force` (bool)
+:   Override a lock if it is currently taken.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai prompt-session update-lock \
+cpdctl wx-ai prompt-session update-lock \
     --session-id exampleString \
     --locked true \
     --lock-type edit \
@@ -16024,53 +16913,65 @@ Modifies the current locked state of a prompt session.
 
 <a id='wx-ai_prompt-session_get-lock'></a>
 ## &#8226; wx-ai prompt-session get-lock
+
 Retrieves the current locked state of a prompt session.
 
 ```sh
-   cpdctl wx-ai prompt-session get-lock --session-id SESSION-ID [--project-id PROJECT-ID]
+cpdctl wx-ai prompt-session get-lock --session-id SESSION-ID [--project-id PROJECT-ID]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+`--session-id` (string)
+:   Prompt Session ID. Required.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
 
-`--session-id` (string)
-:    Required. Prompt Session ID.
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai prompt-session get-lock \
+cpdctl wx-ai prompt-session get-lock \
     --session-id exampleString \
     --project-id exampleString
 ```
 
 <a id='wx-ai_prompt-session_get-entry'></a>
 ## &#8226; wx-ai prompt-session get-entry
+
 This retrieves a prompt session entry with the given id.
 
 ```sh
-   cpdctl wx-ai prompt-session get-entry --session-id SESSION-ID --entry-id ENTRY-ID [--project-id PROJECT-ID]
+cpdctl wx-ai prompt-session get-entry --session-id SESSION-ID --entry-id ENTRY-ID [--project-id PROJECT-ID]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+`--session-id` (string)
+:   Prompt Session ID. Required.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--entry-id` (string)
-:    Required. Prompt Session Entry ID. 
+:   Prompt Session Entry ID. Required.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
 
-`--session-id` (string)
-:    Required. Prompt Session ID.
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai prompt-session get-entry \
+cpdctl wx-ai prompt-session get-entry \
     --session-id exampleString \
     --entry-id exampleString \
     --project-id exampleString
@@ -16078,28 +16979,35 @@ This retrieves a prompt session entry with the given id.
 
 <a id='wx-ai_prompt-session_delete-entry'></a>
 ## &#8226; wx-ai prompt-session delete-entry
+
 This deletes a prompt session entry with the given id.
 
 ```sh
-   cpdctl wx-ai prompt-session delete-entry --session-id SESSION-ID --entry-id ENTRY-ID [--project-id PROJECT-ID]
+cpdctl wx-ai prompt-session delete-entry --session-id SESSION-ID --entry-id ENTRY-ID [--project-id PROJECT-ID]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+`--session-id` (string)
+:   Prompt Session ID. Required.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--entry-id` (string)
-:    Required. Prompt Session Entry ID. 
+:   Prompt Session Entry ID. Required.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 `--project-id` (string)
-:    [REQUIRED] Specifies the project ID as the target. One target must be supplied per request. 
+:   [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.
 
-`--session-id` (string)
-:    Required. Prompt Session ID.
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai prompt-session delete-entry \
+cpdctl wx-ai prompt-session delete-entry \
     --session-id exampleString \
     --entry-id exampleString \
     --project-id exampleString
@@ -16107,68 +17015,112 @@ This deletes a prompt session entry with the given id.
 
 <a id='wx-ai_text-extraction_create'></a>
 ## &#8226; wx-ai text-extraction create
+
 Start a request to extract text and metadata from documents.
 
+See the [documentation](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-api-text-extraction.html?context=wx&audience=wdp) for a description of text extraction.
+
 ```sh
-   cpdctl wx-ai text-extraction create [--document-reference DOCUMENT-REFERENCE | --document-reference-type DOCUMENT-REFERENCE-TYPE --document-reference-connection DOCUMENT-REFERENCE-CONNECTION --document-reference-location DOCUMENT-REFERENCE-LOCATION] [--results-reference RESULTS-REFERENCE | --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-connection RESULTS-REFERENCE-CONNECTION --results-reference-location RESULTS-REFERENCE-LOCATION] [--steps STEPS | --steps-ocr STEPS-OCR --steps-tables-processing STEPS-TABLES-PROCESSING] [--assembly-json ASSEMBLY-JSON] [--custom CUSTOM] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl wx-ai text-extraction create [--document-reference DOCUMENT-REFERENCE | --document-reference-type DOCUMENT-REFERENCE-TYPE --document-reference-connection DOCUMENT-REFERENCE-CONNECTION --document-reference-location DOCUMENT-REFERENCE-LOCATION] [--results-reference RESULTS-REFERENCE | --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-connection RESULTS-REFERENCE-CONNECTION --results-reference-location RESULTS-REFERENCE-LOCATION] [--steps STEPS | --steps-ocr STEPS-OCR --steps-tables-processing STEPS-TABLES-PROCESSING] [--assembly-json ASSEMBLY-JSON] [--assembly-md ASSEMBLY-MD] [--custom CUSTOM] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
+
+
 #### Command options
 
-`--assembly-json` (string)
-:    Set this as an empty object to speify 'json' output.  Note that this is not strictly required because if an 'assembly_md' object is not found then the default will be 'json'. The default value is {}.
+`--document-reference` (<a href="#cli-text-extraction-data-reference-example-schema-wx-ai">`TextExtractionDataReference`</a>)
+:   A reference to data. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--document-reference=@path/to/file.json`.
 
-`--custom` (string)
-:    User defined properties specified as key-value pairs.
+`--results-reference` (<a href="#cli-text-extraction-data-reference-example-schema-wx-ai">`TextExtractionDataReference`</a>)
+:   A reference to data. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
-`--document-reference` (string)
-:    A reference to data.
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference=@path/to/file.json`.
 
-`--document-reference-connection` (string)
-:    Contains a set of location fields specific to each data source.
+`--steps` (<a href="#cli-text-extraction-steps-example-schema-wx-ai">`TextExtractionSteps`</a>)
+:   The steps for the text extraction pipeline. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
-`--document-reference-location` (string)
-:    Contains a set of fields specific to each connection.
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--steps=@path/to/file.json`.
 
-`--document-reference-type` (string)
-:    The data source type. Allowable values are: connection_asset.
+`--assembly-json` (generic map)
+:   Set this as an empty object to specify `json` output.
+
+Note that this is not strictly required because if an
+`assembly_md` object is not found then the default will be `json`.
+
+    The default value is `{}`.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--assembly-json=@path/to/file.json`.
+
+`--assembly-md` (generic map)
+:   Set this as an empty object to specify `markdown` output.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--assembly-md=@path/to/file.json`.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--custom=@path/to/file.json`.
 
 `--project-id` (string)
-:    The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
 
-`--results-reference` (string)
-:    A reference to data.
-
-`--results-reference-connection` (string)
-:    Contains a set of location fields specific to each data source.
-
-`--results-reference-location` (string)
-:    Contains a set of fields specific to each connection.
-
-`--results-reference-type` (string)
-:    The data source type. Allowable values are: connection_asset.
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
 
 `--space-id` (string)
-:    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
 
-`--steps` (string)
-:    The steps for the text extraction pipeline.
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
 
-`--steps-ocr` (string)
-:    The OCR text extraction step.
+`--document-reference-type` (string)
+:   The data source type. This option provides a value for a sub-field of the JSON option 'document-reference'. It is mutually exclusive with that option.
 
-`--steps-tables-processing` (string)
-:    The tables processing text extraction step.
+    Allowable values are: `connection_asset`.
 
-#### Example
+`--document-reference-connection` (<a href="#cli-cos-data-connection-example-schema-wx-ai">`CosDataConnection`</a>)
+:   Contains a set of location fields specific to each data source. This option provides a value for a sub-field of the JSON option 'document-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--document-reference-connection=@path/to/file.json`.
+
+`--document-reference-location` (<a href="#cli-cos-data-location-example-schema-wx-ai">`CosDataLocation`</a>)
+:   Contains a set of fields specific to each connection. This option provides a value for a sub-field of the JSON option 'document-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--document-reference-location=@path/to/file.json`.
+
+`--results-reference-type` (string)
+:   The data source type. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Allowable values are: `connection_asset`.
+
+`--results-reference-connection` (<a href="#cli-cos-data-connection-example-schema-wx-ai">`CosDataConnection`</a>)
+:   Contains a set of location fields specific to each data source. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference-connection=@path/to/file.json`.
+
+`--results-reference-location` (<a href="#cli-cos-data-location-example-schema-wx-ai">`CosDataLocation`</a>)
+:   Contains a set of fields specific to each connection. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference-location=@path/to/file.json`.
+
+`--steps-ocr` (<a href="#cli-text-extraction-step-ocr-example-schema-wx-ai">`TextExtractionStepOcr`</a>)
+:   The OCR text extraction step. This option provides a value for a sub-field of the JSON option 'steps'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--steps-ocr=@path/to/file.json`.
+
+`--steps-tables-processing` (<a href="#cli-text-extraction-step-tables-processing-example-schema-wx-ai">`TextExtractionStepTablesProcessing`</a>)
+:   The tables processing text extraction step. This option provides a value for a sub-field of the JSON option 'steps'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--steps-tables-processing=@path/to/file.json`.
+
+#### Examples
+
 ```sh
-   cpdctl wx-ai text-extraction create \
+cpdctl wx-ai text-extraction create \
     --document-reference '{"type": "connection_asset", "connection": {"id": "6f5688fd-f3bf-42c2-a18b-49c0d8a1920d"}, "location": {"file_name": "files/document.pdf", "bucket": "exampleString"}}' \
     --results-reference '{"type": "connection_asset", "connection": {"id": "6f5688fd-f3bf-42c2-a18b-49c0d8a1920d"}, "location": {"file_name": "files/document.pdf", "bucket": "exampleString"}}' \
     --steps '{"ocr": {"languages_list": ["en"]}, "tables_processing": {"enabled": true}}' \
     --assembly-json '{"anyKey": "anyValue"}' \
+    --assembly-md '{"anyKey": "anyValue"}' \
     --custom '{"anyKey": "anyValue"}' \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id exampleString
@@ -16176,34 +17128,44 @@ Start a request to extract text and metadata from documents.
 
 <a id='wx-ai_text-extraction_list'></a>
 ## &#8226; wx-ai text-extraction list
+
 Retrieve the list of text extraction requests for the specified space or project.
 
+This operation does not save the history, any requests that were deleted or purged will not appear in this list.
+Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
+
 ```sh
-   cpdctl wx-ai text-extraction list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT]
+cpdctl wx-ai text-extraction list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT]
 ```
+
+
 #### Command options
 
-`--all-pages` ()
-:    Invoke multiple requests to display all pages of the collection for text-extraction-list.
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
-`--limit` (int)
-:    How many resources should be returned. By default limit is 100. Max limit allowed is 200. The default value is 100. The maximum value is 200. The minimum value is 1.
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
 
 `--project-id` (string)
-:    The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
 
-`--space-id` (string)
-:    The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
 
 `--start` (string)
-:    Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
+
+`--all-pages` (bool)
+:   Invoke multiple requests to display all pages of the collection for text-extraction-list.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai text-extraction list \
+cpdctl wx-ai text-extraction list \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --start exampleString \
@@ -16212,28 +17174,35 @@ Retrieve the list of text extraction requests for the specified space or project
 
 <a id='wx-ai_text-extraction_get'></a>
 ## &#8226; wx-ai text-extraction get
+
 Retrieve the text extraction request with the specified identifier.
 
+Note that there is a retention period of 2 days. If this retention period is exceeded then the request will be deleted and the results no longer available. In this case this operation will return `404`.
+
 ```sh
-   cpdctl wx-ai text-extraction get --id ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+cpdctl wx-ai text-extraction get --id ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
 `--id` (string)
-:    Required. The identifier of the extraction request.
-
-`--project-id` (string)
-:    The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+:   The identifier of the extraction request. Required.
 
 `--space-id` (string)
-:    The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai text-extraction get \
+cpdctl wx-ai text-extraction get \
     --id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
@@ -16241,31 +17210,36 @@ Retrieve the text extraction request with the specified identifier.
 
 <a id='wx-ai_text-extraction_delete'></a>
 ## &#8226; wx-ai text-extraction delete
+
 Cancel the specified text extraction request and delete any associated results.
 
 ```sh
-   cpdctl wx-ai text-extraction delete --id ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--hard-delete HARD-DELETE]
+cpdctl wx-ai text-extraction delete --id ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--hard-delete HARD-DELETE]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
-`--hard-delete` ()
-:    Set to true in order to also delete the job or request metadata.
-
 `--id` (string)
-:    Required. The identifier of the extraction request.
-
-`--project-id` (string)
-:    The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+:   The identifier of the extraction request. Required.
 
 `--space-id` (string)
-:    The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--hard-delete` (bool)
+:   Set to true in order to also delete the job or request metadata.
 
 #### Example
+
 ```sh
-   cpdctl wx-ai text-extraction delete \
+cpdctl wx-ai text-extraction delete \
     --id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
@@ -16346,8 +17320,8 @@ cpdctl wx-ai training create --name NAME [--results-reference RESULTS-REFERENCE 
 `--name` (string)
 :   The name of the training. Required.
 
-`--results-reference` (<a href="#cli-object-location-example-schema-wx-ai">`ObjectLocation`</a>)
-:   The training results. Normally this is specified as `type=container` which
+`--results-reference` (<a href="#cli-results-location-example-schema-wx-ai">`ResultsLocation`</a>)
+:   The training results. Normally this is specified as `type=container` (Service) or `type=fs` (Software) which
 means that it is stored in the space or project. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference=@path/to/file.json`.
@@ -16367,6 +17341,8 @@ means that it is stored in the space or project. This JSON option can instead be
 
 `--tags` ([]string)
 :   A list of tags for this resource.
+
+    The maximum length is `64` items.
 
 `--prompt-tuning` (<a href="#cli-prompt-tuning-example-schema-wx-ai">`PromptTuning`</a>)
 :   Properties to control the prompt tuning. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
@@ -16392,9 +17368,9 @@ means that it is stored in the space or project. This JSON option can instead be
 :   Item identification inside a collection. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
 
 `--results-reference-type` (string)
-:   The data source type like `connection_asset` or `data_asset`. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+:   The data source type like `connection_asset`, `container` (Service) or `fs` (Software). This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
 
-    Allowable values are: `connection_asset`, `data_asset`, `container`, `url`.
+    Allowable values are: `connection_asset`, `container`.
 
 `--results-reference-connection` (<a href="#cli-data-connection-example-schema-wx-ai">`DataConnection`</a>)
 :   Contains a set of fields specific to each connection.
@@ -16632,79 +17608,124 @@ Wait until the training becomes completed, failed, or canceled.
 
 <a id='wx-ai_text_generate'></a>
 ## &#8226; wx-ai text generate
+
 Infer the next tokens for a given deployed model with a set of parameters.
 
 ```sh
-   cpdctl wx-ai text generate [command options]
+cpdctl wx-ai text generate --input INPUT --model-id MODEL-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parameters PARAMETERS | --parameters-decoding-method PARAMETERS-DECODING-METHOD --parameters-length-penalty PARAMETERS-LENGTH-PENALTY --parameters-max-new-tokens PARAMETERS-MAX-NEW-TOKENS --parameters-min-new-tokens PARAMETERS-MIN-NEW-TOKENS --parameters-random-seed PARAMETERS-RANDOM-SEED --parameters-stop-sequences PARAMETERS-STOP-SEQUENCES --parameters-temperature PARAMETERS-TEMPERATURE --parameters-time-limit PARAMETERS-TIME-LIMIT --parameters-top-k PARAMETERS-TOP-K --parameters-top-p PARAMETERS-TOP-P --parameters-repetition-penalty PARAMETERS-REPETITION-PENALTY --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS --parameters-include-stop-sequence PARAMETERS-INCLUDE-STOP-SEQUENCE] [--moderations MODERATIONS]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
 `--input` (string)
-:    Required. The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces.
+:   The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces. Required.
 
 `--model-id` (string)
-:    Required. The 'id' of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx).
-
-`--moderations` (string)
-:    Properties that control the moderations, for usages such as 'Hate and profanity' (HAP) and 'Personal identifiable information' (PII) filtering. This list can be extended with new types of moderations.
-
-`--parameters` (string)
-:    Properties that control the model and response.
-
-`--parameters-decoding-method` (string)
-:    Represents the strategy used for picking the tokens during generation of the output text.  During text generation when parameter value is set to greedy, each successive token corresponds to the highest probability token given the text that has already been generated. This strategy can lead to repetitive results especially for longer output sequences. The alternative sample strategy generates text by picking subsequent tokens based on the probability distribution of possible next tokens defined by (i.e., conditioned on) the already-generated text and the top_k and top_p parameters described below. See this [url](https://huggingface.co/blog/how-to-generate) for an informative article about text generation. The default value is sample. Allowable values are: sample, greedy.
-
-`--parameters-include-stop-sequence` ()
-:    Pass 'false' to omit matched stop sequences from the end of the output text. The default is 'true', meaning that the output will end with the stop sequence text when matched. The default value is true.
-
-`--parameters-length-penalty` (string)
-:    It can be used to exponentially increase the likelihood of the text generation terminating once a specified number of tokens have been generated.
-
-`--parameters-max-new-tokens` (int)
-:    The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.  How the "token" is defined depends on the tokenizer and vocabulary size, which in turn depends on the model. Often the tokens are a mix of full words and sub-words. To learn more about tokenization, [see here](https://huggingface.co/course/chapter2/4).  Depending on the users plan, and on the model being used, there may be an enforced maximum number of new tokens. The default value is 20. The minimum value is 0.
-
-`--parameters-min-new-tokens` (int)
-:    If stop sequences are given, they are ignored until minimum tokens are generated. The default value is 0. The minimum value is 0.
-
-`--parameters-random-seed` (int)
-:    Random number generator seed to use in sampling mode for experimental repeatability. The minimum value is 1.
-
-`--parameters-repetition-penalty` (float)
-:    Represents the penalty for penalizing tokens that have already been generated or belong to the context. The value 1.0 means that there is no penalty. The default value is 1. The maximum value is 2. The minimum value is 1.
-
-`--parameters-return-options` (string)
-:    Properties that control what is returned.
-
-`--parameters-stop-sequences` (string)
-:    Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 6 items. The minimum length is 0 items.
-
-`--parameters-temperature` (float)
-:    A value used to modify the next-token probabilities in sampling mode. Values less than 1.0 sharpen the probability distribution, resulting in "less random" output. Values greater than 1.0 flatten the probability distribution, resulting in "more random" output. A value of 1.0 has no effect. The default value is 1. The maximum value is 2. The minimum value is 0.
-
-`--parameters-time-limit` (int)
-:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.  Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. The value must be greater than 0.
-
-`--parameters-top-k` (int)
-:    The number of highest probability vocabulary tokens to keep for top-k-filtering. Only applies for sampling mode. When decoding_strategy is set to sample, only the top_k most likely tokens are considered as candidates for the next generated token. The maximum value is 100. The minimum value is 1.
-
-`--parameters-top-p` (float)
-:    Similar to top_k except the candidates to generate the next token are the most likely tokens with probabilities that add up to at least top_p. Also known as nucleus sampling. A value of 1.0 is equivalent to disabled. The default value is 1. The maximum value is 1. The value must be greater than 0.
-
-`--parameters-truncate-input-tokens` (int)
-:    Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the start of the input (on the left), so the end of the input will remain the same. If this value exceeds the 'maximum sequence length' (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the 'maximum sequence length'. Zero means don't truncate. The minimum value is 0.
-
-`--project-id` (string)
-:    The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+:   The `id` of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx). Required.
 
 `--space-id` (string)
-:    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
 
-#### Example
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--parameters` (<a href="#cli-text-gen-parameters-example-schema-wx-ai">`TextGenParameters`</a>)
+:   Properties that control the model and response. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters=@path/to/file.json`.
+
+`--moderations` (<a href="#cli-moderations-example-schema-wx-ai">`Moderations`</a>)
+:   Properties that control the moderations, for usages such as `Hate and profanity` (HAP) and `Personal identifiable information` (PII) filtering. This list can be extended with new types of moderations.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--moderations=@path/to/file.json`.
+
+`--parameters-decoding-method` (string)
+:   Represents the strategy used for picking the tokens during generation of the output text.
+
+During text generation when parameter value is set to greedy, each successive token corresponds to the highest probability token given the text that has already been generated. This strategy can lead to repetitive results especially for longer output sequences. The alternative sample strategy generates text by picking subsequent tokens based on the probability distribution of possible next tokens defined by (i.e., conditioned on) the already-generated text and the top_k and top_p parameters described below. See this [url](https://huggingface.co/blog/how-to-generate) for an informative article about text generation. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `sample`. Allowable values are: `sample`, `greedy`.
+
+`--parameters-length-penalty` (<a href="#cli-text-gen-length-penalty-example-schema-wx-ai">`TextGenLengthPenalty`</a>)
+:   It can be used to exponentially increase the likelihood of the text generation terminating once a specified number of tokens have been generated. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters-length-penalty=@path/to/file.json`.
+
+`--parameters-max-new-tokens` (int64)
+:   The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.
+
+How the "token" is defined depends on the tokenizer and vocabulary size, which in turn depends on the model. Often the tokens are a mix of full words and sub-words. To learn more about tokenization, [see here](https://huggingface.co/course/chapter2/4).
+
+Depending on the users plan, and on the model being used, there may be an enforced maximum number of new tokens. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `20`. The minimum value is `0`.
+
+`--parameters-min-new-tokens` (int64)
+:   If stop sequences are given, they are ignored until minimum tokens are generated. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `0`. The minimum value is `0`.
+
+`--parameters-random-seed` (int64)
+:   Random number generator seed to use in sampling mode for experimental repeatability. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The minimum value is `1`.
+
+`--parameters-stop-sequences` ([]string)
+:   Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The maximum length is `6` items. The minimum length is `0` items.
+
+`--parameters-temperature` (float64)
+:   A value used to modify the next-token probabilities in sampling mode. Values less than 1.0 sharpen the probability distribution, resulting in "less random" output. Values greater than 1.0 flatten the probability distribution, resulting in "more random" output. A value of 1.0 has no effect. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `1`. The maximum value is `2`. The minimum value is `0.05`.
+
+`--parameters-time-limit` (int64)
+:   Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.
+
+Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The value must be greater than `0`.
+
+`--parameters-top-k` (int64)
+:   The number of highest probability vocabulary tokens to keep for top-k-filtering. Only applies for sampling mode. When decoding_strategy is set to sample, only the top_k most likely tokens are considered as candidates for the next generated token. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The maximum value is `100`. The minimum value is `1`.
+
+`--parameters-top-p` (float64)
+:   Similar to top_k except the candidates to generate the next token are the most likely tokens with probabilities that add up to at least top_p. Also known as nucleus sampling. A value of 1.0 is equivalent to disabled. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `1`. The maximum value is `1`. The value must be greater than `0`.
+
+`--parameters-repetition-penalty` (float64)
+:   Represents the penalty for penalizing tokens that have already been generated or belong to the context. The value 1.0 means that there is no penalty. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `1`. The maximum value is `2`. The minimum value is `1`.
+
+`--parameters-truncate-input-tokens` (int64)
+:   Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the start of the input (on the left), so the end of the input will remain the same. If this value exceeds the `maximum sequence length` (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the `maximum sequence length`. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The minimum value is `1`.
+
+`--parameters-return-options` (<a href="#cli-return-option-properties-example-schema-wx-ai">`ReturnOptionProperties`</a>)
+:   Properties that control what is returned. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters-return-options=@path/to/file.json`.
+
+`--parameters-include-stop-sequence` (bool)
+:   Pass `false` to omit matched stop sequences from the end of the output text. The default is `true`, meaning that the output will end with the stop sequence text when matched. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `true`.
+
+#### Examples
+
 ```sh
-   cpdctl wx-ai text generate \
+cpdctl wx-ai text generate \
     --input 'Generate a marketing email advertising a new sale with the following characteristics:\n\nCompany: Swimwear Unlimited\n\nOffer Keywords: {Select customers only, mid-summer fun, swimwear sale}\n\nOffer End Date: July 15\n\nAdvertisement Tone: Exciting!\n\nInclude no URLs.\n\nInclude no telephone numbers.\n' \
     --model-id google/flan-ul2 \
     --space-id exampleString \
@@ -16715,79 +17736,124 @@ Infer the next tokens for a given deployed model with a set of parameters.
 
 <a id='wx-ai_text_generate-stream'></a>
 ## &#8226; wx-ai text generate-stream
+
 Infer the next tokens for a given deployed model with a set of parameters. This operation will return the output tokens as a stream of events.
 
 ```sh
-   cpdctl wx-ai text generate-stream [command options]
+cpdctl wx-ai text generate-stream --input INPUT --model-id MODEL-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parameters PARAMETERS | --parameters-decoding-method PARAMETERS-DECODING-METHOD --parameters-length-penalty PARAMETERS-LENGTH-PENALTY --parameters-max-new-tokens PARAMETERS-MAX-NEW-TOKENS --parameters-min-new-tokens PARAMETERS-MIN-NEW-TOKENS --parameters-random-seed PARAMETERS-RANDOM-SEED --parameters-stop-sequences PARAMETERS-STOP-SEQUENCES --parameters-temperature PARAMETERS-TEMPERATURE --parameters-time-limit PARAMETERS-TIME-LIMIT --parameters-top-k PARAMETERS-TOP-K --parameters-top-p PARAMETERS-TOP-P --parameters-repetition-penalty PARAMETERS-REPETITION-PENALTY --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS --parameters-include-stop-sequence PARAMETERS-INCLUDE-STOP-SEQUENCE] [--moderations MODERATIONS]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
 `--input` (string)
-:    Required. The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces.
+:   The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces. Required.
 
 `--model-id` (string)
-:    Required. The 'id' of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx).
-
-`--moderations` (string)
-:    Properties that control the moderations, for usages such as 'Hate and profanity' (HAP) and 'Personal identifiable information' (PII) filtering. This list can be extended with new types of moderations.
-
-`--parameters` (string)
-:    Properties that control the model and response.
-
-`--parameters-decoding-method` (string)
-:    Represents the strategy used for picking the tokens during generation of the output text.  During text generation when parameter value is set to greedy, each successive token corresponds to the highest probability token given the text that has already been generated. This strategy can lead to repetitive results especially for longer output sequences. The alternative sample strategy generates text by picking subsequent tokens based on the probability distribution of possible next tokens defined by (i.e., conditioned on) the already-generated text and the top_k and top_p parameters described below. See this [url](https://huggingface.co/blog/how-to-generate) for an informative article about text generation. The default value is sample. Allowable values are: sample, greedy.
-
-`--parameters-include-stop-sequence` ()
-:    Pass 'false' to omit matched stop sequences from the end of the output text. The default is 'true', meaning that the output will end with the stop sequence text when matched. The default value is true.
-
-`--parameters-length-penalty` (string)
-:    It can be used to exponentially increase the likelihood of the text generation terminating once a specified number of tokens have been generated.
-
-`--parameters-max-new-tokens` (int)
-:    The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.  How the "token" is defined depends on the tokenizer and vocabulary size, which in turn depends on the model. Often the tokens are a mix of full words and sub-words. To learn more about tokenization, [see here](https://huggingface.co/course/chapter2/4).  Depending on the users plan, and on the model being used, there may be an enforced maximum number of new tokens. The default value is 20. The minimum value is 0.
-
-`--parameters-min-new-tokens` (int)
-:    If stop sequences are given, they are ignored until minimum tokens are generated. The default value is 0. The minimum value is 0.
-
-`--parameters-random-seed` (int)
-:    Random number generator seed to use in sampling mode for experimental repeatability. The minimum value is 1.
-
-`--parameters-repetition-penalty` (float)
-:    Represents the penalty for penalizing tokens that have already been generated or belong to the context. The value 1.0 means that there is no penalty. The default value is 1. The maximum value is 2. The minimum value is 1.
-
-`--parameters-return-options` (string)
-:    Properties that control what is returned.
-
-`--parameters-stop-sequences` (string)
-:    Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 6 items. The minimum length is 0 items.
-
-`--parameters-temperature` (float)
-:    A value used to modify the next-token probabilities in sampling mode. Values less than 1.0 sharpen the probability distribution, resulting in "less random" output. Values greater than 1.0 flatten the probability distribution, resulting in "more random" output. A value of 1.0 has no effect. The default value is 1. The maximum value is 2. The minimum value is 0.
-
-`--parameters-time-limit` (int)
-:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.  Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. The value must be greater than 0.
-
-`--parameters-top-k` (int)
-:    The number of highest probability vocabulary tokens to keep for top-k-filtering. Only applies for sampling mode. When decoding_strategy is set to sample, only the top_k most likely tokens are considered as candidates for the next generated token. The maximum value is 100. The minimum value is 1.
-
-`--parameters-top-p` (float)
-:    Similar to top_k except the candidates to generate the next token are the most likely tokens with probabilities that add up to at least top_p. Also known as nucleus sampling. A value of 1.0 is equivalent to disabled. The default value is 1. The maximum value is 1. The value must be greater than 0.
-
-`--parameters-truncate-input-tokens` (int)
-:    Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the start of the input (on the left), so the end of the input will remain the same. If this value exceeds the 'maximum sequence length' (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the 'maximum sequence length'. Zero means don't truncate. The minimum value is 0.
-
-`--project-id` (string)
-:    The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+:   The `id` of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx). Required.
 
 `--space-id` (string)
-:    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
 
-#### Example
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--parameters` (<a href="#cli-text-gen-parameters-example-schema-wx-ai">`TextGenParameters`</a>)
+:   Properties that control the model and response. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters=@path/to/file.json`.
+
+`--moderations` (<a href="#cli-moderations-example-schema-wx-ai">`Moderations`</a>)
+:   Properties that control the moderations, for usages such as `Hate and profanity` (HAP) and `Personal identifiable information` (PII) filtering. This list can be extended with new types of moderations.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--moderations=@path/to/file.json`.
+
+`--parameters-decoding-method` (string)
+:   Represents the strategy used for picking the tokens during generation of the output text.
+
+During text generation when parameter value is set to greedy, each successive token corresponds to the highest probability token given the text that has already been generated. This strategy can lead to repetitive results especially for longer output sequences. The alternative sample strategy generates text by picking subsequent tokens based on the probability distribution of possible next tokens defined by (i.e., conditioned on) the already-generated text and the top_k and top_p parameters described below. See this [url](https://huggingface.co/blog/how-to-generate) for an informative article about text generation. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `sample`. Allowable values are: `sample`, `greedy`.
+
+`--parameters-length-penalty` (<a href="#cli-text-gen-length-penalty-example-schema-wx-ai">`TextGenLengthPenalty`</a>)
+:   It can be used to exponentially increase the likelihood of the text generation terminating once a specified number of tokens have been generated. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters-length-penalty=@path/to/file.json`.
+
+`--parameters-max-new-tokens` (int64)
+:   The maximum number of new tokens to be generated. The maximum supported value for this field depends on the model being used.
+
+How the "token" is defined depends on the tokenizer and vocabulary size, which in turn depends on the model. Often the tokens are a mix of full words and sub-words. To learn more about tokenization, [see here](https://huggingface.co/course/chapter2/4).
+
+Depending on the users plan, and on the model being used, there may be an enforced maximum number of new tokens. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `20`. The minimum value is `0`.
+
+`--parameters-min-new-tokens` (int64)
+:   If stop sequences are given, they are ignored until minimum tokens are generated. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `0`. The minimum value is `0`.
+
+`--parameters-random-seed` (int64)
+:   Random number generator seed to use in sampling mode for experimental repeatability. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The minimum value is `1`.
+
+`--parameters-stop-sequences` ([]string)
+:   Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The maximum length is `6` items. The minimum length is `0` items.
+
+`--parameters-temperature` (float64)
+:   A value used to modify the next-token probabilities in sampling mode. Values less than 1.0 sharpen the probability distribution, resulting in "less random" output. Values greater than 1.0 flatten the probability distribution, resulting in "more random" output. A value of 1.0 has no effect. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `1`. The maximum value is `2`. The minimum value is `0.05`.
+
+`--parameters-time-limit` (int64)
+:   Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the TIME_LIMIT stop reason.
+
+Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The value must be greater than `0`.
+
+`--parameters-top-k` (int64)
+:   The number of highest probability vocabulary tokens to keep for top-k-filtering. Only applies for sampling mode. When decoding_strategy is set to sample, only the top_k most likely tokens are considered as candidates for the next generated token. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The maximum value is `100`. The minimum value is `1`.
+
+`--parameters-top-p` (float64)
+:   Similar to top_k except the candidates to generate the next token are the most likely tokens with probabilities that add up to at least top_p. Also known as nucleus sampling. A value of 1.0 is equivalent to disabled. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `1`. The maximum value is `1`. The value must be greater than `0`.
+
+`--parameters-repetition-penalty` (float64)
+:   Represents the penalty for penalizing tokens that have already been generated or belong to the context. The value 1.0 means that there is no penalty. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `1`. The maximum value is `2`. The minimum value is `1`.
+
+`--parameters-truncate-input-tokens` (int64)
+:   Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the start of the input (on the left), so the end of the input will remain the same. If this value exceeds the `maximum sequence length` (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the `maximum sequence length`. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The minimum value is `1`.
+
+`--parameters-return-options` (<a href="#cli-return-option-properties-example-schema-wx-ai">`ReturnOptionProperties`</a>)
+:   Properties that control what is returned. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters-return-options=@path/to/file.json`.
+
+`--parameters-include-stop-sequence` (bool)
+:   Pass `false` to omit matched stop sequences from the end of the output text. The default is `true`, meaning that the output will end with the stop sequence text when matched. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `true`.
+
+#### Examples
+
 ```sh
-   cpdctl wx-ai text generate-stream \
+cpdctl wx-ai text generate-stream \
     --input 'Generate a marketing email advertising a new sale with the following characteristics:\n\nCompany: Swimwear Unlimited\n\nOffer Keywords: {Select customers only, mid-summer fun, swimwear sale}\n\nOffer End Date: July 15\n\nAdvertisement Tone: Exciting!\n\nInclude no URLs.\n\nInclude no telephone numbers.\n' \
     --model-id google/flan-ul2 \
     --space-id exampleString \
@@ -16798,37 +17864,46 @@ Infer the next tokens for a given deployed model with a set of parameters. This 
 
 <a id='wx-ai_text_tokenize'></a>
 ## &#8226; wx-ai text tokenize
+
 The text tokenize operation allows you to check the conversion of provided input to tokens for a given model. It splits text into words or sub-words, which then are converted to ids through a look-up table (vocabulary). Tokenization allows the model to have a reasonable vocabulary size.
 
 ```sh
-   cpdctl wx-ai text tokenize --model-id MODEL-ID --input INPUT [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parameters PARAMETERS | --parameters-return-tokens PARAMETERS-RETURN-TOKENS]
+cpdctl wx-ai text tokenize --model-id MODEL-ID --input INPUT [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parameters PARAMETERS | --parameters-return-tokens PARAMETERS-RETURN-TOKENS]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+`--model-id` (string)
+:   The `id` of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx). Required.
 
 `--input` (string)
-:    Required. The input string to tokenize.
-
-`--model-id` (string)
-:    Required. The 'id' of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx).
-
-`--parameters` (string)
-:    The parameters for text tokenization.
-
-`--parameters-return-tokens` ()
-:    If this is 'true' then the actual tokens will also be returned in the response. The default value is false.
-
-`--project-id` (string)
-:    The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+:   The input string to tokenize. Required.
 
 `--space-id` (string)
-:    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
 
-#### Example
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--parameters` (<a href="#cli-text-tokenize-parameters-example-schema-wx-ai">`TextTokenizeParameters`</a>)
+:   The parameters for text tokenization. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters=@path/to/file.json`.
+
+`--parameters-return-tokens` (bool)
+:   If this is `true` then the actual tokens will also be returned in the response. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `false`.
+
+#### Examples
+
 ```sh
-   cpdctl wx-ai text tokenize \
+cpdctl wx-ai text tokenize \
     --model-id google/flan-ul2 \
     --input 'Write a tagline for an alumni association: Together we' \
     --space-id exampleString \
@@ -16838,40 +17913,59 @@ The text tokenize operation allows you to check the conversion of provided input
 
 <a id='wx-ai_text_calculate-embeddings'></a>
 ## &#8226; wx-ai text calculate-embeddings
+
 Generate embeddings from text input.
 
+See the [documentation](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-embed-overview.html?context=wx&audience=wdp) for a description of text embeddings.
+
 ```sh
-   cpdctl wx-ai text calculate-embeddings --model-id MODEL-ID --inputs INPUTS [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parameters PARAMETERS | --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS]
+cpdctl wx-ai text calculate-embeddings --model-id MODEL-ID --inputs INPUTS [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parameters PARAMETERS | --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
-`--inputs` (string)
-:    Required. The input text. The maximum length is 1000 items.
-
 `--model-id` (string)
-:    Required. The 'id' of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models-embed.html?context=wx&audience=wdp).
+:   The `id` of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models-embed.html?context=wx&audience=wdp). Required.
 
-`--parameters` (string)
-:    Parameters for text embedding requests.
+`--inputs` ([]string)
+:   The input text. Required.
 
-`--parameters-return-options` (string)
-:    The return options for text embeddings.
-
-`--parameters-truncate-input-tokens` (int)
-:    Represents the maximum number of input tokens accepted. This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the end of the input (on the right), so the start of the input will remain the same. If this value exceeds the 'maximum sequence length' (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the 'maximum sequence length'. Zero means don't truncate. The minimum value is 0.
-
-`--project-id` (string)
-:    The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+    The maximum length is `1000` items.
 
 `--space-id` (string)
-:    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
 
-#### Example
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--parameters` (<a href="#cli-embedding-parameters-example-schema-wx-ai">`EmbeddingParameters`</a>)
+:   Parameters for text embedding requests. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters=@path/to/file.json`.
+
+`--parameters-truncate-input-tokens` (int64)
+:   Represents the maximum number of tokens accepted per input.
+
+This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the end of the input (on the right), so the start of the input will remain the same.
+
+If this value exceeds the `maximum sequence length` (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the `maximum sequence length`. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The minimum value is `1`.
+
+`--parameters-return-options` (<a href="#cli-embedding-return-options-example-schema-wx-ai">`EmbeddingReturnOptions`</a>)
+:   The return options for text embeddings. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters-return-options=@path/to/file.json`.
+
+#### Examples
+
 ```sh
-   cpdctl wx-ai text calculate-embeddings \
+cpdctl wx-ai text calculate-embeddings \
     --model-id slate \
     --inputs 'Youth craves thrills while adulthood cherishes wisdom.' \
     --space-id exampleString \
@@ -16881,43 +17975,62 @@ Generate embeddings from text input.
 
 <a id='wx-ai_text_rerank'></a>
 ## &#8226; wx-ai text rerank
+
 Rerank texts based on some queries.
 
 ```sh
-   cpdctl wx-ai text rerank --model-id MODEL-ID --inputs INPUTS --query QUERY [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parameters PARAMETERS | --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS]
+cpdctl wx-ai text rerank --model-id MODEL-ID --inputs INPUTS --query QUERY [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parameters PARAMETERS | --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
-`--inputs` (string)
-:    Required. The rank input strings. The maximum length is 1000 items. The minimum length is 0 items.
-
 `--model-id` (string)
-:    Required. The 'id' of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models-embed.html?context=wx&audience=wdp).
+:   The `id` of the model to be used for this request. Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models-embed.html?context=wx&audience=wdp). Required.
 
-`--parameters` (string)
-:    The properties used for reranking.
+`--inputs` (<a href="#cli-rerank-input-example-schema-wx-ai">`RerankInput[]`</a>)
+:   The rank input strings. Required.
 
-`--parameters-return-options` (string)
-:    The return options for text reranking.
+    The maximum length is `1000` items. The minimum length is `0` items.
 
-`--parameters-truncate-input-tokens` (int)
-:    Represents the maximum number of tokens accepted per input.  This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the end of the input (on the right), so the start of the input will remain the same.  If this value exceeds the 'maximum sequence length' (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the 'maximum sequence length'. The minimum value is 1.
-
-`--project-id` (string)
-:    The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--inputs=@path/to/file.json`.
 
 `--query` (string)
-:    Required. The rank query.
+:   The rank query. Required.
 
 `--space-id` (string)
-:    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
 
-#### Example
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--parameters` (<a href="#cli-rerank-parameters-example-schema-wx-ai">`RerankParameters`</a>)
+:   The properties used for reranking. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters=@path/to/file.json`.
+
+`--parameters-truncate-input-tokens` (int64)
+:   Represents the maximum number of tokens accepted per input.
+
+This can be used to avoid requests failing due to input being longer than configured limits. If the text is truncated, then it truncates the end of the input (on the right), so the start of the input will remain the same.
+
+If this value exceeds the `maximum sequence length` (refer to the documentation to find this value for the model) then the call will fail if the total number of tokens exceeds the `maximum sequence length`. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The minimum value is `1`.
+
+`--parameters-return-options` (<a href="#cli-rerank-return-options-example-schema-wx-ai">`RerankReturnOptions`</a>)
+:   The return options for text reranking. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters-return-options=@path/to/file.json`.
+
+#### Examples
+
 ```sh
-   cpdctl wx-ai text rerank \
+cpdctl wx-ai text rerank \
     --model-id cross-encoder/ms-marco-minilm-l-12-v2 \
     --inputs '[{"text": "In my younger years, I often reveled in the excitement of spontaneous adventures and embraced the thrill of the unknown, whereas in my grownup life, I\'ve come to appreciate the comforting stability of a well-established routine."}]' \
     --query 'As a Youth, I craved excitement while in adulthood I followed Enthusiastic Pursuit.' \
@@ -16928,79 +18041,142 @@ Rerank texts based on some queries.
 
 <a id='wx-ai_text_chat'></a>
 ## &#8226; wx-ai text chat
+
 Infer the next tokens for a given deployed model with a set of parameters.
 
 ```sh
-   cpdctl wx-ai text chat [command options]
+cpdctl wx-ai text chat --model-id MODEL-ID --messages MESSAGES [--space-id SPACE-ID] [--project-id PROJECT-ID] [--tools TOOLS] [--tool-choice-option TOOL-CHOICE-OPTION] [--tool-choice TOOL-CHOICE | --tool-choice-type TOOL-CHOICE-TYPE --tool-choice-function TOOL-CHOICE-FUNCTION] [--frequency-penalty FREQUENCY-PENALTY] [--logit-bias LOGIT-BIAS] [--logprobs LOGPROBS] [--top-logprobs TOP-LOGPROBS] [--max-tokens MAX-TOKENS] [--n N] [--presence-penalty PRESENCE-PENALTY] [--response-format RESPONSE-FORMAT | --response-format-type RESPONSE-FORMAT-TYPE] [--seed SEED] [--stop STOP] [--temperature TEMPERATURE] [--top-p TOP-P] [--time-limit TIME-LIMIT]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
-`--frequency-penalty` (float)
-:    Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. The default value is 0. The value must be less than 2. The value must be greater than -2.
-
-`--logprobs` ()
-:    Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the content of message. The default value is false.
-
-`--max-tokens` (int)
-:    The maximum number of tokens that can be generated in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length. The default value is 1024.
-
-`--messages` (string)
-:    Required. The messages for this chat session. The maximum length is 1000 items. The minimum length is 1 item.
-
 `--model-id` (string)
-:    Required. The model to use for the chat completion.  Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx).
+:   The model to use for the chat completion.
 
-`--n` (int)
-:    How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep n as 1 to minimize costs. The default value is 1.
+Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx). Required.
 
-`--presence-penalty` (float)
-:    Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. The default value is 0. The value must be less than 2. The value must be greater than -2.
+`--messages` (<a href="#cli-text-chat-messages-example-schema-wx-ai">`TextChatMessages[]`</a>)
+:   The messages for this chat session. Required.
 
-`--project-id` (string)
-:    The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+    The maximum length is `1000` items. The minimum length is `1` item.
 
-`--response-format` (string)
-:    The chat response format parameters.
-
-`--response-format-type` (string)
-:    Used to enable JSON mode, which guarantees the message the model generates is valid JSON.  **Important:** when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if 'finish_reason="length"', which indicates the generation exceeded 'max_tokens' or the conversation exceeded the max context length. Allowable values are: json_object.
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--messages=@path/to/file.json`.
 
 `--space-id` (string)
-:    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
 
-`--temperature` (float)
-:    What sampling temperature to use,. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or 'top_p' but not both. The default value is 1. The value must be less than 2. The value must be greater than 0.
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
 
-`--time-limit` (int)
-:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the 'TIME_LIMIT'' stop reason. Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. The value must be greater than 0.
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
 
-`--tool-choice` (string)
-:    Specifying a particular tool via '{"type": "function", "function": {"name": "my_function"}}' forces the model to call that tool.
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
 
-`--tool-choice-function` (string)
-:    The named function.
+`--tools` (<a href="#cli-text-chat-parameter-tools-example-schema-wx-ai">`TextChatParameterTools[]`</a>)
+:   Tool functions that can be called with the response.
+
+    The maximum length is `128` items. The minimum length is `1` item.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--tools=@path/to/file.json`.
 
 `--tool-choice-option` (string)
-:    Using 'auto' means the model can pick between generating a message or calling one or more tools.
+:   Using `auto` means the model can pick between generating a message or calling one or more tools. Specify either `tool_choice_option` to allow the model to pick or `tool_choice` to force the model to call a tool.
+
+`--tool-choice` (<a href="#cli-text-chat-tool-choice-tool-example-schema-wx-ai">`TextChatToolChoiceTool`</a>)
+:   Specifying a particular tool via `{"type": "function", "function": {"name": "my_function"}}` forces the model to call that tool.
+Specify either `tool_choice_option` to allow the model to pick or `tool_choice` to force the model to call a tool. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--tool-choice=@path/to/file.json`.
+
+`--frequency-penalty` (float64)
+:   Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
+
+    The default value is `0`. The value must be less than `2`. The value must be greater than `-2`.
+
+`--logit-bias` (generic map)
+:   Increasing or decreasing probability of tokens being selected during generation; a positive bias makes a token more likely to appear, while a negative bias makes it less likely.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--logit-bias=@path/to/file.json`.
+
+`--logprobs` (bool)
+:   Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the content of message.
+
+    The default value is `false`.
+
+`--top-logprobs` (int64)
+:   An integer specifying the number of most likely tokens to return at each token position, each with an associated log probability. The option `logprobs` must be set to `true` if this parameter is used.
+
+    The maximum value is `20`. The minimum value is `0`.
+
+`--max-tokens` (int64)
+:   The maximum number of tokens that can be generated in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length.
+
+    The default value is `1024`.
+
+`--n` (int64)
+:   How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep n as 1 to minimize costs.
+
+    The default value is `1`.
+
+`--presence-penalty` (float64)
+:   Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
+
+    The default value is `0`. The value must be less than `2`. The value must be greater than `-2`.
+
+`--response-format` (<a href="#cli-text-chat-response-format-example-schema-wx-ai">`TextChatResponseFormat`</a>)
+:   The chat response format parameters. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--response-format=@path/to/file.json`.
+
+`--seed` (int64)
+:   Random number generator seed to use in sampling mode for experimental repeatability.
+
+`--stop` ([]string)
+:   Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored.
+
+    The maximum length is `4` items. The minimum length is `0` items.
+
+`--temperature` (float64)
+:   What sampling temperature to use,. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
+
+We generally recommend altering this or `top_p` but not both.
+
+    The default value is `1`. The value must be less than `2`. The value must be greater than `0`.
+
+`--top-p` (float64)
+:   An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.
+
+We generally recommend altering this or `temperature` but not both.
+
+    The default value is `1`. The value must be less than `1`. The value must be greater than `0`.
+
+`--time-limit` (int64)
+:   Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the `TIME_LIMIT`` stop reason. Depending on the users plan, and on the model being used, there may be an enforced maximum time limit.
+
+    The value must be greater than `0`.
 
 `--tool-choice-type` (string)
-:    The tool type. Allowable values are: function.
+:   The tool type. This option provides a value for a sub-field of the JSON option 'tool-choice'. It is mutually exclusive with that option.
 
-`--tools` (string)
-:    Tool functions that can be called with the response. The maximum length is 128 items. The minimum length is 1 item.
+    Allowable values are: `function`.
 
-`--top-logprobs` (int)
-:    An integer specifying the number of most likely tokens to return at each token position, each with an associated log probability. The option 'logprobs' must be set to 'true' if this parameter is used. The maximum value is 20. The minimum value is 0.
+`--tool-choice-function` (<a href="#cli-text-chat-tool-function-example-schema-wx-ai">`TextChatToolFunction`</a>)
+:   The named function. This option provides a value for a sub-field of the JSON option 'tool-choice'. It is mutually exclusive with that option.
 
-`--top-p` (float)
-:    An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or 'temperature' but not both. The default value is 1. The value must be less than 1. The value must be greater than 0.
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--tool-choice-function=@path/to/file.json`.
 
-#### Example
+`--response-format-type` (string)
+:   Used to enable JSON mode, which guarantees the message the model generates is valid JSON.
+
+**Important:** when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. This option provides a value for a sub-field of the JSON option 'response-format'. It is mutually exclusive with that option.
+
+    Allowable values are: `json_object`.
+
+#### Examples
+
 ```sh
-   cpdctl wx-ai text chat \
+cpdctl wx-ai text chat \
     --model-id meta-llama/llama-3-8b-instruct \
     --messages '[{"role": "TextChatMessageAssistant", "content": "You are a helpful assistant.", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
     --space-id exampleString \
@@ -17009,12 +18185,15 @@ Infer the next tokens for a given deployed model with a set of parameters.
     --tool-choice-option exampleString \
     --tool-choice '{"type": "function", "function": {"name": "exampleString"}}' \
     --frequency-penalty 0 \
+    --logit-bias '{"anyKey": "anyValue"}' \
     --logprobs false \
     --top-logprobs 0 \
     --max-tokens 100 \
     --n 1 \
     --presence-penalty 0 \
     --response-format '{"type": "json_object"}' \
+    --seed 38 \
+    --stop exampleString,anotherTestString \
     --temperature 0 \
     --top-p 1 \
     --time-limit 1000
@@ -17022,79 +18201,142 @@ Infer the next tokens for a given deployed model with a set of parameters.
 
 <a id='wx-ai_text_chat-stream'></a>
 ## &#8226; wx-ai text chat-stream
+
 Infer the next tokens for a given deployed model with a set of parameters. This operation will return the output tokens as a stream of events.
 
 ```sh
-   cpdctl wx-ai text chat-stream [command options]
+cpdctl wx-ai text chat-stream --model-id MODEL-ID --messages MESSAGES [--space-id SPACE-ID] [--project-id PROJECT-ID] [--tools TOOLS] [--tool-choice-option TOOL-CHOICE-OPTION] [--tool-choice TOOL-CHOICE | --tool-choice-type TOOL-CHOICE-TYPE --tool-choice-function TOOL-CHOICE-FUNCTION] [--frequency-penalty FREQUENCY-PENALTY] [--logit-bias LOGIT-BIAS] [--logprobs LOGPROBS] [--top-logprobs TOP-LOGPROBS] [--max-tokens MAX-TOKENS] [--n N] [--presence-penalty PRESENCE-PENALTY] [--response-format RESPONSE-FORMAT | --response-format-type RESPONSE-FORMAT-TYPE] [--seed SEED] [--stop STOP] [--temperature TEMPERATURE] [--top-p TOP-P] [--time-limit TIME-LIMIT]
 ```
+
+
 #### Command options
 
-`--cpd-scope` (string)
-:    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
-
-`--frequency-penalty` (float)
-:    Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. The default value is 0. The value must be less than 2. The value must be greater than -2.
-
-`--logprobs` ()
-:    Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the content of message. The default value is false.
-
-`--max-tokens` (int)
-:    The maximum number of tokens that can be generated in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length. The default value is 1024.
-
-`--messages` (string)
-:    Required. The messages for this chat session. The maximum length is 1000 items. The minimum length is 1 item.
-
 `--model-id` (string)
-:    Required. The model to use for the chat completion.  Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx).
+:   The model to use for the chat completion.
 
-`--n` (int)
-:    How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep n as 1 to minimize costs. The default value is 1.
+Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx). Required.
 
-`--presence-penalty` (float)
-:    Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. The default value is 0. The value must be less than 2. The value must be greater than -2.
+`--messages` (<a href="#cli-text-chat-messages-example-schema-wx-ai">`TextChatMessages[]`</a>)
+:   The messages for this chat session. Required.
 
-`--project-id` (string)
-:    The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+    The maximum length is `1000` items. The minimum length is `1` item.
 
-`--response-format` (string)
-:    The chat response format parameters.
-
-`--response-format-type` (string)
-:    Used to enable JSON mode, which guarantees the message the model generates is valid JSON.  **Important:** when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if 'finish_reason="length"', which indicates the generation exceeded 'max_tokens' or the conversation exceeded the max context length. Allowable values are: json_object.
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--messages=@path/to/file.json`.
 
 `--space-id` (string)
-:    The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters.
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
 
-`--temperature` (float)
-:    What sampling temperature to use,. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or 'top_p' but not both. The default value is 1. The value must be less than 2. The value must be greater than 0.
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
 
-`--time-limit` (int)
-:    Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the 'TIME_LIMIT'' stop reason. Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. The value must be greater than 0.
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
 
-`--tool-choice` (string)
-:    Specifying a particular tool via '{"type": "function", "function": {"name": "my_function"}}' forces the model to call that tool.
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
 
-`--tool-choice-function` (string)
-:    The named function.
+`--tools` (<a href="#cli-text-chat-parameter-tools-example-schema-wx-ai">`TextChatParameterTools[]`</a>)
+:   Tool functions that can be called with the response.
+
+    The maximum length is `128` items. The minimum length is `1` item.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--tools=@path/to/file.json`.
 
 `--tool-choice-option` (string)
-:    Using 'auto' means the model can pick between generating a message or calling one or more tools.
+:   Using `auto` means the model can pick between generating a message or calling one or more tools. Specify either `tool_choice_option` to allow the model to pick or `tool_choice` to force the model to call a tool.
+
+`--tool-choice` (<a href="#cli-text-chat-tool-choice-tool-example-schema-wx-ai">`TextChatToolChoiceTool`</a>)
+:   Specifying a particular tool via `{"type": "function", "function": {"name": "my_function"}}` forces the model to call that tool.
+Specify either `tool_choice_option` to allow the model to pick or `tool_choice` to force the model to call a tool. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--tool-choice=@path/to/file.json`.
+
+`--frequency-penalty` (float64)
+:   Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
+
+    The default value is `0`. The value must be less than `2`. The value must be greater than `-2`.
+
+`--logit-bias` (generic map)
+:   Increasing or decreasing probability of tokens being selected during generation; a positive bias makes a token more likely to appear, while a negative bias makes it less likely.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--logit-bias=@path/to/file.json`.
+
+`--logprobs` (bool)
+:   Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the content of message.
+
+    The default value is `false`.
+
+`--top-logprobs` (int64)
+:   An integer specifying the number of most likely tokens to return at each token position, each with an associated log probability. The option `logprobs` must be set to `true` if this parameter is used.
+
+    The maximum value is `20`. The minimum value is `0`.
+
+`--max-tokens` (int64)
+:   The maximum number of tokens that can be generated in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length.
+
+    The default value is `1024`.
+
+`--n` (int64)
+:   How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep n as 1 to minimize costs.
+
+    The default value is `1`.
+
+`--presence-penalty` (float64)
+:   Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
+
+    The default value is `0`. The value must be less than `2`. The value must be greater than `-2`.
+
+`--response-format` (<a href="#cli-text-chat-response-format-example-schema-wx-ai">`TextChatResponseFormat`</a>)
+:   The chat response format parameters. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--response-format=@path/to/file.json`.
+
+`--seed` (int64)
+:   Random number generator seed to use in sampling mode for experimental repeatability.
+
+`--stop` ([]string)
+:   Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored.
+
+    The maximum length is `4` items. The minimum length is `0` items.
+
+`--temperature` (float64)
+:   What sampling temperature to use,. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
+
+We generally recommend altering this or `top_p` but not both.
+
+    The default value is `1`. The value must be less than `2`. The value must be greater than `0`.
+
+`--top-p` (float64)
+:   An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.
+
+We generally recommend altering this or `temperature` but not both.
+
+    The default value is `1`. The value must be less than `1`. The value must be greater than `0`.
+
+`--time-limit` (int64)
+:   Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the `TIME_LIMIT`` stop reason. Depending on the users plan, and on the model being used, there may be an enforced maximum time limit.
+
+    The value must be greater than `0`.
 
 `--tool-choice-type` (string)
-:    The tool type. Allowable values are: function.
+:   The tool type. This option provides a value for a sub-field of the JSON option 'tool-choice'. It is mutually exclusive with that option.
 
-`--tools` (string)
-:    Tool functions that can be called with the response. The maximum length is 128 items. The minimum length is 1 item.
+    Allowable values are: `function`.
 
-`--top-logprobs` (int)
-:    An integer specifying the number of most likely tokens to return at each token position, each with an associated log probability. The option 'logprobs' must be set to 'true' if this parameter is used. The maximum value is 20. The minimum value is 0.
+`--tool-choice-function` (<a href="#cli-text-chat-tool-function-example-schema-wx-ai">`TextChatToolFunction`</a>)
+:   The named function. This option provides a value for a sub-field of the JSON option 'tool-choice'. It is mutually exclusive with that option.
 
-`--top-p` (float)
-:    An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or 'temperature' but not both. The default value is 1. The value must be less than 1. The value must be greater than 0.
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--tool-choice-function=@path/to/file.json`.
 
-#### Example
+`--response-format-type` (string)
+:   Used to enable JSON mode, which guarantees the message the model generates is valid JSON.
+
+**Important:** when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if `finish_reason="length"`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the max context length. This option provides a value for a sub-field of the JSON option 'response-format'. It is mutually exclusive with that option.
+
+    Allowable values are: `json_object`.
+
+#### Examples
+
 ```sh
-   cpdctl wx-ai text chat-stream \
+cpdctl wx-ai text chat-stream \
     --model-id exampleString \
     --messages '[{"role": "TextChatMessageAssistant", "content": "exampleString", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
@@ -17103,15 +18345,101 @@ Infer the next tokens for a given deployed model with a set of parameters. This 
     --tool-choice-option exampleString \
     --tool-choice '{"type": "function", "function": {"name": "exampleString"}}' \
     --frequency-penalty 0 \
+    --logit-bias '{"anyKey": "anyValue"}' \
     --logprobs false \
     --top-logprobs 0 \
     --max-tokens 1024 \
     --n 1 \
     --presence-penalty 0 \
     --response-format '{"type": "json_object"}' \
+    --seed 41 \
+    --stop this,the \
     --temperature 1 \
     --top-p 1 \
     --time-limit 600000
+```
+
+<a id='wx-ai_time-series_forecast'></a>
+## &#8226; wx-ai time-series forecast
+
+Generate forecasts, or predictions for future time points, given historical time series data.
+
+```sh
+cpdctl wx-ai time-series forecast --model-id MODEL-ID --data DATA [--schema SCHEMA | --schema-timestamp-column SCHEMA-TIMESTAMP-COLUMN --schema-id-columns SCHEMA-ID-COLUMNS --schema-freq SCHEMA-FREQ --schema-target-columns SCHEMA-TARGET-COLUMNS] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--parameters PARAMETERS | --parameters-prediction-length PARAMETERS-PREDICTION-LENGTH]
+```
+
+
+#### Command options
+
+`--model-id` (string)
+:   The model to be used for generating a forecast. Required.
+
+    The maximum length is `256` characters. The minimum length is `1` character. The value must match regular expression `/^\\S+$/`.
+
+`--data` (generic map)
+:   A payload of data matching `schema`. We assume the following about your data:
+  * All timeseries are of equal length and are uniform in nature (the time difference between two successive rows is constant). This implies that there are no missing rows of data;
+  * The data meet the minimum model-dependent historical context length which
+  can be 512 or more rows per timeseries;
+
+Note that the example payloads shown are for illustration purposes only. An actual payload would necessary be much larger to meet minimum model-specific context lengths. Required.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--data=@path/to/file.json`.
+
+`--schema` (<a href="#cli-ts-forecast-input-schema-example-schema-wx-ai">`TSForecastInputSchema`</a>)
+:   Contains metadata about your timeseries data input. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--schema=@path/to/file.json`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--parameters` (<a href="#cli-ts-forecast-parameters-example-schema-wx-ai">`TSForecastParameters`</a>)
+:   The parameters for the forecast request. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters=@path/to/file.json`.
+
+`--schema-timestamp-column` (string)
+:   A valid column in the data that should be treated as the timestamp. Although not absolutely necessary, if using calendar dates  (simple integer time offsets are also allowed), users should consider using a format such as ISO 8601 that includes a UTC offset (e.g.,
+'2024-10-18T01:09:21.454746+00:00'). This will avoid potential issues such as duplicate dates appearing due to daylight savings change overs. There are many date formats in existence and inferring the correct one can be a challenge so please do consider adhering to ISO 8601. This option provides a value for a sub-field of the JSON option 'schema'. It is mutually exclusive with that option.
+
+    The maximum length is `100` characters. The minimum length is `1` character. The value must match regular expression `/^\\S+$/`.
+
+`--schema-id-columns` ([]string)
+:   Columns that define a unique key for timeseries. This is similar to a compound primary key in a database table. This option provides a value for a sub-field of the JSON option 'schema'. It is mutually exclusive with that option.
+
+    The list items must match regular expression `/^\\S+$/`. The maximum length is `10` items. The minimum length is `0` items.
+
+`--schema-freq` (string)
+:   A frequency indicator for the given timestamp_column. See https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#period-aliases for a description of the allowed values. If not provided, we will attempt to infer it from the data. This option provides a value for a sub-field of the JSON option 'schema'. It is mutually exclusive with that option.
+
+    The maximum length is `100` characters. The minimum length is `0` characters. The value must match regular expression `/^\\d+(B|D|W|M|Q|Y|h|min|s|ms|us|ns)$|^\\s*$/`.
+
+`--schema-target-columns` ([]string)
+:   An array of column headings which constitute the target variables in the data. These are the data that will be forecasted. This option provides a value for a sub-field of the JSON option 'schema'. It is mutually exclusive with that option.
+
+    The list items must match regular expression `/^\\S+$/`. The maximum length is `500` items. The minimum length is `0` items.
+
+`--parameters-prediction-length` (int64)
+:   The prediction length for the forecast. The service will return this many periods beyond the last timestamp in the inference data payload. If specified, `prediction_length` must be an integer >=1 and no more than the model default prediction length. When omitted the model default prediction_length will be used. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+#### Examples
+
+```sh
+cpdctl wx-ai time-series forecast \
+    --model-id ibm/ttm-1024-96-r2 \
+    --data '{"anyKey": "anyValue"}' \
+    --schema '{"timestamp_column": "date", "id_columns": ["ID1"], "freq": "1h", "target_columns": ["exampleString","anotherTestString"]}' \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id exampleString \
+    --parameters '{"prediction_length": 38}'
 ```
 
 <a id='wx-ai_custom-foundation-model_list'></a>
@@ -19257,6 +20585,45 @@ The following example shows the format of the MemberResource[] object.
   "type" : "user"
 } ]
 ```
+### &#8226; SoftwareSpecRel
+<a id="cli-software-spec-rel-example-schema-wx-ai"></a>
+
+The following example shows the format of the SoftwareSpecRel object.
+
+```json
+
+{
+  "id" : "45f12dfe-aa78-5b8d-9f38-0ee223c47309",
+  "rev" : "2",
+  "name" : "exampleString"
+}
+```
+### &#8226; AIServiceDocumentation
+<a id="cli-ai-service-documentation-example-schema-wx-ai"></a>
+
+The following example shows the format of the AIServiceDocumentation object.
+
+```json
+
+{
+  "request" : { },
+  "response" : { }
+}
+```
+### &#8226; JSONPatchOperation
+<a id="cli-json-patch-operation-example-schema-wx-ai"></a>
+
+The following example shows the format of the JSONPatchOperation[] object.
+
+```json
+
+[ {
+  "op" : "add",
+  "path" : "exampleString",
+  "from" : "exampleString",
+  "value" : "exampleString"
+} ]
+```
 ### &#8226; OnlineDeployment
 <a id="cli-online-deployment-example-schema-wx-ai"></a>
 
@@ -19322,24 +20689,220 @@ The following example shows the format of the Rel object.
 ### &#8226; OnlineDeploymentParameters
 <a id="cli-online-deployment-parameters-example-schema-wx-ai"></a>
 
-### &#8226; JSONPatchOperation
-<a id="cli-json-patch-operation-example-schema-wx-ai"></a>
+### &#8226; DeploymentTextGenProperties
+<a id="cli-deployment-text-gen-properties-example-schema-wx-ai"></a>
 
-The following example shows the format of the JSONPatchOperation[] object.
+The following example shows the format of the DeploymentTextGenProperties object.
+
+```json
+
+{
+  "decoding_method" : "greedy",
+  "length_penalty" : {
+    "decay_factor" : 2.5,
+    "start_index" : 5
+  },
+  "max_new_tokens" : 100,
+  "min_new_tokens" : 5,
+  "random_seed" : 1,
+  "stop_sequences" : [ "fail" ],
+  "temperature" : 1.5,
+  "time_limit" : 600000,
+  "top_k" : 50,
+  "top_p" : 0.5,
+  "repetition_penalty" : 1.5,
+  "truncate_input_tokens" : 1,
+  "return_options" : {
+    "input_text" : true,
+    "generated_tokens" : true,
+    "input_tokens" : true,
+    "token_logprobs" : true,
+    "token_ranks" : true,
+    "top_n_tokens" : 2
+  },
+  "include_stop_sequence" : true,
+  "typical_p" : 0.5,
+  "prompt_variables" : { }
+}
+```
+### &#8226; Moderations
+<a id="cli-moderations-example-schema-wx-ai"></a>
+
+The following example shows the format of the Moderations object.
+
+```json
+
+{
+  "hap" : {
+    "input" : {
+      "enabled" : true,
+      "threshold" : 0
+    },
+    "output" : {
+      "enabled" : true,
+      "threshold" : 0
+    },
+    "mask" : {
+      "remove_entity_value" : false
+    }
+  },
+  "pii" : {
+    "input" : {
+      "enabled" : true
+    },
+    "output" : {
+      "enabled" : true
+    },
+    "mask" : {
+      "remove_entity_value" : false
+    }
+  },
+  "input_ranges" : [ {
+    "start" : 0,
+    "end" : 0
+  } ]
+}
+```
+### &#8226; TextGenLengthPenalty
+<a id="cli-text-gen-length-penalty-example-schema-wx-ai"></a>
+
+### &#8226; ReturnOptionProperties
+<a id="cli-return-option-properties-example-schema-wx-ai"></a>
+
+### &#8226; PromptWithExternal
+<a id="cli-prompt-with-external-example-schema-wx-ai"></a>
+
+### &#8226; PromptLock
+<a id="cli-prompt-lock-example-schema-wx-ai"></a>
+
+The following example shows the format of the PromptLock object.
+
+```json
+
+{
+  "locked" : true,
+  "lock_type" : "edit",
+  "locked_by" : "IBMid-000000YYY0"
+}
+```
+### &#8226; WxPromptPostModelVersion
+<a id="cli-wx-prompt-post-model-version-example-schema-wx-ai"></a>
+
+The following example shows the format of the WxPromptPostModelVersion object.
+
+```json
+
+{
+  "number" : "2.0.0-rc.7",
+  "tag" : "tag",
+  "description" : "Description of the model version."
+}
+```
+### &#8226; PromptWithExternalModelParameters
+<a id="cli-prompt-with-external-model-parameters-example-schema-wx-ai"></a>
+
+### &#8226; PromptData
+<a id="cli-prompt-data-example-schema-wx-ai"></a>
+
+### &#8226; ChatItem
+<a id="cli-chat-item-example-schema-wx-ai"></a>
+
+The following example shows the format of the ChatItem[] object.
 
 ```json
 
 [ {
-  "op" : "add",
-  "path" : "exampleString",
-  "from" : "exampleString",
-  "value" : "exampleString"
+  "type" : "question",
+  "content" : "Some text",
+  "status" : "ready",
+  "timestamp" : 1711504485261
 } ]
 ```
-### &#8226; ObjectLocation
-<a id="cli-object-location-example-schema-wx-ai"></a>
+### &#8226; ExternalInformation
+<a id="cli-external-information-example-schema-wx-ai"></a>
 
-The following example shows the format of the ObjectLocation object.
+### &#8226; Prompt
+<a id="cli-prompt-example-schema-wx-ai"></a>
+
+The following example shows the format of the PromptLock object.
+
+```json
+
+{
+  "locked" : true,
+  "lock_type" : "edit",
+  "locked_by" : "IBMid-000000YYY0"
+}
+```
+### &#8226; WxPromptPatchModelVersion
+<a id="cli-wx-prompt-patch-model-version-example-schema-wx-ai"></a>
+
+The following example shows the format of the WxPromptPatchModelVersion object.
+
+```json
+
+{
+  "number" : "2.0.0-rc.7",
+  "tag" : "tag",
+  "description" : "Description of the model version."
+}
+```
+### &#8226; PromptModelParameters
+<a id="cli-prompt-model-parameters-example-schema-wx-ai"></a>
+
+### &#8226; WxPromptSessionEntry
+<a id="cli-wx-prompt-session-entry-example-schema-wx-ai"></a>
+
+### &#8226; TextExtractionDataReference
+<a id="cli-text-extraction-data-reference-example-schema-wx-ai"></a>
+
+The following example shows the format of the TextExtractionDataReference object.
+
+```json
+
+{
+  "type" : "connection_asset",
+  "connection" : {
+    "id" : "6f5688fd-f3bf-42c2-a18b-49c0d8a1920d"
+  },
+  "location" : {
+    "file_name" : "files/document.pdf",
+    "bucket" : "exampleString"
+  }
+}
+```
+### &#8226; TextExtractionSteps
+<a id="cli-text-extraction-steps-example-schema-wx-ai"></a>
+
+The following example shows the format of the TextExtractionSteps object.
+
+```json
+
+{
+  "ocr" : {
+    "languages_list" : [ "en" ]
+  },
+  "tables_processing" : {
+    "enabled" : true
+  }
+}
+```
+### &#8226; CosDataConnection
+<a id="cli-cos-data-connection-example-schema-wx-ai"></a>
+
+### &#8226; CosDataLocation
+<a id="cli-cos-data-location-example-schema-wx-ai"></a>
+
+### &#8226; TextExtractionStepOcr
+<a id="cli-text-extraction-step-ocr-example-schema-wx-ai"></a>
+
+### &#8226; TextExtractionStepTablesProcessing
+<a id="cli-text-extraction-step-tables-processing-example-schema-wx-ai"></a>
+
+### &#8226; ResultsLocation
+<a id="cli-results-location-example-schema-wx-ai"></a>
+
+The following example shows the format of the ResultsLocation object.
 
 ```json
 
@@ -19425,3 +20988,188 @@ The following example shows the format of the DataConnectionReference[] object.
 ### &#8226; BaseModel
 <a id="cli-base-model-example-schema-wx-ai"></a>
 
+### &#8226; TextGenParameters
+<a id="cli-text-gen-parameters-example-schema-wx-ai"></a>
+
+The following example shows the format of the TextGenParameters object.
+
+```json
+
+{
+  "decoding_method" : "greedy",
+  "length_penalty" : {
+    "decay_factor" : 2.5,
+    "start_index" : 5
+  },
+  "max_new_tokens" : 30,
+  "min_new_tokens" : 5,
+  "random_seed" : 1,
+  "stop_sequences" : [ "fail" ],
+  "temperature" : 0.8,
+  "time_limit" : 600000,
+  "top_k" : 50,
+  "top_p" : 0.5,
+  "repetition_penalty" : 1.5,
+  "truncate_input_tokens" : 1,
+  "return_options" : {
+    "input_text" : true,
+    "generated_tokens" : true,
+    "input_tokens" : true,
+    "token_logprobs" : true,
+    "token_ranks" : true,
+    "top_n_tokens" : 2
+  },
+  "include_stop_sequence" : true
+}
+```
+### &#8226; TextTokenizeParameters
+<a id="cli-text-tokenize-parameters-example-schema-wx-ai"></a>
+
+The following example shows the format of the TextTokenizeParameters object.
+
+```json
+
+{
+  "return_tokens" : true
+}
+```
+### &#8226; EmbeddingParameters
+<a id="cli-embedding-parameters-example-schema-wx-ai"></a>
+
+The following example shows the format of the EmbeddingParameters object.
+
+```json
+
+{
+  "truncate_input_tokens" : 1,
+  "return_options" : {
+    "input_text" : true
+  }
+}
+```
+### &#8226; EmbeddingReturnOptions
+<a id="cli-embedding-return-options-example-schema-wx-ai"></a>
+
+### &#8226; RerankInput
+<a id="cli-rerank-input-example-schema-wx-ai"></a>
+
+The following example shows the format of the RerankInput[] object.
+
+```json
+
+[ {
+  "text" : "In my younger years, I often reveled in the excitement of spontaneous adventures and embraced the thrill of the unknown, whereas in my grownup life, I've come to appreciate the comforting stability of a well-established routine."
+} ]
+```
+### &#8226; RerankParameters
+<a id="cli-rerank-parameters-example-schema-wx-ai"></a>
+
+The following example shows the format of the RerankParameters object.
+
+```json
+
+{
+  "truncate_input_tokens" : 1,
+  "return_options" : {
+    "top_n" : 2,
+    "inputs" : false,
+    "query" : false
+  }
+}
+```
+### &#8226; RerankReturnOptions
+<a id="cli-rerank-return-options-example-schema-wx-ai"></a>
+
+### &#8226; TextChatMessages
+<a id="cli-text-chat-messages-example-schema-wx-ai"></a>
+
+The following example shows the format of the TextChatMessages[] object.
+
+```json
+
+[ {
+  "role" : "TextChatMessageAssistant",
+  "content" : "You are a helpful assistant.",
+  "name" : "exampleString",
+  "refusal" : "exampleString",
+  "tool_calls" : [ {
+    "id" : "exampleString",
+    "type" : "function",
+    "function" : {
+      "name" : "exampleString",
+      "arguments" : "exampleString"
+    }
+  } ]
+} ]
+```
+### &#8226; TextChatParameterTools
+<a id="cli-text-chat-parameter-tools-example-schema-wx-ai"></a>
+
+The following example shows the format of the TextChatParameterTools[] object.
+
+```json
+
+[ {
+  "type" : "function",
+  "function" : {
+    "name" : "exampleString",
+    "description" : "exampleString",
+    "parameters" : {
+      "anyKey" : "anyValue"
+    }
+  }
+} ]
+```
+### &#8226; TextChatToolChoiceTool
+<a id="cli-text-chat-tool-choice-tool-example-schema-wx-ai"></a>
+
+The following example shows the format of the TextChatToolChoiceTool object.
+
+```json
+
+{
+  "type" : "function",
+  "function" : {
+    "name" : "exampleString"
+  }
+}
+```
+### &#8226; TextChatResponseFormat
+<a id="cli-text-chat-response-format-example-schema-wx-ai"></a>
+
+The following example shows the format of the TextChatResponseFormat object.
+
+```json
+
+{
+  "type" : "json_object"
+}
+```
+### &#8226; TextChatToolFunction
+<a id="cli-text-chat-tool-function-example-schema-wx-ai"></a>
+
+### &#8226; TSForecastInputSchema
+<a id="cli-ts-forecast-input-schema-example-schema-wx-ai"></a>
+
+The following example shows the format of the TSForecastInputSchema object.
+
+```json
+
+{
+  "timestamp_column" : "date",
+  "id_columns" : [ "ID1" ],
+  "freq" : "1h",
+  "target_columns" : [ "exampleString", "anotherExampleString" ]
+}
+```
+### &#8226; TSForecastParameters
+<a id="cli-ts-forecast-parameters-example-schema-wx-ai"></a>
+
+The following example shows the format of the TSForecastParameters object.
+
+```json
+
+{
+  "prediction_length" : 38
+}
+```
