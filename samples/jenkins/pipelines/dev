@@ -1,5 +1,5 @@
 node {
-    withCredentials([file(credentialsId: 'CPDCTL_CPD402_CONFIG', variable: 'CPDCONFIG')]) {
+    withCredentials([file(credentialsId: 'CPDCTL_CPD450_CONFIG', variable: 'CPDCONFIG')]) {
         checkout scm
 
         stage('Install cpdctl') {
