@@ -151,6 +151,7 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [find ](#find_)
 #### &#8226; [job list](#job_list)
 #### &#8226; [job create](#job_create)
+#### &#8226; [job bulk-delete](#job_bulk-delete)
 #### &#8226; [job serving-name](#job_serving-name)
 #### &#8226; [job delete](#job_delete)
 #### &#8226; [job get](#job_get)
@@ -284,6 +285,11 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [project member update](#project_member_update)
 #### &#8226; [project member create](#project_member_create)
 #### &#8226; [project member get](#project_member_get)
+#### &#8226; [project storage update](#project_storage_update)
+#### &#8226; [project tag delete](#project_tag_delete)
+#### &#8226; [project tag list](#project_tag_list)
+#### &#8226; [project tag update](#project_tag_update)
+#### &#8226; [project tag create](#project_tag_create)
 #### &#8226; [project create](#project_create)
 #### &#8226; [project delete](#project_delete)
 #### &#8226; [space list](#space_list)
@@ -307,6 +313,10 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [wx-ai ai-service download-code](#wx-ai_ai-service_download-code)
 #### &#8226; [wx-ai ai-service create-revision](#wx-ai_ai-service_create-revision)
 #### &#8226; [wx-ai ai-service list-revisions](#wx-ai_ai-service_list-revisions)
+#### &#8226; [wx-ai autoai-rag create](#wx-ai_autoai-rag_create)
+#### &#8226; [wx-ai autoai-rag list](#wx-ai_autoai-rag_list)
+#### &#8226; [wx-ai autoai-rag get](#wx-ai_autoai-rag_get)
+#### &#8226; [wx-ai autoai-rag delete](#wx-ai_autoai-rag_delete)
 #### &#8226; [wx-ai deployment create](#wx-ai_deployment_create)
 #### &#8226; [wx-ai deployment list](#wx-ai_deployment_list)
 #### &#8226; [wx-ai deployment get](#wx-ai_deployment_get)
@@ -314,7 +324,13 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [wx-ai deployment delete](#wx-ai_deployment_delete)
 #### &#8226; [wx-ai deployment text-generate](#wx-ai_deployment_text-generate)
 #### &#8226; [wx-ai deployment text-generate-stream](#wx-ai_deployment_text-generate-stream)
+#### &#8226; [wx-ai deployment chat](#wx-ai_deployment_chat)
+#### &#8226; [wx-ai deployment chat-stream](#wx-ai_deployment_chat-stream)
 #### &#8226; [wx-ai deployment wait](#wx-ai_deployment_wait)
+#### &#8226; [wx-ai fine-tuning create](#wx-ai_fine-tuning_create)
+#### &#8226; [wx-ai fine-tuning list](#wx-ai_fine-tuning_list)
+#### &#8226; [wx-ai fine-tuning get](#wx-ai_fine-tuning_get)
+#### &#8226; [wx-ai fine-tuning delete](#wx-ai_fine-tuning_delete)
 #### &#8226; [wx-ai foundation-model list-models](#wx-ai_foundation-model_list-models)
 #### &#8226; [wx-ai foundation-model list-tasks](#wx-ai_foundation-model_list-tasks)
 #### &#8226; [wx-ai prompt create](#wx-ai_prompt_create)
@@ -353,6 +369,18 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [wx-ai text chat](#wx-ai_text_chat)
 #### &#8226; [wx-ai text chat-stream](#wx-ai_text_chat-stream)
 #### &#8226; [wx-ai time-series forecast](#wx-ai_time-series_forecast)
+#### &#8226; [wx-ai document-extraction create](#wx-ai_document-extraction_create)
+#### &#8226; [wx-ai document-extraction list](#wx-ai_document-extraction_list)
+#### &#8226; [wx-ai document-extraction get](#wx-ai_document-extraction_get)
+#### &#8226; [wx-ai document-extraction delete](#wx-ai_document-extraction_delete)
+#### &#8226; [wx-ai synthetic-data-generation create](#wx-ai_synthetic-data-generation_create)
+#### &#8226; [wx-ai synthetic-data-generation list](#wx-ai_synthetic-data-generation_list)
+#### &#8226; [wx-ai synthetic-data-generation get](#wx-ai_synthetic-data-generation_get)
+#### &#8226; [wx-ai synthetic-data-generation delete](#wx-ai_synthetic-data-generation_delete)
+#### &#8226; [wx-ai taxonomy create](#wx-ai_taxonomy_create)
+#### &#8226; [wx-ai taxonomy list](#wx-ai_taxonomy_list)
+#### &#8226; [wx-ai taxonomy get](#wx-ai_taxonomy_get)
+#### &#8226; [wx-ai taxonomy delete](#wx-ai_taxonomy_delete)
 #### &#8226; [wx-ai custom-foundation-model list](#wx-ai_custom-foundation-model_list)
 # Command descriptions
 <a id='asset_search'></a>
@@ -379,6 +407,7 @@ cpdctl asset search --type-name TYPE-NAME --query QUERY [--bookmark BOOKMARK] [-
 `--counts` ([]string)
 :   &nbsp;
 
+<!-- markdownlint-disable-next-line reference-links-images -->
 `--drilldown` ([]map[string][]string)
 :   &nbsp;
 
@@ -550,7 +579,7 @@ cpdctl asset create \
 Delete an existing asset properties. You can delete an asset if you are the owner of the asset or a member of the asset with Admin or Editor permissions on the catalog or project.
 
 ```sh
-cpdctl asset delete --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--purge-on-delete PURGE-ON-DELETE]
+cpdctl asset delete --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--purge-on-delete=PURGE-ON-DELETE]
 ```
 
 
@@ -587,7 +616,7 @@ cpdctl asset delete \
     --catalog-id exampleString \
     --project-id exampleString \
     --space-id exampleString \
-    --purge-on-delete false
+    --purge-on-delete=false
 ```
 
 <a id='asset_get'></a>
@@ -1144,7 +1173,7 @@ cpdctl asset attribute update \
 Creates an attachment.
 
 ```sh
-cpdctl asset attachment create --asset-id ASSET-ID --asset-type ASSET-TYPE [--connection-id CONNECTION-ID] [--connection-path CONNECTION-PATH] [--data-partitions DATA-PARTITIONS] [--description DESCRIPTION] [--is-partitioned IS-PARTITIONED] [--mime MIME] [--name NAME] [--object-key OBJECT-KEY] [--object-key-is-read-only OBJECT-KEY-IS-READ-ONLY] [--private-url PRIVATE-URL] [--test-doc TEST-DOC] [--url URL] [--user-data USER-DATA] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl asset attachment create --asset-id ASSET-ID --asset-type ASSET-TYPE [--connection-id CONNECTION-ID] [--connection-path CONNECTION-PATH] [--data-partitions DATA-PARTITIONS] [--description DESCRIPTION] [--is-partitioned=IS-PARTITIONED] [--mime MIME] [--name NAME] [--object-key OBJECT-KEY] [--object-key-is-read-only=OBJECT-KEY-IS-READ-ONLY] [--private-url=PRIVATE-URL] [--test-doc TEST-DOC] [--url URL] [--user-data USER-DATA] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 
 
@@ -1216,12 +1245,12 @@ cpdctl asset attachment create \
     --connection-path exampleString \
     --data-partitions 38 \
     --description exampleString \
-    --is-partitioned true \
+    --is-partitioned=true \
     --mime exampleString \
     --name exampleString \
     --object-key exampleString \
-    --object-key-is-read-only true \
-    --private-url true \
+    --object-key-is-read-only=true \
+    --private-url=true \
     --test-doc 26 \
     --url exampleString \
     --user-data "exampleString" \
@@ -1274,7 +1303,7 @@ cpdctl asset attachment delete \
 Retrieve an attachment.
 
 ```sh
-cpdctl asset attachment get --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [--revision-id REVISION-ID] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--private-url PRIVATE-URL] [--response-content-disposition RESPONSE-CONTENT-DISPOSITION] [--response-content-type RESPONSE-CONTENT-TYPE]
+cpdctl asset attachment get --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [--revision-id REVISION-ID] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--private-url=PRIVATE-URL] [--response-content-disposition RESPONSE-CONTENT-DISPOSITION] [--response-content-type RESPONSE-CONTENT-TYPE]
 ```
 
 
@@ -1319,7 +1348,7 @@ cpdctl asset attachment get \
     --catalog-id exampleString \
     --project-id exampleString \
     --space-id exampleString \
-    --private-url false \
+    --private-url=false \
     --response-content-disposition exampleString \
     --response-content-type exampleString
 ```
@@ -1415,7 +1444,7 @@ cpdctl asset attachment mark-complete \
 Use this command to download the asset attachment to the local path
 
 ```sh
-   cpdctl asset attachment download
+  cpdctl asset attachment download
 ```
 #### Command options
 
@@ -1622,7 +1651,7 @@ cpdctl asset data-asset get \
 Use this command to upload the local path as an asset attachment
 
 ```sh
-   cpdctl asset data-asset upload
+  cpdctl asset data-asset upload
 ```
 #### Command options
 
@@ -1778,7 +1807,7 @@ cpdctl asset relationship unset \
 Streams the content of the specified file, with the appropriate HTTP headers for etag, file size, mime type etc. If the asset file is a directory, response will be JSON listing the content of the directory. If the asset is a file, response will be contents of the file. Requires viewer permission or higher. Assets for a catalog are not available to external users. This endpoint supports authentication via signature parameter. See 'Get auth signature' call for more info.
 
 ```sh
-cpdctl asset file download --path PATH [--accept ACCEPT] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--space-id SPACE-ID] [--iam-id IAM-ID] [--byte-limit BYTE-LIMIT] [--byte-range BYTE-RANGE] [--size-limit SIZE-LIMIT] [--signature SIGNATURE] [--flat FLAT] [--hidden-files HIDDEN-FILES] [--root ROOT] [--inflate INFLATE] [--force FORCE] [--stream STREAM] [--range RANGE] [--retry RETRY]
+cpdctl asset file download --path PATH [--accept ACCEPT] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--space-id SPACE-ID] [--iam-id IAM-ID] [--byte-limit BYTE-LIMIT] [--byte-range BYTE-RANGE] [--size-limit SIZE-LIMIT] [--signature SIGNATURE] [--flat=FLAT] [--hidden-files=HIDDEN-FILES] [--root=ROOT] [--inflate=INFLATE] [--force=FORCE] [--stream=STREAM] [--range RANGE] [--retry=RETRY]
 ```
 
 
@@ -1788,7 +1817,7 @@ cpdctl asset file download --path PATH [--accept ACCEPT] [--project-id PROJECT-I
 :   Asset file path. Required.
 
 `--accept` (string)
-:   The type of the response:  or *_/_*.
+:   The type of the response: */*.
 
 `--project-id` (string)
 :   Make request relative to the specified project.
@@ -1860,14 +1889,14 @@ cpdctl asset file download \
     --byte-range exampleString \
     --size-limit 38 \
     --signature exampleString \
-    --flat true \
-    --hidden-files true \
-    --root true \
-    --inflate true \
-    --force true \
-    --stream true \
+    --flat=true \
+    --hidden-files=true \
+    --root=true \
+    --inflate=true \
+    --force=true \
+    --stream=true \
     --range 'Range 0-100' \
-    --retry true \
+    --retry=true \
     --output-file tempdir/example-output.txt
 ```
 
@@ -1878,7 +1907,7 @@ Returns a list of file paths (similar to S3 listObjects) for the provided projec
 Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
 
 ```sh
-cpdctl asset file list [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--space-id SPACE-ID] [--iam-id IAM-ID] [--limit LIMIT] [--offset OFFSET] [--flat FLAT] [--hidden-files HIDDEN-FILES] [--minimal MINIMAL] [--root ROOT] [--stream STREAM]
+cpdctl asset file list [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--space-id SPACE-ID] [--iam-id IAM-ID] [--limit LIMIT] [--offset OFFSET] [--flat=FLAT] [--hidden-files=HIDDEN-FILES] [--minimal=MINIMAL] [--root=ROOT] [--stream=STREAM]
 ```
 
 
@@ -1934,11 +1963,11 @@ cpdctl asset file list \
     --iam-id exampleString \
     --limit 10 \
     --offset exampleString \
-    --flat true \
-    --hidden-files true \
-    --minimal true \
-    --root true \
-    --stream true
+    --flat=true \
+    --hidden-files=true \
+    --minimal=true \
+    --root=true \
+    --stream=true
 ```
 
 <a id='asset_file_upload'></a>
@@ -1947,7 +1976,7 @@ cpdctl asset file list \
 Uploads the bytes into the file with the provided file name using HTTP multi-part format, creating a new file if missing, overriding if existing (unless override=false). Assets cannot be uploaded to a catalog by external users. Adding project or space assets accepts all formats that grant editor access or higher. Adding to accounts requires a user with account admin access. This endpoint supports authentication via signature parameter. See 'Get auth signature' call for more info on signed urls.
 
 ```sh
-cpdctl asset file upload --path PATH [--file FILE] [--file-content-type FILE-CONTENT-TYPE] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--space-id SPACE-ID] [--iam-id IAM-ID] [--override OVERRIDE] [--signature SIGNATURE] [--inflate INFLATE] [--inflate-mode INFLATE-MODE] [--ensure-dir ENSURE-DIR] [--root ROOT]
+cpdctl asset file upload --path PATH [--file FILE] [--file-content-type FILE-CONTENT-TYPE] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [--space-id SPACE-ID] [--iam-id IAM-ID] [--override=OVERRIDE] [--signature SIGNATURE] [--inflate=INFLATE] [--inflate-mode INFLATE-MODE] [--ensure-dir=ENSURE-DIR] [--root=ROOT]
 ```
 
 
@@ -2014,12 +2043,12 @@ cpdctl asset file upload \
     --account-id exampleString \
     --space-id exampleString \
     --iam-id exampleString \
-    --override true \
+    --override=true \
     --signature exampleString \
-    --inflate true \
+    --inflate=true \
     --inflate-mode default \
-    --ensure-dir true \
-    --root true
+    --ensure-dir=true \
+    --root=true
 ```
 
 <a id='asset_script_create'></a>
@@ -2027,7 +2056,7 @@ cpdctl asset file upload \
 Use this command to create a script asset from a local file.
 
 ```sh
-   cpdctl asset script create --file FILE [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--origin-country ORIGIN-COUNTRY] [--tag TAG] [--mime MIME] [--software-specification-id SOFTWARE-SPECIFICATION-ID] [--language LANGUAGE]
+  cpdctl asset script create --file FILE [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--origin-country ORIGIN-COUNTRY] [--tag TAG] [--mime MIME] [--software-specification-id SOFTWARE-SPECIFICATION-ID] [--language LANGUAGE]
 ```
 #### Command options
 
@@ -2112,7 +2141,7 @@ cpdctl asset export list \
 Starts the asset export process for the specified space, project, or catalog. On CPD 3.0.1 assets export is supported only in the context of a space.
 
 ```sh
-cpdctl asset export start [--assets ASSETS | --assets-all-assets ASSETS-ALL-ASSETS --assets-asset-ids ASSETS-ASSET-IDS --assets-asset-types ASSETS-ASSET-TYPES] [--description DESCRIPTION] [--encryption-key ENCRYPTION-KEY] [--format FORMAT] [--module-keys MODULE-KEYS] [--name NAME] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID]
+cpdctl asset export start [--assets ASSETS | --assets-all-assets=ASSETS-ALL-ASSETS --assets-asset-ids ASSETS-ASSET-IDS --assets-asset-types ASSETS-ASSET-TYPES] [--description DESCRIPTION] [--encryption-key ENCRYPTION-KEY] [--format FORMAT] [--module-keys MODULE-KEYS] [--name NAME] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID]
 ```
 
 
@@ -2179,7 +2208,7 @@ cpdctl asset export start \
 Cancels the asset export process with the specified identifier.
 
 ```sh
-cpdctl asset export cancel --export-id EXPORT-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--hard-delete HARD-DELETE]
+cpdctl asset export cancel --export-id EXPORT-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--hard-delete=HARD-DELETE]
 ```
 
 
@@ -2210,7 +2239,7 @@ cpdctl asset export cancel \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
     --catalog-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
-    --hard-delete false
+    --hard-delete=false
 ```
 
 <a id='asset_export_get'></a>
@@ -2287,7 +2316,7 @@ cpdctl asset export download \
 Wait until the asset export becomes completed, failed, or cancelled.
 
 ```sh
-   cpdctl asset export wait --export-id EXPORT_ID [--space-id SPACE_ID] [--project-id PROJECT_ID] [--catalog-id CATALOG_ID]
+  cpdctl asset export wait --export-id EXPORT_ID [--space-id SPACE_ID] [--project-id PROJECT_ID] [--catalog-id CATALOG_ID]
 ```
 #### Command options
 
@@ -2402,7 +2431,7 @@ cpdctl asset import start \
 Cancels the asset import process with the specified identifier.
 
 ```sh
-cpdctl asset import cancel --import-id IMPORT-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--hard-delete HARD-DELETE]
+cpdctl asset import cancel --import-id IMPORT-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--catalog-id CATALOG-ID] [--hard-delete=HARD-DELETE]
 ```
 
 
@@ -2433,7 +2462,7 @@ cpdctl asset import cancel \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
     --catalog-id 1dd2aaec-781a-4712-a7ff-ae1862cf7a84 \
-    --hard-delete false
+    --hard-delete=false
 ```
 
 <a id='asset_import_get'></a>
@@ -2475,7 +2504,7 @@ cpdctl asset import get \
 Wait until the asset import becomes completed, failed, or canceled.
 
 ```sh
-   cpdctl asset import wait --import-id IMPORT_ID [--space-id SPACE_ID] [--project-id PROJECT_ID] [--catalog-id CATALOG_ID]
+  cpdctl asset import wait --import-id IMPORT_ID [--space-id SPACE_ID] [--project-id PROJECT_ID] [--catalog-id CATALOG_ID]
 ```
 #### Command options
 
@@ -2799,19 +2828,19 @@ cpdctl code-package revision get \
 <a id='config_user_list'></a>
 ## &#8226; config user list
 ```sh
-   cpdctl config user list
+  cpdctl config user list
 ```
 
 <a id='config_user_get'></a>
 ## &#8226; config user get
 ```sh
-   cpdctl config user get name
+  cpdctl config user get name
 ```
 
 <a id='config_user_set'></a>
 ## &#8226; config user set
 ```sh
-   cpdctl config user set name
+  cpdctl config user set name
 ```
 #### Command options
 
@@ -2830,19 +2859,19 @@ cpdctl code-package revision get \
 <a id='config_user_unset'></a>
 ## &#8226; config user unset
 ```sh
-   cpdctl config user unset name
+  cpdctl config user unset name
 ```
 
 <a id='config_profile_list'></a>
 ## &#8226; config profile list
 ```sh
-   cpdctl config profile list
+  cpdctl config profile list
 ```
 
 <a id='config_profile_get'></a>
 ## &#8226; config profile get
 ```sh
-   cpdctl config profile get name
+  cpdctl config profile get name
 ```
 
 <a id='config_profile_set'></a>
@@ -2850,7 +2879,7 @@ cpdctl code-package revision get \
 Create or update profile.
 
 ```sh
-   cpdctl config profile set name
+  cpdctl config profile set name
 ```
 #### Command options
 
@@ -2890,19 +2919,19 @@ Create or update profile.
 <a id='config_profile_unset'></a>
 ## &#8226; config profile unset
 ```sh
-   cpdctl config profile unset name
+  cpdctl config profile unset name
 ```
 
 <a id='config_profile_current'></a>
 ## &#8226; config profile current
 ```sh
-   cpdctl config profile current
+  cpdctl config profile current
 ```
 
 <a id='config_profile_use'></a>
 ## &#8226; config profile use
 ```sh
-   cpdctl config profile use profile-name
+  cpdctl config profile use profile-name
 ```
 
 <a id='connection_list'></a>
@@ -2944,7 +2973,7 @@ Adding the name of a flag to entity.flags with a minus sign (-) prefix will remo
 Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
 
 ```sh
-cpdctl connection list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--sort SORT] [--start START] [--limit LIMIT] [--metadata-creator METADATA-CREATOR] [--entity-name ENTITY-NAME] [--entity-datasource-type ENTITY-DATASOURCE-TYPE] [--entity-context ENTITY-CONTEXT] [--entity-properties ENTITY-PROPERTIES] [--entity-flags ENTITY-FLAGS] [--inject-token INJECT-TOKEN]
+cpdctl connection list [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--sort SORT] [--start START] [--limit LIMIT] [--metadata-creator METADATA-CREATOR] [--entity-name ENTITY-NAME] [--entity-datasource-type ENTITY-DATASOURCE-TYPE] [--entity-context ENTITY-CONTEXT] [--entity-properties ENTITY-PROPERTIES] [--entity-flags ENTITY-FLAGS] [--inject-token=INJECT-TOKEN]
 ```
 
 
@@ -3012,7 +3041,7 @@ cpdctl connection list \
     --entity-context exampleString \
     --entity-properties exampleString \
     --entity-flags exampleString \
-    --inject-token false
+    --inject-token=false
 ```
 
 <a id='connection_create'></a>
@@ -3025,7 +3054,7 @@ By default, a connection is created with shared credentials.  Though credentials
 Alternatively, a connection can be created with personal credentials by using the personal_credentials flag.  The credentials' secrets will be visible only to the user who created the connection.
 
 ```sh
-cpdctl connection create --datasource-type DATASOURCE-TYPE --name NAME [--asset-category ASSET-CATEGORY] [--child-source-systems CHILD-SOURCE-SYSTEMS] [--description DESCRIPTION] [--flags FLAGS] [--gateway-id GATEWAY-ID] [--interaction-properties INTERACTION-PROPERTIES | --interaction-properties-source INTERACTION-PROPERTIES-SOURCE --interaction-properties-target INTERACTION-PROPERTIES-TARGET] [--location-definition LOCATION-DEFINITION | --location-definition-physical-location-code LOCATION-DEFINITION-PHYSICAL-LOCATION-CODE --location-definition-sovereign-location-code LOCATION-DEFINITION-SOVEREIGN-LOCATION-CODE] [--origin-country ORIGIN-COUNTRY] [--owner-id OWNER-ID] [--properties PROPERTIES] [--ref-asset-id REF-ASSET-ID] [--ref-catalog-id REF-CATALOG-ID] [--rov ROV | --rov-mode ROV-MODE] [--source-system SOURCE-SYSTEM] [--tags TAGS] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--test TEST] [--skip-enforcement SKIP-ENFORCEMENT]
+cpdctl connection create --datasource-type DATASOURCE-TYPE --name NAME [--asset-category ASSET-CATEGORY] [--child-source-systems CHILD-SOURCE-SYSTEMS] [--description DESCRIPTION] [--flags FLAGS] [--gateway-id GATEWAY-ID] [--interaction-properties INTERACTION-PROPERTIES | --interaction-properties-source INTERACTION-PROPERTIES-SOURCE --interaction-properties-target INTERACTION-PROPERTIES-TARGET] [--location-definition LOCATION-DEFINITION | --location-definition-physical-location-code LOCATION-DEFINITION-PHYSICAL-LOCATION-CODE --location-definition-sovereign-location-code LOCATION-DEFINITION-SOVEREIGN-LOCATION-CODE] [--origin-country ORIGIN-COUNTRY] [--owner-id OWNER-ID] [--properties PROPERTIES] [--ref-asset-id REF-ASSET-ID] [--ref-catalog-id REF-CATALOG-ID] [--rov ROV | --rov-mode ROV-MODE] [--source-system SOURCE-SYSTEM] [--tags TAGS] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--test=TEST] [--skip-enforcement=SKIP-ENFORCEMENT]
 ```
 
 
@@ -3165,8 +3194,8 @@ cpdctl connection create \
     --catalog-id exampleString \
     --project-id exampleString \
     --space-id exampleString \
-    --test true \
-    --skip-enforcement false
+    --test=true \
+    --skip-enforcement=false
 ```
 
 <a id='connection_discover-adhoc'></a>
@@ -3175,7 +3204,7 @@ cpdctl connection create \
 Discovers assets from the data source accessed via a connection description.
 
 ```sh
-cpdctl connection discover-adhoc --path PATH --datasource-type DATASOURCE-TYPE --name NAME [--asset-category ASSET-CATEGORY] [--child-source-systems CHILD-SOURCE-SYSTEMS] [--description DESCRIPTION] [--flags FLAGS] [--gateway-id GATEWAY-ID] [--interaction-properties INTERACTION-PROPERTIES | --new-interaction-properties-source NEW-INTERACTION-PROPERTIES-SOURCE --new-interaction-properties-target NEW-INTERACTION-PROPERTIES-TARGET] [--new-location-definition NEW-LOCATION-DEFINITION | --new-location-definition-physical-location-code NEW-LOCATION-DEFINITION-PHYSICAL-LOCATION-CODE --new-location-definition-sovereign-location-code NEW-LOCATION-DEFINITION-SOVEREIGN-LOCATION-CODE] [--origin-country ORIGIN-COUNTRY] [--owner-id OWNER-ID] [--properties PROPERTIES] [--ref-asset-id REF-ASSET-ID] [--ref-catalog-id REF-CATALOG-ID] [--rov ROV | --new-rov-mode NEW-ROV-MODE] [--new-source-system NEW-SOURCE-SYSTEM] [--tags TAGS] [--limit LIMIT] [--offset OFFSET] [--fetch FETCH] [--detail DETAIL] [--discovery-context DISCOVERY-CONTEXT] [--asset-properties ASSET-PROPERTIES] [--filters FILTERS]
+cpdctl connection discover-adhoc --path PATH --datasource-type DATASOURCE-TYPE --name NAME [--asset-category ASSET-CATEGORY] [--child-source-systems CHILD-SOURCE-SYSTEMS] [--description DESCRIPTION] [--flags FLAGS] [--gateway-id GATEWAY-ID] [--interaction-properties INTERACTION-PROPERTIES | --new-interaction-properties-source NEW-INTERACTION-PROPERTIES-SOURCE --new-interaction-properties-target NEW-INTERACTION-PROPERTIES-TARGET] [--new-location-definition NEW-LOCATION-DEFINITION | --new-location-definition-physical-location-code NEW-LOCATION-DEFINITION-PHYSICAL-LOCATION-CODE --new-location-definition-sovereign-location-code NEW-LOCATION-DEFINITION-SOVEREIGN-LOCATION-CODE] [--origin-country ORIGIN-COUNTRY] [--owner-id OWNER-ID] [--properties PROPERTIES] [--ref-asset-id REF-ASSET-ID] [--ref-catalog-id REF-CATALOG-ID] [--rov ROV | --new-rov-mode NEW-ROV-MODE] [--new-source-system NEW-SOURCE-SYSTEM] [--tags TAGS] [--limit LIMIT] [--offset OFFSET] [--fetch FETCH] [--detail=DETAIL] [--discovery-context DISCOVERY-CONTEXT] [--asset-properties ASSET-PROPERTIES] [--filters FILTERS]
 ```
 
 
@@ -3327,7 +3356,7 @@ cpdctl connection discover-adhoc \
     --limit 100 \
     --offset 0 \
     --fetch exampleString \
-    --detail true \
+    --detail=true \
     --discovery-context source \
     --asset-properties exampleString \
     --filters exampleString
@@ -3339,7 +3368,7 @@ cpdctl connection discover-adhoc \
 Discover a data asset.
 
 ```sh
-cpdctl connection discover-data-asset --data-asset-id DATA-ASSET-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--limit LIMIT] [--offset OFFSET] [--fetch FETCH] [--detail DETAIL] [--context CONTEXT] [--properties PROPERTIES] [--filters FILTERS] [--path PATH]
+cpdctl connection discover-data-asset --data-asset-id DATA-ASSET-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--limit LIMIT] [--offset OFFSET] [--fetch FETCH] [--detail=DETAIL] [--context CONTEXT] [--properties PROPERTIES] [--filters FILTERS] [--path PATH]
 ```
 
 
@@ -3398,7 +3427,7 @@ cpdctl connection discover-data-asset \
     --limit 100 \
     --offset 0 \
     --fetch exampleString \
-    --detail true \
+    --detail=true \
     --context source \
     --properties exampleString \
     --filters exampleString \
@@ -3449,7 +3478,7 @@ Connections created with shared credentials will return secrets such as database
 Connections created with personal credentials will only display clear text credentials to the same user who provided them.
 
 ```sh
-cpdctl connection get --connection-id CONNECTION-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--inject-token INJECT-TOKEN] [--entity-product ENTITY-PRODUCT]
+cpdctl connection get --connection-id CONNECTION-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--inject-token=INJECT-TOKEN] [--entity-product ENTITY-PRODUCT]
 ```
 
 
@@ -3483,7 +3512,7 @@ cpdctl connection get \
     --catalog-id exampleString \
     --project-id exampleString \
     --space-id exampleString \
-    --inject-token false \
+    --inject-token=false \
     --entity-product exampleString
 ```
 
@@ -3493,7 +3522,7 @@ cpdctl connection get \
 Updates the definition of a connection.
 
 ```sh
-cpdctl connection update --connection-id CONNECTION-ID --patch-request PATCH-REQUEST [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--test TEST] [--skip-enforcement SKIP-ENFORCEMENT]
+cpdctl connection update --connection-id CONNECTION-ID --patch-request PATCH-REQUEST [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--test=TEST] [--skip-enforcement=SKIP-ENFORCEMENT]
 ```
 
 
@@ -3535,8 +3564,8 @@ cpdctl connection update \
     --catalog-id exampleString \
     --project-id exampleString \
     --space-id exampleString \
-    --test true \
-    --skip-enforcement false
+    --test=true \
+    --skip-enforcement=false
 ```
 
 <a id='connection_list-actions'></a>
@@ -3639,7 +3668,7 @@ cpdctl connection perform-action \
 Discovers assets from the data source accessed via the connection.
 
 ```sh
-cpdctl connection discover --connection-id CONNECTION-ID --path PATH [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--data-asset-id DATA-ASSET-ID] [--data-asset-catalog-id DATA-ASSET-CATALOG-ID] [--data-asset-project-id DATA-ASSET-PROJECT-ID] [--data-asset-space-id DATA-ASSET-SPACE-ID] [--limit LIMIT] [--offset OFFSET] [--fetch FETCH] [--detail DETAIL] [--context CONTEXT] [--properties PROPERTIES] [--filters FILTERS]
+cpdctl connection discover --connection-id CONNECTION-ID --path PATH [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--data-asset-id DATA-ASSET-ID] [--data-asset-catalog-id DATA-ASSET-CATALOG-ID] [--data-asset-project-id DATA-ASSET-PROJECT-ID] [--data-asset-space-id DATA-ASSET-SPACE-ID] [--limit LIMIT] [--offset OFFSET] [--fetch FETCH] [--detail=DETAIL] [--context CONTEXT] [--properties PROPERTIES] [--filters FILTERS]
 ```
 
 
@@ -3715,7 +3744,7 @@ cpdctl connection discover \
     --limit 100 \
     --offset 0 \
     --fetch exampleString \
-    --detail true \
+    --detail=true \
     --context source \
     --properties exampleString \
     --filters exampleString
@@ -3735,7 +3764,7 @@ The following fields are available for use with the sort parameter:
 Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
 
 ```sh
-cpdctl connection datasource-type list [--accept-language ACCEPT-LANGUAGE] [--sort SORT] [--offset OFFSET] [--limit LIMIT] [--connection-properties CONNECTION-PROPERTIES] [--interaction-properties INTERACTION-PROPERTIES] [--discovery DISCOVERY] [--actions ACTIONS] [--entity-environment ENTITY-ENVIRONMENT] [--entity-product ENTITY-PRODUCT] [--product-selector-scope PRODUCT-SELECTOR-SCOPE] [--generate-transitive-conditions GENERATE-TRANSITIVE-CONDITIONS]
+cpdctl connection datasource-type list [--accept-language ACCEPT-LANGUAGE] [--sort SORT] [--offset OFFSET] [--limit LIMIT] [--connection-properties=CONNECTION-PROPERTIES] [--interaction-properties=INTERACTION-PROPERTIES] [--discovery=DISCOVERY] [--actions=ACTIONS] [--entity-environment ENTITY-ENVIRONMENT] [--entity-product ENTITY-PRODUCT] [--product-selector-scope PRODUCT-SELECTOR-SCOPE] [--generate-transitive-conditions=GENERATE-TRANSITIVE-CONDITIONS]
 ```
 
 
@@ -3798,14 +3827,14 @@ cpdctl connection datasource-type list \
     --sort exampleString \
     --offset 0 \
     --limit 10 \
-    --connection-properties true \
-    --interaction-properties true \
-    --discovery true \
-    --actions true \
+    --connection-properties=true \
+    --interaction-properties=true \
+    --discovery=true \
+    --actions=true \
     --entity-environment exampleString \
     --entity-product exampleString \
     --product-selector-scope global \
-    --generate-transitive-conditions false
+    --generate-transitive-conditions=false
 ```
 
 <a id='connection_datasource-type_get'></a>
@@ -3814,7 +3843,7 @@ cpdctl connection datasource-type list \
 Get details for type of data source.
 
 ```sh
-cpdctl connection datasource-type get --datasource-type DATASOURCE-TYPE [--accept-language ACCEPT-LANGUAGE] [--connection-properties CONNECTION-PROPERTIES] [--interaction-properties INTERACTION-PROPERTIES] [--discovery DISCOVERY] [--actions ACTIONS] [--entity-environment ENTITY-ENVIRONMENT] [--entity-product ENTITY-PRODUCT] [--product-selector-scope PRODUCT-SELECTOR-SCOPE] [--generate-transitive-conditions GENERATE-TRANSITIVE-CONDITIONS]
+cpdctl connection datasource-type get --datasource-type DATASOURCE-TYPE [--accept-language ACCEPT-LANGUAGE] [--connection-properties=CONNECTION-PROPERTIES] [--interaction-properties=INTERACTION-PROPERTIES] [--discovery=DISCOVERY] [--actions=ACTIONS] [--entity-environment ENTITY-ENVIRONMENT] [--entity-product ENTITY-PRODUCT] [--product-selector-scope PRODUCT-SELECTOR-SCOPE] [--generate-transitive-conditions=GENERATE-TRANSITIVE-CONDITIONS]
 ```
 
 
@@ -3862,14 +3891,14 @@ cpdctl connection datasource-type get --datasource-type DATASOURCE-TYPE [--accep
 cpdctl connection datasource-type get \
     --datasource-type exampleString \
     --accept-language en-US \
-    --connection-properties true \
-    --interaction-properties true \
-    --discovery true \
-    --actions true \
+    --connection-properties=true \
+    --interaction-properties=true \
+    --discovery=true \
+    --actions=true \
     --entity-environment exampleString \
     --entity-product exampleString \
     --product-selector-scope global \
-    --generate-transitive-conditions false
+    --generate-transitive-conditions=false
 ```
 
 <a id='datastage_flow_delete'></a>
@@ -3881,7 +3910,7 @@ If the deletion of the data flows and their runs will take some time to finish, 
          All the data flow runs associated with the data flows will also be deleted. If a data flow is still running, it will not be deleted unless the force parameter is set to true. If a data flow is still running and the force parameter is set to true, the call returns immediately with a 202 response. The related data flows are deleted after the data flow runs are stopped.
 
 ```sh
-cpdctl datastage flow delete --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--force FORCE]
+cpdctl datastage flow delete --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--force=FORCE]
 ```
 
 
@@ -3910,7 +3939,7 @@ cpdctl datastage flow delete \
     --catalog-id exampleString \
     --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
     --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
-    --force true
+    --force=true
 ```
 
 <a id='datastage_flow_list'></a>
@@ -4291,7 +4320,7 @@ cpdctl datastage flow clone \
 Request compile status of the flow that was previously submitted for compile. Either project_id or catalog_id must be specified.
 
 ```sh
-cpdctl datastage flow get-compile-status --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--enable-sql-pushdown ENABLE-SQL-PUSHDOWN]
+cpdctl datastage flow get-compile-status --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--enable-sql-pushdown=ENABLE-SQL-PUSHDOWN]
 ```
 
 
@@ -4320,7 +4349,7 @@ cpdctl datastage flow get-compile-status \
     --catalog-id exampleString \
     --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
     --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
-    --enable-sql-pushdown true
+    --enable-sql-pushdown=true
 ```
 
 <a id='datastage_flow_compile'></a>
@@ -4329,7 +4358,7 @@ cpdctl datastage flow get-compile-status \
 Generate the runtime assets for a DataStage flow in the specified project or catalog for a specified runtime type. Either project_id or catalog_id must be specified.
 
 ```sh
-cpdctl datastage flow compile --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--runtime-type RUNTIME-TYPE] [--enable-sql-pushdown ENABLE-SQL-PUSHDOWN] [--enable-async-compile ENABLE-ASYNC-COMPILE] [--enable-native-sql-pushdown ENABLE-NATIVE-SQL-PUSHDOWN] [--enable-push-processing-to-source ENABLE-PUSH-PROCESSING-TO-SOURCE] [--enable-push-join-to-source ENABLE-PUSH-JOIN-TO-SOURCE]
+cpdctl datastage flow compile --flow-id FLOW-ID [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--runtime-type RUNTIME-TYPE] [--enable-sql-pushdown=ENABLE-SQL-PUSHDOWN] [--enable-async-compile=ENABLE-ASYNC-COMPILE] [--enable-native-sql-pushdown=ENABLE-NATIVE-SQL-PUSHDOWN] [--enable-push-processing-to-source=ENABLE-PUSH-PROCESSING-TO-SOURCE] [--enable-push-join-to-source=ENABLE-PUSH-JOIN-TO-SOURCE]
 ```
 
 
@@ -4374,11 +4403,11 @@ cpdctl datastage flow compile \
     --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
     --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
     --runtime-type exampleString \
-    --enable-sql-pushdown true \
-    --enable-async-compile true \
-    --enable-native-sql-pushdown true \
-    --enable-push-processing-to-source true \
-    --enable-push-join-to-source true
+    --enable-sql-pushdown=true \
+    --enable-async-compile=true \
+    --enable-native-sql-pushdown=true \
+    --enable-push-processing-to-source=true \
+    --enable-push-join-to-source=true
 ```
 
 <a id='datastage_subflow_delete'></a>
@@ -5241,7 +5270,7 @@ cpdctl datastage migration encrypt \
 Creates data flows from the attached job export file. This is an asynchronous call. The API call returns almost immediately which does not necessarily imply the completion of the import request. It only means that the import request has been accepted. The status field of the import request is included in the import response object. The status "completed" ("in_progress", "failed", resp.) indicates the import request is completed (in progress, and failed, resp.) The job export file for an import request may contain one mor more data flows. Unless the on_failure option is set to "stop", a completed import request may contain not only successfully imported data flows but also data flows that cannot be imported.
 
 ```sh
-cpdctl datastage migration create --body BODY [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--on-failure ON-FAILURE] [--conflict-resolution CONFLICT-RESOLUTION] [--attachment-type ATTACHMENT-TYPE] [--file-name FILE-NAME] [--enable-notification ENABLE-NOTIFICATION] [--import-only IMPORT-ONLY] [--create-missing-parameters CREATE-MISSING-PARAMETERS] [--enable-rulestage-integration ENABLE-RULESTAGE-INTEGRATION] [--enable-local-connection ENABLE-LOCAL-CONNECTION] [--asset-type ASSET-TYPE] [--create-connection-parametersets CREATE-CONNECTION-PARAMETERSETS] [--storage-path STORAGE-PATH] [--replace-mode REPLACE-MODE] [--migrate-to-platform-connection MIGRATE-TO-PLATFORM-CONNECTION] [--use-dsn-name USE-DSN-NAME] [--migrate-to-send-email MIGRATE-TO-SEND-EMAIL] [--enable-folder ENABLE-FOLDER] [--migrate-hive-impala MIGRATE-HIVE-IMPALA] [--from FROM] [--to TO]
+cpdctl datastage migration create --body BODY [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--on-failure ON-FAILURE] [--conflict-resolution CONFLICT-RESOLUTION] [--attachment-type ATTACHMENT-TYPE] [--file-name FILE-NAME] [--enable-notification=ENABLE-NOTIFICATION] [--import-only=IMPORT-ONLY] [--create-missing-parameters=CREATE-MISSING-PARAMETERS] [--enable-rulestage-integration=ENABLE-RULESTAGE-INTEGRATION] [--enable-local-connection=ENABLE-LOCAL-CONNECTION] [--asset-type ASSET-TYPE] [--create-connection-parametersets=CREATE-CONNECTION-PARAMETERSETS] [--storage-path STORAGE-PATH] [--replace-mode REPLACE-MODE] [--migrate-to-platform-connection=MIGRATE-TO-PLATFORM-CONNECTION] [--use-dsn-name=USE-DSN-NAME] [--migrate-to-send-email=MIGRATE-TO-SEND-EMAIL] [--enable-folder=ENABLE-FOLDER] [--migrate-hive-impala=MIGRATE-HIVE-IMPALA] [--from FROM] [--to TO]
 ```
 
 
@@ -5340,20 +5369,20 @@ cpdctl datastage migration create \
     --conflict-resolution rename \
     --attachment-type isx \
     --file-name myFlows.isx \
-    --enable-notification false \
-    --import-only false \
-    --create-missing-parameters false \
-    --enable-rulestage-integration false \
-    --enable-local-connection false \
+    --enable-notification=false \
+    --import-only=false \
+    --create-missing-parameters=false \
+    --enable-rulestage-integration=false \
+    --enable-local-connection=false \
     --asset-type data_intg_flow,parameter_set \
-    --create-connection-parametersets false \
+    --create-connection-parametersets=false \
     --storage-path /mnts/my-script-storage \
     --replace-mode hard \
-    --migrate-to-platform-connection false \
-    --use-dsn-name false \
-    --migrate-to-send-email false \
-    --enable-folder false \
-    --migrate-hive-impala false \
+    --migrate-to-platform-connection=false \
+    --use-dsn-name=false \
+    --migrate-to-send-email=false \
+    --enable-folder=false \
+    --migrate-hive-impala=false \
     --from Db2ConnectorPX \
     --to Db2zos
 ```
@@ -5438,7 +5467,7 @@ cpdctl datastage migration get \
 export flows with dependencies as a zip file.
 
 ```sh
-cpdctl datastage migration export-flows-with-dependencies --flows FLOWS [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--remove-secrets REMOVE-SECRETS] [--include-dependencies INCLUDE-DEPENDENCIES] [--id ID] [--type TYPE] [--include-data-assets INCLUDE-DATA-ASSETS] [--exclude-data-files EXCLUDE-DATA-FILES] [--x-migration-enc-key X-MIGRATION-ENC-KEY]
+cpdctl datastage migration export-flows-with-dependencies --flows FLOWS [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--remove-secrets=REMOVE-SECRETS] [--include-dependencies=INCLUDE-DEPENDENCIES] [--id ID] [--type TYPE] [--include-data-assets=INCLUDE-DATA-ASSETS] [--exclude-data-files=EXCLUDE-DATA-FILES] [--x-migration-enc-key X-MIGRATION-ENC-KEY]
 ```
 
 
@@ -5487,12 +5516,12 @@ cpdctl datastage migration export-flows-with-dependencies \
     --catalog-id exampleString \
     --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
     --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
-    --remove-secrets false \
-    --include-dependencies false \
+    --remove-secrets=false \
+    --include-dependencies=false \
     --id exampleString,anotherTestString \
     --type exampleString \
-    --include-data-assets false \
-    --exclude-data-files false \
+    --include-data-assets=false \
+    --exclude-data-files=false \
     --x-migration-enc-key exampleString \
     --output-file tempdir/example-output.txt
 ```
@@ -5503,7 +5532,7 @@ cpdctl datastage migration export-flows-with-dependencies \
 Creates data flows from the attached job export file. This is an asynchronous call. The API call returns almost immediately which does not necessarily imply the completion of the import request. It only means that the import request has been accepted. The status field of the import request is included in the import response object. The status "completed" ("in_progress", "failed", resp.) indicates the import request is completed (in progress, and failed, resp.) The job export file for an import request may contain one mor more data flows. Unless the on_failure option is set to "stop", a completed import request may contain not only successfully imported data flows but also data flows that cannot be imported.
 
 ```sh
-cpdctl datastage migration create-from-zip --body BODY [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--on-failure ON-FAILURE] [--conflict-resolution CONFLICT-RESOLUTION] [--file-name FILE-NAME] [--enable-notification ENABLE-NOTIFICATION] [--import-only IMPORT-ONLY] [--include-dependencies INCLUDE-DEPENDENCIES] [--asset-type ASSET-TYPE] [--skip-dependencies SKIP-DEPENDENCIES] [--replace-mode REPLACE-MODE] [--x-migration-enc-key X-MIGRATION-ENC-KEY]
+cpdctl datastage migration create-from-zip --body BODY [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--on-failure ON-FAILURE] [--conflict-resolution CONFLICT-RESOLUTION] [--file-name FILE-NAME] [--enable-notification=ENABLE-NOTIFICATION] [--import-only=IMPORT-ONLY] [--include-dependencies=INCLUDE-DEPENDENCIES] [--asset-type ASSET-TYPE] [--skip-dependencies SKIP-DEPENDENCIES] [--replace-mode REPLACE-MODE] [--x-migration-enc-key X-MIGRATION-ENC-KEY]
 ```
 
 
@@ -5569,9 +5598,9 @@ cpdctl datastage migration create-from-zip \
     --on-failure continue \
     --conflict-resolution rename \
     --file-name myFlows.isx \
-    --enable-notification false \
-    --import-only false \
-    --include-dependencies false \
+    --enable-notification=false \
+    --import-only=false \
+    --include-dependencies=false \
     --asset-type data_intg_flow,parameter_set \
     --skip-dependencies connection,parameter_set,subflow \
     --replace-mode hard \
@@ -6032,7 +6061,7 @@ cpdctl datastage table-definition clone \
 Generate the runtime assets for a DataStage buildop in the specified project or catalog for a specified runtime type. Either project_id or catalog_id must be specified.
 
 ```sh
-cpdctl datastage codegen generate-buildop --buildop-id BUILDOP-ID [--build BUILD | --build-interfaces BUILD-INTERFACES --build-logic BUILD-LOGIC] [--creator CREATOR | --creator-author CREATOR-AUTHOR --creator-vendor CREATOR-VENDOR --creator-version CREATOR-VERSION] [--directory-asset DIRECTORY-ASSET] [--general GENERAL | --general-class-name GENERAL-CLASS-NAME --general-command GENERAL-COMMAND --general-execmode GENERAL-EXECMODE --general-node-type-name GENERAL-NODE-TYPE-NAME --general-operator-name GENERAL-OPERATOR-NAME --general-wrapped-name GENERAL-WRAPPED-NAME] [--properties PROPERTIES] [--schemas SCHEMAS] [--type TYPE] [--ui-data UI-DATA] [--wrapped WRAPPED | --wrapped-environment WRAPPED-ENVIRONMENT --wrapped-interfaces WRAPPED-INTERFACES] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--runtime-type RUNTIME-TYPE] [--enable-async-compile ENABLE-ASYNC-COMPILE]
+cpdctl datastage codegen generate-buildop --buildop-id BUILDOP-ID [--build BUILD | --build-interfaces BUILD-INTERFACES --build-logic BUILD-LOGIC] [--creator CREATOR | --creator-author CREATOR-AUTHOR --creator-vendor CREATOR-VENDOR --creator-version CREATOR-VERSION] [--directory-asset DIRECTORY-ASSET] [--general GENERAL | --general-class-name GENERAL-CLASS-NAME --general-command GENERAL-COMMAND --general-execmode GENERAL-EXECMODE --general-node-type-name GENERAL-NODE-TYPE-NAME --general-operator-name GENERAL-OPERATOR-NAME --general-wrapped-name GENERAL-WRAPPED-NAME] [--properties PROPERTIES] [--schemas SCHEMAS] [--type TYPE] [--ui-data UI-DATA] [--wrapped WRAPPED | --wrapped-environment WRAPPED-ENVIRONMENT --wrapped-interfaces WRAPPED-INTERFACES] [--catalog-id CATALOG-ID] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--runtime-type RUNTIME-TYPE] [--enable-async-compile=ENABLE-ASYNC-COMPILE]
 ```
 
 
@@ -6164,7 +6193,7 @@ cpdctl datastage codegen generate-buildop \
     --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
     --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
     --runtime-type exampleString \
-    --enable-async-compile true
+    --enable-async-compile=true
 ```
 
 <a id='environment_list'></a>
@@ -7432,7 +7461,7 @@ cpdctl environment software-specification add-package-extensions \
 <a id='find_'></a>
 ## &#8226; find 
 ```sh
-   cpdctl find --cpd-path PATH
+  cpdctl find --cpd-path PATH
 ```
 #### Command options
 
@@ -7577,6 +7606,36 @@ cpdctl job create \
     --space-id exampleString
 ```
 
+<a id='job_bulk-delete'></a>
+## &#8226; job bulk-delete
+
+Deletes up to 20 jobs (either project_id or space_id must be set).
+
+```sh
+cpdctl job bulk-delete --job-ids JOB-IDS [--project-id PROJECT-ID] [--space-id SPACE-ID]
+```
+
+
+#### Command options
+
+`--job-ids` ([]string)
+:   Comma-delimited list of job IDs to delete. Required.
+
+`--project-id` (string)
+:   The ID of the project to use. project_id or space_id is required.
+
+`--space-id` (string)
+:   The ID of the space to use. project_id or space_id is required.
+
+#### Example
+
+```sh
+cpdctl job bulk-delete \
+    --job-ids exampleString,anotherTestString \
+    --project-id exampleString \
+    --space-id exampleString
+```
+
 <a id='job_serving-name'></a>
 ## &#8226; job serving-name
 
@@ -7665,7 +7724,7 @@ cpdctl job get \
 Updates specific attributes of a job in the specified project or space (either project_id or space_id must be set). You must specify the updates by using the JSON patch format, described in RFC 6902.
 
 ```sh
-cpdctl job update --job-id JOB-ID [--configuration CONFIGURATION] [--description DESCRIPTION] [--name NAME] [--userfs USERFS] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl job update --job-id JOB-ID [--configuration CONFIGURATION] [--description DESCRIPTION] [--name NAME] [--userfs=USERFS] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 
 
@@ -8077,7 +8136,7 @@ cpdctl job run resume \
 Wait until the job run becomes completed, failed, or canceled.
 
 ```sh
-   cpdctl job run wait --job-id JOB_ID --run-id RUN_ID [--project-id PROJECT_ID] [--space-id SPACE_ID]
+  cpdctl job run wait --job-id JOB_ID --run-id RUN_ID [--project-id PROJECT_ID] [--space-id SPACE_ID]
 ```
 #### Command options
 
@@ -8101,7 +8160,7 @@ Wait until the job run becomes completed, failed, or canceled.
 Downloads the results of the complete job run to the locations pointed in `outputs`, which defines a output map (e.g. 'VAR1=/tml/outputs/var1
 
 ```sh
-   cpdctl job run download-results --outputs OUTPUTS --run-id RUN_ID [--project-id PROJECT_ID] [--space-id SPACE_ID]
+  cpdctl job run download-results --outputs OUTPUTS --run-id RUN_ID [--project-id PROJECT_ID] [--space-id SPACE_ID]
 ```
 #### Command options
 
@@ -8262,7 +8321,7 @@ cpdctl ml deployment create \
 Retrieve the list of deployments for the specified space.
 
 ```sh
-cpdctl ml deployment list [--space-id SPACE-ID] [--serving-name SERVING-NAME] [--tag-value TAG-VALUE] [--asset-id ASSET-ID] [--name NAME] [--type TYPE] [--state STATE] [--stats STATS] [--conflict CONFLICT]
+cpdctl ml deployment list [--space-id SPACE-ID] [--serving-name SERVING-NAME] [--tag-value TAG-VALUE] [--asset-id ASSET-ID] [--name NAME] [--type TYPE] [--state STATE] [--stats=STATS] [--conflict=CONFLICT]
 ```
 
 
@@ -8308,8 +8367,8 @@ cpdctl ml deployment list \
     --name exampleString \
     --type exampleString \
     --state exampleString \
-    --stats true \
-    --conflict false
+    --stats=true \
+    --conflict=false
 ```
 
 <a id='ml_deployment_get'></a>
@@ -8480,7 +8539,7 @@ cpdctl ml deployment compute-predictions \
 Wait until the deployment becomes ready or failed.
 
 ```sh
-   cpdctl ml deployment wait --deployment-id DEPLOYMENT_ID --space-id SPACE_ID
+  cpdctl ml deployment wait --deployment-id DEPLOYMENT_ID --space-id SPACE_ID
 ```
 #### Command options
 
@@ -8712,7 +8771,7 @@ cpdctl ml deployment-job create \
 Cancel the specified deployment job.
 
 ```sh
-cpdctl ml deployment-job delete --job-id JOB-ID --space-id SPACE-ID [--hard-delete HARD-DELETE]
+cpdctl ml deployment-job delete --job-id JOB-ID --space-id SPACE-ID [--hard-delete=HARD-DELETE]
 ```
 
 
@@ -8733,7 +8792,7 @@ cpdctl ml deployment-job delete --job-id JOB-ID --space-id SPACE-ID [--hard-dele
 cpdctl ml deployment-job delete \
     --job-id exampleString \
     --space-id exampleString \
-    --hard-delete true
+    --hard-delete=true
 ```
 
 <a id='ml_deployment-job_get'></a>
@@ -9359,7 +9418,7 @@ cpdctl ml experiment update --experiment-id EXPERIMENT-ID --version VERSION [--t
 :   A description of the resource.
 
 `--custom` (generic map)
-:   User defined properties specified as key-value pairs.
+:   User defined properties specified as key-value pairs. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file.
 
 #### Example
 
@@ -9715,7 +9774,7 @@ cpdctl ml function update --function-id FUNCTION-ID --version VERSION [--tags TA
 :   A description of the resource.
 
 `--custom` (generic map)
-:   User defined properties specified as key-value pairs.
+:   User defined properties specified as key-value pairs. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file.
 
 #### Example
 
@@ -10258,7 +10317,7 @@ cpdctl ml model update --model-id MODEL-ID --version VERSION [--tags TAGS] [--na
 :   A description of the resource.
 
 `--custom` (generic map)
-:   User defined properties specified as key-value pairs.
+:   User defined properties specified as key-value pairs. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file.
 
 #### Example
 
@@ -10623,7 +10682,7 @@ cpdctl ml model filtered-download \
 Wait until the model upload becomes completed or failed.
 
 ```sh
-   cpdctl ml model wait --model-id MODEL_ID [--space-id SPACE_ID] [--project-id PROJECT_ID]
+  cpdctl ml model wait --model-id MODEL_ID [--space-id SPACE_ID] [--project-id PROJECT_ID]
 ```
 #### Command options
 
@@ -10645,7 +10704,7 @@ Wait until the model upload becomes completed or failed.
 Create a new model definition with the given payload. A model definition represents the code that is used to train one or more models. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition create --name NAME --version VERSION [--platform PLATFORM | --platform-name PLATFORM-NAME --platform-versions PLATFORM-VERSIONS] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--command COMMAND] [--software-spec SOFTWARE-SPEC | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME] [--custom CUSTOM]
+cpdctl ml model-definition create --name NAME --package-version PACKAGE-VERSION [--platform PLATFORM | --platform-name PLATFORM-NAME --platform-versions PLATFORM-VERSIONS] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--command COMMAND] [--software-spec SOFTWARE-SPEC | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME] [--custom CUSTOM]
 ```
 
 
@@ -10654,7 +10713,7 @@ cpdctl ml model-definition create --name NAME --version VERSION [--platform PLAT
 `--name` (string)
 :   The name of the resource. Required.
 
-`--version` (string)
+`--package-version` (string)
 :   The package version. Required.
 
 `--platform` (<a href="#cli-model-definition-entity-request-platform-example-schema-ml">`ModelDefinitionEntityRequestPlatform`</a>)
@@ -10707,7 +10766,7 @@ cpdctl ml model-definition create --name NAME --version VERSION [--platform PLAT
 ```sh
 cpdctl ml model-definition create \
     --name my-resource \
-    --version exampleString \
+    --package-version exampleString \
     --platform '{"name": "exampleString", "versions": ["exampleString","anotherTestString"]}' \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
@@ -10843,7 +10902,7 @@ cpdctl ml model-definition update --model-definition-id MODEL-DEFINITION-ID --ve
 :   A description of the resource.
 
 `--custom` (generic map)
-:   User defined properties specified as key-value pairs.
+:   User defined properties specified as key-value pairs. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file.
 
 #### Example
 
@@ -11208,7 +11267,7 @@ cpdctl ml pipeline update --pipeline-id PIPELINE-ID --version VERSION [--tags TA
 :   A description of the resource.
 
 `--custom` (generic map)
-:   User defined properties specified as key-value pairs.
+:   User defined properties specified as key-value pairs. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file.
 
 #### Example
 
@@ -11334,7 +11393,7 @@ cpdctl ml pipeline list-revisions \
 Create a new WML training.
 
 ```sh
-cpdctl ml training create [--results-reference RESULTS-REFERENCE | --results-reference-id RESULTS-REFERENCE-ID --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-connection RESULTS-REFERENCE-CONNECTION --results-reference-location RESULTS-REFERENCE-LOCATION] [--experiment EXPERIMENT | --experiment-id EXPERIMENT-ID --experiment-rev EXPERIMENT-REV] [--pipeline PIPELINE | --pipeline-id PIPELINE-ID --pipeline-rev PIPELINE-REV --pipeline-model-type PIPELINE-MODEL-TYPE --pipeline-data-bindings PIPELINE-DATA-BINDINGS --pipeline-nodes-parameters PIPELINE-NODES-PARAMETERS --pipeline-hardware-spec PIPELINE-HARDWARE-SPEC --pipeline-hybrid-pipeline-hardware-specs PIPELINE-HYBRID-PIPELINE-HARDWARE-SPECS] [--model-definition MODEL-DEFINITION | --model-definition-id MODEL-DEFINITION-ID --model-definition-rev MODEL-DEFINITION-REV --model-definition-model-type MODEL-DEFINITION-MODEL-TYPE --model-definition-hardware-spec MODEL-DEFINITION-HARDWARE-SPEC --model-definition-software-spec MODEL-DEFINITION-SOFTWARE-SPEC --model-definition-command MODEL-DEFINITION-COMMAND --model-definition-parameters MODEL-DEFINITION-PARAMETERS] [--federated-learning FEDERATED-LEARNING | --federated-learning-model FEDERATED-LEARNING-MODEL --federated-learning-fusion-type FEDERATED-LEARNING-FUSION-TYPE --federated-learning-remote-training FEDERATED-LEARNING-REMOTE-TRAINING --federated-learning-rounds FEDERATED-LEARNING-ROUNDS --federated-learning-termination-predicate FEDERATED-LEARNING-TERMINATION-PREDICATE --federated-learning-epochs FEDERATED-LEARNING-EPOCHS --federated-learning-optimizer FEDERATED-LEARNING-OPTIMIZER --federated-learning-loss FEDERATED-LEARNING-LOSS --federated-learning-metrics FEDERATED-LEARNING-METRICS --federated-learning-max-depth FEDERATED-LEARNING-MAX-DEPTH --federated-learning-learning-rate FEDERATED-LEARNING-LEARNING-RATE --federated-learning-l2-regularization FEDERATED-LEARNING-L2-REGULARIZATION --federated-learning-max-bins FEDERATED-LEARNING-MAX-BINS --federated-learning-max-leaf-nodes FEDERATED-LEARNING-MAX-LEAF-NODES --federated-learning-min-samples-leaf FEDERATED-LEARNING-MIN-SAMPLES-LEAF --federated-learning-random-state FEDERATED-LEARNING-RANDOM-STATE --federated-learning-verbose FEDERATED-LEARNING-VERBOSE --federated-learning-num-classes FEDERATED-LEARNING-NUM-CLASSES --federated-learning-byzantine-threshold FEDERATED-LEARNING-BYZANTINE-THRESHOLD --federated-learning-sigma FEDERATED-LEARNING-SIGMA --federated-learning-sigma0 FEDERATED-LEARNING-SIGMA0 --federated-learning-gamma FEDERATED-LEARNING-GAMMA --federated-learning-iters FEDERATED-LEARNING-ITERS --federated-learning-save-intermediate-models FEDERATED-LEARNING-SAVE-INTERMEDIATE-MODELS --federated-learning-crypto FEDERATED-LEARNING-CRYPTO --federated-learning-hardware-spec FEDERATED-LEARNING-HARDWARE-SPEC --federated-learning-software-spec FEDERATED-LEARNING-SOFTWARE-SPEC --federated-learning-version FEDERATED-LEARNING-VERSION --federated-learning-log-level FEDERATED-LEARNING-LOG-LEVEL --federated-learning-sketch-accuracy-vs-privacy FEDERATED-LEARNING-SKETCH-ACCURACY-VS-PRIVACY] [--training-data-references TRAINING-DATA-REFERENCES] [--test-data-references TEST-DATA-REFERENCES] [--custom CUSTOM] [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+cpdctl ml training create [--results-reference RESULTS-REFERENCE | --results-reference-id RESULTS-REFERENCE-ID --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-connection RESULTS-REFERENCE-CONNECTION --results-reference-location RESULTS-REFERENCE-LOCATION] [--experiment EXPERIMENT | --experiment-id EXPERIMENT-ID --experiment-rev EXPERIMENT-REV] [--pipeline PIPELINE | --pipeline-id PIPELINE-ID --pipeline-rev PIPELINE-REV --pipeline-model-type PIPELINE-MODEL-TYPE --pipeline-data-bindings PIPELINE-DATA-BINDINGS --pipeline-nodes-parameters PIPELINE-NODES-PARAMETERS --pipeline-hardware-spec PIPELINE-HARDWARE-SPEC --pipeline-hybrid-pipeline-hardware-specs PIPELINE-HYBRID-PIPELINE-HARDWARE-SPECS] [--model-definition MODEL-DEFINITION | --model-definition-id MODEL-DEFINITION-ID --model-definition-rev MODEL-DEFINITION-REV --model-definition-model-type MODEL-DEFINITION-MODEL-TYPE --model-definition-hardware-spec MODEL-DEFINITION-HARDWARE-SPEC --model-definition-software-spec MODEL-DEFINITION-SOFTWARE-SPEC --model-definition-command MODEL-DEFINITION-COMMAND --model-definition-parameters MODEL-DEFINITION-PARAMETERS] [--federated-learning FEDERATED-LEARNING | --federated-learning-model FEDERATED-LEARNING-MODEL --federated-learning-fusion-type FEDERATED-LEARNING-FUSION-TYPE --federated-learning-remote-training FEDERATED-LEARNING-REMOTE-TRAINING --federated-learning-rounds FEDERATED-LEARNING-ROUNDS --federated-learning-termination-predicate FEDERATED-LEARNING-TERMINATION-PREDICATE --federated-learning-epochs FEDERATED-LEARNING-EPOCHS --federated-learning-optimizer FEDERATED-LEARNING-OPTIMIZER --federated-learning-loss FEDERATED-LEARNING-LOSS --federated-learning-metrics FEDERATED-LEARNING-METRICS --federated-learning-max-depth FEDERATED-LEARNING-MAX-DEPTH --federated-learning-learning-rate FEDERATED-LEARNING-LEARNING-RATE --federated-learning-l2-regularization FEDERATED-LEARNING-L2-REGULARIZATION --federated-learning-max-bins FEDERATED-LEARNING-MAX-BINS --federated-learning-max-leaf-nodes FEDERATED-LEARNING-MAX-LEAF-NODES --federated-learning-min-samples-leaf FEDERATED-LEARNING-MIN-SAMPLES-LEAF --federated-learning-random-state FEDERATED-LEARNING-RANDOM-STATE --federated-learning-verbose=FEDERATED-LEARNING-VERBOSE --federated-learning-num-classes FEDERATED-LEARNING-NUM-CLASSES --federated-learning-byzantine-threshold FEDERATED-LEARNING-BYZANTINE-THRESHOLD --federated-learning-sigma FEDERATED-LEARNING-SIGMA --federated-learning-sigma0 FEDERATED-LEARNING-SIGMA0 --federated-learning-gamma FEDERATED-LEARNING-GAMMA --federated-learning-iters FEDERATED-LEARNING-ITERS --federated-learning-save-intermediate-models=FEDERATED-LEARNING-SAVE-INTERMEDIATE-MODELS --federated-learning-crypto FEDERATED-LEARNING-CRYPTO --federated-learning-hardware-spec FEDERATED-LEARNING-HARDWARE-SPEC --federated-learning-software-spec FEDERATED-LEARNING-SOFTWARE-SPEC --federated-learning-version FEDERATED-LEARNING-VERSION --federated-learning-log-level FEDERATED-LEARNING-LOG-LEVEL --federated-learning-sketch-accuracy-vs-privacy FEDERATED-LEARNING-SKETCH-ACCURACY-VS-PRIVACY] [--training-data-references TRAINING-DATA-REFERENCES] [--test-data-references TEST-DATA-REFERENCES] [--custom CUSTOM] [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--space-id SPACE-ID] [--project-id PROJECT-ID]
 ```
 
 
@@ -11625,7 +11684,7 @@ Retrieve the list of trainings for the specified space or project.
 Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
 
 ```sh
-cpdctl ml training list [--start START] [--limit LIMIT] [--total-count TOTAL-COUNT] [--tag-value TAG-VALUE] [--type TYPE] [--state STATE] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parent-id PARENT-ID]
+cpdctl ml training list [--start START] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--type TYPE] [--state STATE] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parent-id PARENT-ID]
 ```
 
 
@@ -11669,7 +11728,7 @@ cpdctl ml training list [--start START] [--limit LIMIT] [--total-count TOTAL-COU
 cpdctl ml training list \
     --start exampleString \
     --limit 10 \
-    --total-count true \
+    --total-count=true \
     --tag-value exampleString \
     --type exampleString \
     --state exampleString \
@@ -11714,7 +11773,7 @@ cpdctl ml training get \
 Cancel the specified training and remove it.
 
 ```sh
-cpdctl ml training delete --training-id TRAINING-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--hard-delete HARD-DELETE]
+cpdctl ml training delete --training-id TRAINING-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--hard-delete=HARD-DELETE]
 ```
 
 
@@ -11739,7 +11798,7 @@ cpdctl ml training delete \
     --training-id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --hard-delete true
+    --hard-delete=true
 ```
 
 <a id='ml_training_wait'></a>
@@ -11747,7 +11806,7 @@ cpdctl ml training delete \
 Wait until the training becomes completed, failed, or canceled.
 
 ```sh
-   cpdctl ml training wait --training-id TRAINING_ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+  cpdctl ml training wait --training-id TRAINING_ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
 ```
 #### Command options
 
@@ -11769,7 +11828,7 @@ Wait until the training becomes completed, failed, or canceled.
 Create a new training definition with the given payload. A training definition represents the training meta-data necessary to start a training job. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition create --name NAME [--results-reference RESULTS-REFERENCE | --results-reference-id RESULTS-REFERENCE-ID --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-connection RESULTS-REFERENCE-CONNECTION --results-reference-location RESULTS-REFERENCE-LOCATION] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--experiment EXPERIMENT | --experiment-id EXPERIMENT-ID --experiment-rev EXPERIMENT-REV] [--pipeline PIPELINE | --pipeline-id PIPELINE-ID --pipeline-rev PIPELINE-REV --pipeline-model-type PIPELINE-MODEL-TYPE --pipeline-data-bindings PIPELINE-DATA-BINDINGS --pipeline-nodes-parameters PIPELINE-NODES-PARAMETERS --pipeline-hardware-spec PIPELINE-HARDWARE-SPEC --pipeline-hybrid-pipeline-hardware-specs PIPELINE-HYBRID-PIPELINE-HARDWARE-SPECS] [--model-definition MODEL-DEFINITION | --model-definition-id MODEL-DEFINITION-ID --model-definition-rev MODEL-DEFINITION-REV --model-definition-model-type MODEL-DEFINITION-MODEL-TYPE --model-definition-hardware-spec MODEL-DEFINITION-HARDWARE-SPEC --model-definition-software-spec MODEL-DEFINITION-SOFTWARE-SPEC --model-definition-command MODEL-DEFINITION-COMMAND --model-definition-parameters MODEL-DEFINITION-PARAMETERS] [--federated-learning FEDERATED-LEARNING | --federated-learning-model FEDERATED-LEARNING-MODEL --federated-learning-fusion-type FEDERATED-LEARNING-FUSION-TYPE --federated-learning-remote-training FEDERATED-LEARNING-REMOTE-TRAINING --federated-learning-rounds FEDERATED-LEARNING-ROUNDS --federated-learning-termination-predicate FEDERATED-LEARNING-TERMINATION-PREDICATE --federated-learning-epochs FEDERATED-LEARNING-EPOCHS --federated-learning-optimizer FEDERATED-LEARNING-OPTIMIZER --federated-learning-loss FEDERATED-LEARNING-LOSS --federated-learning-metrics FEDERATED-LEARNING-METRICS --federated-learning-max-depth FEDERATED-LEARNING-MAX-DEPTH --federated-learning-learning-rate FEDERATED-LEARNING-LEARNING-RATE --federated-learning-l2-regularization FEDERATED-LEARNING-L2-REGULARIZATION --federated-learning-max-bins FEDERATED-LEARNING-MAX-BINS --federated-learning-max-leaf-nodes FEDERATED-LEARNING-MAX-LEAF-NODES --federated-learning-min-samples-leaf FEDERATED-LEARNING-MIN-SAMPLES-LEAF --federated-learning-random-state FEDERATED-LEARNING-RANDOM-STATE --federated-learning-verbose FEDERATED-LEARNING-VERBOSE --federated-learning-num-classes FEDERATED-LEARNING-NUM-CLASSES --federated-learning-byzantine-threshold FEDERATED-LEARNING-BYZANTINE-THRESHOLD --federated-learning-sigma FEDERATED-LEARNING-SIGMA --federated-learning-sigma0 FEDERATED-LEARNING-SIGMA0 --federated-learning-gamma FEDERATED-LEARNING-GAMMA --federated-learning-iters FEDERATED-LEARNING-ITERS --federated-learning-save-intermediate-models FEDERATED-LEARNING-SAVE-INTERMEDIATE-MODELS --federated-learning-crypto FEDERATED-LEARNING-CRYPTO --federated-learning-hardware-spec FEDERATED-LEARNING-HARDWARE-SPEC --federated-learning-software-spec FEDERATED-LEARNING-SOFTWARE-SPEC --federated-learning-version FEDERATED-LEARNING-VERSION --federated-learning-log-level FEDERATED-LEARNING-LOG-LEVEL --federated-learning-sketch-accuracy-vs-privacy FEDERATED-LEARNING-SKETCH-ACCURACY-VS-PRIVACY] [--training-data-references TRAINING-DATA-REFERENCES] [--test-data-references TEST-DATA-REFERENCES] [--custom CUSTOM]
+cpdctl ml training-definition create --name NAME [--results-reference RESULTS-REFERENCE | --results-reference-id RESULTS-REFERENCE-ID --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-connection RESULTS-REFERENCE-CONNECTION --results-reference-location RESULTS-REFERENCE-LOCATION] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--description DESCRIPTION] [--tags TAGS] [--experiment EXPERIMENT | --experiment-id EXPERIMENT-ID --experiment-rev EXPERIMENT-REV] [--pipeline PIPELINE | --pipeline-id PIPELINE-ID --pipeline-rev PIPELINE-REV --pipeline-model-type PIPELINE-MODEL-TYPE --pipeline-data-bindings PIPELINE-DATA-BINDINGS --pipeline-nodes-parameters PIPELINE-NODES-PARAMETERS --pipeline-hardware-spec PIPELINE-HARDWARE-SPEC --pipeline-hybrid-pipeline-hardware-specs PIPELINE-HYBRID-PIPELINE-HARDWARE-SPECS] [--model-definition MODEL-DEFINITION | --model-definition-id MODEL-DEFINITION-ID --model-definition-rev MODEL-DEFINITION-REV --model-definition-model-type MODEL-DEFINITION-MODEL-TYPE --model-definition-hardware-spec MODEL-DEFINITION-HARDWARE-SPEC --model-definition-software-spec MODEL-DEFINITION-SOFTWARE-SPEC --model-definition-command MODEL-DEFINITION-COMMAND --model-definition-parameters MODEL-DEFINITION-PARAMETERS] [--federated-learning FEDERATED-LEARNING | --federated-learning-model FEDERATED-LEARNING-MODEL --federated-learning-fusion-type FEDERATED-LEARNING-FUSION-TYPE --federated-learning-remote-training FEDERATED-LEARNING-REMOTE-TRAINING --federated-learning-rounds FEDERATED-LEARNING-ROUNDS --federated-learning-termination-predicate FEDERATED-LEARNING-TERMINATION-PREDICATE --federated-learning-epochs FEDERATED-LEARNING-EPOCHS --federated-learning-optimizer FEDERATED-LEARNING-OPTIMIZER --federated-learning-loss FEDERATED-LEARNING-LOSS --federated-learning-metrics FEDERATED-LEARNING-METRICS --federated-learning-max-depth FEDERATED-LEARNING-MAX-DEPTH --federated-learning-learning-rate FEDERATED-LEARNING-LEARNING-RATE --federated-learning-l2-regularization FEDERATED-LEARNING-L2-REGULARIZATION --federated-learning-max-bins FEDERATED-LEARNING-MAX-BINS --federated-learning-max-leaf-nodes FEDERATED-LEARNING-MAX-LEAF-NODES --federated-learning-min-samples-leaf FEDERATED-LEARNING-MIN-SAMPLES-LEAF --federated-learning-random-state FEDERATED-LEARNING-RANDOM-STATE --federated-learning-verbose=FEDERATED-LEARNING-VERBOSE --federated-learning-num-classes FEDERATED-LEARNING-NUM-CLASSES --federated-learning-byzantine-threshold FEDERATED-LEARNING-BYZANTINE-THRESHOLD --federated-learning-sigma FEDERATED-LEARNING-SIGMA --federated-learning-sigma0 FEDERATED-LEARNING-SIGMA0 --federated-learning-gamma FEDERATED-LEARNING-GAMMA --federated-learning-iters FEDERATED-LEARNING-ITERS --federated-learning-save-intermediate-models=FEDERATED-LEARNING-SAVE-INTERMEDIATE-MODELS --federated-learning-crypto FEDERATED-LEARNING-CRYPTO --federated-learning-hardware-spec FEDERATED-LEARNING-HARDWARE-SPEC --federated-learning-software-spec FEDERATED-LEARNING-SOFTWARE-SPEC --federated-learning-version FEDERATED-LEARNING-VERSION --federated-learning-log-level FEDERATED-LEARNING-LOG-LEVEL --federated-learning-sketch-accuracy-vs-privacy FEDERATED-LEARNING-SKETCH-ACCURACY-VS-PRIVACY] [--training-data-references TRAINING-DATA-REFERENCES] [--test-data-references TEST-DATA-REFERENCES] [--custom CUSTOM]
 ```
 
 
@@ -12315,7 +12374,7 @@ Then you can create a notebook by referencing the notebook content with the attr
 The attributes 'runtime' and 'compute' are used to specify the environment on which the notebook runs.  You can specify the environment either by the attribute 'runtime' if the engine is a 'default environment', 'Spark default environment' or a 'GPU environment' or by the attribute 'compute' if the engine is a 'Spark-aaS'.  A basic runtime can be defined as '{"environment": <your environment id>}'.
 
 ```sh
-cpdctl notebook create --file-reference FILE-REFERENCE --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--kernel KERNEL | --kernel-display-name KERNEL-DISPLAY-NAME --kernel-language KERNEL-LANGUAGE --kernel-name KERNEL-NAME] [--originates-from ORIGINATES-FROM | --originates-from-type ORIGINATES-FROM-TYPE] [--project-id PROJECT-ID] [--runtime RUNTIME | --runtime-environment RUNTIME-ENVIRONMENT --runtime-spark-monitoring-enabled RUNTIME-SPARK-MONITORING-ENABLED] [--space-id SPACE-ID]
+cpdctl notebook create --file-reference FILE-REFERENCE --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--kernel KERNEL | --kernel-display-name KERNEL-DISPLAY-NAME --kernel-language KERNEL-LANGUAGE --kernel-name KERNEL-NAME] [--originates-from ORIGINATES-FROM | --originates-from-type ORIGINATES-FROM-TYPE] [--project-id PROJECT-ID] [--runtime RUNTIME | --runtime-environment RUNTIME-ENVIRONMENT --runtime-spark-monitoring-enabled=RUNTIME-SPARK-MONITORING-ENABLED] [--space-id SPACE-ID]
 ```
 
 
@@ -12415,7 +12474,7 @@ cpdctl notebook delete \
 Update a particular notebook.
 
 ```sh
-cpdctl notebook update --notebook-id NOTEBOOK-ID [--compute COMPUTE] [--environment ENVIRONMENT] [--kernel KERNEL | --kernel-display-name KERNEL-DISPLAY-NAME --kernel-language KERNEL-LANGUAGE --kernel-name KERNEL-NAME] [--schedule SCHEDULE] [--shares SHARES | --shares-gist SHARES-GIST --shares-github SHARES-GITHUB --shares-public SHARES-PUBLIC] [--spark-monitoring-enabled SPARK-MONITORING-ENABLED]
+cpdctl notebook update --notebook-id NOTEBOOK-ID [--compute COMPUTE] [--environment ENVIRONMENT] [--kernel KERNEL | --kernel-display-name KERNEL-DISPLAY-NAME --kernel-language KERNEL-LANGUAGE --kernel-name KERNEL-NAME] [--schedule SCHEDULE] [--shares SHARES | --shares-gist SHARES-GIST --shares-github SHARES-GITHUB --shares-public SHARES-PUBLIC] [--spark-monitoring-enabled=SPARK-MONITORING-ENABLED]
 ```
 
 
@@ -12480,7 +12539,7 @@ cpdctl notebook update \
     --kernel '{"display_name": "Python 3.5 with Spark", "language": "python3", "name": "python3"}' \
     --schedule 9a4293bf-1336-48ae-aadd-2999f31d31d5 \
     --shares '{"gist": {"content_filter": "none", "enabled": false, "html_url": "http://gist.ibm.com", "visibility": "all"}, "github": {"api_url": "http://api.github.ibm.com/v2", "branch": "dev", "commit_sha": "4f0c9d366173a0a322b032e01c989831a3287145", "content_filter": "none", "content_sha": "d89e37f1502717207e7f423c65e414e6b4645687", "enabled": false, "html_url": "http://github.ibm.com", "path": "blob/foo", "repo_name": "Data Science Experience", "repo_org": "dsx"}, "public": {"content_filter": "none", "enabled": false}}' \
-    --spark-monitoring-enabled false
+    --spark-monitoring-enabled=false
 ```
 
 <a id='notebook_revert'></a>
@@ -12850,7 +12909,7 @@ cpdctl pipeline version get-template-format \
 Uploads a pipeline file and creates a new pipeline version (or updates a volatile one). You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline version upload --file FILE [--uploadfile-content-type UPLOADFILE-CONTENT-TYPE] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--name NAME] [--pipeline-id PIPELINE-ID] [--volatile VOLATILE]
+cpdctl pipeline version upload --file FILE [--uploadfile-content-type UPLOADFILE-CONTENT-TYPE] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--name NAME] [--pipeline-id PIPELINE-ID] [--volatile=VOLATILE]
 ```
 
 
@@ -12903,7 +12962,7 @@ cpdctl pipeline version upload \
     --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
     --name exampleString \
     --pipeline-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
-    --volatile true
+    --volatile=true
 ```
 
 <a id='pipeline_run_get'></a>
@@ -13305,7 +13364,7 @@ cpdctl pipeline run task-result get \
 This command migrate old pipeline run execution cache data created by Watson Pipeline pipeline runs to the new location.  Identifiers of pipeline runs whose cache data are migrated are preserved in the output file. Cache data can be migrated to mounted filesystem. To enable that option specify --assets-dir-path parameter.
 
 ```sh
-   cpdctl pipeline run migrate-cache --output-file OUTPUT-FILE [--project-id PROJECT-ID] [--assets-dir-path ASSET-DIR-PATH]
+  cpdctl pipeline run migrate-cache --output-file OUTPUT-FILE [--project-id PROJECT-ID] [--assets-dir-path ASSET-DIR-PATH]
 ```
 #### Command options
 
@@ -13340,7 +13399,7 @@ This command migrate old pipeline run execution cache data created by Watson Pip
 Gets job run status for pipeline and it's subpipelines.
 
 ```sh
-   cpdctl pipeline run get-status --job-id JOB-ID --run-id RUN-ID [--with-subpipelines WITH-SUBPIPELINES] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+  cpdctl pipeline run get-status --job-id JOB-ID --run-id RUN-ID [--with-subpipelines WITH-SUBPIPELINES] [--space-id SPACE-ID] [--project-id PROJECT-ID]
 ```
 #### Command options
 
@@ -13377,18 +13436,21 @@ Gets job run status for pipeline and it's subpipelines.
 This command deletes execution cache data created by Watson Pipeline runs for a specific pipeline. Identifiers of pipeline whose cache data are deleted are preserved in the output file. This action applies to cache data stored on mounted filesystem. To enable that option specify --assets-dir-path parameter. Only files from job runs that started before a specific point in time are deleted.
 
 ```sh
-   cpdctl pipeline cleanup delete-cache --output-file OUTPUT-FILE [--project-id PROJECT-ID | --space-id SPACE-ID] [--pipeline-id PIPELINE-ID] [--assets-dir-path ASSETS-DIR-PATH | --file-api-mount-path FILE-API-MOUNT-PATH] [--retention-time RETENTION-TIME] [--output-file OUTPUT-FILE] [--recursive] [--revision-id REVISION-ID]
+  cpdctl pipeline cleanup delete-cache --output-file OUTPUT-FILE [--project-id PROJECT-ID | --space-id SPACE-ID] [--pipeline-id PIPELINE-ID] [--assets-dir-path ASSETS-DIR-PATH | --file-api-mount-path FILE-API-MOUNT-PATH] [--artifact-store-mount-path ARTIFACT_STORE_MOUNT_PATH] [--retention-time RETENTION-TIME] [--output-file OUTPUT-FILE] [--recursive] [--revision-id REVISION-ID]
 ```
 #### Command options
 
+`--artifact-store-mount-path` (string)
+:    Path to mounted filesystem with access to all CPD projects assets stored on artifact store pvc
+
 `--assets-dir-path` (string)
-:    Path to mounted filesystem where CPD projects assets are stored
+:    Path to mounted filesystem where CPD projects assets are stored on asset files pvc
 
 `--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--file-api-mount-path` (string)
-:    Path to mounted filesystem with access to all CPD projects assets
+:    Path to mounted filesystem with access to all CPD projects assets stored on asset files pvc
 
 `--output-file` (string)
 :    Path to a file where the identifiers of pipeline are preserved after execution cache data are deleted
@@ -13421,6 +13483,7 @@ This command deletes execution cache data created by Watson Pipeline runs for a 
 	--space-id=f465e7f6-feb7-47ff-bbd5-8671217e3cfb \
 	--pipeline-id=a70af6a7-ba76-4738-a8cc-f89897625194 \
 	--assets-dir-path=/mnt/asset_file_api/projects/${project}/assets/ \
+	--artifact-store-mount-path=/mnt/artifact_store/ \
 	--file-api-mount-path=/mnt/asset_file_api/ \
 	--retention-time=100h0m0s \
 	--output-file=/tmp/delete-cache.log \
@@ -13430,12 +13493,15 @@ This command deletes execution cache data created by Watson Pipeline runs for a 
 
 <a id='pipeline_cleanup_delete-artifacts'></a>
 ## &#8226; pipeline cleanup delete-artifacts
-This command deletes artifact files created by Watson Pipeline job runs. Only files from job runs that started before a specific point in time are deleted. Identifiers of jobs and runs whose artifacts are deleted are preserved in the output file. The number of job runs can be limited (--limit parameter). Artifacts can be deleted directly from a mounted filesystem (--assets-dir-path).
+This command deletes artifact files created by Watson Pipeline job runs. Only files from job runs that started before a specific point in time are deleted. Identifiers of jobs and runs whose artifacts are deleted are preserved in the output file. The number of job runs can be limited (--limit parameter). Artifacts can be deleted directly from a mounted filesystem, from asset files pvc (--assets-dir-path) and artifact store pvc (--artifact-store-assets-dir-path).
 
 ```sh
-   cpdctl pipeline cleanup delete-artifacts --retention-time RETENTION --output-file OUTPUT-FILE [--project-id PROJECT-ID | --space-id SPACE-ID] [--assets-dir-path ASSETS-DIR-PATH] [--retention-time RETENTION-TIME] [--output-file OUTPUT-FILE] [--limit LIMIT] [--clean-job-runs] [--force]
+  cpdctl pipeline cleanup delete-artifacts --retention-time RETENTION --output-file OUTPUT-FILE [--project-id PROJECT-ID | --space-id SPACE-ID] [--assets-dir-path ASSETS-DIR-PATH] [--artifact-store-assets-dir-path ARTIFACT-STORE-ASSETS-DIR-PATH] [--retention-time RETENTION-TIME] [--output-file OUTPUT-FILE] [--limit LIMIT] [--clean-job-runs] [--force]
 ```
 #### Command options
+
+`--artifact-store-assets-dir-path` (string)
+:    The path to mounted artifact store assets directory (e.g. /mnt/artifact_store/projects/{project-id}/assets/)
 
 `--assets-dir-path` (string)
 :    The path to mounted assets directory (e.g. /mnt/asset_file_api/projects/{project-id}/assets/)
@@ -13597,7 +13663,7 @@ cpdctl pipeline get \
 Returns code (YAML template, Orchestration Flow json) that contains the specified pipeline's description, parameters and metadata. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline get-template --pipeline-id PIPELINE-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--format FORMAT] [--volatile VOLATILE] [--version VERSION]
+cpdctl pipeline get-template --pipeline-id PIPELINE-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--format FORMAT] [--volatile=VOLATILE] [--version VERSION]
 ```
 
 
@@ -13642,7 +13708,7 @@ cpdctl pipeline get-template \
     --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
     --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
     --format template \
-    --volatile true \
+    --volatile=true \
     --version any
 ```
 
@@ -13734,7 +13800,7 @@ cpdctl pipeline copy \
 Uploads a pipeline file and create a new pipeline. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline upload --file FILE [--uploadfile-content-type UPLOADFILE-CONTENT-TYPE] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--name NAME] [--description DESCRIPTION] [--volatile VOLATILE]
+cpdctl pipeline upload --file FILE [--uploadfile-content-type UPLOADFILE-CONTENT-TYPE] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--name NAME] [--description DESCRIPTION] [--volatile=VOLATILE]
 ```
 
 
@@ -13783,7 +13849,7 @@ cpdctl pipeline upload \
     --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
     --name exampleString \
     --description exampleString \
-    --volatile true
+    --volatile=true
 ```
 
 <a id='pipeline_validate'></a>
@@ -13832,7 +13898,7 @@ cpdctl pipeline validate \
 Returns a list of projects filtered by the specified query parameters. By default, only projects that the authenticated user is a member of are returned. In IBM Cloud Pak for Data (CPD), all projects in the cluster are returned (regardless of project membership) if the authenticated user is assigned either the "Manage projects" or "Monitor project workloads" CPD permission. In IBM Cloud Pak for Data (CPDaaS), all projects associated with an IBM Cloud Account are returned (regardless of project membership) if the authenticated user is added to the IBM Cloud Account and assigned the IAM "Manager" role. This command lists only Analytics projects. Data Quality projects are not supported.
 
 ```sh
-cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--type TYPE] [--member MEMBER] [--roles ROLES] [--name NAME] [--match MATCH] [--guids GUIDS] [--include INCLUDE] [--limit LIMIT] [--bookmark BOOKMARK] [--skip SKIP] [--cpdaas-include-permissions CPDAAS-INCLUDE-PERMISSIONS]
+cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--type TYPE] [--member MEMBER] [--roles ROLES] [--tag-names TAG-NAMES] [--name NAME] [--match MATCH] [--guids GUIDS] [--include INCLUDE] [--limit LIMIT] [--bookmark BOOKMARK] [--skip SKIP] [--cpdaas-include-permissions=CPDAAS-INCLUDE-PERMISSIONS]
 ```
 
 
@@ -13846,7 +13912,7 @@ cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--type TYPE] [--member ME
 `-T`, `--type` (string)
 :   The project type.
 
-    Allowable values are: `cpd`, `wx`, `wca`.
+    Allowable values are: `cpd`, `wx`, `wca`, `dpx`, `wxbi`.
 
 `-m`, `--member` (string)
 :   A project member to use to filter the query results.
@@ -13856,7 +13922,10 @@ cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--type TYPE] [--member ME
 `-r`, `--roles` ([]string)
 :   A list of comma-separated project roles to use to filter the query results. Must be used in conjunction with the "member" query parameter.
 
-    The default value is `[]`. Allowable list items are: `admin`, `editor`, `viewer`.
+    Allowable list items are: `admin`, `editor`, `viewer`.
+
+`-e`, `--tag-names` (string)
+:   A list of comma-separated tags to use to filter the query results. If multiple tags are specified, the query results will be filtered to show projects matching any of the tags. (e.g. tag1 OR tag2 OR... tagN).
 
 `-n`, `--name` (string)
 :   A full or partial project name to use to filter the query results. This query parameter must be used in conjunction with the 'bss_account_id' query parameter. Use the 'match' query parameter to control they type of text matching performed. Project names are not unique and should not be used in place of project IDs.
@@ -13868,15 +13937,13 @@ cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--type TYPE] [--member ME
 
     The default value is `exact`. Allowable values are: `exact`, `keyword`.
 
-`-g`, `--guids` ([]string)
+`-g`, `--guids` (string)
 :   A list of comma-separated project IDs to use to filter the query results. This query parameter only works in conjunction with the 'member' query parameter.
-
-    The list items must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`.
 
 `-I`, `--include` ([]string)
 :   A list of comma-separated project metadata sections to include in the query results.
 
-    The default value is `["fields"]`. Allowable list items are: `name`, `fields`, `members`, `settings`, `everything`, `nothing`.
+    The default value is `["fields"]`. Allowable list items are: `name`, `fields`, `members`, `tags`, `settings`, `everything`, `nothing`.
 
 `-l`, `--limit` (int64)
 :   The limit used to specify the maximum number of projects returned in the query results. Used for pagination in conjunction with the "bookmark" query parameter.
@@ -13906,14 +13973,15 @@ cpdctl project list \
     --type cpd \
     --member zapp.brannigan@ibm.com \
     --roles admin,editor,viewer \
+    --tag-names development,test,production \
     --name 'Sentiment Analysis' \
     --match exact \
-    --guids 46a19524-bfbf-4810-a1f0-b131f12bc773,46a19524-bfbf-4810-a1f0-b131f12bc773 \
-    --include name,fields,members,settings,everything,nothing \
+    --guids d122ffba-de9e-4c67-89c4-0091f1610076,deb5b1d8-5fd4-486c-92ef-12e90959dbf1 \
+    --include name,fields,members,tags,settings,everything,nothing \
     --limit 10 \
-    --bookmark g1AAAAE6eJzLYWBgYMlgTmHQTElKzi9KdUhJMtdLytVNTtYtLdYtzi8tydA1MNVLzskvTUnMK9HLSy3JAWphSnIAkkn-____z8pgcrP_afo-ASiQyIhqlAlRRoF0JuXDjPrBf0cBZBQzGa7KYwGSDAeAFNC082DjvnclHgAZx4RqnAXxxl2AGHcfxaNMWQBvIGVg \
+    --bookmark exampleString \
     --skip 0 \
-    --cpdaas-include-permissions false
+    --cpdaas-include-permissions=false
 ```
 
 <a id='project_get'></a>
@@ -13936,14 +14004,14 @@ cpdctl project get --project-id PROJECT-ID [--include INCLUDE]
 `-I`, `--include` ([]string)
 :   A list of comma-separated project metadata sections to include in the query results.
 
-    The default value is `["fields"]`. Allowable list items are: `name`, `fields`, `members`, `settings`, `integrations`, `storage`, `credentials`, `everything`, `nothing`.
+    The default value is `["fields"]`. Allowable list items are: `name`, `fields`, `members`, `tags`, `settings`, `integrations`, `storage`, `credentials`, `everything`, `nothing`.
 
 #### Example
 
 ```sh
 cpdctl project get \
     --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
-    --include name,fields,members,settings,integrations,storage,credentials,everything,nothing
+    --include name,fields,members,tags,settings,integrations,storage,credentials,everything,nothing
 ```
 
 <a id='project_update'></a>
@@ -13952,7 +14020,7 @@ cpdctl project get \
 Partially updates the project with only a subset of properties.
 
 ```sh
-cpdctl project update --project-id PROJECT-ID [--catalog CATALOG | --catalog-guid CATALOG-GUID --catalog-public CATALOG-PUBLIC] [--compute COMPUTE] [--description DESCRIPTION] [--name NAME] [--public PUBLIC] [--tools TOOLS] [--type TYPE]
+cpdctl project update --project-id PROJECT-ID [--catalog CATALOG | --catalog-guid CATALOG-GUID --catalog-public=CATALOG-PUBLIC] [--compute COMPUTE] [--description DESCRIPTION] [--name NAME] [--public=PUBLIC] [--tools TOOLS] [--type TYPE]
 ```
 
 
@@ -13994,9 +14062,9 @@ cpdctl project update --project-id PROJECT-ID [--catalog CATALOG | --catalog-gui
     Allowable list items are: `jupyter_notebooks`, `watson_visual_recognition`, `dashboards`, `streams_designer`, `spss_modeler`, `experiments`, `data_refinery`.
 
 `--type` (string)
-:   The project type. The "cpd" project type is used to classify IBM Cloud Pak for Data (CPD) projects. The "wx" project type is used to classify IBM watsonx projects. The "wca" project type is used to classify IBM watsonx Code Assistant projects.
+:   The project type. The "cpd" project type is used to classify IBM Cloud Pak for Data (CPD) projects. The "wx" project type is used to classify IBM watsonx projects. The "wca" project type is used to classify IBM watsonx Code Assistant projects. The "dpx" project type is used to classify IBM Data Product Exchange projects. The "wxbi" project type is used to classify IBM watsonx BI Assistant projects.
 
-    Allowable values are: `cpd`, `wx`, `wca`.
+    Allowable values are: `cpd`, `wx`, `wca`, `dpx`, `wxbi`.
 
 `--catalog-guid` (string)
 :   The catalog ID represented as a version 4 UUID. This option provides a value for a sub-field of the JSON option 'catalog'. It is mutually exclusive with that option.
@@ -14017,7 +14085,7 @@ cpdctl project update \
     --compute '[{"credentials": {"anyKey": "anyValue"}, "crn": "crn:v1:staging:public:code-assistant:us-south:a/0e79133675a31dbfd10504847a9e174f:630ced06-9675-4e35-a44f-d88197cc10c3::", "guid": "630ced06-9675-4e35-a44f-d88197cc10c3", "label": "code-assistant", "name": "IBM watsonx Code Assistant", "type": "code-assistant"}]' \
     --description 'A project description.' \
     --name 'Project Name' \
-    --public false \
+    --public=false \
     --tools jupyter_notebooks,watson_visual_recognition,dashboards,streams_designer,spss_modeler,experiments,data_refinery \
     --type cpd
 ```
@@ -14070,7 +14138,7 @@ cpdctl project member list --project-id PROJECT-ID [--roles ROLES] [--user-names
 `-r`, `--roles` ([]string)
 :   A list of comma-separated project roles to use to filter the query results.
 
-    The default value is `[]`. Allowable list items are: `admin`, `editor`, `viewer`.
+    Allowable list items are: `admin`, `editor`, `viewer`.
 
 `-u`, `--user-names` ([]string)
 :   A list of comma-separated usernames corresponding to project members that are used to filter the query results.
@@ -14090,7 +14158,7 @@ cpdctl project member list \
 Change project member roles in a batch.
 
 ```sh
-cpdctl project member update --project-id PROJECT-ID --members MEMBERS [--cpdaas-include-permissions CPDAAS-INCLUDE-PERMISSIONS]
+cpdctl project member update --project-id PROJECT-ID --members MEMBERS [--cpdaas-include-permissions=CPDAAS-INCLUDE-PERMISSIONS]
 ```
 
 
@@ -14117,7 +14185,7 @@ cpdctl project member update --project-id PROJECT-ID --members MEMBERS [--cpdaas
 cpdctl project member update \
     --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
     --members '[{"id": "IBMid-55000353XF", "role": "admin", "state": "ACTIVE", "user_name": "zapp.brannigan@ibm.com"}]' \
-    --cpdaas-include-permissions false
+    --cpdaas-include-permissions=false
 ```
 
 <a id='project_member_create'></a>
@@ -14126,7 +14194,7 @@ cpdctl project member update \
 Adds new project members with the provided roles. A project must always have at least one admin.
 
 ```sh
-cpdctl project member create --project-id PROJECT-ID --members MEMBERS [--cpdaas-include-permissions CPDAAS-INCLUDE-PERMISSIONS]
+cpdctl project member create --project-id PROJECT-ID --members MEMBERS [--cpdaas-include-permissions=CPDAAS-INCLUDE-PERMISSIONS]
 ```
 
 
@@ -14153,7 +14221,7 @@ cpdctl project member create --project-id PROJECT-ID --members MEMBERS [--cpdaas
 cpdctl project member create \
     --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
     --members '[{"id": "IBMid-55000353XF", "role": "admin", "state": "ACTIVE", "type": "user", "user_name": "zapp.brannigan@ibm.com"}]' \
-    --cpdaas-include-permissions false
+    --cpdaas-include-permissions=false
 ```
 
 <a id='project_member_get'></a>
@@ -14162,7 +14230,7 @@ cpdctl project member create \
 Returns the project member with the specified 'user_name' if any.
 
 ```sh
-cpdctl project member get --project-id PROJECT-ID --user-name USER-NAME [--resolve-groups RESOLVE-GROUPS]
+cpdctl project member get --project-id PROJECT-ID --user-name USER-NAME [--resolve-groups=RESOLVE-GROUPS]
 ```
 
 
@@ -14189,16 +14257,168 @@ cpdctl project member get --project-id PROJECT-ID --user-name USER-NAME [--resol
 cpdctl project member get \
     --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
     --user-name zapp.brannigan@ibm.com \
-    --resolve-groups true
+    --resolve-groups=true
+```
+
+<a id='project_storage_update'></a>
+## &#8226; project storage update
+
+Update the storage properties associated with the target project specified by ID.
+
+```sh
+cpdctl project storage update --project-id PROJECT-ID [--update-storage-properties-body UPDATE-STORAGE-PROPERTIES-BODY | --update-storage-properties-body-credentials UPDATE-STORAGE-PROPERTIES-BODY-CREDENTIALS --update-storage-properties-body-repository UPDATE-STORAGE-PROPERTIES-BODY-REPOSITORY]
+```
+
+
+#### Command options
+
+`-i`, `--project-id` (string)
+:   The project ID. Required.
+
+    The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`.
+
+`--update-storage-properties-body` (<a href="#cli-update-storage-properties-body-example-schema-project">`UpdateStoragePropertiesBody`</a>)
+:   The request body for updating project storage properties. Only the properties of the "bmcos_object_storage" and "local_git_storage" storage types can be updated. Only project members with the "admin" role are authorized to perform this update operation. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--update-storage-properties-body=@path/to/file.json`.
+
+`--update-storage-properties-body-credentials` (<a href="#cli-cloud-object-storage-credentials-example-schema-project">`CloudObjectStorageCredentials`</a>)
+:   The Cloud Object Storage (COS) credentials. This option provides a value for a sub-field of the JSON option 'update-storage-properties-body'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--update-storage-properties-body-credentials=@path/to/file.json`.
+
+`--update-storage-properties-body-repository` (<a href="#cli-local-git-storage-repository-example-schema-project">`LocalGitStorageRepository`</a>)
+:   The Git repository fields. This option provides a value for a sub-field of the JSON option 'update-storage-properties-body'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--update-storage-properties-body-repository=@path/to/file.json`.
+
+#### Examples
+
+```sh
+cpdctl project storage update \
+    --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
+    --update-storage-properties-body '{"credentials": {"admin": {"access_key_id": "abcdefABCDEF0123456789abcdefABCD", "api_key": "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8", "secret_access_key": "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd", "service_id": "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"}, "editor": {"access_key_id": "abcdefABCDEF0123456789abcdefABCD", "api_key": "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8", "resource_key_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/b56585fe60e71be0a22e6587f781ed91:dc36b4a5-cf81-6541-b855-f68a6f321cac::", "secret_access_key": "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd", "service_id": "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"}, "viewer": {"access_key_id": "abcdefABCDEF0123456789abcdefABCD", "api_key": "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8", "resource_key_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/b56585fe60e71be0a22e6587f781ed91:dc36b4a5-cf81-6541-b855-f68a6f321cac::", "secret_access_key": "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd", "service_id": "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"}}}'
+```
+
+<a id='project_tag_delete'></a>
+## &#8226; project tag delete
+
+Delete existing tags in a project. If no 'tag_names' are specified, then delete all existing tags in a project.
+
+```sh
+cpdctl project tag delete --project-id PROJECT-ID [--tag-names TAG-NAMES]
+```
+
+
+#### Command options
+
+`-i`, `--project-id` (string)
+:   The project ID. Required.
+
+    The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`.
+
+`-e`, `--tag-names` (string)
+:   A list of comma-separated tags to use to filter the query results. If multiple tags are specified, the query results will be filtered to show projects matching any of the tags. (e.g. tag1 OR tag2 OR... tagN).
+
+#### Example
+
+```sh
+cpdctl project tag delete \
+    --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
+    --tag-names development,test,production
+```
+
+<a id='project_tag_list'></a>
+## &#8226; project tag list
+
+Returns the list of project tags.
+
+```sh
+cpdctl project tag list --project-id PROJECT-ID
+```
+
+
+#### Command options
+
+`-i`, `--project-id` (string)
+:   The project ID. Required.
+
+    The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`.
+
+#### Example
+
+```sh
+cpdctl project tag list \
+    --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773
+```
+
+<a id='project_tag_update'></a>
+## &#8226; project tag update
+
+Adds new tags and removes existing tags from a project via a single bulk update operation.
+
+```sh
+cpdctl project tag update --project-id PROJECT-ID --update-tags-operation UPDATE-TAGS-OPERATION
+```
+
+
+#### Command options
+
+`-i`, `--project-id` (string)
+:   The project ID. Required.
+
+    The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`.
+
+`--update-tags-operation` (<a href="#cli-update-tags-operation-example-schema-project">`UpdateTagsOperation[]`</a>)
+:   A list of operations to add or remove project tags. Required.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--update-tags-operation=@path/to/file.json`.
+
+#### Example
+
+```sh
+cpdctl project tag update \
+    --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
+    --update-tags-operation '[{"op": "add", "tags": ["development","development"]}]'
+```
+
+<a id='project_tag_create'></a>
+## &#8226; project tag create
+
+Adds new tags to a project.
+
+```sh
+cpdctl project tag create --project-id PROJECT-ID --body BODY
+```
+
+
+#### Command options
+
+`-i`, `--project-id` (string)
+:   The project ID. Required.
+
+    The value must match regular expression `/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/`.
+
+`--body` ([]string)
+:   A list of tags associated with the project. Required.
+
+    The list items must match regular expression `/^[^,]+$/`.
+
+#### Example
+
+```sh
+cpdctl project tag create \
+    --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
+    --body development,development
 ```
 
 <a id='project_create'></a>
 ## &#8226; project create
 
-Creates a new project with the provided parameters, including all the storage and credentials in a single transaction. This endpoint will create a new COS bucket using generated unique name, all credentials, asset container and call all the required atomic APIs to fully configure a new project. Attempts to use the duplicate project names will result in an error. <b>NOTE</b>:  when creating projects programmatically, always use this endpoint, not /v2/projects. <br/><br/><br/> This endpoint can also be used to create a project from an exported Watson Studio .zip file. In this case, a new transaction is initiated to create assets under the project. A Transaction ID along with a URL is returned as a response of this API. As this transaction can take time, you can view the current status of the transaction using the returned URL.<br><b>NOTE</b>: This feature is only available in the private cloud.
+Creates a new project with the provided parameters, including all the storage and credentials in a single transaction. This endpoint will create a new COS bucket using generated unique name, all credentials, asset container and call all the required atomic APIs to fully configure a new project. Attempts to use the duplicate project names will result in an error. <b>NOTE</b>:  when creating projects programmatically, always use this endpoint, not /v2/projects. <br/><br/><br/> This endpoint can also be used to create a project from an exported watsonx.ai Studio .zip file. In this case, a new transaction is initiated to create assets under the project. A Transaction ID along with a URL is returned as a response of this API. As this transaction can take time, you can view the current status of the transaction using the returned URL.<br><b>NOTE</b>: This feature is only available in the private cloud.
 
 ```sh
-cpdctl project create --generator GENERATOR --name NAME [--storage STORAGE | --storage-delegated STORAGE-DELEGATED --storage-guid STORAGE-GUID --storage-plan-id STORAGE-PLAN-ID --storage-properties STORAGE-PROPERTIES --storage-resource-crn STORAGE-RESOURCE-CRN --storage-type STORAGE-TYPE] [--compute COMPUTE] [--description DESCRIPTION] [--enforce-members ENFORCE-MEMBERS] [--public PUBLIC] [--tags TAGS] [--tools TOOLS] [--type TYPE] [--verify-unique-name VERIFY-UNIQUE-NAME]
+cpdctl project create --generator GENERATOR --name NAME [--storage STORAGE | --storage-delegated=STORAGE-DELEGATED --storage-guid STORAGE-GUID --storage-plan-id STORAGE-PLAN-ID --storage-properties STORAGE-PROPERTIES --storage-resource-crn STORAGE-RESOURCE-CRN --storage-type STORAGE-TYPE] [--compute COMPUTE] [--description DESCRIPTION] [--enforce-members=ENFORCE-MEMBERS] [--public=PUBLIC] [--tags TAGS] [--tools TOOLS] [--type TYPE] [--verify-unique-name=VERIFY-UNIQUE-NAME]
 ```
 
 
@@ -14284,12 +14504,12 @@ cpdctl project create \
     --storage '{"delegated": false, "guid": "d0e410a0-b358-42fc-b402-dba83316413a", "plan_id": "1e4e33e4-cfa6-4f12-9016-be594a6d5f87", "properties": {"shared": true}, "resource_crn": "crn:v1:staging:public:cloud-object-storage:global:a/a7026b374f39f570d20984c1ac6ecf63:5778e94f-c8c7-46a8-9878-d5eeadb51161::", "type": "bmcos_object_storage"}' \
     --compute '[{"crn": "crn:v1:staging:public:watson-vision-combined:us-south:a/1438bf1daef49e20401d0179818ebef5:6874282b-42d6-40fa-869b-95a3c0f04125::", "guid": "eddc2f0c-4401-49d1-b632-dee2ec33dcc0", "label": "watson_vision_combined", "name": "Apache Spark", "type": "spark"}]' \
     --description 'A project description.' \
-    --enforce-members false \
-    --public false \
+    --enforce-members=false \
+    --public=false \
     --tags exampleString,anotherTestString \
     --tools watson_visual_recognition,jupyter_notebooks,dashboards,streams_designer,spss_modeler,experiments,data_refinery \
     --type cpd \
-    --verify-unique-name true
+    --verify-unique-name=true
 ```
 
 <a id='project_delete'></a>
@@ -14321,7 +14541,7 @@ Retrieves the space list.
 Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
 
 ```sh
-cpdctl space list [--start START] [--limit LIMIT] [--total-count TOTAL-COUNT] [--id ID] [--tags TAGS] [--include INCLUDE] [--member MEMBER] [--roles ROLES] [--bss-account-id BSS-ACCOUNT-ID] [--name NAME] [--sub-name SUB-NAME] [--compute-crn COMPUTE-CRN] [--type TYPE]
+cpdctl space list [--start START] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--id ID] [--tags TAGS] [--include INCLUDE] [--member MEMBER] [--roles ROLES] [--bss-account-id BSS-ACCOUNT-ID] [--name NAME] [--sub-name SUB-NAME] [--compute-crn COMPUTE-CRN] [--type TYPE]
 ```
 
 
@@ -14385,7 +14605,7 @@ Values:
 cpdctl space list \
     --start exampleString \
     --limit 10 \
-    --total-count true \
+    --total-count=true \
     --id exampleString \
     --tags exampleString \
     --include exampleString \
@@ -14408,7 +14628,7 @@ Creates a new space to scope other assets. Authorized user must have the followi
 On Public Cloud user is required to provide Cloud Object Storage instance details in the 'storage' property. On private CPD installations the default storage is used instead.
 
 ```sh
-cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--generator GENERATOR] [--stage STAGE | --stage-name STAGE-NAME --stage-production STAGE-PRODUCTION] [--storage STORAGE | --storage-delegated STORAGE-DELEGATED --storage-resource-crn STORAGE-RESOURCE-CRN] [--tags TAGS] [--type TYPE]
+cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--generator GENERATOR] [--settings SETTINGS | --settings-access-restrictions SETTINGS-ACCESS-RESTRICTIONS --settings-folders SETTINGS-FOLDERS] [--stage STAGE | --stage-name STAGE-NAME --stage-production=STAGE-PRODUCTION] [--storage STORAGE | --storage-delegated=STORAGE-DELEGATED --storage-plan-id STORAGE-PLAN-ID --storage-resource-crn STORAGE-RESOURCE-CRN] [--tags TAGS] [--type TYPE]
 ```
 
 
@@ -14430,6 +14650,11 @@ cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] 
 
     The maximum length is `50` characters. The minimum length is `8` characters.
 
+`--settings` (<a href="#cli-settings-entity-example-schema-space">`SettingsEntity`</a>)
+:   Space settings. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--settings=@path/to/file.json`.
+
 `--stage` (<a href="#cli-stage-request-example-schema-space">`StageRequest`</a>)
 :   Space production and stage name. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
@@ -14448,6 +14673,16 @@ cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] 
 
     The default value is `cpd`. Allowable values are: `cpd`, `wx`, `wca`.
 
+`--settings-access-restrictions` (<a href="#cli-access-restrictions-example-schema-space">`AccessRestrictions`</a>)
+:   The access restrictions settings group. This option provides a value for a sub-field of the JSON option 'settings'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--settings-access-restrictions=@path/to/file.json`.
+
+`--settings-folders` (<a href="#cli-folder-example-schema-space">`Folder`</a>)
+:   The folders settings group. This option provides a value for a sub-field of the JSON option 'settings'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--settings-folders=@path/to/file.json`.
+
 `--stage-name` (string)
 :   Stage name. E.g. development, test, pre-production, production. This option provides a value for a sub-field of the JSON option 'stage'. It is mutually exclusive with that option.
 
@@ -14461,6 +14696,9 @@ cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] 
 
     The default value is `false`.
 
+`--storage-plan-id` (string)
+:   The unique ID of the plan associated with the COS instance. The value is 1e4e33e4-cfa6-4f12-9016-be594a6d5f87 for the One Rate plan. This option provides a value for a sub-field of the JSON option 'storage'. It is mutually exclusive with that option.
+
 `--storage-resource-crn` (string)
 :   A cloud resource name of the Cloud Object Storage instance. This option provides a value for a sub-field of the JSON option 'storage'. It is mutually exclusive with that option.
 
@@ -14472,8 +14710,9 @@ cpdctl space create \
     --compute '[{"crn": "exampleString", "name": "exampleString"}]' \
     --description exampleString \
     --generator Spaces-API_Swagger-Docs \
+    --settings '{"access_restrictions": {"reporting": {"authorized": true}}, "folders": {"enabled": true}}' \
     --stage '{"name": "exampleString", "production": false}' \
-    --storage '{"delegated": false, "resource_crn": "exampleString"}' \
+    --storage '{"delegated": false, "plan_id": "1e4e33e4-cfa6-4f12-9016-be594a6d5f87", "resource_crn": "exampleString"}' \
     --tags exampleString,anotherTestString \
     --type cpd
 ```
@@ -14538,7 +14777,9 @@ Partially update this space. Allowed paths are:
   - /description
   - /compute
   - /stage/name
-  - /type.
+  - /type
+  - /settings/folders/enabled
+  - /settings/access_restrictions/reporting/authorized.
 
 ```sh
 cpdctl space update --space-id SPACE-ID [--compute COMPUTE] [--description DESCRIPTION] [--name NAME] [--stage-name STAGE-NAME]
@@ -14584,7 +14825,7 @@ Retrieves the member list for the specified space.
 Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
 
 ```sh
-cpdctl space member list --space-id SPACE-ID [--start START] [--limit LIMIT] [--total-count TOTAL-COUNT] [--type TYPE] [--role ROLE] [--state STATE]
+cpdctl space member list --space-id SPACE-ID [--start START] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--type TYPE] [--role ROLE] [--state STATE]
 ```
 
 
@@ -14621,7 +14862,7 @@ cpdctl space member list \
     --space-id exampleString \
     --start exampleString \
     --limit 10 \
-    --total-count true \
+    --total-count=true \
     --type exampleString \
     --role exampleString \
     --state exampleString
@@ -14755,7 +14996,7 @@ cpdctl space member update \
 Wait until the space creation or deletion is finished.
 
 ```sh
-   cpdctl space wait --space-id SPACE_ID
+  cpdctl space wait --space-id SPACE_ID
 ```
 #### Command options
 
@@ -14768,7 +15009,7 @@ Wait until the space creation or deletion is finished.
 <a id='version_'></a>
 ## &#8226; version 
 ```sh
-   cpdctl version
+  cpdctl version
 ```
 
 <a id='wx-ai_ai-service_create'></a>
@@ -15201,6 +15442,259 @@ cpdctl wx-ai ai-service list-revisions \
     --limit 50
 ```
 
+<a id='wx-ai_autoai-rag_create'></a>
+## &#8226; wx-ai autoai-rag create
+
+Create a new AutoAI RAG that will find the best RAG pattern from the data that is provided in the request.
+
+```sh
+cpdctl wx-ai autoai-rag create --name NAME [--hardware-spec HARDWARE-SPEC | --hardware-spec-id HARDWARE-SPEC-ID --hardware-spec-rev HARDWARE-SPEC-REV --hardware-spec-name HARDWARE-SPEC-NAME --hardware-spec-num-nodes HARDWARE-SPEC-NUM-NODES] --input-data-references INPUT-DATA-REFERENCES --test-data-references TEST-DATA-REFERENCES [--results-reference RESULTS-REFERENCE | --results-reference-id RESULTS-REFERENCE-ID --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-connection RESULTS-REFERENCE-CONNECTION --results-reference-location RESULTS-REFERENCE-LOCATION] [--description DESCRIPTION] [--tags TAGS] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--parameters PARAMETERS | --parameters-constraints PARAMETERS-CONSTRAINTS --parameters-optimization PARAMETERS-OPTIMIZATION --parameters-output-logs=PARAMETERS-OUTPUT-LOGS] [--vector-store-references VECTOR-STORE-REFERENCES] [--custom CUSTOM]
+```
+
+
+#### Command options
+
+`--name` (string)
+:   The name of the job. Required.
+
+`--hardware-spec` (<a href="#cli-hardware-spec-example-schema-wx-ai">`HardwareSpec`</a>)
+:   A hardware specification. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--hardware-spec=@path/to/file.json`.
+
+`--input-data-references` (<a href="#cli-auto-ai-data-location-example-schema-wx-ai">`AutoAIDataLocation[]`</a>)
+:   A set of input data references. Required.
+
+    The maximum length is `20` items. The minimum length is `1` item.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--input-data-references=@path/to/file.json`.
+
+`--test-data-references` (<a href="#cli-auto-ai-data-location-example-schema-wx-ai">`AutoAIDataLocation[]`</a>)
+:   A set of test data references. Required.
+
+    The maximum length is `1` item. The minimum length is `1` item.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--test-data-references=@path/to/file.json`.
+
+`--results-reference` (<a href="#cli-results-location-example-schema-wx-ai">`ResultsLocation`</a>)
+:   The training results. Normally this is specified as `type=container` (Service) or `type=fs` (Software) which
+means that it is stored in the space or project. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference=@path/to/file.json`.
+
+`--description` (string)
+:   The description of the job.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+    The maximum length is `64` items.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--parameters` (<a href="#cli-auto-airag-parameters-example-schema-wx-ai">`AutoAIRAGParameters`</a>)
+:   The parameters for an AutoAI RAG run. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters=@path/to/file.json`.
+
+`--vector-store-references` (<a href="#cli-connection-asset-example-schema-wx-ai">`ConnectionAsset[]`</a>)
+:   A set of vector store references. Milvus vector database is supported.
+
+    The maximum length is `1` item. The minimum length is `1` item.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--vector-store-references=@path/to/file.json`.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--custom=@path/to/file.json`.
+
+`--hardware-spec-id` (string)
+:   The id of the hardware specification. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--hardware-spec-rev` (string)
+:   The revision of the hardware specification. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--hardware-spec-name` (string)
+:   The name of the hardware specification. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--hardware-spec-num-nodes` (int64)
+:   The number of nodes applied to a computation. This option provides a value for a sub-field of the JSON option 'hardware-spec'. It is mutually exclusive with that option.
+
+`--results-reference-id` (string)
+:   Item identification inside a collection. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+`--results-reference-type` (string)
+:   The data source type like `connection_asset`, `container` (Service) or `fs` (Software). This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Allowable values are: `connection_asset`, `container`.
+
+`--results-reference-connection` (<a href="#cli-data-connection-example-schema-wx-ai">`DataConnection`</a>)
+:   Contains a set of fields specific to each connection.
+See here for [details about specifying connections](#datareferences). This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference-connection=@path/to/file.json`.
+
+`--results-reference-location` (map[string]string)
+:   Contains a set of fields that describe the location of the data with respect to the `connection`. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference-location=@path/to/file.json`.
+
+`--parameters-constraints` (<a href="#cli-auto-airag-constraints-example-schema-wx-ai">`AutoAIRAGConstraints`</a>)
+:   The constraint parameters for an AutoAI RAG run. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters-constraints=@path/to/file.json`.
+
+`--parameters-optimization` (<a href="#cli-auto-airag-optimization-parameters-example-schema-wx-ai">`AutoAIRAGOptimizationParameters`</a>)
+:   The optimization parameters for an AutoAI RAG run. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters-optimization=@path/to/file.json`.
+
+`--parameters-output-logs` (bool)
+:   Request that the output logs are also stored as part of the result. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `true`.
+
+#### Examples
+
+```sh
+cpdctl wx-ai autoai-rag create \
+    --name exampleString \
+    --hardware-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}' \
+    --input-data-references '[{"type": "connection_asset", "connection": {}, "location": {}}]' \
+    --test-data-references '[{"type": "connection_asset", "connection": {}, "location": {}}]' \
+    --results-reference '{"id": "exampleString", "type": "container", "connection": {}, "location": {}}' \
+    --description exampleString \
+    --tags t1,t2 \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --parameters '{"constraints": {"chunking": [{"method": "recursive", "chunk_size": 256, "chunk_overlap": 128}], "embedding_models": ["ibm/slate-125m-english-rtrvr"], "retrieval_methods": ["simple","window"], "foundation_models": ["ibm/granite-13b-chat-v2","mistralai/mixtral-8x7b-instruct-v01"], "max_number_of_rag_patterns": 8}, "optimization": {"metrics": ["answer_correctness","faithfulness","context_correctness"], "language": {"auto_detect": true, "code": "fr"}}, "output_logs": true}' \
+    --vector-store-references '[{"type": "connection_asset", "connection": {}}]' \
+    --custom '{"anyKey": "anyValue"}'
+```
+
+<a id='wx-ai_autoai-rag_list'></a>
+## &#8226; wx-ai autoai-rag list
+
+Retrieve the list of AutoAI RAG requests for the specified space or project.
+
+This operation does not save the history, any requests that were deleted or purged will not appear in this list.
+
+```sh
+cpdctl wx-ai autoai-rag list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT]
+```
+
+
+#### Command options
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
+
+    The default value is `100`. The maximum value is `200`. The minimum value is `1`.
+
+#### Example
+
+```sh
+cpdctl wx-ai autoai-rag list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --start exampleString \
+    --limit 50
+```
+
+<a id='wx-ai_autoai-rag_get'></a>
+## &#8226; wx-ai autoai-rag get
+
+Get the results of an AutoAI RAG run, or details if the job failed.
+
+```sh
+cpdctl wx-ai autoai-rag get --id ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--id` (string)
+:   The `id` is the identifier that was returned in the `metadata.id` field of the request. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+#### Example
+
+```sh
+cpdctl wx-ai autoai-rag get \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+```
+
+<a id='wx-ai_autoai-rag_delete'></a>
+## &#8226; wx-ai autoai-rag delete
+
+Cancel or delete the specified AutoAI RAG run, once deleted all trace of the run job is gone.
+
+```sh
+cpdctl wx-ai autoai-rag delete --id ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--hard-delete=HARD-DELETE]
+```
+
+
+#### Command options
+
+`--id` (string)
+:   The `id` is the identifier that was returned in the `metadata.id` field of the request. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--hard-delete` (bool)
+:   Set to true in order to also delete the job or request metadata.
+
+#### Example
+
+```sh
+cpdctl wx-ai autoai-rag delete \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --hard-delete=true
+```
+
 <a id='wx-ai_deployment_create'></a>
 ## &#8226; wx-ai deployment create
 
@@ -15334,7 +15828,7 @@ cpdctl wx-ai deployment create \
 Retrieve the list of deployments for the specified space or project.
 
 ```sh
-cpdctl wx-ai deployment list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--serving-name SERVING-NAME] [--tag-value TAG-VALUE] [--asset-id ASSET-ID] [--prompt-template-id PROMPT-TEMPLATE-ID] [--name NAME] [--type TYPE] [--state STATE] [--conflict CONFLICT]
+cpdctl wx-ai deployment list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--serving-name SERVING-NAME] [--tag-value TAG-VALUE] [--asset-id ASSET-ID] [--prompt-template-id PROMPT-TEMPLATE-ID] [--name NAME] [--type TYPE] [--state STATE] [--conflict=CONFLICT]
 ```
 
 
@@ -15398,7 +15892,7 @@ cpdctl wx-ai deployment list \
     --name exampleString \
     --type exampleString \
     --state exampleString \
-    --conflict false
+    --conflict=false
 ```
 
 <a id='wx-ai_deployment_get'></a>
@@ -15550,7 +16044,7 @@ Infer the next tokens for a given deployed model with a set of parameters. If a 
 Note that there is currently a limitation in this operation when using `return_options`, for input only `input_text` will be returned if requested, for output the `input_tokens` and `generated_tokens` will not be returned.
 
 ```sh
-cpdctl wx-ai deployment text-generate --id-or-name ID-OR-NAME [--input INPUT] [--parameters PARAMETERS | --parameters-decoding-method PARAMETERS-DECODING-METHOD --parameters-length-penalty PARAMETERS-LENGTH-PENALTY --parameters-max-new-tokens PARAMETERS-MAX-NEW-TOKENS --parameters-min-new-tokens PARAMETERS-MIN-NEW-TOKENS --parameters-random-seed PARAMETERS-RANDOM-SEED --parameters-stop-sequences PARAMETERS-STOP-SEQUENCES --parameters-temperature PARAMETERS-TEMPERATURE --parameters-time-limit PARAMETERS-TIME-LIMIT --parameters-top-k PARAMETERS-TOP-K --parameters-top-p PARAMETERS-TOP-P --parameters-repetition-penalty PARAMETERS-REPETITION-PENALTY --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS --parameters-include-stop-sequence PARAMETERS-INCLUDE-STOP-SEQUENCE --parameters-typical-p PARAMETERS-TYPICAL-P --parameters-prompt-variables PARAMETERS-PROMPT-VARIABLES] [--moderations MODERATIONS]
+cpdctl wx-ai deployment text-generate --id-or-name ID-OR-NAME [--input INPUT] [--parameters PARAMETERS | --parameters-decoding-method PARAMETERS-DECODING-METHOD --parameters-length-penalty PARAMETERS-LENGTH-PENALTY --parameters-max-new-tokens PARAMETERS-MAX-NEW-TOKENS --parameters-min-new-tokens PARAMETERS-MIN-NEW-TOKENS --parameters-random-seed PARAMETERS-RANDOM-SEED --parameters-stop-sequences PARAMETERS-STOP-SEQUENCES --parameters-temperature PARAMETERS-TEMPERATURE --parameters-time-limit PARAMETERS-TIME-LIMIT --parameters-top-k PARAMETERS-TOP-K --parameters-top-p PARAMETERS-TOP-P --parameters-repetition-penalty PARAMETERS-REPETITION-PENALTY --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS --parameters-include-stop-sequence=PARAMETERS-INCLUDE-STOP-SEQUENCE --parameters-typical-p PARAMETERS-TYPICAL-P --parameters-prompt-variables PARAMETERS-PROMPT-VARIABLES] [--moderations MODERATIONS]
 ```
 
 
@@ -15686,7 +16180,7 @@ Note that there is currently a limitation in this operation when using `return_o
 `rank` and `top_tokens` will not be returned.
 
 ```sh
-cpdctl wx-ai deployment text-generate-stream --id-or-name ID-OR-NAME [--input INPUT] [--parameters PARAMETERS | --parameters-decoding-method PARAMETERS-DECODING-METHOD --parameters-length-penalty PARAMETERS-LENGTH-PENALTY --parameters-max-new-tokens PARAMETERS-MAX-NEW-TOKENS --parameters-min-new-tokens PARAMETERS-MIN-NEW-TOKENS --parameters-random-seed PARAMETERS-RANDOM-SEED --parameters-stop-sequences PARAMETERS-STOP-SEQUENCES --parameters-temperature PARAMETERS-TEMPERATURE --parameters-time-limit PARAMETERS-TIME-LIMIT --parameters-top-k PARAMETERS-TOP-K --parameters-top-p PARAMETERS-TOP-P --parameters-repetition-penalty PARAMETERS-REPETITION-PENALTY --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS --parameters-include-stop-sequence PARAMETERS-INCLUDE-STOP-SEQUENCE --parameters-typical-p PARAMETERS-TYPICAL-P --parameters-prompt-variables PARAMETERS-PROMPT-VARIABLES] [--moderations MODERATIONS]
+cpdctl wx-ai deployment text-generate-stream --id-or-name ID-OR-NAME [--input INPUT] [--parameters PARAMETERS | --parameters-decoding-method PARAMETERS-DECODING-METHOD --parameters-length-penalty PARAMETERS-LENGTH-PENALTY --parameters-max-new-tokens PARAMETERS-MAX-NEW-TOKENS --parameters-min-new-tokens PARAMETERS-MIN-NEW-TOKENS --parameters-random-seed PARAMETERS-RANDOM-SEED --parameters-stop-sequences PARAMETERS-STOP-SEQUENCES --parameters-temperature PARAMETERS-TEMPERATURE --parameters-time-limit PARAMETERS-TIME-LIMIT --parameters-top-k PARAMETERS-TOP-K --parameters-top-p PARAMETERS-TOP-P --parameters-repetition-penalty PARAMETERS-REPETITION-PENALTY --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS --parameters-include-stop-sequence=PARAMETERS-INCLUDE-STOP-SEQUENCE --parameters-typical-p PARAMETERS-TYPICAL-P --parameters-prompt-variables PARAMETERS-PROMPT-VARIABLES] [--moderations MODERATIONS]
 ```
 
 
@@ -15811,12 +16305,100 @@ cpdctl wx-ai deployment text-generate-stream \
     --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}'
 ```
 
+<a id='wx-ai_deployment_chat'></a>
+## &#8226; wx-ai deployment chat
+
+Infer the next chat message for a given deployment. The deployment must reference a prompt template which has `input_mode` set to `chat`. The model to the chat request will be from the deployment `base_model_id`. Parameters to the chat request will be from the prompt template `model_parameters`. Related guides: [Deployment](https://cloud.ibm.com/apidocs/watsonx-ai#create-deployment), [Prompt template](https://cloud.ibm.com/apidocs/watsonx-ai#post-prompt), [Text chat](https://cloud.ibm.com/apidocs/watsonx-ai#text-chat).
+
+If a `serving_name` is used then it must match the `serving_name` that is returned in the `inference` section when the deployment was created.
+
+```sh
+cpdctl wx-ai deployment chat --id-or-name ID-OR-NAME --messages MESSAGES [--context CONTEXT]
+```
+
+
+#### Command options
+
+`--id-or-name` (string)
+:   The `id_or_name` can be either the `deployment_id` that identifies the deployment or a `serving_name` that allows a predefined URL to be used to post a prediction. The deployment must reference a prompt template with `input_mode` `chat`.
+
+The WML instance that is associated with the deployment will be used for limits and billing (if a paid plan). Required.
+
+`--messages` (<a href="#cli-deployment-text-chat-messages-example-schema-wx-ai">`DeploymentTextChatMessages[]`</a>)
+:   The messages for this chat session. You cannot specify `system` `role` in the messages. Depending on the model, the `content` of `system` `role` may be from `system_prompt` of the prompt template, and will be automatically inserted into `messages`.
+
+As an example, depending on the model, if `system_prompt` of a prompt template is "You are Granite Chat, an AI language model developed by IBM. You are a cautious assistant. You carefully follow instructions. You are helpful and harmless and you follow ethical guidelines and promote positive behavior.", a message with `system` `role` having `content` the same as `system_prompt` is inserted. Required.
+
+    The maximum length is `1000` items. The minimum length is `1` item.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--messages=@path/to/file.json`.
+
+`--context` (string)
+:   If specified, `context` will be inserted into `messages`. Depending on the model, `context` may be inserted into the `content` with `system` `role`; or into the `content` of the last message of `user` `role`.
+
+
+In the example, `context` "Today is Wednesday" is inserted as such
+`content` of `user` becomes "Today is Wednesday. Who are you and which day is tomorrow?".
+
+#### Example
+
+```sh
+cpdctl wx-ai deployment chat \
+    --id-or-name exampleString \
+    --messages '[{"role": "assistant", "content": "Who won the world series in 2020?", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
+    --context exampleString
+```
+
+<a id='wx-ai_deployment_chat-stream'></a>
+## &#8226; wx-ai deployment chat-stream
+
+Infer the next chat message for a given deployment. This operation will return the output tokens as a stream of events. The deployment must reference a prompt template which has `input_mode` set to `chat`. The model to the chat request will be from the deployment `base_model_id`. Parameters to the chat request will be from the prompt template `model_parameters`. Related guides: [Deployment](https://cloud.ibm.com/apidocs/watsonx-ai#create-deployment), [Prompt template](https://cloud.ibm.com/apidocs/watsonx-ai#post-prompt), [Text chat](https://cloud.ibm.com/apidocs/watsonx-ai#text-chat).
+
+If a `serving_name` is used then it must match the `serving_name` that is returned in the `inference` section when the deployment was created.
+
+```sh
+cpdctl wx-ai deployment chat-stream --id-or-name ID-OR-NAME --messages MESSAGES [--context CONTEXT]
+```
+
+
+#### Command options
+
+`--id-or-name` (string)
+:   The `id_or_name` can be either the `deployment_id` that identifies the deployment or a `serving_name` that allows a predefined URL to be used to post a prediction. The deployment must reference a prompt template with `input_mode` `chat`.
+
+The WML instance that is associated with the deployment will be used for limits and billing (if a paid plan). Required.
+
+`--messages` (<a href="#cli-deployment-text-chat-messages-example-schema-wx-ai">`DeploymentTextChatMessages[]`</a>)
+:   The messages for this chat session. You cannot specify `system` `role` in the messages. Depending on the model, the `content` of `system` `role` may be from `system_prompt` of the prompt template, and will be automatically inserted into `messages`.
+
+As an example, depending on the model, if `system_prompt` of a prompt template is "You are Granite Chat, an AI language model developed by IBM. You are a cautious assistant. You carefully follow instructions. You are helpful and harmless and you follow ethical guidelines and promote positive behavior.", a message with `system` `role` having `content` the same as `system_prompt` is inserted. Required.
+
+    The maximum length is `1000` items. The minimum length is `1` item.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--messages=@path/to/file.json`.
+
+`--context` (string)
+:   If specified, `context` will be inserted into `messages`. Depending on the model, `context` may be inserted into the `content` with `system` `role`; or into the `content` of the last message of `user` `role`.
+
+
+In the example, `context` "Today is Wednesday" is inserted as such
+`content` of `user` becomes "Today is Wednesday. Who are you and which day is tomorrow?".
+
+#### Example
+
+```sh
+cpdctl wx-ai deployment chat-stream \
+    --id-or-name exampleString \
+    --messages '[{"role": "assistant", "content": "Who won the world series in 2020?", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
+    --context exampleString
+```
+
 <a id='wx-ai_deployment_wait'></a>
 ## &#8226; wx-ai deployment wait
 Wait until the deployment becomes ready or failed.
 
 ```sh
-   cpdctl wx-ai deployment wait --deployment-id DEPLOYMENT_ID --space-id SPACE_ID
+  cpdctl wx-ai deployment wait --deployment-id DEPLOYMENT_ID --space-id SPACE_ID
 ```
 #### Command options
 
@@ -15829,6 +16411,301 @@ Wait until the deployment becomes ready or failed.
 `--space-id` (string)
 :    The ID of the space to use.
 
+`--version` (YYYY-MM-DD)
+:    The version date for the API of the form YYYY-MM-DD.
+
+<a id='wx-ai_fine-tuning_create'></a>
+## &#8226; wx-ai fine-tuning create
+
+Create a fine tuning job that will fine tune an LLM.
+
+```sh
+cpdctl wx-ai fine-tuning create --name NAME --training-data-references TRAINING-DATA-REFERENCES [--results-reference RESULTS-REFERENCE | --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-location RESULTS-REFERENCE-LOCATION --results-reference-connection RESULTS-REFERENCE-CONNECTION --results-reference-id RESULTS-REFERENCE-ID] [--description DESCRIPTION] [--tags TAGS] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--auto-update-model=AUTO-UPDATE-MODEL] [--parameters PARAMETERS | --parameters-task-id PARAMETERS-TASK-ID --parameters-accumulate-steps PARAMETERS-ACCUMULATE-STEPS --parameters-base-model PARAMETERS-BASE-MODEL --parameters-num-epochs PARAMETERS-NUM-EPOCHS --parameters-learning-rate PARAMETERS-LEARNING-RATE --parameters-batch-size PARAMETERS-BATCH-SIZE --parameters-max-seq-length PARAMETERS-MAX-SEQ-LENGTH --parameters-response-template PARAMETERS-RESPONSE-TEMPLATE --parameters-verbalizer PARAMETERS-VERBALIZER --parameters-gpu PARAMETERS-GPU] [--type TYPE] [--test-data-references TEST-DATA-REFERENCES] [--custom CUSTOM]
+```
+
+
+#### Command options
+
+`--name` (string)
+:   The name of the job. Required.
+
+`--training-data-references` (<a href="#cli-object-location-example-schema-wx-ai">`ObjectLocation[]`</a>)
+:   The training datasets. Required.
+
+    The maximum length is `20` items. The minimum length is `1` item.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--training-data-references=@path/to/file.json`.
+
+`--results-reference` (<a href="#cli-object-location-example-schema-wx-ai">`ObjectLocation`</a>)
+:   The training results. Normally this is specified as `type=container` which
+means that it is stored in the space or project. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference=@path/to/file.json`.
+
+`--description` (string)
+:   The description of the job.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+    The maximum length is `64` items.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--auto-update-model` (bool)
+:   This field must not be set while creating a fine tuning job with InstructLab.
+
+If set to `true` then the result of the training, if successful, will be uploaded to the repository as a model.
+
+    The default value is `false`.
+
+`--parameters` (<a href="#cli-fine-tuning-parameters-example-schema-wx-ai">`FineTuningParameters`</a>)
+:   This field must not be set while creating a fine tuning job with InstructLab.
+
+The parameters for the job. Note that if `verbalizer` is provided
+then `response_template` must also be provided (and vice versa). This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters=@path/to/file.json`.
+
+`--type` (string)
+:   The `type` of Fine Tuning training. The `type` is set to `ilab` for InstructLab training.
+
+    Allowable values are: `ilab`.
+
+`--test-data-references` (<a href="#cli-object-location-example-schema-wx-ai">`ObjectLocation[]`</a>)
+:   This field must not be set while creating a fine tuning job with InstructLab.
+
+The holdout/test datasets.
+
+    The maximum length is `20` items. The minimum length is `1` item.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--test-data-references=@path/to/file.json`.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--custom=@path/to/file.json`.
+
+`--results-reference-type` (string)
+:   The data source type.
+
+
+The possible types will depend on the API and platform being used. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+`--results-reference-location` (map[string]string)
+:   Contains a set of fields that describe the location of the data with respect to the `connection`. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference-location=@path/to/file.json`.
+
+`--results-reference-connection` (<a href="#cli-data-connection-example-schema-wx-ai">`DataConnection`</a>)
+:   Contains a set of fields specific to each connection.
+See here for [details about specifying connections](#datareferences). This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference-connection=@path/to/file.json`.
+
+`--results-reference-id` (string)
+:   Item identification inside a collection, if appropriate. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+`--parameters-task-id` (string)
+:   The task that is targeted for this model. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+`--parameters-accumulate-steps` (int64)
+:   Number of updates steps to accumulate the gradients for, before performing a backward/update pass. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+`--parameters-base-model` (<a href="#cli-base-model-example-schema-wx-ai">`BaseModel`</a>)
+:   The model id of the base model for this job. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters-base-model=@path/to/file.json`.
+
+`--parameters-num-epochs` (int64)
+:   Total number of training epochs to perform. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+`--parameters-learning-rate` (float64)
+:   The initial learning rate for AdamW optimizer. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+`--parameters-batch-size` (int64)
+:   The batch size per GPU/XPU/TPU/MPS/NPU core/CPU for training. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+`--parameters-max-seq-length` (int64)
+:   Maximum sequence length in terms of number of tokens. Any sequence beyond this maximum length will be truncated. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+`--parameters-response-template` (string)
+:   Separator for the prediction/response in the single sequence to train on completions only. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `\n\n### Response:`.
+
+`--parameters-verbalizer` (string)
+:   Verbalizer template to be used for formatting data at train and inference time.
+
+This template may use brackets to indicate where fields from the data model must be rendered. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `### Input: {{input}} \n\n### Response: {{output}}`.
+
+`--parameters-gpu` (<a href="#cli-gpu-example-schema-wx-ai">`GPU`</a>)
+:   The name and number of GPUs used for the Fine Tuning job. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters-gpu=@path/to/file.json`.
+
+#### Examples
+
+```sh
+cpdctl wx-ai fine-tuning create \
+    --name exampleString \
+    --training-data-references '[{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}]' \
+    --results-reference '{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}' \
+    --description exampleString \
+    --tags t1,t2 \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --auto-update-model=false \
+    --parameters '{"task_id": "exampleString", "accumulate_steps": 1, "base_model": {"model_id": "google/flan-t5-xl"}, "num_epochs": 5, "learning_rate": 0.2, "batch_size": 5, "max_seq_length": 1024, "response_template": "\n\n### Response:", "verbalizer": "### Input: {{input}} \n\n### Response: {{output}}", "gpu": {"num": 4, "name": "NVIDIA-A100-80GB-PCIe"}}' \
+    --type ilab \
+    --test-data-references '[{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}]' \
+    --custom '{"anyKey": "anyValue"}'
+```
+
+<a id='wx-ai_fine-tuning_list'></a>
+## &#8226; wx-ai fine-tuning list
+
+Retrieve the list of fine tuning jobs for the specified space or project.
+Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
+
+```sh
+cpdctl wx-ai fine-tuning list [--start START] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--state STATE] [--type TYPE] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the `next` field.
+
+`--limit` (int64)
+:   How many resources should be returned.
+
+    The default value is `100`. The maximum value is `200`.
+
+`--total-count` (bool)
+:   Compute the total count. May have performance impact.
+
+`--tag-value` (string)
+:   Return only the resources with the given tag value.
+
+`--state` (string)
+:   Filter based on on the job state: queued, running, completed, failed etc.
+
+`--type` (string)
+:   The `type` of Fine Tuning training. The `type` is set to `ilab` for InstructLab training.
+
+    Allowable values are: `ilab`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--all-pages` (bool)
+:   Invoke multiple requests to display all pages of the collection for fine-tuning-list.
+
+#### Example
+
+```sh
+cpdctl wx-ai fine-tuning list \
+    --start exampleString \
+    --limit 10 \
+    --total-count=true \
+    --tag-value exampleString \
+    --state exampleString \
+    --type ilab \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+```
+
+<a id='wx-ai_fine-tuning_get'></a>
+## &#8226; wx-ai fine-tuning get
+
+Get the results of a fine tuning job, or details if the job failed.
+
+```sh
+cpdctl wx-ai fine-tuning get --id ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--id` (string)
+:   The `id` is the identifier that was returned in the `metadata.id` field of the request. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+#### Example
+
+```sh
+cpdctl wx-ai fine-tuning get \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+```
+
+<a id='wx-ai_fine-tuning_delete'></a>
+## &#8226; wx-ai fine-tuning delete
+
+Delete a fine tuning job if it exists, once deleted all trace of the job is gone.
+
+```sh
+cpdctl wx-ai fine-tuning delete --id ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--hard-delete=HARD-DELETE]
+```
+
+
+#### Command options
+
+`--id` (string)
+:   The `id` is the identifier that was returned in the `metadata.id` field of the request. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--hard-delete` (bool)
+:   Set to true in order to also delete the job or request metadata.
+
+#### Example
+
+```sh
+cpdctl wx-ai fine-tuning delete \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --hard-delete=true
+```
+
 <a id='wx-ai_foundation-model_list-models'></a>
 ## &#8226; wx-ai foundation-model list-models
 
@@ -15836,7 +16713,7 @@ Retrieve the list of deployed foundation models.
 Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
 
 ```sh
-cpdctl wx-ai foundation-model list-models [--start START] [--limit LIMIT] [--filters FILTERS] [--tech-preview TECH-PREVIEW]
+cpdctl wx-ai foundation-model list-models [--start START] [--limit LIMIT] [--filters FILTERS] [--tech-preview=TECH-PREVIEW]
 ```
 
 
@@ -15895,7 +16772,7 @@ cpdctl wx-ai foundation-model list-models \
     --start exampleString \
     --limit 50 \
     --filters modelid_ibm/granite-13b-instruct-v2 \
-    --tech-preview false
+    --tech-preview=false
 ```
 
 <a id='wx-ai_foundation-model_list-tasks'></a>
@@ -15936,7 +16813,7 @@ cpdctl wx-ai foundation-model list-tasks \
 This creates a new prompt with the provided parameters.
 
 ```sh
-cpdctl wx-ai prompt create --name NAME [--prompt PROMPT | --prompt-input PROMPT-INPUT --prompt-model-id PROMPT-MODEL-ID --prompt-model-parameters PROMPT-MODEL-PARAMETERS --prompt-data PROMPT-DATA --prompt-system-prompt PROMPT-SYSTEM-PROMPT --prompt-chat-items PROMPT-CHAT-ITEMS --prompt-external-information PROMPT-EXTERNAL-INFORMATION] [--description DESCRIPTION] [--created-at CREATED-AT] [--task-ids TASK-IDS] [--lock LOCK | --lock-locked LOCK-LOCKED --lock-lock-type LOCK-LOCK-TYPE --lock-locked-by LOCK-LOCKED-BY] [--model-version MODEL-VERSION | --model-version-number MODEL-VERSION-NUMBER --model-version-tag MODEL-VERSION-TAG --model-version-description MODEL-VERSION-DESCRIPTION] [--prompt-variables PROMPT-VARIABLES] [--input-mode INPUT-MODE] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl wx-ai prompt create --name NAME [--prompt PROMPT | --prompt-input PROMPT-INPUT --prompt-model-id PROMPT-MODEL-ID --prompt-model-parameters PROMPT-MODEL-PARAMETERS --prompt-data PROMPT-DATA --prompt-system-prompt PROMPT-SYSTEM-PROMPT --prompt-chat-items PROMPT-CHAT-ITEMS --prompt-external-information PROMPT-EXTERNAL-INFORMATION] [--description DESCRIPTION] [--created-at CREATED-AT] [--task-ids TASK-IDS] [--lock LOCK | --lock-locked=LOCK-LOCKED --lock-lock-type LOCK-LOCK-TYPE --lock-locked-by LOCK-LOCKED-BY] [--model-version MODEL-VERSION | --model-version-number MODEL-VERSION-NUMBER --model-version-tag MODEL-VERSION-TAG --model-version-description MODEL-VERSION-DESCRIPTION] [--prompt-variables PROMPT-VARIABLES] [--input-mode INPUT-MODE] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 
 
@@ -15995,6 +16872,7 @@ cpdctl wx-ai prompt create --name NAME [--prompt PROMPT | --prompt-input PROMPT-
 
     The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
+<!-- markdownlint-disable-next-line reference-links-images -->
 `--prompt-input` ([][]string)
 :   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
 
@@ -16125,7 +17003,7 @@ cpdctl wx-ai prompt get \
 This updates a prompt / prompt template with the given id.
 
 ```sh
-cpdctl wx-ai prompt update --prompt-id PROMPT-ID --name NAME [--prompt PROMPT | --prompt-input PROMPT-INPUT --prompt-model-id PROMPT-MODEL-ID --prompt-model-parameters PROMPT-MODEL-PARAMETERS --prompt-data PROMPT-DATA --prompt-system-prompt PROMPT-SYSTEM-PROMPT --prompt-chat-items PROMPT-CHAT-ITEMS] [--id ID] [--description DESCRIPTION] [--task-ids TASK-IDS] [--governance-tracked GOVERNANCE-TRACKED] [--model-version MODEL-VERSION | --model-version-number MODEL-VERSION-NUMBER --model-version-tag MODEL-VERSION-TAG --model-version-description MODEL-VERSION-DESCRIPTION] [--prompt-variables PROMPT-VARIABLES] [--input-mode INPUT-MODE] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+cpdctl wx-ai prompt update --prompt-id PROMPT-ID --name NAME [--prompt PROMPT | --prompt-input PROMPT-INPUT --prompt-model-id PROMPT-MODEL-ID --prompt-model-parameters PROMPT-MODEL-PARAMETERS --prompt-data PROMPT-DATA --prompt-system-prompt PROMPT-SYSTEM-PROMPT --prompt-chat-items PROMPT-CHAT-ITEMS] [--id ID] [--description DESCRIPTION] [--task-ids TASK-IDS] [--governance-tracked=GOVERNANCE-TRACKED] [--model-version MODEL-VERSION | --model-version-number MODEL-VERSION-NUMBER --model-version-tag MODEL-VERSION-TAG --model-version-description MODEL-VERSION-DESCRIPTION] [--prompt-variables PROMPT-VARIABLES] [--input-mode INPUT-MODE] [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```
 
 
@@ -16189,6 +17067,7 @@ cpdctl wx-ai prompt update --prompt-id PROMPT-ID --name NAME [--prompt PROMPT | 
 
     The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
+<!-- markdownlint-disable-next-line reference-links-images -->
 `--prompt-input` ([][]string)
 :   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
 
@@ -16246,7 +17125,7 @@ cpdctl wx-ai prompt update \
     --id 1c29d9a1-9ba6-422d-aa39-517b26adc147 \
     --description 'My First Prompt' \
     --task-ids generation,generation \
-    --governance-tracked true \
+    --governance-tracked=true \
     --model-version '{"number": "2.0.0-rc.7", "tag": "tag", "description": "Description of the model version."}' \
     --prompt-variables '{}' \
     --input-mode structured \
@@ -16296,7 +17175,7 @@ cpdctl wx-ai prompt delete \
 Modifies the current locked state of a prompt.
 
 ```sh
-cpdctl wx-ai prompt update-lock --prompt-id PROMPT-ID --locked LOCKED [--lock-type LOCK-TYPE] [--locked-by LOCKED-BY] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--force FORCE]
+cpdctl wx-ai prompt update-lock --prompt-id PROMPT-ID --locked=LOCKED [--lock-type LOCK-TYPE] [--locked-by LOCKED-BY] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--force=FORCE]
 ```
 
 
@@ -16338,12 +17217,12 @@ cpdctl wx-ai prompt update-lock --prompt-id PROMPT-ID --locked LOCKED [--lock-ty
 ```sh
 cpdctl wx-ai prompt update-lock \
     --prompt-id exampleString \
-    --locked true \
+    --locked=true \
     --lock-type edit \
     --locked-by IBMid-000000YYY0 \
     --project-id exampleString \
     --space-id exampleString \
-    --force true
+    --force=true
 ```
 
 <a id='wx-ai_prompt_get-lock'></a>
@@ -16480,7 +17359,7 @@ cpdctl wx-ai prompt add-chat-item \
 This creates a new prompt session.
 
 ```sh
-cpdctl wx-ai prompt-session create --name NAME [--id ID] [--description DESCRIPTION] [--created-at CREATED-AT] [--created-by CREATED-BY] [--last-updated-at LAST-UPDATED-AT] [--last-updated-by LAST-UPDATED-BY] [--lock LOCK | --lock-locked LOCK-LOCKED --lock-lock-type LOCK-LOCK-TYPE --lock-locked-by LOCK-LOCKED-BY] [--prompts PROMPTS] [--project-id PROJECT-ID]
+cpdctl wx-ai prompt-session create --name NAME [--id ID] [--description DESCRIPTION] [--created-at CREATED-AT] [--created-by CREATED-BY] [--last-updated-at LAST-UPDATED-AT] [--last-updated-by LAST-UPDATED-BY] [--lock LOCK | --lock-locked=LOCK-LOCKED --lock-lock-type LOCK-LOCK-TYPE --lock-locked-by LOCK-LOCKED-BY] [--prompts PROMPTS] [--project-id PROJECT-ID]
 ```
 
 
@@ -16569,7 +17448,7 @@ cpdctl wx-ai prompt-session create \
 This retrieves a prompt session with the given id.
 
 ```sh
-cpdctl wx-ai prompt-session get --session-id SESSION-ID [--project-id PROJECT-ID] [--prefetch PREFETCH]
+cpdctl wx-ai prompt-session get --session-id SESSION-ID [--project-id PROJECT-ID] [--prefetch=PREFETCH]
 ```
 
 
@@ -16594,7 +17473,7 @@ cpdctl wx-ai prompt-session get --session-id SESSION-ID [--project-id PROJECT-ID
 cpdctl wx-ai prompt-session get \
     --session-id exampleString \
     --project-id exampleString \
-    --prefetch true
+    --prefetch=true
 ```
 
 <a id='wx-ai_prompt-session_update'></a>
@@ -16675,7 +17554,7 @@ cpdctl wx-ai prompt-session delete \
 This creates a new prompt associated with the given session.
 
 ```sh
-cpdctl wx-ai prompt-session add-entry --session-id SESSION-ID --name NAME --created-at CREATED-AT [--prompt PROMPT | --prompt-input PROMPT-INPUT --prompt-model-id PROMPT-MODEL-ID --prompt-model-parameters PROMPT-MODEL-PARAMETERS --prompt-data PROMPT-DATA --prompt-system-prompt PROMPT-SYSTEM-PROMPT --prompt-chat-items PROMPT-CHAT-ITEMS] [--id ID] [--description DESCRIPTION] [--prompt-variables PROMPT-VARIABLES] [--is-template IS-TEMPLATE] [--input-mode INPUT-MODE] [--project-id PROJECT-ID]
+cpdctl wx-ai prompt-session add-entry --session-id SESSION-ID --name NAME --created-at CREATED-AT [--prompt PROMPT | --prompt-input PROMPT-INPUT --prompt-model-id PROMPT-MODEL-ID --prompt-model-parameters PROMPT-MODEL-PARAMETERS --prompt-data PROMPT-DATA --prompt-system-prompt PROMPT-SYSTEM-PROMPT --prompt-chat-items PROMPT-CHAT-ITEMS] [--id ID] [--description DESCRIPTION] [--prompt-variables PROMPT-VARIABLES] [--is-template=IS-TEMPLATE] [--input-mode INPUT-MODE] [--project-id PROJECT-ID]
 ```
 
 
@@ -16727,6 +17606,7 @@ cpdctl wx-ai prompt-session add-entry --session-id SESSION-ID --name NAME --crea
 
     The value must match regular expression `/[a-zA-Z0-9-]*/`.
 
+<!-- markdownlint-disable-next-line reference-links-images -->
 `--prompt-input` ([][]string)
 :   This option provides a value for a sub-field of the JSON option 'prompt'. It is mutually exclusive with that option.
 
@@ -16770,7 +17650,7 @@ cpdctl wx-ai prompt-session add-entry \
     --id 1c29d9a1-9ba6-422d-aa39-517b26adc147 \
     --description 'My First Prompt' \
     --prompt-variables '{}' \
-    --is-template true \
+    --is-template=true \
     --input-mode structured \
     --project-id exampleString
 ```
@@ -16867,7 +17747,7 @@ cpdctl wx-ai prompt-session add-chat-item \
 Modifies the current locked state of a prompt session.
 
 ```sh
-cpdctl wx-ai prompt-session update-lock --session-id SESSION-ID --locked LOCKED [--lock-type LOCK-TYPE] [--locked-by LOCKED-BY] [--project-id PROJECT-ID] [--force FORCE]
+cpdctl wx-ai prompt-session update-lock --session-id SESSION-ID --locked=LOCKED [--lock-type LOCK-TYPE] [--locked-by LOCKED-BY] [--project-id PROJECT-ID] [--force=FORCE]
 ```
 
 
@@ -16904,11 +17784,11 @@ cpdctl wx-ai prompt-session update-lock --session-id SESSION-ID --locked LOCKED 
 ```sh
 cpdctl wx-ai prompt-session update-lock \
     --session-id exampleString \
-    --locked true \
+    --locked=true \
     --lock-type edit \
     --locked-by IBMid-000000YYY0 \
     --project-id exampleString \
-    --force true
+    --force=true
 ```
 
 <a id='wx-ai_prompt-session_get-lock'></a>
@@ -17214,7 +18094,7 @@ cpdctl wx-ai text-extraction get \
 Cancel the specified text extraction request and delete any associated results.
 
 ```sh
-cpdctl wx-ai text-extraction delete --id ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--hard-delete HARD-DELETE]
+cpdctl wx-ai text-extraction delete --id ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--hard-delete=HARD-DELETE]
 ```
 
 
@@ -17243,7 +18123,7 @@ cpdctl wx-ai text-extraction delete \
     --id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
-    --hard-delete true
+    --hard-delete=true
 ```
 
 <a id='wx-ai_training_create'></a>
@@ -17311,7 +18191,7 @@ In order to deploy the tuned model you need to follow the following steps:
      [create deployment documentation](#create-deployment).
 
 ```sh
-cpdctl wx-ai training create --name NAME [--results-reference RESULTS-REFERENCE | --results-reference-id RESULTS-REFERENCE-ID --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-connection RESULTS-REFERENCE-CONNECTION --results-reference-location RESULTS-REFERENCE-LOCATION] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--description DESCRIPTION] [--tags TAGS] [--prompt-tuning PROMPT-TUNING | --prompt-tuning-base-model PROMPT-TUNING-BASE-MODEL --prompt-tuning-task-id PROMPT-TUNING-TASK-ID --prompt-tuning-tuning-type PROMPT-TUNING-TUNING-TYPE --prompt-tuning-num-epochs PROMPT-TUNING-NUM-EPOCHS --prompt-tuning-learning-rate PROMPT-TUNING-LEARNING-RATE --prompt-tuning-accumulate-steps PROMPT-TUNING-ACCUMULATE-STEPS --prompt-tuning-verbalizer PROMPT-TUNING-VERBALIZER --prompt-tuning-batch-size PROMPT-TUNING-BATCH-SIZE --prompt-tuning-max-input-tokens PROMPT-TUNING-MAX-INPUT-TOKENS --prompt-tuning-max-output-tokens PROMPT-TUNING-MAX-OUTPUT-TOKENS --prompt-tuning-init-method PROMPT-TUNING-INIT-METHOD --prompt-tuning-init-text PROMPT-TUNING-INIT-TEXT] [--training-data-references TRAINING-DATA-REFERENCES] [--custom CUSTOM] [--auto-update-model AUTO-UPDATE-MODEL]
+cpdctl wx-ai training create --name NAME [--results-reference RESULTS-REFERENCE | --results-reference-id RESULTS-REFERENCE-ID --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-connection RESULTS-REFERENCE-CONNECTION --results-reference-location RESULTS-REFERENCE-LOCATION] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--description DESCRIPTION] [--tags TAGS] [--prompt-tuning PROMPT-TUNING | --prompt-tuning-base-model PROMPT-TUNING-BASE-MODEL --prompt-tuning-task-id PROMPT-TUNING-TASK-ID --prompt-tuning-tuning-type PROMPT-TUNING-TUNING-TYPE --prompt-tuning-num-epochs PROMPT-TUNING-NUM-EPOCHS --prompt-tuning-learning-rate PROMPT-TUNING-LEARNING-RATE --prompt-tuning-accumulate-steps PROMPT-TUNING-ACCUMULATE-STEPS --prompt-tuning-verbalizer PROMPT-TUNING-VERBALIZER --prompt-tuning-batch-size PROMPT-TUNING-BATCH-SIZE --prompt-tuning-max-input-tokens PROMPT-TUNING-MAX-INPUT-TOKENS --prompt-tuning-max-output-tokens PROMPT-TUNING-MAX-OUTPUT-TOKENS --prompt-tuning-init-method PROMPT-TUNING-INIT-METHOD --prompt-tuning-init-text PROMPT-TUNING-INIT-TEXT] [--training-data-references TRAINING-DATA-REFERENCES] [--custom CUSTOM] [--auto-update-model=AUTO-UPDATE-MODEL]
 ```
 
 
@@ -17452,7 +18332,7 @@ cpdctl wx-ai training create \
     --prompt-tuning '{"base_model": {"model_id": "google/flan-t5-xl"}, "task_id": "classification", "tuning_type": "prompt_tuning", "num_epochs": 30, "learning_rate": 0.4, "accumulate_steps": 3, "verbalizer": "rte { 0 : entailment, 1 : not entailment } {{input}}", "batch_size": 10, "max_input_tokens": 100, "max_output_tokens": 100, "init_method": "text", "init_text": "exampleString"}' \
     --training-data-references '[{"id": "tune1_data.json", "type": "container", "connection": {}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
     --custom '{"anyKey": "anyValue"}' \
-    --auto-update-model true
+    --auto-update-model=true
 ```
 
 <a id='wx-ai_training_list'></a>
@@ -17462,7 +18342,7 @@ Retrieve the list of trainings for the specified space or project.
 Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
 
 ```sh
-cpdctl wx-ai training list [--start START] [--limit LIMIT] [--total-count TOTAL-COUNT] [--tag-value TAG-VALUE] [--state STATE] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+cpdctl wx-ai training list [--start START] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--state STATE] [--space-id SPACE-ID] [--project-id PROJECT-ID]
 ```
 
 
@@ -17506,7 +18386,7 @@ cpdctl wx-ai training list [--start START] [--limit LIMIT] [--total-count TOTAL-
 cpdctl wx-ai training list \
     --start exampleString \
     --limit 50 \
-    --total-count true \
+    --total-count=true \
     --tag-value exampleString \
     --state queued \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
@@ -17553,7 +18433,7 @@ cpdctl wx-ai training get \
 Cancel or delete the specified training, once deleted all trace of the job is gone.
 
 ```sh
-cpdctl wx-ai training delete --training-id TRAINING-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--hard-delete HARD-DELETE]
+cpdctl wx-ai training delete --training-id TRAINING-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--hard-delete=HARD-DELETE]
 ```
 
 
@@ -17582,7 +18462,7 @@ cpdctl wx-ai training delete \
     --training-id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
-    --hard-delete true
+    --hard-delete=true
 ```
 
 <a id='wx-ai_training_wait'></a>
@@ -17590,7 +18470,7 @@ cpdctl wx-ai training delete \
 Wait until the training becomes completed, failed, or canceled.
 
 ```sh
-   cpdctl wx-ai training wait --training-id TRAINING_ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+  cpdctl wx-ai training wait --training-id TRAINING_ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
 ```
 #### Command options
 
@@ -17606,13 +18486,16 @@ Wait until the training becomes completed, failed, or canceled.
 `--training-id` (string)
 :    The training ID.
 
+`--version` (YYYY-MM-DD)
+:    The version date for the API of the form YYYY-MM-DD.
+
 <a id='wx-ai_text_generate'></a>
 ## &#8226; wx-ai text generate
 
 Infer the next tokens for a given deployed model with a set of parameters.
 
 ```sh
-cpdctl wx-ai text generate --input INPUT --model-id MODEL-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parameters PARAMETERS | --parameters-decoding-method PARAMETERS-DECODING-METHOD --parameters-length-penalty PARAMETERS-LENGTH-PENALTY --parameters-max-new-tokens PARAMETERS-MAX-NEW-TOKENS --parameters-min-new-tokens PARAMETERS-MIN-NEW-TOKENS --parameters-random-seed PARAMETERS-RANDOM-SEED --parameters-stop-sequences PARAMETERS-STOP-SEQUENCES --parameters-temperature PARAMETERS-TEMPERATURE --parameters-time-limit PARAMETERS-TIME-LIMIT --parameters-top-k PARAMETERS-TOP-K --parameters-top-p PARAMETERS-TOP-P --parameters-repetition-penalty PARAMETERS-REPETITION-PENALTY --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS --parameters-include-stop-sequence PARAMETERS-INCLUDE-STOP-SEQUENCE] [--moderations MODERATIONS]
+cpdctl wx-ai text generate --input INPUT --model-id MODEL-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parameters PARAMETERS | --parameters-decoding-method PARAMETERS-DECODING-METHOD --parameters-length-penalty PARAMETERS-LENGTH-PENALTY --parameters-max-new-tokens PARAMETERS-MAX-NEW-TOKENS --parameters-min-new-tokens PARAMETERS-MIN-NEW-TOKENS --parameters-random-seed PARAMETERS-RANDOM-SEED --parameters-stop-sequences PARAMETERS-STOP-SEQUENCES --parameters-temperature PARAMETERS-TEMPERATURE --parameters-time-limit PARAMETERS-TIME-LIMIT --parameters-top-k PARAMETERS-TOP-K --parameters-top-p PARAMETERS-TOP-P --parameters-repetition-penalty PARAMETERS-REPETITION-PENALTY --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS --parameters-include-stop-sequence=PARAMETERS-INCLUDE-STOP-SEQUENCE] [--moderations MODERATIONS]
 ```
 
 
@@ -17740,7 +18623,7 @@ cpdctl wx-ai text generate \
 Infer the next tokens for a given deployed model with a set of parameters. This operation will return the output tokens as a stream of events.
 
 ```sh
-cpdctl wx-ai text generate-stream --input INPUT --model-id MODEL-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parameters PARAMETERS | --parameters-decoding-method PARAMETERS-DECODING-METHOD --parameters-length-penalty PARAMETERS-LENGTH-PENALTY --parameters-max-new-tokens PARAMETERS-MAX-NEW-TOKENS --parameters-min-new-tokens PARAMETERS-MIN-NEW-TOKENS --parameters-random-seed PARAMETERS-RANDOM-SEED --parameters-stop-sequences PARAMETERS-STOP-SEQUENCES --parameters-temperature PARAMETERS-TEMPERATURE --parameters-time-limit PARAMETERS-TIME-LIMIT --parameters-top-k PARAMETERS-TOP-K --parameters-top-p PARAMETERS-TOP-P --parameters-repetition-penalty PARAMETERS-REPETITION-PENALTY --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS --parameters-include-stop-sequence PARAMETERS-INCLUDE-STOP-SEQUENCE] [--moderations MODERATIONS]
+cpdctl wx-ai text generate-stream --input INPUT --model-id MODEL-ID [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parameters PARAMETERS | --parameters-decoding-method PARAMETERS-DECODING-METHOD --parameters-length-penalty PARAMETERS-LENGTH-PENALTY --parameters-max-new-tokens PARAMETERS-MAX-NEW-TOKENS --parameters-min-new-tokens PARAMETERS-MIN-NEW-TOKENS --parameters-random-seed PARAMETERS-RANDOM-SEED --parameters-stop-sequences PARAMETERS-STOP-SEQUENCES --parameters-temperature PARAMETERS-TEMPERATURE --parameters-time-limit PARAMETERS-TIME-LIMIT --parameters-top-k PARAMETERS-TOP-K --parameters-top-p PARAMETERS-TOP-P --parameters-repetition-penalty PARAMETERS-REPETITION-PENALTY --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS --parameters-include-stop-sequence=PARAMETERS-INCLUDE-STOP-SEQUENCE] [--moderations MODERATIONS]
 ```
 
 
@@ -17868,7 +18751,7 @@ cpdctl wx-ai text generate-stream \
 The text tokenize operation allows you to check the conversion of provided input to tokens for a given model. It splits text into words or sub-words, which then are converted to ids through a look-up table (vocabulary). Tokenization allows the model to have a reasonable vocabulary size.
 
 ```sh
-cpdctl wx-ai text tokenize --model-id MODEL-ID --input INPUT [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parameters PARAMETERS | --parameters-return-tokens PARAMETERS-RETURN-TOKENS]
+cpdctl wx-ai text tokenize --model-id MODEL-ID --input INPUT [--space-id SPACE-ID] [--project-id PROJECT-ID] [--parameters PARAMETERS | --parameters-return-tokens=PARAMETERS-RETURN-TOKENS]
 ```
 
 
@@ -18045,7 +18928,7 @@ cpdctl wx-ai text rerank \
 Infer the next tokens for a given deployed model with a set of parameters.
 
 ```sh
-cpdctl wx-ai text chat --model-id MODEL-ID --messages MESSAGES [--space-id SPACE-ID] [--project-id PROJECT-ID] [--tools TOOLS] [--tool-choice-option TOOL-CHOICE-OPTION] [--tool-choice TOOL-CHOICE | --tool-choice-type TOOL-CHOICE-TYPE --tool-choice-function TOOL-CHOICE-FUNCTION] [--frequency-penalty FREQUENCY-PENALTY] [--logit-bias LOGIT-BIAS] [--logprobs LOGPROBS] [--top-logprobs TOP-LOGPROBS] [--max-tokens MAX-TOKENS] [--n N] [--presence-penalty PRESENCE-PENALTY] [--response-format RESPONSE-FORMAT | --response-format-type RESPONSE-FORMAT-TYPE] [--seed SEED] [--stop STOP] [--temperature TEMPERATURE] [--top-p TOP-P] [--time-limit TIME-LIMIT]
+cpdctl wx-ai text chat --model-id MODEL-ID --messages MESSAGES [--space-id SPACE-ID] [--project-id PROJECT-ID] [--tools TOOLS] [--tool-choice-option TOOL-CHOICE-OPTION] [--tool-choice TOOL-CHOICE | --tool-choice-type TOOL-CHOICE-TYPE --tool-choice-function TOOL-CHOICE-FUNCTION] [--frequency-penalty FREQUENCY-PENALTY] [--logit-bias LOGIT-BIAS] [--logprobs=LOGPROBS] [--top-logprobs TOP-LOGPROBS] [--max-tokens MAX-TOKENS] [--n N] [--presence-penalty PRESENCE-PENALTY] [--response-format RESPONSE-FORMAT | --response-format-type RESPONSE-FORMAT-TYPE] [--seed SEED] [--stop STOP] [--temperature TEMPERATURE] [--top-p TOP-P] [--time-limit TIME-LIMIT]
 ```
 
 
@@ -18178,7 +19061,7 @@ We generally recommend altering this or `temperature` but not both.
 ```sh
 cpdctl wx-ai text chat \
     --model-id meta-llama/llama-3-8b-instruct \
-    --messages '[{"role": "TextChatMessageAssistant", "content": "You are a helpful assistant.", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
+    --messages '[{"role": "assistant", "content": "You are a helpful assistant.", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
     --space-id exampleString \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --tools '[{"type": "function", "function": {"name": "exampleString", "description": "exampleString", "parameters": {"anyKey": "anyValue"}}}]' \
@@ -18186,7 +19069,7 @@ cpdctl wx-ai text chat \
     --tool-choice '{"type": "function", "function": {"name": "exampleString"}}' \
     --frequency-penalty 0 \
     --logit-bias '{"anyKey": "anyValue"}' \
-    --logprobs false \
+    --logprobs=false \
     --top-logprobs 0 \
     --max-tokens 100 \
     --n 1 \
@@ -18205,7 +19088,7 @@ cpdctl wx-ai text chat \
 Infer the next tokens for a given deployed model with a set of parameters. This operation will return the output tokens as a stream of events.
 
 ```sh
-cpdctl wx-ai text chat-stream --model-id MODEL-ID --messages MESSAGES [--space-id SPACE-ID] [--project-id PROJECT-ID] [--tools TOOLS] [--tool-choice-option TOOL-CHOICE-OPTION] [--tool-choice TOOL-CHOICE | --tool-choice-type TOOL-CHOICE-TYPE --tool-choice-function TOOL-CHOICE-FUNCTION] [--frequency-penalty FREQUENCY-PENALTY] [--logit-bias LOGIT-BIAS] [--logprobs LOGPROBS] [--top-logprobs TOP-LOGPROBS] [--max-tokens MAX-TOKENS] [--n N] [--presence-penalty PRESENCE-PENALTY] [--response-format RESPONSE-FORMAT | --response-format-type RESPONSE-FORMAT-TYPE] [--seed SEED] [--stop STOP] [--temperature TEMPERATURE] [--top-p TOP-P] [--time-limit TIME-LIMIT]
+cpdctl wx-ai text chat-stream --model-id MODEL-ID --messages MESSAGES [--space-id SPACE-ID] [--project-id PROJECT-ID] [--tools TOOLS] [--tool-choice-option TOOL-CHOICE-OPTION] [--tool-choice TOOL-CHOICE | --tool-choice-type TOOL-CHOICE-TYPE --tool-choice-function TOOL-CHOICE-FUNCTION] [--frequency-penalty FREQUENCY-PENALTY] [--logit-bias LOGIT-BIAS] [--logprobs=LOGPROBS] [--top-logprobs TOP-LOGPROBS] [--max-tokens MAX-TOKENS] [--n N] [--presence-penalty PRESENCE-PENALTY] [--response-format RESPONSE-FORMAT | --response-format-type RESPONSE-FORMAT-TYPE] [--seed SEED] [--stop STOP] [--temperature TEMPERATURE] [--top-p TOP-P] [--time-limit TIME-LIMIT]
 ```
 
 
@@ -18338,7 +19221,7 @@ We generally recommend altering this or `temperature` but not both.
 ```sh
 cpdctl wx-ai text chat-stream \
     --model-id exampleString \
-    --messages '[{"role": "TextChatMessageAssistant", "content": "exampleString", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
+    --messages '[{"role": "assistant", "content": "exampleString", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --tools '[{"type": "function", "function": {"name": "exampleString", "description": "exampleString", "parameters": {"anyKey": "anyValue"}}}]' \
@@ -18346,7 +19229,7 @@ cpdctl wx-ai text chat-stream \
     --tool-choice '{"type": "function", "function": {"name": "exampleString"}}' \
     --frequency-penalty 0 \
     --logit-bias '{"anyKey": "anyValue"}' \
-    --logprobs false \
+    --logprobs=false \
     --top-logprobs 0 \
     --max-tokens 1024 \
     --n 1 \
@@ -18410,22 +19293,22 @@ Note that the example payloads shown are for illustration purposes only. An actu
 :   A valid column in the data that should be treated as the timestamp. Although not absolutely necessary, if using calendar dates  (simple integer time offsets are also allowed), users should consider using a format such as ISO 8601 that includes a UTC offset (e.g.,
 '2024-10-18T01:09:21.454746+00:00'). This will avoid potential issues such as duplicate dates appearing due to daylight savings change overs. There are many date formats in existence and inferring the correct one can be a challenge so please do consider adhering to ISO 8601. This option provides a value for a sub-field of the JSON option 'schema'. It is mutually exclusive with that option.
 
-    The maximum length is `100` characters. The minimum length is `1` character. The value must match regular expression `/^\\S+$/`.
+    The maximum length is `100` characters. The minimum length is `1` character. The value must match regular expression `/^\\S.*\\S$/`.
 
 `--schema-id-columns` ([]string)
 :   Columns that define a unique key for timeseries. This is similar to a compound primary key in a database table. This option provides a value for a sub-field of the JSON option 'schema'. It is mutually exclusive with that option.
 
-    The list items must match regular expression `/^\\S+$/`. The maximum length is `10` items. The minimum length is `0` items.
+    The list items must match regular expression `/^\\S.*\\S$/`. The maximum length is `10` items. The minimum length is `0` items.
 
 `--schema-freq` (string)
 :   A frequency indicator for the given timestamp_column. See https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#period-aliases for a description of the allowed values. If not provided, we will attempt to infer it from the data. This option provides a value for a sub-field of the JSON option 'schema'. It is mutually exclusive with that option.
 
-    The maximum length is `100` characters. The minimum length is `0` characters. The value must match regular expression `/^\\d+(B|D|W|M|Q|Y|h|min|s|ms|us|ns)$|^\\s*$/`.
+    The maximum length is `100` characters. The minimum length is `0` characters. The value must match regular expression `/^\\d+(B|D|W|M|Q|Y|h|min|s|ms|us|ns)?$/`.
 
 `--schema-target-columns` ([]string)
 :   An array of column headings which constitute the target variables in the data. These are the data that will be forecasted. This option provides a value for a sub-field of the JSON option 'schema'. It is mutually exclusive with that option.
 
-    The list items must match regular expression `/^\\S+$/`. The maximum length is `500` items. The minimum length is `0` items.
+    The list items must match regular expression `/^\\S.*\\S$/`. The maximum length is `500` items. The minimum length is `0` items.
 
 `--parameters-prediction-length` (int64)
 :   The prediction length for the forecast. The service will return this many periods beyond the last timestamp in the inference data payload. If specified, `prediction_length` must be an integer >=1 and no more than the model default prediction length. When omitted the model default prediction_length will be used. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
@@ -18442,12 +19325,528 @@ cpdctl wx-ai time-series forecast \
     --parameters '{"prediction_length": 38}'
 ```
 
+<a id='wx-ai_document-extraction_create'></a>
+## &#8226; wx-ai document-extraction create
+
+Create a document extraction.
+
+```sh
+cpdctl wx-ai document-extraction create --name NAME --document-references DOCUMENT-REFERENCES [--results-reference RESULTS-REFERENCE | --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-location RESULTS-REFERENCE-LOCATION] [--tags TAGS] [--project-id PROJECT-ID] [--space-id SPACE-ID]
+```
+
+
+#### Command options
+
+`--name` (string)
+:   The name of the document. Required.
+
+`--document-references` (<a href="#cli-document-extraction-object-location-example-schema-wx-ai">`DocumentExtractionObjectLocation[]`</a>)
+:   The documents for text extraction. Required.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--document-references=@path/to/file.json`.
+
+`--results-reference` (<a href="#cli-object-location-github-example-schema-wx-ai">`ObjectLocationGithub`</a>)
+:   A reference to data. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference=@path/to/file.json`.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+    The maximum length is `64` items.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--results-reference-type` (string)
+:   The data source type, for now only `github` is supported. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Allowable values are: `github`.
+
+`--results-reference-location` (<a href="#cli-object-location-github-location-example-schema-wx-ai">`ObjectLocationGithubLocation`</a>)
+:   Contains a set of fields that describe the location of the data with respect to the `connection`. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference-location=@path/to/file.json`.
+
+#### Examples
+
+```sh
+cpdctl wx-ai document-extraction create \
+    --name exampleString \
+    --document-references '[{"type": "container", "location": {}}]' \
+    --results-reference '{"type": "github", "location": {"filepaths": [results/text_extraction/1.md], "commit": "eac469c83fc33e0f0620736c434a9536f1c12389"}}' \
+    --tags t1,t2 \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f
+```
+
+<a id='wx-ai_document-extraction_list'></a>
+## &#8226; wx-ai document-extraction list
+
+Get document extractions.
+
+```sh
+cpdctl wx-ai document-extraction list [--project-id PROJECT-ID] [--space-id SPACE-ID]
+```
+
+
+#### Command options
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+#### Example
+
+```sh
+cpdctl wx-ai document-extraction list \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+```
+
+<a id='wx-ai_document-extraction_get'></a>
+## &#8226; wx-ai document-extraction get
+
+Get document extraction.
+
+```sh
+cpdctl wx-ai document-extraction get --id ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
+```
+
+
+#### Command options
+
+`--id` (string)
+:   The `id` is the identifier that was returned in the `metadata.id` field of the request. Required.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+#### Example
+
+```sh
+cpdctl wx-ai document-extraction get \
+    --id exampleString \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+```
+
+<a id='wx-ai_document-extraction_delete'></a>
+## &#8226; wx-ai document-extraction delete
+
+Cancel the specified document extraction and remove it.
+
+```sh
+cpdctl wx-ai document-extraction delete --id ID [--project-id PROJECT-ID] [--space-id SPACE-ID] [--hard-delete=HARD-DELETE]
+```
+
+
+#### Command options
+
+`--id` (string)
+:   The `id` is the identifier that was returned in the `metadata.id` field of the request. Required.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--hard-delete` (bool)
+:   Set to true in order to also delete the job metadata information.
+
+#### Example
+
+```sh
+cpdctl wx-ai document-extraction delete \
+    --id exampleString \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --hard-delete=true
+```
+
+<a id='wx-ai_synthetic-data-generation_create'></a>
+## &#8226; wx-ai synthetic-data-generation create
+
+Create a synthetic data generation job.
+
+```sh
+cpdctl wx-ai synthetic-data-generation create --name NAME [--space-id SPACE-ID] [--project-id PROJECT-ID] [--data-reference DATA-REFERENCE | --data-reference-type DATA-REFERENCE-TYPE --data-reference-location DATA-REFERENCE-LOCATION --data-reference-connection DATA-REFERENCE-CONNECTION --data-reference-id DATA-REFERENCE-ID] [--results-reference RESULTS-REFERENCE | --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-location RESULTS-REFERENCE-LOCATION --results-reference-connection RESULTS-REFERENCE-CONNECTION --results-reference-id RESULTS-REFERENCE-ID]
+```
+
+
+#### Command options
+
+`--name` (string)
+:   The name of the data.
+
+The value must be a lowercase alphanumeric value but it can also have non-consecutive dashes (-) and underscores (_). The value must start and end with an alphanumeric character. Required.
+
+    The maximum length is `250` characters. The minimum length is `1` character. The value must match regular expression `/^[^><%\\\\]*$/`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--data-reference` (<a href="#cli-object-location-example-schema-wx-ai">`ObjectLocation`</a>)
+:   A reference to data. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--data-reference=@path/to/file.json`.
+
+`--results-reference` (<a href="#cli-object-location-example-schema-wx-ai">`ObjectLocation`</a>)
+:   A reference to data. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference=@path/to/file.json`.
+
+`--data-reference-type` (string)
+:   The data source type.
+
+
+The possible types will depend on the API and platform being used. This option provides a value for a sub-field of the JSON option 'data-reference'. It is mutually exclusive with that option.
+
+`--data-reference-location` (map[string]string)
+:   Contains a set of fields that describe the location of the data with respect to the `connection`. This option provides a value for a sub-field of the JSON option 'data-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--data-reference-location=@path/to/file.json`.
+
+`--data-reference-connection` (<a href="#cli-data-connection-example-schema-wx-ai">`DataConnection`</a>)
+:   Contains a set of fields specific to each connection.
+See here for [details about specifying connections](#datareferences). This option provides a value for a sub-field of the JSON option 'data-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--data-reference-connection=@path/to/file.json`.
+
+`--data-reference-id` (string)
+:   Item identification inside a collection, if appropriate. This option provides a value for a sub-field of the JSON option 'data-reference'. It is mutually exclusive with that option.
+
+`--results-reference-type` (string)
+:   The data source type.
+
+
+The possible types will depend on the API and platform being used. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+`--results-reference-location` (map[string]string)
+:   Contains a set of fields that describe the location of the data with respect to the `connection`. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference-location=@path/to/file.json`.
+
+`--results-reference-connection` (<a href="#cli-data-connection-example-schema-wx-ai">`DataConnection`</a>)
+:   Contains a set of fields specific to each connection.
+See here for [details about specifying connections](#datareferences). This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--results-reference-connection=@path/to/file.json`.
+
+`--results-reference-id` (string)
+:   Item identification inside a collection, if appropriate. This option provides a value for a sub-field of the JSON option 'results-reference'. It is mutually exclusive with that option.
+
+#### Examples
+
+```sh
+cpdctl wx-ai synthetic-data-generation create \
+    --name example-name \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --data-reference '{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}' \
+    --results-reference '{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}'
+```
+
+<a id='wx-ai_synthetic-data-generation_list'></a>
+## &#8226; wx-ai synthetic-data-generation list
+
+```sh
+cpdctl wx-ai synthetic-data-generation list [--project-id PROJECT-ID] [--space-id SPACE-ID]
+```
+
+
+#### Command options
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+#### Example
+
+```sh
+cpdctl wx-ai synthetic-data-generation list \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+```
+
+<a id='wx-ai_synthetic-data-generation_get'></a>
+## &#8226; wx-ai synthetic-data-generation get
+
+```sh
+cpdctl wx-ai synthetic-data-generation get --id ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
+```
+
+
+#### Command options
+
+`--id` (string)
+:   The `id` is the identifier that was returned in the `metadata.id` field of the request. Required.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+#### Example
+
+```sh
+cpdctl wx-ai synthetic-data-generation get \
+    --id exampleString \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+```
+
+<a id='wx-ai_synthetic-data-generation_delete'></a>
+## &#8226; wx-ai synthetic-data-generation delete
+
+Cancel the synthetic data generation and remove it.
+
+```sh
+cpdctl wx-ai synthetic-data-generation delete --id ID [--project-id PROJECT-ID] [--space-id SPACE-ID] [--hard-delete=HARD-DELETE]
+```
+
+
+#### Command options
+
+`--id` (string)
+:   The `id` is the identifier that was returned in the `metadata.id` field of the request. Required.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--hard-delete` (bool)
+:   Set to true in order to also delete the job metadata information.
+
+#### Example
+
+```sh
+cpdctl wx-ai synthetic-data-generation delete \
+    --id exampleString \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --hard-delete=true
+```
+
+<a id='wx-ai_taxonomy_create'></a>
+## &#8226; wx-ai taxonomy create
+
+Create a taxonomy job.
+
+```sh
+cpdctl wx-ai taxonomy create --name NAME [--description DESCRIPTION] [--space-id SPACE-ID] [--project-id PROJECT-ID] [--data-reference DATA-REFERENCE | --data-reference-type DATA-REFERENCE-TYPE --data-reference-location DATA-REFERENCE-LOCATION --data-reference-connection DATA-REFERENCE-CONNECTION --data-reference-id DATA-REFERENCE-ID]
+```
+
+
+#### Command options
+
+`--name` (string)
+:   The name of the document. Required.
+
+    The maximum length is `32` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z][a-zA-Z-_]*[a-zA-Z]$/`.
+
+`--description` (string)
+:   The description of the Taxonomy job.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--data-reference` (<a href="#cli-object-location-example-schema-wx-ai">`ObjectLocation`</a>)
+:   A reference to data. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--data-reference=@path/to/file.json`.
+
+`--data-reference-type` (string)
+:   The data source type.
+
+
+The possible types will depend on the API and platform being used. This option provides a value for a sub-field of the JSON option 'data-reference'. It is mutually exclusive with that option.
+
+`--data-reference-location` (map[string]string)
+:   Contains a set of fields that describe the location of the data with respect to the `connection`. This option provides a value for a sub-field of the JSON option 'data-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--data-reference-location=@path/to/file.json`.
+
+`--data-reference-connection` (<a href="#cli-data-connection-example-schema-wx-ai">`DataConnection`</a>)
+:   Contains a set of fields specific to each connection.
+See here for [details about specifying connections](#datareferences). This option provides a value for a sub-field of the JSON option 'data-reference'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--data-reference-connection=@path/to/file.json`.
+
+`--data-reference-id` (string)
+:   Item identification inside a collection, if appropriate. This option provides a value for a sub-field of the JSON option 'data-reference'. It is mutually exclusive with that option.
+
+#### Examples
+
+```sh
+cpdctl wx-ai taxonomy create \
+    --name exampleString \
+    --description exampleString \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --data-reference '{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}'
+```
+
+<a id='wx-ai_taxonomy_list'></a>
+## &#8226; wx-ai taxonomy list
+
+```sh
+cpdctl wx-ai taxonomy list [--project-id PROJECT-ID] [--space-id SPACE-ID]
+```
+
+
+#### Command options
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+#### Example
+
+```sh
+cpdctl wx-ai taxonomy list \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+```
+
+<a id='wx-ai_taxonomy_get'></a>
+## &#8226; wx-ai taxonomy get
+
+```sh
+cpdctl wx-ai taxonomy get --id ID [--project-id PROJECT-ID] [--space-id SPACE-ID]
+```
+
+
+#### Command options
+
+`--id` (string)
+:   The `id` is the identifier that was returned in the `metadata.id` field of the request. Required.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+#### Example
+
+```sh
+cpdctl wx-ai taxonomy get \
+    --id exampleString \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+```
+
+<a id='wx-ai_taxonomy_delete'></a>
+## &#8226; wx-ai taxonomy delete
+
+Cancel or delete the taxonomy job.
+
+```sh
+cpdctl wx-ai taxonomy delete --id ID [--project-id PROJECT-ID] [--space-id SPACE-ID] [--hard-delete=HARD-DELETE]
+```
+
+
+#### Command options
+
+`--id` (string)
+:   The `id` is the identifier that was returned in the `metadata.id` field of the request. Required.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--hard-delete` (bool)
+:   Set to `true` in order to also delete the job metadata information.
+
+#### Example
+
+```sh
+cpdctl wx-ai taxonomy delete \
+    --id exampleString \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --hard-delete=true
+```
+
 <a id='wx-ai_custom-foundation-model_list'></a>
 ## &#8226; wx-ai custom-foundation-model list
 Retrieve the custom foundation models.
 
 ```sh
-   cpdctl wx-ai custom-foundation-model list [--start START] [--limit LIMIT]
+  cpdctl wx-ai custom-foundation-model list [--start START] [--limit LIMIT]
 ```
 #### Command options
 
@@ -18557,9 +19956,25 @@ The following example shows the format of the SourceSystem object.
 ### &#8226; CommitInfo
 <a id="cli-commit-info-example-schema-asset"></a>
 
+The following example shows the format of the CommitInfo object.
+
+```json
+
+{
+  "previous_revision" : 1
+}
+```
 ### &#8226; AssetRov
 <a id="cli-asset-rov-example-schema-asset"></a>
 
+The following example shows the format of the AssetRov object.
+
+```json
+
+{
+  "mode" : 38
+}
+```
 ### &#8226; JSONPatchOperation
 <a id="cli-json-patch-operation-example-schema-asset"></a>
 
@@ -18804,6 +20219,15 @@ The following example shows the format of the ConnectionRov object.
 ### &#8226; DatasourceTypeProperty
 <a id="cli-datasource-type-property-example-schema-connection"></a>
 
+The following example shows the format of the DatasourceTypeProperty object.
+
+```json
+
+{
+  "name" : "exampleString",
+  "supported_products" : [ "exampleString", "anotherExampleString" ]
+}
+```
 ### &#8226; JSONPatchOperation
 <a id="cli-json-patch-operation-example-schema-connection"></a>
 
@@ -18871,6 +20295,25 @@ The following example shows the format of the PipelineJSON object.
 ### &#8226; Pipelines
 <a id="cli-pipelines-example-schema-datastage"></a>
 
+The following example shows the format of the Pipelines object.
+
+```json
+
+{
+  "app_data" : {
+    "anyKey" : "anyValue"
+  },
+  "description" : "A test DataStage flow.",
+  "id" : "fa1b859a-d592-474d-b56c-2137e4efa4bc",
+  "name" : "ContainerC1",
+  "nodes" : [ {
+    "anyKey" : "anyValue"
+  }, {
+    "anotherAnyKey" : "anotherAnyValue"
+  } ],
+  "runtime_ref" : "pxOsh"
+}
+```
 ### &#8226; FlowDependencyTree
 <a id="cli-flow-dependency-tree-example-schema-datastage"></a>
 
@@ -18970,12 +20413,62 @@ The following example shows the format of the TableDefinitionMetadata object.
 ### &#8226; TableDefinitionDataAsset
 <a id="cli-table-definition-data-asset-example-schema-datastage"></a>
 
+The following example shows the format of the TableDefinitionDataAsset object.
+
+```json
+
+{
+  "name" : "exampleString",
+  "properties" : {
+    "anyKey" : "anyValue"
+  },
+  "type" : {
+    "anyKey" : "anyValue"
+  }
+}
+```
 ### &#8226; DirectoryAsset
 <a id="cli-directory-asset-example-schema-datastage"></a>
 
+The following example shows the format of the DirectoryAsset object.
+
+```json
+
+{
+  "path" : "exampleString"
+}
+```
 ### &#8226; TableDefinitionDSInfo
 <a id="cli-table-definition-ds-info-example-schema-datastage"></a>
 
+The following example shows the format of the TableDefinitionDSInfo object.
+
+```json
+
+{
+  "date" : {
+    "anyKey" : "anyValue"
+  },
+  "decimal" : {
+    "anyKey" : "anyValue"
+  },
+  "general" : {
+    "anyKey" : "anyValue"
+  },
+  "numeric" : {
+    "anyKey" : "anyValue"
+  },
+  "string" : {
+    "anyKey" : "anyValue"
+  },
+  "time" : {
+    "anyKey" : "anyValue"
+  },
+  "timestamp" : {
+    "anyKey" : "anyValue"
+  }
+}
+```
 ### &#8226; PatchDocument
 <a id="cli-patch-document-example-schema-datastage"></a>
 
@@ -19135,15 +20628,64 @@ The following example shows the format of the BuildopWrapped object.
 ### &#8226; BuildopBuildInterfaces
 <a id="cli-buildop-build-interfaces-example-schema-datastage"></a>
 
+The following example shows the format of the BuildopBuildInterfaces object.
+
+```json
+
+{
+  "alias" : "alias",
+  "auto_read" : true,
+  "id" : "inpGUID",
+  "port_name" : "input_port",
+  "runtime_column_propagation" : false,
+  "table_name" : "table_name"
+}
+```
 ### &#8226; BuildopBuildLogic
 <a id="cli-buildop-build-logic-example-schema-datastage"></a>
 
+The following example shows the format of the BuildopBuildLogic object.
+
+```json
+
+{
+  "definitions" : "variable-definitions",
+  "per_record" : "logic-for-each-record",
+  "post_loop" : "post-loop-logic",
+  "pre_loop" : "pre-loop-logic"
+}
+```
 ### &#8226; BuildopWrappedEnvironment
 <a id="cli-buildop-wrapped-environment-example-schema-datastage"></a>
 
+The following example shows the format of the BuildopWrappedEnvironment object.
+
+```json
+
+{
+  "all_exit_codes_successful" : true,
+  "failure_codes" : [ "error", "-1", "fail" ],
+  "success_codes" : [ "ok", "0", "success" ]
+}
+```
 ### &#8226; BuildopWrappedInterfaces
 <a id="cli-buildop-wrapped-interfaces-example-schema-datastage"></a>
 
+The following example shows the format of the BuildopWrappedInterfaces object.
+
+```json
+
+{
+  "argument_variable_name" : "arg1",
+  "file_descriptor" : "stdin",
+  "id" : "inpGUID",
+  "is_command_line" : true,
+  "link_name" : "input_link",
+  "named_pipe" : "test_pipe",
+  "table_name" : "table_name",
+  "use_stream" : true
+}
+```
 ### &#8226; ReferencedSpecification
 <a id="cli-referenced-specification-example-schema-environment"></a>
 
@@ -19241,24 +20783,86 @@ The following example shows the format of the HardwareSpecificationSparkDefiniti
 ### &#8226; HardwareSpecificationDataStageComputeDefinition
 <a id="cli-hardware-specification-data-stage-compute-definition-example-schema-environment"></a>
 
+The following example shows the format of the HardwareSpecificationDataStageComputeDefinition object.
+
+```json
+
+{
+  "model" : "exampleString",
+  "units" : "100m"
+}
+```
 ### &#8226; HardwareSpecificationDataStageConductorDefinition
 <a id="cli-hardware-specification-data-stage-conductor-definition-example-schema-environment"></a>
 
+The following example shows the format of the HardwareSpecificationDataStageConductorDefinition object.
+
+```json
+
+{
+  "model" : "exampleString",
+  "units" : "100m"
+}
+```
 ### &#8226; HardwareSpecificationCpuDefinition
 <a id="cli-hardware-specification-cpu-definition-example-schema-environment"></a>
 
+The following example shows the format of the HardwareSpecificationCpuDefinition object.
+
+```json
+
+{
+  "model" : "exampleString",
+  "units" : "100m"
+}
+```
 ### &#8226; HardwareSpecificationGpuDefinition
 <a id="cli-hardware-specification-gpu-definition-example-schema-environment"></a>
 
+The following example shows the format of the HardwareSpecificationGpuDefinition object.
+
+```json
+
+{
+  "name" : "v100",
+  "num_gpu" : 2
+}
+```
 ### &#8226; HardwareSpecificationMemoryDefinition
 <a id="cli-hardware-specification-memory-definition-example-schema-environment"></a>
 
+The following example shows the format of the HardwareSpecificationMemoryDefinition object.
+
+```json
+
+{
+  "size" : "4Gi"
+}
+```
 ### &#8226; HardwareSpecificationSparkDriverDefinition
 <a id="cli-hardware-specification-spark-driver-definition-example-schema-environment"></a>
 
+The following example shows the format of the HardwareSpecificationSparkDriverDefinition object.
+
+```json
+
+{
+  "model" : "exampleString",
+  "units" : "100m"
+}
+```
 ### &#8226; HardwareSpecificationSparkExecutorDefinition
 <a id="cli-hardware-specification-spark-executor-definition-example-schema-environment"></a>
 
+The following example shows the format of the HardwareSpecificationSparkExecutorDefinition object.
+
+```json
+
+{
+  "model" : "exampleString",
+  "units" : "100m"
+}
+```
 ### &#8226; SoftwareSpecificationEntitySoftwareConfigurationDefinition
 <a id="cli-software-specification-entity-software-configuration-definition-example-schema-environment"></a>
 
@@ -19304,9 +20908,27 @@ The following example shows the format of the PackageExtensionReference[] object
 ### &#8226; IncludedPackagesDefinition
 <a id="cli-included-packages-definition-example-schema-environment"></a>
 
+The following example shows the format of the IncludedPackagesDefinition object.
+
+```json
+
+{
+  "name" : "scikit-learn",
+  "version" : "0.20.0"
+}
+```
 ### &#8226; PlatformDefinition
 <a id="cli-platform-definition-example-schema-environment"></a>
 
+The following example shows the format of the PlatformDefinition object.
+
+```json
+
+{
+  "name" : "python",
+  "version" : "3.6"
+}
+```
 ### &#8226; JobPostBodyJob
 <a id="cli-job-post-body-job-example-schema-job"></a>
 
@@ -19361,18 +20983,66 @@ The following example shows the format of the JobPostBodyJob object.
 ### &#8226; JobPostBodyConfiguration
 <a id="cli-job-post-body-configuration-example-schema-job"></a>
 
+The following example shows the format of the JobPostBodyConfiguration object.
+
+```json
+
+{
+  "deployment_job_definition_id" : "ff1ab70b-0553-409a-93f9-ccc31471c218",
+  "env_id" : "defaultsparkr1x4-18ce241b-c9e8-43ed-94a1-9f5585764924",
+  "env_variables" : [ "key1=value1", "key2=value2" ],
+  "version" : "d00a9d88-4394-48f8-86db-d9b8360f8a72"
+}
+```
 ### &#8226; JobParameter
 <a id="cli-job-parameter-example-schema-job"></a>
 
+The following example shows the format of the JobParameter object.
+
+```json
+
+{
+  "name" : "job_param_1",
+  "value" : "The value could be of any type"
+}
+```
 ### &#8226; ParameterSets
 <a id="cli-parameter-sets-example-schema-job"></a>
 
+The following example shows the format of the ParameterSets object.
+
+```json
+
+{
+  "name" : "job_param_1",
+  "value" : "The value could be of any type"
+}
+```
 ### &#8226; JobPostBodyJobRetentionPolicy
 <a id="cli-job-post-body-job-retention-policy-example-schema-job"></a>
 
+The following example shows the format of the JobPostBodyJobRetentionPolicy object.
+
+```json
+
+{
+  "amount" : 38,
+  "days" : 38
+}
+```
 ### &#8226; JobPostBodyJobScheduleInfo
 <a id="cli-job-post-body-job-schedule-info-example-schema-job"></a>
 
+The following example shows the format of the JobPostBodyJobScheduleInfo object.
+
+```json
+
+{
+  "endOn" : 1547578689512,
+  "repeat" : true,
+  "startOn" : 1547578689512
+}
+```
 ### &#8226; JSONPatchOperation
 <a id="cli-json-patch-operation-example-schema-job"></a>
 
@@ -19445,6 +21115,14 @@ The following example shows the format of the JobRunPostBodyJobRun object.
 ### &#8226; JobRunPostBodyJobRunConfiguration
 <a id="cli-job-run-post-body-job-run-configuration-example-schema-job"></a>
 
+The following example shows the format of the JobRunPostBodyJobRunConfiguration object.
+
+```json
+
+{
+  "env_variables" : [ "key1=value1", "key2=value2" ]
+}
+```
 ### &#8226; JSONJobRunPatchModelItem
 <a id="cli-json-job-run-patch-model-item-example-schema-job"></a>
 
@@ -19489,19 +21167,16 @@ The following example shows the format of the HardwareSpecRel object.
 ### &#8226; HybridPipelineHardwareSpecsItem
 <a id="cli-hybrid-pipeline-hardware-specs-item-example-schema-ml"></a>
 
-The following example shows the format of the HybridPipelineHardwareSpecsItem[] object.
+The following example shows the format of the HybridPipelineHardwareSpecsItem object.
 
 ```json
 
-[ {
-  "node_runtime_id" : "auto_ai.kb",
-  "hardware_spec" : {
-    "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
-    "rev" : "2",
-    "name" : "exampleString",
-    "num_nodes" : 2
-  }
-} ]
+{
+  "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
+  "rev" : "2",
+  "name" : "exampleString",
+  "num_nodes" : 2
+}
 ```
 ### &#8226; DeploymentEntityRequestOnline
 <a id="cli-deployment-entity-request-online-example-schema-ml"></a>
@@ -19549,6 +21224,14 @@ The following example shows the format of the DeploymentEntityRequestRShiny obje
 ### &#8226; DeploymentEntityRequestRShinyParameters
 <a id="cli-deployment-entity-request-r-shiny-parameters-example-schema-ml"></a>
 
+The following example shows the format of the DeploymentEntityRequestRShinyParameters object.
+
+```json
+
+{
+  "path" : "RShiny/apps/app1"
+}
+```
 ### &#8226; JSONPatchOperation
 <a id="cli-json-patch-operation-example-schema-ml"></a>
 
@@ -19582,15 +21265,15 @@ The following example shows the format of the DeploymentPatchRequestHelperRShiny
 ### &#8226; InputDataArray
 <a id="cli-input-data-array-example-schema-ml"></a>
 
-The following example shows the format of the InputDataArray[] object.
+The following example shows the format of the InputDataArray object.
 
 ```json
 
-[ {
+{
   "id" : "exampleString",
   "fields" : [ "name", "age", "occupation" ],
   "values" : [ [ "exampleString", "anotherExampleString" ], [ "exampleString", "anotherExampleString" ] ]
-} ]
+}
 ```
 ### &#8226; SimpleRel
 <a id="cli-simple-rel-example-schema-ml"></a>
@@ -19615,38 +21298,53 @@ The following example shows the format of the SimpleRel object.
 ### &#8226; DataConnectionReference
 <a id="cli-data-connection-reference-example-schema-ml"></a>
 
-The following example shows the format of the DataConnectionReference[] object.
+The following example shows the format of the DataConnectionReference object.
 
 ```json
 
-[ {
-  "id" : "8d3682dd-2858-43c9-bfd7-12a79abcfb0c",
-  "type" : "connection_asset",
-  "connection" : {
+{
+  "id" : "t1",
+  "name" : "Tasks",
+  "fields" : [ {
     "anyKey" : "anyValue"
-  },
-  "location" : { },
-  "schema" : {
-    "id" : "t1",
-    "name" : "Tasks",
-    "fields" : [ {
-      "anyKey" : "anyValue"
-    }, {
-      "anotherAnyKey" : "anotherAnyValue"
-    } ],
-    "type" : "struct"
-  }
-} ]
+  }, {
+    "anotherAnyKey" : "anotherAnyValue"
+  } ],
+  "type" : "struct"
+}
 ```
 ### &#8226; EvaluationsSpecItem
 <a id="cli-evaluations-spec-item-example-schema-ml"></a>
 
+The following example shows the format of the EvaluationsSpecItem object.
+
+```json
+
+{
+  "id" : "exampleString",
+  "input_target" : "exampleString",
+  "metrics_names" : [ "auroc", "accuracy" ]
+}
+```
 ### &#8226; ScoringPayloadOptim
 <a id="cli-scoring-payload-optim-example-schema-ml"></a>
 
 ### &#8226; ObjectLocationOptim
 <a id="cli-object-location-optim-example-schema-ml"></a>
 
+The following example shows the format of the ObjectLocationOptim object.
+
+```json
+
+{
+  "id" : "b6e37189-90e8-4260-86d8-0a6d2a02aa99",
+  "type" : "connection_asset",
+  "connection" : {
+    "anyKey" : "anyValue"
+  },
+  "location" : { }
+}
+```
 ### &#8226; EvaluationDefinition
 <a id="cli-evaluation-definition-example-schema-ml"></a>
 
@@ -19720,6 +21418,15 @@ The following example shows the format of the TrainingReference[] object.
 ### &#8226; EvaluationMetric
 <a id="cli-evaluation-metric-example-schema-ml"></a>
 
+The following example shows the format of the EvaluationMetric object.
+
+```json
+
+{
+  "name" : "exampleString",
+  "maximize" : true
+}
+```
 ### &#8226; SoftwareSpecRel
 <a id="cli-software-spec-rel-example-schema-ml"></a>
 
@@ -19795,6 +21502,21 @@ The following example shows the format of the ModelReference[] object.
 ### &#8226; DataSchema
 <a id="cli-data-schema-example-schema-ml"></a>
 
+The following example shows the format of the DataSchema object.
+
+```json
+
+{
+  "id" : "t1",
+  "name" : "Tasks",
+  "fields" : [ {
+    "anyKey" : "anyValue"
+  }, {
+    "anotherAnyKey" : "anotherAnyValue"
+  } ],
+  "type" : "struct"
+}
+```
 ### &#8226; ModelDefinitionID
 <a id="cli-model-definition-id-example-schema-ml"></a>
 
@@ -20151,6 +21873,18 @@ The following example shows the format of the ContentLocation object.
 ### &#8226; ContentInfo
 <a id="cli-content-info-example-schema-ml"></a>
 
+The following example shows the format of the ContentInfo object.
+
+```json
+
+{
+  "content_format" : "pipeline-node",
+  "location" : "fd45606f-8098-459c-8961-32b136123fgc/assets/fd45606f-8098-459c-8961-32b136123fgc_P1_fold_output/resources/wml_model/P1_automl.zip",
+  "file_name" : "P1_automl.zip",
+  "pipeline_node_id" : "automl",
+  "deployment_id" : "1234606f-8098-459c-8961-123456123fgc"
+}
+```
 ### &#8226; ModelDefinitionEntityRequestPlatform
 <a id="cli-model-definition-entity-request-platform-example-schema-ml"></a>
 
@@ -20320,21 +22054,78 @@ The following example shows the format of the FederatedLearning object.
 ### &#8226; PipelineRelDataBindingsItem
 <a id="cli-pipeline-rel-data-bindings-item-example-schema-ml"></a>
 
+The following example shows the format of the PipelineRelDataBindingsItem object.
+
+```json
+
+{
+  "data_reference_name" : "exampleString",
+  "node_id" : "exampleString"
+}
+```
 ### &#8226; PipelineRelNodesParametersItem
 <a id="cli-pipeline-rel-nodes-parameters-item-example-schema-ml"></a>
 
+The following example shows the format of the PipelineRelNodesParametersItem object.
+
+```json
+
+{
+  "node_id" : "exampleString",
+  "parameters" : {
+    "anyKey" : "anyValue"
+  }
+}
+```
 ### &#8226; FederatedLearningModel
 <a id="cli-federated-learning-model-example-schema-ml"></a>
 
+The following example shows the format of the FederatedLearningModel object.
+
+```json
+
+{
+  "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
+  "rev" : "2"
+}
+```
 ### &#8226; FederatedLearningRemoteTraining
 <a id="cli-federated-learning-remote-training-example-schema-ml"></a>
 
+The following example shows the format of the FederatedLearningRemoteTraining object.
+
+```json
+
+{
+  "id" : "1918939c-2660-4f6a-b727-4b402383dc63",
+  "required" : true
+}
+```
 ### &#8226; FederatedLearningOptimizer
 <a id="cli-federated-learning-optimizer-example-schema-ml"></a>
 
+The following example shows the format of the FederatedLearningOptimizer object.
+
+```json
+
+{
+  "name" : "exampleString",
+  "spec" : {
+    "anyKey" : "anyValue"
+  }
+}
+```
 ### &#8226; FederatedLearningCrypto
 <a id="cli-federated-learning-crypto-example-schema-ml"></a>
 
+The following example shows the format of the FederatedLearningCrypto object.
+
+```json
+
+{
+  "cipher_spec" : "encryption_level_1"
+}
+```
 ### &#8226; NotebookKernel
 <a id="cli-notebook-kernel-example-schema-notebook"></a>
 
@@ -20406,12 +22197,49 @@ The following example shows the format of the NotebookShares object.
 ### &#8226; NotebookSharesGist
 <a id="cli-notebook-shares-gist-example-schema-notebook"></a>
 
+The following example shows the format of the NotebookSharesGist object.
+
+```json
+
+{
+  "content_filter" : "none",
+  "enabled" : false,
+  "html_url" : "http://gist.ibm.com",
+  "visibility" : "all"
+}
+```
 ### &#8226; NotebookSharesGithub
 <a id="cli-notebook-shares-github-example-schema-notebook"></a>
 
+The following example shows the format of the NotebookSharesGithub object.
+
+```json
+
+{
+  "api_url" : "http://api.github.ibm.com/v2",
+  "branch" : "dev",
+  "commit_sha" : "4f0c9d366173a0a322b032e01c989831a3287145",
+  "content_filter" : "none",
+  "content_sha" : "d89e37f1502717207e7f423c65e414e6b4645687",
+  "enabled" : false,
+  "html_url" : "http://github.ibm.com",
+  "path" : "blob/foo",
+  "repo_name" : "Data Science Experience",
+  "repo_org" : "dsx"
+}
+```
 ### &#8226; NotebookSharesPublic
 <a id="cli-notebook-shares-public-example-schema-notebook"></a>
 
+The following example shows the format of the NotebookSharesPublic object.
+
+```json
+
+{
+  "content_filter" : "none",
+  "enabled" : false
+}
+```
 ### &#8226; ProjectCatalog
 <a id="cli-project-catalog-example-schema-project"></a>
 
@@ -20471,6 +22299,76 @@ The following example shows the format of the ProjectMember[] object.
   "user_name" : "zapp.brannigan@ibm.com"
 } ]
 ```
+### &#8226; UpdateStoragePropertiesBody
+<a id="cli-update-storage-properties-body-example-schema-project"></a>
+
+The following example shows the format of the UpdateStoragePropertiesBody object.
+
+```json
+
+{
+  "credentials" : {
+    "admin" : {
+      "access_key_id" : "abcdefABCDEF0123456789abcdefABCD",
+      "api_key" : "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8",
+      "secret_access_key" : "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd",
+      "service_id" : "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"
+    },
+    "editor" : {
+      "access_key_id" : "abcdefABCDEF0123456789abcdefABCD",
+      "api_key" : "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8",
+      "resource_key_crn" : "crn:v1:bluemix:public:cloud-object-storage:global:a/b56585fe60e71be0a22e6587f781ed91:dc36b4a5-cf81-6541-b855-f68a6f321cac::",
+      "secret_access_key" : "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd",
+      "service_id" : "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"
+    },
+    "viewer" : {
+      "access_key_id" : "abcdefABCDEF0123456789abcdefABCD",
+      "api_key" : "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8",
+      "resource_key_crn" : "crn:v1:bluemix:public:cloud-object-storage:global:a/b56585fe60e71be0a22e6587f781ed91:dc36b4a5-cf81-6541-b855-f68a6f321cac::",
+      "secret_access_key" : "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd",
+      "service_id" : "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"
+    }
+  }
+}
+```
+### &#8226; CloudObjectStorageCredentials
+<a id="cli-cloud-object-storage-credentials-example-schema-project"></a>
+
+The following example shows the format of the CloudObjectStorageCredentials object.
+
+```json
+
+{
+  "access_key_id" : "abcdefABCDEF0123456789abcdefABCD",
+  "api_key" : "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8",
+  "secret_access_key" : "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd",
+  "service_id" : "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"
+}
+```
+### &#8226; LocalGitStorageRepository
+<a id="cli-local-git-storage-repository-example-schema-project"></a>
+
+The following example shows the format of the LocalGitStorageRepository object.
+
+```json
+
+{
+  "type" : "github",
+  "url" : "https://github.com/nodejs/node.git"
+}
+```
+### &#8226; UpdateTagsOperation
+<a id="cli-update-tags-operation-example-schema-project"></a>
+
+The following example shows the format of the UpdateTagsOperation[] object.
+
+```json
+
+[ {
+  "op" : "add",
+  "tags" : [ "development", "development" ]
+} ]
+```
 ### &#8226; TransactionalProjectStorageObject
 <a id="cli-transactional-project-storage-object-example-schema-project"></a>
 
@@ -20507,6 +22405,14 @@ The following example shows the format of the TransactionalProjectComputeObjectC
 ### &#8226; TransactionalProjectStorageObjectProperties
 <a id="cli-transactional-project-storage-object-properties-example-schema-project"></a>
 
+The following example shows the format of the TransactionalProjectStorageObjectProperties object.
+
+```json
+
+{
+  "shared" : true
+}
+```
 ### &#8226; ComputeRequest
 <a id="cli-compute-request-example-schema-space"></a>
 
@@ -20518,6 +22424,24 @@ The following example shows the format of the ComputeRequest[] object.
   "crn" : "exampleString",
   "name" : "exampleString"
 } ]
+```
+### &#8226; SettingsEntity
+<a id="cli-settings-entity-example-schema-space"></a>
+
+The following example shows the format of the SettingsEntity object.
+
+```json
+
+{
+  "access_restrictions" : {
+    "reporting" : {
+      "authorized" : true
+    }
+  },
+  "folders" : {
+    "enabled" : true
+  }
+}
 ```
 ### &#8226; StageRequest
 <a id="cli-stage-request-example-schema-space"></a>
@@ -20540,7 +22464,30 @@ The following example shows the format of the StorageRequest object.
 
 {
   "delegated" : false,
+  "plan_id" : "1e4e33e4-cfa6-4f12-9016-be594a6d5f87",
   "resource_crn" : "exampleString"
+}
+```
+### &#8226; AccessRestrictions
+<a id="cli-access-restrictions-example-schema-space"></a>
+
+The following example shows the format of the AccessRestrictions object.
+
+```json
+
+{
+  "authorized" : true
+}
+```
+### &#8226; Folder
+<a id="cli-folder-example-schema-space"></a>
+
+The following example shows the format of the Folder object.
+
+```json
+
+{
+  "enabled" : true
 }
 ```
 ### &#8226; JSONPatchOperation
@@ -20624,6 +22571,122 @@ The following example shows the format of the JSONPatchOperation[] object.
   "value" : "exampleString"
 } ]
 ```
+### &#8226; HardwareSpec
+<a id="cli-hardware-spec-example-schema-wx-ai"></a>
+
+The following example shows the format of the HardwareSpec object.
+
+```json
+
+{
+  "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
+  "rev" : "2",
+  "name" : "exampleString",
+  "num_nodes" : 2
+}
+```
+### &#8226; AutoAIDataLocation
+<a id="cli-auto-ai-data-location-example-schema-wx-ai"></a>
+
+The following example shows the format of the AutoAIDataLocation[] object.
+
+```json
+
+[ {
+  "type" : "connection_asset",
+  "connection" : { },
+  "location" : { }
+} ]
+```
+### &#8226; ResultsLocation
+<a id="cli-results-location-example-schema-wx-ai"></a>
+
+The following example shows the format of the ResultsLocation object.
+
+```json
+
+{
+  "id" : "exampleString",
+  "type" : "container",
+  "connection" : { },
+  "location" : { }
+}
+```
+### &#8226; AutoAIRAGParameters
+<a id="cli-auto-airag-parameters-example-schema-wx-ai"></a>
+
+The following example shows the format of the AutoAIRAGParameters object.
+
+```json
+
+{
+  "constraints" : {
+    "chunking" : [ {
+      "method" : "recursive",
+      "chunk_size" : 256,
+      "chunk_overlap" : 128
+    } ],
+    "embedding_models" : [ "ibm/slate-125m-english-rtrvr" ],
+    "retrieval_methods" : [ "simple", "window" ],
+    "foundation_models" : [ "ibm/granite-13b-chat-v2", "mistralai/mixtral-8x7b-instruct-v01" ],
+    "max_number_of_rag_patterns" : 8
+  },
+  "optimization" : {
+    "metrics" : [ "answer_correctness", "faithfulness", "context_correctness" ],
+    "language" : {
+      "auto_detect" : true,
+      "code" : "fr"
+    }
+  },
+  "output_logs" : true
+}
+```
+### &#8226; ConnectionAsset
+<a id="cli-connection-asset-example-schema-wx-ai"></a>
+
+The following example shows the format of the ConnectionAsset[] object.
+
+```json
+
+[ {
+  "type" : "connection_asset",
+  "connection" : { }
+} ]
+```
+### &#8226; DataConnection
+<a id="cli-data-connection-example-schema-wx-ai"></a>
+
+The following example shows the format of the DataConnection object.
+
+```json
+
+{ }
+```
+### &#8226; AutoAIRAGConstraints
+<a id="cli-auto-airag-constraints-example-schema-wx-ai"></a>
+
+The following example shows the format of the AutoAIRAGConstraints object.
+
+```json
+
+{
+  "method" : "recursive",
+  "chunk_size" : 256,
+  "chunk_overlap" : 128
+}
+```
+### &#8226; AutoAIRAGOptimizationParameters
+<a id="cli-auto-airag-optimization-parameters-example-schema-wx-ai"></a>
+
+The following example shows the format of the AutoAIRAGOptimizationParameters object.
+
+```json
+
+{
+  "auto_detect" : true,
+  "code" : "fr"
+}
+```
 ### &#8226; OnlineDeployment
 <a id="cli-online-deployment-example-schema-wx-ai"></a>
 
@@ -20646,20 +22709,6 @@ The following example shows the format of the SimpleRel object.
 
 {
   "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"
-}
-```
-### &#8226; HardwareSpec
-<a id="cli-hardware-spec-example-schema-wx-ai"></a>
-
-The following example shows the format of the HardwareSpec object.
-
-```json
-
-{
-  "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
-  "rev" : "2",
-  "name" : "exampleString",
-  "num_nodes" : 2
 }
 ```
 ### &#8226; HardwareRequest
@@ -20689,6 +22738,14 @@ The following example shows the format of the Rel object.
 ### &#8226; OnlineDeploymentParameters
 <a id="cli-online-deployment-parameters-example-schema-wx-ai"></a>
 
+The following example shows the format of the OnlineDeploymentParameters object.
+
+```json
+
+{
+  "serving_name" : "churn"
+}
+```
 ### &#8226; DeploymentTextGenProperties
 <a id="cli-deployment-text-gen-properties-example-schema-wx-ai"></a>
 
@@ -20766,12 +22823,134 @@ The following example shows the format of the Moderations object.
 ### &#8226; TextGenLengthPenalty
 <a id="cli-text-gen-length-penalty-example-schema-wx-ai"></a>
 
+The following example shows the format of the TextGenLengthPenalty object.
+
+```json
+
+{
+  "decay_factor" : 2.5,
+  "start_index" : 5
+}
+```
 ### &#8226; ReturnOptionProperties
 <a id="cli-return-option-properties-example-schema-wx-ai"></a>
 
+The following example shows the format of the ReturnOptionProperties object.
+
+```json
+
+{
+  "input_text" : true,
+  "generated_tokens" : true,
+  "input_tokens" : true,
+  "token_logprobs" : true,
+  "token_ranks" : true,
+  "top_n_tokens" : 2
+}
+```
+### &#8226; DeploymentTextChatMessages
+<a id="cli-deployment-text-chat-messages-example-schema-wx-ai"></a>
+
+The following example shows the format of the DeploymentTextChatMessages[] object.
+
+```json
+
+[ {
+  "role" : "assistant",
+  "content" : "Who won the world series in 2020?",
+  "name" : "exampleString",
+  "refusal" : "exampleString",
+  "tool_calls" : [ {
+    "id" : "exampleString",
+    "type" : "function",
+    "function" : {
+      "name" : "exampleString",
+      "arguments" : "exampleString"
+    }
+  } ]
+} ]
+```
+### &#8226; ObjectLocation
+<a id="cli-object-location-example-schema-wx-ai"></a>
+
+The following example shows the format of the ObjectLocation object.
+
+```json
+
+{
+  "type" : "exampleString",
+  "location" : { },
+  "connection" : { },
+  "id" : "exampleString"
+}
+```
+### &#8226; FineTuningParameters
+<a id="cli-fine-tuning-parameters-example-schema-wx-ai"></a>
+
+The following example shows the format of the FineTuningParameters object.
+
+```json
+
+{
+  "task_id" : "exampleString",
+  "accumulate_steps" : 1,
+  "base_model" : {
+    "model_id" : "google/flan-t5-xl"
+  },
+  "num_epochs" : 5,
+  "learning_rate" : 0.2,
+  "batch_size" : 5,
+  "max_seq_length" : 1024,
+  "response_template" : "\n\n### Response:",
+  "verbalizer" : "### Input: {{input}} \n\n### Response: {{output}}",
+  "gpu" : {
+    "num" : 4,
+    "name" : "NVIDIA-A100-80GB-PCIe"
+  }
+}
+```
+### &#8226; BaseModel
+<a id="cli-base-model-example-schema-wx-ai"></a>
+
+The following example shows the format of the BaseModel object.
+
+```json
+
+{
+  "model_id" : "google/flan-t5-xl"
+}
+```
+### &#8226; GPU
+<a id="cli-gpu-example-schema-wx-ai"></a>
+
+The following example shows the format of the GPU object.
+
+```json
+
+{
+  "num" : 4,
+  "name" : "NVIDIA-A100-80GB-PCIe"
+}
+```
 ### &#8226; PromptWithExternal
 <a id="cli-prompt-with-external-example-schema-wx-ai"></a>
 
+The following example shows the format of the PromptWithExternalModelParameters object.
+
+```json
+
+{
+  "decoding_method" : "exampleString",
+  "max_new_tokens" : 38,
+  "min_new_tokens" : 38,
+  "random_seed" : 38,
+  "stop_sequences" : [ "exampleString", "anotherExampleString" ],
+  "temperature" : 72.5,
+  "top_k" : 72.5,
+  "top_p" : 72.5,
+  "repetition_penalty" : 72.5
+}
+```
 ### &#8226; PromptLock
 <a id="cli-prompt-lock-example-schema-wx-ai"></a>
 
@@ -20801,26 +22980,50 @@ The following example shows the format of the WxPromptPostModelVersion object.
 ### &#8226; PromptWithExternalModelParameters
 <a id="cli-prompt-with-external-model-parameters-example-schema-wx-ai"></a>
 
+The following example shows the format of the PromptWithExternalModelParameters object.
+
+```json
+
+{
+  "decoding_method" : "exampleString",
+  "max_new_tokens" : 38,
+  "min_new_tokens" : 38,
+  "random_seed" : 38,
+  "stop_sequences" : [ "exampleString", "anotherExampleString" ],
+  "temperature" : 72.5,
+  "top_k" : 72.5,
+  "top_p" : 72.5,
+  "repetition_penalty" : 72.5
+}
+```
 ### &#8226; PromptData
 <a id="cli-prompt-data-example-schema-wx-ai"></a>
 
 ### &#8226; ChatItem
 <a id="cli-chat-item-example-schema-wx-ai"></a>
 
-The following example shows the format of the ChatItem[] object.
+The following example shows the format of the ChatItem object.
 
 ```json
 
-[ {
+{
   "type" : "question",
   "content" : "Some text",
   "status" : "ready",
   "timestamp" : 1711504485261
-} ]
+}
 ```
 ### &#8226; ExternalInformation
 <a id="cli-external-information-example-schema-wx-ai"></a>
 
+The following example shows the format of the ExternalInformation object.
+
+```json
+
+{
+  "key" : "exampleString"
+}
+```
 ### &#8226; Prompt
 <a id="cli-prompt-example-schema-wx-ai"></a>
 
@@ -20850,6 +23053,22 @@ The following example shows the format of the WxPromptPatchModelVersion object.
 ### &#8226; PromptModelParameters
 <a id="cli-prompt-model-parameters-example-schema-wx-ai"></a>
 
+The following example shows the format of the PromptModelParameters object.
+
+```json
+
+{
+  "decoding_method" : "exampleString",
+  "max_new_tokens" : 38,
+  "min_new_tokens" : 38,
+  "random_seed" : 38,
+  "stop_sequences" : [ "exampleString", "anotherExampleString" ],
+  "temperature" : 72.5,
+  "top_k" : 72.5,
+  "top_p" : 72.5,
+  "repetition_penalty" : 72.5
+}
+```
 ### &#8226; WxPromptSessionEntry
 <a id="cli-wx-prompt-session-entry-example-schema-wx-ai"></a>
 
@@ -20890,27 +23109,46 @@ The following example shows the format of the TextExtractionSteps object.
 ### &#8226; CosDataConnection
 <a id="cli-cos-data-connection-example-schema-wx-ai"></a>
 
-### &#8226; CosDataLocation
-<a id="cli-cos-data-location-example-schema-wx-ai"></a>
-
-### &#8226; TextExtractionStepOcr
-<a id="cli-text-extraction-step-ocr-example-schema-wx-ai"></a>
-
-### &#8226; TextExtractionStepTablesProcessing
-<a id="cli-text-extraction-step-tables-processing-example-schema-wx-ai"></a>
-
-### &#8226; ResultsLocation
-<a id="cli-results-location-example-schema-wx-ai"></a>
-
-The following example shows the format of the ResultsLocation object.
+The following example shows the format of the CosDataConnection object.
 
 ```json
 
 {
-  "id" : "exampleString",
-  "type" : "container",
-  "connection" : { },
-  "location" : { }
+  "id" : "exampleString"
+}
+```
+### &#8226; CosDataLocation
+<a id="cli-cos-data-location-example-schema-wx-ai"></a>
+
+The following example shows the format of the CosDataLocation object.
+
+```json
+
+{
+  "file_name" : "exampleString",
+  "bucket" : "exampleString"
+}
+```
+### &#8226; TextExtractionStepOcr
+<a id="cli-text-extraction-step-ocr-example-schema-wx-ai"></a>
+
+The following example shows the format of the TextExtractionStepOcr object.
+
+```json
+
+{
+  "languages_list" : [ "en" ]
+}
+```
+### &#8226; TextExtractionStepTablesProcessing
+<a id="cli-text-extraction-step-tables-processing-example-schema-wx-ai"></a>
+
+The following example shows the format of the TextExtractionStepTablesProcessing object.
+
+```json
+
+{
+  "enabled" : true
 }
 ```
 ### &#8226; PromptTuning
@@ -20961,33 +23199,6 @@ The following example shows the format of the DataConnectionReference[] object.
   }
 } ]
 ```
-### &#8226; DataConnection
-<a id="cli-data-connection-example-schema-wx-ai"></a>
-
-The following example shows the format of the DataConnectionReference[] object.
-
-```json
-
-[ {
-  "id" : "tune1_data.json",
-  "type" : "container",
-  "connection" : { },
-  "location" : { },
-  "schema" : {
-    "id" : "t1",
-    "name" : "Tasks",
-    "fields" : [ {
-      "anyKey" : "anyValue"
-    }, {
-      "anotherAnyKey" : "anotherAnyValue"
-    } ],
-    "type" : "struct"
-  }
-} ]
-```
-### &#8226; BaseModel
-<a id="cli-base-model-example-schema-wx-ai"></a>
-
 ### &#8226; TextGenParameters
 <a id="cli-text-gen-parameters-example-schema-wx-ai"></a>
 
@@ -21050,6 +23261,14 @@ The following example shows the format of the EmbeddingParameters object.
 ### &#8226; EmbeddingReturnOptions
 <a id="cli-embedding-return-options-example-schema-wx-ai"></a>
 
+The following example shows the format of the EmbeddingReturnOptions object.
+
+```json
+
+{
+  "input_text" : true
+}
+```
 ### &#8226; RerankInput
 <a id="cli-rerank-input-example-schema-wx-ai"></a>
 
@@ -21080,6 +23299,16 @@ The following example shows the format of the RerankParameters object.
 ### &#8226; RerankReturnOptions
 <a id="cli-rerank-return-options-example-schema-wx-ai"></a>
 
+The following example shows the format of the RerankReturnOptions object.
+
+```json
+
+{
+  "top_n" : 1,
+  "inputs" : false,
+  "query" : false
+}
+```
 ### &#8226; TextChatMessages
 <a id="cli-text-chat-messages-example-schema-wx-ai"></a>
 
@@ -21088,7 +23317,7 @@ The following example shows the format of the TextChatMessages[] object.
 ```json
 
 [ {
-  "role" : "TextChatMessageAssistant",
+  "role" : "assistant",
   "content" : "You are a helpful assistant.",
   "name" : "exampleString",
   "refusal" : "exampleString",
@@ -21148,6 +23377,14 @@ The following example shows the format of the TextChatResponseFormat object.
 ### &#8226; TextChatToolFunction
 <a id="cli-text-chat-tool-function-example-schema-wx-ai"></a>
 
+The following example shows the format of the TextChatToolFunction object.
+
+```json
+
+{
+  "name" : "exampleString"
+}
+```
 ### &#8226; TSForecastInputSchema
 <a id="cli-ts-forecast-input-schema-example-schema-wx-ai"></a>
 
@@ -21173,3 +23410,21 @@ The following example shows the format of the TSForecastParameters object.
   "prediction_length" : 38
 }
 ```
+### &#8226; DocumentExtractionObjectLocation
+<a id="cli-document-extraction-object-location-example-schema-wx-ai"></a>
+
+The following example shows the format of the DocumentExtractionObjectLocation[] object.
+
+```json
+
+[ {
+  "type" : "container",
+  "location" : { }
+} ]
+```
+### &#8226; ObjectLocationGithub
+<a id="cli-object-location-github-example-schema-wx-ai"></a>
+
+### &#8226; ObjectLocationGithubLocation
+<a id="cli-object-location-github-location-example-schema-wx-ai"></a>
+
