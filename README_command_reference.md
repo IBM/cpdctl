@@ -382,6 +382,27 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [wx-ai taxonomy get](#wx-ai_taxonomy_get)
 #### &#8226; [wx-ai taxonomy delete](#wx-ai_taxonomy_delete)
 #### &#8226; [wx-ai custom-foundation-model list](#wx-ai_custom-foundation-model_list)
+#### &#8226; [wx-data ingestion list](#wx-data_ingestion_list)
+#### &#8226; [wx-data ingestion create](#wx-data_ingestion_create)
+#### &#8226; [wx-data ingestion get](#wx-data_ingestion_get)
+#### &#8226; [wx-data bucket list](#wx-data_bucket_list)
+#### &#8226; [wx-data bucket create](#wx-data_bucket_create)
+#### &#8226; [wx-data bucket get](#wx-data_bucket_get)
+#### &#8226; [wx-data bucket delete](#wx-data_bucket_delete)
+#### &#8226; [wx-data bucket activate](#wx-data_bucket_activate)
+#### &#8226; [wx-data bucket deactivate](#wx-data_bucket_deactivate)
+#### &#8226; [wx-data database list](#wx-data_database_list)
+#### &#8226; [wx-data database create](#wx-data_database_create)
+#### &#8226; [wx-data database get](#wx-data_database_get)
+#### &#8226; [wx-data database delete](#wx-data_database_delete)
+#### &#8226; [wx-data engine list](#wx-data_engine_list)
+#### &#8226; [wx-data engine create](#wx-data_engine_create)
+#### &#8226; [wx-data engine delete](#wx-data_engine_delete)
+#### &#8226; [wx-data engine attach](#wx-data_engine_attach)
+#### &#8226; [wx-data engine detach](#wx-data_engine_detach)
+#### &#8226; [wx-data sparkjob list](#wx-data_sparkjob_list)
+#### &#8226; [wx-data sparkjob create](#wx-data_sparkjob_create)
+#### &#8226; [wx-data sparkjob get](#wx-data_sparkjob_get)
 # Command descriptions
 <a id='asset_search'></a>
 ## &#8226; asset search
@@ -8312,7 +8333,8 @@ cpdctl ml deployment create \
     --hybrid-pipeline-hardware-specs '[{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}}]' \
     --online '{"parameters": {"anyKey": "anyValue"}}' \
     --batch '{"parameters": {"anyKey": "anyValue"}}' \
-    --r-shiny '{"authentication": "members_of_deployment_space", "parameters": {"serving_name": "churn", "code_package": {"path": "RShiny/apps/app1"}}}'
+    --r-shiny '{"authentication": "members_of_deployment_space", "parameters": {"serving_name": "churn", "code_package": {"path": "RShiny/apps/app1"}}}' \
+    --version 2019-01-01
 ```
 
 <a id='ml_deployment_list'></a>
@@ -8368,7 +8390,8 @@ cpdctl ml deployment list \
     --type exampleString \
     --state exampleString \
     --stats=true \
-    --conflict=false
+    --conflict=false \
+    --version 2019-01-01
 ```
 
 <a id='ml_deployment_get'></a>
@@ -8394,7 +8417,8 @@ cpdctl ml deployment get --deployment-id DEPLOYMENT-ID --space-id SPACE-ID
 ```sh
 cpdctl ml deployment get \
     --deployment-id exampleString \
-    --space-id 2ae804f8-fa85-4106-8228-cbc7e408ad79
+    --space-id 2ae804f8-fa85-4106-8228-cbc7e408ad79 \
+    --version 2019-01-01
 ```
 
 <a id='ml_deployment_delete'></a>
@@ -8420,7 +8444,8 @@ cpdctl ml deployment delete --deployment-id DEPLOYMENT-ID --space-id SPACE-ID
 ```sh
 cpdctl ml deployment delete \
     --deployment-id exampleString \
-    --space-id 2ae804f8-fa85-4106-8228-cbc7e408ad79
+    --space-id 2ae804f8-fa85-4106-8228-cbc7e408ad79 \
+    --version 2019-01-01
 ```
 
 <a id='ml_deployment_update'></a>
@@ -8503,7 +8528,8 @@ cpdctl ml deployment update \
     --asset '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}' \
     --hardware-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}' \
     --hybrid-pipeline-hardware-specs '[{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}}]' \
-    --r-shiny '{"authentication": "members_of_deployment_space", "parameters": {"serving_name": "churn", "code_package": {"path": "RShiny/apps/app1"}}}'
+    --r-shiny '{"authentication": "members_of_deployment_space", "parameters": {"serving_name": "churn", "code_package": {"path": "RShiny/apps/app1"}}}' \
+    --version 2019-01-01
 ```
 
 <a id='ml_deployment_compute-predictions'></a>
@@ -8531,7 +8557,8 @@ cpdctl ml deployment compute-predictions --deployment-id DEPLOYMENT-ID --input-d
 ```sh
 cpdctl ml deployment compute-predictions \
     --deployment-id exampleString \
-    --input-data '[{"id": "exampleString", "fields": ["name","age","occupation"], "values": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]]}]'
+    --input-data '[{"id": "exampleString", "fields": ["name","age","occupation"], "values": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]]}]' \
+    --version 2019-01-01
 ```
 
 <a id='ml_deployment_wait'></a>
@@ -8588,7 +8615,8 @@ cpdctl ml deployment-job list \
     --tag-value exampleString \
     --state exampleString \
     --deployment-id exampleString \
-    --include exampleString
+    --include exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_deployment-job_create'></a>
@@ -8762,7 +8790,8 @@ cpdctl ml deployment-job create \
     --hybrid-pipeline-hardware-specs '[{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}}]' \
     --scoring '{"input_data": [{"id": "exampleString", "type": "target", "fields": ["exampleString","anotherTestString"], "values": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]], "targets": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}]}], "input_data_references": [{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}], "output_data_reference": {"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}, "evaluations": [{"id": "exampleString", "input_target": "exampleString", "metrics_names": ["auroc","accuracy"]}], "environment_variables": {}}' \
     --decision-optimization '{"solve_parameters": {"anyKey": "anyValue"}, "input_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "content": "exampleString"}], "input_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}], "output_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "content": "exampleString"}], "output_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}]}' \
-    --retention exampleString
+    --retention exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_deployment-job_delete'></a>
@@ -8792,7 +8821,8 @@ cpdctl ml deployment-job delete --job-id JOB-ID --space-id SPACE-ID [--hard-dele
 cpdctl ml deployment-job delete \
     --job-id exampleString \
     --space-id exampleString \
-    --hard-delete=true
+    --hard-delete=true \
+    --version 2019-01-01
 ```
 
 <a id='ml_deployment-job_get'></a>
@@ -8823,7 +8853,8 @@ cpdctl ml deployment-job get --job-id JOB-ID --space-id SPACE-ID [--include INCL
 cpdctl ml deployment-job get \
     --job-id exampleString \
     --space-id exampleString \
-    --include exampleString
+    --include exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_deployment-job-definition_create'></a>
@@ -8993,7 +9024,8 @@ cpdctl ml deployment-job-definition create \
     --hardware-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}' \
     --hybrid-pipeline-hardware-specs '[{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}}]' \
     --scoring '{"input_data": [{"id": "exampleString", "type": "target", "fields": ["exampleString","anotherTestString"], "values": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]], "targets": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}]}], "input_data_references": [{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}], "output_data_reference": {"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}, "evaluations": [{"id": "exampleString", "input_target": "exampleString", "metrics_names": ["auroc","accuracy"]}], "environment_variables": {}}' \
-    --decision-optimization '{"solve_parameters": {"anyKey": "anyValue"}, "input_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "content": "exampleString"}], "input_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}], "output_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "content": "exampleString"}], "output_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}]}'
+    --decision-optimization '{"solve_parameters": {"anyKey": "anyValue"}, "input_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "content": "exampleString"}], "input_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}], "output_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "content": "exampleString"}], "output_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}]}' \
+    --version 2019-01-01
 ```
 
 <a id='ml_deployment-job-definition_list'></a>
@@ -9039,7 +9071,8 @@ cpdctl ml deployment-job-definition list \
     --start exampleString \
     --limit 50 \
     --tag-value 'tf2.0 or tf2.1' \
-    --search exampleString
+    --search exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_deployment-job-definition_get'></a>
@@ -9070,7 +9103,8 @@ cpdctl ml deployment-job-definition get --job-definition-id JOB-DEFINITION-ID --
 cpdctl ml deployment-job-definition get \
     --job-definition-id 212fadf1-252f-424b-b52d-5cdd98ecfa0 \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --rev 2
+    --rev 2 \
+    --version 2019-01-01
 ```
 
 <a id='ml_deployment-job-definition_update'></a>
@@ -9124,7 +9158,8 @@ cpdctl ml deployment-job-definition update \
     --name my-resource \
     --description 'This is my first resource.' \
     --custom '{"anyKey": "anyValue"}' \
-    --deployment '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"}'
+    --deployment '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"}' \
+    --version 2019-01-01
 ```
 
 <a id='ml_deployment-job-definition_delete'></a>
@@ -9150,7 +9185,8 @@ cpdctl ml deployment-job-definition delete --job-definition-id JOB-DEFINITION-ID
 ```sh
 cpdctl ml deployment-job-definition delete \
     --job-definition-id 212fadf1-252f-424b-b52d-5cdd98ecfa0 \
-    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='ml_deployment-job-definition_create-revision'></a>
@@ -9180,7 +9216,8 @@ cpdctl ml deployment-job-definition create-revision --job-definition-id JOB-DEFI
 cpdctl ml deployment-job-definition create-revision \
     --job-definition-id 212fadf1-252f-424b-b52d-5cdd98ecfa0 \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
-    --commit-message exampleString
+    --commit-message exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_deployment-job-definition_list-revisions'></a>
@@ -9220,7 +9257,8 @@ cpdctl ml deployment-job-definition list-revisions \
     --job-definition-id 212fadf1-252f-424b-b52d-5cdd98ecfa0 \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --start exampleString \
-    --limit 50
+    --limit 50 \
+    --version 2019-01-01
 ```
 
 <a id='ml_experiment_create'></a>
@@ -9290,7 +9328,8 @@ cpdctl ml experiment create \
     --label-column exampleString \
     --evaluation-definition '{"method": "binary", "metrics": [{"name": "areaUnderROC", "maximize": true}]}' \
     --training-references '[{"pipeline": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "model_type": "exampleString", "data_bindings": [{"data_reference_name": "exampleString", "node_id": "exampleString"}], "nodes_parameters": [{"node_id": "exampleString", "parameters": {"anyKey": "anyValue"}}], "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "hybrid_pipeline_hardware_specs": [{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}}]}, "model_definition": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"}, "hyper_parameters_optimization": {"method": {"name": "random", "parameters": {"anyKey": "anyValue"}}, "hyper_parameters": [{"name": "learning_rate", "items": "exampleString"}]}}]' \
-    --custom '{"anyKey": "anyValue"}'
+    --custom '{"anyKey": "anyValue"}' \
+    --version 2019-01-01
 ```
 
 <a id='ml_experiment_list'></a>
@@ -9340,7 +9379,8 @@ cpdctl ml experiment list \
     --start exampleString \
     --limit 50 \
     --tag-value 'tf2.0 or tf2.1' \
-    --search exampleString
+    --search exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_experiment_get'></a>
@@ -9375,7 +9415,8 @@ cpdctl ml experiment get \
     --experiment-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --rev 2
+    --rev 2 \
+    --version 2019-01-01
 ```
 
 <a id='ml_experiment_update'></a>
@@ -9427,7 +9468,8 @@ cpdctl ml experiment update \
     --tags t1,t2 \
     --name my-resource \
     --description 'This is my first resource.' \
-    --custom '{"anyKey": "anyValue"}'
+    --custom '{"anyKey": "anyValue"}' \
+    --version 2019-01-01
 ```
 
 <a id='ml_experiment_delete'></a>
@@ -9457,7 +9499,8 @@ cpdctl ml experiment delete --experiment-id EXPERIMENT-ID [--space-id SPACE-ID] 
 cpdctl ml experiment delete \
     --experiment-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='ml_experiment_create-revision'></a>
@@ -9491,7 +9534,8 @@ cpdctl ml experiment create-revision \
     --experiment-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
-    --commit-message exampleString
+    --commit-message exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_experiment_list-revisions'></a>
@@ -9535,7 +9579,8 @@ cpdctl ml experiment list-revisions \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --start exampleString \
-    --limit 50
+    --limit 50 \
+    --version 2019-01-01
 ```
 
 <a id='ml_function_create'></a>
@@ -9646,7 +9691,8 @@ cpdctl ml function create \
     --sample-scoring-input '{"input_data": [{"id": "exampleString", "fields": ["name","age","occupation"], "values": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]]}]}' \
     --schemas '{"input": [{"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}], "output": [{"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}]}' \
     --custom '{"anyKey": "anyValue"}' \
-    --model-references '[{"space_id": "3fc54cf1-252f-424b-b52d-5cdd9814987f", "project_id": "12ac4cf1-252f-424b-b52d-5cdd9814987f", "id": "exampleString", "rev": "exampleString"}]'
+    --model-references '[{"space_id": "3fc54cf1-252f-424b-b52d-5cdd9814987f", "project_id": "12ac4cf1-252f-424b-b52d-5cdd9814987f", "id": "exampleString", "rev": "exampleString"}]' \
+    --version 2019-01-01
 ```
 
 <a id='ml_function_list'></a>
@@ -9696,7 +9742,8 @@ cpdctl ml function list \
     --start exampleString \
     --limit 50 \
     --tag-value 'tf2.0 or tf2.1' \
-    --search exampleString
+    --search exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_function_get'></a>
@@ -9731,7 +9778,8 @@ cpdctl ml function get \
     --function-id 64dc8921-345f-234b-462d-78e41246987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --rev 2
+    --rev 2 \
+    --version 2019-01-01
 ```
 
 <a id='ml_function_update'></a>
@@ -9783,7 +9831,8 @@ cpdctl ml function update \
     --tags t1,t2 \
     --name my-resource \
     --description 'This is my first resource.' \
-    --custom '{"anyKey": "anyValue"}'
+    --custom '{"anyKey": "anyValue"}' \
+    --version 2019-01-01
 ```
 
 <a id='ml_function_delete'></a>
@@ -9813,7 +9862,8 @@ cpdctl ml function delete --function-id FUNCTION-ID [--space-id SPACE-ID] [--pro
 cpdctl ml function delete \
     --function-id 64dc8921-345f-234b-462d-78e41246987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='ml_function_create-revision'></a>
@@ -9847,7 +9897,8 @@ cpdctl ml function create-revision \
     --function-id 64dc8921-345f-234b-462d-78e41246987f \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
-    --commit-message exampleString
+    --commit-message exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_function_list-revisions'></a>
@@ -9891,7 +9942,8 @@ cpdctl ml function list-revisions \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --start exampleString \
-    --limit 50
+    --limit 50 \
+    --version 2019-01-01
 ```
 
 <a id='ml_function_upload-code'></a>
@@ -9925,7 +9977,8 @@ cpdctl ml function upload-code \
     --function-id 64dc8921-345f-234b-462d-78e41246987f \
     --upload-code tempdir/test-file.txt \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='ml_function_download-code'></a>
@@ -9960,6 +10013,7 @@ cpdctl ml function download-code \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --rev 2 \
+    --version 2019-01-01 \
     --output-file tempdir/example-output.txt
 ```
 
@@ -10188,7 +10242,8 @@ cpdctl ml model create \
     --model-version '{"number": "1.0.0", "tag": "xgb classifier", "description": "Providing an update to the version."}' \
     --training-id b8e64f4b-ead1-47f3-abf6-8247b2826763 \
     --data-preprocessing '[{"stage": "sampling", "input": {"rows": 50000, "columns": 81}, "output": {"rows": 1463, "columns": 81}, "props": {"anyKey": "anyValue"}}]' \
-    --content-location '{"contents": [{"content_format": "exampleString", "location": "exampleString", "file_name": "exampleString", "pipeline_node_id": "exampleString", "deployment_id": "exampleString"}], "type": "connection_asset", "connection": {}, "location": {}}'
+    --content-location '{"contents": [{"content_format": "exampleString", "location": "exampleString", "file_name": "exampleString", "pipeline_node_id": "exampleString", "deployment_id": "exampleString"}], "type": "connection_asset", "connection": {}, "location": {}}' \
+    --version 2019-01-01
 ```
 
 <a id='ml_model_list'></a>
@@ -10238,7 +10293,8 @@ cpdctl ml model list \
     --start exampleString \
     --limit 50 \
     --tag-value 'tf2.0 or tf2.1' \
-    --search exampleString
+    --search exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_model_get'></a>
@@ -10273,7 +10329,8 @@ cpdctl ml model get \
     --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --rev 2
+    --rev 2 \
+    --version 2019-01-01
 ```
 
 <a id='ml_model_update'></a>
@@ -10326,7 +10383,8 @@ cpdctl ml model update \
     --tags t1,t2 \
     --name my-resource \
     --description 'This is my first resource.' \
-    --custom '{"anyKey": "anyValue"}'
+    --custom '{"anyKey": "anyValue"}' \
+    --version 2019-01-01
 ```
 
 <a id='ml_model_delete'></a>
@@ -10356,7 +10414,8 @@ cpdctl ml model delete --model-id MODEL-ID [--space-id SPACE-ID] [--project-id P
 cpdctl ml model delete \
     --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='ml_model_create-revision'></a>
@@ -10390,7 +10449,8 @@ cpdctl ml model create-revision \
     --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
-    --commit-message exampleString
+    --commit-message exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_model_list-revisions'></a>
@@ -10434,7 +10494,8 @@ cpdctl ml model list-revisions \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --start exampleString \
-    --limit 50
+    --limit 50 \
+    --version 2019-01-01
 ```
 
 <a id='ml_model_list-attachments'></a>
@@ -10476,7 +10537,8 @@ cpdctl ml model list-attachments \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --rev 2 \
     --name my_model \
-    --content-format native
+    --content-format native \
+    --version 2019-01-01
 ```
 
 <a id='ml_model_upload-content'></a>
@@ -10537,7 +10599,8 @@ cpdctl ml model upload-content \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --pipeline-node-id 62344cf1-252f-424b-b52d-5cdd9814aacd \
     --deployment-id 62344cf1-252f-424b-b52d-5cdd9814aacd \
-    --name my_models
+    --name my_models \
+    --version 2019-01-01
 ```
 
 <a id='ml_model_download-content'></a>
@@ -10582,6 +10645,7 @@ cpdctl ml model download-content \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --rev 2 \
+    --version 2019-01-01 \
     --output-file tempdir/example-output.txt
 ```
 
@@ -10616,7 +10680,8 @@ cpdctl ml model delete-content \
     --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --attachment-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='ml_model_filtered-download'></a>
@@ -10674,6 +10739,7 @@ cpdctl ml model filtered-download \
     --deployment-id 62344cf1-252f-424b-b52d-5cdd9814aacd \
     --name my_model \
     --content-format native \
+    --version 2019-01-01 \
     --output-file tempdir/example-output.txt
 ```
 
@@ -10774,7 +10840,8 @@ cpdctl ml model-definition create \
     --tags t1,t2 \
     --command exampleString \
     --software-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}' \
-    --custom '{"anyKey": "anyValue"}'
+    --custom '{"anyKey": "anyValue"}' \
+    --version 2019-01-01
 ```
 
 <a id='ml_model-definition_list'></a>
@@ -10824,7 +10891,8 @@ cpdctl ml model-definition list \
     --start exampleString \
     --limit 50 \
     --tag-value 'tf2.0 or tf2.1' \
-    --search exampleString
+    --search exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_model-definition_get'></a>
@@ -10859,7 +10927,8 @@ cpdctl ml model-definition get \
     --model-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --rev 2
+    --rev 2 \
+    --version 2019-01-01
 ```
 
 <a id='ml_model-definition_update'></a>
@@ -10911,7 +10980,8 @@ cpdctl ml model-definition update \
     --tags t1,t2 \
     --name my-resource \
     --description 'This is my first resource.' \
-    --custom '{"anyKey": "anyValue"}'
+    --custom '{"anyKey": "anyValue"}' \
+    --version 2019-01-01
 ```
 
 <a id='ml_model-definition_delete'></a>
@@ -10941,7 +11011,8 @@ cpdctl ml model-definition delete --model-definition-id MODEL-DEFINITION-ID [--s
 cpdctl ml model-definition delete \
     --model-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='ml_model-definition_create-revision'></a>
@@ -10975,7 +11046,8 @@ cpdctl ml model-definition create-revision \
     --model-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
-    --commit-message exampleString
+    --commit-message exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_model-definition_list-revisions'></a>
@@ -11019,7 +11091,8 @@ cpdctl ml model-definition list-revisions \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --start exampleString \
-    --limit 50
+    --limit 50 \
+    --version 2019-01-01
 ```
 
 <a id='ml_model-definition_upload-model'></a>
@@ -11053,7 +11126,8 @@ cpdctl ml model-definition upload-model \
     --model-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --upload-model tempdir/test-file.txt \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='ml_model-definition_download-model'></a>
@@ -11088,6 +11162,7 @@ cpdctl ml model-definition download-model \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --rev 2 \
+    --version 2019-01-01 \
     --output-file tempdir/example-output.txt
 ```
 
@@ -11139,7 +11214,8 @@ cpdctl ml pipeline create \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
     --description 'This is my first resource.' \
     --tags t1,t2 \
-    --custom '{"anyKey": "anyValue"}'
+    --custom '{"anyKey": "anyValue"}' \
+    --version 2019-01-01
 ```
 
 <a id='ml_pipeline_list'></a>
@@ -11189,7 +11265,8 @@ cpdctl ml pipeline list \
     --start exampleString \
     --limit 50 \
     --tag-value 'tf2.0 or tf2.1' \
-    --search exampleString
+    --search exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_pipeline_get'></a>
@@ -11224,7 +11301,8 @@ cpdctl ml pipeline get \
     --pipeline-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --rev 2
+    --rev 2 \
+    --version 2019-01-01
 ```
 
 <a id='ml_pipeline_update'></a>
@@ -11276,7 +11354,8 @@ cpdctl ml pipeline update \
     --tags t1,t2 \
     --name my-resource \
     --description 'This is my first resource.' \
-    --custom '{"anyKey": "anyValue"}'
+    --custom '{"anyKey": "anyValue"}' \
+    --version 2019-01-01
 ```
 
 <a id='ml_pipeline_delete'></a>
@@ -11306,7 +11385,8 @@ cpdctl ml pipeline delete --pipeline-id PIPELINE-ID [--space-id SPACE-ID] [--pro
 cpdctl ml pipeline delete \
     --pipeline-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='ml_pipeline_create-revision'></a>
@@ -11340,7 +11420,8 @@ cpdctl ml pipeline create-revision \
     --pipeline-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
-    --commit-message exampleString
+    --commit-message exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_pipeline_list-revisions'></a>
@@ -11384,7 +11465,8 @@ cpdctl ml pipeline list-revisions \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --start exampleString \
-    --limit 50
+    --limit 50 \
+    --version 2019-01-01
 ```
 
 <a id='ml_training_create'></a>
@@ -11674,7 +11756,8 @@ cpdctl ml training create \
     --name my-training \
     --description 'My first training.' \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='ml_training_list'></a>
@@ -11734,7 +11817,8 @@ cpdctl ml training list \
     --state exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --parent-id exampleString
+    --parent-id exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_training_get'></a>
@@ -11764,7 +11848,8 @@ cpdctl ml training get --training-id TRAINING-ID [--space-id SPACE-ID] [--projec
 cpdctl ml training get \
     --training-id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='ml_training_delete'></a>
@@ -11798,7 +11883,8 @@ cpdctl ml training delete \
     --training-id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --hard-delete=true
+    --hard-delete=true \
+    --version 2019-01-01
 ```
 
 <a id='ml_training_wait'></a>
@@ -12109,7 +12195,8 @@ cpdctl ml training-definition create \
     --federated-learning '{"model": {"type": "keras", "spec": {"href": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}}, "model_file": "exampleString"}, "fusion_type": "iter_avg", "remote_training": {"quorum": 0.9, "max_timeout": 60, "remote_training_systems": [{"id": "1918939c-2660-4f6a-b727-4b402383dc63", "required": true}]}, "rounds": 3, "termination_predicate": "accuracy > 0.9", "epochs": 3, "optimizer": {"name": "exampleString", "spec": {"anyKey": "anyValue"}}, "loss": "exampleString", "metrics": "exampleString", "max_depth": 38, "learning_rate": 72.5, "l2_regularization": 72.5, "max_bins": 38, "max_leaf_nodes": 38, "min_samples_leaf": 38, "random_state": 38, "verbose": true, "num_classes": 38, "byzantine_threshold": 38, "sigma": 72.5, "sigma0": 72.5, "gamma": 72.5, "iters": 38, "save_intermediate_models": true, "crypto": {"cipher_spec": "encryption_level_1"}, "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}, "version": "exampleString", "log_level": "info", "sketch_accuracy_vs_privacy": 0.01}' \
     --training-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
     --test-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
-    --custom '{"anyKey": "anyValue"}'
+    --custom '{"anyKey": "anyValue"}' \
+    --version 2019-01-01
 ```
 
 <a id='ml_training-definition_list'></a>
@@ -12159,7 +12246,8 @@ cpdctl ml training-definition list \
     --start exampleString \
     --limit 50 \
     --tag-value 'tf2.0 or tf2.1' \
-    --search exampleString
+    --search exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_training-definition_get'></a>
@@ -12194,7 +12282,8 @@ cpdctl ml training-definition get \
     --training-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --rev 2
+    --rev 2 \
+    --version 2019-01-01
 ```
 
 <a id='ml_training-definition_update'></a>
@@ -12251,7 +12340,8 @@ cpdctl ml training-definition update \
     --name my-resource \
     --description 'This is my first resource.' \
     --custom '{"anyKey": "anyValue"}' \
-    --federated-learning '{"model": {"type": "keras", "spec": {"href": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}}, "model_file": "exampleString"}, "fusion_type": "iter_avg", "remote_training": {"quorum": 0.9, "max_timeout": 60, "remote_training_systems": [{"id": "1918939c-2660-4f6a-b727-4b402383dc63", "required": true}]}, "rounds": 3, "termination_predicate": "accuracy > 0.9", "epochs": 3, "optimizer": {"name": "exampleString", "spec": {"anyKey": "anyValue"}}, "loss": "exampleString", "metrics": "exampleString", "max_depth": 38, "learning_rate": 72.5, "l2_regularization": 72.5, "max_bins": 38, "max_leaf_nodes": 38, "min_samples_leaf": 38, "random_state": 38, "verbose": true, "num_classes": 38, "byzantine_threshold": 38, "sigma": 72.5, "sigma0": 72.5, "gamma": 72.5, "iters": 38, "save_intermediate_models": true, "crypto": {"cipher_spec": "encryption_level_1"}, "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}, "version": "exampleString", "log_level": "info", "sketch_accuracy_vs_privacy": 0.01}'
+    --federated-learning '{"model": {"type": "keras", "spec": {"href": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}}, "model_file": "exampleString"}, "fusion_type": "iter_avg", "remote_training": {"quorum": 0.9, "max_timeout": 60, "remote_training_systems": [{"id": "1918939c-2660-4f6a-b727-4b402383dc63", "required": true}]}, "rounds": 3, "termination_predicate": "accuracy > 0.9", "epochs": 3, "optimizer": {"name": "exampleString", "spec": {"anyKey": "anyValue"}}, "loss": "exampleString", "metrics": "exampleString", "max_depth": 38, "learning_rate": 72.5, "l2_regularization": 72.5, "max_bins": 38, "max_leaf_nodes": 38, "min_samples_leaf": 38, "random_state": 38, "verbose": true, "num_classes": 38, "byzantine_threshold": 38, "sigma": 72.5, "sigma0": 72.5, "gamma": 72.5, "iters": 38, "save_intermediate_models": true, "crypto": {"cipher_spec": "encryption_level_1"}, "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}, "version": "exampleString", "log_level": "info", "sketch_accuracy_vs_privacy": 0.01}' \
+    --version 2019-01-01
 ```
 
 <a id='ml_training-definition_delete'></a>
@@ -12281,7 +12371,8 @@ cpdctl ml training-definition delete --training-definition-id TRAINING-DEFINITIO
 cpdctl ml training-definition delete \
     --training-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='ml_training-definition_create-revision'></a>
@@ -12315,7 +12406,8 @@ cpdctl ml training-definition create-revision \
     --training-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
-    --commit-message exampleString
+    --commit-message exampleString \
+    --version 2019-01-01
 ```
 
 <a id='ml_training-definition_list-revisions'></a>
@@ -12359,7 +12451,8 @@ cpdctl ml training-definition list-revisions \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --start exampleString \
-    --limit 50
+    --limit 50 \
+    --version 2019-01-01
 ```
 
 <a id='notebook_create'></a>
@@ -15090,7 +15183,8 @@ cpdctl wx-ai ai-service create \
     --tags exampleString,anotherTestString \
     --code-type python \
     --documentation '{"request": {}, "response": {}}' \
-    --custom '{"anyKey": "anyValue"}'
+    --custom '{"anyKey": "anyValue"}' \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_ai-service_list'></a>
@@ -15144,7 +15238,8 @@ cpdctl wx-ai ai-service list \
     --start exampleString \
     --limit 50 \
     --tag-value 'tf2.0 or tf2.1' \
-    --search exampleString
+    --search exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_ai-service_get'></a>
@@ -15183,7 +15278,8 @@ cpdctl wx-ai ai-service get \
     --ai-service-id 64dc8921-345f-234b-462d-78e41246987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
-    --rev 2
+    --rev 2 \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_ai-service_update'></a>
@@ -15241,7 +15337,8 @@ cpdctl wx-ai ai-service update \
     --tags t1,t2 \
     --name my-resource \
     --description 'This is my first resource.' \
-    --custom '{"anyKey": "anyValue"}'
+    --custom '{"anyKey": "anyValue"}' \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_ai-service_delete'></a>
@@ -15275,7 +15372,8 @@ cpdctl wx-ai ai-service delete --ai-service-id AI-SERVICE-ID [--space-id SPACE-I
 cpdctl wx-ai ai-service delete \
     --ai-service-id 64dc8921-345f-234b-462d-78e41246987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_ai-service_upload-code'></a>
@@ -15313,7 +15411,8 @@ cpdctl wx-ai ai-service upload-code \
     --ai-service-id 64dc8921-345f-234b-462d-78e41246987f \
     --upload-code tempdir/test-file.txt \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_ai-service_download-code'></a>
@@ -15352,6 +15451,7 @@ cpdctl wx-ai ai-service download-code \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --rev 2 \
+    --version 2019-01-01 \
     --output-file tempdir/example-output.txt
 ```
 
@@ -15391,7 +15491,8 @@ cpdctl wx-ai ai-service create-revision \
     --ai-service-id 64dc8921-345f-234b-462d-78e41246987f \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
-    --commit-message exampleString
+    --commit-message exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_ai-service_list-revisions'></a>
@@ -15439,7 +15540,8 @@ cpdctl wx-ai ai-service list-revisions \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --start exampleString \
-    --limit 50
+    --limit 50 \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_autoai-rag_create'></a>
@@ -15578,7 +15680,8 @@ cpdctl wx-ai autoai-rag create \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
     --parameters '{"constraints": {"chunking": [{"method": "recursive", "chunk_size": 256, "chunk_overlap": 128}], "embedding_models": ["ibm/slate-125m-english-rtrvr"], "retrieval_methods": ["simple","window"], "foundation_models": ["ibm/granite-13b-chat-v2","mistralai/mixtral-8x7b-instruct-v01"], "max_number_of_rag_patterns": 8}, "optimization": {"metrics": ["answer_correctness","faithfulness","context_correctness"], "language": {"auto_detect": true, "code": "fr"}}, "output_logs": true}' \
     --vector-store-references '[{"type": "connection_asset", "connection": {}}]' \
-    --custom '{"anyKey": "anyValue"}'
+    --custom '{"anyKey": "anyValue"}' \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_autoai-rag_list'></a>
@@ -15620,7 +15723,8 @@ cpdctl wx-ai autoai-rag list \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --start exampleString \
-    --limit 50
+    --limit 50 \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_autoai-rag_get'></a>
@@ -15654,7 +15758,8 @@ cpdctl wx-ai autoai-rag get --id ID [--space-id SPACE-ID] [--project-id PROJECT-
 cpdctl wx-ai autoai-rag get \
     --id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_autoai-rag_delete'></a>
@@ -15692,7 +15797,8 @@ cpdctl wx-ai autoai-rag delete \
     --id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
-    --hard-delete=true
+    --hard-delete=true \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_deployment_create'></a>
@@ -15819,7 +15925,8 @@ cpdctl wx-ai deployment create \
     --hardware-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}' \
     --hardware-request '{"size": "gpu_s", "num_nodes": 72.5}' \
     --asset '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}' \
-    --base-model-id exampleString
+    --base-model-id exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_deployment_list'></a>
@@ -15892,7 +15999,8 @@ cpdctl wx-ai deployment list \
     --name exampleString \
     --type exampleString \
     --state exampleString \
-    --conflict=false
+    --conflict=false \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_deployment_get'></a>
@@ -15926,7 +16034,8 @@ cpdctl wx-ai deployment get --deployment-id DEPLOYMENT-ID [--space-id SPACE-ID] 
 cpdctl wx-ai deployment get \
     --deployment-id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_deployment_update'></a>
@@ -15997,7 +16106,8 @@ cpdctl wx-ai deployment update \
     --name my-resource \
     --description 'This is my first resource.' \
     --custom '{"anyKey": "anyValue"}' \
-    --asset '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}'
+    --asset '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}' \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_deployment_delete'></a>
@@ -16031,7 +16141,8 @@ cpdctl wx-ai deployment delete --deployment-id DEPLOYMENT-ID [--space-id SPACE-I
 cpdctl wx-ai deployment delete \
     --deployment-id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_deployment_text-generate'></a>
@@ -16166,7 +16277,8 @@ cpdctl wx-ai deployment text-generate \
     --id-or-name exampleString \
     --input 'how far is paris from bangalore:\n' \
     --parameters '{"decoding_method": "greedy", "length_penalty": {"decay_factor": 2.5, "start_index": 5}, "max_new_tokens": 100, "min_new_tokens": 5, "random_seed": 1, "stop_sequences": ["fail"], "temperature": 1.5, "time_limit": 600000, "top_k": 50, "top_p": 0.5, "repetition_penalty": 1.5, "truncate_input_tokens": 1, "return_options": {"input_text": true, "generated_tokens": true, "input_tokens": true, "token_logprobs": true, "token_ranks": true, "top_n_tokens": 2}, "include_stop_sequence": true, "typical_p": 0.5, "prompt_variables": {}}' \
-    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}'
+    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}' \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_deployment_text-generate-stream'></a>
@@ -16302,7 +16414,8 @@ cpdctl wx-ai deployment text-generate-stream \
     --id-or-name exampleString \
     --input exampleString \
     --parameters '{"decoding_method": "greedy", "length_penalty": {"decay_factor": 2.5, "start_index": 5}, "max_new_tokens": 30, "min_new_tokens": 5, "random_seed": 1, "stop_sequences": ["fail"], "temperature": 1.5, "time_limit": 600000, "top_k": 50, "top_p": 0.5, "repetition_penalty": 1.5, "truncate_input_tokens": 1, "return_options": {"input_text": true, "generated_tokens": true, "input_tokens": true, "token_logprobs": true, "token_ranks": true, "top_n_tokens": 2}, "include_stop_sequence": true, "typical_p": 0.5, "prompt_variables": {}}' \
-    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}'
+    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}' \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_deployment_chat'></a>
@@ -16346,7 +16459,8 @@ In the example, `context` "Today is Wednesday" is inserted as such
 cpdctl wx-ai deployment chat \
     --id-or-name exampleString \
     --messages '[{"role": "assistant", "content": "Who won the world series in 2020?", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
-    --context exampleString
+    --context exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_deployment_chat-stream'></a>
@@ -16390,7 +16504,8 @@ In the example, `context` "Today is Wednesday" is inserted as such
 cpdctl wx-ai deployment chat-stream \
     --id-or-name exampleString \
     --messages '[{"role": "assistant", "content": "Who won the world series in 2020?", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
-    --context exampleString
+    --context exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_deployment_wait'></a>
@@ -16569,7 +16684,8 @@ cpdctl wx-ai fine-tuning create \
     --parameters '{"task_id": "exampleString", "accumulate_steps": 1, "base_model": {"model_id": "google/flan-t5-xl"}, "num_epochs": 5, "learning_rate": 0.2, "batch_size": 5, "max_seq_length": 1024, "response_template": "\n\n### Response:", "verbalizer": "### Input: {{input}} \n\n### Response: {{output}}", "gpu": {"num": 4, "name": "NVIDIA-A100-80GB-PCIe"}}' \
     --type ilab \
     --test-data-references '[{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}]' \
-    --custom '{"anyKey": "anyValue"}'
+    --custom '{"anyKey": "anyValue"}' \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_fine-tuning_list'></a>
@@ -16631,7 +16747,8 @@ cpdctl wx-ai fine-tuning list \
     --state exampleString \
     --type ilab \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_fine-tuning_get'></a>
@@ -16665,7 +16782,8 @@ cpdctl wx-ai fine-tuning get --id ID [--space-id SPACE-ID] [--project-id PROJECT
 cpdctl wx-ai fine-tuning get \
     --id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_fine-tuning_delete'></a>
@@ -16703,7 +16821,8 @@ cpdctl wx-ai fine-tuning delete \
     --id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
-    --hard-delete=true
+    --hard-delete=true \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_foundation-model_list-models'></a>
@@ -16772,7 +16891,8 @@ cpdctl wx-ai foundation-model list-models \
     --start exampleString \
     --limit 50 \
     --filters modelid_ibm/granite-13b-instruct-v2 \
-    --tech-preview=false
+    --tech-preview=false \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_foundation-model_list-tasks'></a>
@@ -16804,7 +16924,8 @@ cpdctl wx-ai foundation-model list-tasks [--start START] [--limit LIMIT]
 ```sh
 cpdctl wx-ai foundation-model list-tasks \
     --start exampleString \
-    --limit 50
+    --limit 50 \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt_create'></a>
@@ -16952,7 +17073,8 @@ cpdctl wx-ai prompt create \
     --prompt-variables '{}' \
     --input-mode structured \
     --project-id exampleString \
-    --space-id exampleString
+    --space-id exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt_get'></a>
@@ -16994,7 +17116,8 @@ cpdctl wx-ai prompt get \
     --prompt-id exampleString \
     --project-id exampleString \
     --space-id exampleString \
-    --restrict-model-parameters true
+    --restrict-model-parameters true \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt_update'></a>
@@ -17130,7 +17253,8 @@ cpdctl wx-ai prompt update \
     --prompt-variables '{}' \
     --input-mode structured \
     --project-id exampleString \
-    --space-id exampleString
+    --space-id exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt_delete'></a>
@@ -17166,7 +17290,8 @@ cpdctl wx-ai prompt delete --prompt-id PROMPT-ID [--project-id PROJECT-ID] [--sp
 cpdctl wx-ai prompt delete \
     --prompt-id exampleString \
     --project-id exampleString \
-    --space-id exampleString
+    --space-id exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt_update-lock'></a>
@@ -17222,7 +17347,8 @@ cpdctl wx-ai prompt update-lock \
     --locked-by IBMid-000000YYY0 \
     --project-id exampleString \
     --space-id exampleString \
-    --force=true
+    --force=true \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt_get-lock'></a>
@@ -17258,7 +17384,8 @@ cpdctl wx-ai prompt get-lock --prompt-id PROMPT-ID [--space-id SPACE-ID] [--proj
 cpdctl wx-ai prompt get-lock \
     --prompt-id exampleString \
     --space-id exampleString \
-    --project-id exampleString
+    --project-id exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt_get-input'></a>
@@ -17306,7 +17433,8 @@ cpdctl wx-ai prompt get-input \
     --input 'Some text with variables.' \
     --prompt-variables '{}' \
     --space-id exampleString \
-    --project-id exampleString
+    --project-id exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt_add-chat-item'></a>
@@ -17350,7 +17478,8 @@ cpdctl wx-ai prompt add-chat-item \
     --prompt-id exampleString \
     --chat-item '[{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]' \
     --space-id exampleString \
-    --project-id exampleString
+    --project-id exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt-session_create'></a>
@@ -17439,7 +17568,8 @@ cpdctl wx-ai prompt-session create \
     --last-updated-by IBMid-000000YYY0 \
     --lock '{"locked": true, "lock_type": "edit", "locked_by": "IBMid-000000YYY0"}' \
     --prompts '[{"id": "1c29d9a1-9ba6-422d-aa39-517b26adc147", "name": "My Prompt", "description": "My First Prompt", "prompt_variables": {}, "is_template": true, "created_at": 1711504485261, "input_mode": "structured", "prompt": {"input": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]}}]' \
-    --project-id exampleString
+    --project-id exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt-session_get'></a>
@@ -17473,7 +17603,8 @@ cpdctl wx-ai prompt-session get --session-id SESSION-ID [--project-id PROJECT-ID
 cpdctl wx-ai prompt-session get \
     --session-id exampleString \
     --project-id exampleString \
-    --prefetch=true
+    --prefetch=true \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt-session_update'></a>
@@ -17515,7 +17646,8 @@ cpdctl wx-ai prompt-session update \
     --session-id exampleString \
     --name 'Session 1' \
     --description 'My First Prompt Session' \
-    --project-id exampleString
+    --project-id exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt-session_delete'></a>
@@ -17545,7 +17677,8 @@ cpdctl wx-ai prompt-session delete --session-id SESSION-ID [--project-id PROJECT
 ```sh
 cpdctl wx-ai prompt-session delete \
     --session-id exampleString \
-    --project-id exampleString
+    --project-id exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt-session_add-entry'></a>
@@ -17652,7 +17785,8 @@ cpdctl wx-ai prompt-session add-entry \
     --prompt-variables '{}' \
     --is-template=true \
     --input-mode structured \
-    --project-id exampleString
+    --project-id exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt-session_list-entries'></a>
@@ -17694,7 +17828,8 @@ cpdctl wx-ai prompt-session list-entries \
     --session-id exampleString \
     --project-id exampleString \
     --bookmark exampleString \
-    --limit exampleString
+    --limit exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt-session_add-chat-item'></a>
@@ -17738,7 +17873,8 @@ cpdctl wx-ai prompt-session add-chat-item \
     --session-id exampleString \
     --entry-id exampleString \
     --chat-item '[{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]' \
-    --project-id exampleString
+    --project-id exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt-session_update-lock'></a>
@@ -17788,7 +17924,8 @@ cpdctl wx-ai prompt-session update-lock \
     --lock-type edit \
     --locked-by IBMid-000000YYY0 \
     --project-id exampleString \
-    --force=true
+    --force=true \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt-session_get-lock'></a>
@@ -17818,7 +17955,8 @@ cpdctl wx-ai prompt-session get-lock --session-id SESSION-ID [--project-id PROJE
 ```sh
 cpdctl wx-ai prompt-session get-lock \
     --session-id exampleString \
-    --project-id exampleString
+    --project-id exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt-session_get-entry'></a>
@@ -17854,7 +17992,8 @@ cpdctl wx-ai prompt-session get-entry --session-id SESSION-ID --entry-id ENTRY-I
 cpdctl wx-ai prompt-session get-entry \
     --session-id exampleString \
     --entry-id exampleString \
-    --project-id exampleString
+    --project-id exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_prompt-session_delete-entry'></a>
@@ -17890,7 +18029,8 @@ cpdctl wx-ai prompt-session delete-entry --session-id SESSION-ID --entry-id ENTR
 cpdctl wx-ai prompt-session delete-entry \
     --session-id exampleString \
     --entry-id exampleString \
-    --project-id exampleString
+    --project-id exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_text-extraction_create'></a>
@@ -18003,7 +18143,8 @@ cpdctl wx-ai text-extraction create \
     --assembly-md '{"anyKey": "anyValue"}' \
     --custom '{"anyKey": "anyValue"}' \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
-    --space-id exampleString
+    --space-id exampleString \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_text-extraction_list'></a>
@@ -18049,7 +18190,8 @@ cpdctl wx-ai text-extraction list \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --start exampleString \
-    --limit 50
+    --limit 50 \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_text-extraction_get'></a>
@@ -18085,7 +18227,8 @@ cpdctl wx-ai text-extraction get --id ID [--space-id SPACE-ID] [--project-id PRO
 cpdctl wx-ai text-extraction get \
     --id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_text-extraction_delete'></a>
@@ -18123,7 +18266,8 @@ cpdctl wx-ai text-extraction delete \
     --id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
-    --hard-delete=true
+    --hard-delete=true \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_training_create'></a>
@@ -18332,7 +18476,8 @@ cpdctl wx-ai training create \
     --prompt-tuning '{"base_model": {"model_id": "google/flan-t5-xl"}, "task_id": "classification", "tuning_type": "prompt_tuning", "num_epochs": 30, "learning_rate": 0.4, "accumulate_steps": 3, "verbalizer": "rte { 0 : entailment, 1 : not entailment } {{input}}", "batch_size": 10, "max_input_tokens": 100, "max_output_tokens": 100, "init_method": "text", "init_text": "exampleString"}' \
     --training-data-references '[{"id": "tune1_data.json", "type": "container", "connection": {}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
     --custom '{"anyKey": "anyValue"}' \
-    --auto-update-model=true
+    --auto-update-model=true \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_training_list'></a>
@@ -18390,7 +18535,8 @@ cpdctl wx-ai training list \
     --tag-value exampleString \
     --state queued \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_training_get'></a>
@@ -18424,7 +18570,8 @@ cpdctl wx-ai training get --training-id TRAINING-ID [--space-id SPACE-ID] [--pro
 cpdctl wx-ai training get \
     --training-id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_training_delete'></a>
@@ -18462,7 +18609,8 @@ cpdctl wx-ai training delete \
     --training-id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
-    --hard-delete=true
+    --hard-delete=true \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_training_wait'></a>
@@ -18614,7 +18762,8 @@ cpdctl wx-ai text generate \
     --space-id exampleString \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --parameters '{"decoding_method": "greedy", "length_penalty": {"decay_factor": 2.5, "start_index": 5}, "max_new_tokens": 30, "min_new_tokens": 5, "random_seed": 1, "stop_sequences": ["fail"], "temperature": 0.8, "time_limit": 600000, "top_k": 50, "top_p": 0.5, "repetition_penalty": 1.5, "truncate_input_tokens": 1, "return_options": {"input_text": true, "generated_tokens": true, "input_tokens": true, "token_logprobs": true, "token_ranks": true, "top_n_tokens": 2}, "include_stop_sequence": true}' \
-    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}'
+    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}' \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_text_generate-stream'></a>
@@ -18742,7 +18891,8 @@ cpdctl wx-ai text generate-stream \
     --space-id exampleString \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --parameters '{"decoding_method": "greedy", "length_penalty": {"decay_factor": 2.5, "start_index": 5}, "max_new_tokens": 30, "min_new_tokens": 5, "random_seed": 1, "stop_sequences": ["fail"], "temperature": 0.8, "time_limit": 600000, "top_k": 50, "top_p": 0.5, "repetition_penalty": 1.5, "truncate_input_tokens": 1, "return_options": {"input_text": true, "generated_tokens": true, "input_tokens": true, "token_logprobs": true, "token_ranks": true, "top_n_tokens": 2}, "include_stop_sequence": true}' \
-    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}'
+    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}' \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_text_tokenize'></a>
@@ -18791,7 +18941,8 @@ cpdctl wx-ai text tokenize \
     --input 'Write a tagline for an alumni association: Together we' \
     --space-id exampleString \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
-    --parameters '{"return_tokens": true}'
+    --parameters '{"return_tokens": true}' \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_text_calculate-embeddings'></a>
@@ -18853,7 +19004,8 @@ cpdctl wx-ai text calculate-embeddings \
     --inputs 'Youth craves thrills while adulthood cherishes wisdom.' \
     --space-id exampleString \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
-    --parameters '{"truncate_input_tokens": 1, "return_options": {"input_text": true}}'
+    --parameters '{"truncate_input_tokens": 1, "return_options": {"input_text": true}}' \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_text_rerank'></a>
@@ -18919,7 +19071,8 @@ cpdctl wx-ai text rerank \
     --query 'As a Youth, I craved excitement while in adulthood I followed Enthusiastic Pursuit.' \
     --space-id exampleString \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
-    --parameters '{"truncate_input_tokens": 1, "return_options": {"top_n": 2, "inputs": false, "query": false}}'
+    --parameters '{"truncate_input_tokens": 1, "return_options": {"top_n": 2, "inputs": false, "query": false}}' \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_text_chat'></a>
@@ -19079,7 +19232,8 @@ cpdctl wx-ai text chat \
     --stop exampleString,anotherTestString \
     --temperature 0 \
     --top-p 1 \
-    --time-limit 1000
+    --time-limit 1000 \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_text_chat-stream'></a>
@@ -19239,7 +19393,8 @@ cpdctl wx-ai text chat-stream \
     --stop this,the \
     --temperature 1 \
     --top-p 1 \
-    --time-limit 600000
+    --time-limit 600000 \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_time-series_forecast'></a>
@@ -19322,7 +19477,8 @@ cpdctl wx-ai time-series forecast \
     --schema '{"timestamp_column": "date", "id_columns": ["ID1"], "freq": "1h", "target_columns": ["exampleString","anotherTestString"]}' \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id exampleString \
-    --parameters '{"prediction_length": 38}'
+    --parameters '{"prediction_length": 38}' \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_document-extraction_create'></a>
@@ -19384,7 +19540,8 @@ cpdctl wx-ai document-extraction create \
     --results-reference '{"type": "github", "location": {"filepaths": [results/text_extraction/1.md], "commit": "eac469c83fc33e0f0620736c434a9536f1c12389"}}' \
     --tags t1,t2 \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
-    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_document-extraction_list'></a>
@@ -19414,7 +19571,8 @@ cpdctl wx-ai document-extraction list [--project-id PROJECT-ID] [--space-id SPAC
 ```sh
 cpdctl wx-ai document-extraction list \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
-    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_document-extraction_get'></a>
@@ -19448,7 +19606,8 @@ cpdctl wx-ai document-extraction get --id ID [--project-id PROJECT-ID] [--space-
 cpdctl wx-ai document-extraction get \
     --id exampleString \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
-    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_document-extraction_delete'></a>
@@ -19486,7 +19645,8 @@ cpdctl wx-ai document-extraction delete \
     --id exampleString \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --hard-delete=true
+    --hard-delete=true \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_synthetic-data-generation_create'></a>
@@ -19576,7 +19736,8 @@ cpdctl wx-ai synthetic-data-generation create \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --data-reference '{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}' \
-    --results-reference '{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}'
+    --results-reference '{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}' \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_synthetic-data-generation_list'></a>
@@ -19604,7 +19765,8 @@ cpdctl wx-ai synthetic-data-generation list [--project-id PROJECT-ID] [--space-i
 ```sh
 cpdctl wx-ai synthetic-data-generation list \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
-    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_synthetic-data-generation_get'></a>
@@ -19636,7 +19798,8 @@ cpdctl wx-ai synthetic-data-generation get --id ID [--project-id PROJECT-ID] [--
 cpdctl wx-ai synthetic-data-generation get \
     --id exampleString \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
-    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_synthetic-data-generation_delete'></a>
@@ -19674,7 +19837,8 @@ cpdctl wx-ai synthetic-data-generation delete \
     --id exampleString \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --hard-delete=true
+    --hard-delete=true \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_taxonomy_create'></a>
@@ -19740,7 +19904,8 @@ cpdctl wx-ai taxonomy create \
     --description exampleString \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
-    --data-reference '{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}'
+    --data-reference '{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}' \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_taxonomy_list'></a>
@@ -19768,7 +19933,8 @@ cpdctl wx-ai taxonomy list [--project-id PROJECT-ID] [--space-id SPACE-ID]
 ```sh
 cpdctl wx-ai taxonomy list \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
-    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_taxonomy_get'></a>
@@ -19800,7 +19966,8 @@ cpdctl wx-ai taxonomy get --id ID [--project-id PROJECT-ID] [--space-id SPACE-ID
 cpdctl wx-ai taxonomy get \
     --id exampleString \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
-    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_taxonomy_delete'></a>
@@ -19838,7 +20005,8 @@ cpdctl wx-ai taxonomy delete \
     --id exampleString \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --hard-delete=true
+    --hard-delete=true \
+    --version 2019-01-01
 ```
 
 <a id='wx-ai_custom-foundation-model_list'></a>
@@ -19860,7 +20028,1421 @@ Retrieve the custom foundation models.
 ```sh
    cpdctl wx-ai custom-foundation-model list \
     --start exampleString \
-    --limit 50
+    --limit 50 \
+    --version 2019-01-01
+```
+
+<a id='wx-data_ingestion_list'></a>
+## &#8226; wx-data ingestion list
+Get list of ingestion jobs.
+
+```sh
+  cpdctl wx-data ingestion list [--page PAGE-NUMBER] [--jobs-per-page JOBS-PER-PAGE] [--instance-id INSTANCE-ID]
+```
+#### Command options
+
+`--instance-id` (string)
+:    Watsonx.data Instance ID for cpd, CRN for Saas
+
+`--jobs-per-page` (int)
+:    Number of ingestion jobs per page. The default value is 25
+
+`--page` (string)
+:    Page number of ingestion job list. The default value is 1.
+
+#### Example
+```sh
+   cpdctl wx-data ingestion list \
+	 --instance-id 1735472262311515 \
+	 --jobs-per-page 10
+```
+
+<a id='wx-data_ingestion_create'></a>
+## &#8226; wx-data ingestion create
+Create an ingestion job.
+
+```sh
+  cpdctl wx-data ingestion create [command options]
+```
+#### Command options
+
+`--bucket-access-key` (string)
+:    Bucket Access Key
+
+`--bucket-details` (string)
+:    Provide Adhoc bucket details if the bucket is not already registered. format: {"secret_key":"<value>", "endpoint":"<value>", "bucket_type":"<value>", "access_key":"<value>", "bucket_name":"<value>", "region":"<value>"}
+
+`--bucket-endpoint` (string)
+:    Bucket Endpoint
+
+`--bucket-name` (string)
+:    Bucket Name
+
+`--bucket-region` (string)
+:    Bucket Region
+
+`--bucket-secret-key` (string)
+:    Bucket Secret Key
+
+`--bucket-type` (string)
+:    Bucket Type (amazon_s3, aws_s3, minio, ibm_cos, ibm_ceph, adls_gen1, adls_gen2, google_cs, ibm_storage_scale, ozone)
+
+`--csv-encoding` (string)
+:    Encoding used in CSV file. The default value is utf-8
+
+`--csv-escape-character` (string)
+:    Escape character of CSV file. The default value is \\
+
+`--csv-field-delimiter` (string)
+:    Field delimiter of CSV file. The default value is ,
+
+`--csv-header` ()
+:    Identify if header exists in CSV file. The default value is true (default true)
+
+`--csv-line-delimiter` (string)
+:    Line delimiter of CSV file. The default value is \n
+
+`--csv-property` (string)
+:    Provide CSV file properties. format: {"header":"<value>", "encoding":"<value>", "escape_character":"<value>", "line_delimiter":"<value>", "field_delimiter":"<value>"}
+
+`--database-auth-value` (string)
+:    Database API key. Applicable for DB2
+
+`--database-cert-extension` (string)
+:    Certificate file extension (pem, crt, cert, cer)
+
+`--database-certificate` (string)
+:    Certificate content as string
+
+`--database-connection-mode` (string)
+:    Connection mode for Oracle (sid, service_name)
+
+`--database-connection-mode-value` (string)
+:    Connection mode value for Oracle
+
+`--database-host` (string)
+:    Database hostname. Example: your.hn.com, 1.23.456.789
+
+`--database-id` (string)
+:    Database ID
+
+`--database-isssl` ()
+:    Port is SSL enabled. Default value is false
+
+`--database-name` (string)
+:    Database name
+
+`--database-password` (string)
+:    Database Password
+
+`--database-port` (string)
+:    Database Port. Example: 1234
+
+`--database-schema` (string)
+:    Database source schema name
+
+`--database-table` (string)
+:    Database source table name
+
+`--database-type` (string)
+:    Database type (db2, netezza, oracle, postgresql, snowflake, sqlserver, mariadb)
+
+`--database-user-id` (string)
+:    Database username
+
+`--database-warehouse` (string)
+:    Warehouse name for Snowflake
+
+`--driver-cores` (int)
+:    Driver core(s) configuration for Spark engine
+
+`--driver-memory` (string)
+:    Driver memory configuration (in GB) for Spark engine. The default value is 2G
+
+`--engine-id` (string)
+:    (Required) Spark Engine ID for Spark ingestion or "lite-ingestion" for faster ingestion
+
+`--execute-config` (string)
+:    Provide Spark engine configurations. format: {"executor_memory":"<value>", "num_executors":"<value>", "driver_memory":"<value>", "driver_cores":"<value>", "executor_cores":"<value>"}
+
+`--executor-cores` (int)
+:    Executor core(s) configuration for Spark engine
+
+`--executor-memory` (string)
+:    Executor memory configuration (in GB) for Spark engine. The default value is 2G
+
+`--iceberg-catalog` (string)
+:    Source iceberg catalog name
+
+`--iceberg-schema` (string)
+:    Source iceberg schema name
+
+`--iceberg-snapshot-id` (string)
+:    Source iceberg snapshotId
+
+`--iceberg-table` (string)
+:    Source iceberg table name
+
+`--iceberg-warehouse` (string)
+:    Source iceberg warehouse name
+
+`--instance-id` (string)
+:    Watsonx.data Instance ID for cpd, CRN for Saas
+
+`--is-local-ingestion` ()
+:    Ingestion mode is local (if True); Ingestion mode is remote (if False). The default value is false.
+
+`--job-id` (string)
+:    Ingestion Job ID used to differentiate between jobs. If not provided, a unique random Job ID will be generated by default
+
+`--num-executors` (int)
+:    Number of executors to assign for Spark engine
+
+`--partition-by` (string)
+:    Partition by expression of the target table
+
+`--schema` (string)
+:    Schema definitions for the source data. format: {"headerName":"<value>", "type":"<value>", "fieldId":"<value>"}
+
+`--source-data-files` (string)
+:    Comma separated source file(s) or directory path
+
+`--source-database` (string)
+:    Provide Adhoc Source Database details if db is not already registered. format: {"authentication_value":"<value>", "database_name":"<value>", "connection_mode_value":"<value>", "certificate":"<value>", "schema_name":"<value>", "table_name":"<value>", "userId":"<value>", "database_type":"<value>", "password":"<value>", "warehouse_name":"<value>", "cert_extension":"<value>", "database_id":"<value>", "port":"<value>", "validate_server_certificate":"<value>", "connection_mode":"<value>", "host":"<value>", "isssl":"<value>"}
+
+`--source-file-type` (string)
+:    Source file types (parquet, csv, json, orc or avro)
+
+`--source-iceberg-table` (string)
+:    Provide source iceberg details. format: {"catalog_name":"<value>", "warehouse_name":"<value>", "snapshot_id":"<value>", "schema_name":"<value>", "table_name":"<value>"}
+
+`--sync-status` ()
+:    Get status synchronously as the ingest job is submitted. Default value is false
+
+`--target-table` (string)
+:    (Required) Target table name in format catalog.schema.table
+
+`--target-write-mode` (string)
+:    Determines if the spark job should append to target or overwrite it. The default value is append. Allowable values are: append, overwrite
+
+`--transformation-schema` (string)
+:    Transformation schema for altering the table schema. format: {"new_type":"<value>", "old_column":"<value>", "new_column":"<value>"}
+
+`--username` (string)
+:    CPD/SaaS Username
+
+`--validate-csv-header` ()
+:    Validate CSV header if the target table exist. The default value is false.
+
+`--validate-db-server-cert` ()
+:    Verify provided certificate. Default value is false
+
+#### Example
+```sh
+   Remote Ingestion:
+	 cpdctl wx-data ingestion create \
+	  --instance-id 1735472262311515 \
+	  --source-data-files s3://sample-bucket/sample_file.csv \
+	  --csv-property '{"header": true, "encoding": "utf-8", "escape_character": "\\", "line_delimiter": "\n", "field_delimiter": ","}' \
+	  --engine-id  spark637 \
+	  --target-table sample_catalog.sample_schema.sample_table
+ 
+	Lite Ingestion:
+	 cpdctl wx-data ingestion create \
+	  --instance-id 1735472262311515 \
+	  --source-data-files /path_to_file/file.orc \
+	  --bucket-name transient_bucket_name \
+	  --engine-id lite-ingestion \
+	  --target-table sample_catalog.sample_schema.sample_table
+	 
+	Database Ingestion:
+	 cpdctl wx-data ingestion create \
+	  --instance-id 1735472262311515 \
+	  --engine-id spark266 \
+	  --database-id sample_database_id \
+	  --database-schema sample_database_name \
+	  --database-table sample_database_table \
+	  --target-table sample_catalog.sample_schema.sample_table
+	 
+	Iceberg Ingestion:
+	 cpdctl wx-data ingestion create \
+	  --instance-id 1735472262311515 \
+	  --iceberg-catalog sample_iceberg_catalog \
+	  --iceberg-schema sample_iceberg_schema \
+	  --iceberg-snapshot-id 7823318841638214979 \
+	  --iceberg-table sample_iceberg_table  \
+	  --iceberg-warehouse sample_iceberg_warehouse \
+	  --target-table sample_catalog.sample_schema.sample_table \
+	  --engine-id spark266 \
+	  --bucket-name iceberg-data
+```
+
+<a id='wx-data_ingestion_get'></a>
+## &#8226; wx-data ingestion get
+
+Get a submitted ingestion job.
+
+```sh
+cpdctl wx-data ingestion get --job-id JOB-ID [--engine-logs] [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--job-id` (string)
+:   ingestion job id. Required.
+
+    Ingestion job id.
+
+`--instance-id` (string)
+:   watsonx.data instance ID.
+
+    Watsonx.data Instance ID for cpd, CRN for Saas.
+
+`--cancel-job` (bool)
+:   Cancel the running Job.
+
+    Cancel the running Job. Default value is false.
+
+`--engine-logs` (bool)
+:   Print the ingestion log.
+
+    Print the ingestion log (If True). Default value is false.
+
+#### Example
+
+```sh
+cpdctl wx-data ingestion get \
+    --instance-id 1735472262311515 \
+    --job-id ingestion-123
+    --engine-logs
+```
+
+<a id='wx-data_bucket_list'></a>
+## &#8226; wx-data bucket list
+
+Get list of registered buckets.
+
+```sh
+cpdctl wx-data bucket list [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--instance-id` (string)
+:   CRN.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9:\/-]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data bucket list \
+    --instance-id exampleString
+```
+
+<a id='wx-data_bucket_create'></a>
+## &#8226; wx-data bucket create
+
+Register a new bucket.
+
+```sh
+cpdctl wx-data bucket create --bucket-type BUCKET-TYPE --description DESCRIPTION --managed-by MANAGED-BY [--associated-catalog ASSOCIATED-CATALOG | --associated-catalog-catalog-name ASSOCIATED-CATALOG-CATALOG-NAME --associated-catalog-catalog-tags ASSOCIATED-CATALOG-CATALOG-TAGS --associated-catalog-catalog-type ASSOCIATED-CATALOG-CATALOG-TYPE] [--bucket-details BUCKET-DETAILS | --bucket-details-access-key BUCKET-DETAILS-ACCESS-KEY --bucket-details-bucket-name BUCKET-DETAILS-BUCKET-NAME --bucket-details-endpoint BUCKET-DETAILS-ENDPOINT --bucket-details-key-file BUCKET-DETAILS-KEY-FILE --bucket-details-provider BUCKET-DETAILS-PROVIDER --bucket-details-region BUCKET-DETAILS-REGION --bucket-details-secret-key BUCKET-DETAILS-SECRET-KEY] [--bucket-display-name BUCKET-DISPLAY-NAME] [--region REGION] [--storage-details STORAGE-DETAILS | --storage-details-access-key STORAGE-DETAILS-ACCESS-KEY --storage-details-application-id STORAGE-DETAILS-APPLICATION-ID --storage-details-auth-mode STORAGE-DETAILS-AUTH-MODE --storage-details-container-name STORAGE-DETAILS-CONTAINER-NAME --storage-details-directory-id STORAGE-DETAILS-DIRECTORY-ID --storage-details-endpoint STORAGE-DETAILS-ENDPOINT --storage-details-sas-token STORAGE-DETAILS-SAS-TOKEN --storage-details-secret-key STORAGE-DETAILS-SECRET-KEY --storage-details-storage-account-name STORAGE-DETAILS-STORAGE-ACCOUNT-NAME] [--tags TAGS] [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--bucket-type` (string)
+:   bucket type. Required.
+
+    Allowable values are: `aws_s3`, `minio`, `ibm_cos`, `ibm_ceph`, `adls_gen1`, `adls_gen2`, `google_cs`. The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-_]+$/`.
+
+`--description` (string)
+:   bucket description. Required.
+
+    The maximum length is `50` characters. The minimum length is `0` characters. The value must match regular expression `/^.*$/`.
+
+`--managed-by` (string)
+:   managed by. Required.
+
+    Allowable values are: `ibm`, `customer`. The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
+
+`--associated-catalog` (<a href="#cli-bucket-catalog-example-schema-wx-data">`BucketCatalog`</a>)
+:   bucket catalog. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--associated-catalog=@path/to/file.json`.
+
+`--bucket-details` (<a href="#cli-bucket-details-example-schema-wx-data">`BucketDetails`</a>)
+:   bucket details. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--bucket-details=@path/to/file.json`.
+
+`--bucket-display-name` (string)
+:   bucket display name.
+
+    The maximum length is `63` characters. The minimum length is `3` characters. The value must match regular expression `/^.*$/`.
+
+`--region` (string)
+:   region where the bucket is located.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--storage-details` (<a href="#cli-storage-details-example-schema-wx-data">`StorageDetails`</a>)
+:   storage details. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--storage-details=@path/to/file.json`.
+
+`--tags` ([]string)
+:   tags.
+
+    The list items must match regular expression `/^.*$/`. The maximum length is `10000` items. The minimum length is `0` items.
+
+`--instance-id` (string)
+:   CRN.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9:\/-]+$/`.
+
+`--associated-catalog-catalog-name` (string)
+:   catalog name. This option provides a value for a sub-field of the JSON option 'associated-catalog'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `0` characters. The value must match regular expression `/^[a-zA-Z0-9\\-_]+$/`.
+
+`--associated-catalog-catalog-tags` ([]string)
+:   catalog tags. This option provides a value for a sub-field of the JSON option 'associated-catalog'. It is mutually exclusive with that option.
+
+    The list items must match regular expression `/^.*$/`. The maximum length is `10000` items. The minimum length is `0` items.
+
+`--associated-catalog-catalog-type` (string)
+:   catalog type. This option provides a value for a sub-field of the JSON option 'associated-catalog'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--bucket-details-access-key` (string)
+:   Access key ID, encrypted during bucket registration. This option provides a value for a sub-field of the JSON option 'bucket-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
+
+`--bucket-details-bucket-name` (string)
+:   actual bucket name. This option provides a value for a sub-field of the JSON option 'bucket-details'. It is mutually exclusive with that option.
+
+    The maximum length is `63` characters. The minimum length is `3` characters. The value must match regular expression `/^[a-zA-Z0-9\\-_]+$/`.
+
+`--bucket-details-endpoint` (string)
+:   Cos endpoint. This option provides a value for a sub-field of the JSON option 'bucket-details'. It is mutually exclusive with that option.
+
+    The maximum length is `1024` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-:\/.?=]+/`.
+
+`--bucket-details-key-file` (string)
+:   Key file, encrypted during bucket registration. This option provides a value for a sub-field of the JSON option 'bucket-details'. It is mutually exclusive with that option.
+
+    The maximum length is `5000` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--bucket-details-provider` (string)
+:   bucket provider. This option provides a value for a sub-field of the JSON option 'bucket-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--bucket-details-region` (string)
+:   Region where the bucket is located. This option provides a value for a sub-field of the JSON option 'bucket-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--bucket-details-secret-key` (string)
+:   Secret access key, encrypted during bucket registration. This option provides a value for a sub-field of the JSON option 'bucket-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
+
+`--storage-details-access-key` (string)
+:   Access key ID, encrypted during bucket registration. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
+
+`--storage-details-application-id` (string)
+:   Application Id for bucket registration. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
+
+`--storage-details-auth-mode` (string)
+:   Auth mode types. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
+
+    The maximum length is `1024` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
+
+`--storage-details-container-name` (string)
+:   actual container name. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
+
+    The maximum length is `63` characters. The minimum length is `3` characters. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
+
+`--storage-details-directory-id` (string)
+:   Directory Id for bucket registration. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
+
+`--storage-details-endpoint` (string)
+:   ADLS endpoint. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
+
+    The maximum length is `1024` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-:\/.?=]+/`.
+
+`--storage-details-sas-token` (string)
+:   sas token, encrypted during bucket registration. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
+
+    The maximum length is `256` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
+
+`--storage-details-secret-key` (string)
+:   Secret access key, encrypted during bucket registration. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
+
+`--storage-details-storage-account-name` (string)
+:   actual storage name. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
+
+    The maximum length is `63` characters. The minimum length is `3` characters. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
+
+#### Examples
+
+```sh
+cpdctl wx-data bucket create \
+    --bucket-type ibm_cos \
+    --description 'COS bucket for customer data' \
+    --managed-by ibm \
+    --associated-catalog '{"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tag_1","catalog_tag_2"], "catalog_type": "iceberg"}' \
+    --bucket-details '{"access_key": "b9cbf248ea5c4c96947e64407108559j", "bucket_name": "sample-bucket", "endpoint": "https://s3.<region>.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm_cos", "region": "us-south", "secret_key": "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"}' \
+    --bucket-display-name sample-bucket-displayname \
+    --region us-south \
+    --storage-details '{"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}' \
+    --tags bucket-tag1,bucket-tag2 \
+    --instance-id exampleString
+```
+
+<a id='wx-data_bucket_get'></a>
+## &#8226; wx-data bucket get
+
+Get a registered bucket.
+
+```sh
+cpdctl wx-data bucket get --bucket-id BUCKET-ID [--bucket-name BUCKET-NAME] [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--bucket-id` (string)
+:   bucket id. Required.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--bucket-name` (string)
+:   bucket name.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--instance-id` (string)
+:   CRN.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data bucket get \
+    --bucket-id exampleString \
+    --bucket-name exampleString \
+    --instance-id exampleString
+```
+
+<a id='wx-data_bucket_delete'></a>
+## &#8226; wx-data bucket delete
+
+Deregister a bucket.
+
+```sh
+cpdctl wx-data bucket delete --bucket-id BUCKET-ID [--bucket-name BUCKET-NAME] [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--bucket-id` (string)
+:   bucket id. Required.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--bucket-name` (string)
+:   bucket name.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--instance-id` (string)
+:   CRN.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data bucket delete \
+    --bucket-id exampleString \
+    --bucket-name exampleString \
+    --instance-id exampleString
+```
+
+<a id='wx-data_bucket_activate'></a>
+## &#8226; wx-data bucket activate
+
+Activate a registered bucket.
+
+```sh
+cpdctl wx-data bucket activate --bucket-id BUCKET-ID [--bucket-name BUCKET-NAME] [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--bucket-id` (string)
+:   bucket id. Required.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--bucket-name` (string)
+:   bucket name.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--instance-id` (string)
+:   CRN.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data bucket activate \
+    --bucket-id exampleString \
+    --bucket-name exampleString \
+    --instance-id exampleString
+```
+
+<a id='wx-data_bucket_deactivate'></a>
+## &#8226; wx-data bucket deactivate
+
+Deactivate a bucket.
+
+```sh
+cpdctl wx-data bucket deactivate --bucket-id BUCKET-ID [--bucket-name BUCKET-NAME] [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--bucket-id` (string)
+:   bucket id. Required.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--bucket-name` (string)
+:   bucket name.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--instance-id` (string)
+:   CRN.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data bucket deactivate \
+    --bucket-id exampleString \
+    --bucket-name exampleString \
+    --instance-id exampleString
+```
+
+<a id='wx-data_database_list'></a>
+## &#8226; wx-data database list
+
+Get list of databases.
+
+```sh
+cpdctl wx-data database list [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--instance-id` (string)
+:   CRN.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data database list \
+    --instance-id exampleString
+```
+
+<a id='wx-data_database_create'></a>
+## &#8226; wx-data database create
+
+Add or create a new database.
+
+```sh
+cpdctl wx-data database create --database-display-name DATABASE-DISPLAY-NAME --database-type DATABASE-TYPE [--associated-catalog ASSOCIATED-CATALOG | --associated-catalog-catalog-name ASSOCIATED-CATALOG-CATALOG-NAME --associated-catalog-catalog-tags ASSOCIATED-CATALOG-CATALOG-TAGS --associated-catalog-catalog-type ASSOCIATED-CATALOG-CATALOG-TYPE] [--created-on CREATED-ON] [--database-details DATABASE-DETAILS | --database-details-authentication-type DATABASE-DETAILS-AUTHENTICATION-TYPE --database-details-authentication-value DATABASE-DETAILS-AUTHENTICATION-VALUE --database-details-broker-authentication-password DATABASE-DETAILS-BROKER-AUTHENTICATION-PASSWORD --database-details-broker-authentication-type DATABASE-DETAILS-BROKER-AUTHENTICATION-TYPE --database-details-broker-authentication-user DATABASE-DETAILS-BROKER-AUTHENTICATION-USER --database-details-broker-port DATABASE-DETAILS-BROKER-PORT --database-details-broker-host DATABASE-DETAILS-BROKER-HOST --database-details-certificate DATABASE-DETAILS-CERTIFICATE --database-details-certificate-extension DATABASE-DETAILS-CERTIFICATE-EXTENSION --database-details-connection-method DATABASE-DETAILS-CONNECTION-METHOD --database-details-connection-mode DATABASE-DETAILS-CONNECTION-MODE --database-details-connection-mode-value DATABASE-DETAILS-CONNECTION-MODE-VALUE --database-details-connection-type DATABASE-DETAILS-CONNECTION-TYPE --database-details-controller-authentication-password DATABASE-DETAILS-CONTROLLER-AUTHENTICATION-PASSWORD --database-details-controller-authentication-type DATABASE-DETAILS-CONTROLLER-AUTHENTICATION-TYPE --database-details-controller-authentication-user DATABASE-DETAILS-CONTROLLER-AUTHENTICATION-USER --database-details-coordinator-host DATABASE-DETAILS-COORDINATOR-HOST --database-details-coordinator-port DATABASE-DETAILS-COORDINATOR-PORT --database-details-cpd-hostname DATABASE-DETAILS-CPD-HOSTNAME --database-details-credentials-key DATABASE-DETAILS-CREDENTIALS-KEY --database-details-database-name DATABASE-DETAILS-DATABASE-NAME --database-details-hostname DATABASE-DETAILS-HOSTNAME --database-details-hostname-in-certificate DATABASE-DETAILS-HOSTNAME-IN-CERTIFICATE --database-details-hosts DATABASE-DETAILS-HOSTS --database-details-informix-server DATABASE-DETAILS-INFORMIX-SERVER --database-details-password DATABASE-DETAILS-PASSWORD --database-details-port DATABASE-DETAILS-PORT --database-details-project-id DATABASE-DETAILS-PROJECT-ID --database-details-sasl DATABASE-DETAILS-SASL --database-details-sasl-mechanism DATABASE-DETAILS-SASL-MECHANISM --database-details-service-api-key DATABASE-DETAILS-SERVICE-API-KEY --database-details-service-hostname DATABASE-DETAILS-SERVICE-HOSTNAME --database-details-service-password DATABASE-DETAILS-SERVICE-PASSWORD --database-details-service-port DATABASE-DETAILS-SERVICE-PORT --database-details-service-ssl DATABASE-DETAILS-SERVICE-SSL --database-details-service-token-url DATABASE-DETAILS-SERVICE-TOKEN-URL --database-details-service-username DATABASE-DETAILS-SERVICE-USERNAME --database-details-ssl DATABASE-DETAILS-SSL --database-details-tables DATABASE-DETAILS-TABLES --database-details-username DATABASE-DETAILS-USERNAME --database-details-validate-server-certificate DATABASE-DETAILS-VALIDATE-SERVER-CERTIFICATE --database-details-verify-host-name DATABASE-DETAILS-VERIFY-HOST-NAME] [--database-properties DATABASE-PROPERTIES] [--description DESCRIPTION] [--tags TAGS] [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--database-display-name` (string)
+:   Database display name. Required.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-type` (string)
+:   Connector type. Required.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--associated-catalog` (<a href="#cli-database-catalog-example-schema-wx-data">`DatabaseCatalog`</a>)
+:   database catalog. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--associated-catalog=@path/to/file.json`.
+
+`--created-on` (string)
+:   Created on.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--database-details` (<a href="#cli-database-details-example-schema-wx-data">`DatabaseDetails`</a>)
+:   database details. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--database-details=@path/to/file.json`.
+
+`--database-properties` (<a href="#cli-database-registration-prototype-database-properties-items-example-schema-wx-data">`DatabaseRegistrationPrototypeDatabasePropertiesItems[]`</a>)
+:   This will hold all the properties for a custom database.
+
+    The maximum length is `10000` items. The minimum length is `0` items.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--database-properties=@path/to/file.json`.
+
+`--description` (string)
+:   Database description.
+
+    The maximum length is `50` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--tags` ([]string)
+:   tags.
+
+    The list items must match regular expression `/^[a-zA-Z0-9\\-]+$/`. The maximum length is `10000` items. The minimum length is `0` items.
+
+`--instance-id` (string)
+:   CRN.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+`--associated-catalog-catalog-name` (string)
+:   catalog name. This option provides a value for a sub-field of the JSON option 'associated-catalog'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `0` characters. The value must match regular expression `/^[a-zA-Z0-9\\-_]+$/`.
+
+`--associated-catalog-catalog-tags` ([]string)
+:   catalog tags. This option provides a value for a sub-field of the JSON option 'associated-catalog'. It is mutually exclusive with that option.
+
+    The list items must match regular expression `/^.*$/`. The maximum length is `10000` items. The minimum length is `0` items.
+
+`--associated-catalog-catalog-type` (string)
+:   catalog type. This option provides a value for a sub-field of the JSON option 'associated-catalog'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--database-details-authentication-type` (string)
+:   Authentication method. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-authentication-value` (string)
+:   Authentication method. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-broker-authentication-password` (string)
+:   Broker authentication password. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-broker-authentication-type` (string)
+:   Broker authentication type. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-broker-authentication-user` (string)
+:   Broker authentication user. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-broker-port` (int64)
+:   Broker port. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum value is `65535`. The minimum value is `1`.
+
+`--database-details-broker-host` (string)
+:   Broker host. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-certificate` (string)
+:   contents of a pem/crt file. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `20000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-=]+/`.
+
+`--database-details-certificate-extension` (string)
+:   extension of the certificate file. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--database-details-connection-method` (string)
+:   connection mode. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-connection-mode` (string)
+:   connection mode. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-connection-mode-value` (string)
+:   connection mode value. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-connection-type` (string)
+:   Connection type. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-controller-authentication-password` (string)
+:   Controller authentication password. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-controller-authentication-type` (string)
+:   Controller authentication type. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-controller-authentication-user` (string)
+:   Controller authentication user. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-coordinator-host` (string)
+:   Coordinator host. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-:\/.?=@]+$/`.
+
+`--database-details-coordinator-port` (int64)
+:   Coordinator port. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum value is `65535`. The minimum value is `1`.
+
+`--database-details-cpd-hostname` (string)
+:   CPD Hostname. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--database-details-credentials-key` (string)
+:   Base 64 encoded json file. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-database-name` (string)
+:   Database name. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-hostname` (string)
+:   Host name. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-:\/.?=@]+/`.
+
+`--database-details-hostname-in-certificate` (string)
+:   Hostname in certificate. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-hosts` (string)
+:   String of hostname:port. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-:\/.?=@]+/`.
+
+`--database-details-informix-server` (string)
+:   informix server value. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-password` (string)
+:   Psssword. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-port` (int64)
+:   Port. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum value is `65535`. The minimum value is `1`.
+
+`--database-details-project-id` (string)
+:   Project ID. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-sasl` (bool)
+:   SASL Mode. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+`--database-details-sasl-mechanism` (string)
+:   sasl mechanism for kafka. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-service-api-key` (string)
+:   service api key. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--database-details-service-hostname` (string)
+:   service hostname. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--database-details-service-password` (string)
+:   service password. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--database-details-service-port` (int64)
+:   Service Port. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum value is `65535`. The minimum value is `1`.
+
+`--database-details-service-ssl` (bool)
+:   Service SSL Mode. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+`--database-details-service-token-url` (string)
+:   service token url. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--database-details-service-username` (string)
+:   service username. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--database-details-ssl` (bool)
+:   SSL Mode. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+`--database-details-tables` (string)
+:   Only for Kafka - Add kafka tables. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-username` (string)
+:   Username. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--database-details-validate-server-certificate` (bool)
+:   Verify certificate. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+`--database-details-verify-host-name` (bool)
+:   Verify host name. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
+
+#### Examples
+
+```sh
+cpdctl wx-data database create \
+    --database-display-name new_database \
+    --database-type db2 \
+    --associated-catalog '{"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tag_1","catalog_tag_2"], "catalog_type": "iceberg"}' \
+    --created-on 1686792721 \
+    --database-details '{"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_port": 4553, "broker_host": "samplehost", "certificate": "contents of a pem/crt file", "certificate_extension": "pem/crt", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "hostname": "db2@<hostname>.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true}' \
+    --database-properties '[{"encrypt": true, "key": "abc", "value": "xyz"}]' \
+    --description 'db2 extenal database description' \
+    --tags testdatabase,userdatabase \
+    --instance-id exampleString
+```
+
+<a id='wx-data_database_get'></a>
+## &#8226; wx-data database get
+
+Get a registered databases.
+
+```sh
+cpdctl wx-data database get --database-id DATABASE-ID [--database-name DATABASE-NAME] [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--database-id` (string)
+:   database id. Required.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--database-name` (string)
+:   database name.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--instance-id` (string)
+:   CRN.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data database get \
+    --database-id exampleString \
+    --database-name exampleString \
+    --instance-id exampleString
+```
+
+<a id='wx-data_database_delete'></a>
+## &#8226; wx-data database delete
+
+Delete a database.
+
+```sh
+cpdctl wx-data database delete --database-id DATABASE-ID [--database-name DATABASE-NAME] [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--database-id` (string)
+:   database id. Required.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--database-name` (string)
+:   database name.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--instance-id` (string)
+:   CRN.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data database delete \
+    --database-id exampleString \
+    --database-name exampleString \
+    --instance-id exampleString
+```
+
+<a id='wx-data_engine_list'></a>
+## &#8226; wx-data engine list
+
+Get all engine details.
+
+```sh
+cpdctl wx-data engine list [--instance-id INSTANCE-ID] [--engine-name ENGINE-NAME]
+```
+
+
+#### Command options
+
+`--instance-id` (string)
+:   CRN.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+`--engine-name` (string)
+:   engine name.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data engine list \
+    --instance-id exampleString \
+    --engine-name exampleString
+```
+
+<a id='wx-data_engine_create'></a>
+## &#8226; wx-data engine create
+Create a new engine.
+
+```sh
+  cpdctl wx-data engine create [command options]
+```
+#### Command options
+
+`--associated-catalogs` (string)
+:    Associated catalogs
+
+`--bucket-name` (string)
+:    Bucket name, applicable for Milvus
+
+`--bucket-type` (string)
+:    Bucket Type (amazon_s3, aws_s3, minio, ibm_cos, ibm_ceph, adls_gen1, adls_gen2, google_cs, ibm_storage_scale, ozone), applicable for Milvus
+
+`--description` (string)
+:    Engine description
+
+`--display-name` (string)
+:    (Required), Engine display name
+
+`--engine-api-key` (string)
+:    Api key to work with the saas IAE instance.Required only for saas
+
+`--engine-connection-string` (string)
+:    External engine connection string
+
+`--engine-coordinator` (string)
+:    Provide ad-hoc coordinator details in JSON format. Example: '{"node_type": "bx2.4x16", "quantity": 1}'
+
+`--engine-details` (string)
+:    Provide adhoc engine details. format: {"api_key":"<api_key>", "connection_string":"<connection_string>", "coordinator": {"node_type": "<node_type>", "quantity": <quantity>}, "instance_id": "<instance_id>", "managed_by": "<managed_by>", "size_config": "<size_config>", "worker": {"node_type": "<node_type>", "quantity": <quantity>}}
+
+`--engine-managed-by` (string)
+:    Engine managed by
+
+`--engine-size-config` (string)
+:    Size config. Allowable values are: starter, small, medium, large, xlarge, xxlarge, custom
+
+`--engine-worker` (string)
+:    Provide ad-hoc worker details in JSON format. Example: '{"node_type": "bx2.4x16", "quantity": 1}'
+
+`--instance-id` (string)
+:    Watsonx.data Instance ID for cpd, CRN for Saas
+
+`--origin` (string)
+:    (Required), allowable values are: native, external, discover
+
+`--other-engine-type` (string)
+:    (Required) Engine Type, when type is other
+
+`--region` (string)
+:    Region (cloud)
+
+`--root-path` (string)
+:    Root path, applicable for Milvus
+
+`--spark-home-bucket-name` (string)
+:    Home bucket name for spark. Required for SaaS environments
+
+`--spark-home-volume-id` (string)
+:    Existing home volume ID for spark. Only for CPD environments
+
+`--spark-home-volume-name` (string)
+:    Name for the new home volume. Only for CPD environments
+
+`--spark-home-volume-storage-class` (string)
+:    Storage class of the volume. Only for CPD environments
+
+`--spark-home-volume-storage-size` (string)
+:    Storage size of the volume. Minimum 5Gi to maximum 1024Gi. Only for CPD environments
+
+`--spark-scale-config` (string)
+:    Spark engine scale config. Only for SaaS environments. Format: '{"node_type": "<node_type>", "number_of_nodes":<number_of_nodes>}'. Allowable values for node_type: small, medium, large. number_of_nodes must be at least 1
+
+`--spark-version` (string)
+:    The spark version for the native engine. eg: 3.4
+
+`--tags` (string)
+:    Engine tags
+
+`--type` (string)
+:    (Required) Engine type. Supported types: presto, spark, prestissimo, netezza, db2, milvus, other
+
+`--version` (string)
+:    Version like 0.278 for presto or else
+
+#### Example
+```sh
+ Presto or Prestissimo:
+	 cpdctl wx-data engine create \
+	 --origin native \
+	 --type presto \
+	 --associated-catalogs iceberg-data,hive-data \
+	 --description 'presto engine for running sql queries' \
+	 --display-name sampleEngine \
+	 --region us-south \
+	 --tags tag1,tag2 \
+	 --version v0.286 \
+	 --instance-id 875463829 \
+	 --engine-details '{
+		 "api_key": "<api_key>", 
+		 "connection_string": "1.2.3.4", 
+		 "managed_by": "fully/self", 
+		 "size_config": "starter", 
+		 "coordinator": {"node_type": "bx2.4x16", "quantity": 1 }, 
+		 "worker": { "node_type": "bx2.4x16", "quantity": 1 }
+	 }'
+ 
+ Spark:
+	cpdctl wx-data engine create \
+	--engine-type spark  \
+	--engine-details '{
+		 "api_key":"<api_key>",
+		 "connection_string":"https://api.us-south.ae.cloud.ibm.com/v3/analytics_engines/2fc8",
+		 "managed_by":"fully/self"
+	 }' 
+	--display-name sparkEngine \
+	--origin external \
+	--instance-id 17378
+ 
+		 OR
+	 
+	cpdctl wx-data engine create \
+	--engine-type spark  \
+	--spark-version 3.4  \
+	--spark-home-volume-name newvolspark2 \
+	--spark-home-volume-storage-class nfs-client \
+	--spark-home-volume-storage-size 5Gi \
+	--display-name sparkNativeEngine \
+	--origin native \
+	--instance-id 1737804849506753 \
+	--spark-home-bucket-name bucketcos \
+	--spark-scale-config '{"node_type": "small", "number_of_nodes":1}'
+ 
+ 
+ Milvus:
+	 cpdctl wx-data engine create \
+	 --origin native \
+	 --type milvus \
+	 --display-name sampleEngine \
+	 --bucket-name sampleBucketName \
+	 --instance-id 875463829 \
+	 --root-path /filepath \
+	 --engine-size-config starter
+ 
+ Netezza:
+	 cpdctl wx-data engine create \
+	 --origin external \
+	 --description Netezza engine \
+	 --type netezza \
+	 --display-name sampleEngine \
+	 --instance-id 875463829 \
+	 --engine-details '{"connection_string": "connectionStringValue"}'
+ 
+ Db2:
+	 cpdctl wx-data engine create \
+	 --origin external \
+	 --description db2 engine \
+	 --type db2 \
+	 --display-name sampleEngine \
+	 --instance-id 875463829 \
+	 --engine-details '{"connection_string": "connectionStringValue"}'
+ 
+ Other:
+	 cpdctl wx-data engine create \
+	 --origin external \
+	 --type other \
+	 --display-name sampleOtherEngine \
+	 --instance-id 875463829 \
+	 --other-engine-type 'SampleEngineType' \
+	 --engine-connection-string sampleConnectionString
+ 
+```
+
+<a id='wx-data_engine_delete'></a>
+## &#8226; wx-data engine delete
+
+Delete a presto engine.
+
+```sh
+cpdctl wx-data engine delete [--engine-id ENGINE-ID] [--engine-name ENGINE-NAME] [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--engine-id` (string)
+:   engine id.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--engine-name` (string)
+:   Engine name.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--instance-id` (string)
+:   CRN.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data engine delete \
+    --engine-id exampleString \
+    --engine-name exampleString \
+    --instance-id exampleString
+```
+
+<a id='wx-data_engine_attach'></a>
+## &#8226; wx-data engine attach
+
+Associate one or more catalogs to a presto engine.
+
+```sh
+cpdctl wx-data engine attach [--catalog-names CATALOG-NAMES] [--engine-id ENGINE-ID] [--engine-name ENGINE-NAME] [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--catalog-names` (string)
+:   catalog names.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-_,]+$/`.
+
+`--engine-id` (string)
+:   engine id.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--engine-name` (string)
+:   Engine name.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--instance-id` (string)
+:   CRN.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data engine attach \
+    --engine-id exampleString \
+    --catalog-names exampleString \
+    --engine-name exampleString \
+    --instance-id exampleString
+```
+
+<a id='wx-data_engine_detach'></a>
+## &#8226; wx-data engine detach
+
+Disassociate one or more catalogs from a presto engine.
+
+```sh
+cpdctl wx-data engine detach --catalog-names CATALOG-NAMES [--engine-id ENGINE-ID] [--engine-name ENGINE-NAME] [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--catalog-names` (string)
+:   Catalog id(s) to be stopped, comma separated. Required.
+
+    The maximum length is `1000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-_,]+/`.
+
+`--engine-id` (string)
+:   engine id.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--engine-name` (string)
+:   Engine name.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--instance-id` (string)
+:   CRN.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data engine detach \
+    --engine-id exampleString \
+    --catalog-names exampleString \
+    --engine-name exampleString \
+    --instance-id exampleString
+```
+
+<a id='wx-data_sparkjob_list'></a>
+## &#8226; wx-data sparkjob list
+List all applications in a spark engine.
+
+```sh
+  cpdctl wx-data sparkjob list --engine-id ENGINE-ID [--instance-id INSTANCE-ID] [--state STATE]
+```
+#### Command options
+
+`--engine-id` (string)
+:    Required. Spark Engine ID
+
+`--instance-id` (string)
+:    Watsonx.data Instance ID for cpd, CRN for Saas
+
+`--state` (string)
+:    State of the Spark Application
+
+#### Example
+```sh
+cpdctl wx-data sparkjob list \
+	 --engine-id spark01 \
+	 --instance-id exampleString \
+	 --state FINISHED/FAILED/RUNNING
+```
+
+<a id='wx-data_sparkjob_create'></a>
+## &#8226; wx-data sparkjob create
+Submit engine applications.
+
+```sh
+  cpdctl wx-data sparkjob create [command options]
+```
+#### Command options
+
+`--conf` (string)
+:    Spark Application Details Configuration. Format: {'Bucket_Endpoint': 'Endpoint of the COS Bucket containing Spark File', 'Bucket_Access_Key': 'Access Key of the COS Bucket', 'Bucket_Secret_Key': 'Secret Key of the COS Bucket', 'API_Key': 'Format - Basic base64(ibmlhapikey_<Your_EMAIL_ID>:<SaaS_API_Key>)', 'Spark_App_Name': 'Any Name for your Spark App'}
+
+`--engine-id` (string)
+:    Required. Spark Engine ID
+
+`--instance-id` (string)
+:    Watsonx.data Instance ID for cpd, CRN for Saas
+
+`--path` (string)
+:    Path of the Spark Application File in COS Bucket
+
+<a id='wx-data_sparkjob_get'></a>
+## &#8226; wx-data sparkjob get
+Get status of spark application.
+
+```sh
+  cpdctl wx-data sparkjob get --engine-id ENGINE-ID --application-id APPLICATION-ID [--instance-id INSTANCE-ID]
+```
+#### Command options
+
+`--application-id` (string)
+:    Required. Application ID of Spark Application
+
+`--engine-id` (string)
+:    Required. Spark Engine ID
+
+`--instance-id` (string)
+:    Watsonx.data Instance ID for cpd, CRN for Saas
+
+#### Example
+```sh
+cpdctl wx-data sparkjob get \
+	 --engine-id spark01 \
+	 --application-id 45627-9387-04c8 \
+	 --instance-id 35627738839
 ```
 
 # Schema examples
@@ -23428,3 +25010,130 @@ The following example shows the format of the DocumentExtractionObjectLocation[]
 ### &#8226; ObjectLocationGithubLocation
 <a id="cli-object-location-github-location-example-schema-wx-ai"></a>
 
+### &#8226; BucketCatalog
+<a id="cli-bucket-catalog-example-schema-wx-data"></a>
+
+The following example shows the format of the BucketCatalog object.
+
+```json
+
+{
+  "catalog_name" : "sampleCatalog",
+  "catalog_tags" : [ "catalog_tag_1", "catalog_tag_2" ],
+  "catalog_type" : "iceberg"
+}
+```
+### &#8226; BucketDetails
+<a id="cli-bucket-details-example-schema-wx-data"></a>
+
+The following example shows the format of the BucketDetails object.
+
+```json
+
+{
+  "access_key" : "b9cbf248ea5c4c96947e64407108559j",
+  "bucket_name" : "sample-bucket",
+  "endpoint" : "https://s3.<region>.cloud-object-storage.appdomain.cloud/",
+  "key_file" : "key_file",
+  "provider" : "ibm_cos",
+  "region" : "us-south",
+  "secret_key" : "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"
+}
+```
+### &#8226; StorageDetails
+<a id="cli-storage-details-example-schema-wx-data"></a>
+
+The following example shows the format of the StorageDetails object.
+
+```json
+
+{
+  "access_key" : "<access_key>",
+  "application_id" : "<application_id>",
+  "auth_mode" : "<account_key/sas/service_principle>",
+  "container_name" : "sample-container",
+  "directory_id" : "<directory_id>",
+  "endpoint" : "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/",
+  "sas_token" : "<sas_token>",
+  "secret_key" : "secret_key",
+  "storage_account_name" : "sample-storage"
+}
+```
+### &#8226; DatabaseCatalog
+<a id="cli-database-catalog-example-schema-wx-data"></a>
+
+The following example shows the format of the DatabaseCatalog object.
+
+```json
+
+{
+  "catalog_name" : "sampleCatalog",
+  "catalog_tags" : [ "catalog_tag_1", "catalog_tag_2" ],
+  "catalog_type" : "iceberg"
+}
+```
+### &#8226; DatabaseDetails
+<a id="cli-database-details-example-schema-wx-data"></a>
+
+The following example shows the format of the DatabaseDetails object.
+
+```json
+
+{
+  "authentication_type" : "LDAP",
+  "authentication_value" : "LDAP",
+  "broker_authentication_password" : "samplepassword",
+  "broker_authentication_type" : "PASSWORD",
+  "broker_authentication_user" : "sampleuser",
+  "broker_port" : 4553,
+  "broker_host" : "samplehost",
+  "certificate" : "contents of a pem/crt file",
+  "certificate_extension" : "pem/crt",
+  "connection_method" : "basic, apikey",
+  "connection_mode" : "service_name",
+  "connection_mode_value" : "orclpdb",
+  "connection_type" : "JDBC, Arrow flight",
+  "controller_authentication_password" : "samplepassword",
+  "controller_authentication_type" : "PASSWORD",
+  "controller_authentication_user" : "sampleuser",
+  "coordinator_host" : "samplehost",
+  "coordinator_port" : 4553,
+  "cpd_hostname" : "samplecpdhostname",
+  "credentials_key" : "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......",
+  "database_name" : "new_database",
+  "hostname" : "db2@<hostname>.com",
+  "hostname_in_certificate" : "samplehostname",
+  "hosts" : "abc.com:1234,xyz.com:4321",
+  "informix_server" : "ol_informix1410",
+  "password" : "samplepassword",
+  "port" : 4553,
+  "project_id" : "conops-bigquery",
+  "sasl" : true,
+  "sasl_mechanism" : "plain",
+  "service_api_key" : "sampleapikey",
+  "service_hostname" : "api.dataplatform.dev.cloud.ibm.com",
+  "service_password" : "samplepassword",
+  "service_port" : 443,
+  "service_ssl" : true,
+  "service_token_url" : "sampletoakenurl",
+  "service_username" : "sampleusername",
+  "ssl" : true,
+  "tables" : "kafka_table_name",
+  "username" : "sampleuser",
+  "validate_server_certificate" : true,
+  "verify_host_name" : true
+}
+```
+### &#8226; DatabaseRegistrationPrototypeDatabasePropertiesItems
+<a id="cli-database-registration-prototype-database-properties-items-example-schema-wx-data"></a>
+
+The following example shows the format of the DatabaseRegistrationPrototypeDatabasePropertiesItems[] object.
+
+```json
+
+[ {
+  "encrypt" : true,
+  "key" : "abc",
+  "value" : "xyz"
+} ]
+```
