@@ -30,7 +30,7 @@ then either:
 > 
 > This command can be used as a simple test by listing assets from the project that the notebook belongs to:
 > ```shell
-> ./cpdctl asset search --type-name asset --query '*:*'  --limit 5 --project-id $PROJECT_ID
+> ! ./cpdctl asset search --type-name asset --query '*:*'  --limit 5 --project-id $PROJECT_ID
 > ```
 * **configure connection with on-premise Cloud Pak for Data**, or
 > When running `IBM cpdctl` against remote on-premise CP4D instance, you must provide connection information. 
