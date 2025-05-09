@@ -12,26 +12,42 @@ Using the CLI, you can manage configuration settings and automate an end-to-end 
 Always use most recent **IBM cpdctl** version available. It is backward compatible with all supported Cloud Pak for Data releases.
 
 ## Quick start
-### Download for Linux and macOS:
-These commands download and install the latest release of `cpdctl` executable to the current directory.
-```shell
-platform=$(uname -s | tr '[A-Z]' '[a-z]')
-arch=$(uname -m | sed 's/x86_64/amd64/')
-curl -LOs "https://github.com/IBM/cpdctl/releases/latest/download/cpdctl_${platform}_${arch}.tar.gz"
-tar zxf cpdctl_${platform}_${arch}.tar.gz
-```
-### Configure connection with on-premise Cloud Pak for Data:
-**Note**: set variables `cpd_url`, `cpd_username`, and `cpd_apikey` before running these commands.
-```shell
-./cpdctl config profile set cpd --url $cpd_url --username $cpd_username --apikey $cpd_apikey
-./cpdctl config profile use cpd
-```
-### Configure connection with Cloud Pak for Data as a Service:
-**Note**: set variable `ibmcloud_apikey` before running these commands.
-```shell
-./cpdctl config profile set cpdaas --url https://cloud.ibm.com --apikey $ibmcloud_apikey
-./cpdctl config profile use cpdaas
-```
+In order to use `IBM cpdctl` 
+* **download executable appropriate for your platform (Linux or macOS)**
+> These commands download and install the latest release of `cpdctl` executable to the current directory.
+> ```shell
+> platform=$(uname -s | tr '[A-Z]' '[a-z]')
+> arch=$(uname -m | sed 's/x86_64/amd64/')
+> curl -LOs "https://github.com/IBM/cpdctl/releases/latest/download/cpdctl_${platform}_${arch}.tar.gz"
+> tar zxf cpdctl_${platform}_${arch}.tar.gz
+> echo "Installed cpdctl version $(./cpdctl version)"
+> ```
+then either:
+* **run straight away in Zero Configuration mode**, or
+> When running `IBM cpdctl` inside a IBM Cloud Pak for Data (CP4D) cluster, for example from a Jupyter Notebook 
+> executed in Watson Studio, it automatically connects to that CP4D instance, no configuration is needed. 
+> More on Zero Configuration in [this section](#zero-configuration).
+> 
+> This command can be used as a simple test by listing assets from the project that the notebook belongs to:
+> ```shell
+> ! ./cpdctl asset search --type-name asset --query '*:*'  --limit 5 --project-id $PROJECT_ID
+> ```
+* **configure connection with on-premise Cloud Pak for Data**, or
+> When running `IBM cpdctl` against remote on-premise CP4D instance, you must provide connection information. 
+> 
+> **Note**: set variables `cpd_url`, `cpd_username`, and `cpd_apikey` before running these commands.
+> ```shell
+> ./cpdctl config profile set cpd --url $cpd_url --username $cpd_username --apikey $cpd_apikey
+> ./cpdctl config profile use cpd
+
+* **configure connection with Cloud Pak for Data as a Service**.
+> When running `IBM cpdctl` against CP4D instance hosted on IBM Cloud, you must provide connection information.
+> 
+> **Note**: set variable `ibmcloud_apikey` before running these commands.
+> ```shell
+> ./cpdctl config profile set cpdaas --url https://cloud.ibm.com --apikey $ibmcloud_apikey
+> ./cpdctl config profile use cpdaas
+> ```
 
 ## Installation
 
@@ -104,13 +120,17 @@ A single configuration file can be used to store information about one or more C
 The location of the configuration file is determined in the following way (in order of precedence):
 1. From `--cpd-config` flag value (if set). For example:
 
-   `$ cpdctl --cpd-config config.yaml config profile list`
+   ```
+   ./cpdctl --cpd-config config.yaml config profile list
+   ```
 
-   When the path is not absolute, it is regarded as relative to the current working directory. The previous command will load the configuration from file `config.yaml` located in the current working directory.
+   When the path is not absolute, it is regarded as relative to the current working directory. The command will load the configuration from file `config.yaml` located in the current working directory.
 
 2. From `CPD_CONFIG` environment variable (if set). For example:
 
-   `$ CPD_CONFIG=/opt/cpdctl/config.yaml cpdctl config profile list`
+   ```
+   CPD_CONFIG=/opt/cpdctl/config.yaml ./cpdctl config profile list
+   ```
 
    The command will load the configuration from absolute path `/opt/cpdctl/config.yaml`
 
@@ -168,13 +188,13 @@ COMMANDS:
 > ### Linking profile with IBM Cloud CLI configuration
 > **IBM cpdctl** v1.4.0 introduces new flag `--ibmcloud`:
 > ```
-> cpdctl config profile set <profile-name> --ibmcloud
+> ./cpdctl config profile set <profile-name> --ibmcloud
 > ```
 > This command creates a new profile named `<profile-name>` linked to [IBM Cloud CLI configuration](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud-home). **IBM cpdctl** retrieves API URL, IBM Cloud region, and access token information to connect to Cloud Pak for Data as a Service. If the token is expired, `ibmcloud login` must be run to refresh the token.
 >
 > The flag `--ibmcloud` accepts an optional value:
 > ```
-> cpdctl config profile set <profile-name> --ibmcloud [IBMCLOUD_HOME]
+> ./cpdctl config profile set <profile-name> --ibmcloud [IBMCLOUD_HOME]
 > ```
 > This command creates cpdctl profile `<profile-name>` linked to alternative IBM Cloud CLI configuration directory `IBMCLOUD_HOME`. If no value is given then default IBM Cloud CLI configuration directory is assumed.
 >
@@ -186,32 +206,32 @@ This example illustrates how to create a configuration by defining a user and a 
 First, set the credentials used to connect to IBM Cloud Pak for Data instance:
 
 ```
-$ cpdctl config user set dev_user --username=<dev_username> --apikey=<dev_apikey>
+./cpdctl config user set dev_user --username=<dev_username> --apikey=<dev_apikey>
 ``` 
 
 Next, create profile with a specific URL of IBM Cloud Pak for Data instance and associated to the given user:
 
 ```
-$ cpdctl config profile set dev_profile --user dev_user --url <dev_profile_url>
+./cpdctl config profile set dev_profile --user dev_user --url <dev_profile_url>
 ```
 
 > ![New in 1.0.46](https://img.shields.io/badge/New%20in-1.0.46-blue)
 >
 > The two previous steps (setting user and profile) are equivalent to this single command:
 > ```
-> $ cpdctl config profile set qa_profile --username=<qa_username> --apikey=<qa_apikey> --url <qa_profile_url>
+> ./cpdctl config profile set qa_profile --username=<qa_username> --apikey=<qa_apikey> --url <qa_profile_url>
 > ```
 
 > ![New in 1.4.0](https://img.shields.io/badge/New%20in-1.4.0-blue)
 >
 > To configure profile to connect to Cloud Pak for Data as a Service in IBM Cloud:
 > ```
-> $ cpdctl config profile set cpdaas --apikey=<apikey> --url https://cloud.ibm.com [--region IBM_CLOUD_REGION]
+> ./cpdctl config profile set cpdaas --apikey=<apikey> --url https://cloud.ibm.com [--region IBM_CLOUD_REGION]
 > ```
 
 Print list of profiles:
 ```
-$ cpdctl config profile list
+$ ./cpdctl config profile list
 Name          Type      User              URL                 Current
 dev_profile   private   dev_user          <dev_profile_url>   *
 qa_profile    private   qa_profile_user   <qa_profile_url>   
@@ -220,7 +240,7 @@ Asterisk in the `Current` column is an indicator of the current profile (profile
 
 When a first profile is created it becomes the current one. It is also possible to change current profile manually:
 ```
-$ cpdctl config profile use <profile>
+./cpdctl config profile use <profile>
 ```
 This change of current profile is persisted in configuration file and affects all subsequent **IBM cpdctl** runs that are using this file.
 In order to temporarily change current profile:
@@ -234,17 +254,17 @@ Cloud Pak for Data 4.0 introduces [LDAP integration provided by the Identity and
 When IAM integration is enabled, **IBM cpdctl** must have the URL that is the route to the foundational services in order to authenticate users.
 When it is not specified, it is auto-discovered from IBM Cloud Pak for Data instance. In order to override the discovered route, use the following command:
 ```shell
-$ cpdctl config profile set <profile_name> --common-services-url <foundational-services-route>
+./cpdctl config profile set <profile_name> --common-services-url <foundational-services-route>
 ```
 To retrieve the foundational services route, log in to Red Hat® OpenShift® Container Platform and issue this command:
 ```shell
-$ oc get route cp-console -n <foundational-services-ns> --template='{{ .spec.host }}'
+oc get route cp-console -n <foundational-services-ns> --template='{{ .spec.host }}'
 ```
 where `<foundational-services-ns>` is the namespace of foundational services, by default `ibm-common-services`.
 
 ## Available commands
 ```
-$ cpdctl --help
+$ ./cpdctl --help
 IBM Cloud Pak for Data Command Line Interface
 
 Usage:
@@ -283,13 +303,13 @@ Parameters in JSON format can be read from files - use `@<file-path>` as paramet
 ## Supported outputs
 **IBM Cloud Pak for Data Command Line Interface** supports three output formats: table (default), json, and yaml. Select the expected format with the `--output` flag. For example:
 ```
-$ cpdctl space list --output json
+./cpdctl space list --output json
 ```
 Table output may truncate overly long values to improve readability of the table structure. Output formats `json` and `yaml` always present full information.
 
 The CLI also supports JMESPath query output customization. This example shows how to get an identifier of the first space programmatically:
 ```
-$ cpdctl space list --output json -j 'resources[0].metadata.id'
+./cpdctl space list --output json -j 'resources[0].metadata.id'
 ```
 
 ## Usage
