@@ -356,6 +356,7 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [wx-ai text-extraction list](#wx-ai_text-extraction_list)
 #### &#8226; [wx-ai text-extraction get](#wx-ai_text-extraction_get)
 #### &#8226; [wx-ai text-extraction delete](#wx-ai_text-extraction_delete)
+#### &#8226; [wx-ai time-series forecast](#wx-ai_time-series_forecast)
 #### &#8226; [wx-ai training create](#wx-ai_training_create)
 #### &#8226; [wx-ai training list](#wx-ai_training_list)
 #### &#8226; [wx-ai training get](#wx-ai_training_get)
@@ -368,7 +369,6 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [wx-ai text rerank](#wx-ai_text_rerank)
 #### &#8226; [wx-ai text chat](#wx-ai_text_chat)
 #### &#8226; [wx-ai text chat-stream](#wx-ai_text_chat-stream)
-#### &#8226; [wx-ai time-series forecast](#wx-ai_time-series_forecast)
 #### &#8226; [wx-ai document-extraction create](#wx-ai_document-extraction_create)
 #### &#8226; [wx-ai document-extraction list](#wx-ai_document-extraction_list)
 #### &#8226; [wx-ai document-extraction get](#wx-ai_document-extraction_get)
@@ -381,10 +381,17 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [wx-ai taxonomy list](#wx-ai_taxonomy_list)
 #### &#8226; [wx-ai taxonomy get](#wx-ai_taxonomy_get)
 #### &#8226; [wx-ai taxonomy delete](#wx-ai_taxonomy_delete)
+#### &#8226; [wx-ai utility-agent-tools list](#wx-ai_utility-agent-tools_list)
+#### &#8226; [wx-ai utility-agent-tools get](#wx-ai_utility-agent-tools_get)
+#### &#8226; [wx-ai utility-agent-tools run](#wx-ai_utility-agent-tools_run)
+#### &#8226; [wx-ai utility-agent-tools run-by-name](#wx-ai_utility-agent-tools_run-by-name)
 #### &#8226; [wx-ai custom-foundation-model list](#wx-ai_custom-foundation-model_list)
 #### &#8226; [wx-data ingestion list](#wx-data_ingestion_list)
 #### &#8226; [wx-data ingestion create](#wx-data_ingestion_create)
 #### &#8226; [wx-data ingestion get](#wx-data_ingestion_get)
+#### &#8226; [wx-data service list-tables](#wx-data_service_list-tables)
+#### &#8226; [wx-data service get-qhmm-config](#wx-data_service_get-qhmm-config)
+#### &#8226; [wx-data service monitor](#wx-data_service_monitor)
 #### &#8226; [wx-data bucket list](#wx-data_bucket_list)
 #### &#8226; [wx-data bucket create](#wx-data_bucket_create)
 #### &#8226; [wx-data bucket get](#wx-data_bucket_get)
@@ -13545,6 +13552,9 @@ This command deletes execution cache data created by Watson Pipeline runs for a 
 `--file-api-mount-path` (string)
 :    Path to mounted filesystem with access to all CPD projects assets stored on asset files pvc
 
+`--force-all-cache` ()
+:    force delete all cache files form specific project (old location only for cp4d under 4.8.5 and IBM Cloud)
+
 `--output-file` (string)
 :    Path to a file where the identifiers of pipeline are preserved after execution cache data are deleted
 
@@ -15111,7 +15121,7 @@ Wait until the space creation or deletion is finished.
 Create a new AI service with the given payload. A AI service is some code that can be deployed as a deployment.
 
 ```sh
-cpdctl wx-ai ai-service create --space-id SPACE-ID --name NAME [--software-spec SOFTWARE-SPEC | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME] [--description DESCRIPTION] [--tags TAGS] [--code-type CODE-TYPE] [--documentation DOCUMENTATION | --documentation-request DOCUMENTATION-REQUEST --documentation-response DOCUMENTATION-RESPONSE] [--custom CUSTOM]
+cpdctl wx-ai ai-service create --space-id SPACE-ID --name NAME [--software-spec SOFTWARE-SPEC | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME] [--description DESCRIPTION] [--tags TAGS] [--code-type CODE-TYPE] [--documentation DOCUMENTATION | --documentation-request DOCUMENTATION-REQUEST --documentation-response DOCUMENTATION-RESPONSE] [--custom CUSTOM] [--tooling TOOLING]
 ```
 
 
@@ -15153,6 +15163,11 @@ cpdctl wx-ai ai-service create --space-id SPACE-ID --name NAME [--software-spec 
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--custom=@path/to/file.json`.
 
+`--tooling` (generic map)
+:   User defined properties specified as key-value pairs, which is propagated to the deployment.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--tooling=@path/to/file.json`.
+
 `--software-spec-id` (string)
 :   The id of the software specification. This option provides a value for a sub-field of the JSON option 'software-spec'. It is mutually exclusive with that option.
 
@@ -15184,6 +15199,7 @@ cpdctl wx-ai ai-service create \
     --code-type python \
     --documentation '{"request": {}, "response": {}}' \
     --custom '{"anyKey": "anyValue"}' \
+    --tooling '{"anyKey": "anyValue"}' \
     --version 2019-01-01
 ```
 
@@ -15678,7 +15694,7 @@ cpdctl wx-ai autoai-rag create \
     --tags t1,t2 \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
-    --parameters '{"constraints": {"chunking": [{"method": "recursive", "chunk_size": 256, "chunk_overlap": 128}], "embedding_models": ["ibm/slate-125m-english-rtrvr"], "retrieval_methods": ["simple","window"], "foundation_models": ["ibm/granite-13b-chat-v2","mistralai/mixtral-8x7b-instruct-v01"], "max_number_of_rag_patterns": 8}, "optimization": {"metrics": ["answer_correctness","faithfulness","context_correctness"], "language": {"auto_detect": true, "code": "fr"}}, "output_logs": true}' \
+    --parameters '{"constraints": {"chunking": [{"method": "recursive", "chunk_size": 512, "chunk_overlap": 128}], "embedding_models": ["ibm/slate-125m-english-rtrvr","intfloat/multilingual-e5-large"], "retrieval_methods": ["simple","window"], "foundation_models": ["ibm/granite-13b-chat-v2","mistralai/mixtral-8x7b-instruct-v01"], "max_number_of_rag_patterns": 8}, "optimization": {"metrics": ["answer_correctness","faithfulness","context_correctness"]}, "output_logs": true}' \
     --vector-store-references '[{"type": "connection_asset", "connection": {}}]' \
     --custom '{"anyKey": "anyValue"}' \
     --version 2019-01-01
@@ -15690,6 +15706,7 @@ cpdctl wx-ai autoai-rag create \
 Retrieve the list of AutoAI RAG requests for the specified space or project.
 
 This operation does not save the history, any requests that were deleted or purged will not appear in this list.
+Note: If the `--all-pages` option is not set, the command will only retrieve a single page of the collection.
 
 ```sh
 cpdctl wx-ai autoai-rag list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--start START] [--limit LIMIT]
@@ -15715,6 +15732,9 @@ cpdctl wx-ai autoai-rag list [--space-id SPACE-ID] [--project-id PROJECT-ID] [--
 :   How many resources should be returned. By default limit is 100. Max limit allowed is 200.
 
     The default value is `100`. The maximum value is `200`. The minimum value is `1`.
+
+`--all-pages` (bool)
+:   Invoke multiple requests to display all pages of the collection for autoai-rag-list.
 
 #### Example
 
@@ -16535,7 +16555,7 @@ Wait until the deployment becomes ready or failed.
 Create a fine tuning job that will fine tune an LLM.
 
 ```sh
-cpdctl wx-ai fine-tuning create --name NAME --training-data-references TRAINING-DATA-REFERENCES [--results-reference RESULTS-REFERENCE | --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-location RESULTS-REFERENCE-LOCATION --results-reference-connection RESULTS-REFERENCE-CONNECTION --results-reference-id RESULTS-REFERENCE-ID] [--description DESCRIPTION] [--tags TAGS] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--auto-update-model=AUTO-UPDATE-MODEL] [--parameters PARAMETERS | --parameters-task-id PARAMETERS-TASK-ID --parameters-accumulate-steps PARAMETERS-ACCUMULATE-STEPS --parameters-base-model PARAMETERS-BASE-MODEL --parameters-num-epochs PARAMETERS-NUM-EPOCHS --parameters-learning-rate PARAMETERS-LEARNING-RATE --parameters-batch-size PARAMETERS-BATCH-SIZE --parameters-max-seq-length PARAMETERS-MAX-SEQ-LENGTH --parameters-response-template PARAMETERS-RESPONSE-TEMPLATE --parameters-verbalizer PARAMETERS-VERBALIZER --parameters-gpu PARAMETERS-GPU] [--type TYPE] [--test-data-references TEST-DATA-REFERENCES] [--custom CUSTOM]
+cpdctl wx-ai fine-tuning create --name NAME --training-data-references TRAINING-DATA-REFERENCES [--results-reference RESULTS-REFERENCE | --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-location RESULTS-REFERENCE-LOCATION --results-reference-connection RESULTS-REFERENCE-CONNECTION --results-reference-id RESULTS-REFERENCE-ID] [--description DESCRIPTION] [--tags TAGS] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--auto-update-model=AUTO-UPDATE-MODEL] [--parameters PARAMETERS | --parameters-task-id PARAMETERS-TASK-ID --parameters-accumulate-steps PARAMETERS-ACCUMULATE-STEPS --parameters-base-model PARAMETERS-BASE-MODEL --parameters-num-epochs PARAMETERS-NUM-EPOCHS --parameters-learning-rate PARAMETERS-LEARNING-RATE --parameters-batch-size PARAMETERS-BATCH-SIZE --parameters-max-seq-length PARAMETERS-MAX-SEQ-LENGTH --parameters-response-template PARAMETERS-RESPONSE-TEMPLATE --parameters-verbalizer PARAMETERS-VERBALIZER --parameters-gpu PARAMETERS-GPU --parameters-gradient-checkpointing=PARAMETERS-GRADIENT-CHECKPOINTING] [--type TYPE] [--test-data-references TEST-DATA-REFERENCES] [--custom CUSTOM]
 ```
 
 
@@ -16669,6 +16689,11 @@ This template may use brackets to indicate where fields from the data model must
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters-gpu=@path/to/file.json`.
 
+`--parameters-gradient-checkpointing` (bool)
+:   Enabling gradient checkpointing reduces GPU memory required at the cost of slowing training by approx 20%. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+    The default value is `true`.
+
 #### Examples
 
 ```sh
@@ -16681,7 +16706,7 @@ cpdctl wx-ai fine-tuning create \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
     --auto-update-model=false \
-    --parameters '{"task_id": "exampleString", "accumulate_steps": 1, "base_model": {"model_id": "google/flan-t5-xl"}, "num_epochs": 5, "learning_rate": 0.2, "batch_size": 5, "max_seq_length": 1024, "response_template": "\n\n### Response:", "verbalizer": "### Input: {{input}} \n\n### Response: {{output}}", "gpu": {"num": 4, "name": "NVIDIA-A100-80GB-PCIe"}}' \
+    --parameters '{"task_id": "exampleString", "accumulate_steps": 1, "base_model": {"model_id": "google/flan-t5-xl"}, "num_epochs": 5, "learning_rate": 0.2, "batch_size": 5, "max_seq_length": 1024, "response_template": "\n\n### Response:", "verbalizer": "### Input: {{input}} \n\n### Response: {{output}}", "gpu": {"num": 4, "name": "NVIDIA-A100-80GB-PCIe"}, "gradient_checkpointing": true}' \
     --type ilab \
     --test-data-references '[{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}]' \
     --custom '{"anyKey": "anyValue"}' \
@@ -16890,7 +16915,7 @@ cpdctl wx-ai foundation-model list-models [--start START] [--limit LIMIT] [--fil
 cpdctl wx-ai foundation-model list-models \
     --start exampleString \
     --limit 50 \
-    --filters modelid_ibm/granite-13b-instruct-v2 \
+    --filters modelid_ibm/granite-13b-instruct-v1,modelid_ibm/granite-13b-instruct-v2:or \
     --tech-preview=false \
     --version 2019-01-01
 ```
@@ -18138,7 +18163,7 @@ Note that this is not strictly required because if an
 cpdctl wx-ai text-extraction create \
     --document-reference '{"type": "connection_asset", "connection": {"id": "6f5688fd-f3bf-42c2-a18b-49c0d8a1920d"}, "location": {"file_name": "files/document.pdf", "bucket": "exampleString"}}' \
     --results-reference '{"type": "connection_asset", "connection": {"id": "6f5688fd-f3bf-42c2-a18b-49c0d8a1920d"}, "location": {"file_name": "files/document.pdf", "bucket": "exampleString"}}' \
-    --steps '{"ocr": {"languages_list": ["en"]}, "tables_processing": {"enabled": true}}' \
+    --steps '{"ocr": {"languages_list": ["exampleString","anotherTestString"]}, "tables_processing": {"enabled": true}}' \
     --assembly-json '{"anyKey": "anyValue"}' \
     --assembly-md '{"anyKey": "anyValue"}' \
     --custom '{"anyKey": "anyValue"}' \
@@ -18267,6 +18292,92 @@ cpdctl wx-ai text-extraction delete \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --hard-delete=true \
+    --version 2019-01-01
+```
+
+<a id='wx-ai_time-series_forecast'></a>
+## &#8226; wx-ai time-series forecast
+
+Generate forecasts, or predictions for future time points, given historical time series data.
+
+```sh
+cpdctl wx-ai time-series forecast --model-id MODEL-ID --data DATA [--schema SCHEMA | --schema-timestamp-column SCHEMA-TIMESTAMP-COLUMN --schema-id-columns SCHEMA-ID-COLUMNS --schema-freq SCHEMA-FREQ --schema-target-columns SCHEMA-TARGET-COLUMNS] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--parameters PARAMETERS | --parameters-prediction-length PARAMETERS-PREDICTION-LENGTH]
+```
+
+
+#### Command options
+
+`--model-id` (string)
+:   The model to be used for generating a forecast. You can get the list of models by using
+[Foundation Model Specs](https://cloud.ibm.com/apidocs/watsonx-ai#list-foundation-model-specs) with
+`filters=function_time_series_forecast`. Required.
+
+    The maximum length is `256` characters. The minimum length is `1` character. The value must match regular expression `/^\\S+$/`.
+
+`--data` (generic map)
+:   A payload of data matching `schema`. We assume the following about your data:
+  * All timeseries are of equal length and are uniform in nature (the time difference between two successive rows is constant). This implies that there are no missing rows of data;
+  * The data meet the minimum model-dependent historical context length which
+  can be 512 or more rows per timeseries;
+
+Note that the example payloads shown are for illustration purposes only. An actual payload would necessary be much larger to meet minimum model-specific context lengths. Required.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--data=@path/to/file.json`.
+
+`--schema` (<a href="#cli-ts-forecast-input-schema-example-schema-wx-ai">`TSForecastInputSchema`</a>)
+:   Contains metadata about your timeseries data input. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--schema=@path/to/file.json`.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
+
+    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
+
+`--parameters` (<a href="#cli-ts-forecast-parameters-example-schema-wx-ai">`TSForecastParameters`</a>)
+:   The parameters for the forecast request. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters=@path/to/file.json`.
+
+`--schema-timestamp-column` (string)
+:   A valid column in the data that should be treated as the timestamp. Although not absolutely necessary, if using calendar dates  (simple integer time offsets are also allowed), users should consider using a format such as ISO 8601 that includes a UTC offset (e.g.,
+'2024-10-18T01:09:21.454746+00:00'). This will avoid potential issues such as duplicate dates appearing due to daylight savings change overs. There are many date formats in existence and inferring the correct one can be a challenge so please do consider adhering to ISO 8601. This option provides a value for a sub-field of the JSON option 'schema'. It is mutually exclusive with that option.
+
+    The maximum length is `100` characters. The minimum length is `1` character. The value must match regular expression `/^\\S.*\\S$/`.
+
+`--schema-id-columns` ([]string)
+:   Columns that define a unique key for timeseries. This is similar to a compound primary key in a database table. This option provides a value for a sub-field of the JSON option 'schema'. It is mutually exclusive with that option.
+
+    The list items must match regular expression `/^\\S.*\\S$/`. The maximum length is `10` items. The minimum length is `0` items.
+
+`--schema-freq` (string)
+:   A frequency indicator for the given timestamp_column. See https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#period-aliases for a description of the allowed values. If not provided, we will attempt to infer it from the data. This option provides a value for a sub-field of the JSON option 'schema'. It is mutually exclusive with that option.
+
+    The maximum length is `100` characters. The minimum length is `0` characters. The value must match regular expression `/^\\d+(B|D|W|M|Q|Y|h|min|s|ms|us|ns)?$/`.
+
+`--schema-target-columns` ([]string)
+:   An array of column headings which constitute the target variables in the data. These are the data that will be forecasted. This option provides a value for a sub-field of the JSON option 'schema'. It is mutually exclusive with that option.
+
+    The list items must match regular expression `/^\\S.*\\S$/`. The maximum length is `500` items. The minimum length is `0` items.
+
+`--parameters-prediction-length` (int64)
+:   The prediction length for the forecast. The service will return this many periods beyond the last timestamp in the inference data payload. If specified, `prediction_length` must be an integer >=1 and no more than the model default prediction length. When omitted the model default prediction_length will be used. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
+
+#### Examples
+
+```sh
+cpdctl wx-ai time-series forecast \
+    --model-id ibm/ttm-1024-96-r2 \
+    --data '{"anyKey": "anyValue"}' \
+    --schema '{"timestamp_column": "date", "id_columns": ["ID1"], "freq": "1h", "target_columns": ["exampleString","anotherTestString"]}' \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id exampleString \
+    --parameters '{"prediction_length": 38}' \
     --version 2019-01-01
 ```
 
@@ -19397,90 +19508,6 @@ cpdctl wx-ai text chat-stream \
     --version 2019-01-01
 ```
 
-<a id='wx-ai_time-series_forecast'></a>
-## &#8226; wx-ai time-series forecast
-
-Generate forecasts, or predictions for future time points, given historical time series data.
-
-```sh
-cpdctl wx-ai time-series forecast --model-id MODEL-ID --data DATA [--schema SCHEMA | --schema-timestamp-column SCHEMA-TIMESTAMP-COLUMN --schema-id-columns SCHEMA-ID-COLUMNS --schema-freq SCHEMA-FREQ --schema-target-columns SCHEMA-TARGET-COLUMNS] [--project-id PROJECT-ID] [--space-id SPACE-ID] [--parameters PARAMETERS | --parameters-prediction-length PARAMETERS-PREDICTION-LENGTH]
-```
-
-
-#### Command options
-
-`--model-id` (string)
-:   The model to be used for generating a forecast. Required.
-
-    The maximum length is `256` characters. The minimum length is `1` character. The value must match regular expression `/^\\S+$/`.
-
-`--data` (generic map)
-:   A payload of data matching `schema`. We assume the following about your data:
-  * All timeseries are of equal length and are uniform in nature (the time difference between two successive rows is constant). This implies that there are no missing rows of data;
-  * The data meet the minimum model-dependent historical context length which
-  can be 512 or more rows per timeseries;
-
-Note that the example payloads shown are for illustration purposes only. An actual payload would necessary be much larger to meet minimum model-specific context lengths. Required.
-
-    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--data=@path/to/file.json`.
-
-`--schema` (<a href="#cli-ts-forecast-input-schema-example-schema-wx-ai">`TSForecastInputSchema`</a>)
-:   Contains metadata about your timeseries data input. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
-
-    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--schema=@path/to/file.json`.
-
-`--project-id` (string)
-:   The project that contains the resource. Either `space_id` or `project_id` has to be given.
-
-    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
-
-`--space-id` (string)
-:   The space that contains the resource. Either `space_id` or `project_id` has to be given.
-
-    The maximum length is `36` characters. The minimum length is `36` characters. The value must match regular expression `/^[a-zA-Z0-9-]*$/`.
-
-`--parameters` (<a href="#cli-ts-forecast-parameters-example-schema-wx-ai">`TSForecastParameters`</a>)
-:   The parameters for the forecast request. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
-
-    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--parameters=@path/to/file.json`.
-
-`--schema-timestamp-column` (string)
-:   A valid column in the data that should be treated as the timestamp. Although not absolutely necessary, if using calendar dates  (simple integer time offsets are also allowed), users should consider using a format such as ISO 8601 that includes a UTC offset (e.g.,
-'2024-10-18T01:09:21.454746+00:00'). This will avoid potential issues such as duplicate dates appearing due to daylight savings change overs. There are many date formats in existence and inferring the correct one can be a challenge so please do consider adhering to ISO 8601. This option provides a value for a sub-field of the JSON option 'schema'. It is mutually exclusive with that option.
-
-    The maximum length is `100` characters. The minimum length is `1` character. The value must match regular expression `/^\\S.*\\S$/`.
-
-`--schema-id-columns` ([]string)
-:   Columns that define a unique key for timeseries. This is similar to a compound primary key in a database table. This option provides a value for a sub-field of the JSON option 'schema'. It is mutually exclusive with that option.
-
-    The list items must match regular expression `/^\\S.*\\S$/`. The maximum length is `10` items. The minimum length is `0` items.
-
-`--schema-freq` (string)
-:   A frequency indicator for the given timestamp_column. See https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#period-aliases for a description of the allowed values. If not provided, we will attempt to infer it from the data. This option provides a value for a sub-field of the JSON option 'schema'. It is mutually exclusive with that option.
-
-    The maximum length is `100` characters. The minimum length is `0` characters. The value must match regular expression `/^\\d+(B|D|W|M|Q|Y|h|min|s|ms|us|ns)?$/`.
-
-`--schema-target-columns` ([]string)
-:   An array of column headings which constitute the target variables in the data. These are the data that will be forecasted. This option provides a value for a sub-field of the JSON option 'schema'. It is mutually exclusive with that option.
-
-    The list items must match regular expression `/^\\S.*\\S$/`. The maximum length is `500` items. The minimum length is `0` items.
-
-`--parameters-prediction-length` (int64)
-:   The prediction length for the forecast. The service will return this many periods beyond the last timestamp in the inference data payload. If specified, `prediction_length` must be an integer >=1 and no more than the model default prediction length. When omitted the model default prediction_length will be used. This option provides a value for a sub-field of the JSON option 'parameters'. It is mutually exclusive with that option.
-
-#### Examples
-
-```sh
-cpdctl wx-ai time-series forecast \
-    --model-id ibm/ttm-1024-96-r2 \
-    --data '{"anyKey": "anyValue"}' \
-    --schema '{"timestamp_column": "date", "id_columns": ["ID1"], "freq": "1h", "target_columns": ["exampleString","anotherTestString"]}' \
-    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
-    --space-id exampleString \
-    --parameters '{"prediction_length": 38}' \
-    --version 2019-01-01
-```
-
 <a id='wx-ai_document-extraction_create'></a>
 ## &#8226; wx-ai document-extraction create
 
@@ -19537,7 +19564,7 @@ cpdctl wx-ai document-extraction create --name NAME --document-references DOCUME
 cpdctl wx-ai document-extraction create \
     --name exampleString \
     --document-references '[{"type": "container", "location": {}}]' \
-    --results-reference '{"type": "github", "location": {"filepaths": [results/text_extraction/1.md], "commit": "eac469c83fc33e0f0620736c434a9536f1c12389"}}' \
+    --results-reference '{"type": "github", "location": {"filepaths": [results/text_extraction/1.md], "commit": "exampleString"}}' \
     --tags t1,t2 \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
@@ -20009,6 +20036,130 @@ cpdctl wx-ai taxonomy delete \
     --version 2019-01-01
 ```
 
+<a id='wx-ai_utility-agent-tools_list'></a>
+## &#8226; wx-ai utility-agent-tools list
+
+This retrieves the complete list of supported utility agent tools and contains information required for running each tool.
+
+```sh
+cpdctl wx-ai utility-agent-tools list
+```
+
+
+#### Example
+
+```sh
+cpdctl wx-ai utility-agent-tools list \
+    --version 2019-01-01
+```
+
+<a id='wx-ai_utility-agent-tools_get'></a>
+## &#8226; wx-ai utility-agent-tools get
+
+This retrieves the details of an utility agent tool and contains information required for running the tool. Providing authentication and configuration params may return additional details.
+
+```sh
+cpdctl wx-ai utility-agent-tools get --tool-id TOOL-ID
+```
+
+
+#### Command options
+
+`--tool-id` (string)
+:   Tool name. Required.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+#### Example
+
+```sh
+cpdctl wx-ai utility-agent-tools get \
+    --tool-id exampleString \
+    --version 2019-01-01
+```
+
+<a id='wx-ai_utility-agent-tools_run'></a>
+## &#8226; wx-ai utility-agent-tools run
+
+This runs a utility agent tool given an input and optional configuration parameters.
+
+Some tools can choose to tailor the response based on the access token identity.
+
+```sh
+cpdctl wx-ai utility-agent-tools run [--wx-utility-agent-tools-run-request WX-UTILITY-AGENT-TOOLS-RUN-REQUEST | --wx-utility-agent-tools-run-request-tool-name WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-TOOL-NAME --wx-utility-agent-tools-run-request-input WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-INPUT --wx-utility-agent-tools-run-request-config WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG]
+```
+
+
+#### Command options
+
+`--wx-utility-agent-tools-run-request` (<a href="#cli-wx-utility-agent-tools-run-request-example-schema-wx-ai">`WxUtilityAgentToolsRunRequest`</a>)
+:   This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--wx-utility-agent-tools-run-request=@path/to/file.json`.
+
+`--wx-utility-agent-tools-run-request-tool-name` (string)
+:   The name of the tool to be run. This option provides a value for a sub-field of the JSON option 'wx-utility-agent-tools-run-request'. It is mutually exclusive with that option.
+
+`--wx-utility-agent-tools-run-request-input` (string)
+:   Input to be used when running tool that has no input_schema. This option provides a value for a sub-field of the JSON option 'wx-utility-agent-tools-run-request'. It is mutually exclusive with that option.
+
+`--wx-utility-agent-tools-run-request-config` (generic map)
+:   Optional configuration options that can be passed for some tools. This must match the config schema for that tool. This option provides a value for a sub-field of the JSON option 'wx-utility-agent-tools-run-request'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--wx-utility-agent-tools-run-request-config=@path/to/file.json`.
+
+#### Examples
+
+```sh
+cpdctl wx-ai utility-agent-tools run \
+    --wx-utility-agent-tools-run-request '{"tool_name": "GoogleSearch", "input": "What was the weather in Toronto on January 13th 2025?", "config": {"anyKey": "anyValue"}}' \
+    --version 2019-01-01
+```
+
+<a id='wx-ai_utility-agent-tools_run-by-name'></a>
+## &#8226; wx-ai utility-agent-tools run-by-name
+
+This runs a utility agent tool given an input and optional configuration parameters.
+
+Some tools can choose to tailor the response based on the access token identity.
+
+```sh
+cpdctl wx-ai utility-agent-tools run-by-name --tool-id TOOL-ID [--wx-utility-agent-tools-run-request WX-UTILITY-AGENT-TOOLS-RUN-REQUEST | --wx-utility-agent-tools-run-request-tool-name WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-TOOL-NAME --wx-utility-agent-tools-run-request-input WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-INPUT --wx-utility-agent-tools-run-request-config WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG]
+```
+
+
+#### Command options
+
+`--tool-id` (string)
+:   Tool name. Required.
+
+    The value must match regular expression `/[a-zA-Z0-9-]*/`.
+
+`--wx-utility-agent-tools-run-request` (<a href="#cli-wx-utility-agent-tools-run-request-example-schema-wx-ai">`WxUtilityAgentToolsRunRequest`</a>)
+:   This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--wx-utility-agent-tools-run-request=@path/to/file.json`.
+
+`--wx-utility-agent-tools-run-request-tool-name` (string)
+:   The name of the tool to be run. This option provides a value for a sub-field of the JSON option 'wx-utility-agent-tools-run-request'. It is mutually exclusive with that option.
+
+`--wx-utility-agent-tools-run-request-input` (string)
+:   Input to be used when running tool that has no input_schema. This option provides a value for a sub-field of the JSON option 'wx-utility-agent-tools-run-request'. It is mutually exclusive with that option.
+
+`--wx-utility-agent-tools-run-request-config` (generic map)
+:   Optional configuration options that can be passed for some tools. This must match the config schema for that tool. This option provides a value for a sub-field of the JSON option 'wx-utility-agent-tools-run-request'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--wx-utility-agent-tools-run-request-config=@path/to/file.json`.
+
+#### Examples
+
+```sh
+cpdctl wx-ai utility-agent-tools run-by-name \
+    --tool-id exampleString \
+    --wx-utility-agent-tools-run-request '{"tool_name": "GoogleSearch", "input": "What is a project?", "config": {"anyKey": "anyValue"}}' \
+    --version 2019-01-01
+```
+
 <a id='wx-ai_custom-foundation-model_list'></a>
 ## &#8226; wx-ai custom-foundation-model list
 Retrieve the custom foundation models.
@@ -20042,7 +20193,7 @@ Get list of ingestion jobs.
 #### Command options
 
 `--instance-id` (string)
-:    Watsonx.data Instance ID for cpd, CRN for Saas
+:    CPD or Dev-edition requires Watsonx.data Instance ID, which is auto-fetched unless manually set via the --instance-id flag or WX_DATA_INSTANCE_ID environment variable. SaaS requires a CRN, which must be provided using the same options.  --instance-id flag takes precedence if both are set.
 
 `--jobs-per-page` (int)
 :    Number of ingestion jobs per page. The default value is 25
@@ -20187,7 +20338,7 @@ Create an ingestion job.
 :    Source iceberg warehouse name
 
 `--instance-id` (string)
-:    Watsonx.data Instance ID for cpd, CRN for Saas
+:    CPD or Dev-edition requires Watsonx.data Instance ID, which is auto-fetched unless manually set via the --instance-id flag or WX_DATA_INSTANCE_ID environment variable. SaaS requires a CRN, which must be provided using the same options.  --instance-id flag takes precedence if both are set.
 
 `--is-local-ingestion` ()
 :    Ingestion mode is local (if True); Ingestion mode is remote (if False). The default value is false.
@@ -20230,9 +20381,6 @@ Create an ingestion job.
 
 `--username` (string)
 :    CPD/SaaS Username
-
-`--validate-csv-header` ()
-:    Validate CSV header if the target table exist. The default value is false.
 
 `--validate-db-server-cert` ()
 :    Verify provided certificate. Default value is false
@@ -20283,7 +20431,7 @@ Create an ingestion job.
 Get a submitted ingestion job.
 
 ```sh
-cpdctl wx-data ingestion get --job-id JOB-ID [--engine-logs] [--instance-id INSTANCE-ID]
+cpdctl wx-data ingestion get --job-id JOB-ID [--instance-id INSTANCE-ID]
 ```
 
 
@@ -20292,30 +20440,203 @@ cpdctl wx-data ingestion get --job-id JOB-ID [--engine-logs] [--instance-id INST
 `--job-id` (string)
 :   ingestion job id. Required.
 
-    Ingestion job id.
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-_\\.]+$/`.
 
 `--instance-id` (string)
 :   watsonx.data instance ID.
 
-    Watsonx.data Instance ID for cpd, CRN for Saas.
-
-`--cancel-job` (bool)
-:   Cancel the running Job.
-
-    Cancel the running Job. Default value is false.
-
-`--engine-logs` (bool)
-:   Print the ingestion log.
-
-    Print the ingestion log (If True). Default value is false.
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
 
 #### Example
 
 ```sh
 cpdctl wx-data ingestion get \
-    --instance-id 1735472262311515 \
-    --job-id ingestion-123
-    --engine-logs
+    --job-id exampleString \
+    --instance-id exampleString
+```
+
+<a id='wx-data_service_list-tables'></a>
+## &#8226; wx-data service list-tables
+Get all engine tables details.
+
+```sh
+  cpdctl wx-data service list-tables --engine-id ENGINE-ID [--connector-list CONNECTOR-LIST] [--catalog-name CATALOG-NAME] [--schema-name SCHEMA-NAME] [--instance-id INSTANCE-ID]
+```
+#### Command options
+
+`--catalog-name` (string)
+:    Catalog name.
+
+`--connector-list` (string)
+:    Comma-separated list of connectors.
+
+`--engine-id` (string)
+:    Required. engine id.
+
+`--instance-id` (string)
+:    Watsonx.data Instance ID for cpd, CRN for Saas
+
+`--schema-name` (string)
+:    Schema name.
+
+#### Example
+```sh
+ cpdctl wx-data service list-tables \
+    --engine-id exampleString \
+    --connector-list exampleString \
+    --catalog-name exampleString \
+    --schema-name exampleString \
+    --instance-id exampleString
+```
+
+<a id='wx-data_service_get-qhmm-config'></a>
+## &#8226; wx-data service get-qhmm-config
+
+Get configuration for qhmm bucket (Internal API).
+
+```sh
+cpdctl wx-data service get-qhmm-config --secret SECRET [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--secret` (string)
+:   Lh-instance secret. Required.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-_]+$/`.
+
+`--instance-id` (string)
+:   watsonx.data instance ID.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data service get-qhmm-config \
+    --secret exampleString \
+    --instance-id exampleString
+```
+
+<a id='wx-data_service_monitor'></a>
+## &#8226; wx-data service monitor
+Execute a query.
+
+```sh
+  cpdctl wx-data service monitor [command options]
+```
+#### Command options
+
+`--catalog` (string)
+:    Catalog Name
+
+`--connector` (string)
+:    To get details for a specific connector hive/iceberg
+
+`--end-time` (string)
+:    The ending timestamp for filtering the queries, YYYY-MM-DD HH:MM:SS.mmm
+
+`--engine-id` (string)
+:    Required.Engine Name
+
+`--instance-id` (string)
+:    Watsonx.data Instance ID for cpd, CRN for Saas
+
+`--limit` (string)
+:    Maximum number of records you want to get
+
+`--order` (string)
+:    Column_Name asc/desc
+
+`--print-output` ()
+:    Print output to console true/false. This flag only works when query type is qhmm
+
+`--qhmm-query` (string)
+:    Specifies the type of query you wish to run (query_failed_info, query_basic_info, query_stats_info, query_memory_info, query_gc_info, error_code, failure_type, failure_message, error_info, query_info, abandoned_query, page_transport_timeout, query_join_info)
+
+`--query-id` (string)
+:    Query ID
+
+`--query-state` (string)
+:    Query State
+
+`--query-type` (string)
+:    Required. Query type stats/qhmm
+
+`--schema` (string)
+:    Schema Name
+
+`--secret` (string)
+:    Lakehouse instance secret
+
+`--start-time` (string)
+:    The starting timestamp for filtering the queries, YYYY-MM-DD HH:MM:SS.mmm
+
+`--table` (string)
+:    Table name
+
+`--user` (string)
+:    Username
+
+#### Example
+```sh
+Query monitoring can be used to run stats and qhmm related queries.
+
+  Note:- Make sure you provide instance id via --instance-id flag or set WX_DATA_INSTANCE_ID environment variable
+  --query-type(mandatory) : To specify which type of query to be executed i.e stats/qhmm
+
+    1) To extract statistics of iceberg and hive tables.
+    cpdctl wx-data service monitor --query-type stats [-h] [--instance-id instance-id] [--engine-id ENGINE] [--connector CONNECTOR] [--table TABLE] [--catalog CATALOG] [--schema SCHEMA]
+			
+      -h, --help : show this help message and exit
+      --engine-id (mandatory) : engine-id of engine whose table-details you want to get
+      --connector : Monitoring queries from a specific connector (hive/iceberg)
+      --table : Monitoring queries from a specific table
+      --catalog : Monitoring queries from a specific catalog
+      --schema : Monitoring queries from a specific schema
+
+    2) To extract query event log information.
+    cpdctl wx-data service monitor --query-type qhmm [-h] [--instance-id instance-id] [--secret secret] [--engine-id ENGINE] [--qhmm-query query_name] [--start-time start-time] [--end-time end-time] [--user user] [--query-id query_id] [--query-state query-state] [--print-output]
+			
+      --secret (mandatory) : Make sure you provide LH_INSTANCE_SECRET via --secret flag or set SECRET environment variable
+      -h, --help : show this help message and exit
+      --engine-id (mandatory) : engine-id of engine whose table-details you want to get
+      --qhmm-query (mandatory) : Specifies the type of query you wish to run. Options includes:-
+        query_gc_info:           Retrieve the information about garbage collection during query execution.
+                                 Allowed Options -> startTime, endTime, query-id, order, limit  
+        query_failed_info:       Retrieve information about failed queries.
+                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit     
+        query_basic_info:        Retrieve the basic details of the completed queries.
+                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit     
+        query_stats_info:        Retrieve the performance statistics of the completed queries.
+                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit     
+        query_memory_info:       Retrieve the memory usage details of queries.
+                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit        
+        query_join_info:         Retrieve the information after joining the two tables to get an overview about the query.
+                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit     
+        query_info:              Retrieve the information containing all the columns of a table.
+                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit     
+        error_info:              Retrieve the information about the errors the user is getting in the query.
+                                 Allowed Options -> limit     
+        error_code:              Count of all error codes.
+                                 Allowed Options -> limit     
+        failure_type:            Count of all failure types.
+                                 Allowed Options -> limit     
+        failure_message:         Count of all failure messages.
+                                 Allowed Options -> limit     
+        abandoned_query:         Retrieve the information about failed queries due to abandoned query.
+                                 Allowed Options -> startTime, endTime, user, query-id, order, limit     
+        page_transport_timeout:  Retrieve the information about failed queries due to page transport timeout error.
+                                 Allowed Options -> startTime, endTime, user, query-id, order, limit 
+      --start-time : The starting timestamp for filtering the queries. Format should be 'YYYY-MM-DD HH:MM:SS'. Time should be in UTC.
+      --end-time : The ending timestamp for filtering the queries. Format should be 'YYYY-MM-DD HH:MM:SS'. Time should be in UTC.
+      --user : The user ID associated with the queries you wish to monitor.
+      --query-id : The specific query ID you want to retrieve information about.
+      --query-state : The state of the query (e.g., COMPLETED, FAILED) to filter the results.
+      --limit : The maximum number of rows you wanted to get as an output.
+      --order : Name of the columns along with the sorting field (e.g 'column_name asc/desc').
+      --print-output : Print output to console (Passing flag equals true).
 ```
 
 <a id='wx-data_bucket_list'></a>
@@ -20689,7 +21010,7 @@ cpdctl wx-data database list \
 Add or create a new database.
 
 ```sh
-cpdctl wx-data database create --database-display-name DATABASE-DISPLAY-NAME --database-type DATABASE-TYPE [--associated-catalog ASSOCIATED-CATALOG | --associated-catalog-catalog-name ASSOCIATED-CATALOG-CATALOG-NAME --associated-catalog-catalog-tags ASSOCIATED-CATALOG-CATALOG-TAGS --associated-catalog-catalog-type ASSOCIATED-CATALOG-CATALOG-TYPE] [--created-on CREATED-ON] [--database-details DATABASE-DETAILS | --database-details-authentication-type DATABASE-DETAILS-AUTHENTICATION-TYPE --database-details-authentication-value DATABASE-DETAILS-AUTHENTICATION-VALUE --database-details-broker-authentication-password DATABASE-DETAILS-BROKER-AUTHENTICATION-PASSWORD --database-details-broker-authentication-type DATABASE-DETAILS-BROKER-AUTHENTICATION-TYPE --database-details-broker-authentication-user DATABASE-DETAILS-BROKER-AUTHENTICATION-USER --database-details-broker-port DATABASE-DETAILS-BROKER-PORT --database-details-broker-host DATABASE-DETAILS-BROKER-HOST --database-details-certificate DATABASE-DETAILS-CERTIFICATE --database-details-certificate-extension DATABASE-DETAILS-CERTIFICATE-EXTENSION --database-details-connection-method DATABASE-DETAILS-CONNECTION-METHOD --database-details-connection-mode DATABASE-DETAILS-CONNECTION-MODE --database-details-connection-mode-value DATABASE-DETAILS-CONNECTION-MODE-VALUE --database-details-connection-type DATABASE-DETAILS-CONNECTION-TYPE --database-details-controller-authentication-password DATABASE-DETAILS-CONTROLLER-AUTHENTICATION-PASSWORD --database-details-controller-authentication-type DATABASE-DETAILS-CONTROLLER-AUTHENTICATION-TYPE --database-details-controller-authentication-user DATABASE-DETAILS-CONTROLLER-AUTHENTICATION-USER --database-details-coordinator-host DATABASE-DETAILS-COORDINATOR-HOST --database-details-coordinator-port DATABASE-DETAILS-COORDINATOR-PORT --database-details-cpd-hostname DATABASE-DETAILS-CPD-HOSTNAME --database-details-credentials-key DATABASE-DETAILS-CREDENTIALS-KEY --database-details-database-name DATABASE-DETAILS-DATABASE-NAME --database-details-hostname DATABASE-DETAILS-HOSTNAME --database-details-hostname-in-certificate DATABASE-DETAILS-HOSTNAME-IN-CERTIFICATE --database-details-hosts DATABASE-DETAILS-HOSTS --database-details-informix-server DATABASE-DETAILS-INFORMIX-SERVER --database-details-password DATABASE-DETAILS-PASSWORD --database-details-port DATABASE-DETAILS-PORT --database-details-project-id DATABASE-DETAILS-PROJECT-ID --database-details-sasl DATABASE-DETAILS-SASL --database-details-sasl-mechanism DATABASE-DETAILS-SASL-MECHANISM --database-details-service-api-key DATABASE-DETAILS-SERVICE-API-KEY --database-details-service-hostname DATABASE-DETAILS-SERVICE-HOSTNAME --database-details-service-password DATABASE-DETAILS-SERVICE-PASSWORD --database-details-service-port DATABASE-DETAILS-SERVICE-PORT --database-details-service-ssl DATABASE-DETAILS-SERVICE-SSL --database-details-service-token-url DATABASE-DETAILS-SERVICE-TOKEN-URL --database-details-service-username DATABASE-DETAILS-SERVICE-USERNAME --database-details-ssl DATABASE-DETAILS-SSL --database-details-tables DATABASE-DETAILS-TABLES --database-details-username DATABASE-DETAILS-USERNAME --database-details-validate-server-certificate DATABASE-DETAILS-VALIDATE-SERVER-CERTIFICATE --database-details-verify-host-name DATABASE-DETAILS-VERIFY-HOST-NAME] [--database-properties DATABASE-PROPERTIES] [--description DESCRIPTION] [--tags TAGS] [--instance-id INSTANCE-ID]
+cpdctl wx-data database create --database-display-name DATABASE-DISPLAY-NAME --database-type DATABASE-TYPE [--associated-catalog ASSOCIATED-CATALOG | --associated-catalog-catalog-name ASSOCIATED-CATALOG-CATALOG-NAME --associated-catalog-catalog-tags ASSOCIATED-CATALOG-CATALOG-TAGS --associated-catalog-catalog-type ASSOCIATED-CATALOG-CATALOG-TYPE] [--created-on CREATED-ON] [--database-details DATABASE-DETAILS | --database-details-authentication-type DATABASE-DETAILS-AUTHENTICATION-TYPE --database-details-authentication-value DATABASE-DETAILS-AUTHENTICATION-VALUE --database-details-broker-authentication-password DATABASE-DETAILS-BROKER-AUTHENTICATION-PASSWORD --database-details-broker-authentication-type DATABASE-DETAILS-BROKER-AUTHENTICATION-TYPE --database-details-broker-authentication-user DATABASE-DETAILS-BROKER-AUTHENTICATION-USER --database-details-broker-port DATABASE-DETAILS-BROKER-PORT --database-details-broker-host DATABASE-DETAILS-BROKER-HOST --database-details-certificate DATABASE-DETAILS-CERTIFICATE --database-details-certificate-extension DATABASE-DETAILS-CERTIFICATE-EXTENSION --database-details-connection-method DATABASE-DETAILS-CONNECTION-METHOD --database-details-connection-mode DATABASE-DETAILS-CONNECTION-MODE --database-details-connection-mode-value DATABASE-DETAILS-CONNECTION-MODE-VALUE --database-details-connection-type DATABASE-DETAILS-CONNECTION-TYPE --database-details-controller-authentication-password DATABASE-DETAILS-CONTROLLER-AUTHENTICATION-PASSWORD --database-details-controller-authentication-type DATABASE-DETAILS-CONTROLLER-AUTHENTICATION-TYPE --database-details-controller-authentication-user DATABASE-DETAILS-CONTROLLER-AUTHENTICATION-USER --database-details-coordinator-host DATABASE-DETAILS-COORDINATOR-HOST --database-details-coordinator-port DATABASE-DETAILS-COORDINATOR-PORT --database-details-cpd-hostname DATABASE-DETAILS-CPD-HOSTNAME --database-details-credentials-key DATABASE-DETAILS-CREDENTIALS-KEY --database-details-database-name DATABASE-DETAILS-DATABASE-NAME --database-details-hostname DATABASE-DETAILS-HOSTNAME --database-details-hostname-in-certificate DATABASE-DETAILS-HOSTNAME-IN-CERTIFICATE --database-details-hosts DATABASE-DETAILS-HOSTS --database-details-informix-server DATABASE-DETAILS-INFORMIX-SERVER --database-details-password DATABASE-DETAILS-PASSWORD --database-details-port DATABASE-DETAILS-PORT --database-details-project-id DATABASE-DETAILS-PROJECT-ID --database-details-sasl=DATABASE-DETAILS-SASL --database-details-sasl-mechanism DATABASE-DETAILS-SASL-MECHANISM --database-details-service-api-key DATABASE-DETAILS-SERVICE-API-KEY --database-details-service-hostname DATABASE-DETAILS-SERVICE-HOSTNAME --database-details-service-password DATABASE-DETAILS-SERVICE-PASSWORD --database-details-service-port DATABASE-DETAILS-SERVICE-PORT --database-details-service-ssl=DATABASE-DETAILS-SERVICE-SSL --database-details-service-token-url DATABASE-DETAILS-SERVICE-TOKEN-URL --database-details-service-username DATABASE-DETAILS-SERVICE-USERNAME --database-details-ssl=DATABASE-DETAILS-SSL --database-details-tables DATABASE-DETAILS-TABLES --database-details-username DATABASE-DETAILS-USERNAME --database-details-validate-server-certificate=DATABASE-DETAILS-VALIDATE-SERVER-CERTIFICATE --database-details-verify-host-name=DATABASE-DETAILS-VERIFY-HOST-NAME] [--database-properties DATABASE-PROPERTIES] [--description DESCRIPTION] [--tags TAGS] [--instance-id INSTANCE-ID]
 ```
 
 
@@ -21120,7 +21441,7 @@ Create a new engine.
 :    Provide ad-hoc worker details in JSON format. Example: '{"node_type": "bx2.4x16", "quantity": 1}'
 
 `--instance-id` (string)
-:    Watsonx.data Instance ID for cpd, CRN for Saas
+:    CPD or Dev-edition requires Watsonx.data Instance ID, which is auto-fetched unless manually set via the --instance-id flag or WX_DATA_INSTANCE_ID environment variable. SaaS requires a CRN, which must be provided using the same options.  --instance-id flag takes precedence if both are set.
 
 `--origin` (string)
 :    (Required), allowable values are: native, external, discover
@@ -21385,7 +21706,7 @@ List all applications in a spark engine.
 :    Required. Spark Engine ID
 
 `--instance-id` (string)
-:    Watsonx.data Instance ID for cpd, CRN for Saas
+:    CPD or Dev-edition requires Watsonx.data Instance ID, which is auto-fetched unless manually set via the --instance-id flag or WX_DATA_INSTANCE_ID environment variable. SaaS requires a CRN, which must be provided using the same options.  --instance-id flag takes precedence if both are set.
 
 `--state` (string)
 :    State of the Spark Application
@@ -21414,10 +21735,30 @@ Submit engine applications.
 :    Required. Spark Engine ID
 
 `--instance-id` (string)
-:    Watsonx.data Instance ID for cpd, CRN for Saas
+:    CPD or Dev-edition requires Watsonx.data Instance ID, which is auto-fetched unless manually set via the --instance-id flag or WX_DATA_INSTANCE_ID environment variable. SaaS requires a CRN, which must be provided using the same options.  --instance-id flag takes precedence if both are set.
 
 `--path` (string)
 :    Path of the Spark Application File in COS Bucket
+
+#### Example
+```sh
+
+  cpdctl wx-data sparkjob create \
+    --engine-id spark01 \
+    --path "cos://<Bucket_Name>.sparktest/<Spark_File_Name>" \
+    --conf '{
+        "spark.hadoop.fs.cos.sparktest.endpoint": "<BUCKET_ENDPOINT>",
+        "spark.hadoop.fs.cos.sparktest.access.key": "<BUCKET_ACCESS_KEY>",
+        "spark.hadoop.fs.cos.sparktest.secret.key": "<BUCKET_SECRET_KEY>",
+        "spark.app.name": "<SPARK_APP_NAME>",
+        "spark.hadoop.wxd.apikey": "<API_KEY>"
+    }' \
+    --instance-id 673829990
+
+
+# Template for table maintenance pyspark file in saas: https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-table-run_samp_file
+# Template for table maintenance pyspark file in cpd:  https://www.ibm.com/docs/SSDZ38_2.1.x/lh-console/topics/nsp_cpdctl.html
+```
 
 <a id='wx-data_sparkjob_get'></a>
 ## &#8226; wx-data sparkjob get
@@ -21435,7 +21776,7 @@ Get status of spark application.
 :    Required. Spark Engine ID
 
 `--instance-id` (string)
-:    Watsonx.data Instance ID for cpd, CRN for Saas
+:    CPD or Dev-edition requires Watsonx.data Instance ID, which is auto-fetched unless manually set via the --instance-id flag or WX_DATA_INSTANCE_ID environment variable. SaaS requires a CRN, which must be provided using the same options.  --instance-id flag takes precedence if both are set.
 
 #### Example
 ```sh
@@ -24205,20 +24546,16 @@ The following example shows the format of the AutoAIRAGParameters object.
   "constraints" : {
     "chunking" : [ {
       "method" : "recursive",
-      "chunk_size" : 256,
+      "chunk_size" : 512,
       "chunk_overlap" : 128
     } ],
-    "embedding_models" : [ "ibm/slate-125m-english-rtrvr" ],
+    "embedding_models" : [ "ibm/slate-125m-english-rtrvr", "intfloat/multilingual-e5-large" ],
     "retrieval_methods" : [ "simple", "window" ],
     "foundation_models" : [ "ibm/granite-13b-chat-v2", "mistralai/mixtral-8x7b-instruct-v01" ],
     "max_number_of_rag_patterns" : 8
   },
   "optimization" : {
-    "metrics" : [ "answer_correctness", "faithfulness", "context_correctness" ],
-    "language" : {
-      "auto_detect" : true,
-      "code" : "fr"
-    }
+    "metrics" : [ "answer_correctness", "faithfulness", "context_correctness" ]
   },
   "output_logs" : true
 }
@@ -24253,7 +24590,7 @@ The following example shows the format of the AutoAIRAGConstraints object.
 
 {
   "method" : "recursive",
-  "chunk_size" : 256,
+  "chunk_size" : 512,
   "chunk_overlap" : 128
 }
 ```
@@ -24265,8 +24602,7 @@ The following example shows the format of the AutoAIRAGOptimizationParameters ob
 ```json
 
 {
-  "auto_detect" : true,
-  "code" : "fr"
+  "metrics" : [ "answer_correctness", "faithfulness", "context_correctness" ]
 }
 ```
 ### &#8226; OnlineDeployment
@@ -24488,7 +24824,8 @@ The following example shows the format of the FineTuningParameters object.
   "gpu" : {
     "num" : 4,
     "name" : "NVIDIA-A100-80GB-PCIe"
-  }
+  },
+  "gradient_checkpointing" : true
 }
 ```
 ### &#8226; BaseModel
@@ -24681,7 +25018,7 @@ The following example shows the format of the TextExtractionSteps object.
 
 {
   "ocr" : {
-    "languages_list" : [ "en" ]
+    "languages_list" : [ "exampleString", "anotherExampleString" ]
   },
   "tables_processing" : {
     "enabled" : true
@@ -24719,7 +25056,7 @@ The following example shows the format of the TextExtractionStepOcr object.
 ```json
 
 {
-  "languages_list" : [ "en" ]
+  "languages_list" : [ "exampleString", "anotherExampleString" ]
 }
 ```
 ### &#8226; TextExtractionStepTablesProcessing
@@ -24731,6 +25068,31 @@ The following example shows the format of the TextExtractionStepTablesProcessing
 
 {
   "enabled" : true
+}
+```
+### &#8226; TSForecastInputSchema
+<a id="cli-ts-forecast-input-schema-example-schema-wx-ai"></a>
+
+The following example shows the format of the TSForecastInputSchema object.
+
+```json
+
+{
+  "timestamp_column" : "date",
+  "id_columns" : [ "ID1" ],
+  "freq" : "1h",
+  "target_columns" : [ "exampleString", "anotherExampleString" ]
+}
+```
+### &#8226; TSForecastParameters
+<a id="cli-ts-forecast-parameters-example-schema-wx-ai"></a>
+
+The following example shows the format of the TSForecastParameters object.
+
+```json
+
+{
+  "prediction_length" : 38
 }
 ```
 ### &#8226; PromptTuning
@@ -24967,31 +25329,6 @@ The following example shows the format of the TextChatToolFunction object.
   "name" : "exampleString"
 }
 ```
-### &#8226; TSForecastInputSchema
-<a id="cli-ts-forecast-input-schema-example-schema-wx-ai"></a>
-
-The following example shows the format of the TSForecastInputSchema object.
-
-```json
-
-{
-  "timestamp_column" : "date",
-  "id_columns" : [ "ID1" ],
-  "freq" : "1h",
-  "target_columns" : [ "exampleString", "anotherExampleString" ]
-}
-```
-### &#8226; TSForecastParameters
-<a id="cli-ts-forecast-parameters-example-schema-wx-ai"></a>
-
-The following example shows the format of the TSForecastParameters object.
-
-```json
-
-{
-  "prediction_length" : 38
-}
-```
 ### &#8226; DocumentExtractionObjectLocation
 <a id="cli-document-extraction-object-location-example-schema-wx-ai"></a>
 
@@ -25010,6 +25347,21 @@ The following example shows the format of the DocumentExtractionObjectLocation[]
 ### &#8226; ObjectLocationGithubLocation
 <a id="cli-object-location-github-location-example-schema-wx-ai"></a>
 
+### &#8226; WxUtilityAgentToolsRunRequest
+<a id="cli-wx-utility-agent-tools-run-request-example-schema-wx-ai"></a>
+
+The following example shows the format of the WxUtilityAgentToolsRunRequest object.
+
+```json
+
+{
+  "tool_name" : "GoogleSearch",
+  "input" : "What was the weather in Toronto on January 13th 2025?",
+  "config" : {
+    "anyKey" : "anyValue"
+  }
+}
+```
 ### &#8226; BucketCatalog
 <a id="cli-bucket-catalog-example-schema-wx-data"></a>
 
