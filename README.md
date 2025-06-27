@@ -1,8 +1,12 @@
 # IBM Cloud Pak for Data Command Line Interface
 **IBM Cloud Pak for Data Command Line Interface** (**IBM cpdctl**) is a command-line interface (CLI) you can use to manage the lifecycle of a model from IBM Cloud Pak for Data 3.0.1, 3.5, 4.x, and 5.x.
 > ![New in 1.4.0](https://img.shields.io/badge/New%20in-1.4.0-blue)
-
+>
 > **IBM cpdctl** now supports installation of Cloud Pak for Data on private cloud as well as Cloud Pak for Data as a Service (Cloud Pak for Data running on IBM Cloud).
+
+> ![New in 1.8.0](https://img.shields.io/badge/New%20in-1.8.0-blue)
+>
+> **IBM cpdctl** now supports installation of Cloud Pak for Data on Amazon Web Services (AWS).
 
 Using the CLI, you can manage configuration settings and automate an end-to-end flow that includes training a model, saving it, creating a deployment space, and deploying the model.
 
@@ -40,13 +44,22 @@ then either:
 > ./cpdctl config profile set cpd --url $cpd_url --username $cpd_username --apikey $cpd_apikey
 > ./cpdctl config profile use cpd
 
-* **configure connection with Cloud Pak for Data as a Service**.
+* **configure connection with Cloud Pak for Data as a Service on IBM Cloud**, or
 > When running `IBM cpdctl` against CP4D instance hosted on IBM Cloud, you must provide connection information.
 > 
 > **Note**: set variable `ibmcloud_apikey` before running these commands.
 > ```shell
 > ./cpdctl config profile set cpdaas --url https://cloud.ibm.com --apikey $ibmcloud_apikey
 > ./cpdctl config profile use cpdaas
+> ```
+
+* **configure connection with Cloud Pak for Data as a Service on Amazon Web Services (AWS)**.
+> When running `IBM cpdctl` against CP4D instance hosted on AWS, you must provide connection information.
+>
+> **Note**: set variables `aws_account_id` and `aws_apikey` before running these commands.
+> ```shell
+> ./cpdctl config profile set cpd-aws --url https://aws.data.ibm.com --auth-id $aws_account_id --apikey $aws_apikey
+> ./cpdctl config profile use cpd-aws
 > ```
 
 ## Installation
@@ -226,7 +239,14 @@ Next, create profile with a specific URL of IBM Cloud Pak for Data instance and 
 >
 > To configure profile to connect to Cloud Pak for Data as a Service in IBM Cloud:
 > ```
-> ./cpdctl config profile set cpdaas --apikey=<apikey> --url https://cloud.ibm.com [--region IBM_CLOUD_REGION]
+> ./cpdctl config profile set cpdaas --apikey=<apikey> --url https://cloud.ibm.com [--region <ibm_cloud_region>]
+> ```
+
+> ![New in 1.8.0](https://img.shields.io/badge/New%20in-1.8.0-blue)
+>
+> To configure profile to connect to Cloud Pak for Data as a Service on Amazon Web Services (AWS):
+> ```
+> ./cpdctl config profile set cpd-aws --auth-id <account_id> --apikey=<apikey> --url https://aws.data.ibm.com [--auth-type=<aws_auth_type>] [--region <ibm_cloud_region>]
 > ```
 
 Print list of profiles:
