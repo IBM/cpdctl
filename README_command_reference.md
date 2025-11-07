@@ -14,7 +14,9 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [asset get](#asset_get)
 #### &#8226; [asset update](#asset_update)
 #### &#8226; [asset promote](#asset_promote)
+#### &#8226; [asset type asset-type-delete](#asset_type_asset-type-delete)
 #### &#8226; [asset type list](#asset_type_list)
+#### &#8226; [asset type create](#asset_type_create)
 #### &#8226; [asset type get](#asset_type_get)
 #### &#8226; [asset type replace](#asset_type_replace)
 #### &#8226; [asset attribute list](#asset_attribute_list)
@@ -181,26 +183,26 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [ml deployment-job-definition create](#ml_deployment-job-definition_create)
 #### &#8226; [ml deployment-job-definition list](#ml_deployment-job-definition_list)
 #### &#8226; [ml deployment-job-definition get](#ml_deployment-job-definition_get)
-#### &#8226; [ml deployment-job-definition update](#ml_deployment-job-definition_update)
 #### &#8226; [ml deployment-job-definition delete](#ml_deployment-job-definition_delete)
 #### &#8226; [ml deployment-job-definition create-revision](#ml_deployment-job-definition_create-revision)
 #### &#8226; [ml deployment-job-definition list-revisions](#ml_deployment-job-definition_list-revisions)
+#### &#8226; [ml deployment-job-definition update](#ml_deployment-job-definition_update)
 #### &#8226; [ml experiment create](#ml_experiment_create)
 #### &#8226; [ml experiment list](#ml_experiment_list)
 #### &#8226; [ml experiment get](#ml_experiment_get)
-#### &#8226; [ml experiment update](#ml_experiment_update)
 #### &#8226; [ml experiment delete](#ml_experiment_delete)
 #### &#8226; [ml experiment create-revision](#ml_experiment_create-revision)
 #### &#8226; [ml experiment list-revisions](#ml_experiment_list-revisions)
+#### &#8226; [ml experiment update](#ml_experiment_update)
 #### &#8226; [ml function create](#ml_function_create)
 #### &#8226; [ml function list](#ml_function_list)
 #### &#8226; [ml function get](#ml_function_get)
-#### &#8226; [ml function update](#ml_function_update)
 #### &#8226; [ml function delete](#ml_function_delete)
 #### &#8226; [ml function create-revision](#ml_function_create-revision)
 #### &#8226; [ml function list-revisions](#ml_function_list-revisions)
 #### &#8226; [ml function upload-code](#ml_function_upload-code)
 #### &#8226; [ml function download-code](#ml_function_download-code)
+#### &#8226; [ml function update](#ml_function_update)
 #### &#8226; [ml model create](#ml_model_create)
 #### &#8226; [ml model list](#ml_model_list)
 #### &#8226; [ml model get](#ml_model_get)
@@ -217,19 +219,19 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [ml model-definition create](#ml_model-definition_create)
 #### &#8226; [ml model-definition list](#ml_model-definition_list)
 #### &#8226; [ml model-definition get](#ml_model-definition_get)
-#### &#8226; [ml model-definition update](#ml_model-definition_update)
 #### &#8226; [ml model-definition delete](#ml_model-definition_delete)
 #### &#8226; [ml model-definition create-revision](#ml_model-definition_create-revision)
 #### &#8226; [ml model-definition list-revisions](#ml_model-definition_list-revisions)
 #### &#8226; [ml model-definition upload-model](#ml_model-definition_upload-model)
 #### &#8226; [ml model-definition download-model](#ml_model-definition_download-model)
+#### &#8226; [ml model-definition update](#ml_model-definition_update)
 #### &#8226; [ml pipeline create](#ml_pipeline_create)
 #### &#8226; [ml pipeline list](#ml_pipeline_list)
 #### &#8226; [ml pipeline get](#ml_pipeline_get)
-#### &#8226; [ml pipeline update](#ml_pipeline_update)
 #### &#8226; [ml pipeline delete](#ml_pipeline_delete)
 #### &#8226; [ml pipeline create-revision](#ml_pipeline_create-revision)
 #### &#8226; [ml pipeline list-revisions](#ml_pipeline_list-revisions)
+#### &#8226; [ml pipeline update](#ml_pipeline_update)
 #### &#8226; [ml training create](#ml_training_create)
 #### &#8226; [ml training list](#ml_training_list)
 #### &#8226; [ml training get](#ml_training_get)
@@ -238,10 +240,10 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [ml training-definition create](#ml_training-definition_create)
 #### &#8226; [ml training-definition list](#ml_training-definition_list)
 #### &#8226; [ml training-definition get](#ml_training-definition_get)
-#### &#8226; [ml training-definition update](#ml_training-definition_update)
 #### &#8226; [ml training-definition delete](#ml_training-definition_delete)
 #### &#8226; [ml training-definition create-revision](#ml_training-definition_create-revision)
 #### &#8226; [ml training-definition list-revisions](#ml_training-definition_list-revisions)
+#### &#8226; [ml training-definition update](#ml_training-definition_update)
 #### &#8226; [notebook create](#notebook_create)
 #### &#8226; [notebook delete](#notebook_delete)
 #### &#8226; [notebook update](#notebook_update)
@@ -269,6 +271,7 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [pipeline run get-status](#pipeline_run_get-status)
 #### &#8226; [pipeline cleanup delete-cache](#pipeline_cleanup_delete-cache)
 #### &#8226; [pipeline cleanup delete-artifacts](#pipeline_cleanup_delete-artifacts)
+#### &#8226; [pipeline project-settings update](#pipeline_project-settings_update)
 #### &#8226; [pipeline list](#pipeline_list)
 #### &#8226; [pipeline delete](#pipeline_delete)
 #### &#8226; [pipeline get](#pipeline_get)
@@ -277,6 +280,7 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [pipeline copy](#pipeline_copy)
 #### &#8226; [pipeline upload](#pipeline_upload)
 #### &#8226; [pipeline validate](#pipeline_validate)
+#### &#8226; [pipeline compile](#pipeline_compile)
 #### &#8226; [project list](#project_list)
 #### &#8226; [project get](#project_get)
 #### &#8226; [project update](#project_update)
@@ -389,27 +393,45 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 #### &#8226; [wx-data ingestion list](#wx-data_ingestion_list)
 #### &#8226; [wx-data ingestion create](#wx-data_ingestion_create)
 #### &#8226; [wx-data ingestion get](#wx-data_ingestion_get)
+#### &#8226; [wx-data component get-mds-status](#wx-data_component_get-mds-status)
+#### &#8226; [wx-data component get-ces-status](#wx-data_component_get-ces-status)
+#### &#8226; [wx-data component get-cas-cpg-endpoint](#wx-data_component_get-cas-cpg-endpoint)
+#### &#8226; [wx-data component get-hms-status](#wx-data_component_get-hms-status)
+#### &#8226; [wx-data component get-console-status](#wx-data_component_get-console-status)
+#### &#8226; [wx-data database list](#wx-data_database_list)
+#### &#8226; [wx-data database create](#wx-data_database_create)
+#### &#8226; [wx-data database get](#wx-data_database_get)
+#### &#8226; [wx-data database delete](#wx-data_database_delete)
 #### &#8226; [wx-data service list-tables](#wx-data_service_list-tables)
+#### &#8226; [wx-data service generate-engine-dump](#wx-data_service_generate-engine-dump)
 #### &#8226; [wx-data service get-qhmm-config](#wx-data_service_get-qhmm-config)
 #### &#8226; [wx-data service monitor](#wx-data_service_monitor)
+#### &#8226; [wx-data access-control list-users-groups](#wx-data_access-control_list-users-groups)
+#### &#8226; [wx-data access-control list-access](#wx-data_access-control_list-access)
+#### &#8226; [wx-data access-control update-access](#wx-data_access-control_update-access)
+#### &#8226; [wx-data access-control revoke-access](#wx-data_access-control_revoke-access)
+#### &#8226; [wx-data engine detach](#wx-data_engine_detach)
+#### &#8226; [wx-data engine list](#wx-data_engine_list)
+#### &#8226; [wx-data engine create](#wx-data_engine_create)
+#### &#8226; [wx-data engine attach](#wx-data_engine_attach)
+#### &#8226; [wx-data engine delete](#wx-data_engine_delete)
+#### &#8226; [wx-data sparkjob get](#wx-data_sparkjob_get)
+#### &#8226; [wx-data sparkjob list](#wx-data_sparkjob_list)
+#### &#8226; [wx-data sparkjob create](#wx-data_sparkjob_create)
 #### &#8226; [wx-data bucket list](#wx-data_bucket_list)
 #### &#8226; [wx-data bucket create](#wx-data_bucket_create)
 #### &#8226; [wx-data bucket get](#wx-data_bucket_get)
 #### &#8226; [wx-data bucket delete](#wx-data_bucket_delete)
 #### &#8226; [wx-data bucket activate](#wx-data_bucket_activate)
-#### &#8226; [wx-data bucket deactivate](#wx-data_bucket_deactivate)
-#### &#8226; [wx-data database list](#wx-data_database_list)
-#### &#8226; [wx-data database create](#wx-data_database_create)
-#### &#8226; [wx-data database get](#wx-data_database_get)
-#### &#8226; [wx-data database delete](#wx-data_database_delete)
-#### &#8226; [wx-data engine list](#wx-data_engine_list)
-#### &#8226; [wx-data engine create](#wx-data_engine_create)
-#### &#8226; [wx-data engine delete](#wx-data_engine_delete)
-#### &#8226; [wx-data engine attach](#wx-data_engine_attach)
-#### &#8226; [wx-data engine detach](#wx-data_engine_detach)
-#### &#8226; [wx-data sparkjob list](#wx-data_sparkjob_list)
-#### &#8226; [wx-data sparkjob create](#wx-data_sparkjob_create)
-#### &#8226; [wx-data sparkjob get](#wx-data_sparkjob_get)
+#### &#8226; [wx-data tablemaint rollback-to-snapshot](#wx-data_tablemaint_rollback-to-snapshot)
+#### &#8226; [wx-data tablemaint rollback-to-timestamp](#wx-data_tablemaint_rollback-to-timestamp)
+#### &#8226; [wx-data tablemaint set-current-snapshot](#wx-data_tablemaint_set-current-snapshot)
+#### &#8226; [wx-data tablemaint cherrypick-snapshot](#wx-data_tablemaint_cherrypick-snapshot)
+#### &#8226; [wx-data tablemaint expire-snapshot](#wx-data_tablemaint_expire-snapshot)
+#### &#8226; [wx-data tablemaint remove-orphan](#wx-data_tablemaint_remove-orphan)
+#### &#8226; [wx-data tablemaint rewrite-data](#wx-data_tablemaint_rewrite-data)
+#### &#8226; [wx-data tablemaint rewrite-manifests](#wx-data_tablemaint_rewrite-manifests)
+#### &#8226; [wx-data tablemaint register-table](#wx-data_tablemaint_register-table)
 # Command descriptions
 <a id='asset_search'></a>
 ## &#8226; asset search
@@ -802,6 +824,52 @@ cpdctl asset promote \
     --revision-id exampleString
 ```
 
+<a id='asset_type_asset-type-delete'></a>
+## &#8226; asset type asset-type-delete
+Deletes an asset type in given account or container. Note that, deletion of an account scope asset type or a container scope asset type triggers background clean up of assets:<br/><ul><li>Assets of this type are deleted.</li><li>And in case of other assets, attributes of this type are removed.</li></ul>.
+
+```sh
+  cpdctl asset type asset-type-delete --type-name TYPE-NAME [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--bss-account-id BSS-ACCOUNT-ID]
+```
+#### Command options
+
+`--bss-account-id` (string)
+:    This parameter allows creating or updating an account-scoped asset type.  May be different than account of user specified in Bearer token.  You must provide either a catalog_id, a project_id, a space_id, OR a bss_account_id but not more than one.
+
+`--catalog` (string)
+:    Catalog name. This option is mutually exclusive with '--catalog-id'.
+
+`--catalog-id` (string)
+:    This parameter allows creating or updating a catalog-scoped asset type.  You must provide either a catalog_id, a project_id, a space_id, OR a bss_account_id but not more than one. This option is mutually exclusive with '--catalog'.
+
+`--cpd-scope` (string)
+:    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:    This parameter allows creating or updating a project-scoped asset type.  You must provide either a catalog_id, a project_id, a space_id, OR a bss_account_id but not more than one. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:    This parameter allows creating or updating a space-scoped asset type.  You must provide either a catalog_id, a project_id, a space_id, OR a bss_account_id but not more than one. This option is mutually exclusive with '--space'.
+
+`--type-name` (string)
+:    Required. Asset Type name (eg: data_asset).
+
+#### Example
+```sh
+   cpdctl asset type asset-type-delete \
+    --type-name exampleString \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString \
+    --bss-account-id exampleString
+```
+
 <a id='asset_type_list'></a>
 ## &#8226; asset type list
 
@@ -836,6 +904,157 @@ cpdctl asset type list \
     --catalog-id exampleString \
     --project-id exampleString \
     --space-id exampleString
+```
+
+<a id='asset_type_create'></a>
+## &#8226; asset type create
+Creates an asset type in account, catalog, project or space.
+
+```sh
+  cpdctl asset type create [command options]
+```
+#### Command options
+
+`--allow-decorators` ()
+:    cams-type-create-allow-decorators-flag-description
+
+`--attribute-behavior` (string)
+:    Define the behavior only if this asset type is used as an attribute. It can also be a path to a JSON file.
+
+`--attribute-behavior-remove-on-copy` ()
+:    Remove the attribute when cloning, publishing or promoting the asset.
+
+`--attribute-only` ()
+:    If set to true, the type definition will be custom attributes, which can be used to decorate other asset types and cannot create this as a top level asset of this asset type. If set to false, the type definition will be custom asset type, which can be used to create top level assets of this asset type and/or also decorate other asset types.
+
+`--bss-account-id` (string)
+:    This parameter allows the creation of an account-scoped asset type.  May be different than account of user specified in Bearer token.  You must provide either a catalog_id, a project_id, a space_id, OR a bss_account_id but not more than one.
+
+`--can-have-image` ()
+:    Set it to true if the type is expected to support uploading of images, else set it to false.
+
+`--catalog` (string)
+:    Catalog name. This option is mutually exclusive with '--catalog-id'.
+
+`--catalog-id` (string)
+:    This parameter allows the creation of a catalog-scoped asset type.  You must provide either a catalog_id, a project_id, a space_id, OR a bss_account_id but not more than one. This option is mutually exclusive with '--catalog'.
+
+`--cpd-scope` (string)
+:    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--data-protection` (string)
+:    Asset type properties and attachments that should be filtered out for users without data access. It can also be a path to a JSON file.
+
+`--data-protection-all-attachments` ()
+:    Indicates if all attachments of the asset type are protected. If 'all_attachments' is true, then 'attachment_types' is ignored.
+
+`--data-protection-all-fields` ()
+:    Indicates if all fields of the asset type are protected. If 'all_fields' is true, then 'fields' is ignored.
+
+`--data-protection-attachment-types` (string)
+:    List of types of attachments of the asset type to be protected. If 'all_attachments' is true, then 'attachment_types' is ignored. Allowable list items are: MANAGED, REFERENCED, REMOTE.
+
+`--data-protection-field-search-paths` (string)
+:    List of json paths that lead to the fields to be protected. e.g., "scoring.input_data", "columns[].name", "columns[0].code", "*.connection_id", etc. If 'all_fields' is true, then 'field_search_paths' is ignored.
+
+`--decorates` (string)
+:    List of pointers to types this type can decorate. It can also be a path to a JSON file.
+
+`--description` (string)
+:    Asset type description.
+
+`--external-asset-preview` (string)
+:    External Asset Preview. Clients can make use of this to render content appropriately for this asset type. It can also be a path to a JSON file.
+
+`--external-asset-preview-base-client-url` (string)
+:    Base client URL.
+
+`--external-asset-preview-url-parameters-fixed` (string)
+:    URL parameters fixed.
+
+`--external-asset-preview-url-parameters-from-asset-attributes` (string)
+:    URL parameters.
+
+`--external-asset-preview-url-path-from-asset-attributes` (string)
+:    URL path.
+
+`--fields` (string)
+:    Required. Fields that are indexed if present in the asset. It can also be a path to a JSON file.
+
+`--global-search-searchable` (string)
+:    List of fields made searchable through Global Search functionality.
+
+`--icon-id` (string)
+:    Name/id of the svg image to be used as the icon for the to be created asset type.
+
+`--identity` (string)
+:    Identity definition of the assets of the type. It can also be a path to a JSON file.
+
+`--identity-global-strategy` (string)
+:    Allowable values are: DUPLICATE_DETECTION_BY_NAME, DUPLICATE_DETECTION_BY_NAME_AND_RESOURCE_KEY, DUPLICATE_DETECTION_BY_NAME_AND_FOLDER, DUPLICATE_DETECTION_BY_RESOURCE_KEY, DUPLICATE_DETECTION_NOT_APPLICABLE, DUPLICATE_DETECTION_BY_IDENTITY_KEY_OR_RESOURCE_KEY.
+
+`--identity-strategy` (string)
+:    The strategy for detecting duplicate asset of the type. Allowable values are: DUPLICATE_DETECTION_BY_NAME, DUPLICATE_DETECTION_BY_NAME_AND_RESOURCE_KEY, DUPLICATE_DETECTION_BY_NAME_AND_FOLDER, DUPLICATE_DETECTION_BY_RESOURCE_KEY, DUPLICATE_DETECTION_NOT_APPLICABLE, DUPLICATE_DETECTION_BY_IDENTITY_KEY_OR_RESOURCE_KEY.
+
+`--is-column-custom-attribute` ()
+:    Set it to true if this is to be used for column custom attributes. Set to false if this is used for asset types or attribute. If true, allow_decorators should be false.
+
+`--localized-metadata-attributes` (string)
+:    Example "localized_metadata_attributes": { "name": { "default": "Data Asset", "en": "Data Asset", "fr": "Data Asset" } }. It can also be a path to a JSON file.
+
+`--name` (string)
+:    Required. Asset type name.
+
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:    This parameter allows the creation of a project-scoped asset type.  You must provide either a catalog_id, a project_id, a space_id, OR a bss_account_id but not more than one. This option is mutually exclusive with '--project'.
+
+`--properties` (string)
+:    Provides the IKC UI with information about displaying properties that can be present in the asset. It can also be a path to a JSON file.
+
+`--relationships` (string)
+:    Relationship definitions for this asset type. It can also be a path to a JSON file.
+
+`--shared-in-types` (string)
+:    null It can also be a path to a JSON file.
+
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:    This parameter allows the creation of a space-scoped asset type.  You must provide either a catalog_id, a project_id, a space_id, OR a bss_account_id but not more than one. This option is mutually exclusive with '--space'.
+
+`--version` (float)
+:    The version of defined asset type.
+
+#### Example
+```sh
+   cpdctl asset type create \
+    --fields '[{"facet": false, "is_array": false, "is_searchable_across_types": false, "key": "host", "search_path": "asset.columns[].*.name", "type": "string"}]' \
+    --name connection \
+    --allow-decorators=true \
+    --attribute-behavior '{"remove_on_copy": true}' \
+    --attribute-only=true \
+    --can-have-image=true \
+    --data-protection '{"all_attachments": true, "all_fields": true, "attachment_types": ["MANAGED","REFERENCED","REMOTE"], "field_search_paths": [columns[].name]}' \
+    --decorates '[{"asset_type_name": "exampleString"}]' \
+    --description 'Connection asset type' \
+    --external-asset-preview '{"base_client_url": "https://ibm.com", "url_parameters_fixed": "allow_login_screen=true", "url_parameters_from_asset_attributes": ["exampleString","anotherTestString"], "url_path_from_asset_attributes": "id"}' \
+    --global-search-searchable exampleString,anotherTestString \
+    --icon-id exampleString \
+    --identity '{"global_strategy": "DUPLICATE_DETECTION_BY_NAME", "strategy": "DUPLICATE_DETECTION_BY_NAME"}' \
+    --is-column-custom-attribute=true \
+    --localized-metadata-attributes '{}' \
+    --properties '{}' \
+    --relationships '[{"key": "connection_id", "on_clone_target": "CASCADE", "on_delete": "CASCADE", "on_delete_target": "CASCADE", "target_asset_type": "connection"}]' \
+    --shared-in-types '[{"asset_type_name": "exampleString"}]' \
+    --version 1 \
+    --catalog-id exampleString \
+    --project-id exampleString \
+    --space-id exampleString \
+    --bss-account-id exampleString
 ```
 
 <a id='asset_type_get'></a>
@@ -1482,8 +1701,11 @@ Use this command to download the asset attachment to the local path
 `--attachment-id` (string)
 :    ID of the attachment
 
+`--catalog` (string)
+:    Catalog name. This option is mutually exclusive with '--catalog-id'.
+
 `--catalog-id` (string)
-:    You must provide either a catalog id, a project id, or a space id, but not more than one.
+:    You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
 
 `--cpd-scope` (string)
 :    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -1497,11 +1719,17 @@ Use this command to download the asset attachment to the local path
 `--progress` ()
 :    Show download progress. (default true)
 
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
+
 `--project-id` (string)
-:    You must provide either a catalog id, a project id, or a space id, but not more than one.
+:    You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
 
 `--space-id` (string)
-:    You must provide either a catalog id, a project id, or a space id, but not more than one.
+:    You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--space'.
 
 <a id='asset_data-asset_create'></a>
 ## &#8226; asset data-asset create
@@ -1686,8 +1914,11 @@ Use this command to upload the local path as an asset attachment
 `--asset-id` (string)
 :    ID of the asset
 
+`--catalog` (string)
+:    Catalog name. This option is mutually exclusive with '--catalog-id'.
+
 `--catalog-id` (string)
-:    You must provide either a catalog id, a project id, or a space id, but not more than one.
+:    You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
 
 `--cpd-scope` (string)
 :    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -1710,11 +1941,17 @@ Use this command to upload the local path as an asset attachment
 `--progress` ()
 :    Show upload progress. (default true)
 
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
+
 `--project-id` (string)
-:    You must provide either a catalog id, a project id, or a space id, but not more than one.
+:    You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
 
 `--space-id` (string)
-:    You must provide either a catalog id, a project id, or a space id, but not more than one.
+:    You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--space'.
 
 `--tag` (strings)
 :    Tag(s) of the data asset. Multiple can be provided
@@ -2088,8 +2325,11 @@ Use this command to create a script asset from a local file.
 ```
 #### Command options
 
+`--catalog` (string)
+:    Catalog name. This option is mutually exclusive with '--catalog-id'.
+
 `--catalog-id` (string)
-:    You must provide either a catalog id, a project id, or a space id, but not more than one.
+:    You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
 
 `--cpd-scope` (string)
 :    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2109,14 +2349,23 @@ Use this command to create a script asset from a local file.
 `--origin-country` (string)
 :    Origin country of the script asset (default "us")
 
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
+
 `--project-id` (string)
-:    You must provide either a catalog id, a project id, or a space id, but not more than one.
+:    You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--project'.
+
+`--software-specification` (string)
+:    Software specification name. This option is mutually exclusive with '--software-specification-id'.
 
 `--software-specification-id` (string)
-:    ID of the software environment for the script.
+:    ID of the software environment for the script. This option is mutually exclusive with '--software-specification'.
+
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
 
 `--space-id` (string)
-:    You must provide either a catalog id, a project id, or a space id, but not more than one.
+:    You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--space'.
 
 `--tag` (strings)
 :    Tag(s) of the script asset. Multiple can be provided
@@ -2348,8 +2597,11 @@ Wait until the asset export becomes completed, failed, or cancelled.
 ```
 #### Command options
 
+`--catalog` (string)
+:    Catalog name. This option is mutually exclusive with '--catalog-id'.
+
 `--catalog-id` (string)
-:    This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
+:    This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory. This option is mutually exclusive with '--catalog'.
 
 `--cpd-scope` (string)
 :    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2357,11 +2609,17 @@ Wait until the asset export becomes completed, failed, or cancelled.
 `--export-id` (string)
 :    The export identification.
 
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
+
 `--project-id` (string)
-:    The ID of the project to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
+:    The ID of the project to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
 
 `--space-id` (string)
-:    The ID of the space to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
+:    The ID of the space to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory. This option is mutually exclusive with '--space'.
 
 <a id='asset_import_list'></a>
 ## &#8226; asset import list
@@ -2536,8 +2794,11 @@ Wait until the asset import becomes completed, failed, or canceled.
 ```
 #### Command options
 
+`--catalog` (string)
+:    Catalog name. This option is mutually exclusive with '--catalog-id'.
+
 `--catalog-id` (string)
-:    This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
+:    This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory. This option is mutually exclusive with '--catalog'.
 
 `--cpd-scope` (string)
 :    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2545,11 +2806,17 @@ Wait until the asset import becomes completed, failed, or canceled.
 `--import-id` (string)
 :    The import identification.
 
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
+
 `--project-id` (string)
-:    The ID of the project to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
+:    The ID of the project to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
 
 `--space-id` (string)
-:    The ID of the space to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
+:    The ID of the space to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory. This option is mutually exclusive with '--space'.
 
 <a id='code-package_list'></a>
 ## &#8226; code-package list
@@ -2874,6 +3141,12 @@ cpdctl code-package revision get \
 
 `--apikey` (string)
 :    Set user apikey
+
+`--auth-id` (string)
+:    AWS identifier for selected AWS authorization scope. E.g. account ID for default scope 'accounts'.
+
+`--auth-scope` (string)
+:    Authorization scope for AWS: 'accounts', 'subscriptions', 'services', products', or 'externalservices'. (default "accounts")
 
 `--password` (string)
 :    Set user password
@@ -6584,7 +6857,7 @@ Authorization rules for (1) and (2) follow those for `/v2/assets` for projects a
 You can only provide exactly one of `nodes`, `spark` or `datastage`, not at the same time.
 
 ```sh
-cpdctl environment hardware-specification create --name NAME [--datastage DATASTAGE | --datastage-compute DATASTAGE-COMPUTE --datastage-conductor DATASTAGE-CONDUCTOR --datastage-num-computes DATASTAGE-NUM-COMPUTES --datastage-num-conductors DATASTAGE-NUM-CONDUCTORS] [--description DESCRIPTION] [--nodes NODES | --nodes-cpu NODES-CPU --nodes-gpu NODES-GPU --nodes-mem NODES-MEM --nodes-num-nodes NODES-NUM-NODES] [--spark SPARK | --spark-driver SPARK-DRIVER --spark-executor SPARK-EXECUTOR --spark-num-drivers SPARK-NUM-DRIVERS --spark-num-executors SPARK-NUM-EXECUTORS] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+cpdctl environment hardware-specification create --name NAME [--datastage DATASTAGE | --datastage-compute DATASTAGE-COMPUTE --datastage-conductor DATASTAGE-CONDUCTOR --datastage-instance DATASTAGE-INSTANCE --datastage-num-computes DATASTAGE-NUM-COMPUTES --datastage-num-conductors DATASTAGE-NUM-CONDUCTORS] [--description DESCRIPTION] [--nodes NODES | --nodes-cpu NODES-CPU --nodes-gpu NODES-GPU --nodes-mem NODES-MEM --nodes-num-nodes NODES-NUM-NODES] [--spark SPARK | --spark-driver SPARK-DRIVER --spark-executor SPARK-EXECUTOR --spark-num-drivers SPARK-NUM-DRIVERS --spark-num-executors SPARK-NUM-EXECUTORS] [--space-id SPACE-ID] [--project-id PROJECT-ID]
 ```
 
 
@@ -6626,6 +6899,9 @@ cpdctl environment hardware-specification create --name NAME [--datastage DATAST
 :   DataStage conductor definition of hardware specification. This option provides a value for a sub-field of the JSON option 'datastage'. It is mutually exclusive with that option.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--datastage-conductor=@path/to/file.json`.
+
+`--datastage-instance` (string)
+:   Instance of DataStage. This option provides a value for a sub-field of the JSON option 'datastage'. It is mutually exclusive with that option.
 
 `--datastage-num-computes` (int64)
 :   Number of computes. This option provides a value for a sub-field of the JSON option 'datastage'. It is mutually exclusive with that option.
@@ -6672,7 +6948,7 @@ cpdctl environment hardware-specification create --name NAME [--datastage DATAST
 ```sh
 cpdctl environment hardware-specification create \
     --name 'my hardware specification' \
-    --datastage '{"compute": {"cpu": {"model": "exampleString", "units": "100m"}, "mem": {"size": "4Gi"}}, "conductor": {"cpu": {"model": "exampleString", "units": "100m"}, "mem": {"size": "4Gi"}}, "num_computes": 2, "num_conductors": 1}' \
+    --datastage '{"compute": {"cpu": {"model": "exampleString", "units": "100m"}, "mem": {"size": "4Gi"}}, "conductor": {"cpu": {"model": "exampleString", "units": "100m"}, "mem": {"size": "4Gi"}}, "instance": "instance-1", "num_computes": 2, "num_conductors": 1}' \
     --description 'this is my hardware specification' \
     --nodes '{"cpu": {"model": "exampleString", "units": "100m"}, "gpu": {"name": "v100", "num_gpu": 2}, "mem": {"size": "4Gi"}, "num_nodes": 1}' \
     --spark '{"driver": {"cpu": {"model": "exampleString", "units": "100m"}, "mem": {"size": "4Gi"}}, "executor": {"cpu": {"model": "exampleString", "units": "100m"}, "mem": {"size": "4Gi"}}, "num_drivers": 1, "num_executors": 2}' \
@@ -7597,7 +7873,7 @@ cpdctl job create [--job JOB | --job-asset-ref JOB-ASSET-REF --job-asset-ref-typ
 :   The description of the job. This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
 
 `--job-job-parameters` (<a href="#cli-job-parameter-example-schema-job">`JobParameter[]`</a>)
-:   Array of job parameters. This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
+:   Array of job parameters, only for DataStage, Orchestration Flow, Machine Learning Stream, and Synthetic data flow jobs. This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--job-job-parameters=@path/to/file.json`.
 
@@ -7605,7 +7881,7 @@ cpdctl job create [--job JOB | --job-asset-ref JOB-ASSET-REF --job-asset-ref-typ
 :   The name of the job. This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
 
 `--job-parameter-sets` (<a href="#cli-parameter-sets-example-schema-job">`ParameterSets[]`</a>)
-:   Array of parameter sets. This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
+:   Array of parameter sets, only for DataStage, Orchestration Flow, Machine Learning Stream, and Synthetic data flow jobs. This option provides a value for a sub-field of the JSON option 'job'. It is mutually exclusive with that option.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--job-parameter-sets=@path/to/file.json`.
 
@@ -7785,7 +8061,7 @@ cpdctl job update --job-id JOB-ID [--configuration CONFIGURATION] [--description
 
 ```sh
 cpdctl job update \
-    --configuration '{"deployment_job_definition_id": "ff1ab70b-0553-409a-93f9-ccc31471c218", "env_id": "defaultsparkr1x4-18ce241b-c9e8-43ed-94a1-9f5585764924", "env_type": "default_spark", "env_variables": ["key1=value1","key2=value2"], "outputs": {"total_bytes_read": 64582, "total_bytes_written": 594346, "total_rows_read": 1000, "total_rows_written": 1846}, "version": "d00a9d88-4394-48f8-86db-d9b8360f8a72"}' \
+    --configuration '{"deployment_job_definition_id": "ff1ab70b-0553-409a-93f9-ccc31471c218", "env_id": "defaultsparkr1x4-18ce241b-c9e8-43ed-94a1-9f5585764924", "env_type": "default_spark", "env_variables": ["key1=value1","key2=value2"], "version": "d00a9d88-4394-48f8-86db-d9b8360f8a72"}' \
     --description exampleString \
     --name exampleString
 ```
@@ -7871,7 +8147,7 @@ cpdctl job run create --job-id JOB-ID [--job-run JOB-RUN | --job-run-configurati
 :   The description of the job run. This option provides a value for a sub-field of the JSON option 'job-run'. It is mutually exclusive with that option.
 
 `--job-run-job-parameters` (<a href="#cli-job-parameter-example-schema-job">`JobParameter[]`</a>)
-:   Array of job parameters. This option provides a value for a sub-field of the JSON option 'job-run'. It is mutually exclusive with that option.
+:   Array of job parameters, only for DataStage, Orchestration Flow, Machine Learning Stream, and Synthetic data flow jobs. This option provides a value for a sub-field of the JSON option 'job-run'. It is mutually exclusive with that option.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--job-run-job-parameters=@path/to/file.json`.
 
@@ -7879,7 +8155,7 @@ cpdctl job run create --job-id JOB-ID [--job-run JOB-RUN | --job-run-configurati
 :   The name of the job run. This option provides a value for a sub-field of the JSON option 'job-run'. It is mutually exclusive with that option.
 
 `--job-run-parameter-sets` (<a href="#cli-parameter-sets-example-schema-job">`ParameterSets[]`</a>)
-:   Array of parameter sets. This option provides a value for a sub-field of the JSON option 'job-run'. It is mutually exclusive with that option.
+:   Array of parameter sets, only for DataStage, Orchestration Flow, Machine Learning Stream, and Synthetic data flow jobs. This option provides a value for a sub-field of the JSON option 'job-run'. It is mutually exclusive with that option.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--job-run-parameter-sets=@path/to/file.json`.
 
@@ -8171,17 +8447,29 @@ Wait until the job run becomes completed, failed, or canceled.
 `--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
+`--job` (string)
+:    Job name. This option is mutually exclusive with '--job-id'.
+
 `--job-id` (string)
-:    The ID of the job to use. Each job has a unique ID.
+:    The ID of the job to use. Each job has a unique ID. This option is mutually exclusive with '--job'.
+
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
 
 `--project-id` (string)
-:    The ID of the project to use. project-id or space-id is required.
+:    The ID of the project to use. project-id or space-id is required. This option is mutually exclusive with '--project'.
+
+`--run` (string)
+:    Job run name. This option is mutually exclusive with '--run-id'.
 
 `--run-id` (string)
-:    The ID of the job run.
+:    The ID of the job run. This option is mutually exclusive with '--run'.
+
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
 
 `--space-id` (string)
-:    The ID of the space to use. project-id or space-id is required.
+:    The ID of the space to use. project-id or space-id is required. This option is mutually exclusive with '--space'.
 
 <a id='job_run_download-results'></a>
 ## &#8226; job run download-results
@@ -8201,14 +8489,23 @@ Downloads the results of the complete job run to the locations pointed in `outpu
 `--progress` ()
 :    Show download progress. (default true)
 
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
+
 `--project-id` (string)
-:    The ID of the project to use. project-id or space-id is required.
+:    The ID of the project to use. project-id or space-id is required. This option is mutually exclusive with '--project'.
+
+`--run` (string)
+:    Job run name. This option is mutually exclusive with '--run-id'.
 
 `--run-id` (string)
-:    The ID of the job run.
+:    The ID of the job run. This option is mutually exclusive with '--run'.
+
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
 
 `--space-id` (string)
-:    The ID of the space to use. project-id or space-id is required.
+:    The ID of the space to use. project-id or space-id is required. This option is mutually exclusive with '--space'.
 
 <a id='ml_deployment_create'></a>
 ## &#8226; ml deployment create
@@ -8583,8 +8880,11 @@ Wait until the deployment becomes ready or failed.
 `--deployment-id` (string)
 :    The deployment ID.
 
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
+
 `--space-id` (string)
-:    The ID of the space to use.
+:    The ID of the space to use. This option is mutually exclusive with '--space'.
 
 <a id='ml_deployment-job_list'></a>
 ## &#8226; ml deployment-job list
@@ -9114,61 +9414,6 @@ cpdctl ml deployment-job-definition get \
     --version 2019-01-01
 ```
 
-<a id='ml_deployment-job-definition_update'></a>
-## &#8226; ml deployment-job-definition update
-
-Update the deployment job definition with the provided patch data. The following fields can be patched:
-- `/tags`
-- `/name`
-- `/description`
-- `/custom`
-- `/deployment`.
-
-```sh
-cpdctl ml deployment-job-definition update --job-definition-id JOB-DEFINITION-ID --version VERSION --space-id SPACE-ID [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--deployment DEPLOYMENT]
-```
-
-
-#### Command options
-
-`--job-definition-id` (string)
-:   Deployment job definition identifier. Required.
-
-`--space-id` (string)
-:   The space that contains the resource. Required.
-
-`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
-:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
-
-    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--json-patch=@path/to/file.json`.
-
-`--tags` ([]string)
-:   A list of tags for this resource.
-
-`--name` (string)
-:   The name of the resource.
-
-`--description` (string)
-:   A description of the resource.
-
-`--custom` (generic map)
-:   User defined properties specified as key-value pairs.
-
-`--deployment` (<a href="#cli-simple-rel-example-schema-ml">`SimpleRel`</a>)
-:   A reference to a resource.
-
-#### Example
-
-```sh
-cpdctl ml deployment-job-definition update \
-    --tags t1,t2 \
-    --name my-resource \
-    --description 'This is my first resource.' \
-    --custom '{"anyKey": "anyValue"}' \
-    --deployment '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"}' \
-    --version 2019-01-01
-```
-
 <a id='ml_deployment-job-definition_delete'></a>
 ## &#8226; ml deployment-job-definition delete
 
@@ -9265,6 +9510,61 @@ cpdctl ml deployment-job-definition list-revisions \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --start exampleString \
     --limit 50 \
+    --version 2019-01-01
+```
+
+<a id='ml_deployment-job-definition_update'></a>
+## &#8226; ml deployment-job-definition update
+
+Update the deployment job definition with the provided patch data. The following fields can be patched:
+- `/tags`
+- `/name`
+- `/description`
+- `/custom`
+- `/deployment`.
+
+```sh
+cpdctl ml deployment-job-definition update --job-definition-id JOB-DEFINITION-ID --version VERSION --space-id SPACE-ID [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--deployment DEPLOYMENT]
+```
+
+
+#### Command options
+
+`--job-definition-id` (string)
+:   Deployment job definition identifier. Required.
+
+`--space-id` (string)
+:   The space that contains the resource. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
+:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--json-patch=@path/to/file.json`.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--name` (string)
+:   The name of the resource.
+
+`--description` (string)
+:   A description of the resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
+
+`--deployment` (<a href="#cli-simple-rel-example-schema-ml">`SimpleRel`</a>)
+:   A reference to a resource.
+
+#### Example
+
+```sh
+cpdctl ml deployment-job-definition update \
+    --tags t1,t2 \
+    --name my-resource \
+    --description 'This is my first resource.' \
+    --custom '{"anyKey": "anyValue"}' \
+    --deployment '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"}' \
     --version 2019-01-01
 ```
 
@@ -9426,59 +9726,6 @@ cpdctl ml experiment get \
     --version 2019-01-01
 ```
 
-<a id='ml_experiment_update'></a>
-## &#8226; ml experiment update
-
-Update the experiment with the provided patch data. The following fields can be patched:
-- `/tags`
-- `/name`
-- `/description`
-- `/custom`.
-
-```sh
-cpdctl ml experiment update --experiment-id EXPERIMENT-ID --version VERSION [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--space-id SPACE-ID] [--project-id PROJECT-ID]
-```
-
-
-#### Command options
-
-`--experiment-id` (string)
-:   Experiment identifier. Required.
-
-`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
-:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
-
-    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--json-patch=@path/to/file.json`.
-
-`--space-id` (string)
-:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
-
-`--project-id` (string)
-:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
-
-`--tags` ([]string)
-:   A list of tags for this resource.
-
-`--name` (string)
-:   The name of the resource.
-
-`--description` (string)
-:   A description of the resource.
-
-`--custom` (generic map)
-:   User defined properties specified as key-value pairs. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file.
-
-#### Example
-
-```sh
-cpdctl ml experiment update \
-    --tags t1,t2 \
-    --name my-resource \
-    --description 'This is my first resource.' \
-    --custom '{"anyKey": "anyValue"}' \
-    --version 2019-01-01
-```
-
 <a id='ml_experiment_delete'></a>
 ## &#8226; ml experiment delete
 
@@ -9587,6 +9834,59 @@ cpdctl ml experiment list-revisions \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --start exampleString \
     --limit 50 \
+    --version 2019-01-01
+```
+
+<a id='ml_experiment_update'></a>
+## &#8226; ml experiment update
+
+Update the experiment with the provided patch data. The following fields can be patched:
+- `/tags`
+- `/name`
+- `/description`
+- `/custom`.
+
+```sh
+cpdctl ml experiment update --experiment-id EXPERIMENT-ID --version VERSION [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--experiment-id` (string)
+:   Experiment identifier. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
+:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--json-patch=@path/to/file.json`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--name` (string)
+:   The name of the resource.
+
+`--description` (string)
+:   A description of the resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file.
+
+#### Example
+
+```sh
+cpdctl ml experiment update \
+    --tags t1,t2 \
+    --name my-resource \
+    --description 'This is my first resource.' \
+    --custom '{"anyKey": "anyValue"}' \
     --version 2019-01-01
 ```
 
@@ -9789,59 +10089,6 @@ cpdctl ml function get \
     --version 2019-01-01
 ```
 
-<a id='ml_function_update'></a>
-## &#8226; ml function update
-
-Update the function with the provided patch data. The following fields can be patched:
-- `/tags`
-- `/name`
-- `/description`
-- `/custom`.
-
-```sh
-cpdctl ml function update --function-id FUNCTION-ID --version VERSION [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--space-id SPACE-ID] [--project-id PROJECT-ID]
-```
-
-
-#### Command options
-
-`--function-id` (string)
-:   Function identifier. Required.
-
-`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
-:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
-
-    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--json-patch=@path/to/file.json`.
-
-`--space-id` (string)
-:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
-
-`--project-id` (string)
-:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
-
-`--tags` ([]string)
-:   A list of tags for this resource.
-
-`--name` (string)
-:   The name of the resource.
-
-`--description` (string)
-:   A description of the resource.
-
-`--custom` (generic map)
-:   User defined properties specified as key-value pairs. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file.
-
-#### Example
-
-```sh
-cpdctl ml function update \
-    --tags t1,t2 \
-    --name my-resource \
-    --description 'This is my first resource.' \
-    --custom '{"anyKey": "anyValue"}' \
-    --version 2019-01-01
-```
-
 <a id='ml_function_delete'></a>
 ## &#8226; ml function delete
 
@@ -10022,6 +10269,59 @@ cpdctl ml function download-code \
     --rev 2 \
     --version 2019-01-01 \
     --output-file tempdir/example-output.txt
+```
+
+<a id='ml_function_update'></a>
+## &#8226; ml function update
+
+Update the function with the provided patch data. The following fields can be patched:
+- `/tags`
+- `/name`
+- `/description`
+- `/custom`.
+
+```sh
+cpdctl ml function update --function-id FUNCTION-ID --version VERSION [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--function-id` (string)
+:   Function identifier. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
+:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--json-patch=@path/to/file.json`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--name` (string)
+:   The name of the resource.
+
+`--description` (string)
+:   A description of the resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file.
+
+#### Example
+
+```sh
+cpdctl ml function update \
+    --tags t1,t2 \
+    --name my-resource \
+    --description 'This is my first resource.' \
+    --custom '{"anyKey": "anyValue"}' \
+    --version 2019-01-01
 ```
 
 <a id='ml_model_create'></a>
@@ -10765,11 +11065,17 @@ Wait until the model upload becomes completed or failed.
 `--model-id` (string)
 :    The model ID.
 
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
+
 `--project-id` (string)
-:    The ID of the project to use.
+:    The ID of the project to use. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
 
 `--space-id` (string)
-:    The ID of the space to use.
+:    The ID of the space to use. This option is mutually exclusive with '--space'.
 
 <a id='ml_model-definition_create'></a>
 ## &#8226; ml model-definition create
@@ -10935,59 +11241,6 @@ cpdctl ml model-definition get \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --rev 2 \
-    --version 2019-01-01
-```
-
-<a id='ml_model-definition_update'></a>
-## &#8226; ml model-definition update
-
-Update the model definition with the provided patch data. The following fields can be patched:
-- `/tags`
-- `/name`
-- `/description`
-- `/custom` This command is supported starting with release 3.5 of Cloud Pak for Data.
-
-```sh
-cpdctl ml model-definition update --model-definition-id MODEL-DEFINITION-ID --version VERSION [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--space-id SPACE-ID] [--project-id PROJECT-ID]
-```
-
-
-#### Command options
-
-`--model-definition-id` (string)
-:   Model definition identifier. Required.
-
-`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
-:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
-
-    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--json-patch=@path/to/file.json`.
-
-`--space-id` (string)
-:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
-
-`--project-id` (string)
-:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
-
-`--tags` ([]string)
-:   A list of tags for this resource.
-
-`--name` (string)
-:   The name of the resource.
-
-`--description` (string)
-:   A description of the resource.
-
-`--custom` (generic map)
-:   User defined properties specified as key-value pairs. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file.
-
-#### Example
-
-```sh
-cpdctl ml model-definition update \
-    --tags t1,t2 \
-    --name my-resource \
-    --description 'This is my first resource.' \
-    --custom '{"anyKey": "anyValue"}' \
     --version 2019-01-01
 ```
 
@@ -11173,6 +11426,59 @@ cpdctl ml model-definition download-model \
     --output-file tempdir/example-output.txt
 ```
 
+<a id='ml_model-definition_update'></a>
+## &#8226; ml model-definition update
+
+Update the model definition with the provided patch data. The following fields can be patched:
+- `/tags`
+- `/name`
+- `/description`
+- `/custom` This command is supported starting with release 3.5 of Cloud Pak for Data.
+
+```sh
+cpdctl ml model-definition update --model-definition-id MODEL-DEFINITION-ID --version VERSION [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--model-definition-id` (string)
+:   Model definition identifier. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
+:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--json-patch=@path/to/file.json`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--name` (string)
+:   The name of the resource.
+
+`--description` (string)
+:   A description of the resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file.
+
+#### Example
+
+```sh
+cpdctl ml model-definition update \
+    --tags t1,t2 \
+    --name my-resource \
+    --description 'This is my first resource.' \
+    --custom '{"anyKey": "anyValue"}' \
+    --version 2019-01-01
+```
+
 <a id='ml_pipeline_create'></a>
 ## &#8226; ml pipeline create
 
@@ -11312,59 +11618,6 @@ cpdctl ml pipeline get \
     --version 2019-01-01
 ```
 
-<a id='ml_pipeline_update'></a>
-## &#8226; ml pipeline update
-
-Update the pipeline with the provided patch data. The following fields can be patched:
-- `/tags`
-- `/name`
-- `/description`
-- `/custom`.
-
-```sh
-cpdctl ml pipeline update --pipeline-id PIPELINE-ID --version VERSION [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--space-id SPACE-ID] [--project-id PROJECT-ID]
-```
-
-
-#### Command options
-
-`--pipeline-id` (string)
-:   Pipeline identifier. Required.
-
-`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
-:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
-
-    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--json-patch=@path/to/file.json`.
-
-`--space-id` (string)
-:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
-
-`--project-id` (string)
-:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
-
-`--tags` ([]string)
-:   A list of tags for this resource.
-
-`--name` (string)
-:   The name of the resource.
-
-`--description` (string)
-:   A description of the resource.
-
-`--custom` (generic map)
-:   User defined properties specified as key-value pairs. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file.
-
-#### Example
-
-```sh
-cpdctl ml pipeline update \
-    --tags t1,t2 \
-    --name my-resource \
-    --description 'This is my first resource.' \
-    --custom '{"anyKey": "anyValue"}' \
-    --version 2019-01-01
-```
-
 <a id='ml_pipeline_delete'></a>
 ## &#8226; ml pipeline delete
 
@@ -11473,6 +11726,59 @@ cpdctl ml pipeline list-revisions \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --start exampleString \
     --limit 50 \
+    --version 2019-01-01
+```
+
+<a id='ml_pipeline_update'></a>
+## &#8226; ml pipeline update
+
+Update the pipeline with the provided patch data. The following fields can be patched:
+- `/tags`
+- `/name`
+- `/description`
+- `/custom`.
+
+```sh
+cpdctl ml pipeline update --pipeline-id PIPELINE-ID --version VERSION [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--pipeline-id` (string)
+:   Pipeline identifier. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
+:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--json-patch=@path/to/file.json`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--name` (string)
+:   The name of the resource.
+
+`--description` (string)
+:   A description of the resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file. It can also be a path to a JSON file.
+
+#### Example
+
+```sh
+cpdctl ml pipeline update \
+    --tags t1,t2 \
+    --name my-resource \
+    --description 'This is my first resource.' \
+    --custom '{"anyKey": "anyValue"}' \
     --version 2019-01-01
 ```
 
@@ -11899,18 +12205,24 @@ cpdctl ml training delete \
 Wait until the training becomes completed, failed, or canceled.
 
 ```sh
-  cpdctl ml training wait --training-id TRAINING_ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+  cpdctl ml training wait --training-id TRAINING_ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 #### Command options
 
 `--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
+
 `--project-id` (string)
-:    The ID of the project to use.
+:    The ID of the project to use. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
 
 `--space-id` (string)
-:    The ID of the space to use.
+:    The ID of the space to use. This option is mutually exclusive with '--space'.
 
 `--training-id` (string)
 :    The training ID.
@@ -12293,64 +12605,6 @@ cpdctl ml training-definition get \
     --version 2019-01-01
 ```
 
-<a id='ml_training-definition_update'></a>
-## &#8226; ml training-definition update
-
-Update the training definition with the provided patch data. The following fields can be patched:
-- `/tags`
-- `/name`
-- `/description`
-- `/custom`
-- `/federated_learning` This command is supported starting with release 3.5 of Cloud Pak for Data.
-
-```sh
-cpdctl ml training-definition update --training-definition-id TRAINING-DEFINITION-ID --version VERSION [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--federated-learning FEDERATED-LEARNING] [--space-id SPACE-ID] [--project-id PROJECT-ID]
-```
-
-
-#### Command options
-
-`--training-definition-id` (string)
-:   Training definition identifier. Required.
-
-`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
-:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
-
-    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--json-patch=@path/to/file.json`.
-
-`--space-id` (string)
-:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
-
-`--project-id` (string)
-:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
-
-`--tags` ([]string)
-:   A list of tags for this resource.
-
-`--name` (string)
-:   The name of the resource.
-
-`--description` (string)
-:   A description of the resource.
-
-`--custom` (generic map)
-:   User defined properties specified as key-value pairs.
-
-`--federated-learning` (<a href="#cli-federated-learning-example-schema-ml">`FederatedLearning`</a>)
-:   Federated Learning.
-
-#### Example
-
-```sh
-cpdctl ml training-definition update \
-    --tags t1,t2 \
-    --name my-resource \
-    --description 'This is my first resource.' \
-    --custom '{"anyKey": "anyValue"}' \
-    --federated-learning '{"model": {"type": "keras", "spec": {"href": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}}, "model_file": "exampleString"}, "fusion_type": "iter_avg", "remote_training": {"quorum": 0.9, "max_timeout": 60, "remote_training_systems": [{"id": "1918939c-2660-4f6a-b727-4b402383dc63", "required": true}]}, "rounds": 3, "termination_predicate": "accuracy > 0.9", "epochs": 3, "optimizer": {"name": "exampleString", "spec": {"anyKey": "anyValue"}}, "loss": "exampleString", "metrics": "exampleString", "max_depth": 38, "learning_rate": 72.5, "l2_regularization": 72.5, "max_bins": 38, "max_leaf_nodes": 38, "min_samples_leaf": 38, "random_state": 38, "verbose": true, "num_classes": 38, "byzantine_threshold": 38, "sigma": 72.5, "sigma0": 72.5, "gamma": 72.5, "iters": 38, "save_intermediate_models": true, "crypto": {"cipher_spec": "encryption_level_1"}, "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}, "version": "exampleString", "log_level": "info", "sketch_accuracy_vs_privacy": 0.01}' \
-    --version 2019-01-01
-```
-
 <a id='ml_training-definition_delete'></a>
 ## &#8226; ml training-definition delete
 
@@ -12459,6 +12713,64 @@ cpdctl ml training-definition list-revisions \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --start exampleString \
     --limit 50 \
+    --version 2019-01-01
+```
+
+<a id='ml_training-definition_update'></a>
+## &#8226; ml training-definition update
+
+Update the training definition with the provided patch data. The following fields can be patched:
+- `/tags`
+- `/name`
+- `/description`
+- `/custom`
+- `/federated_learning` This command is supported starting with release 3.5 of Cloud Pak for Data.
+
+```sh
+cpdctl ml training-definition update --training-definition-id TRAINING-DEFINITION-ID --version VERSION [--tags TAGS] [--name NAME] [--description DESCRIPTION] [--custom CUSTOM] [--federated-learning FEDERATED-LEARNING] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+```
+
+
+#### Command options
+
+`--training-definition-id` (string)
+:   Training definition identifier. Required.
+
+`--json-patch` (<a href="#cli-json-patch-operation-example-schema-ml">`JSONPatchOperation[]`</a>)
+:   Input For Patch. This is the patch body which corresponds to the JavaScript Object Notation (JSON) Patch standard (RFC 6902).
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--json-patch=@path/to/file.json`.
+
+`--space-id` (string)
+:   The space that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--project-id` (string)
+:   The project that contains the resource. Either `space_id` or `project_id` query parameter has to be given.
+
+`--tags` ([]string)
+:   A list of tags for this resource.
+
+`--name` (string)
+:   The name of the resource.
+
+`--description` (string)
+:   A description of the resource.
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs.
+
+`--federated-learning` (<a href="#cli-federated-learning-example-schema-ml">`FederatedLearning`</a>)
+:   Federated Learning.
+
+#### Example
+
+```sh
+cpdctl ml training-definition update \
+    --tags t1,t2 \
+    --name my-resource \
+    --description 'This is my first resource.' \
+    --custom '{"anyKey": "anyValue"}' \
+    --federated-learning '{"model": {"type": "keras", "spec": {"href": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}}, "model_file": "exampleString"}, "fusion_type": "iter_avg", "remote_training": {"quorum": 0.9, "max_timeout": 60, "remote_training_systems": [{"id": "1918939c-2660-4f6a-b727-4b402383dc63", "required": true}]}, "rounds": 3, "termination_predicate": "accuracy > 0.9", "epochs": 3, "optimizer": {"name": "exampleString", "spec": {"anyKey": "anyValue"}}, "loss": "exampleString", "metrics": "exampleString", "max_depth": 38, "learning_rate": 72.5, "l2_regularization": 72.5, "max_bins": 38, "max_leaf_nodes": 38, "min_samples_leaf": 38, "random_state": 38, "verbose": true, "num_classes": 38, "byzantine_threshold": 38, "sigma": 72.5, "sigma0": 72.5, "gamma": 72.5, "iters": 38, "save_intermediate_models": true, "crypto": {"cipher_spec": "encryption_level_1"}, "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}, "version": "exampleString", "log_level": "info", "sketch_accuracy_vs_privacy": 0.01}' \
     --version 2019-01-01
 ```
 
@@ -13464,7 +13776,7 @@ cpdctl pipeline run task-result get \
 This command migrate old pipeline run execution cache data created by Watson Pipeline pipeline runs to the new location.  Identifiers of pipeline runs whose cache data are migrated are preserved in the output file. Cache data can be migrated to mounted filesystem. To enable that option specify --assets-dir-path parameter.
 
 ```sh
-  cpdctl pipeline run migrate-cache --output-file OUTPUT-FILE [--project-id PROJECT-ID] [--assets-dir-path ASSET-DIR-PATH]
+  cpdctl pipeline run migrate-cache --output-file OUTPUT-FILE [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--assets-dir-path ASSET-DIR-PATH]
 ```
 #### Command options
 
@@ -13477,11 +13789,17 @@ This command migrate old pipeline run execution cache data created by Watson Pip
 `--output-file` (string)
 :    Path to a file where the identifiers of pipeline, pipeline run are preserved after execution cache data are migrated
 
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
+
 `--project-id` (string)
-:    Specific project in which old pipeline run execution cache data will be migrated
+:    Specific project in which old pipeline run execution cache data will be migrated This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
 
 `--space-id` (string)
-:    Specific space in which old pipeline run execution cache data will be migrated
+:    Specific space in which old pipeline run execution cache data will be migrated This option is mutually exclusive with '--space'.
 
 `--verbose` ()
 :    Whether to display detailed processing information (default: false)
@@ -13499,24 +13817,36 @@ This command migrate old pipeline run execution cache data created by Watson Pip
 Gets job run status for pipeline and it's subpipelines.
 
 ```sh
-  cpdctl pipeline run get-status --job-id JOB-ID --run-id RUN-ID [--with-subpipelines WITH-SUBPIPELINES] [--space-id SPACE-ID] [--project-id PROJECT-ID]
+  cpdctl pipeline run get-status {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run RUN-NAME} [--with-subpipelines WITH-SUBPIPELINES] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 #### Command options
 
 `--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
+`--job` (string)
+:    Job name. This option is mutually exclusive with '--job-id'.
+
 `--job-id` (string)
-:    The ID of the job.
+:    The ID of the job. This option is mutually exclusive with '--job'.
+
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
 
 `--project-id` (string)
-:    The id of the project.
+:    The id of the project. This option is mutually exclusive with '--project'.
+
+`--run` (string)
+:    Job run name. This option is mutually exclusive with '--run-id'.
 
 `--run-id` (string)
-:    The ID of the job run.
+:    The ID of the job run. This option is mutually exclusive with '--run'.
+
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
 
 `--space-id` (string)
-:    The id of the space.
+:    The id of the space. This option is mutually exclusive with '--space'.
 
 `--with-subpipelines` ()
 :    include also subpipelines statuses
@@ -13536,7 +13866,7 @@ Gets job run status for pipeline and it's subpipelines.
 This command deletes execution cache data created by Watson Pipeline runs for a specific pipeline. Identifiers of pipeline whose cache data are deleted are preserved in the output file. This action applies to cache data stored on mounted filesystem. To enable that option specify --assets-dir-path parameter. Only files from job runs that started before a specific point in time are deleted.
 
 ```sh
-  cpdctl pipeline cleanup delete-cache --output-file OUTPUT-FILE [--project-id PROJECT-ID | --space-id SPACE-ID] [--pipeline-id PIPELINE-ID] [--assets-dir-path ASSETS-DIR-PATH | --file-api-mount-path FILE-API-MOUNT-PATH] [--artifact-store-mount-path ARTIFACT_STORE_MOUNT_PATH] [--retention-time RETENTION-TIME] [--output-file OUTPUT-FILE] [--recursive] [--revision-id REVISION-ID]
+  cpdctl pipeline cleanup delete-cache --output-file OUTPUT-FILE [--project PROJECT | {--project-id PROJECT-ID | --project PROJECT-NAME} ] [--space SPACE | {--space-id SPACE-ID | --space SPACE-NAME}] [--pipeline PIPELINE | {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME}] [--assets-dir-path ASSETS-DIR-PATH | --file-api-mount-path FILE-API-MOUNT-PATH] [--artifact-store-mount-path ARTIFACT_STORE_MOUNT_PATH] [--retention-time RETENTION-TIME] [--output-file OUTPUT-FILE] [--recursive] [--revision-id REVISION-ID]
 ```
 #### Command options
 
@@ -13558,23 +13888,32 @@ This command deletes execution cache data created by Watson Pipeline runs for a 
 `--output-file` (string)
 :    Path to a file where the identifiers of pipeline are preserved after execution cache data are deleted
 
+`--pipeline` (string)
+:    Pipeline name. This option is mutually exclusive with '--pipeline-id'.
+
 `--pipeline-id` (string)
-:    Specific pipeline in which pipeline run execution cache data will be deleted
+:    ID of the pipeline in which pipeline run execution cache data will be deleted This option is mutually exclusive with '--pipeline'.
+
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
 
 `--project-id` (string)
-:    Specific project in which pipeline run execution cache data will be deleted
+:    ID of the project in which pipeline run execution cache data will be deleted This option is mutually exclusive with '--project'.
 
 `-R, --recursive` ()
 :    Whether to also delete caches for pipelines used by jobs in this flow run (default: false)
 
 `--retention-time` (string)
-:    The cache content older than the specified retention period will be deleted. Retention time is defined as a difference between current date and cache creation date
+:    The cache content older than the specified retention period will be deleted. Retention time is defined as a difference between current date and cache creation date. This flag is not supported for IBM DataStage optimised pipelines.
 
 `--revision-id` (string)
 :    Specific pipeline version for which to delete child runs when using --recursive. For volatile version you can use either 0 or 'volatile' (default: delete for all versions of the pipeline)
 
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
+
 `--space-id` (string)
-:    Specific space in which pipeline run execution cache data will be deleted
+:    ID of the space in which pipeline run execution cache data will be deleted This option is mutually exclusive with '--space'.
 
 `--verbose` ()
 :    Whether to display detailed processing information (default: false)
@@ -13582,8 +13921,11 @@ This command deletes execution cache data created by Watson Pipeline runs for a 
 #### Example
 ```sh
    cpdctl pipeline cleanup delete-cache \
+	--project=project name \
 	--project-id=ad40927e-b499-4841-93dc-ff31b5d8e7a3-74de0cc0 \
+	--space=space name \
 	--space-id=f465e7f6-feb7-47ff-bbd5-8671217e3cfb \
+	--pipeline=pipeline name \
 	--pipeline-id=a70af6a7-ba76-4738-a8cc-f89897625194 \
 	--assets-dir-path=/mnt/asset_file_api/projects/${project}/assets/ \
 	--artifact-store-mount-path=/mnt/artifact_store/ \
@@ -13599,7 +13941,7 @@ This command deletes execution cache data created by Watson Pipeline runs for a 
 This command deletes artifact files created by Watson Pipeline job runs. Only files from job runs that started before a specific point in time are deleted. Identifiers of jobs and runs whose artifacts are deleted are preserved in the output file. The number of job runs can be limited (--limit parameter). Artifacts can be deleted directly from a mounted filesystem, from asset files pvc (--assets-dir-path) and artifact store pvc (--artifact-store-assets-dir-path).
 
 ```sh
-  cpdctl pipeline cleanup delete-artifacts --retention-time RETENTION --output-file OUTPUT-FILE [--project-id PROJECT-ID | --space-id SPACE-ID] [--assets-dir-path ASSETS-DIR-PATH] [--artifact-store-assets-dir-path ARTIFACT-STORE-ASSETS-DIR-PATH] [--retention-time RETENTION-TIME] [--output-file OUTPUT-FILE] [--limit LIMIT] [--clean-job-runs] [--force]
+  cpdctl pipeline cleanup delete-artifacts --retention-time RETENTION --output-file OUTPUT-FILE [{--project-id PROJECT-ID | --project PROJECT-NAME} | {--space-id SPACE-ID | --space SPACE-NAME}] [--assets-dir-path ASSETS-DIR-PATH] [--artifact-store-assets-dir-path ARTIFACT-STORE-ASSETS-DIR-PATH] [--retention-time RETENTION-TIME] [--output-file OUTPUT-FILE] [--limit LIMIT] [--clean-job-runs] [--force]
 ```
 #### Command options
 
@@ -13624,14 +13966,20 @@ This command deletes artifact files created by Watson Pipeline job runs. Only fi
 `--output-file` (string)
 :    Path to the file where the identifiers of pipelines, jobs, and job runs are saved after the artifacts are deleted
 
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
+
 `--project-id` (string)
-:    ID of the project to delete artifacts
+:    ID of the project to delete artifacts This option is mutually exclusive with '--project'.
 
 `--retention-time` (string)
 :    All the artifacts older than the specified retention period will be deleted. Retention time is defined as a difference between current date and job run creation date
 
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
+
 `--space-id` (string)
-:    ID of the space to delete artifacts
+:    ID of the space to delete artifacts This option is mutually exclusive with '--space'.
 
 #### Example
 ```sh
@@ -13644,6 +13992,39 @@ This command deletes artifact files created by Watson Pipeline job runs. Only fi
 	--limit=100 \
 	--clean-job-runs
 	--force
+```
+
+<a id='pipeline_project-settings_update'></a>
+## &#8226; pipeline project-settings update
+Update pipelines project settings
+
+```sh
+  cpdctl pipeline project-settings update --output-file OUTPUT-FILE [--project PROJECT | {--project-id PROJECT-ID | --project PROJECT-NAME}][optimized-pipeline-runner OPTIMIZED-PIPELINE-RUNNER] [run-nested-pipelines-as-independent RUN-NESTED-PIPELINES-AS-INDEPENDENT]
+```
+#### Command options
+
+`--cpd-scope` (string)
+:    CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--optimized-pipeline-runner` ()
+:    Use optimized runtime for running pipelines in selected project
+
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:    ID of the project in which settings will be updated This option is mutually exclusive with '--project'.
+
+`--run-nested-pipelines-as-independent` ()
+:    Run nested pipelines as independent pipelines in selected project
+
+#### Example
+```sh
+   cpdctl pipeline project-settings update \
+	--project=project name \
+	--project-id=ad40927e-b499-4841-93dc-ff31b5d8e7a3-74de0cc0 \
+	--optimized-pipeline-runner true \
+	--run-nested-pipelines-as-independent false
 ```
 
 <a id='pipeline_list'></a>
@@ -13993,6 +14374,69 @@ cpdctl pipeline validate \
     --uploadfile-content-type exampleString \
     --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
     --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673
+```
+
+<a id='pipeline_compile'></a>
+## &#8226; pipeline compile
+Generate Runtime code for a Watson pipeline in the specified project or catalog for a specified runtime type. Either project_id or catalog_id must be specified.
+
+```sh
+  cpdctl pipeline compile {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [--recursive=RECURSIVE] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--enable-inline=ENABLE-INLINE] [--enable-versioning=ENABLE-VERSIONING]
+```
+#### Command options
+
+`--catalog` (string)
+:    Catalog name. This option is mutually exclusive with '--catalog-id'.
+
+`--catalog-id` (string)
+:    The ID of the catalog to use. 'catalog_id' or 'project_id' or 'space_id' is required. This option is mutually exclusive with '--catalog'.
+
+`--cpd-scope` (string)
+:    CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--enable-caching` ()
+:    Whether to enable pipeline caching or not. Caching is enabled by default. (DEPRECATED)
+
+`--enable-inline` ()
+:    Whether to enable inline pipeline execution or not. When this flag is set to true, no individual job runs will be created for nested pipelines. The flag is set to false by default.
+
+`--enable-versioning` ()
+:    Whether to enable pipeline versioning or not. Versioning is disabled by default.
+
+`--job-name-suffix` (string)
+:    The name suffix for the created job, will use the pipeline name suffix configured in datastage project settings. (DEPRECATED)
+
+`--pipeline` (string)
+:    Pipeline name. This option is mutually exclusive with '--pipeline-id'.
+
+`--pipeline-id` (string)
+:    Required. The Watson Pipeline ID to use. This option is mutually exclusive with '--pipeline'.
+
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:    The ID of the project to use. 'catalog_id' or 'project_id' or 'space_id' is required. This option is mutually exclusive with '--project'.
+
+`--recursive` ()
+:    Whether to compile pipelines recursively.
+
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:    The ID of the space to use. 'catalog_id' or 'project_id' or 'space_id' is required. This option is mutually exclusive with '--space'.
+
+#### Example
+```sh
+   cpdctl pipeline compile \
+    --pipeline-id exampleString \
+    --recursive=true \
+    --catalog-id exampleString \
+    --project-id bd0dbbfd-810d-4f0e-b0a9-228c328a8e23 \
+    --space-id 4c9adbb4-28ef-4a7d-b273-1cee0c38021f \
+    --enable-inline=true \
+    --enable-versioning=true
 ```
 
 <a id='project_list'></a>
@@ -14400,7 +14844,7 @@ cpdctl project storage update --project-id PROJECT-ID [--update-storage-properti
 ```sh
 cpdctl project storage update \
     --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
-    --update-storage-properties-body '{"credentials": {"admin": {"access_key_id": "abcdefABCDEF0123456789abcdefABCD", "api_key": "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8", "secret_access_key": "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd", "service_id": "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"}, "editor": {"access_key_id": "abcdefABCDEF0123456789abcdefABCD", "api_key": "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8", "resource_key_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/b56585fe60e71be0a22e6587f781ed91:dc36b4a5-cf81-6541-b855-f68a6f321cac::", "secret_access_key": "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd", "service_id": "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"}, "viewer": {"access_key_id": "abcdefABCDEF0123456789abcdefABCD", "api_key": "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8", "resource_key_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/b56585fe60e71be0a22e6587f781ed91:dc36b4a5-cf81-6541-b855-f68a6f321cac::", "secret_access_key": "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd", "service_id": "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"}}}'
+    --update-storage-properties-body '{"credentials": {"admin": {"access_key_id": "abcdefABCDEF0123456789abcdefABCD", "api_key": "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8", "secret_access_key": "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd", "service_id": "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"}, "editor": {"access_key_id": "abcdefABCDEF0123456789abcdefABCD", "api_key": "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8", "resource_key_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/b56585fe60e71be0a22e6587f781ed91:dc36b4a5-cf81-6541-b855-f68a6f321cac::", "secret_access_key": "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd", "service_id": "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"}, "viewer": {"access_key_id": "abcdefABCDEF0123456789abcdefABCD", "api_key": "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8", "resource_key_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/b56585fe60e71be0a22e6587f781ed91:dc36b4a5-cf81-6541-b855-f68a6f321cac::", "secret_access_key": "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd", "service_id": "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"}, "access_key_id": "ASIATE72IZPHW6D4PKS5", "expiration": "2022-08-04T00:08:49.000Z", "secret_access_key": "ZFQTTmB3Jl5CyPBHExz+J7oquSbxwn1n1k5R7OnZ", "session_token": "IQoJb3JpZ2luX2VjEEAaCXVzLWVhc3QtMSJHMEUCIQCz1WlH9O7lxO610RvbZm4yNEvRXe8wW1TH3kvn0qwWuQIgZU5cMhTvwcUt4uvfEWEYNILVi8A7g6jHNq+zxk4ElvsqsQIImP//////////ARACGgwyMTY4ODM4NDE5OTkiDMFc9fstm0X8ShB6CyqFAo7+Sp1QoI0IABZWgv7MklCiFrne7yXF7e5Flim9REH0vvfG1Fca565Z5SqVbO9ihmpwuFMSp+zuODqLf0q4LDd8ikQ06m+E1i0sdBA0QbINCbjJjufPPxOv/Bvv8Az6rIGOx9hbyuhN46vTqQhyCeQq2KzCAdGbFu5lxA/G501T48i09E7JrCsq+l+z2BZix+2SWo2TgZktYEvItD8MTZWYku2fZRZvfOzzpW/CaC/niPjFVeGKTDv0rmW96gR7azsTqz9v+bIDimMf7uHet4Z8jVOpUhrtGzoceAZu0U6Dcjja44jpheCSzVb/K3xOTRi2MfM69xqP6xgS8C8QS9y+AnWP9DCBgKyXBjqdAYLhcD4n9YDbokr/3eRX9tPuC56CoOk4W4DcNyCm/VqdMM8s2hJgKbtIaXiSptKIUxAulNH65stR/O79qyqhYTyBRi4X/mmubK52Lape3kXiAuMFgC5OfEHEsBz++nhcSWFDQQeFHdHAZ3Z+ucqEpmko9/5GoNEOJoNgQb5vjLftXQc6jsNGu4dfrQus/o41+AUSE9gQtzohcbvtB2I="}}'
 ```
 
 <a id='project_tag_delete'></a>
@@ -14731,7 +15175,7 @@ Creates a new space to scope other assets. Authorized user must have the followi
 On Public Cloud user is required to provide Cloud Object Storage instance details in the 'storage' property. On private CPD installations the default storage is used instead.
 
 ```sh
-cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--generator GENERATOR] [--settings SETTINGS | --settings-access-restrictions SETTINGS-ACCESS-RESTRICTIONS --settings-folders SETTINGS-FOLDERS] [--stage STAGE | --stage-name STAGE-NAME --stage-production=STAGE-PRODUCTION] [--storage STORAGE | --storage-delegated=STORAGE-DELEGATED --storage-plan-id STORAGE-PLAN-ID --storage-resource-crn STORAGE-RESOURCE-CRN] [--tags TAGS] [--type TYPE]
+cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--generator GENERATOR] [--settings SETTINGS | --settings-access-restrictions SETTINGS-ACCESS-RESTRICTIONS --settings-folders SETTINGS-FOLDERS] [--stage STAGE | --stage-name STAGE-NAME --stage-production=STAGE-PRODUCTION] [--storage STORAGE | --storage-delegated=STORAGE-DELEGATED --storage-plan-id STORAGE-PLAN-ID --storage-properties STORAGE-PROPERTIES --storage-resource-crn STORAGE-RESOURCE-CRN] [--tags TAGS] [--type TYPE]
 ```
 
 
@@ -14802,6 +15246,11 @@ cpdctl space create --name NAME [--compute COMPUTE] [--description DESCRIPTION] 
 `--storage-plan-id` (string)
 :   The unique ID of the plan associated with the COS instance. The value is 1e4e33e4-cfa6-4f12-9016-be594a6d5f87 for the One Rate plan. This option provides a value for a sub-field of the JSON option 'storage'. It is mutually exclusive with that option.
 
+`--storage-properties` (<a href="#cli-storage-request-properties-example-schema-space">`StorageRequestProperties`</a>)
+:   Storage properties. This option provides a value for a sub-field of the JSON option 'storage'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--storage-properties=@path/to/file.json`.
+
 `--storage-resource-crn` (string)
 :   A cloud resource name of the Cloud Object Storage instance. This option provides a value for a sub-field of the JSON option 'storage'. It is mutually exclusive with that option.
 
@@ -14815,7 +15264,7 @@ cpdctl space create \
     --generator Spaces-API_Swagger-Docs \
     --settings '{"access_restrictions": {"reporting": {"authorized": true}}, "folders": {"enabled": true}}' \
     --stage '{"name": "exampleString", "production": false}' \
-    --storage '{"delegated": false, "plan_id": "1e4e33e4-cfa6-4f12-9016-be594a6d5f87", "resource_crn": "exampleString"}' \
+    --storage '{"delegated": false, "plan_id": "1e4e33e4-cfa6-4f12-9016-be594a6d5f87", "properties": {"shared": true}, "resource_crn": "exampleString"}' \
     --tags exampleString,anotherTestString \
     --type cpd
 ```
@@ -14862,6 +15311,7 @@ cpdctl space get --space-id SPACE-ID [--include INCLUDE]
 
 Available fields:
  * members (returns up to 100 members)
+ * credentials (returns S3 bucket temporary credentials)
  * nothing (does not return space entity and metadata).
 
 #### Example
@@ -15106,8 +15556,11 @@ Wait until the space creation or deletion is finished.
 `--cpd-scope` (string)
 :    CPD space scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
+
 `--space-id` (string)
-:    The space identification.
+:    The space identification. This option is mutually exclusive with '--space'.
 
 <a id='version_'></a>
 ## &#8226; version 
@@ -16543,8 +16996,11 @@ Wait until the deployment becomes ready or failed.
 `--deployment-id` (string)
 :    The deployment ID.
 
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
+
 `--space-id` (string)
-:    The ID of the space to use.
+:    The ID of the space to use. This option is mutually exclusive with '--space'.
 
 `--version` (YYYY-MM-DD)
 :    The version date for the API of the form YYYY-MM-DD.
@@ -18729,18 +19185,24 @@ cpdctl wx-ai training delete \
 Wait until the training becomes completed, failed, or canceled.
 
 ```sh
-  cpdctl wx-ai training wait --training-id TRAINING_ID [--space-id SPACE-ID] [--project-id PROJECT-ID]
+  cpdctl wx-ai training wait --training-id TRAINING_ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 #### Command options
 
 `--cpd-scope` (string)
 :    CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
+`--project` (string)
+:    Project name. This option is mutually exclusive with '--project-id'.
+
 `--project-id` (string)
-:    The ID of the project to use.
+:    The ID of the project to use. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:    Deployment space name. This option is mutually exclusive with '--space-id'.
 
 `--space-id` (string)
-:    The ID of the space to use.
+:    The ID of the space to use. This option is mutually exclusive with '--space'.
 
 `--training-id` (string)
 :    The training ID.
@@ -20193,10 +20655,10 @@ Get list of ingestion jobs.
 #### Command options
 
 `--instance-id` (string)
-:    CPD or Dev-edition requires Watsonx.data Instance ID, which is auto-fetched unless manually set via the --instance-id flag or WX_DATA_INSTANCE_ID environment variable. SaaS requires a CRN, which must be provided using the same options.  --instance-id flag takes precedence if both are set.
+:    Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
 
 `--jobs-per-page` (int)
-:    Number of ingestion jobs per page. The default value is 25
+:    Number of ingestion jobs per page. The default value is 25. (default 25)
 
 `--page` (string)
 :    Page number of ingestion job list. The default value is 1.
@@ -20204,8 +20666,8 @@ Get list of ingestion jobs.
 #### Example
 ```sh
    cpdctl wx-data ingestion list \
-	 --instance-id 1735472262311515 \
-	 --jobs-per-page 10
+	  --instance-id 1735472262311515 \
+	  --jobs-per-page 10
 ```
 
 <a id='wx-data_ingestion_create'></a>
@@ -20216,45 +20678,6 @@ Create an ingestion job.
   cpdctl wx-data ingestion create [command options]
 ```
 #### Command options
-
-`--bucket-access-key` (string)
-:    Bucket Access Key
-
-`--bucket-details` (string)
-:    Provide Adhoc bucket details if the bucket is not already registered. format: {"secret_key":"<value>", "endpoint":"<value>", "bucket_type":"<value>", "access_key":"<value>", "bucket_name":"<value>", "region":"<value>"}
-
-`--bucket-endpoint` (string)
-:    Bucket Endpoint
-
-`--bucket-name` (string)
-:    Bucket Name
-
-`--bucket-region` (string)
-:    Bucket Region
-
-`--bucket-secret-key` (string)
-:    Bucket Secret Key
-
-`--bucket-type` (string)
-:    Bucket Type (amazon_s3, aws_s3, minio, ibm_cos, ibm_ceph, adls_gen1, adls_gen2, google_cs, ibm_storage_scale, ozone)
-
-`--csv-encoding` (string)
-:    Encoding used in CSV file. The default value is utf-8
-
-`--csv-escape-character` (string)
-:    Escape character of CSV file. The default value is \\
-
-`--csv-field-delimiter` (string)
-:    Field delimiter of CSV file. The default value is ,
-
-`--csv-header` ()
-:    Identify if header exists in CSV file. The default value is true (default true)
-
-`--csv-line-delimiter` (string)
-:    Line delimiter of CSV file. The default value is \n
-
-`--csv-property` (string)
-:    Provide CSV file properties. format: {"header":"<value>", "encoding":"<value>", "escape_character":"<value>", "line_delimiter":"<value>", "field_delimiter":"<value>"}
 
 `--database-auth-value` (string)
 :    Database API key. Applicable for DB2
@@ -20278,7 +20701,10 @@ Create an ingestion job.
 :    Database ID
 
 `--database-isssl` ()
-:    Port is SSL enabled. Default value is false
+:    Port is SSL enabled. Default value is false. (Note: Boolean flag; must be passed as --database-isssl=true or --database-isssl=false, not space-separated)
+
+`--database-jdbc-url` (string)
+:    Database JDBC URL
 
 `--database-name` (string)
 :    Database name
@@ -20301,11 +20727,8 @@ Create an ingestion job.
 `--database-user-id` (string)
 :    Database username
 
-`--database-warehouse` (string)
-:    Warehouse name for Snowflake
-
 `--driver-cores` (int)
-:    Driver core(s) configuration for Spark engine
+:    Driver core(s) configuration for Spark engine. The default value is 1
 
 `--driver-memory` (string)
 :    Driver memory configuration (in GB) for Spark engine. The default value is 2G
@@ -20317,10 +20740,28 @@ Create an ingestion job.
 :    Provide Spark engine configurations. format: {"executor_memory":"<value>", "num_executors":"<value>", "driver_memory":"<value>", "driver_cores":"<value>", "executor_cores":"<value>"}
 
 `--executor-cores` (int)
-:    Executor core(s) configuration for Spark engine
+:    Executor core(s) configuration for Spark engine. The default value is 1
 
 `--executor-memory` (string)
 :    Executor memory configuration (in GB) for Spark engine. The default value is 2G
+
+`--file-format-encoding` (string)
+:    Encoding used in CSV/Text file. The default value is utf-8
+
+`--file-format-escape-character` (string)
+:    Escape character of CSV/Text file. The default value is \\. (Note: In Bash terminals use ANSI C-style quoting for escape sequences, eg: --file-format-escape-character $'\\')
+
+`--file-format-field-delimiter` (string)
+:    Field delimiter of CSV/Text file. The default value for CSV is , and TXT file is \t. (Note: In Bash terminals use ANSI C-style quoting for escape sequences, eg: --file-format-field-delimiter $'\t')
+
+`--file-format-header` ()
+:    Identify if header exists in CSV/Text file. The default value is true. (Note: Boolean flag; must be passed as --file-format-header=true or --file-format-header=false, not space-separated) (default true)
+
+`--file-format-line-delimiter` (string)
+:    Line delimiter of CSV/Text file. The default value for CSV is \n and Text is \t. (Note: In Bash terminals use ANSI C-style quoting for escape sequences, eg: --file-format-line-delimiter $'\n')
+
+`--file-format-properties` (string)
+:    Provide CSV/Text file properties. format: {"header": true/false, "encoding":"<value>", "escape_character":"<value>", "line_delimiter":"<value>", "field_delimiter":"<value>"}
 
 `--iceberg-catalog` (string)
 :    Source iceberg catalog name
@@ -20328,7 +20769,7 @@ Create an ingestion job.
 `--iceberg-schema` (string)
 :    Source iceberg schema name
 
-`--iceberg-snapshot-id` (string)
+`--iceberg-snapshot-id` (int)
 :    Source iceberg snapshotId
 
 `--iceberg-table` (string)
@@ -20338,19 +20779,16 @@ Create an ingestion job.
 :    Source iceberg warehouse name
 
 `--instance-id` (string)
-:    CPD or Dev-edition requires Watsonx.data Instance ID, which is auto-fetched unless manually set via the --instance-id flag or WX_DATA_INSTANCE_ID environment variable. SaaS requires a CRN, which must be provided using the same options.  --instance-id flag takes precedence if both are set.
+:    Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
 
-`--is-local-ingestion` ()
-:    Ingestion mode is local (if True); Ingestion mode is remote (if False). The default value is false.
+`--job` (string)
+:    Job name. This option is mutually exclusive with '--job-id'.
 
 `--job-id` (string)
-:    Ingestion Job ID used to differentiate between jobs. If not provided, a unique random Job ID will be generated by default
+:    Ingestion Job ID used to differentiate between jobs. If not provided, a unique random Job ID will be generated by default This option is mutually exclusive with '--job'.
 
 `--num-executors` (int)
-:    Number of executors to assign for Spark engine
-
-`--partition-by` (string)
-:    Partition by expression of the target table
+:    Number of executors to assign for Spark engine. The default value is 1
 
 `--schema` (string)
 :    Schema definitions for the source data. format: {"headerName":"<value>", "type":"<value>", "fieldId":"<value>"}
@@ -20359,88 +20797,194 @@ Create an ingestion job.
 :    Comma separated source file(s) or directory path
 
 `--source-database` (string)
-:    Provide Adhoc Source Database details if db is not already registered. format: {"authentication_value":"<value>", "database_name":"<value>", "connection_mode_value":"<value>", "certificate":"<value>", "schema_name":"<value>", "table_name":"<value>", "userId":"<value>", "database_type":"<value>", "password":"<value>", "warehouse_name":"<value>", "cert_extension":"<value>", "database_id":"<value>", "port":"<value>", "validate_server_certificate":"<value>", "connection_mode":"<value>", "host":"<value>", "isssl":"<value>"}
+:    Provide Adhoc Source Database details if db is not already registered. format: {"authentication_value":"<value>", "db_name":"<value>", "connection_mode_value":"<value>", "cert_content":"<value>", "db_username":"<value>", "db_type":"<value>", "password":"<value>", "cert_extension":"<value>", "database_id":"<value>", "port":"<value>", "connection_mode":"<value>", "host":"<value>", "is_ssl":"<value>", "jdbc_url":"<value>"}
 
 `--source-file-type` (string)
-:    Source file types (parquet, csv, json, orc or avro)
+:    Source file types (parquet, csv, txt, json, orc or avro)
 
 `--source-iceberg-table` (string)
 :    Provide source iceberg details. format: {"catalog_name":"<value>", "warehouse_name":"<value>", "snapshot_id":"<value>", "schema_name":"<value>", "table_name":"<value>"}
 
+`--storage-access-key` (string)
+:    Storage Access Key
+
+`--storage-account-name` (string)
+:    ADLS Account Name
+
+`--storage-application-id` (string)
+:    ADLS Application ID
+
+`--storage-auth-mode` (string)
+:    Storage authentication type/mode (aws_assume_role, aws_assume_role_with_webidentity, hmac)
+
+`--storage-container-name` (string)
+:    ADLS Container Name
+
+`--storage-details` (string)
+:    Provide Adhoc storage details if the storage is not already registered. format: {"secret_key":"<value>", "endpoint":"<value>", "type":"<value>", "access_key":"<value>", "name":"<value>", "region":"<value>", "container_name":"<value>", "role_arn":"<value>", "account_name":"<value>", "auth_mode":"<value>", "directory_id":"<value>", "application_id":"<value>"}
+
+`--storage-directory-id` (string)
+:    ADLS Directory ID
+
+`--storage-endpoint` (string)
+:    Storage Endpoint
+
+`--storage-name` (string)
+:    Storage Name
+
+`--storage-region` (string)
+:    Storage Region
+
+`--storage-role-arn` (string)
+:    The Amazon Resource Names (ARNs) uniquely identify AWS resources based on IAM role, which is an AWS identity with specific permission. Enter the value in the format arn:aws:iam::<AWS_ACCOUNT_ID>:role/<ROLE_NAME>
+
+`--storage-secret-key` (string)
+:    Storage Secret Key
+
+`--storage-type` (string)
+:    Storage Type (amazon_s3, aws_s3, minio, ibm_cos, ibm_ceph, adls_gen1, adls_gen2, google_cs, ibm_storage_scale, ozone)
+
 `--sync-status` ()
-:    Get status synchronously as the ingest job is submitted. Default value is false
+:    Get status synchronously as the ingest job is submitted. Default value is false. (Note: Boolean flag; must be passed as --sync-status=true or --sync-status=false, not space-separated)
+
+`--target` (string)
+:    Provide target table details. format:  {"schema":"<value>","write_mode":"<value>","catalog":"<value>","table":"<value>"}
+
+`--target-schema-mode` (string)
+:    Controls schema validation mode. Use 'strict' to enforce exact schema match, or 'sloppy' to allow relaxed matching. 
 
 `--target-table` (string)
 :    (Required) Target table name in format catalog.schema.table
 
 `--target-write-mode` (string)
-:    Determines if the spark job should append to target or overwrite it. The default value is append. Allowable values are: append, overwrite
+:    Determines if the Ingestion job should append to target or overwrite it. The default value is append. Allowable values are: append, overwrite
 
 `--transformation-schema` (string)
 :    Transformation schema for altering the table schema. format: {"new_type":"<value>", "old_column":"<value>", "new_column":"<value>"}
 
-`--username` (string)
-:    CPD/SaaS Username
-
-`--validate-db-server-cert` ()
-:    Verify provided certificate. Default value is false
-
 #### Example
 ```sh
-   Remote Ingestion:
-	 cpdctl wx-data ingestion create \
-	  --instance-id 1735472262311515 \
-	  --source-data-files s3://sample-bucket/sample_file.csv \
-	  --csv-property '{"header": true, "encoding": "utf-8", "escape_character": "\\", "line_delimiter": "\n", "field_delimiter": ","}' \
-	  --engine-id  spark637 \
-	  --target-table sample_catalog.sample_schema.sample_table
- 
-	Lite Ingestion:
-	 cpdctl wx-data ingestion create \
-	  --instance-id 1735472262311515 \
-	  --source-data-files /path_to_file/file.orc \
-	  --bucket-name transient_bucket_name \
-	  --engine-id lite-ingestion \
-	  --target-table sample_catalog.sample_schema.sample_table
-	 
-	Database Ingestion:
-	 cpdctl wx-data ingestion create \
-	  --instance-id 1735472262311515 \
-	  --engine-id spark266 \
-	  --database-id sample_database_id \
-	  --database-schema sample_database_name \
-	  --database-table sample_database_table \
-	  --target-table sample_catalog.sample_schema.sample_table
-	 
-	Iceberg Ingestion:
-	 cpdctl wx-data ingestion create \
-	  --instance-id 1735472262311515 \
-	  --iceberg-catalog sample_iceberg_catalog \
-	  --iceberg-schema sample_iceberg_schema \
-	  --iceberg-snapshot-id 7823318841638214979 \
-	  --iceberg-table sample_iceberg_table  \
-	  --iceberg-warehouse sample_iceberg_warehouse \
-	  --target-table sample_catalog.sample_schema.sample_table \
-	  --engine-id spark266 \
-	  --bucket-name iceberg-data
+	 Remote Ingestion:
+	  cpdctl wx-data ingestion create \
+	   --instance-id 1735472262311515 \
+	   --source-data-files s3://sample-bucket/sample_file.csv \
+	   --file-format-properties '{"header": true, "encoding": "utf-8", "escape_character": "\\", "line_delimiter": "\n", "field_delimiter": ","}' \
+	   --engine-id  spark637 \
+	   --target-table sample_catalog.sample_schema.sample_table
+
+	 Lite Ingestion:
+	  cpdctl wx-data ingestion create \
+	   --instance-id 1735472262311515 \
+	   --source-data-files /path_to_file/file.orc \
+	   --storage-name transient_bucket_name \
+	   --engine-id lite-ingestion \
+	   --target-table sample_catalog.sample_schema.sample_table
+
+	 Database Ingestion:
+	  cpdctl wx-data ingestion create \
+	   --instance-id 1735472262311515 \
+	   --engine-id spark266 \
+	   --database-id sample_database_id \
+	   --database-schema sample_database_name \
+	   --database-table sample_database_table \
+	   --target-table sample_catalog.sample_schema.sample_table
+
+	 Iceberg Ingestion:
+	  cpdctl wx-data ingestion create \
+	   --instance-id 1735472262311515 \
+	   --iceberg-catalog sample_iceberg_catalog \
+	   --iceberg-schema sample_iceberg_schema \
+	   --iceberg-snapshot-id 7823318841638214979 \
+	   --iceberg-table sample_iceberg_table  \
+	   --iceberg-warehouse sample_iceberg_warehouse \
+	   --target-table sample_catalog.sample_schema.sample_table \
+	   --engine-id spark266 \
+	   --storage-name iceberg-data
 ```
 
 <a id='wx-data_ingestion_get'></a>
 ## &#8226; wx-data ingestion get
 
-Get a submitted ingestion job.
+Get ingestion job by ID.
 
 ```sh
-cpdctl wx-data ingestion get --job-id JOB-ID [--instance-id INSTANCE-ID]
+cpdctl wx-data ingestion get --instance-id INSTANCE-ID --id ID
 ```
 
 
 #### Command options
 
-`--job-id` (string)
-:   ingestion job id. Required.
+`--instance-id` (string)
+:   Lakehouse Instance ID. Required.
 
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-_\\.]+$/`.
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--id` (string)
+:   Ingestion Job ID. Required.
+
+    The maximum length is `1024` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-_.@]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data ingestion get \
+    --instance-id exampleString \
+    --id exampleString
+```
+
+<a id='wx-data_component_get-mds-status'></a>
+## &#8226; wx-data component get-mds-status
+Get configuration for metadata service.
+
+```sh
+  cpdctl wx-data component get-mds-status --instance-id INSTANCE-ID
+```
+#### Command options
+
+`--instance-id` (string)
+:    Required. watsonx.data instance ID. The maximum length is 128 characters. The minimum length is 1 character.
+
+#### Example
+```sh
+cpdctl wx-data component get-mds-status \
+    --instance-id exampleString
+```
+
+<a id='wx-data_component_get-ces-status'></a>
+## &#8226; wx-data component get-ces-status
+
+Get CES status.
+
+```sh
+cpdctl wx-data component get-ces-status --instance-id INSTANCE-ID
+```
+
+
+#### Command options
+
+`--instance-id` (string)
+:   watsonx.data instance ID. Required.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data component get-ces-status \
+    --instance-id exampleString
+```
+
+<a id='wx-data_component_get-cas-cpg-endpoint'></a>
+## &#8226; wx-data component get-cas-cpg-endpoint
+
+Get CPG and CAS endpoints.
+
+```sh
+cpdctl wx-data component get-cas-cpg-endpoint [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
 
 `--instance-id` (string)
 :   watsonx.data instance ID.
@@ -20450,8 +20994,436 @@ cpdctl wx-data ingestion get --job-id JOB-ID [--instance-id INSTANCE-ID]
 #### Example
 
 ```sh
-cpdctl wx-data ingestion get \
-    --job-id exampleString \
+cpdctl wx-data component get-cas-cpg-endpoint \
+    --instance-id exampleString
+```
+
+<a id='wx-data_component_get-hms-status'></a>
+## &#8226; wx-data component get-hms-status
+
+List all HMS metastores.
+
+```sh
+cpdctl wx-data component get-hms-status --instance-id INSTANCE-ID
+```
+
+
+#### Command options
+
+`--instance-id` (string)
+:   watsonx.data instance ID. Required.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data component get-hms-status \
+    --instance-id exampleString
+```
+
+<a id='wx-data_component_get-console-status'></a>
+## &#8226; wx-data component get-console-status
+
+Verify lhconsole server is up and running.
+
+```sh
+cpdctl wx-data component get-console-status [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--instance-id` (string)
+:   watsonx.data instance ID.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data component get-console-status \
+    --instance-id exampleString
+```
+
+<a id='wx-data_database_list'></a>
+## &#8226; wx-data database list
+
+Get list of databases.
+
+```sh
+cpdctl wx-data database list [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--instance-id` (string)
+:   watsonx.data instance ID.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data database list \
+    --instance-id exampleString
+```
+
+<a id='wx-data_database_create'></a>
+## &#8226; wx-data database create
+Add or create a new database.
+
+```sh
+  cpdctl wx-data database create [command options]
+```
+#### Command options
+
+`--associated-catalog` (string)
+:    Provide adhoc catalog details in json format: {"catalog_name":"<sampleName>", "catalog_type":"<value>"}
+
+`--associated-catalog-name` (string)
+:    Catalog name
+
+`--associated-catalog-type` (string)
+:    Catalog type
+
+`--created-at` (string)
+:    Created at
+
+`--database-authentication-type` (string)
+:    Authentication method
+
+`--database-authentication-value` (string)
+:    Database authentication value
+
+`--database-authentication-value-key-vault` (string)
+:    Secret details
+
+`--database-broker-authentication-password` (string)
+:    Broker authentication password
+
+`--database-broker-authentication-type` (string)
+:    Broker authentication type
+
+`--database-broker-authentication-user` (string)
+:    Broker authentication user
+
+`--database-broker-host` (string)
+:    Broker host, values like 150.239.160.124
+
+`--database-broker-port` (int)
+:    Broker Port, values like 8080
+
+`--database-certificate` (string)
+:    Contents of a pem/crt file
+
+`--database-certificate-extension` (string)
+:    Certificate file extension (pem, crt, cert, cer)
+
+`--database-connection-method` (string)
+:    Connection method
+
+`--database-connection-mode` (string)
+:    Connection mode
+
+`--database-connection-mode-value` (string)
+:    Connection mode value
+
+`--database-connection-type` (string)
+:    Connection type
+
+`--database-controller-authentication-password` (string)
+:    Controller authentication password
+
+`--database-controller-authentication-type` (string)
+:    Controller authentication type
+
+`--database-controller-authentication-user` (string)
+:    Controller authentication user
+
+`--database-coordinator-host` (string)
+:    Coordinator host, values like 156.239.160.121
+
+`--database-coordinator-port` (int)
+:    Coordinator port, values like 9871
+
+`--database-cpd-hostname` (string)
+:    CPD Hostname
+
+`--database-credentials-key` (string)
+:    Base64 encoded JSON file
+
+`--database-details` (string)
+:    Provide adhoc database details in JSON format: {"authentication_type":"<value>", "authentication_value":"<value>", "authentication_value_key_vault":{"key":"<value>", "secret_name":"<value>", "secret_urn":"<value>"}, "broker_authentication_password":"<value>", "broker_authentication_type":"<value>", "broker_authentication_user":"<value>", "broker_host":"<value>", "broker_port":<value>, "certificate":"<value>", "certificate_extension":"<value>", "connection_method":"<value>", "connection_mode":"<value>", "connection_mode_value":"<value>", "connection_type":"<value>", "controller_authentication_password":"<value>", "controller_authentication_type":"<value>", "controller_authentication_user":"<value>", "coordinator_host":"<value>", "coordinator_port":<value>, "cpd_hostname":"<value>", "credentials_key":"<value>", "database_name":"<value>", "domain_name":"<value>", "hostname":"<value>", "hostname_in_certificate":"<value>", "hosts":"<value>", "informix_server":"<value>", "password":"<value>", "password_key_vault":{"key":"<value>", "secret_name":"<value>", "secret_urn":"<value>"}, "port":<value>, "project_id":"<value>", "sasl":<value>, "sasl_mechanism":"<value>", "schema_name":"<value>", "schemas":"<value>", "service_api_key":"<value>", "service_hostname":"<value>", "service_password":"<value>", "service_port":<value>, "service_ssl":<value>, "service_token_url":"<value>", "service_username":"<value>", "ssl":<value>, "sslcertificate_key_vault":{"key":"<value>", "secret_name":"<value>", "secret_urn":"<value>"}, "tables":"<value>", "username":"<value>", "username_key_vault":{"key":"<value>", "secret_name":"<value>", "secret_urn":"<value>"}, "validate_server_certificate":<value>, "vault_enabled":<value>, "verify_host_name":<value>, "warehouse_name":"<value>"}
+
+`--database-domain-name` (string)
+:    Domain name
+
+`--database-hostname` (string)
+:    Database hostname. Example: your.db.com, 1.23.456.789
+
+`--database-hostname-in-certificate` (string)
+:    Hostname in certificate
+
+`--database-hosts` (string)
+:    String of hostname:port
+
+`--database-informix-server` (string)
+:    Informix server value
+
+`--database-name` (string)
+:    Database name
+
+`--database-password` (string)
+:    Password
+
+`--database-password-key-vault` (string)
+:    Password key vault secret details in JSON format: {"key":"secret key", "secret_name":"secret name", "secret_urn":"secret urn"}
+
+`--database-port` (int)
+:    Database Port. Example: 1234, default value is 0
+
+`--database-project-id` (string)
+:    Project ID
+
+`--database-properties` (string)
+:    This will hold all the properties for a custom database
+
+`--database-sasl` ()
+:    SASL Mode, default value is false. Format: --database-sasl=true
+
+`--database-sasl-mechanism` (string)
+:    SASL mechanism for kafka, values like plain
+
+`--database-schema-name` (string)
+:    Schema name
+
+`--database-schemas` (string)
+:    Add table
+
+`--database-service-api-key` (string)
+:    Service API key
+
+`--database-service-hostname` (string)
+:    Service hostname
+
+`--database-service-password` (string)
+:    Service password
+
+`--database-service-port` (int)
+:    Service Port, default value is 0
+
+`--database-service-ssl` ()
+:    Service SSL Mode, default value is false. Format: --database-service-ssl=true
+
+`--database-service-token-url` (string)
+:    Service token URL
+
+`--database-service-username` (string)
+:    Service username
+
+`--database-ssl` ()
+:    Service SSL Mode, default value is false. Format: --database-ssl=true
+
+`--database-sslcertificate-key-vault` (string)
+:    Vault secret for SSL certificate in JSON format: {"key":"secret key", "secret_name":"secret name", "secret_urn":"secret urn"}
+
+`--database-tables` (string)
+:    Only for Kafka - Add Kafka tables
+
+`--database-username` (string)
+:    Username
+
+`--database-username-key-vault` (string)
+:    Username key vault secret details in JSON format: {"key":"secret key", "secret_name":"secret name", "secret_urn":"secret urn"}
+
+`--database-validate-server-certificate` ()
+:    Verify certificate, default value is false. Format: --database-validate-server-certificate=true
+
+`--database-vault-enabled` ()
+:    Set --database-vault-enabled=true to use a vault (default: false)
+
+`--database-verify-host-name` ()
+:    Verify hostname, default value is false. Format: --database-verify-host-name=true
+
+`--database-warehouse-name` (string)
+:    Warehouse name
+
+`--description` (string)
+:    Database description
+
+`--display-name` (string)
+:    Required. Database display name. The maximum length is 128 characters. The minimum length is 1 character.
+
+`--instance-id` (string)
+:    Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
+
+`--tags` (string)
+:    Database tags
+
+`--type` (string)
+:    Database type (db2, netezza, oracle, postgresql, snowflake, sqlserver, mariadb, informix, db2fori, mongodb, redshift, phoenix, pinot, bigquery, cassandra, clickhouse, prometheus, redis, singlestore, teradata, mycustomdb, derby, greenplum, hana, mysql, elasticsearch, kafka, druid)
+
+#### Example
+```sh
+  cpdctl wx-data database create \
+   --description 'db2 external database description' \
+   --tags testdatabase,userdatabase \
+   --instance-id exampleString \
+   --display-name new_database \
+   --type db2 \
+   --associated-catalog '{
+       "catalog_name": "sampleCatalog",
+       "catalog_type": "iceberg"
+     }' \
+   --created-at 1686792721 \
+   --database-details '{
+       "authentication_type": "LDAP, NTLM, ActiveDirectoryServicePrincipal, ActiveDirectoryPassword",
+       "authentication_value": "LDAP",
+       "broker_authentication_password": "samplepassword",
+       "broker_authentication_type": "PASSWORD",
+       "broker_authentication_user": "sampleuser",
+       "broker_host": "samplehost",
+       "broker_port": 4553,
+       "certificate": "exampleCertificate",
+       "certificate_extension": "pem",
+       "connection_method": "basic, apikey",
+       "connection_mode": "service_name",
+       "connection_mode_value": "orclpdb",
+       "connection_type": "JDBC, Arrow flight",
+       "controller_authentication_password": "samplepassword",
+       "controller_authentication_type": "PASSWORD",
+       "controller_authentication_user": "sampleuser",
+       "coordinator_host": "150.239.160.121",
+       "coordinator_port": 4553,
+       "cpd_hostname": "samplecpdhostname",
+       "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIs",
+       "name": "db2fori",
+       "domain_name": "conops-mssql.conops.local",
+       "hostname": "http://db2@localhost:9900.com",
+       "hostname_in_certificate": "samplehostname",
+       "hosts": "abc.com:1234,xyz.com:4321",
+       "informix_server": "ol_informix1410",
+       "password": "samplepassword",
+       "port": 4553,
+       "project_id": "conops-bigquery",
+       "sasl": true,
+       "sasl_mechanism": "plain",
+       "schema_name": "sampleSchema",
+       "schemas": "redis__name",
+       "service_api_key": "sampleapikey",
+       "service_hostname": "api.dataplatform.dev.cloud.ibm.com",
+       "service_password": "samplepassword",
+       "service_port": 443,
+       "service_ssl": true,
+       "service_token_url": "sampletoakenurl",
+       "service_username": "sampleusername",
+       "ssl": true,
+       "sslcertificate_key_vault": {
+           "key": "secret key",
+           "secret_name": "secret name",
+           "secret_urn": "secret urn"
+       },
+       "username_key_vault": {
+           "key": "secret key",
+           "secret_name": "secret name",
+           "secret_urn": "secret urn"
+       },
+       "password_key_vault": {
+           "key": "secret key",
+           "secret_name": "secret name",
+           "secret_urn": "secret urn"
+       },
+       "authentication_value_key_vault": {
+           "key": "secret key",
+           "secret_name": "secret name",
+           "secret_urn": "secret urn"
+       },
+       "tables": "kafka_table_name, redis_table_name",
+       "username": "sampleuser",
+       "validate_server_certificate": true,
+       "vault_enabled": true,
+       "verify_host_name": true,
+       "warehouse_name": "samplewrehouse"
+     }' \
+   --database-properties '[{ "encrypt": true, "key": "abc", "value": "xyz" }]' 
+   
+
+  Simple Db2fori Example:
+	cpdctl wx-data database create \
+	 --tags testdatabase,userdatabase \
+	 --display-name db2foriSinan \
+	 --type db2fori \
+	 --associated-catalog '{ "catalog_name": "mycatalog" }' \
+	 --database-details '{
+		"name": "Db2fori",
+		"hostname": "i7adt01.rch.stglab.ibm.com",
+		"username": "WDSC",
+		"password": "WDSC777",
+		"ssl": false
+	}'
+
+  
+```
+
+<a id='wx-data_database_get'></a>
+## &#8226; wx-data database get
+
+Get a registered databases.
+
+```sh
+cpdctl wx-data database get --id ID [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--id` (string)
+:   database id. Required.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\\\-]+$/`.
+
+`--instance-id` (string)
+:   watsonx.data instance ID.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data database get \
+    --id exampleString \
+    --instance-id exampleString
+```
+
+<a id='wx-data_database_delete'></a>
+## &#8226; wx-data database delete
+
+Delete a database.
+
+```sh
+cpdctl wx-data database delete --id ID [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--id` (string)
+:   database id. Required.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\\\-]+$/`.
+
+`--instance-id` (string)
+:   watsonx.data instance ID.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data database delete \
+    --id exampleString \
     --instance-id exampleString
 ```
 
@@ -20489,22 +21461,75 @@ Get all engine tables details.
     --instance-id exampleString
 ```
 
+<a id='wx-data_service_generate-engine-dump'></a>
+## &#8226; wx-data service generate-engine-dump
+
+Generate heat or thread dump specific to presto worker or coordinator.
+
+```sh
+cpdctl wx-data service generate-engine-dump --instance-id INSTANCE-ID --dump-file-name DUMP-FILE-NAME --dump-type DUMP-TYPE --engine-id ENGINE-ID --pod-name POD-NAME
+```
+
+
+#### Command options
+
+`--instance-id` (string)
+:   watsonx.data instance ID. Required.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+`--dump-file-name` (string)
+:   Dump file name. Required.
+
+    The maximum length is `256` characters. The minimum length is `4` characters. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--dump-type` (string)
+:   Dump type. Required.
+
+    The maximum length is `32` characters. The minimum length is `4` characters. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--engine-id` (string)
+:   Engine ID. Required.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--pod-name` (string)
+:   specify the pod name like worker-0 or cordinator-0 etc. Required.
+
+    The maximum length is `128` characters. The minimum length is `4` characters. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data service generate-engine-dump \
+    --instance-id exampleString \
+    --dump-file-name prestodump \
+    --dump-type heap \
+    --engine-id presto-123 \
+    --pod-name presto
+```
+
 <a id='wx-data_service_get-qhmm-config'></a>
 ## &#8226; wx-data service get-qhmm-config
 
 Get configuration for qhmm bucket (Internal API).
 
 ```sh
-cpdctl wx-data service get-qhmm-config --secret SECRET [--instance-id INSTANCE-ID]
+cpdctl wx-data service get-qhmm-config --secret SECRET [--lh-instance-id LH-INSTANCE-ID] [--instance-id INSTANCE-ID]
 ```
 
 
 #### Command options
 
 `--secret` (string)
-:   Lh-instance secret. Required.
+:   API Authentication service token. Required.
 
     The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-_]+$/`.
+
+`--lh-instance-id` (string)
+:   Unique identifier assigned to a specific watsonx.data instance.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
 
 `--instance-id` (string)
 :   watsonx.data instance ID.
@@ -20516,6 +21541,7 @@ cpdctl wx-data service get-qhmm-config --secret SECRET [--instance-id INSTANCE-I
 ```sh
 cpdctl wx-data service get-qhmm-config \
     --secret exampleString \
+    --lh-instance-id exampleString \
     --instance-id exampleString
 ```
 
@@ -20583,12 +21609,12 @@ Execute a query.
 ```sh
 Query monitoring can be used to run stats and qhmm related queries.
 
-  Note:- Make sure you provide instance id via --instance-id flag or set WX_DATA_INSTANCE_ID environment variable
+  Note:- Make sure you provide instance id via --instance-id flag or have set WATSONX_DATA_INSTANCE_ID environment variable while profile creation
   --query-type(mandatory) : To specify which type of query to be executed i.e stats/qhmm
 
     1) To extract statistics of iceberg and hive tables.
     cpdctl wx-data service monitor --query-type stats [-h] [--instance-id instance-id] [--engine-id ENGINE] [--connector CONNECTOR] [--table TABLE] [--catalog CATALOG] [--schema SCHEMA]
-			
+
       -h, --help : show this help message and exit
       --engine-id (mandatory) : engine-id of engine whose table-details you want to get
       --connector : Monitoring queries from a specific connector (hive/iceberg)
@@ -20597,38 +21623,42 @@ Query monitoring can be used to run stats and qhmm related queries.
       --schema : Monitoring queries from a specific schema
 
     2) To extract query event log information.
-    cpdctl wx-data service monitor --query-type qhmm [-h] [--instance-id instance-id] [--secret secret] [--engine-id ENGINE] [--qhmm-query query_name] [--start-time start-time] [--end-time end-time] [--user user] [--query-id query_id] [--query-state query-state] [--print-output]
-			
-      --secret (mandatory) : Make sure you provide LH_INSTANCE_SECRET via --secret flag or set SECRET environment variable
-      -h, --help : show this help message and exit
-      --engine-id (mandatory) : engine-id of engine whose table-details you want to get
+    cpdctl wx-data service monitor --query-type qhmm [-h] [--instance-id instance-id] [--secret secret] [--engine-id ENGINE] [--catalog CATALOG] [--schema qhmm_schema_name] [--qhmm-query query_name] [--start-time start-time] [--end-time end-time] [--user user] [--query-id query_id] [--query-state query-state]
+
+      --secret (mandatory) : Make sure you provide LH_INSTANCE_SECRET via --secret flag or set SECRET environment variable.
+      -h, --help : show this help message and exit.
+      --engine-id (mandatory) : engine-id of engine whose table-details you want to get.
+      --schema (mandatory): To use a particular schema to run queries.
+      --catalog (mandatory) : To use a particular catalog to run queries.
       --qhmm-query (mandatory) : Specifies the type of query you wish to run. Options includes:-
-        query_gc_info:           Retrieve the information about garbage collection during query execution.
-                                 Allowed Options -> startTime, endTime, query-id, order, limit  
         query_failed_info:       Retrieve information about failed queries.
-                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit     
+                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit, print-output
         query_basic_info:        Retrieve the basic details of the completed queries.
-                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit     
+                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit, print-output
         query_stats_info:        Retrieve the performance statistics of the completed queries.
-                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit     
+                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit, print-output
         query_memory_info:       Retrieve the memory usage details of queries.
-                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit        
+                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit, print-output
+        query_gc_info:           Retrieve the information about garbage collection during query execution.
+                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit, print-output
         query_join_info:         Retrieve the information after joining the two tables to get an overview about the query.
-                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit     
+                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit, print-output
         query_info:              Retrieve the information containing all the columns of a table.
-                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit     
+                                 Allowed Options -> startTime, endTime, user, query-id, query-state, order, limit, print-output
         error_info:              Retrieve the information about the errors the user is getting in the query.
-                                 Allowed Options -> limit     
+                                 Allowed Option -> limit, print-output
         error_code:              Count of all error codes.
-                                 Allowed Options -> limit     
+                                 Allowed Option -> limit, print-output
         failure_type:            Count of all failure types.
-                                 Allowed Options -> limit     
+                                 Allowed Option -> limit, print-output
         failure_message:         Count of all failure messages.
-                                 Allowed Options -> limit     
+                                 Allowed Option -> limit, print-output
         abandoned_query:         Retrieve the information about failed queries due to abandoned query.
-                                 Allowed Options -> startTime, endTime, user, query-id, order, limit     
+                                 Allowed Options -> startTime, endTime, user, query-id, order, limit, print-output
         page_transport_timeout:  Retrieve the information about failed queries due to page transport timeout error.
-                                 Allowed Options -> startTime, endTime, user, query-id, order, limit 
+                                 Allowed Options -> startTime, endTime, user, query-id, order, limit, print-output
+        query_detail:            Retrieve complete history of a specific query
+                                 Allowed Option -> query-id (mandatory)
       --start-time : The starting timestamp for filtering the queries. Format should be 'YYYY-MM-DD HH:MM:SS'. Time should be in UTC.
       --end-time : The ending timestamp for filtering the queries. Format should be 'YYYY-MM-DD HH:MM:SS'. Time should be in UTC.
       --user : The user ID associated with the queries you wish to monitor.
@@ -20639,760 +21669,225 @@ Query monitoring can be used to run stats and qhmm related queries.
       --print-output : Print output to console (Passing flag equals true).
 ```
 
-<a id='wx-data_bucket_list'></a>
-## &#8226; wx-data bucket list
+<a id='wx-data_access-control_list-users-groups'></a>
+## &#8226; wx-data access-control list-users-groups
 
-Get list of registered buckets.
+This api is to get users and groups who have access to instance from the identity provider.
 
 ```sh
-cpdctl wx-data bucket list [--instance-id INSTANCE-ID]
+cpdctl wx-data access-control list-users-groups [--instance-id INSTANCE-ID]
 ```
 
 
 #### Command options
 
-`--instance-id` (string)
-:   CRN.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9:\/-]+$/`.
-
-#### Example
-
-```sh
-cpdctl wx-data bucket list \
-    --instance-id exampleString
-```
-
-<a id='wx-data_bucket_create'></a>
-## &#8226; wx-data bucket create
-
-Register a new bucket.
-
-```sh
-cpdctl wx-data bucket create --bucket-type BUCKET-TYPE --description DESCRIPTION --managed-by MANAGED-BY [--associated-catalog ASSOCIATED-CATALOG | --associated-catalog-catalog-name ASSOCIATED-CATALOG-CATALOG-NAME --associated-catalog-catalog-tags ASSOCIATED-CATALOG-CATALOG-TAGS --associated-catalog-catalog-type ASSOCIATED-CATALOG-CATALOG-TYPE] [--bucket-details BUCKET-DETAILS | --bucket-details-access-key BUCKET-DETAILS-ACCESS-KEY --bucket-details-bucket-name BUCKET-DETAILS-BUCKET-NAME --bucket-details-endpoint BUCKET-DETAILS-ENDPOINT --bucket-details-key-file BUCKET-DETAILS-KEY-FILE --bucket-details-provider BUCKET-DETAILS-PROVIDER --bucket-details-region BUCKET-DETAILS-REGION --bucket-details-secret-key BUCKET-DETAILS-SECRET-KEY] [--bucket-display-name BUCKET-DISPLAY-NAME] [--region REGION] [--storage-details STORAGE-DETAILS | --storage-details-access-key STORAGE-DETAILS-ACCESS-KEY --storage-details-application-id STORAGE-DETAILS-APPLICATION-ID --storage-details-auth-mode STORAGE-DETAILS-AUTH-MODE --storage-details-container-name STORAGE-DETAILS-CONTAINER-NAME --storage-details-directory-id STORAGE-DETAILS-DIRECTORY-ID --storage-details-endpoint STORAGE-DETAILS-ENDPOINT --storage-details-sas-token STORAGE-DETAILS-SAS-TOKEN --storage-details-secret-key STORAGE-DETAILS-SECRET-KEY --storage-details-storage-account-name STORAGE-DETAILS-STORAGE-ACCOUNT-NAME] [--tags TAGS] [--instance-id INSTANCE-ID]
-```
-
-
-#### Command options
-
-`--bucket-type` (string)
-:   bucket type. Required.
-
-    Allowable values are: `aws_s3`, `minio`, `ibm_cos`, `ibm_ceph`, `adls_gen1`, `adls_gen2`, `google_cs`. The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-_]+$/`.
-
-`--description` (string)
-:   bucket description. Required.
-
-    The maximum length is `50` characters. The minimum length is `0` characters. The value must match regular expression `/^.*$/`.
-
-`--managed-by` (string)
-:   managed by. Required.
-
-    Allowable values are: `ibm`, `customer`. The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
-
-`--associated-catalog` (<a href="#cli-bucket-catalog-example-schema-wx-data">`BucketCatalog`</a>)
-:   bucket catalog. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
-
-    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--associated-catalog=@path/to/file.json`.
-
-`--bucket-details` (<a href="#cli-bucket-details-example-schema-wx-data">`BucketDetails`</a>)
-:   bucket details. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
-
-    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--bucket-details=@path/to/file.json`.
-
-`--bucket-display-name` (string)
-:   bucket display name.
-
-    The maximum length is `63` characters. The minimum length is `3` characters. The value must match regular expression `/^.*$/`.
-
-`--region` (string)
-:   region where the bucket is located.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--storage-details` (<a href="#cli-storage-details-example-schema-wx-data">`StorageDetails`</a>)
-:   storage details. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
-
-    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--storage-details=@path/to/file.json`.
-
-`--tags` ([]string)
-:   tags.
-
-    The list items must match regular expression `/^.*$/`. The maximum length is `10000` items. The minimum length is `0` items.
+`--cookie` (string)
+:   IBM Lakehouse console cookie.
 
 `--instance-id` (string)
-:   CRN.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9:\/-]+$/`.
-
-`--associated-catalog-catalog-name` (string)
-:   catalog name. This option provides a value for a sub-field of the JSON option 'associated-catalog'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `0` characters. The value must match regular expression `/^[a-zA-Z0-9\\-_]+$/`.
-
-`--associated-catalog-catalog-tags` ([]string)
-:   catalog tags. This option provides a value for a sub-field of the JSON option 'associated-catalog'. It is mutually exclusive with that option.
-
-    The list items must match regular expression `/^.*$/`. The maximum length is `10000` items. The minimum length is `0` items.
-
-`--associated-catalog-catalog-type` (string)
-:   catalog type. This option provides a value for a sub-field of the JSON option 'associated-catalog'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--bucket-details-access-key` (string)
-:   Access key ID, encrypted during bucket registration. This option provides a value for a sub-field of the JSON option 'bucket-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
-
-`--bucket-details-bucket-name` (string)
-:   actual bucket name. This option provides a value for a sub-field of the JSON option 'bucket-details'. It is mutually exclusive with that option.
-
-    The maximum length is `63` characters. The minimum length is `3` characters. The value must match regular expression `/^[a-zA-Z0-9\\-_]+$/`.
-
-`--bucket-details-endpoint` (string)
-:   Cos endpoint. This option provides a value for a sub-field of the JSON option 'bucket-details'. It is mutually exclusive with that option.
-
-    The maximum length is `1024` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-:\/.?=]+/`.
-
-`--bucket-details-key-file` (string)
-:   Key file, encrypted during bucket registration. This option provides a value for a sub-field of the JSON option 'bucket-details'. It is mutually exclusive with that option.
-
-    The maximum length is `5000` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--bucket-details-provider` (string)
-:   bucket provider. This option provides a value for a sub-field of the JSON option 'bucket-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--bucket-details-region` (string)
-:   Region where the bucket is located. This option provides a value for a sub-field of the JSON option 'bucket-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--bucket-details-secret-key` (string)
-:   Secret access key, encrypted during bucket registration. This option provides a value for a sub-field of the JSON option 'bucket-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
-
-`--storage-details-access-key` (string)
-:   Access key ID, encrypted during bucket registration. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
-
-`--storage-details-application-id` (string)
-:   Application Id for bucket registration. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
-
-`--storage-details-auth-mode` (string)
-:   Auth mode types. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
-
-    The maximum length is `1024` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
-
-`--storage-details-container-name` (string)
-:   actual container name. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
-
-    The maximum length is `63` characters. The minimum length is `3` characters. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
-
-`--storage-details-directory-id` (string)
-:   Directory Id for bucket registration. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
-
-`--storage-details-endpoint` (string)
-:   ADLS endpoint. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
-
-    The maximum length is `1024` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-:\/.?=]+/`.
-
-`--storage-details-sas-token` (string)
-:   sas token, encrypted during bucket registration. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
-
-    The maximum length is `256` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
-
-`--storage-details-secret-key` (string)
-:   Secret access key, encrypted during bucket registration. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
-
-`--storage-details-storage-account-name` (string)
-:   actual storage name. This option provides a value for a sub-field of the JSON option 'storage-details'. It is mutually exclusive with that option.
-
-    The maximum length is `63` characters. The minimum length is `3` characters. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+/`.
-
-#### Examples
-
-```sh
-cpdctl wx-data bucket create \
-    --bucket-type ibm_cos \
-    --description 'COS bucket for customer data' \
-    --managed-by ibm \
-    --associated-catalog '{"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tag_1","catalog_tag_2"], "catalog_type": "iceberg"}' \
-    --bucket-details '{"access_key": "b9cbf248ea5c4c96947e64407108559j", "bucket_name": "sample-bucket", "endpoint": "https://s3.<region>.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm_cos", "region": "us-south", "secret_key": "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"}' \
-    --bucket-display-name sample-bucket-displayname \
-    --region us-south \
-    --storage-details '{"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}' \
-    --tags bucket-tag1,bucket-tag2 \
-    --instance-id exampleString
-```
-
-<a id='wx-data_bucket_get'></a>
-## &#8226; wx-data bucket get
-
-Get a registered bucket.
-
-```sh
-cpdctl wx-data bucket get --bucket-id BUCKET-ID [--bucket-name BUCKET-NAME] [--instance-id INSTANCE-ID]
-```
-
-
-#### Command options
-
-`--bucket-id` (string)
-:   bucket id. Required.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--bucket-name` (string)
-:   bucket name.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--instance-id` (string)
-:   CRN.
+:   watsonx.data instance ID.
 
     The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
 
 #### Example
 
 ```sh
-cpdctl wx-data bucket get \
-    --bucket-id exampleString \
-    --bucket-name exampleString \
+cpdctl wx-data access-control list-users-groups \
     --instance-id exampleString
 ```
 
-<a id='wx-data_bucket_delete'></a>
-## &#8226; wx-data bucket delete
+<a id='wx-data_access-control_list-access'></a>
+## &#8226; wx-data access-control list-access
 
-Deregister a bucket.
+Retrieve the permissions that have been granted to users and user groups for the resource types with specified ids and names.
 
 ```sh
-cpdctl wx-data bucket delete --bucket-id BUCKET-ID [--bucket-name BUCKET-NAME] [--instance-id INSTANCE-ID]
+cpdctl wx-data access-control list-access --type TYPE [--instance-id INSTANCE-ID] [--id ID] [--name NAME]
 ```
 
 
 #### Command options
 
-`--bucket-id` (string)
-:   bucket id. Required.
+`--instance-id` (string)
+:   Unique identifier assigned to a specific watsonx.data instance. Required.
 
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+    The maximum length is `256` characters. The minimum length is `1` character.
 
-`--bucket-name` (string)
-:   bucket name.
+`--type` (string)
+:   Type of resource to get the access details. Required.
 
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+    Allowable values are: `catalog`, `database`, `storage`, `presto`, `prestissimo`, `spark`, `milvus`.
+
+`--id` ([]string)
+:   Resource ID. Must be specified if the type is presto, prestissimo, spark, milvus, storages, or databases.
+
+    The list items must match regular expression `/^[a-zA-Z0-9\\-_\/:]+$/`.
+
+`--name` ([]string)
+:   Resource names. (Required) when the type is catalog.
+
+    The list items must match regular expression `/^[a-zA-Z0-9\\-_\/:]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data access-control list-access \
+    --instance-id exampleString \
+    --type catalog \
+    --id exampleString,anotherTestString \
+    --name exampleString,anotherTestString
+```
+
+<a id='wx-data_access-control_update-access'></a>
+## &#8226; wx-data access-control update-access
+
+This api is used to update the resource access policies. This policy defines the users and their permissions on each resource.
+
+```sh
+cpdctl wx-data access-control update-access [command options]
+```
+
+
+#### Command options
+
+`--access-policies` (<a href="#cli-access-policy-patch-example-schema-wx-data">`AccessPolicyPatch[]`</a>)
+:   &nbsp;
+
+    The maximum length is `1` item. The minimum length is `1` item.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--access-policies=@path/to/file.json`.
+
+`--options` (<a href="#cli-option-example-schema-wx-data">`Option[]`</a>)
+:   for future use.
+
+    The maximum length is `100` items. The minimum length is `1` item.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--options=@path/to/file.json`.
 
 `--instance-id` (string)
-:   CRN.
+:   Unique identifier assigned to a specific watsonx.data instance.
+
+    The maximum length is `256` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data access-control update-access \
+   --instance-id 637382929 \
+   --id wxd_system_data \
+   --type catalog \
+   --subjects user:user3:admin,group:637388298:user
+```
+
+<a id='wx-data_access-control_revoke-access'></a>
+## &#8226; wx-data access-control revoke-access
+
+Remove users and user groups from the access policy for the resource id or name provided. You require `can_administer` permission to perform this action.
+
+```sh
+cpdctl wx-data access-control revoke-access [command options]
+```
+
+
+#### Command options
+
+`--instance-id` (string)
+:   Unique identifier assigned to a specific watsonx.data instance. Required.
+
+    The maximum length is `256` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+`--resources` (<a href="#cli-resource-details-example-schema-wx-data">`ResourceDetails[]`</a>)
+:   List of resources to which the access policies should be applied.
+
+    The maximum length is `1` item. The minimum length is `1` item.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--resources=@path/to/file.json`.
+
+`--subjects` (<a href="#cli-subject-patch-example-schema-wx-data">`SubjectPatch[]`</a>)
+:   List of subjects (users and user groups) to which the access policy applies, along with the specified permissions.
+
+    The maximum length is `100` items. The minimum length is `1` item.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--subjects=@path/to/file.json`.
+
+#### Example
+
+```sh
+cpdctl wx-data access-control revoke-access \
+    --instance-id 87294723 \
+    --id presto-01 \
+    --type presto \
+    --subjects user:user1,group:8474839
+```
+
+<a id='wx-data_engine_detach'></a>
+## &#8226; wx-data engine detach
+
+Associate one or more catalogs to a prestissimo engine.
+
+```sh
+cpdctl wx-data engine detach --id ID --operations OPERATIONS [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--id` (string)
+:   engine id. Required.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+
+`--operations` (<a href="#cli-catalog-operations-operations-items-example-schema-wx-data">`CatalogOperationsOperationsItems[]`</a>)
+:   List of catalog operations to perform on the engine. Required.
+
+    The maximum length is `2` items. The minimum length is `2` items.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--operations=@path/to/file.json`.
+
+`--instance-id` (string)
+:   watsonx.data instance ID.
 
     The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
 
 #### Example
 
 ```sh
-cpdctl wx-data bucket delete \
-    --bucket-id exampleString \
-    --bucket-name exampleString \
-    --instance-id exampleString
-```
-
-<a id='wx-data_bucket_activate'></a>
-## &#8226; wx-data bucket activate
-
-Activate a registered bucket.
-
-```sh
-cpdctl wx-data bucket activate --bucket-id BUCKET-ID [--bucket-name BUCKET-NAME] [--instance-id INSTANCE-ID]
-```
-
-
-#### Command options
-
-`--bucket-id` (string)
-:   bucket id. Required.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--bucket-name` (string)
-:   bucket name.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--instance-id` (string)
-:   CRN.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
-
-#### Example
-
-```sh
-cpdctl wx-data bucket activate \
-    --bucket-id exampleString \
-    --bucket-name exampleString \
-    --instance-id exampleString
-```
-
-<a id='wx-data_bucket_deactivate'></a>
-## &#8226; wx-data bucket deactivate
-
-Deactivate a bucket.
-
-```sh
-cpdctl wx-data bucket deactivate --bucket-id BUCKET-ID [--bucket-name BUCKET-NAME] [--instance-id INSTANCE-ID]
-```
-
-
-#### Command options
-
-`--bucket-id` (string)
-:   bucket id. Required.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--bucket-name` (string)
-:   bucket name.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--instance-id` (string)
-:   CRN.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
-
-#### Example
-
-```sh
-cpdctl wx-data bucket deactivate \
-    --bucket-id exampleString \
-    --bucket-name exampleString \
-    --instance-id exampleString
-```
-
-<a id='wx-data_database_list'></a>
-## &#8226; wx-data database list
-
-Get list of databases.
-
-```sh
-cpdctl wx-data database list [--instance-id INSTANCE-ID]
-```
-
-
-#### Command options
-
-`--instance-id` (string)
-:   CRN.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
-
-#### Example
-
-```sh
-cpdctl wx-data database list \
-    --instance-id exampleString
-```
-
-<a id='wx-data_database_create'></a>
-## &#8226; wx-data database create
-
-Add or create a new database.
-
-```sh
-cpdctl wx-data database create --database-display-name DATABASE-DISPLAY-NAME --database-type DATABASE-TYPE [--associated-catalog ASSOCIATED-CATALOG | --associated-catalog-catalog-name ASSOCIATED-CATALOG-CATALOG-NAME --associated-catalog-catalog-tags ASSOCIATED-CATALOG-CATALOG-TAGS --associated-catalog-catalog-type ASSOCIATED-CATALOG-CATALOG-TYPE] [--created-on CREATED-ON] [--database-details DATABASE-DETAILS | --database-details-authentication-type DATABASE-DETAILS-AUTHENTICATION-TYPE --database-details-authentication-value DATABASE-DETAILS-AUTHENTICATION-VALUE --database-details-broker-authentication-password DATABASE-DETAILS-BROKER-AUTHENTICATION-PASSWORD --database-details-broker-authentication-type DATABASE-DETAILS-BROKER-AUTHENTICATION-TYPE --database-details-broker-authentication-user DATABASE-DETAILS-BROKER-AUTHENTICATION-USER --database-details-broker-port DATABASE-DETAILS-BROKER-PORT --database-details-broker-host DATABASE-DETAILS-BROKER-HOST --database-details-certificate DATABASE-DETAILS-CERTIFICATE --database-details-certificate-extension DATABASE-DETAILS-CERTIFICATE-EXTENSION --database-details-connection-method DATABASE-DETAILS-CONNECTION-METHOD --database-details-connection-mode DATABASE-DETAILS-CONNECTION-MODE --database-details-connection-mode-value DATABASE-DETAILS-CONNECTION-MODE-VALUE --database-details-connection-type DATABASE-DETAILS-CONNECTION-TYPE --database-details-controller-authentication-password DATABASE-DETAILS-CONTROLLER-AUTHENTICATION-PASSWORD --database-details-controller-authentication-type DATABASE-DETAILS-CONTROLLER-AUTHENTICATION-TYPE --database-details-controller-authentication-user DATABASE-DETAILS-CONTROLLER-AUTHENTICATION-USER --database-details-coordinator-host DATABASE-DETAILS-COORDINATOR-HOST --database-details-coordinator-port DATABASE-DETAILS-COORDINATOR-PORT --database-details-cpd-hostname DATABASE-DETAILS-CPD-HOSTNAME --database-details-credentials-key DATABASE-DETAILS-CREDENTIALS-KEY --database-details-database-name DATABASE-DETAILS-DATABASE-NAME --database-details-hostname DATABASE-DETAILS-HOSTNAME --database-details-hostname-in-certificate DATABASE-DETAILS-HOSTNAME-IN-CERTIFICATE --database-details-hosts DATABASE-DETAILS-HOSTS --database-details-informix-server DATABASE-DETAILS-INFORMIX-SERVER --database-details-password DATABASE-DETAILS-PASSWORD --database-details-port DATABASE-DETAILS-PORT --database-details-project-id DATABASE-DETAILS-PROJECT-ID --database-details-sasl=DATABASE-DETAILS-SASL --database-details-sasl-mechanism DATABASE-DETAILS-SASL-MECHANISM --database-details-service-api-key DATABASE-DETAILS-SERVICE-API-KEY --database-details-service-hostname DATABASE-DETAILS-SERVICE-HOSTNAME --database-details-service-password DATABASE-DETAILS-SERVICE-PASSWORD --database-details-service-port DATABASE-DETAILS-SERVICE-PORT --database-details-service-ssl=DATABASE-DETAILS-SERVICE-SSL --database-details-service-token-url DATABASE-DETAILS-SERVICE-TOKEN-URL --database-details-service-username DATABASE-DETAILS-SERVICE-USERNAME --database-details-ssl=DATABASE-DETAILS-SSL --database-details-tables DATABASE-DETAILS-TABLES --database-details-username DATABASE-DETAILS-USERNAME --database-details-validate-server-certificate=DATABASE-DETAILS-VALIDATE-SERVER-CERTIFICATE --database-details-verify-host-name=DATABASE-DETAILS-VERIFY-HOST-NAME] [--database-properties DATABASE-PROPERTIES] [--description DESCRIPTION] [--tags TAGS] [--instance-id INSTANCE-ID]
-```
-
-
-#### Command options
-
-`--database-display-name` (string)
-:   Database display name. Required.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-type` (string)
-:   Connector type. Required.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--associated-catalog` (<a href="#cli-database-catalog-example-schema-wx-data">`DatabaseCatalog`</a>)
-:   database catalog. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
-
-    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--associated-catalog=@path/to/file.json`.
-
-`--created-on` (string)
-:   Created on.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--database-details` (<a href="#cli-database-details-example-schema-wx-data">`DatabaseDetails`</a>)
-:   database details. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
-
-    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--database-details=@path/to/file.json`.
-
-`--database-properties` (<a href="#cli-database-registration-prototype-database-properties-items-example-schema-wx-data">`DatabaseRegistrationPrototypeDatabasePropertiesItems[]`</a>)
-:   This will hold all the properties for a custom database.
-
-    The maximum length is `10000` items. The minimum length is `0` items.
-
-    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--database-properties=@path/to/file.json`.
-
-`--description` (string)
-:   Database description.
-
-    The maximum length is `50` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--tags` ([]string)
-:   tags.
-
-    The list items must match regular expression `/^[a-zA-Z0-9\\-]+$/`. The maximum length is `10000` items. The minimum length is `0` items.
-
-`--instance-id` (string)
-:   CRN.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
-
-`--associated-catalog-catalog-name` (string)
-:   catalog name. This option provides a value for a sub-field of the JSON option 'associated-catalog'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `0` characters. The value must match regular expression `/^[a-zA-Z0-9\\-_]+$/`.
-
-`--associated-catalog-catalog-tags` ([]string)
-:   catalog tags. This option provides a value for a sub-field of the JSON option 'associated-catalog'. It is mutually exclusive with that option.
-
-    The list items must match regular expression `/^.*$/`. The maximum length is `10000` items. The minimum length is `0` items.
-
-`--associated-catalog-catalog-type` (string)
-:   catalog type. This option provides a value for a sub-field of the JSON option 'associated-catalog'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--database-details-authentication-type` (string)
-:   Authentication method. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-authentication-value` (string)
-:   Authentication method. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-broker-authentication-password` (string)
-:   Broker authentication password. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-broker-authentication-type` (string)
-:   Broker authentication type. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-broker-authentication-user` (string)
-:   Broker authentication user. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-broker-port` (int64)
-:   Broker port. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum value is `65535`. The minimum value is `1`.
-
-`--database-details-broker-host` (string)
-:   Broker host. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-certificate` (string)
-:   contents of a pem/crt file. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `20000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-=]+/`.
-
-`--database-details-certificate-extension` (string)
-:   extension of the certificate file. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--database-details-connection-method` (string)
-:   connection mode. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-connection-mode` (string)
-:   connection mode. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-connection-mode-value` (string)
-:   connection mode value. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-connection-type` (string)
-:   Connection type. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-controller-authentication-password` (string)
-:   Controller authentication password. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-controller-authentication-type` (string)
-:   Controller authentication type. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-controller-authentication-user` (string)
-:   Controller authentication user. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-coordinator-host` (string)
-:   Coordinator host. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-:\/.?=@]+$/`.
-
-`--database-details-coordinator-port` (int64)
-:   Coordinator port. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum value is `65535`. The minimum value is `1`.
-
-`--database-details-cpd-hostname` (string)
-:   CPD Hostname. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--database-details-credentials-key` (string)
-:   Base 64 encoded json file. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-database-name` (string)
-:   Database name. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-hostname` (string)
-:   Host name. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-:\/.?=@]+/`.
-
-`--database-details-hostname-in-certificate` (string)
-:   Hostname in certificate. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-hosts` (string)
-:   String of hostname:port. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-:\/.?=@]+/`.
-
-`--database-details-informix-server` (string)
-:   informix server value. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-password` (string)
-:   Psssword. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-port` (int64)
-:   Port. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum value is `65535`. The minimum value is `1`.
-
-`--database-details-project-id` (string)
-:   Project ID. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-sasl` (bool)
-:   SASL Mode. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-`--database-details-sasl-mechanism` (string)
-:   sasl mechanism for kafka. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-service-api-key` (string)
-:   service api key. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--database-details-service-hostname` (string)
-:   service hostname. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--database-details-service-password` (string)
-:   service password. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--database-details-service-port` (int64)
-:   Service Port. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum value is `65535`. The minimum value is `1`.
-
-`--database-details-service-ssl` (bool)
-:   Service SSL Mode. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-`--database-details-service-token-url` (string)
-:   service token url. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--database-details-service-username` (string)
-:   service username. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--database-details-ssl` (bool)
-:   SSL Mode. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-`--database-details-tables` (string)
-:   Only for Kafka - Add kafka tables. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-username` (string)
-:   Username. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
-
-`--database-details-validate-server-certificate` (bool)
-:   Verify certificate. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-`--database-details-verify-host-name` (bool)
-:   Verify host name. This option provides a value for a sub-field of the JSON option 'database-details'. It is mutually exclusive with that option.
-
-#### Examples
-
-```sh
-cpdctl wx-data database create \
-    --database-display-name new_database \
-    --database-type db2 \
-    --associated-catalog '{"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tag_1","catalog_tag_2"], "catalog_type": "iceberg"}' \
-    --created-on 1686792721 \
-    --database-details '{"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_port": 4553, "broker_host": "samplehost", "certificate": "contents of a pem/crt file", "certificate_extension": "pem/crt", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "hostname": "db2@<hostname>.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true}' \
-    --database-properties '[{"encrypt": true, "key": "abc", "value": "xyz"}]' \
-    --description 'db2 extenal database description' \
-    --tags testdatabase,userdatabase \
-    --instance-id exampleString
-```
-
-<a id='wx-data_database_get'></a>
-## &#8226; wx-data database get
-
-Get a registered databases.
-
-```sh
-cpdctl wx-data database get --database-id DATABASE-ID [--database-name DATABASE-NAME] [--instance-id INSTANCE-ID]
-```
-
-
-#### Command options
-
-`--database-id` (string)
-:   database id. Required.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--database-name` (string)
-:   database name.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--instance-id` (string)
-:   CRN.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
-
-#### Example
-
-```sh
-cpdctl wx-data database get \
-    --database-id exampleString \
-    --database-name exampleString \
-    --instance-id exampleString
-```
-
-<a id='wx-data_database_delete'></a>
-## &#8226; wx-data database delete
-
-Delete a database.
-
-```sh
-cpdctl wx-data database delete --database-id DATABASE-ID [--database-name DATABASE-NAME] [--instance-id INSTANCE-ID]
-```
-
-
-#### Command options
-
-`--database-id` (string)
-:   database id. Required.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--database-name` (string)
-:   database name.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--instance-id` (string)
-:   CRN.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
-
-#### Example
-
-```sh
-cpdctl wx-data database delete \
-    --database-id exampleString \
-    --database-name exampleString \
+cpdctl wx-data engine detach \
+    --id exampleString \
+    --operations '[{"action": "add", "catalog": ["exampleString","anotherTestString"]}]' \
     --instance-id exampleString
 ```
 
 <a id='wx-data_engine_list'></a>
 ## &#8226; wx-data engine list
-
-Get all engine details.
+Get all engines or specific engine details.
 
 ```sh
-cpdctl wx-data engine list [--instance-id INSTANCE-ID] [--engine-name ENGINE-NAME]
+  cpdctl wx-data engine list [--name ENGINE-NAME] [--type ENGINE-TYPE] [--instance-id INSTANCE-ID]
 ```
-
-
 #### Command options
 
 `--instance-id` (string)
-:   CRN.
+:    Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
 
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+`--name` (string)
+:    Engine name, providing this field will list details about specific engine.
 
-`--engine-name` (string)
-:   engine name.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+`--type` (string)
+:    Engine type, required when the --name flag is used. Supported types: presto, spark, prestissimo, netezza, db2, milvus, other
 
 #### Example
-
 ```sh
-cpdctl wx-data engine list \
-    --instance-id exampleString \
-    --engine-name exampleString
+   Engine list:
+	  cpdctl wx-data engine list \
+	  --instance-id 17354722623115152
+
+   Engine get:
+	  cpdctl wx-data engine list \
+	  --type presto \
+	  --name presto-01 \
+	  --instance-id 17354722623115152
+	 
 ```
 
 <a id='wx-data_engine_create'></a>
@@ -21400,24 +21895,36 @@ cpdctl wx-data engine list \
 Create a new engine.
 
 ```sh
-  cpdctl wx-data engine create [command options]
+  cpdctl wx-data engine create --origin ORIGIN [--associated-catalogs ASSOCIATED-CATALOGS] [--configuration (CONFIGURATION | @CONFIGURATION-FILE) | --configuration-connection-string CONFIGURATION-CONNECTION-STRING --configuration-managed-by CONFIGURATION-MANAGED-BY --configuration-api-key CONFIGURATION-API-KEY --configuration-coordinator CONFIGURATION-COORDINATOR --configuration-size-config CONFIGURATION-SIZE-CONFIG --configuration-worker CONFIGURATION-WORKER] [--description DESCRIPTION] [--display-name DISPLAY-NAME] [--region REGION] [--tags TAGS] [--version VERSION] [--instance-id INSTANCE-ID]
 ```
 #### Command options
 
 `--associated-catalogs` (string)
 :    Associated catalogs
 
-`--bucket-name` (string)
-:    Bucket name, applicable for Milvus
+`--dc-cpu` (float)
+:    Milvus data coordinator CPUs, only configurable in CPD
 
-`--bucket-type` (string)
-:    Bucket Type (amazon_s3, aws_s3, minio, ibm_cos, ibm_ceph, adls_gen1, adls_gen2, google_cs, ibm_storage_scale, ozone), applicable for Milvus
+`--dc-memory` (float)
+:    Milvus data coordinator memory, only configurable in CPD
+
+`--dc-replicas` (int)
+:    Milvus data coordinator replicas, only configurable in CPD
 
 `--description` (string)
 :    Engine description
 
 `--display-name` (string)
 :    (Required), Engine display name
+
+`--dw-cpu` (float)
+:    Milvus data worker CPUs, only configurable in CPD
+
+`--dw-memory` (float)
+:    Milvus data worker memory, only configurable in CPD
+
+`--dw-replicas` (int)
+:    Milvus data worker replicas, only configurable in CPD
 
 `--engine-api-key` (string)
 :    Api key to work with the saas IAE instance.Required only for saas
@@ -21429,25 +21936,82 @@ Create a new engine.
 :    Provide ad-hoc coordinator details in JSON format. Example: '{"node_type": "bx2.4x16", "quantity": 1}'
 
 `--engine-details` (string)
-:    Provide adhoc engine details. format: {"api_key":"<api_key>", "connection_string":"<connection_string>", "coordinator": {"node_type": "<node_type>", "quantity": <quantity>}, "instance_id": "<instance_id>", "managed_by": "<managed_by>", "size_config": "<size_config>", "worker": {"node_type": "<node_type>", "quantity": <quantity>}}
-
-`--engine-managed-by` (string)
-:    Engine managed by
+:    Provide adhoc engine details. format: {"coordinator":{"node_type":"worker","quantity":1}, "size_config":"starter", "worker":{"node_type":"worker","quantity":1} , "connection_string":"connectionStringValue"}. Use either --engine-details (preferred) or individual --engine-* flags (corresponding to JSON fields), but not both—these options are mutually exclusive.
 
 `--engine-size-config` (string)
-:    Size config. Allowable values are: starter, small, medium, large, xlarge, xxlarge, custom
+:    Size config. CPD supported sizes are: custom, starter, small, medium, large, xlarge, and xxlarge. IBM cloud supported sizes are: custom, starter,small, medium, large, cache_optimized, compute_optimized and lite
 
 `--engine-worker` (string)
 :    Provide ad-hoc worker details in JSON format. Example: '{"node_type": "bx2.4x16", "quantity": 1}'
 
+`--etcd-cpu` (float)
+:    Milvus etcd CPUs, only configurable in CPD
+
+`--etcd-memory` (float)
+:    Milvus etcd memory, only configurable in CPD
+
+`--index-type` (string)
+:    Milvus index type. Allowable values are: flat, ivf_flat, ivf_sq8, ivf_pq, hnsw, scann, gpu, gpu_cagra, gpu_ivf_flat, gpu_ivf_pq, gpu_brute_force
+
 `--instance-id` (string)
-:    CPD or Dev-edition requires Watsonx.data Instance ID, which is auto-fetched unless manually set via the --instance-id flag or WX_DATA_INSTANCE_ID environment variable. SaaS requires a CRN, which must be provided using the same options.  --instance-id flag takes precedence if both are set.
+:    Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
+
+`--iw-cpu` (float)
+:    Milvus index worker CPU
+
+`--iw-memory` (float)
+:    Milvus index worker memory
+
+`--iw-replicas` (int)
+:    Milvus index worker replicas
+
+`--kafka-cpu` (float)
+:    Milvus kafka CPUs, only configurable in CPD
+
+`--kafka-memory` (float)
+:    Milvus kafka memory, only configurable in CPD
 
 `--origin` (string)
 :    (Required), allowable values are: native, external, discover
 
 `--other-engine-type` (string)
-:    (Required) Engine Type, when type is other
+:    (Required) Engine Type, when --type is other
+
+`--proxy-cpu` (float)
+:    Milvus proxy CPUs, only configurable in CPD
+
+`--proxy-memory` (float)
+:    Milvus proxy memory, only configurable in CPD
+
+`--proxy-replicas` (int)
+:    Milvus proxy replicas, only configurable in CPD
+
+`--qc-cpu` (float)
+:    Milvus query coordinator CPUs, only configurable in CPD
+
+`--qc-memory` (float)
+:    Milvus query coordinator memory, only configurable in CPD
+
+`--qc-replicas` (int)
+:    Milvus query coordinator replicas, only configurable in CPD
+
+`--qw-cpu` (float)
+:    Milvus query worker CPU
+
+`--qw-memory` (float)
+:    Milvus query worker memory
+
+`--qw-replicas` (int)
+:    Milvus query worker replicas
+
+`--rc-cpu` (float)
+:    Milvus root coordinator CPUs, only configurable in CPD
+
+`--rc-memory` (float)
+:    Milvus root coordinator memory, only configurable in CPD
+
+`--rc-replicas` (int)
+:    Milvus root coordinator replicas, only configurable in CPD
 
 `--region` (string)
 :    Region (cloud)
@@ -21476,11 +22040,26 @@ Create a new engine.
 `--spark-version` (string)
 :    The spark version for the native engine. eg: 3.4
 
+`--storage-name` (string)
+:    Storage name, applicable for Milvus
+
+`--storage-type` (string)
+:    Storage type, applicable for Milvus
+
 `--tags` (string)
 :    Engine tags
 
+`--tshirt-size` (string)
+:    Milvus tshirt size (starter, small, medium, large)
+
 `--type` (string)
 :    (Required) Engine type. Supported types: presto, spark, prestissimo, netezza, db2, milvus, other
+
+`--vector` (int)
+:    Milvus vector
+
+`--vector-dimension` (int)
+:    Milvus vector dimension
 
 `--version` (string)
 :    Version like 0.278 for presto or else
@@ -21488,125 +22067,90 @@ Create a new engine.
 #### Example
 ```sh
  Presto or Prestissimo:
+	  cpdctl wx-data engine create \
+	  --origin native \
+	  --type presto \
+	  --associated-catalogs iceberg-data,hive-data \
+	  --description 'presto engine for running sql queries' \
+	  --display-name sampleEngine \
+	  --region us-south \
+	  --tags tag1,tag2 \
+	  --version v0.286 \
+	  --instance-id 875463829 \
+	  --engine-details '{
+	     "size_config": "starter",
+	     "coordinator": {"node_type": "bx2.4x16", "quantity": 1 },
+	     "worker": { "node_type": "bx2.4x16", "quantity": 1 }
+	  }'
+
+  Spark:
+     External:
+	  cpdctl wx-data engine create \
+	  --type spark  \
+	  --engine-details '{
+	     "api_key":"<api_key>",
+	     "connection_string":"https://api.us-south.ae.cloud.ibm.com/v3/analytics_engines/2fc8",
+	     "managed_by":"fully/self"
+	  }'
+	  --display-name sparkEngine \
+	  --origin external \
+	  --description engineDescription \
+	  --instance-id 17378
+
+
+		  OR
+      Native:
 	 cpdctl wx-data engine create \
+	 --type spark  \
+	 --spark-version 3.4  \
+	 --spark-home-volume-name newvolspark2 \
+	 --spark-home-volume-storage-class nfs-client \
+	 --spark-home-volume-storage-size 5Gi \
+	 --display-name sparkNativeEngine \
 	 --origin native \
-	 --type presto \
-	 --associated-catalogs iceberg-data,hive-data \
-	 --description 'presto engine for running sql queries' \
-	 --display-name sampleEngine \
-	 --region us-south \
-	 --tags tag1,tag2 \
-	 --version v0.286 \
-	 --instance-id 875463829 \
-	 --engine-details '{
-		 "api_key": "<api_key>", 
-		 "connection_string": "1.2.3.4", 
-		 "managed_by": "fully/self", 
-		 "size_config": "starter", 
-		 "coordinator": {"node_type": "bx2.4x16", "quantity": 1 }, 
-		 "worker": { "node_type": "bx2.4x16", "quantity": 1 }
-	 }'
- 
- Spark:
-	cpdctl wx-data engine create \
-	--engine-type spark  \
-	--engine-details '{
-		 "api_key":"<api_key>",
-		 "connection_string":"https://api.us-south.ae.cloud.ibm.com/v3/analytics_engines/2fc8",
-		 "managed_by":"fully/self"
-	 }' 
-	--display-name sparkEngine \
-	--origin external \
-	--instance-id 17378
- 
-		 OR
-	 
-	cpdctl wx-data engine create \
-	--engine-type spark  \
-	--spark-version 3.4  \
-	--spark-home-volume-name newvolspark2 \
-	--spark-home-volume-storage-class nfs-client \
-	--spark-home-volume-storage-size 5Gi \
-	--display-name sparkNativeEngine \
-	--origin native \
-	--instance-id 1737804849506753 \
-	--spark-home-bucket-name bucketcos \
-	--spark-scale-config '{"node_type": "small", "number_of_nodes":1}'
- 
- 
- Milvus:
-	 cpdctl wx-data engine create \
-	 --origin native \
-	 --type milvus \
-	 --display-name sampleEngine \
-	 --bucket-name sampleBucketName \
-	 --instance-id 875463829 \
-	 --root-path /filepath \
-	 --engine-size-config starter
- 
- Netezza:
-	 cpdctl wx-data engine create \
-	 --origin external \
-	 --description Netezza engine \
-	 --type netezza \
-	 --display-name sampleEngine \
-	 --instance-id 875463829 \
-	 --engine-details '{"connection_string": "connectionStringValue"}'
- 
- Db2:
-	 cpdctl wx-data engine create \
-	 --origin external \
-	 --description db2 engine \
-	 --type db2 \
-	 --display-name sampleEngine \
-	 --instance-id 875463829 \
-	 --engine-details '{"connection_string": "connectionStringValue"}'
- 
- Other:
-	 cpdctl wx-data engine create \
-	 --origin external \
-	 --type other \
-	 --display-name sampleOtherEngine \
-	 --instance-id 875463829 \
-	 --other-engine-type 'SampleEngineType' \
-	 --engine-connection-string sampleConnectionString
- 
-```
-
-<a id='wx-data_engine_delete'></a>
-## &#8226; wx-data engine delete
-
-Delete a presto engine.
-
-```sh
-cpdctl wx-data engine delete [--engine-id ENGINE-ID] [--engine-name ENGINE-NAME] [--instance-id INSTANCE-ID]
-```
+	 --instance-id 1737804849506753 \
+	 --spark-home-bucket-name bucketcos \
+	 --spark-scale-config '{"node_type": "small", "number_of_nodes":1}'
 
 
-#### Command options
+  Milvus:
+	  cpdctl wx-data engine create \
+	  --origin native \
+	  --type milvus \
+	  --display-name milvusEngine \
+	  --storage-name sampleBucketName \
+	  --root-path /filepath \
+	  --tshirt-size starter \
+	  --instance-id 875463829
+  Netezza:
+	  cpdctl wx-data engine create \
+	  --origin external \
+	  --description Netezza engine \
+	  --type netezza \
+	  --display-name sampleEngine \
+	  --tags tag1,tag2 \
+	  --instance-id 875463829 \
+	  --engine-details '{"connection_string": "connectionStringValue"}'
 
-`--engine-id` (string)
-:   engine id.
+  Db2:
+	  cpdctl wx-data engine create \
+	  --origin external \
+	  --description db2 engine \
+	  --type db2 \
+	  --display-name sampleEngine \
+	  --instance-id 875463829 \
+	  --tags tag1,tag2 \
+	  --engine-details '{"connection_string": "connectionStringValue"}'
 
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--engine-name` (string)
-:   Engine name.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--instance-id` (string)
-:   CRN.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
-
-#### Example
-
-```sh
-cpdctl wx-data engine delete \
-    --engine-id exampleString \
-    --engine-name exampleString \
-    --instance-id exampleString
+  Other:
+	  cpdctl wx-data engine create \
+	  --type other \
+	  --other-engine-type EngineType \
+	  --display-name sampleOtherEngine \
+	  --description external engine description \
+	  --instance-id 875463829 \
+	  --engine-connection-string sampleConnectionString
+  
 ```
 
 <a id='wx-data_engine_attach'></a>
@@ -21615,29 +22159,26 @@ cpdctl wx-data engine delete \
 Associate one or more catalogs to a presto engine.
 
 ```sh
-cpdctl wx-data engine attach [--catalog-names CATALOG-NAMES] [--engine-id ENGINE-ID] [--engine-name ENGINE-NAME] [--instance-id INSTANCE-ID]
+cpdctl wx-data engine attach --engine-id ENGINE-ID --operations OPERATIONS [--instance-id INSTANCE-ID]
 ```
 
 
 #### Command options
 
-`--catalog-names` (string)
-:   catalog names.
-
-    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-_,]+$/`.
-
 `--engine-id` (string)
-:   engine id.
+:   engine id. Required.
 
     The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
 
-`--engine-name` (string)
-:   Engine name.
+`--operations` (<a href="#cli-catalog-operations-operations-items-example-schema-wx-data">`CatalogOperationsOperationsItems[]`</a>)
+:   List of catalog operations to perform on the engine. Required.
 
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
+    The maximum length is `2` items. The minimum length is `2` items.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--operations=@path/to/file.json`.
 
 `--instance-id` (string)
-:   CRN.
+:   watsonx.data instance ID.
 
     The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
 
@@ -21646,118 +22187,38 @@ cpdctl wx-data engine attach [--catalog-names CATALOG-NAMES] [--engine-id ENGINE
 ```sh
 cpdctl wx-data engine attach \
     --engine-id exampleString \
-    --catalog-names exampleString \
-    --engine-name exampleString \
+    --operations '[{"action": "add", "catalog": ["exampleString","anotherTestString"]}]' \
     --instance-id exampleString
 ```
 
-<a id='wx-data_engine_detach'></a>
-## &#8226; wx-data engine detach
+<a id='wx-data_engine_delete'></a>
+## &#8226; wx-data engine delete
 
-Disassociate one or more catalogs from a presto engine.
+Delete a presto engine.
 
 ```sh
-cpdctl wx-data engine detach --catalog-names CATALOG-NAMES [--engine-id ENGINE-ID] [--engine-name ENGINE-NAME] [--instance-id INSTANCE-ID]
+cpdctl wx-data engine delete --id ID [--instance-id INSTANCE-ID]
 ```
 
 
 #### Command options
 
-`--catalog-names` (string)
-:   Catalog id(s) to be stopped, comma separated. Required.
-
-    The maximum length is `1000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-_,]+/`.
-
-`--engine-id` (string)
-:   engine id.
-
-    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
-
-`--engine-name` (string)
-:   Engine name.
+`--id` (string)
+:   engine id. Required.
 
     The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-]+$/`.
 
 `--instance-id` (string)
-:   CRN.
+:   watsonx.data instance ID.
 
     The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
 
 #### Example
 
 ```sh
-cpdctl wx-data engine detach \
-    --engine-id exampleString \
-    --catalog-names exampleString \
-    --engine-name exampleString \
+cpdctl wx-data engine delete \
+    --id exampleString \
     --instance-id exampleString
-```
-
-<a id='wx-data_sparkjob_list'></a>
-## &#8226; wx-data sparkjob list
-List all applications in a spark engine.
-
-```sh
-  cpdctl wx-data sparkjob list --engine-id ENGINE-ID [--instance-id INSTANCE-ID] [--state STATE]
-```
-#### Command options
-
-`--engine-id` (string)
-:    Required. Spark Engine ID
-
-`--instance-id` (string)
-:    CPD or Dev-edition requires Watsonx.data Instance ID, which is auto-fetched unless manually set via the --instance-id flag or WX_DATA_INSTANCE_ID environment variable. SaaS requires a CRN, which must be provided using the same options.  --instance-id flag takes precedence if both are set.
-
-`--state` (string)
-:    State of the Spark Application
-
-#### Example
-```sh
-cpdctl wx-data sparkjob list \
-	 --engine-id spark01 \
-	 --instance-id exampleString \
-	 --state FINISHED/FAILED/RUNNING
-```
-
-<a id='wx-data_sparkjob_create'></a>
-## &#8226; wx-data sparkjob create
-Submit engine applications.
-
-```sh
-  cpdctl wx-data sparkjob create [command options]
-```
-#### Command options
-
-`--conf` (string)
-:    Spark Application Details Configuration. Format: {'Bucket_Endpoint': 'Endpoint of the COS Bucket containing Spark File', 'Bucket_Access_Key': 'Access Key of the COS Bucket', 'Bucket_Secret_Key': 'Secret Key of the COS Bucket', 'API_Key': 'Format - Basic base64(ibmlhapikey_<Your_EMAIL_ID>:<SaaS_API_Key>)', 'Spark_App_Name': 'Any Name for your Spark App'}
-
-`--engine-id` (string)
-:    Required. Spark Engine ID
-
-`--instance-id` (string)
-:    CPD or Dev-edition requires Watsonx.data Instance ID, which is auto-fetched unless manually set via the --instance-id flag or WX_DATA_INSTANCE_ID environment variable. SaaS requires a CRN, which must be provided using the same options.  --instance-id flag takes precedence if both are set.
-
-`--path` (string)
-:    Path of the Spark Application File in COS Bucket
-
-#### Example
-```sh
-
-  cpdctl wx-data sparkjob create \
-    --engine-id spark01 \
-    --path "cos://<Bucket_Name>.sparktest/<Spark_File_Name>" \
-    --conf '{
-        "spark.hadoop.fs.cos.sparktest.endpoint": "<BUCKET_ENDPOINT>",
-        "spark.hadoop.fs.cos.sparktest.access.key": "<BUCKET_ACCESS_KEY>",
-        "spark.hadoop.fs.cos.sparktest.secret.key": "<BUCKET_SECRET_KEY>",
-        "spark.app.name": "<SPARK_APP_NAME>",
-        "spark.hadoop.wxd.apikey": "<API_KEY>"
-    }' \
-    --instance-id 673829990
-
-
-# Template for table maintenance pyspark file in saas: https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-table-run_samp_file
-# Template for table maintenance pyspark file in cpd:  https://www.ibm.com/docs/SSDZ38_2.1.x/lh-console/topics/nsp_cpdctl.html
 ```
 
 <a id='wx-data_sparkjob_get'></a>
@@ -21770,20 +22231,895 @@ Get status of spark application.
 #### Command options
 
 `--application-id` (string)
-:    Required. Application ID of Spark Application
+:    (Required) Application ID of Spark Application
 
 `--engine-id` (string)
-:    Required. Spark Engine ID
+:    (Required) Spark Engine ID
 
 `--instance-id` (string)
-:    CPD or Dev-edition requires Watsonx.data Instance ID, which is auto-fetched unless manually set via the --instance-id flag or WX_DATA_INSTANCE_ID environment variable. SaaS requires a CRN, which must be provided using the same options.  --instance-id flag takes precedence if both are set.
+:    Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
 
 #### Example
 ```sh
 cpdctl wx-data sparkjob get \
+	  --engine-id spark01 \
+	  --application-id 45627-9387-04c8 \
+	  --instance-id 35627738839
+```
+
+<a id='wx-data_sparkjob_list'></a>
+## &#8226; wx-data sparkjob list
+List all applications in a spark engine.
+
+```sh
+  cpdctl wx-data sparkjob list --engine-id ENGINE-ID [--instance-id INSTANCE-ID] [--state STATE] [--submission-time-interval SUBMISSION-TIME-INTERVAL] [--start-time-interval START-TIME-INTERVAL] [--end-time-interval END-TIME-INTERVAL] [--limit LIMIT] [--start START]
+```
+#### Command options
+
+`--end-time-interval` (string)
+:    Filter Spark jobs by end time. Both lower and upper limits must be provided. Supported values: BEGINNING, CURRENT, or a timestamp (YYYY-MM-DDTHH:mm:SSZ)
+
+`--engine-id` (string)
+:    (Required) Spark Engine ID
+
+`--instance-id` (string)
+:    Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
+
+`--limit` (int)
+:    limit to specify the rows. The default value is 25. The maximum value is 1000. The minimum value is 1.
+
+`--start-time-interval` (string)
+:    Filter Spark jobs by start time. Both lower and upper limits must be provided. Supported values: BEGINNING, CURRENT, or a timestamp (YYYY-MM-DDTHH:mm:SSZ).
+
+`--state` (string)
+:    State of the Spark Application
+
+#### Example
+```sh
+cpdctl wx-data sparkjob list \ 
+      --engine-id spark01 \
+      --state FINISHED/FAILED \
+      --start-time-interval "2025-04-16T10:50:00Z,CURRENT" \
+      --end-time-interval "BEGINNING,2025-04-16T10:50:00Z" \
+      --limit 10 \
+	  --instance-id 67382999037902
+```
+
+<a id='wx-data_sparkjob_create'></a>
+## &#8226; wx-data sparkjob create
+Submit engine applications.
+
+```sh
+  cpdctl wx-data sparkjob create [command options]
+```
+#### Command options
+
+`--api-key` (string)
+:    API Key of the Instance ( Can use Environment Variable - $API_KEY )
+
+`--bucket-name` (string)
+:    (Required) Name of the Bucket to store Spark Application File
+
+`--conf` (string)
+:    Spark Application Details Configuration
+
+`--engine-id` (string)
+:    (Required) Spark Engine ID
+
+`--instance-id` (string)
+:    Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
+
+`--local-path` (string)
+:    Local Path of the Spark Application File. Requires Bucket Name value to be passed as a flag.
+
+`--path` (string)
+:    Path of the Spark Application File in bucket.
+
+#### Example
+```sh
+
+  cpdctl wx-data sparkjob create \
+    --engine-id spark01 \
+    --path "<Path of the file in the Bucket>" \
+    --local-path "<Local Path of the file>" \
+    --bucket-name <Bucket_Name> \
+    --conf '{
+        "spark.app.name":"<SPARK_APP_NAME>"
+    }' \
+    --api-key <API_Key> \
+    --instance-id 67382999037902
+
+
+# You can either upload the file to the bucket yourself and use --path to give its bucket path (s3a://Bucket_Name/Folder_Name_In_Bucket/File_Name.py)
+# or use --local-path to give the local file path and it will be uploaded automatically (/Users/Profile/Downloads/File_Name.py)
+
+# Template for table maintenance pyspark file in SaaS: https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-table-run_samp_file
+# Template for table maintenance pyspark file in cpd:  https://www.ibm.com/docs/SSDZ38_2.1.x/lh-console/topics/nsp_cpdctl.html
+```
+
+<a id='wx-data_bucket_list'></a>
+## &#8226; wx-data bucket list
+
+Get list of registered storages.
+
+```sh
+cpdctl wx-data bucket list [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--instance-id` (string)
+:   watsonx.data instance ID.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data bucket list \
+    --instance-id exampleString
+```
+
+<a id='wx-data_bucket_create'></a>
+## &#8226; wx-data bucket create
+
+Register a new storage.
+
+```sh
+cpdctl wx-data bucket create --description DESCRIPTION --display-name DISPLAY-NAME --managed-by MANAGED-BY --type TYPE [--associated-catalog ASSOCIATED-CATALOG | --associated-catalog-base-path ASSOCIATED-CATALOG-BASE-PATH --associated-catalog-catalog-name ASSOCIATED-CATALOG-CATALOG-NAME --associated-catalog-catalog-tags ASSOCIATED-CATALOG-CATALOG-TAGS --associated-catalog-catalog-type ASSOCIATED-CATALOG-CATALOG-TYPE] [--bucket-use BUCKET-USE] [--connection CONNECTION | --connection-access-key CONNECTION-ACCESS-KEY --connection-access-key-vault CONNECTION-ACCESS-KEY-VAULT --connection-account-name CONNECTION-ACCOUNT-NAME --connection-application-id CONNECTION-APPLICATION-ID --connection-auth-mode CONNECTION-AUTH-MODE --connection-container-name CONNECTION-CONTAINER-NAME --connection-directory-id CONNECTION-DIRECTORY-ID --connection-endpoint CONNECTION-ENDPOINT --connection-key-file CONNECTION-KEY-FILE --connection-name CONNECTION-NAME --connection-provider CONNECTION-PROVIDER --connection-region CONNECTION-REGION --connection-role-arn CONNECTION-ROLE-ARN --connection-sas-token CONNECTION-SAS-TOKEN --connection-secret-key CONNECTION-SECRET-KEY --connection-secret-key-vault CONNECTION-SECRET-KEY-VAULT --connection-vault-enabled=CONNECTION-VAULT-ENABLED] [--region REGION] [--tags TAGS] [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--description` (string)
+:   storage description. Required.
+
+    The maximum length is `50` characters. The minimum length is `0` characters. The value must match regular expression `/^.*$/`.
+
+`--display-name` (string)
+:   Storage display name. Required.
+
+    The maximum length is `128` characters. The minimum length is `3` characters. The value must match regular expression `/^[^!@#$%^&*()=+:{}?<>';\\`]*$/`.
+
+`--managed-by` (string)
+:   managed by. Required.
+
+    Allowable values are: `ibm`, `customer`. The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+$/`.
+
+`--type` (string)
+:   storage type. Required.
+
+    Allowable values are: `aws_s3`, `minio`, `ibm_cos`, `ibm_ceph`, `adls_gen1`, `adls_gen2`, `google_cs`, `ozone`, `ibm_storage_scale`. The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-_]+$/`.
+
+`--associated-catalog` (<a href="#cli-storage-catalog-prototype-example-schema-wx-data">`StorageCatalogPrototype`</a>)
+:   storage catalog. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--associated-catalog=@path/to/file.json`.
+
+`--bucket-use` (string)
+:   bucket use to define whether the bucket is for query monitoring or acl.
+
+    Allowable values are: `qhmm`, `acl`. The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-_]+$/`.
+
+`--connection` (<a href="#cli-storage-details-example-schema-wx-data">`StorageDetails`</a>)
+:   storage details. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--connection=@path/to/file.json`.
+
+`--region` (string)
+:   Region where the storage is located.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\\\-]+$/`.
+
+`--tags` ([]string)
+:   tags.
+
+    The list items must match regular expression `/^.*$/`. The maximum length is `10000` items. The minimum length is `0` items.
+
+`--instance-id` (string)
+:   watsonx.data instance ID.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+`--associated-catalog-base-path` (string)
+:   catalog base path. This option provides a value for a sub-field of the JSON option 'associated-catalog'. It is mutually exclusive with that option.
+
+    The maximum length is `2000` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--associated-catalog-catalog-name` (string)
+:   catalog name. This option provides a value for a sub-field of the JSON option 'associated-catalog'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `0` characters. The value must match regular expression `/^[a-zA-Z0-9_]+$/`.
+
+`--associated-catalog-catalog-tags` ([]string)
+:   catalog tags. This option provides a value for a sub-field of the JSON option 'associated-catalog'. It is mutually exclusive with that option.
+
+    The list items must match regular expression `/^.*$/`. The maximum length is `10000` items. The minimum length is `0` items.
+
+`--associated-catalog-catalog-type` (string)
+:   catalog type. This option provides a value for a sub-field of the JSON option 'associated-catalog'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--connection-access-key` (string)
+:   Access key ID, encrypted during storage registration. This option provides a value for a sub-field of the JSON option 'connection'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--connection-access-key-vault` (<a href="#cli-secret-details-example-schema-wx-data">`SecretDetails`</a>)
+:   secret details. This option provides a value for a sub-field of the JSON option 'connection'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--connection-access-key-vault=@path/to/file.json`.
+
+`--connection-account-name` (string)
+:   actual storage name. This option provides a value for a sub-field of the JSON option 'connection'. It is mutually exclusive with that option.
+
+    The maximum length is `63` characters. The minimum length is `3` characters. The value must match regular expression `/^[a-zA-Z0-9\\-_]+$/`.
+
+`--connection-application-id` (string)
+:   Application Id for storage registration. This option provides a value for a sub-field of the JSON option 'connection'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+$/`.
+
+`--connection-auth-mode` (string)
+:   auth mode. This option provides a value for a sub-field of the JSON option 'connection'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--connection-container-name` (string)
+:   actual container name. This option provides a value for a sub-field of the JSON option 'connection'. It is mutually exclusive with that option.
+
+    The maximum length is `63` characters. The minimum length is `3` characters. The value must match regular expression `/^[a-zA-Z0-9\\\\\\-_]+$/`.
+
+`--connection-directory-id` (string)
+:   Directory Id for storage registration. This option provides a value for a sub-field of the JSON option 'connection'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+$/`.
+
+`--connection-endpoint` (string)
+:   Cos endpoint. This option provides a value for a sub-field of the JSON option 'connection'. It is mutually exclusive with that option.
+
+    The maximum length is `1024` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\\\:\/.?=@]+$/`.
+
+`--connection-key-file` (string)
+:   Key file, encrypted during storage registration. This option provides a value for a sub-field of the JSON option 'connection'. It is mutually exclusive with that option.
+
+    The maximum length is `5000` characters. The minimum length is `1` character. The value must match regular expression `/^[.*\\s\\S]*$/`.
+
+`--connection-name` (string)
+:   actual storage name. This option provides a value for a sub-field of the JSON option 'connection'. It is mutually exclusive with that option.
+
+    The maximum length is `63` characters. The minimum length is `3` characters. The value must match regular expression `/^[a-zA-Z0-9\\\\._\/-]+$/`.
+
+`--connection-provider` (string)
+:   storage provider. This option provides a value for a sub-field of the JSON option 'connection'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\\\-]+$/`.
+
+`--connection-region` (string)
+:   Region where the storage is located. This option provides a value for a sub-field of the JSON option 'connection'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\\\-]+$/`.
+
+`--connection-role-arn` (string)
+:   arn role. This option provides a value for a sub-field of the JSON option 'connection'. It is mutually exclusive with that option.
+
+    The maximum length is `1024` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--connection-sas-token` (string)
+:   sas token, encrypted during storage registration. This option provides a value for a sub-field of the JSON option 'connection'. It is mutually exclusive with that option.
+
+    The maximum length is `256` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9.@<>\\-]+$/`.
+
+`--connection-secret-key` (string)
+:   Secret access key, encrypted during storage registration. This option provides a value for a sub-field of the JSON option 'connection'. It is mutually exclusive with that option.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^.*$/`.
+
+`--connection-secret-key-vault` (<a href="#cli-secret-details-example-schema-wx-data">`SecretDetails`</a>)
+:   secret details. This option provides a value for a sub-field of the JSON option 'connection'. It is mutually exclusive with that option.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--connection-secret-key-vault=@path/to/file.json`.
+
+`--connection-vault-enabled` (bool)
+:   vault enabled or not. This option provides a value for a sub-field of the JSON option 'connection'. It is mutually exclusive with that option.
+
+#### Examples
+
+```sh
+cpdctl wx-data bucket create \
+    --description 'COS storage for customer data' \
+    --display-name sample-storage-displayname \
+    --managed-by ibm \
+    --type ibm_cos \
+    --associated-catalog '{"base_path": "/abc/def", "catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tag_1","catalog_tag_2"], "catalog_type": "iceberg"}' \
+    --bucket-use qhmm \
+    --connection '{"access_key": "<access_key>", "access_key_vault": {"key": "secret key", "secret_name": "secret name", "secret_urn": "secret urn"}, "account_name": "sample-storage", "application_id": "application-id", "auth_mode": "iam", "container_name": "sample-container", "directory_id": "directory-id", "endpoint": "https://s3.us-south.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "name": "sample-storage", "provider": "ibm-cos", "region": "us-south", "role_arn": "arn:aws:iam::5ssdd5467-002c-a4f8cac3f3f9", "sas_token": "<sas-token>", "secret_key": "secret_key", "secret_key_vault": {"key": "secret key", "secret_name": "secret name", "secret_urn": "secret urn"}, "vault_enabled": true}' \
+    --region us-south \
+    --tags storage-tag1,storage-tag2 \
+    --instance-id exampleString
+```
+
+<a id='wx-data_bucket_get'></a>
+## &#8226; wx-data bucket get
+
+Get a registered storage.
+
+```sh
+cpdctl wx-data bucket get --id ID [--instance-id INSTANCE-ID] [--skip-mds-call=SKIP-MDS-CALL]
+```
+
+
+#### Command options
+
+`--id` (string)
+:   storage id. Required.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\\\._\/-]+$/`.
+
+`--instance-id` (string)
+:   watsonx.data instance ID.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+`--skip-mds-call` (bool)
+:   Skip MDS call when Unity catalog is added.
+
+    The default value is `false`.
+
+#### Example
+
+```sh
+cpdctl wx-data bucket get \
+    --id exampleString \
+    --instance-id exampleString \
+    --skip-mds-call=false
+```
+
+<a id='wx-data_bucket_delete'></a>
+## &#8226; wx-data bucket delete
+
+Unregister a storage.
+
+```sh
+cpdctl wx-data bucket delete --id ID [--instance-id INSTANCE-ID] [--skip-mds-call=SKIP-MDS-CALL]
+```
+
+
+#### Command options
+
+`--id` (string)
+:   storage id. Required.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\\\._\/-]+$/`.
+
+`--instance-id` (string)
+:   watsonx.data instance ID.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+`--skip-mds-call` (bool)
+:   Skip MDS call when Unity catalog is added.
+
+    The default value is `false`.
+
+#### Example
+
+```sh
+cpdctl wx-data bucket delete \
+    --id exampleString \
+    --instance-id exampleString \
+    --skip-mds-call=false
+```
+
+<a id='wx-data_bucket_activate'></a>
+## &#8226; wx-data bucket activate
+
+Activate a registered storage.
+
+```sh
+cpdctl wx-data bucket activate --id ID [--instance-id INSTANCE-ID]
+```
+
+
+#### Command options
+
+`--id` (string)
+:   storage id. Required.
+
+    The maximum length is `10000` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\\\._\/-]+$/`.
+
+`--instance-id` (string)
+:   watsonx.data instance ID.
+
+    The maximum length is `128` characters. The minimum length is `1` character. The value must match regular expression `/^[a-zA-Z0-9\\-\\:\/]+$/`.
+
+#### Example
+
+```sh
+cpdctl wx-data bucket activate \
+    --id exampleString \
+    --instance-id exampleString
+```
+
+<a id='wx-data_tablemaint_rollback-to-snapshot'></a>
+## &#8226; wx-data tablemaint rollback-to-snapshot
+Rollback To Snapshot Command
+
+```sh
+  cpdctl wx-data tablemaint rollback-to-snapshot --catalog-name CATALOG-NAME --schema-name SCHEMA-NAME --table-name TABLE-NAME --snapshot-id SNAPSHOT-ID [--api-key API-KEY] --bucket-name BUCKET-NAME --engine-id ENGINE-ID --bucket-access-key BUCKET-ACCESS-KEY --bucket-secret-key BUCKET-SECRET-KEY --bucket-endpoint BUCKET-ENDPOINT [--force true] [--debug true] [--instance-id INSTANCE-ID]
+```
+#### Command options
+
+`--api-key` (string)
+:    API Key of the instance
+
+`--bucket-name` (string)
+:    (Required) The name of the target bucket
+
+`--catalog-name` (string)
+:    (Required) The name of the target catalog
+
+`--debug` ()
+:    Mark true to store the generated script locally
+
+`--engine-id` (string)
+:    (Required) Engine ID of the target Spark Engine
+
+`--force` ()
+:    Mark true to not verify the command generated
+
+`--instance-id` (string)
+:    Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
+
+`--schema-name` (string)
+:    (Required) The name of the target schema
+
+`--snapshot-id` (string)
+:    (Required) The ID of the target snapshot
+
+`--table-name` (string)
+:    (Required) The name of the target table
+
+#### Example
+```sh
+   cpdctl wx-data tablemaint rollback-to-snapshot \
+	 --catalog-name <Catalog_Name> \
+	 --schema-name <Schema_Name> \
+	 --table-name <Table_Name> \
+	 --snapshot-id <Snapshot_ID> \
+	 --api-key <API_Key> \
 	 --engine-id spark01 \
-	 --application-id 45627-9387-04c8 \
-	 --instance-id 35627738839
+	 --bucket-name <Bucket_Name> \
+	 --force true \
+	 --debug true \
+	 --instance-id 67382999037902
+```
+
+<a id='wx-data_tablemaint_rollback-to-timestamp'></a>
+## &#8226; wx-data tablemaint rollback-to-timestamp
+Rollback To Timestamp Command
+
+```sh
+  cpdctl wx-data tablemaint rollback-to-timestamp --catalog-name CATALOG-NAME --schema-name SCHEMA-NAME --table-name TABLE-NAME --timestamp TIMESTAMP [--api-key API-KEY] --bucket-name BUCKET-NAME --engine-id ENGINE-ID --bucket-access-key BUCKET-ACCESS-KEY --bucket-secret-key BUCKET-SECRET-KEY --bucket-endpoint BUCKET-ENDPOINT [--force true] [--debug true] [--instance-id INSTANCE-ID]
+```
+#### Command options
+
+`--api-key` (string)
+:    API Key of the instance
+
+`--bucket-name` (string)
+:    (Required) The name of the target bucket
+
+`--catalog-name` (string)
+:    (Required) The name of the target catalog
+
+`--debug` ()
+:    Mark true to store the generated script locally
+
+`--engine-id` (string)
+:    (Required) Engine ID of the target Spark Engine
+
+`--force` ()
+:    Mark true to not verify the command generated
+
+`--instance-id` (string)
+:    Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
+
+`--schema-name` (string)
+:    (Required) The name of the target schema
+
+`--table-name` (string)
+:    (Required) The name of the target table
+
+`--timestamp` (string)
+:    (Required) The timestamp of the target snapshot
+
+#### Example
+```sh
+   cpdctl wx-data tablemaint rollback-to-timestamp \
+	 --catalog-name <Catalog_Name> \
+	 --schema-name <Schema_Name> \
+	 --table-name <Table_Name> \
+	 --timestamp <Timestamp> \
+	 --api-key <API_Key> \
+	 --engine-id spark01 \
+	 --bucket-name <Bucket_Name> \
+	 --force true \
+	 --debug true \
+	 --instance-id 67382999037902
+```
+
+<a id='wx-data_tablemaint_set-current-snapshot'></a>
+## &#8226; wx-data tablemaint set-current-snapshot
+Set Current Snapshot Command
+
+```sh
+  cpdctl wx-data tablemaint set-current-snapshot --catalog-name CATALOG-NAME --schema-name SCHEMA-NAME --table-name TABLE-NAME --snapshot-id SNAPSHOT-ID [--api-key API-KEY] --bucket-name BUCKET-NAME --engine-id ENGINE-ID --bucket-access-key BUCKET-ACCESS-KEY --bucket-secret-key BUCKET-SECRET-KEY --bucket-endpoint BUCKET-ENDPOINT [--force true] [--debug true] [--instance-id INSTANCE-ID]
+```
+#### Command options
+
+`--api-key` (string)
+:    API Key of the instance
+
+`--bucket-name` (string)
+:    (Required) The name of the target bucket
+
+`--catalog-name` (string)
+:    (Required) The name of the target catalog
+
+`--debug` ()
+:    Mark true to store the generated script locally
+
+`--engine-id` (string)
+:    (Required) Engine ID of the target Spark Engine
+
+`--force` ()
+:    Mark true to not verify the command generated
+
+`--instance-id` (string)
+:    Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
+
+`--schema-name` (string)
+:    (Required) The name of the target schema
+
+`--snapshot-id` (string)
+:    (Required) The ID of the target snapshot
+
+`--table-name` (string)
+:    (Required) The name of the target table
+
+#### Example
+```sh
+   cpdctl wx-data tablemaint set-current-snapshot \
+	 --catalog-name <Catalog_Name> \
+	 --schema-name <Schema_Name> \
+	 --table-name <Table_Name> \
+	 --snapshot-id <SNAPSHOT_ID> \
+	 --api-key <API_Key> \
+	 --engine-id spark01 \
+	 --bucket-name <Bucket_Name> \
+	 --force true \
+	 --debug true \
+	 --instance-id 67382999037902
+```
+
+<a id='wx-data_tablemaint_cherrypick-snapshot'></a>
+## &#8226; wx-data tablemaint cherrypick-snapshot
+Cherrypick Snapshot Command
+
+```sh
+  cpdctl wx-data tablemaint cherrypick-snapshot --catalog-name CATALOG-NAME --schema-name SCHEMA-NAME --table-name TABLE-NAME --snapshot-id SNAPSHOT-ID [--api-key API-KEY] --bucket-name BUCKET-NAME --engine-id ENGINE-ID --bucket-access-key BUCKET-ACCESS-KEY --bucket-secret-key BUCKET-SECRET-KEY --bucket-endpoint BUCKET-ENDPOINT [--force true] [--debug true] [--instance-id INSTANCE-ID]
+```
+#### Command options
+
+`--api-key` (string)
+:    API Key of the instance
+
+`--bucket-name` (string)
+:    (Required) The name of the target bucket
+
+`--catalog-name` (string)
+:    (Required) The name of the target catalog
+
+`--debug` ()
+:    Mark true to store the generated script locally
+
+`--engine-id` (string)
+:    (Required) Engine ID of the target Spark Engine
+
+`--force` ()
+:    Mark true to not verify the command generated
+
+`--instance-id` (string)
+:    Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
+
+`--schema-name` (string)
+:    (Required) The name of the target schema
+
+`--snapshot-id` (string)
+:    (Required) The ID of the target snapshot
+
+`--table-name` (string)
+:    (Required) The name of the target table
+
+#### Example
+```sh
+   cpdctl wx-data tablemaint cherrypick-snapshot \
+	 --catalog-name <Catalog_Name> \
+	 --schema-name <Schema_Name> \
+	 --table-name <Table_Name> \
+	 --snapshot-id <SNAPSHOT_ID> \
+	 --api-key <API_Key> \
+	 --engine-id spark01 \
+	 --bucket-name <Bucket_Name> \
+	 --force true \
+	 --debug true \
+	 --instance-id 67382999037902
+```
+
+<a id='wx-data_tablemaint_expire-snapshot'></a>
+## &#8226; wx-data tablemaint expire-snapshot
+Expire Snapshot Command
+
+```sh
+  cpdctl wx-data tablemaint expire-snapshot --catalog-name CATALOG-NAME --schema-name SCHEMA-NAME --table-name TABLE-NAME --snapshot-array SNAPSHOT-ARRAY [--api-key API-KEY] --bucket-name BUCKET-NAME --engine-id ENGINE-ID --bucket-access-key BUCKET-ACCESS-KEY --bucket-secret-key BUCKET-SECRET-KEY --bucket-endpoint BUCKET-ENDPOINT [--force true] [--debug true] [--instance-id INSTANCE-ID]
+```
+#### Command options
+
+`--api-key` (string)
+:    API Key of the instance
+
+`--bucket-name` (string)
+:    (Required) The name of the target bucket
+
+`--catalog-name` (string)
+:    (Required) The name of the target catalog
+
+`--debug` ()
+:    Mark true to store the generated script locally
+
+`--engine-id` (string)
+:    (Required) Engine ID of the target Spark Engine
+
+`--force` ()
+:    Mark true to not verify the command generated
+
+`--instance-id` (string)
+:    Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
+
+`--schema-name` (string)
+:    (Required) The name of the target schema
+
+`--snapshot-array` (string)
+:    (Required) The list of target snapshots
+
+`--table-name` (string)
+:    (Required) The name of the target table
+
+#### Example
+```sh
+   cpdctl wx-data tablemaint expire-snapshot \
+	 --catalog-name <Catalog_Name> \
+	 --schema-name <Schema_Name> \
+	 --table-name <Table_Name> \
+	 --snapshot-array <Snapshot_ID1, Snapshot_ID2 ...> \
+	 --api-key <API_Key> \
+	 --engine-id spark01 \
+	 --bucket-name <Bucket_Name> \
+	 --force true \
+	 --debug true \
+	 --instance-id 67382999037902
+```
+
+<a id='wx-data_tablemaint_remove-orphan'></a>
+## &#8226; wx-data tablemaint remove-orphan
+Remove Orphan Files Command
+
+```sh
+  cpdctl wx-data tablemaint remove-orphan --catalog-name CATALOG-NAME --schema-name SCHEMA-NAME --table-name TABLE-NAME --location LOCATION [--api-key API-KEY] --bucket-name BUCKET-NAME --engine-id ENGINE-ID --bucket-access-key BUCKET-ACCESS-KEY --bucket-secret-key BUCKET-SECRET-KEY --bucket-endpoint BUCKET-ENDPOINT [--force true] [--debug true] [--instance-id INSTANCE-ID]
+```
+#### Command options
+
+`--api-key` (string)
+:    API Key of the instance
+
+`--bucket-name` (string)
+:    (Required) The name of the target bucket
+
+`--catalog-name` (string)
+:    (Required) The name of the target catalog
+
+`--debug` ()
+:    Mark true to store the generated script locally
+
+`--engine-id` (string)
+:    (Required) Engine ID of the target Spark Engine
+
+`--force` ()
+:    Mark true to not verify the command generated
+
+`--instance-id` (string)
+:    Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
+
+`--location` (string)
+:    (Required) The path of the folder containing orphan files
+
+`--schema-name` (string)
+:    (Required) The name of the target schema
+
+`--table-name` (string)
+:    (Required) The name of the target table
+
+#### Example
+```sh
+   cpdctl wx-data tablemaint remove-orphan \
+	 --catalog-name <Catalog_Name> \
+	 --schema-name <Schema_Name> \
+	 --table-name <Table_Name> \
+	 --location <s3a://Bucket_Name/Schema_Name/Table_Name/data> \
+	 --api-key <API_Key> \
+	 --engine-id spark01 \
+	 --bucket-name <Bucket_Name> \
+	 --force true \
+	 --debug true \
+	 --instance-id 67382999037902
+```
+
+<a id='wx-data_tablemaint_rewrite-data'></a>
+## &#8226; wx-data tablemaint rewrite-data
+Rewrite Data Files Command
+
+```sh
+  cpdctl wx-data tablemaint rewrite-data --catalog-name CATALOG-NAME --schema-name SCHEMA-NAME --table-name TABLE-NAME [--api-key API-KEY] --bucket-name BUCKET-NAME --engine-id ENGINE-ID --bucket-access-key BUCKET-ACCESS-KEY --bucket-secret-key BUCKET-SECRET-KEY --bucket-endpoint BUCKET-ENDPOINT [--force true] [--debug true] [--instance-id INSTANCE-ID]
+```
+#### Command options
+
+`--api-key` (string)
+:    API Key of the instance
+
+`--bucket-name` (string)
+:    (Required) The name of the target bucket
+
+`--catalog-name` (string)
+:    (Required) The name of the target catalog
+
+`--debug` ()
+:    Mark true to store the generated script locally
+
+`--engine-id` (string)
+:    (Required) Engine ID of the target Spark Engine
+
+`--force` ()
+:    Mark true to not verify the command generated
+
+`--instance-id` (string)
+:    Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
+
+`--schema-name` (string)
+:    (Required) The name of the target schema
+
+`--table-name` (string)
+:    (Required) The name of the target table
+
+#### Example
+```sh
+   cpdctl wx-data tablemaint rewrite-data \
+	 --catalog-name <Catalog_Name> \
+	 --schema-name <Schema_Name> \
+	 --table-name <Table_Name> \
+	 --api-key <API_Key> \
+	 --engine-id spark01 \
+	 --bucket-name <Bucket_Name> \
+	 --force true \
+	 --debug true \
+	 --instance-id 67382999037902
+```
+
+<a id='wx-data_tablemaint_rewrite-manifests'></a>
+## &#8226; wx-data tablemaint rewrite-manifests
+Rewrite Manifests Command
+
+```sh
+  cpdctl wx-data tablemaint rewrite-manifests --catalog-name CATALOG-NAME --schema-name SCHEMA-NAME --table-name TABLE-NAME [--api-key API-KEY] --bucket-name BUCKET-NAME --engine-id ENGINE-ID --bucket-access-key BUCKET-ACCESS-KEY --bucket-secret-key BUCKET-SECRET-KEY --bucket-endpoint BUCKET-ENDPOINT [--force true] [--debug true] [--instance-id INSTANCE-ID]
+```
+#### Command options
+
+`--api-key` (string)
+:    API Key of the instance
+
+`--bucket-name` (string)
+:    (Required) The name of the target bucket
+
+`--catalog-name` (string)
+:    (Required) The name of the target catalog
+
+`--debug` ()
+:    Mark true to store the generated script locally
+
+`--engine-id` (string)
+:    (Required) Engine ID of the target Spark Engine
+
+`--force` ()
+:    Mark true to not verify the command generated
+
+`--instance-id` (string)
+:    Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
+
+`--schema-name` (string)
+:    (Required) The name of the target schema
+
+`--table-name` (string)
+:    (Required) The name of the target table
+
+#### Example
+```sh
+   cpdctl wx-data tablemaint rewrite-manifests \
+	 --catalog-name <Catalog_Name> \
+	 --schema-name <Schema_Name> \
+	 --table-name <Table_Name> \
+	 --api-key <API_Key> \
+	 --engine-id spark01 \
+	 --bucket-name <Bucket_Name> \
+	 --force true \
+	 --debug true \
+	 --instance-id 67382999037902
+```
+
+<a id='wx-data_tablemaint_register-table'></a>
+## &#8226; wx-data tablemaint register-table
+Register Table Command
+
+```sh
+  cpdctl wx-data tablemaint register-table --catalog-name CATALOG-NAME --schema-name SCHEMA-NAME --table-name TABLE-NAME --metadata-path METADATA-PATH [--api-key API-KEY] --bucket-name BUCKET-NAME --engine-id ENGINE-ID --bucket-access-key BUCKET-ACCESS-KEY --bucket-secret-key BUCKET-SECRET-KEY --bucket-endpoint BUCKET-ENDPOINT [--force true] [--debug true] [--instance-id INSTANCE-ID]
+```
+#### Command options
+
+`--api-key` (string)
+:    API Key of the instance
+
+`--bucket-name` (string)
+:    (Required) The name of the target bucket
+
+`--catalog-name` (string)
+:    (Required) The name of the target catalog
+
+`--debug` ()
+:    Mark true to store the generated script locally
+
+`--engine-id` (string)
+:    (Required) Engine ID of the target Spark Engine
+
+`--force` ()
+:    Mark true to not verify the command generated
+
+`--instance-id` (string)
+:    Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
+
+`--metadata-path` (string)
+:    (Required) The path of the metadata file
+
+`--schema-name` (string)
+:    (Required) The name of the target schema
+
+`--table-name` (string)
+:    (Required) The name of the new table to be created
+
+#### Example
+```sh
+   cpdctl wx-data tablemaint register-table \
+	 --catalog-name <Catalog_Name> \
+	 --schema-name <Schema_Name> \
+	 --table-name <Table_Name> \
+	 --metadata-path <s3a://Bucket_Name/Schema_Name/Table_Name/metadata/00000-ebea9-bb80-4a36-497ed503.metadata.json> \
+	 --api-key <API_Key> \
+	 --engine-id spark01 \
+	 --bucket-name <Bucket_Name> \
+	 --force true \
+	 --debug true \
+	 --instance-id 67382999037902
 ```
 
 # Schema examples
@@ -22647,6 +23983,7 @@ The following example shows the format of the HardwareSpecificationDataStageDefi
       "size" : "4Gi"
     }
   },
+  "instance" : "instance-1",
   "num_computes" : 2,
   "num_conductors" : 1
 }
@@ -22991,12 +24328,6 @@ The following example shows the format of the JobRuntimeConfiguration object.
   "env_id" : "defaultsparkr1x4-18ce241b-c9e8-43ed-94a1-9f5585764924",
   "env_type" : "default_spark",
   "env_variables" : [ "key1=value1", "key2=value2" ],
-  "outputs" : {
-    "total_bytes_read" : 64582,
-    "total_bytes_written" : 594346,
-    "total_rows_read" : 1000,
-    "total_rows_written" : 1846
-  },
   "version" : "d00a9d88-4394-48f8-86db-d9b8360f8a72"
 }
 ```
@@ -24250,7 +25581,11 @@ The following example shows the format of the UpdateStoragePropertiesBody object
       "resource_key_crn" : "crn:v1:bluemix:public:cloud-object-storage:global:a/b56585fe60e71be0a22e6587f781ed91:dc36b4a5-cf81-6541-b855-f68a6f321cac::",
       "secret_access_key" : "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd",
       "service_id" : "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"
-    }
+    },
+    "access_key_id" : "ASIATE72IZPHW6D4PKS5",
+    "expiration" : "2022-08-04T00:08:49.000Z",
+    "secret_access_key" : "ZFQTTmB3Jl5CyPBHExz+J7oquSbxwn1n1k5R7OnZ",
+    "session_token" : "IQoJb3JpZ2luX2VjEEAaCXVzLWVhc3QtMSJHMEUCIQCz1WlH9O7lxO610RvbZm4yNEvRXe8wW1TH3kvn0qwWuQIgZU5cMhTvwcUt4uvfEWEYNILVi8A7g6jHNq+zxk4ElvsqsQIImP//////////ARACGgwyMTY4ODM4NDE5OTkiDMFc9fstm0X8ShB6CyqFAo7+Sp1QoI0IABZWgv7MklCiFrne7yXF7e5Flim9REH0vvfG1Fca565Z5SqVbO9ihmpwuFMSp+zuODqLf0q4LDd8ikQ06m+E1i0sdBA0QbINCbjJjufPPxOv/Bvv8Az6rIGOx9hbyuhN46vTqQhyCeQq2KzCAdGbFu5lxA/G501T48i09E7JrCsq+l+z2BZix+2SWo2TgZktYEvItD8MTZWYku2fZRZvfOzzpW/CaC/niPjFVeGKTDv0rmW96gR7azsTqz9v+bIDimMf7uHet4Z8jVOpUhrtGzoceAZu0U6Dcjja44jpheCSzVb/K3xOTRi2MfM69xqP6xgS8C8QS9y+AnWP9DCBgKyXBjqdAYLhcD4n9YDbokr/3eRX9tPuC56CoOk4W4DcNyCm/VqdMM8s2hJgKbtIaXiSptKIUxAulNH65stR/O79qyqhYTyBRi4X/mmubK52Lape3kXiAuMFgC5OfEHEsBz++nhcSWFDQQeFHdHAZ3Z+ucqEpmko9/5GoNEOJoNgQb5vjLftXQc6jsNGu4dfrQus/o41+AUSE9gQtzohcbvtB2I="
   }
 }
 ```
@@ -24388,6 +25723,9 @@ The following example shows the format of the StorageRequest object.
 {
   "delegated" : false,
   "plan_id" : "1e4e33e4-cfa6-4f12-9016-be594a6d5f87",
+  "properties" : {
+    "shared" : true
+  },
   "resource_crn" : "exampleString"
 }
 ```
@@ -24411,6 +25749,17 @@ The following example shows the format of the Folder object.
 
 {
   "enabled" : true
+}
+```
+### &#8226; StorageRequestProperties
+<a id="cli-storage-request-properties-example-schema-space"></a>
+
+The following example shows the format of the StorageRequestProperties object.
+
+```json
+
+{
+  "shared" : true
 }
 ```
 ### &#8226; JSONPatchOperation
@@ -25362,34 +26711,90 @@ The following example shows the format of the WxUtilityAgentToolsRunRequest obje
   }
 }
 ```
-### &#8226; BucketCatalog
-<a id="cli-bucket-catalog-example-schema-wx-data"></a>
+### &#8226; AccessPolicyPatch
+<a id="cli-access-policy-patch-example-schema-wx-data"></a>
 
-The following example shows the format of the BucketCatalog object.
+The following example shows the format of the AccessPolicyPatch[] object.
+
+```json
+
+[ {
+  "resources" : [ {
+    "resource_id" : "presto01",
+    "resource_type" : "presto"
+  } ],
+  "subjects" : [ {
+    "permissions" : [ "exampleString", "anotherExampleString" ],
+    "subject" : {
+      "type" : "user",
+      "value" : "user1"
+    }
+  } ]
+} ]
+```
+### &#8226; Option
+<a id="cli-option-example-schema-wx-data"></a>
+
+The following example shows the format of the Option[] object.
+
+```json
+
+[ {
+  "key" : "exampleString",
+  "value" : "exampleString"
+} ]
+```
+### &#8226; ResourceDetails
+<a id="cli-resource-details-example-schema-wx-data"></a>
+
+The following example shows the format of the ResourceDetails[] object.
+
+```json
+
+[ {
+  "resource_id" : "presto01",
+  "resource_type" : "presto"
+} ]
+```
+### &#8226; SubjectPatch
+<a id="cli-subject-patch-example-schema-wx-data"></a>
+
+The following example shows the format of the SubjectPatch[] object.
+
+```json
+
+[ {
+  "permissions" : [ "exampleString", "anotherExampleString" ],
+  "subject" : {
+    "type" : "user",
+    "value" : "user1"
+  }
+} ]
+```
+### &#8226; CatalogOperationsOperationsItems
+<a id="cli-catalog-operations-operations-items-example-schema-wx-data"></a>
+
+The following example shows the format of the CatalogOperationsOperationsItems[] object.
+
+```json
+
+[ {
+  "action" : "add",
+  "catalog" : [ "exampleString", "anotherExampleString" ]
+} ]
+```
+### &#8226; StorageCatalogPrototype
+<a id="cli-storage-catalog-prototype-example-schema-wx-data"></a>
+
+The following example shows the format of the StorageCatalogPrototype object.
 
 ```json
 
 {
+  "base_path" : "/abc/def",
   "catalog_name" : "sampleCatalog",
   "catalog_tags" : [ "catalog_tag_1", "catalog_tag_2" ],
   "catalog_type" : "iceberg"
-}
-```
-### &#8226; BucketDetails
-<a id="cli-bucket-details-example-schema-wx-data"></a>
-
-The following example shows the format of the BucketDetails object.
-
-```json
-
-{
-  "access_key" : "b9cbf248ea5c4c96947e64407108559j",
-  "bucket_name" : "sample-bucket",
-  "endpoint" : "https://s3.<region>.cloud-object-storage.appdomain.cloud/",
-  "key_file" : "key_file",
-  "provider" : "ibm_cos",
-  "region" : "us-south",
-  "secret_key" : "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"
 }
 ```
 ### &#8226; StorageDetails
@@ -25401,91 +26806,42 @@ The following example shows the format of the StorageDetails object.
 
 {
   "access_key" : "<access_key>",
-  "application_id" : "<application_id>",
-  "auth_mode" : "<account_key/sas/service_principle>",
+  "access_key_vault" : {
+    "key" : "secret key",
+    "secret_name" : "secret name",
+    "secret_urn" : "secret urn"
+  },
+  "account_name" : "sample-storage",
+  "application_id" : "application-id",
+  "auth_mode" : "iam",
   "container_name" : "sample-container",
-  "directory_id" : "<directory_id>",
-  "endpoint" : "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/",
-  "sas_token" : "<sas_token>",
+  "directory_id" : "directory-id",
+  "endpoint" : "https://s3.us-south.cloud-object-storage.appdomain.cloud/",
+  "key_file" : "key_file",
+  "name" : "sample-storage",
+  "provider" : "ibm-cos",
+  "region" : "us-south",
+  "role_arn" : "arn:aws:iam::5ssdd5467-002c-a4f8cac3f3f9",
+  "sas_token" : "<sas-token>",
   "secret_key" : "secret_key",
-  "storage_account_name" : "sample-storage"
+  "secret_key_vault" : {
+    "key" : "secret key",
+    "secret_name" : "secret name",
+    "secret_urn" : "secret urn"
+  },
+  "vault_enabled" : true
 }
 ```
-### &#8226; DatabaseCatalog
-<a id="cli-database-catalog-example-schema-wx-data"></a>
+### &#8226; SecretDetails
+<a id="cli-secret-details-example-schema-wx-data"></a>
 
-The following example shows the format of the DatabaseCatalog object.
+The following example shows the format of the SecretDetails object.
 
 ```json
 
 {
-  "catalog_name" : "sampleCatalog",
-  "catalog_tags" : [ "catalog_tag_1", "catalog_tag_2" ],
-  "catalog_type" : "iceberg"
+  "key" : "secret key",
+  "secret_name" : "secret name",
+  "secret_urn" : "secret urn"
 }
-```
-### &#8226; DatabaseDetails
-<a id="cli-database-details-example-schema-wx-data"></a>
-
-The following example shows the format of the DatabaseDetails object.
-
-```json
-
-{
-  "authentication_type" : "LDAP",
-  "authentication_value" : "LDAP",
-  "broker_authentication_password" : "samplepassword",
-  "broker_authentication_type" : "PASSWORD",
-  "broker_authentication_user" : "sampleuser",
-  "broker_port" : 4553,
-  "broker_host" : "samplehost",
-  "certificate" : "contents of a pem/crt file",
-  "certificate_extension" : "pem/crt",
-  "connection_method" : "basic, apikey",
-  "connection_mode" : "service_name",
-  "connection_mode_value" : "orclpdb",
-  "connection_type" : "JDBC, Arrow flight",
-  "controller_authentication_password" : "samplepassword",
-  "controller_authentication_type" : "PASSWORD",
-  "controller_authentication_user" : "sampleuser",
-  "coordinator_host" : "samplehost",
-  "coordinator_port" : 4553,
-  "cpd_hostname" : "samplecpdhostname",
-  "credentials_key" : "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......",
-  "database_name" : "new_database",
-  "hostname" : "db2@<hostname>.com",
-  "hostname_in_certificate" : "samplehostname",
-  "hosts" : "abc.com:1234,xyz.com:4321",
-  "informix_server" : "ol_informix1410",
-  "password" : "samplepassword",
-  "port" : 4553,
-  "project_id" : "conops-bigquery",
-  "sasl" : true,
-  "sasl_mechanism" : "plain",
-  "service_api_key" : "sampleapikey",
-  "service_hostname" : "api.dataplatform.dev.cloud.ibm.com",
-  "service_password" : "samplepassword",
-  "service_port" : 443,
-  "service_ssl" : true,
-  "service_token_url" : "sampletoakenurl",
-  "service_username" : "sampleusername",
-  "ssl" : true,
-  "tables" : "kafka_table_name",
-  "username" : "sampleuser",
-  "validate_server_certificate" : true,
-  "verify_host_name" : true
-}
-```
-### &#8226; DatabaseRegistrationPrototypeDatabasePropertiesItems
-<a id="cli-database-registration-prototype-database-properties-items-example-schema-wx-data"></a>
-
-The following example shows the format of the DatabaseRegistrationPrototypeDatabasePropertiesItems[] object.
-
-```json
-
-[ {
-  "encrypt" : true,
-  "key" : "abc",
-  "value" : "xyz"
-} ]
 ```
