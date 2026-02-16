@@ -17,8 +17,10 @@ Always use most recent **IBM cpdctl** version available. It is backward compatib
 
 ## Quick start
 In order to use `IBM cpdctl` 
-* **download executable appropriate for your platform (Linux or macOS)**
-> These commands download and install the latest release of `cpdctl` executable to the current directory.
+* **download executable appropriate for your platform**
+> These commands download and install the latest release of `cpdctl` executable to the current directory 
+> on Linux or macOS computer. 
+>
 > ```shell
 > platform=$(uname -s | tr '[A-Z]' '[a-z]')
 > arch=$(uname -m | sed 's/x86_64/amd64/')
@@ -27,7 +29,7 @@ In order to use `IBM cpdctl`
 > echo "Installed cpdctl version $(./cpdctl version)"
 > ```
 then either:
-* **run straight away in Zero Configuration mode**, or
+* **run straight away in Zero Configuration mode**
 > When running `IBM cpdctl` inside a IBM Cloud Pak for Data (CP4D) cluster, for example from a Jupyter Notebook 
 > executed in Watson Studio, it automatically connects to that CP4D instance, no configuration is needed. 
 > More on Zero Configuration in [this section](#zero-configuration).
@@ -36,7 +38,7 @@ then either:
 > ```shell
 > ! ./cpdctl asset search --type-name asset --query '*:*'  --limit 5 --project-id $PROJECT_ID
 > ```
-* **configure connection with on-premise Cloud Pak for Data**, or
+* or **configure connection with on-premise Cloud Pak for Data**
 > When running `IBM cpdctl` against remote on-premise CP4D instance, you must provide connection information. 
 > 
 > **Note**: set variables `cpd_url`, `cpd_username`, and `cpd_apikey` before running these commands.
@@ -44,16 +46,22 @@ then either:
 > ./cpdctl config profile set cpd --url $cpd_url --username $cpd_username --apikey $cpd_apikey
 > ./cpdctl config profile use cpd
 
-* **configure connection with Cloud Pak for Data as a Service on IBM Cloud**, or
+* or **configure connection with Cloud Pak for Data as a Service on IBM Cloud**
 > When running `IBM cpdctl` against CP4D instance hosted on IBM Cloud, you must provide connection information.
 > 
-> **Note**: set variable `ibmcloud_apikey` before running these commands.
+> **Note**: set variable `ibmcloud_apikey` and optionally `region` before running these commands.
+> * default region (Dallas - `us-south`):
 > ```shell
-> ./cpdctl config profile set cpdaas --url https://cloud.ibm.com --apikey $ibmcloud_apikey
+> ./cpdctl config profile set cpdaas --url https://cloud.ibm.com --apikey $ibmcloud_apikey 
+> ./cpdctl config profile use cpdaas
+> ```
+> * other regions (`eu-de` for Frankfurt, `eu-gb` for London, `au-syd` for Sydney or `ca-tor` for Toronto):
+> ```shell
+> ./cpdctl config profile set cpdaas --url https://cloud.ibm.com --apikey $ibmcloud_apikey --region $region 
 > ./cpdctl config profile use cpdaas
 > ```
 
-* **configure connection with Cloud Pak for Data as a Service on Amazon Web Services (AWS)**.
+* or **configure connection with Cloud Pak for Data as a Service on Amazon Web Services (AWS)**.
 > When running `IBM cpdctl` against CP4D instance hosted on AWS, you must provide connection information.
 >
 > **Note**: set variables `aws_account_id` and `aws_apikey` before running these commands.
@@ -241,12 +249,14 @@ Next, create profile with a specific URL of IBM Cloud Pak for Data instance and 
 > ```
 > ./cpdctl config profile set cpdaas --apikey=<apikey> --url https://cloud.ibm.com [--region <ibm_cloud_region>]
 > ```
+> Supported regions: `us-south` for Dallas (the default), `eu-de` for Frankfurt, `eu-gb` for London, `au-syd` for Sydney and `ca-tor` for Toronto.
+
 
 > ![New in 1.8.0](https://img.shields.io/badge/New%20in-1.8.0-blue)
 >
 > To configure profile to connect to Cloud Pak for Data as a Service on Amazon Web Services (AWS):
 > ```
-> ./cpdctl config profile set cpd-aws --auth-id <account_id> --apikey=<apikey> --url https://aws.data.ibm.com [--auth-type=<aws_auth_type>] [--region <ibm_cloud_region>]
+> ./cpdctl config profile set cpd-aws --auth-id <account_id> --apikey=<apikey> --url https://aws.data.ibm.com [--auth-scope=<aws_auth_scope>] [--region <cloud_region>]
 > ```
 
 Print list of profiles:
