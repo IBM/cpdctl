@@ -21497,13 +21497,13 @@ cpdctl wx-data access-control list-access --type RESOURCE-TYPE [--instance-id IN
 #### Command options
 
 `--id` (string)
-:   Resource ID. Must be specified if the type is presto, prestissimo, spark, milvus, storages, or databases. 
+:   Resource ID. Either --id or --name must be set
 
 `--instance-id` (string)
 :   Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
 
 `--name` (string)
-:   Resource names. (Required) when the type is catalog. 
+:   Resource Display Name. Provide either --id or --name. Required when --type is catalog, optional for other --type values
 
 `--type` (string)
 :   Required. Type of resource to get the access details. Allowable values are: catalog, database, storage, presto, prestissimo, spark, milvus.
@@ -21515,7 +21515,7 @@ cpdctl wx-data access-control list-access --type RESOURCE-TYPE [--instance-id IN
     --instance-id 32415177633 \
     --type catalog \
     --id exampleString,anotherTestString \
-    --name wxd_system_data,hive_catalog
+    --name hive_catalog
 ```
 ## • <a name="wx-data_access-control_list-users-groups">`wx-data access-control list-users-groups`</a>
 Retrieve the list of users and groups who have access to instance from the identity provider
@@ -21545,13 +21545,13 @@ cpdctl wx-data access-control revoke-access [command options]
 #### Command options
 
 `--id` (string)
-:   (Required) Resource ID. Not applicable when --type is catalog
+:   Resource ID. Either --id or --name is mandatory
 
 `--instance-id` (string)
 :   Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
 
 `--name` (string)
-:   (Required) Catalog Name. Applicable when --type is set to catalog
+:   Resource Display Name. Provide either --id or --name. Required when --type is catalog, optional for other --type values
 
 `--subjects` ([`SubjectPatch[]`](#cli-subject-patch-example-schema))
 :   (Required) Subjects (users or groups) whose access will be revoked. Format: For Users - user:userName For Groups - group:groupID. Multiple subjects can be revoked under same resource type (--type) separated by commas
@@ -21565,6 +21565,7 @@ cpdctl wx-data access-control revoke-access [command options]
    cpdctl wx-data access-control revoke-access \
     --instance-id 87294723 \
     --id presto-01 \
+    --name presto-engine \
     --type presto \
     --subjects user:user1,group:8474839 
 ```
@@ -21578,13 +21579,13 @@ cpdctl wx-data access-control update-access [command options]
 #### Command options
 
 `--id` (string)
-:   (Required) Resource ID. Not applicable when --type is catalog
+:   Resource ID. Either --id or --name must be set
 
 `--instance-id` (string)
 :   Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
 
 `--name` (string)
-:   (Required) Catalog Name. Applicable when --type is set to catalog
+:   Resource Display Name. Provide either --id or --name. Required when --type is catalog, optional for other --type values
 
 `--subjects` (string)
 :   (Required) Subjects (users or groups) whose access permissions to be updated. Format: For Users- user:userName:permission For Groups- group:groupID:permission. Allowable permission values: admin, manager, reader, writer, user. Multiple subjects can be updated under same resource type (--type) separated by commas
@@ -21598,6 +21599,7 @@ cpdctl wx-data access-control update-access [command options]
    cpdctl wx-data access-control update-access \
    --instance-id 637382929 \
    --id presto-01 \
+   --name presto-test \
    --type presto \
    --subjects user:user3:admin,group:637388298:user
 ```
@@ -22374,13 +22376,13 @@ cpdctl wx-data database get [--id DATABASE-ID][--name DATABASE-NAME][--instance-
 #### Command options
 
 `--id` (string)
-:   Database id, either id or name is required
+:   Database ID, either id or name is required
 
 `--instance-id` (string)
 :   Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
 
 `--name` (string)
-:   Database name, either name or id is required
+:   Database display name, either name or id is required
 
 ##### Example
 
@@ -23403,7 +23405,7 @@ cpdctl wx-data sparkjob create [command options]
 :   API Key of the Instance ( Can use Environment Variable - $API_KEY )
 
 `--bucket-name` (string)
-:   (Required) Name of the Bucket to store Spark Application File
+:   Name of the bucket where the Spark application file will be uploaded (required only if --local-path is specified).
 
 `--conf` (string)
 :   Spark Application Details Configuration. Format: --conf '{"key1":"value1","key2":"value2"}'
@@ -23415,7 +23417,7 @@ cpdctl wx-data sparkjob create [command options]
 :   Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
 
 `--local-path` (string)
-:   Local Path of the Spark Application File. Requires Bucket Name value to be passed as a flag.
+:   Local Path of the Spark Application File. Requires --bucket-name field.
 
 `--path` (string)
 :   Path of the Spark Application File in bucket.
