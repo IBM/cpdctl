@@ -407,6 +407,7 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 - [wx-data bucket get](#wx-data_bucket_get)
 - [wx-data bucket list](#wx-data_bucket_list)
 - [wx-data bucket list-objects](#wx-data_bucket_list-objects)
+- [wx-data bucket upload](#wx-data_bucket_upload)
 - [wx-data component get-cas-cpg-endpoint](#wx-data_component_get-cas-cpg-endpoint)
 - [wx-data component get-ces-status](#wx-data_component_get-ces-status)
 - [wx-data component get-console-status](#wx-data_component_get-console-status)
@@ -15853,8 +15854,8 @@ cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--type TYPE] [--member ME
 
 ```sh
    cpdctl project list \
-    --bss-account-id 0821fa9f9ebcc7b7c9a0d6e9bfa72aa4 \
-    --type cpd \
+    --bss-account-id 1234abcd1234abcd1234abcd1234abcd \
+    --type cpd,wx,wca,dpx,wxbi \
     --member zapp.brannigan@ibm.com \
     --roles admin,editor,viewer \
     --tag-names development,test,production \
@@ -15922,11 +15923,11 @@ cpdctl project update {--project-id PROJECT-ID | --project PROJECT-NAME} [--cata
    cpdctl project update \
     --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
     --catalog '{"guid": "fcce617b-1fc9-4965-8820-272864f58399", "public": false}' \
-    --compute '[{"credentials": {"anyKey": "anyValue"}, "crn": "crn:v1:staging:public:code-assistant:us-south:a/0e79133675a31dbfd10504847a9e174f:630ced06-9675-4e35-a44f-d88197cc10c3::", "guid": "630ced06-9675-4e35-a44f-d88197cc10c3", "label": "code-assistant", "name": "IBM watsonx Code Assistant", "type": "code-assistant"}]' \
+    --compute '[{"credentials": {"anyKey": "anyValue"}, "crn": "crn:v1:staging:public:code-assistant:us-south:a/1234abcdef1234abcdef1234abcdef12:1234abcd-1234-abcd-1234-abcd1234abcd::", "guid": "1234abcd-1234-abcd-1234-abcd1234abcd", "label": "code-assistant", "name": "IBM watsonx Code Assistant", "type": "code-assistant"}]' \
     --description 'A project description.' \
     --name 'Project Name' \
     --public=false \
-    --tools jupyter_notebooks,watson_visual_recognition,dashboards,streams_designer,spss_modeler,experiments,data_refinery \
+    --tools jupyter_notebooks,watson_visual_recognition,streams_designer,spss_modeler,experiments,data_refinery \
     --type cpd
 ```
 ## • <a name="project_update-pipeline-settings">`project update-pipeline-settings`</a>
@@ -16186,7 +16187,7 @@ cpdctl project storage update {--project-id PROJECT-ID | --project PROJECT-NAME}
 ```sh
    cpdctl project storage update \
     --project-id 46a19524-bfbf-4810-a1f0-b131f12bc773 \
-    --update-storage-properties-body '{"credentials": {"admin": {"access_key_id": "abcdefABCDEF0123456789abcdefABCD", "api_key": "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8", "secret_access_key": "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd", "service_id": "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"}, "editor": {"access_key_id": "abcdefABCDEF0123456789abcdefABCD", "api_key": "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8", "resource_key_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/b56585fe60e71be0a22e6587f781ed91:dc36b4a5-cf81-6541-b855-f68a6f321cac::", "secret_access_key": "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd", "service_id": "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"}, "viewer": {"access_key_id": "abcdefABCDEF0123456789abcdefABCD", "api_key": "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8", "resource_key_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/b56585fe60e71be0a22e6587f781ed91:dc36b4a5-cf81-6541-b855-f68a6f321cac::", "secret_access_key": "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd", "service_id": "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"}, "access_key_id": "ASIATE72IZPHW6D4PKS5", "expiration": "2022-08-04T00:08:49.000Z", "secret_access_key": "ZFQTTmB3Jl5CyPBHExz+J7oquSbxwn1n1k5R7OnZ", "session_token": "IQoJb3JpZ2luX2VjEEAaCXVzLWVhc3QtMSJHMEUCIQCz1WlH9O7lxO610RvbZm4yNEvRXe8wW1TH3kvn0qwWuQIgZU5cMhTvwcUt4uvfEWEYNILVi8A7g6jHNq+zxk4ElvsqsQIImP//////////ARACGgwyMTY4ODM4NDE5OTkiDMFc9fstm0X8ShB6CyqFAo7+Sp1QoI0IABZWgv7MklCiFrne7yXF7e5Flim9REH0vvfG1Fca565Z5SqVbO9ihmpwuFMSp+zuODqLf0q4LDd8ikQ06m+E1i0sdBA0QbINCbjJjufPPxOv/Bvv8Az6rIGOx9hbyuhN46vTqQhyCeQq2KzCAdGbFu5lxA/G501T48i09E7JrCsq+l+z2BZix+2SWo2TgZktYEvItD8MTZWYku2fZRZvfOzzpW/CaC/niPjFVeGKTDv0rmW96gR7azsTqz9v+bIDimMf7uHet4Z8jVOpUhrtGzoceAZu0U6Dcjja44jpheCSzVb/K3xOTRi2MfM69xqP6xgS8C8QS9y+AnWP9DCBgKyXBjqdAYLhcD4n9YDbokr/3eRX9tPuC56CoOk4W4DcNyCm/VqdMM8s2hJgKbtIaXiSptKIUxAulNH65stR/O79qyqhYTyBRi4X/mmubK52Lape3kXiAuMFgC5OfEHEsBz++nhcSWFDQQeFHdHAZ3Z+ucqEpmko9/5GoNEOJoNgQb5vjLftXQc6jsNGu4dfrQus/o41+AUSE9gQtzohcbvtB2I="}}'
+    --update-storage-properties-body '{"credentials": {"admin": {"access_key_id": "abcdefABCDEF0123456789abcdefABCD", "api_key": "ABC123def---abc123DEF45_ABC123def456ABC789de", "secret_access_key": "aBxY1234aBxY1234aBxY1234aBxY1234aBxY1234aBxY1234", "service_id": "iam-ServiceId-abcd1234-efgh-5678-abcd-1234efgh5678"}, "editor": {"access_key_id": "abcdefABCDEF0123456789abcdefABCD", "api_key": "ABC123def---abc123DEF45_ABC123def456ABC789de", "resource_key_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/1234abcdef1234abcdef1234abcdef12:1234abcd-1234-abcd-1234-abcd1234abcd::", "secret_access_key": "aBxY1234aBxY1234aBxY1234aBxY1234aBxY1234aBxY1234", "service_id": "iam-ServiceId-abcd1234-efgh-5678-abcd-1234efgh5678"}, "viewer": {"access_key_id": "abcdefABCDEF0123456789abcdefABCD", "api_key": "ABC123def---abc123DEF45_ABC123def456ABC789de", "resource_key_crn": "crn:v1:bluemix:public:cloud-object-storage:global:a/1234abcdef1234abcdef1234abcdef12:1234abcd-1234-abcd-1234-abcd1234abcd::", "secret_access_key": "aBxY1234aBxY1234aBxY1234aBxY1234aBxY1234aBxY1234", "service_id": "iam-ServiceId-abcd1234-efgh-5678-abcd-1234efgh5678"}, "access_key_id": "ABCD1234ABCD1234ABCD", "expiration": "2022-08-04T00:08:49.000Z", "secret_access_key": "ZYXW12345abcdef6789+ZYXW12345abcdef67890", "session_token": "AQoDYXdzEJr..."}}'
 ```
 ## • <a name="project_tag_create">`project tag create`</a>
 Adds new tags to a project.
@@ -21939,6 +21940,42 @@ LIST NESTED OBJECTS BY PAGINATION:
     --prefix myschema/tabl/ \
     --instance-id exampleString
 ```
+## • <a name="wx-data_bucket_upload">`wx-data bucket upload`</a>
+Upload a file from local filesystem to a watsonx.data object storage bucket.
+
+	File Size Limits:
+		- Maximum file size: 2GB (hard limit)
+		- Recommended file size: 200MB or less (for optimal stability)
+		
+	Files larger than 200MB may cause service disruptions during high traffic periods.
+
+```sh
+cpdctl wx-data bucket upload --local-path LOCAL-PATH --storage-name STORAGE-NAME [--storage-path STORAGE-PATH] [--instance-id INSTANCE-ID]
+```
+
+#### Command options
+
+`--instance-id` (string)
+:   Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
+
+`--local-path` (string)
+:   Path to the local file to upload (required)
+
+`--storage-name` (string)
+:   Name of the storage/bucket to upload to (required)
+
+`--storage-path` (string)
+:   Remote file path in the storage (optional, defaults to the basename of local file)
+
+##### Example
+
+```sh
+   cpdctl wx-data bucket upload \
+	  --local-path /path/to/local/file.csv \
+	  --storage-name my-bucket \
+	  --storage-path data/file.csv \
+	  --instance-id 1735472262311515
+```
 ## • <a name="wx-data_component_get-cas-cpg-endpoint">`wx-data component get-cas-cpg-endpoint`</a>
 Get Common policy gateway (CPG) and  Data Access Service(CAS) endpoints.
 
@@ -22857,6 +22894,9 @@ cpdctl wx-data ingestion create [command options]
 
 #### Command options
 
+`--api-key` (string)
+:   User API-Key. Required for MRAP storage usages and SaaS large file ingestion
+
 `--database-auth-value` (string)
 :   Database API key. Applicable for DB2
 
@@ -23050,10 +23090,15 @@ large -> Driver memory: 8GB, Driver cores: 4vCPU, Number of executors: 4, Execut
     The default value is `false`.
 
 `--target` (string)
-:   Provide target table details. format:  {"schema":"<value>","write_mode":"<value>","catalog":"<value>","table":"<value>"}
+:   Provide target table details. format:  {"schema":"<value>","write_mode":"<value>","catalog":"<value>","table":"<value>","merge_on_read":"<value>","schema_mode":"<value>","schema_infer":"<value>"}
 
 `--target-merge-on-read` (bool)
 :   Create table with 'merge-on-read' property. The default value is false. (Note: Boolean flag; must be passed as --target-merge-on-read=true or --target-merge-on-read=false, not space-separated)
+
+    The default value is `false`.
+
+`--target-schema-infer` (bool)
+:   Cast source column types to match target table types during append operations. When enabled, matching columns are cast to target types to prevent type mismatch errors. Works independently of schema_mode. The default value is true.
 
     The default value is `false`.
 
@@ -24083,6 +24128,50 @@ The following example shows the format of the AccessToken object.
   "token_value" : "exampleString"
 }
 ```
+### <a name="cli-action-element-example-schema">ActionElement[]</a>
+
+The following example shows the format of the ActionElement[] object.
+
+```json
+
+[ {
+  "action_type" : "update",
+  "action_values" : {
+    "anyKey" : "anyValue"
+  }
+} ]
+```
+### <a name="cli-action-example-schema">Action[]</a>
+
+The following example shows the format of the Action[] object.
+
+```json
+
+[ {
+  "action_type" : "update",
+  "action_values" : {
+    "anyKey" : "anyValue"
+  },
+  "entities" : [ {
+    "number" : "124451",
+    "type" : "record",
+    "type_name" : "person"
+  } ]
+} ]
+```
+### <a name="cli-algorithm-encryption-example-schema">AlgorithmEncryption</a>
+
+The following example shows the format of the AlgorithmEncryption object.
+
+```json
+
+{
+  "enabled" : true,
+  "pub_key" : [ "exampleString", "anotherExampleString" ],
+  "sub_type" : "exampleString",
+  "type" : "exampleString"
+}
+```
 ### <a name="cli-allowed-identity-example-schema">AllowedIdentity[]</a>
 
 The following example shows the format of the AllowedIdentity[] object.
@@ -24214,6 +24303,62 @@ The following example shows the format of the AssetDeploymentRequest object.
   },
   "url" : "exampleString"
 }
+```
+### <a name="cli-asset-id-example-schema">AssetID[]</a>
+
+The following example shows the format of the AssetID[] object.
+
+```json
+
+[ {
+  "asset_id" : "1213224567"
+} ]
+```
+### <a name="cli-asset-mapping-pattern-suggestion-example-schema">AssetMappingPatternSuggestion[]</a>
+
+The following example shows the format of the AssetMappingPatternSuggestion[] object.
+
+```json
+
+[ {
+  "asset_mappings" : [ {
+    "auto_mapped" : true,
+    "classified_class" : "GEN",
+    "completeness_percent" : "90",
+    "data_mapping_attribute_type" : "person_name",
+    "data_mapping_name" : "legal_name.given_name",
+    "exclude_column" : false,
+    "key" : "fname2"
+  } ],
+  "asset_record_type" : "Person",
+  "asset_type" : "Person",
+  "assets" : [ {
+    "asset_id" : "GEN",
+    "asset_name" : "gender",
+    "project_id" : "COLUMN 1"
+  } ],
+  "mapping_pattern_hash" : "0b74893612bc657fbdb89eb0e9b2ab4a515b60ffaa43910c2ef40f19ede33929",
+  "mapping_pattern_id" : "e7dba4ff-7dcf-3c9a-8009-d9668ff3bbc1",
+  "mapping_pattern_last_updated_date" : "2024-01-17 16:33:26",
+  "mapping_pattern_name" : "Mapping Pattern Name",
+  "source_of_mapping" : "active_snapshot, config_metadata"
+} ]
+```
+### <a name="cli-asset-mapping-example-schema">AssetMapping[]</a>
+
+The following example shows the format of the AssetMapping[] object.
+
+```json
+
+[ {
+  "auto_mapped" : false,
+  "classified_class" : "X",
+  "completeness_percent" : "100",
+  "data_mapping_attribute_type" : "string",
+  "data_mapping_name" : "record_source",
+  "exclude_column" : false,
+  "key" : "COLUMN1"
+} ]
 ```
 ### <a name="cli-asset-metadata-example-schema">AssetMetadata</a>
 
@@ -24472,6 +24617,17 @@ The following example shows the format of the BaseSoftwareSpecificationReference
   "guid" : "903d3fc4-2e46-4581-a23a-b4484e13519e",
   "href" : "/v2/software_specifications/903d3fc4-2e46-4581-a23a-b4484e13519e"
 }
+```
+### <a name="cli-batch-compare-pairs-request-pair-example-schema">BatchComparePairsRequestPair[]</a>
+
+The following example shows the format of the BatchComparePairsRequestPair[] object.
+
+```json
+
+[ {
+  "record_number1" : "123",
+  "record_number2" : "456"
+} ]
 ```
 ### <a name="cli-bucket-details-example-schema">BucketDetails</a>
 
@@ -24762,6 +24918,14 @@ The following example shows the format of the ChatItem[] object.
   "timestamp" : 1711504485261
 } ]
 ```
+### <a name="cli-choose-example-schema">Choose</a>
+
+The following example shows the format of the Choose object.
+
+```json
+
+{ }
+```
 ### <a name="cli-classification-example-schema">Classification</a>
 
 The following example shows the format of the Classification object.
@@ -24783,9 +24947,9 @@ The following example shows the format of the CloudObjectStorageCredentials obje
 
 {
   "access_key_id" : "abcdefABCDEF0123456789abcdefABCD",
-  "api_key" : "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8",
-  "secret_access_key" : "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd",
-  "service_id" : "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"
+  "api_key" : "ABC123def---abc123DEF45_ABC123def456ABC789de",
+  "secret_access_key" : "aBxY1234aBxY1234aBxY1234aBxY1234aBxY1234aBxY1234",
+  "service_id" : "iam-ServiceId-abcd1234-efgh-5678-abcd-1234efgh5678"
 }
 ```
 ### <a name="cli-commit-info-example-schema">CommitInfo</a>
@@ -24796,6 +24960,106 @@ The following example shows the format of the CommitInfo object.
 
 {
   "previous_revision" : 1
+}
+```
+### <a name="cli-composite-rules-example-schema">CompositeRules</a>
+
+The following example shows the format of the CompositeRules object.
+
+```json
+
+{
+  "locale" : "exampleString",
+  "rules" : {
+    "entity_rules" : { },
+    "global" : {
+      "choices" : [ "exampleString", "anotherExampleString" ],
+      "exclude" : [ "exampleString", "anotherExampleString" ],
+      "filters" : [ {
+        "params" : {
+          "anyKey" : "anyValue"
+        },
+        "type" : "exampleString"
+      } ],
+      "limit" : 26,
+      "sort_by" : [ {
+        "params" : {
+          "anyKey" : "anyValue"
+        },
+        "type" : "exampleString"
+      } ],
+      "sources" : [ "exampleString", "anotherExampleString" ]
+    },
+    "record_types" : { }
+  }
+}
+```
+### <a name="cli-composite-rules-entity-rules-example-schema">CompositeRulesEntityRules</a>
+
+The following example shows the format of the CompositeRulesEntityRules object.
+
+```json
+
+{
+  "params" : {
+    "anyKey" : "anyValue"
+  },
+  "type" : "exampleString"
+}
+```
+### <a name="cli-composite-rules-record-type-example-schema">CompositeRulesRecordType</a>
+
+The following example shows the format of the CompositeRulesRecordType object.
+
+```json
+
+{
+  "params" : {
+    "anyKey" : "anyValue"
+  },
+  "type" : "exampleString"
+}
+```
+### <a name="cli-composite-rules-rule-example-schema">CompositeRulesRule</a>
+
+The following example shows the format of the CompositeRulesRule object.
+
+```json
+
+{
+  "params" : {
+    "anyKey" : "anyValue"
+  },
+  "type" : "exampleString"
+}
+```
+### <a name="cli-composite-rules-rules-example-schema">CompositeRulesRules</a>
+
+The following example shows the format of the CompositeRulesRules object.
+
+```json
+
+{
+  "entity_rules" : { },
+  "global" : {
+    "choices" : [ "exampleString", "anotherExampleString" ],
+    "exclude" : [ "exampleString", "anotherExampleString" ],
+    "filters" : [ {
+      "params" : {
+        "anyKey" : "anyValue"
+      },
+      "type" : "exampleString"
+    } ],
+    "limit" : 26,
+    "sort_by" : [ {
+      "params" : {
+        "anyKey" : "anyValue"
+      },
+      "type" : "exampleString"
+    } ],
+    "sources" : [ "exampleString", "anotherExampleString" ]
+  },
+  "record_types" : { }
 }
 ```
 ### <a name="cli-compute-entity-example-schema">ComputeEntity[]</a>
@@ -24820,6 +25084,17 @@ The following example shows the format of the ComputeRequest[] object.
 [ {
   "crn" : "exampleString",
   "name" : "exampleString"
+} ]
+```
+### <a name="cli-configure-workflow-workflow-example-schema">ConfigureWorkflowWorkflow[]</a>
+
+The following example shows the format of the ConfigureWorkflowWorkflow[] object.
+
+```json
+
+[ {
+  "configuration_name" : "exampleString",
+  "type" : "exampleString"
 } ]
 ```
 ### <a name="cli-connection-asset-example-schema">ConnectionAsset[]</a>
@@ -25099,6 +25374,1777 @@ The following example shows the format of the DataConnectionReference[] object.
   }
 } ]
 ```
+### <a name="cli-data-entitlement-batch-assign-roles-roleassignment-example-schema">DataEntitlementBatchAssignRolesRoleassignment[]</a>
+
+The following example shows the format of the DataEntitlementBatchAssignRolesRoleassignment[] object.
+
+```json
+
+[ {
+  "groups" : [ {
+    "id" : "exampleString",
+    "label" : "exampleString"
+  } ],
+  "role_id" : "exampleString",
+  "users" : [ {
+    "id" : "exampleString",
+    "label" : "exampleString"
+  } ]
+} ]
+```
+### <a name="cli-data-entitlement-permission-example-schema">DataEntitlementPermission[]</a>
+
+The following example shows the format of the DataEntitlementPermission[] object.
+
+```json
+
+[ {
+  "action" : "exampleString",
+  "constraints" : [ {
+    "attributes" : [ "exampleString", "anotherExampleString" ],
+    "conditions" : [ { } ],
+    "constraint_type" : "exampleString",
+    "description" : "exampleString",
+    "fields" : {
+      "anyKey" : "anyValue"
+    },
+    "name" : "exampleString"
+  } ],
+  "data" : {
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "branch_node_id" : "exampleString",
+    "category" : "exampleString",
+    "group_associations" : {
+      "anyKey" : "anyValue"
+    },
+    "instance_id" : "exampleString",
+    "node_associations" : {
+      "anyKey" : "anyValue"
+    },
+    "node_relationship_type" : {
+      "anyKey" : "anyValue"
+    },
+    "node_type" : {
+      "anyKey" : "anyValue"
+    },
+    "type" : "exampleString",
+    "type_name" : "exampleString"
+  },
+  "description" : "exampleString",
+  "id" : "exampleString",
+  "name" : "exampleString"
+} ]
+```
+### <a name="cli-data-group-example-schema">DataGroup</a>
+
+The following example shows the format of the DataGroup object.
+
+```json
+
+{
+  "attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "entity_ids" : [ "exampleString", "anotherExampleString" ],
+  "is_blocked_for_update" : true,
+  "is_quarantined" : true,
+  "system_attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "type" : "record",
+  "type_name" : "exampleString"
+}
+```
+### <a name="cli-data-group-search-criteria-request-associated-member-example-schema">DataGroupSearchCriteriaRequestAssociatedMember</a>
+
+The following example shows the format of the DataGroupSearchCriteriaRequestAssociatedMember object.
+
+```json
+
+{
+  "id" : "1422123424",
+  "type" : "record",
+  "type_name" : "person"
+}
+```
+### <a name="cli-data-hierarchy-example-schema">DataHierarchy</a>
+
+The following example shows the format of the DataHierarchy object.
+
+```json
+
+{
+  "attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "reference_id" : "exampleString",
+  "system_attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "type" : "node",
+  "type_name" : "exampleString"
+}
+```
+### <a name="cli-data-load-properties-example-schema">DataLoadProperties</a>
+
+The following example shows the format of the DataLoadProperties object.
+
+```json
+
+{
+  "columns" : "exampleString",
+  "delimiter" : "exampleString",
+  "includes_header_row" : true
+}
+```
+### <a name="cli-data-load-source-example-schema">DataLoadSource</a>
+
+The following example shows the format of the DataLoadSource object.
+
+```json
+
+{
+  "catalog_id" : "exampleString",
+  "details" : {
+    "api_key" : "exampleString",
+    "endpoint" : "exampleString",
+    "origin" : "internal"
+  },
+  "directory_path" : "exampleString",
+  "directory_ref" : "sample_contract_small",
+  "project_id" : "exampleString",
+  "type" : "dfs"
+}
+```
+### <a name="cli-data-load-source-credentials-example-schema">DataLoadSourceCredentials</a>
+
+The following example shows the format of the DataLoadSourceCredentials object.
+
+```json
+
+{
+  "api_key" : "exampleString",
+  "endpoint" : "exampleString",
+  "origin" : "internal"
+}
+```
+### <a name="cli-data-load-structure-example-schema">DataLoadStructure</a>
+
+The following example shows the format of the DataLoadStructure object.
+
+```json
+
+{
+  "group_associations_path" : "exampleString",
+  "group_associations_properties" : "exampleString",
+  "group_associations_properties_contents" : {
+    "collection_id" : "exampleString",
+    "csv_options" : {
+      "columns" : "exampleString",
+      "delimiter" : "exampleString",
+      "includes_header_row" : true
+    },
+    "default_source" : "exampleString",
+    "fail_on_missing_records" : true,
+    "file_type" : "csv",
+    "group_associations_type" : "exampleString",
+    "group_type" : "exampleString",
+    "record_type" : "exampleString",
+    "relationship_type" : "exampleString"
+  },
+  "group_path" : "exampleString",
+  "group_properties" : "exampleString",
+  "group_properties_contents" : {
+    "collection_id" : "exampleString",
+    "csv_options" : {
+      "columns" : "exampleString",
+      "delimiter" : "exampleString",
+      "includes_header_row" : true
+    },
+    "default_source" : "exampleString",
+    "fail_on_missing_records" : true,
+    "file_type" : "csv",
+    "group_associations_type" : "exampleString",
+    "group_type" : "exampleString",
+    "record_type" : "exampleString",
+    "relationship_type" : "exampleString"
+  },
+  "record_asset_id" : "exampleString",
+  "record_path" : "exampleString",
+  "record_properties" : "exampleString",
+  "record_properties_contents" : {
+    "collection_id" : "exampleString",
+    "csv_options" : {
+      "columns" : "exampleString",
+      "delimiter" : "exampleString",
+      "includes_header_row" : true
+    },
+    "default_source" : "exampleString",
+    "fail_on_missing_records" : true,
+    "file_type" : "csv",
+    "group_associations_type" : "exampleString",
+    "group_type" : "exampleString",
+    "record_type" : "exampleString",
+    "relationship_type" : "exampleString"
+  },
+  "relationship_asset_id" : "exampleString",
+  "relationship_path" : "exampleString",
+  "relationship_properties" : "exampleString",
+  "relationship_properties_contents" : {
+    "collection_id" : "exampleString",
+    "csv_options" : {
+      "columns" : "exampleString",
+      "delimiter" : "exampleString",
+      "includes_header_row" : true
+    },
+    "default_source" : "exampleString",
+    "fail_on_missing_records" : true,
+    "file_type" : "csv",
+    "group_associations_type" : "exampleString",
+    "group_type" : "exampleString",
+    "record_type" : "exampleString",
+    "relationship_type" : "exampleString"
+  }
+}
+```
+### <a name="cli-data-mapping-example-schema">DataMapping[]</a>
+
+The following example shows the format of the DataMapping[] object.
+
+```json
+
+[ {
+  "classified_class" : "X",
+  "key" : "COLUMN1"
+} ]
+```
+### <a name="cli-data-model-example-schema">DataModel</a>
+
+The following example shows the format of the DataModel object.
+
+```json
+
+{
+  "attribute_types" : { },
+  "group_types" : { },
+  "hierarchy_types" : { },
+  "locale" : "exampleString",
+  "node_types" : { },
+  "record_types" : { },
+  "relationship_types" : { },
+  "system_properties" : {
+    "attribute_types" : {
+      "attribute_last_updated" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      }
+    },
+    "entity_types" : {
+      "created_date" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "entity_id" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "entity_last_updated" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "last_updated_date" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "last_updated_user" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "link_last_updated_date" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "record_count" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      }
+    },
+    "group_types" : {
+      "created_date" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "created_user" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "group_id" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "group_number" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "group_source" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "last_updated_date" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "last_updated_user" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      }
+    },
+    "hierarchy_types" : {
+      "created_date" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "created_user" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "hierarchy_id" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "hierarchy_number" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "hierarchy_source" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "last_updated_date" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "last_updated_user" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      }
+    },
+    "node_types" : {
+      "context_id" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "created_date" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "created_user" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "last_updated_date" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "last_updated_user" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "node_number" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      }
+    },
+    "record_types" : {
+      "collection_id" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "created_date" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "created_user" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "last_updated_date" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "last_updated_user" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "record_id" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "record_last_updated" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "record_number" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "record_source" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      }
+    },
+    "relationship_types" : {
+      "created_date" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "created_user" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "from_internal_id" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "from_record_id" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "from_record_number" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "from_record_source" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "from_record_type" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "from_type" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "from_type_name" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "last_updated_date" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "last_updated_user" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "original_external_id" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "relationship_id" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "relationship_last_updated" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "relationship_number" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "relationship_source" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "relationship_type" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "to_internal_id" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "to_record_id" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "to_record_number" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "to_record_source" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "to_record_type" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "to_type" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      },
+      "to_type_name" : {
+        "classification" : "exampleString",
+        "data_type" : "exampleString",
+        "deprecated" : true,
+        "description" : "exampleString",
+        "editable" : true,
+        "indexed" : true,
+        "label" : "exampleString",
+        "settable" : true
+      }
+    },
+    "version" : "exampleString"
+  }
+}
+```
+### <a name="cli-data-model-attribute-type-example-schema">DataModelAttributeType</a>
+
+The following example shows the format of the DataModelAttributeType object.
+
+```json
+
+{
+  "classification" : "exampleString",
+  "description" : "exampleString",
+  "indexed" : true,
+  "label" : "exampleString"
+}
+```
+### <a name="cli-data-model-attribute-type-system-properties-example-schema">DataModelAttributeTypeSystemProperties</a>
+
+The following example shows the format of the DataModelAttributeTypeSystemProperties object.
+
+```json
+
+{
+  "classification" : "exampleString",
+  "data_type" : "exampleString",
+  "deprecated" : true,
+  "description" : "exampleString",
+  "editable" : true,
+  "indexed" : true,
+  "label" : "exampleString",
+  "settable" : true
+}
+```
+### <a name="cli-data-model-entity-type-system-properties-example-schema">DataModelEntityTypeSystemProperties</a>
+
+The following example shows the format of the DataModelEntityTypeSystemProperties object.
+
+```json
+
+{
+  "classification" : "exampleString",
+  "data_type" : "exampleString",
+  "deprecated" : true,
+  "description" : "exampleString",
+  "editable" : true,
+  "indexed" : true,
+  "label" : "exampleString",
+  "settable" : true
+}
+```
+### <a name="cli-data-model-group-type-example-schema">DataModelGroupType</a>
+
+The following example shows the format of the DataModelGroupType object.
+
+```json
+
+{
+  "attribute_type" : "exampleString",
+  "cardinality" : "exampleString",
+  "classification" : "exampleString",
+  "description" : "exampleString",
+  "indexed" : true,
+  "label" : "exampleString",
+  "matching_type" : "exampleString"
+}
+```
+### <a name="cli-data-model-group-type-system-properties-example-schema">DataModelGroupTypeSystemProperties</a>
+
+The following example shows the format of the DataModelGroupTypeSystemProperties object.
+
+```json
+
+{
+  "classification" : "exampleString",
+  "data_type" : "exampleString",
+  "deprecated" : true,
+  "description" : "exampleString",
+  "editable" : true,
+  "indexed" : true,
+  "label" : "exampleString",
+  "settable" : true
+}
+```
+### <a name="cli-data-model-hierarchy-type-example-schema">DataModelHierarchyType</a>
+
+The following example shows the format of the DataModelHierarchyType object.
+
+```json
+
+{
+  "attribute_type" : "exampleString",
+  "cardinality" : "exampleString",
+  "classification" : "exampleString",
+  "description" : "exampleString",
+  "indexed" : true,
+  "label" : "exampleString",
+  "matching_type" : "exampleString"
+}
+```
+### <a name="cli-data-model-hierarchy-type-system-properties-example-schema">DataModelHierarchyTypeSystemProperties</a>
+
+The following example shows the format of the DataModelHierarchyTypeSystemProperties object.
+
+```json
+
+{
+  "classification" : "exampleString",
+  "data_type" : "exampleString",
+  "deprecated" : true,
+  "description" : "exampleString",
+  "editable" : true,
+  "indexed" : true,
+  "label" : "exampleString",
+  "settable" : true
+}
+```
+### <a name="cli-data-model-node-type-example-schema">DataModelNodeType</a>
+
+The following example shows the format of the DataModelNodeType object.
+
+```json
+
+{
+  "attribute_type" : "exampleString",
+  "cardinality" : "exampleString",
+  "classification" : "exampleString",
+  "description" : "exampleString",
+  "indexed" : true,
+  "label" : "exampleString",
+  "matching_type" : "exampleString"
+}
+```
+### <a name="cli-data-model-node-type-system-properties-example-schema">DataModelNodeTypeSystemProperties</a>
+
+The following example shows the format of the DataModelNodeTypeSystemProperties object.
+
+```json
+
+{
+  "classification" : "exampleString",
+  "data_type" : "exampleString",
+  "deprecated" : true,
+  "description" : "exampleString",
+  "editable" : true,
+  "indexed" : true,
+  "label" : "exampleString",
+  "settable" : true
+}
+```
+### <a name="cli-data-model-record-type-example-schema">DataModelRecordType</a>
+
+The following example shows the format of the DataModelRecordType object.
+
+```json
+
+{
+  "attribute_type" : "exampleString",
+  "cardinality" : "exampleString",
+  "classification" : "exampleString",
+  "description" : "exampleString",
+  "indexed" : true,
+  "label" : "exampleString",
+  "matching_type" : "exampleString"
+}
+```
+### <a name="cli-data-model-record-type-system-properties-example-schema">DataModelRecordTypeSystemProperties</a>
+
+The following example shows the format of the DataModelRecordTypeSystemProperties object.
+
+```json
+
+{
+  "classification" : "exampleString",
+  "data_type" : "exampleString",
+  "deprecated" : true,
+  "description" : "exampleString",
+  "editable" : true,
+  "indexed" : true,
+  "label" : "exampleString",
+  "settable" : true
+}
+```
+### <a name="cli-data-model-relationship-type-example-schema">DataModelRelationshipType</a>
+
+The following example shows the format of the DataModelRelationshipType object.
+
+```json
+
+{
+  "attribute_type" : "exampleString",
+  "cardinality" : "exampleString",
+  "classification" : "exampleString",
+  "description" : "exampleString",
+  "indexed" : true,
+  "label" : "exampleString",
+  "matching_type" : "exampleString"
+}
+```
+### <a name="cli-data-model-relationship-type-system-properties-example-schema">DataModelRelationshipTypeSystemProperties</a>
+
+The following example shows the format of the DataModelRelationshipTypeSystemProperties object.
+
+```json
+
+{
+  "classification" : "exampleString",
+  "data_type" : "exampleString",
+  "deprecated" : true,
+  "description" : "exampleString",
+  "editable" : true,
+  "indexed" : true,
+  "label" : "exampleString",
+  "settable" : true
+}
+```
+### <a name="cli-data-model-system-properties-example-schema">DataModelSystemProperties</a>
+
+The following example shows the format of the DataModelSystemProperties object.
+
+```json
+
+{
+  "attribute_types" : {
+    "attribute_last_updated" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    }
+  },
+  "entity_types" : {
+    "created_date" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "entity_id" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "entity_last_updated" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "last_updated_date" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "last_updated_user" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "link_last_updated_date" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "record_count" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    }
+  },
+  "group_types" : {
+    "created_date" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "created_user" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "group_id" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "group_number" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "group_source" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "last_updated_date" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "last_updated_user" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    }
+  },
+  "hierarchy_types" : {
+    "created_date" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "created_user" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "hierarchy_id" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "hierarchy_number" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "hierarchy_source" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "last_updated_date" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "last_updated_user" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    }
+  },
+  "node_types" : {
+    "context_id" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "created_date" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "created_user" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "last_updated_date" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "last_updated_user" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "node_number" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    }
+  },
+  "record_types" : {
+    "collection_id" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "created_date" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "created_user" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "last_updated_date" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "last_updated_user" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "record_id" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "record_last_updated" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "record_number" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "record_source" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    }
+  },
+  "relationship_types" : {
+    "created_date" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "created_user" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "from_internal_id" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "from_record_id" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "from_record_number" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "from_record_source" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "from_record_type" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "from_type" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "from_type_name" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "last_updated_date" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "last_updated_user" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "original_external_id" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "relationship_id" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "relationship_last_updated" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "relationship_number" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "relationship_source" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "relationship_type" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "to_internal_id" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "to_record_id" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "to_record_number" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "to_record_source" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "to_record_type" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "to_type" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    },
+    "to_type_name" : {
+      "classification" : "exampleString",
+      "data_type" : "exampleString",
+      "deprecated" : true,
+      "description" : "exampleString",
+      "editable" : true,
+      "indexed" : true,
+      "label" : "exampleString",
+      "settable" : true
+    }
+  },
+  "version" : "exampleString"
+}
+```
+### <a name="cli-data-node-example-schema">DataNode</a>
+
+The following example shows the format of the DataNode object.
+
+```json
+
+{
+  "attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "reference_id" : "exampleString",
+  "system_attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "type" : "node",
+  "type_name" : "exampleString"
+}
+```
+### <a name="cli-data-node-example-schema">DataNode[]</a>
+
+The following example shows the format of the DataNode[] object.
+
+```json
+
+[ {
+  "attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "reference_id" : "1",
+  "system_attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "type" : "node",
+  "type_name" : "hierarchy_node"
+} ]
+```
 ### <a name="cli-data-preprocessing-transformation-example-schema">DataPreprocessingTransformation[]</a>
 
 The following example shows the format of the DataPreprocessingTransformation[] object.
@@ -25120,6 +27166,89 @@ The following example shows the format of the DataPreprocessingTransformation[] 
   }
 } ]
 ```
+### <a name="cli-data-record-example-schema">DataRecord</a>
+
+The following example shows the format of the DataRecord object.
+
+```json
+
+{
+  "attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "entity_ids" : [ "exampleString", "anotherExampleString" ],
+  "is_blocked_for_update" : true,
+  "is_quarantined" : true,
+  "system_attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "type" : "record",
+  "type_name" : "exampleString"
+}
+```
+### <a name="cli-data-relationship-example-schema">DataRelationship</a>
+
+The following example shows the format of the DataRelationship object.
+
+```json
+
+{
+  "attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "entity_ids" : [ "exampleString", "anotherExampleString" ],
+  "is_blocked_for_update" : true,
+  "is_quarantined" : true,
+  "system_attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "type" : "record",
+  "type_name" : "exampleString"
+}
+```
+### <a name="cli-data-relationship-example-schema">DataRelationship[]</a>
+
+The following example shows the format of the DataRelationship[] object.
+
+```json
+
+[ {
+  "attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "source" : {
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "entity_ids" : [ "exampleString", "anotherExampleString" ],
+    "is_blocked_for_update" : true,
+    "is_quarantined" : true,
+    "system_attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "type" : "record",
+    "type_name" : "exampleString"
+  },
+  "system_attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "target" : {
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "entity_ids" : [ "exampleString", "anotherExampleString" ],
+    "is_blocked_for_update" : true,
+    "is_quarantined" : true,
+    "system_attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "type" : "record",
+    "type_name" : "exampleString"
+  },
+  "type" : "relationship",
+  "type_name" : "generic_group_relationship"
+} ]
+```
 ### <a name="cli-data-schema-example-schema">DataSchema</a>
 
 The following example shows the format of the DataSchema object.
@@ -25134,6 +27263,32 @@ The following example shows the format of the DataSchema object.
   } ],
   "id" : "exampleString",
   "name" : "exampleString"
+}
+```
+### <a name="cli-data-search-criteria-example-schema">DataSearchCriteria</a>
+
+The following example shows the format of the DataSearchCriteria object.
+
+```json
+
+{
+  "filters" : [ {
+    "data_quality_issues" : [ "potential_match", "potential_overlay", "user_tasks_only", "same_source_only", "potential_duplicate" ],
+    "type" : "record",
+    "values" : [ "exampleString", "anotherExampleString" ]
+  } ],
+  "query" : {
+    "expressions" : [ {
+      "condition" : "equal",
+      "entity_type" : "exampleString",
+      "operation" : "and",
+      "property" : "exampleString",
+      "record_type" : "exampleString",
+      "value" : "exampleString"
+    } ],
+    "operation" : "and"
+  },
+  "search_type" : "record"
 }
 ```
 ### <a name="cli-data-source-example-schema">DataSource[]</a>
@@ -25553,6 +27708,17 @@ The following example shows the format of the EngineDetails object.
   }
 }
 ```
+### <a name="cli-entity-attributes-request-example-schema">EntityAttributesRequest</a>
+
+The following example shows the format of the EntityAttributesRequest object.
+
+```json
+
+{
+  "attribute_names" : [ "exampleString", "anotherExampleString" ],
+  "entity_type" : "exampleString"
+}
+```
 ### <a name="cli-environment-variables-example-schema">EnvironmentVariables</a>
 
 The following example shows the format of the EnvironmentVariables object.
@@ -25596,6 +27762,23 @@ The following example shows the format of the EvaluationsSpecItem object.
   "id" : "exampleString",
   "input_target" : "exampleString",
   "metrics_names" : [ "exampleString", "anotherExampleString" ]
+}
+```
+### <a name="cli-event-subscription-stream-connection-example-schema">EventSubscriptionStreamConnection</a>
+
+The following example shows the format of the EventSubscriptionStreamConnection object.
+
+```json
+
+{
+  "asset_id" : "exampleString",
+  "asset_scope" : "exampleString",
+  "container_id" : "exampleString",
+  "stream_connection_properties" : {
+    "anyKey" : "anyValue"
+  },
+  "stream_type" : "exampleString",
+  "topic" : "exampleString"
 }
 ```
 ### <a name="cli-execute-config-example-schema">ExecuteConfig</a>
@@ -25696,6 +27879,63 @@ The following example shows the format of the ExportAssets object.
   "all_assets" : true,
   "asset_ids" : [ "exampleString", "anotherExampleString" ],
   "asset_types" : [ "exampleString", "anotherExampleString" ]
+}
+```
+### <a name="cli-export-request-exclude-attributes-example-schema">ExportRequestExcludeAttributes</a>
+
+The following example shows the format of the ExportRequestExcludeAttributes object.
+
+```json
+
+{
+  "entity_attributes" : [ {
+    "attribute_names" : [ "exampleString", "anotherExampleString" ],
+    "entity_type" : "exampleString"
+  } ],
+  "record_attributes" : [ {
+    "attribute_names" : [ "exampleString", "anotherExampleString" ],
+    "record_type" : "exampleString"
+  } ],
+  "relationship_attributes" : [ {
+    "attribute_names" : [ "exampleString", "anotherExampleString" ],
+    "relationship_type" : "exampleString"
+  } ]
+}
+```
+### <a name="cli-export-request-include-attributes-example-schema">ExportRequestIncludeAttributes</a>
+
+The following example shows the format of the ExportRequestIncludeAttributes object.
+
+```json
+
+{
+  "entity_attributes" : [ {
+    "attribute_names" : [ "exampleString", "anotherExampleString" ],
+    "entity_type" : "exampleString"
+  } ],
+  "record_attributes" : [ {
+    "attribute_names" : [ "exampleString", "anotherExampleString" ],
+    "record_type" : "exampleString"
+  } ],
+  "relationship_attributes" : [ {
+    "attribute_names" : [ "exampleString", "anotherExampleString" ],
+    "relationship_type" : "exampleString"
+  } ]
+}
+```
+### <a name="cli-expression-example-schema">Expression</a>
+
+The following example shows the format of the Expression object.
+
+```json
+
+{
+  "condition" : "equal",
+  "entity_type" : "exampleString",
+  "operation" : "and",
+  "property" : "exampleString",
+  "record_type" : "exampleString",
+  "value" : "exampleString"
 }
 ```
 ### <a name="cli-external-asset-preview-example-schema">ExternalAssetPreview</a>
@@ -25932,6 +28172,29 @@ The following example shows the format of the Folder object.
   "enabled" : true
 }
 ```
+### <a name="cli-for-each-example-schema">ForEach</a>
+
+The following example shows the format of the ForEach object.
+
+```json
+
+{
+  "choose" : { },
+  "requests" : [ {
+    "exclude_in_response" : true,
+    "method" : "exampleString",
+    "params" : {
+      "anyKey" : "anyValue"
+    },
+    "path" : "exampleString",
+    "req_body" : {
+      "anyKey" : "anyValue"
+    },
+    "request_id" : 38
+  } ],
+  "select" : "exampleString"
+}
+```
 ### <a name="cli-function-entity-schemas-example-schema">FunctionEntitySchemas</a>
 
 The following example shows the format of the FunctionEntitySchemas object.
@@ -26021,6 +28284,31 @@ The following example shows the format of the GitSettingsHttp object.
   "sslcainfo" : "exampleString",
   "sslverify" : "exampleString"
 }
+```
+### <a name="cli-group-expression-example-schema">GroupExpression[]</a>
+
+The following example shows the format of the GroupExpression[] object.
+
+```json
+
+[ {
+  "condition" : "equal",
+  "group_type" : "sports_club",
+  "operation" : "and",
+  "property" : "group_name.value",
+  "value" : "soccer club"
+} ]
+```
+### <a name="cli-group-search-filter-example-schema">GroupSearchFilter[]</a>
+
+The following example shows the format of the GroupSearchFilter[] object.
+
+```json
+
+[ {
+  "type" : "group",
+  "values" : [ "sports_club" ]
+} ]
 ```
 ### <a name="cli-hardware-request-example-schema">HardwareRequest</a>
 
@@ -26329,6 +28617,136 @@ The following example shows the format of the InputDataReference object.
   "name" : "exampleString",
   "type" : "db2"
 }
+```
+### <a name="cli-instance-metadata-bulkload-bucket-example-schema">InstanceMetadataBulkloadBucket</a>
+
+The following example shows the format of the InstanceMetadataBulkloadBucket object.
+
+```json
+
+{
+  "cos_bucket_api_key" : "exampleString",
+  "cos_bucket_location" : "exampleString",
+  "cos_bucket_name" : "exampleString"
+}
+```
+### <a name="cli-instance-metadata-catalog-example-schema">InstanceMetadataCatalog[]</a>
+
+The following example shows the format of the InstanceMetadataCatalog[] object.
+
+```json
+
+[ {
+  "catalog_id" : "exampleString",
+  "catalog_instance" : "exampleString"
+} ]
+```
+### <a name="cli-instance-metadata-data-entitlement-example-schema">InstanceMetadataDataEntitlement</a>
+
+The following example shows the format of the InstanceMetadataDataEntitlement object.
+
+```json
+
+{
+  "config" : {
+    "anyKey" : "anyValue"
+  },
+  "description" : "exampleString",
+  "id" : "exampleString",
+  "name" : "exampleString",
+  "sub_features" : [ {
+    "description" : "exampleString",
+    "enabled" : true,
+    "id" : "exampleString",
+    "name" : "exampleString"
+  } ]
+}
+```
+### <a name="cli-instance-metadata-data-entitlement-sub-feature-example-schema">InstanceMetadataDataEntitlementSubFeature</a>
+
+The following example shows the format of the InstanceMetadataDataEntitlementSubFeature object.
+
+```json
+
+{
+  "description" : "exampleString",
+  "enabled" : true,
+  "id" : "exampleString",
+  "name" : "exampleString"
+}
+```
+### <a name="cli-instance-metadata-history-example-schema">InstanceMetadataHistory</a>
+
+The following example shows the format of the InstanceMetadataHistory object.
+
+```json
+
+{
+  "history_retentions" : [ {
+    "last_updated_date" : "exampleString",
+    "last_updated_user" : "exampleString",
+    "policy_id" : "exampleString",
+    "policy_update_status" : "exampleString",
+    "retention_days" : "exampleString"
+  } ],
+  "retention_days" : "exampleString",
+  "retention_enabled" : true
+}
+```
+### <a name="cli-instance-metadata-history-retention-info-example-schema">InstanceMetadataHistoryRetentionInfo</a>
+
+The following example shows the format of the InstanceMetadataHistoryRetentionInfo object.
+
+```json
+
+{
+  "last_updated_date" : "exampleString",
+  "last_updated_user" : "exampleString",
+  "policy_id" : "exampleString",
+  "policy_update_status" : "exampleString",
+  "retention_days" : "exampleString"
+}
+```
+### <a name="cli-instance-metadata-project-example-schema">InstanceMetadataProject[]</a>
+
+The following example shows the format of the InstanceMetadataProject[] object.
+
+```json
+
+[ {
+  "asset_id" : "exampleString",
+  "data_asset_id" : "exampleString",
+  "project_id" : "exampleString",
+  "project_name" : "exampleString"
+} ]
+```
+### <a name="cli-instance-metadata-stream-connection-example-schema">InstanceMetadataStreamConnection[]</a>
+
+The following example shows the format of the InstanceMetadataStreamConnection[] object.
+
+```json
+
+[ {
+  "connenction_details" : {
+    "asset_id" : "exampleString",
+    "asset_scope" : "exampleString",
+    "container_id" : "exampleString"
+  },
+  "stream_type" : "exampleString"
+} ]
+```
+### <a name="cli-issue-remediation-actions-request-example-schema">IssueRemediationActionsRequest[]</a>
+
+The following example shows the format of the IssueRemediationActionsRequest[] object.
+
+```json
+
+[ {
+  "comments" : "exampleString",
+  "decision" : "exampleString",
+  "issue_id" : "exampleString",
+  "records" : [ "exampleString", "anotherExampleString" ]
+} ]
 ```
 ### <a name="cli-json-job-run-patch-model-item-example-schema">JSONJobRunPatchModelItem[]</a>
 
@@ -27270,6 +29688,26 @@ The following example shows the format of the NodeDescriptionBody object.
   "quantity" : 1
 }
 ```
+### <a name="cli-node-with-attributes-example-schema">NodeWithAttributes</a>
+
+The following example shows the format of the NodeWithAttributes object.
+
+```json
+
+{
+  "attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "entity_ids" : [ "exampleString", "anotherExampleString" ],
+  "is_blocked_for_update" : true,
+  "is_quarantined" : true,
+  "system_attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "type" : "record",
+  "type_name" : "person"
+}
+```
 ### <a name="cli-notebook-kernel-example-schema">NotebookKernel</a>
 
 The following example shows the format of the NotebookKernel object.
@@ -27487,6 +29925,18 @@ The following example shows the format of the Organization object.
   "region" : "EU"
 }
 ```
+### <a name="cli-otherwise-example-schema">Otherwise</a>
+
+The following example shows the format of the Otherwise object.
+
+```json
+
+{
+  "code" : "exampleString",
+  "text" : "exampleString",
+  "type" : "exampleString"
+}
+```
 ### <a name="cli-package-extension-reference-example-schema">PackageExtensionReference[]</a>
 
 The following example shows the format of the PackageExtensionReference[] object.
@@ -27497,6 +29947,41 @@ The following example shows the format of the PackageExtensionReference[] object
   "guid" : "b82b95df-fc3e-4273-98f7-473d62a03c2b",
   "href" : "/v2/package_extensions/b82b95df-fc3e-4273-98f7-473d62a03c2b"
 } ]
+```
+### <a name="cli-pair-update-request-pair-analysis-example-schema">PairUpdateRequestPairAnalysis</a>
+
+The following example shows the format of the PairUpdateRequestPairAnalysis object.
+
+```json
+
+{
+  "base_config" : {
+    "anyKey" : "anyValue"
+  },
+  "pair_gen_job_id" : "b221364e-b98c-11ec-8422-0242ac120007",
+  "pair_offset" : 40,
+  "status" : "Completed",
+  "tuned_config" : {
+    "anyKey" : "anyValue"
+  },
+  "tuning_job_id" : "b221364e-b98c-11ec-8422-0242ac1200664"
+}
+```
+### <a name="cli-pair-update-request-pair-decision-example-schema">PairUpdateRequestPairDecision</a>
+
+The following example shows the format of the PairUpdateRequestPairDecision object.
+
+```json
+
+{
+  "category" : "unmatched",
+  "entity_type" : "person_entity",
+  "id" : "79c7bb2a_11541749544868939_13111749544878277",
+  "record_number_1" : "11541749544868939",
+  "record_number_2" : "13111749544878277",
+  "record_type" : "person",
+  "user_decision" : "Match"
+}
 ```
 ### <a name="cli-parameter-example-schema">Parameter</a>
 
@@ -27567,6 +30052,132 @@ The following example shows the format of the PatchDocument[] object.
   }
 } ]
 ```
+### <a name="cli-patch-hierarchy-deletions-example-schema">PatchHierarchyDeletions</a>
+
+The following example shows the format of the PatchHierarchyDeletions object.
+
+```json
+
+{
+  "nodes" : [ {
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "reference_id" : "exampleString",
+    "system_attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "type" : "node",
+    "type_name" : "exampleString"
+  } ],
+  "relationships" : [ {
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "source" : {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "entity_ids" : [ "exampleString", "anotherExampleString" ],
+      "is_blocked_for_update" : true,
+      "is_quarantined" : true,
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "type" : "record",
+      "type_name" : "hierarchy_node"
+    },
+    "system_attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "target" : {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "entity_ids" : [ "exampleString", "anotherExampleString" ],
+      "is_blocked_for_update" : true,
+      "is_quarantined" : true,
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "type" : "record",
+      "type_name" : "hierarchy_node"
+    },
+    "type" : "relationship",
+    "type_name" : "hierarchy_node_association_relationship"
+  } ]
+}
+```
+### <a name="cli-patch-hierarchy-upserts-example-schema">PatchHierarchyUpserts</a>
+
+The following example shows the format of the PatchHierarchyUpserts object.
+
+```json
+
+{
+  "associated_objects" : [ {
+    "anyKey" : "anyValue"
+  }, {
+    "anotherAnyKey" : "anotherAnyValue"
+  } ],
+  "attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "nodes" : [ {
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "reference_id" : "exampleString",
+    "system_attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "type" : "node",
+    "type_name" : "exampleString"
+  } ],
+  "reference_id" : "exampleString",
+  "relationships" : [ {
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "source" : {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "entity_ids" : [ "exampleString", "anotherExampleString" ],
+      "is_blocked_for_update" : true,
+      "is_quarantined" : true,
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "type" : "record",
+      "type_name" : "hierarchy_node"
+    },
+    "system_attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "target" : {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "entity_ids" : [ "exampleString", "anotherExampleString" ],
+      "is_blocked_for_update" : true,
+      "is_quarantined" : true,
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "type" : "record",
+      "type_name" : "hierarchy_node"
+    },
+    "type" : "relationship",
+    "type_name" : "hierarchy_node_association_relationship"
+  } ],
+  "system_attributes" : {
+    "anyKey" : "anyValue"
+  },
+  "type" : "hierarchy",
+  "type_name" : "generic_hierarchy"
+}
+```
 ### <a name="cli-patch-item-example-schema">PatchItem[]</a>
 
 The following example shows the format of the PatchItem[] object.
@@ -27579,6 +30190,18 @@ The following example shows the format of the PatchItem[] object.
   "value" : {
     "anyKey" : "anyValue"
   }
+} ]
+```
+### <a name="cli-patch-operation-payload-item-example-schema">PatchOperationPayloadItem[]</a>
+
+The following example shows the format of the PatchOperationPayloadItem[] object.
+
+```json
+
+[ {
+  "op" : "add",
+  "path" : "/allowed_operational_scope",
+  "value" : "exampleString"
 } ]
 ```
 ### <a name="cli-payload-field-example-schema">PayloadField[]</a>
@@ -27747,6 +30370,53 @@ The following example shows the format of the PrimaryStorageCredentials object.
   "uri" : "postgres://user:password@sl-us-south-1-portal.21.dblayer.com:12345/compose"
 }
 ```
+### <a name="cli-process-request-asset-source-details-example-schema">ProcessRequestAssetSourceDetails</a>
+
+The following example shows the format of the ProcessRequestAssetSourceDetails object.
+
+```json
+
+{
+  "catalog" : {
+    "cos_api_key" : "exampleString",
+    "cos_bucket_name" : "exampleString",
+    "cos_endpoint" : "exampleString",
+    "id" : "exampleString"
+  },
+  "project" : {
+    "cos_api_key" : "exampleString",
+    "cos_bucket_name" : "exampleString",
+    "cos_endpoint" : "exampleString",
+    "id" : "exampleString"
+  }
+}
+```
+### <a name="cli-process-request-asset-source-details-catalog-example-schema">ProcessRequestAssetSourceDetailsCatalog</a>
+
+The following example shows the format of the ProcessRequestAssetSourceDetailsCatalog object.
+
+```json
+
+{
+  "cos_api_key" : "exampleString",
+  "cos_bucket_name" : "exampleString",
+  "cos_endpoint" : "exampleString",
+  "id" : "exampleString"
+}
+```
+### <a name="cli-process-request-asset-source-details-project-example-schema">ProcessRequestAssetSourceDetailsProject</a>
+
+The following example shows the format of the ProcessRequestAssetSourceDetailsProject object.
+
+```json
+
+{
+  "cos_api_key" : "exampleString",
+  "cos_bucket_name" : "exampleString",
+  "cos_endpoint" : "exampleString",
+  "id" : "exampleString"
+}
+```
 ### <a name="cli-project-catalog-example-schema">ProjectCatalog</a>
 
 The following example shows the format of the ProjectCatalog object.
@@ -27768,8 +30438,8 @@ The following example shows the format of the ProjectCompute[] object.
   "credentials" : {
     "anyKey" : "anyValue"
   },
-  "crn" : "crn:v1:staging:public:code-assistant:us-south:a/0e79133675a31dbfd10504847a9e174f:630ced06-9675-4e35-a44f-d88197cc10c3::",
-  "guid" : "630ced06-9675-4e35-a44f-d88197cc10c3",
+  "crn" : "crn:v1:staging:public:code-assistant:us-south:a/1234abcdef1234abcdef1234abcdef12:1234abcd-1234-abcd-1234-abcd1234abcd::",
+  "guid" : "1234abcd-1234-abcd-1234-abcd1234abcd",
   "label" : "code-assistant",
   "name" : "IBM watsonx Code Assistant",
   "type" : "code-assistant"
@@ -27895,6 +30565,62 @@ The following example shows the format of the PromptWithExternalModelParameters 
   "repetition_penalty" : 72.5
 }
 ```
+### <a name="cli-put-data-entitlement-permission-example-schema">PutDataEntitlementPermission[]</a>
+
+The following example shows the format of the PutDataEntitlementPermission[] object.
+
+```json
+
+[ {
+  "action" : "exampleString",
+  "constraints" : [ {
+    "attributes" : [ "exampleString", "anotherExampleString" ],
+    "conditions" : [ { } ],
+    "constraint_type" : "exampleString",
+    "description" : "exampleString",
+    "fields" : {
+      "anyKey" : "anyValue"
+    },
+    "name" : "exampleString"
+  } ],
+  "data" : {
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "branch_node_id" : "exampleString",
+    "category" : "exampleString",
+    "group_associations" : {
+      "anyKey" : "anyValue"
+    },
+    "instance_id" : "exampleString",
+    "node_associations" : {
+      "anyKey" : "anyValue"
+    },
+    "node_relationship_type" : {
+      "anyKey" : "anyValue"
+    },
+    "node_type" : {
+      "anyKey" : "anyValue"
+    },
+    "type" : "exampleString",
+    "type_name" : "exampleString"
+  },
+  "description" : "exampleString",
+  "id" : "exampleString",
+  "name" : "exampleString"
+} ]
+```
+### <a name="cli-record-attributes-request-example-schema">RecordAttributesRequest</a>
+
+The following example shows the format of the RecordAttributesRequest object.
+
+```json
+
+{
+  "attribute_names" : [ "exampleString", "anotherExampleString" ],
+  "record_type" : "exampleString"
+}
+```
 ### <a name="cli-records-count-summary-example-schema">RecordsCountSummary</a>
 
 The following example shows the format of the RecordsCountSummary object.
@@ -27937,6 +30663,17 @@ The following example shows the format of the Rel object.
   "rev" : "2"
 }
 ```
+### <a name="cli-relationship-attributes-request-example-schema">RelationshipAttributesRequest</a>
+
+The following example shows the format of the RelationshipAttributesRequest object.
+
+```json
+
+{
+  "attribute_names" : [ "exampleString", "anotherExampleString" ],
+  "relationship_type" : "exampleString"
+}
+```
 ### <a name="cli-remote-admin-example-schema">RemoteAdmin</a>
 
 The following example shows the format of the RemoteAdmin object.
@@ -27947,6 +30684,44 @@ The following example shows the format of the RemoteAdmin object.
   "name" : "Joe Blogg",
   "email" : "joe.blogg@mail.com"
 }
+```
+### <a name="cli-request-example-schema">Request</a>
+
+The following example shows the format of the Request object.
+
+```json
+
+{
+  "exclude_in_response" : true,
+  "method" : "exampleString",
+  "params" : {
+    "anyKey" : "anyValue"
+  },
+  "path" : "exampleString",
+  "req_body" : {
+    "anyKey" : "anyValue"
+  },
+  "request_id" : 38
+}
+```
+### <a name="cli-request-example-schema">Request[]</a>
+
+The following example shows the format of the Request[] object.
+
+```json
+
+[ {
+  "exclude_in_response" : true,
+  "method" : "exampleString",
+  "params" : {
+    "anyKey" : "anyValue"
+  },
+  "path" : "exampleString",
+  "req_body" : {
+    "anyKey" : "anyValue"
+  },
+  "request_id" : 38
+} ]
 ```
 ### <a name="cli-rerank-input-example-schema">RerankInput[]</a>
 
@@ -27983,6 +30758,30 @@ The following example shows the format of the RerankReturnOptions object.
   "top_n" : 1,
   "inputs" : false,
   "query" : false
+}
+```
+### <a name="cli-resiliency-rules-link-resiliency-rules-example-schema">ResiliencyRulesLinkResiliencyRules</a>
+
+The following example shows the format of the ResiliencyRulesLinkResiliencyRules object.
+
+```json
+
+{
+  "entities" : {
+    "anyKey" : "anyValue"
+  },
+  "records" : { }
+}
+```
+### <a name="cli-resiliency-rules-record-example-schema">ResiliencyRulesRecord</a>
+
+The following example shows the format of the ResiliencyRulesRecord object.
+
+```json
+
+{
+  "join_existing_entity" : "exampleString",
+  "merge_entities" : "exampleString"
 }
 ```
 ### <a name="cli-resource-details-example-schema">ResourceDetails[]</a>
@@ -28036,6 +30835,18 @@ The following example shows the format of the RiskEvaluationStatus object.
   "evaluated_by" : "exampleString",
   "state" : "pending_evaluation"
 }
+```
+### <a name="cli-rules-request-rule-example-schema">RulesRequestRule[]</a>
+
+The following example shows the format of the RulesRequestRule[] object.
+
+```json
+
+[ {
+  "description" : "exampleString",
+  "record_numbers" : [ "exampleString", "anotherExampleString" ],
+  "rule_type" : "exampleString"
+} ]
 ```
 ### <a name="cli-schedule-start-time-example-schema">ScheduleStartTime</a>
 
@@ -28103,6 +30914,45 @@ The following example shows the format of the ScoringEndpointRequest object.
   "token" : "exampleString"
 }
 ```
+### <a name="cli-search-filter-example-schema">SearchFilter</a>
+
+The following example shows the format of the SearchFilter object.
+
+```json
+
+{
+  "data_quality_issues" : [ "potential_match", "potential_overlay", "user_tasks_only", "same_source_only", "potential_duplicate" ],
+  "type" : "record",
+  "values" : [ "exampleString", "anotherExampleString" ]
+}
+```
+### <a name="cli-search-filter-example-schema">SearchFilter[]</a>
+
+The following example shows the format of the SearchFilter[] object.
+
+```json
+
+[ {
+  "data_quality_issues" : [ "potential_match", "potential_overlay", "user_tasks_only", "same_source_only", "potential_duplicate" ],
+  "type" : "record",
+  "values" : [ "exampleString", "anotherExampleString" ]
+} ]
+```
+### <a name="cli-search-query-example-schema">SearchQuery</a>
+
+The following example shows the format of the SearchQuery object.
+
+```json
+
+{
+  "condition" : "equal",
+  "entity_type" : "exampleString",
+  "operation" : "and",
+  "property" : "exampleString",
+  "record_type" : "exampleString",
+  "value" : "exampleString"
+}
+```
 ### <a name="cli-secret-example-schema">Secret</a>
 
 The following example shows the format of the Secret object.
@@ -28150,6 +31000,48 @@ The following example shows the format of the SimpleRel object.
 
 {
   "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"
+}
+```
+### <a name="cli-single-record-request-attributes-example-schema">SingleRecordRequestAttributes</a>
+
+The following example shows the format of the SingleRecordRequestAttributes object.
+
+```json
+
+{
+  "record_id" : "2",
+  "record_last_updated" : 1506982103000,
+  "record_source" : "MDM"
+}
+```
+### <a name="cli-single-record-request-example-schema">SingleRecordRequest[]</a>
+
+The following example shows the format of the SingleRecordRequest[] object.
+
+```json
+
+[ {
+  "attributes" : {
+    "record_id" : "2",
+    "record_last_updated" : 1506982103000,
+    "record_source" : "MDM"
+  },
+  "id" : 26,
+  "record_type" : "person"
+} ]
+```
+### <a name="cli-snapshot-summary-example-schema">SnapshotSummary</a>
+
+The following example shows the format of the SnapshotSummary object.
+
+```json
+
+{
+  "created_time" : "exampleString",
+  "description" : "exampleString",
+  "id" : "exampleString",
+  "name" : "exampleString",
+  "user" : "exampleString"
 }
 ```
 ### <a name="cli-software-spec-rel-example-schema">SoftwareSpecRel</a>
@@ -28403,6 +31295,55 @@ The following example shows the format of the StageRequest object.
   "production" : false
 }
 ```
+### <a name="cli-start-bulk-workflow-request-filter-example-schema">StartBulkWorkflowRequestFilter</a>
+
+The following example shows the format of the StartBulkWorkflowRequestFilter object.
+
+```json
+
+{
+  "data_quality_issues" : [ "exampleString", "anotherExampleString" ],
+  "type" : "exampleString",
+  "values" : [ "exampleString", "anotherExampleString" ]
+}
+```
+### <a name="cli-start-bulk-workflow-request-query-example-schema">StartBulkWorkflowRequestQuery</a>
+
+The following example shows the format of the StartBulkWorkflowRequestQuery object.
+
+```json
+
+{
+  "condition" : "exampleString",
+  "property" : "exampleString",
+  "record_type" : "exampleString",
+  "value" : "exampleString"
+}
+```
+### <a name="cli-start-bulk-workflow-request-search-criteria-example-schema">StartBulkWorkflowRequestSearchCriteria</a>
+
+The following example shows the format of the StartBulkWorkflowRequestSearchCriteria object.
+
+```json
+
+{
+  "filters" : [ {
+    "data_quality_issues" : [ "exampleString", "anotherExampleString" ],
+    "type" : "record",
+    "values" : [ "person" ]
+  } ],
+  "query" : {
+    "expressions" : [ {
+      "condition" : "equal",
+      "property" : "customer_segment.value",
+      "record_type" : "person",
+      "value" : "vip"
+    } ],
+    "operation" : "and"
+  },
+  "search_type" : "record"
+}
+```
 ### <a name="cli-storage-catalog-prototype-example-schema">StorageCatalogPrototype</a>
 
 The following example shows the format of the StorageCatalogPrototype object.
@@ -28500,6 +31441,416 @@ The following example shows the format of the SyncScoringData object.
     "id" : "exampleString",
     "fields" : [ "name", "age", "occupation" ],
     "values" : [ [ "exampleString", "anotherExampleString" ], [ "exampleString", "anotherExampleString" ] ]
+  } ]
+}
+```
+### <a name="cli-sync-update-request-deletions-example-schema">SyncUpdateRequestDeletions</a>
+
+The following example shows the format of the SyncUpdateRequestDeletions object.
+
+```json
+
+{
+  "group_associations" : [ {
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "source" : {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "entity_ids" : [ "exampleString", "anotherExampleString" ],
+      "is_blocked_for_update" : true,
+      "is_quarantined" : true,
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "type" : "record",
+      "type_name" : "exampleString"
+    },
+    "system_attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "target" : {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "entity_ids" : [ "exampleString", "anotherExampleString" ],
+      "is_blocked_for_update" : true,
+      "is_quarantined" : true,
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "type" : "record",
+      "type_name" : "exampleString"
+    },
+    "type" : "relationship",
+    "type_name" : "exampleString"
+  } ],
+  "groups" : [ {
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "group_associations" : [ {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "source" : {
+        "attributes" : {
+          "anyKey" : "anyValue"
+        },
+        "entity_ids" : [ "exampleString", "anotherExampleString" ],
+        "is_blocked_for_update" : true,
+        "is_quarantined" : true,
+        "system_attributes" : {
+          "anyKey" : "anyValue"
+        },
+        "type" : "record",
+        "type_name" : "exampleString"
+      },
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "target" : {
+        "attributes" : {
+          "anyKey" : "anyValue"
+        },
+        "entity_ids" : [ "exampleString", "anotherExampleString" ],
+        "is_blocked_for_update" : true,
+        "is_quarantined" : true,
+        "system_attributes" : {
+          "anyKey" : "anyValue"
+        },
+        "type" : "record",
+        "type_name" : "exampleString"
+      },
+      "type" : "relationship",
+      "type_name" : "exampleString"
+    } ],
+    "group_number" : 26,
+    "member_count" : 26,
+    "system_attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "type" : "group",
+    "type_name" : "exampleString"
+  } ],
+  "hierarchies" : [ {
+    "associated_objects" : [ {
+      "anyKey" : "anyValue"
+    }, {
+      "anotherAnyKey" : "anotherAnyValue"
+    } ],
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "nodes" : [ {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "reference_id" : "exampleString",
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "type" : "node",
+      "type_name" : "exampleString"
+    } ],
+    "reference_id" : "exampleString",
+    "relationships" : [ {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "source" : {
+        "attributes" : {
+          "anyKey" : "anyValue"
+        },
+        "entity_ids" : [ "exampleString", "anotherExampleString" ],
+        "is_blocked_for_update" : true,
+        "is_quarantined" : true,
+        "system_attributes" : {
+          "anyKey" : "anyValue"
+        },
+        "type" : "record",
+        "type_name" : "exampleString"
+      },
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "target" : {
+        "attributes" : {
+          "anyKey" : "anyValue"
+        },
+        "entity_ids" : [ "exampleString", "anotherExampleString" ],
+        "is_blocked_for_update" : true,
+        "is_quarantined" : true,
+        "system_attributes" : {
+          "anyKey" : "anyValue"
+        },
+        "type" : "record",
+        "type_name" : "exampleString"
+      },
+      "type" : "relationship",
+      "type_name" : "exampleString"
+    } ],
+    "system_attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "type" : "hierarchy",
+    "type_name" : "exampleString"
+  } ],
+  "records" : [ {
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "entity_ids" : [ "exampleString", "anotherExampleString" ],
+    "is_blocked_for_update" : true,
+    "is_quarantined" : true,
+    "system_attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "type" : "record",
+    "type_name" : "exampleString"
+  } ],
+  "relationships" : [ {
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "source" : {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "entity_ids" : [ "exampleString", "anotherExampleString" ],
+      "is_blocked_for_update" : true,
+      "is_quarantined" : true,
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "type" : "record",
+      "type_name" : "exampleString"
+    },
+    "system_attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "target" : {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "entity_ids" : [ "exampleString", "anotherExampleString" ],
+      "is_blocked_for_update" : true,
+      "is_quarantined" : true,
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "type" : "record",
+      "type_name" : "exampleString"
+    },
+    "type" : "relationship",
+    "type_name" : "exampleString"
+  } ]
+}
+```
+### <a name="cli-sync-update-request-upserts-example-schema">SyncUpdateRequestUpserts</a>
+
+The following example shows the format of the SyncUpdateRequestUpserts object.
+
+```json
+
+{
+  "group_associations" : [ {
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "source" : {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "entity_ids" : [ "exampleString", "anotherExampleString" ],
+      "is_blocked_for_update" : true,
+      "is_quarantined" : true,
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "type" : "record",
+      "type_name" : "exampleString"
+    },
+    "system_attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "target" : {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "entity_ids" : [ "exampleString", "anotherExampleString" ],
+      "is_blocked_for_update" : true,
+      "is_quarantined" : true,
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "type" : "record",
+      "type_name" : "exampleString"
+    },
+    "type" : "relationship",
+    "type_name" : "exampleString"
+  } ],
+  "groups" : [ {
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "group_associations" : [ {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "source" : {
+        "attributes" : {
+          "anyKey" : "anyValue"
+        },
+        "entity_ids" : [ "exampleString", "anotherExampleString" ],
+        "is_blocked_for_update" : true,
+        "is_quarantined" : true,
+        "system_attributes" : {
+          "anyKey" : "anyValue"
+        },
+        "type" : "record",
+        "type_name" : "exampleString"
+      },
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "target" : {
+        "attributes" : {
+          "anyKey" : "anyValue"
+        },
+        "entity_ids" : [ "exampleString", "anotherExampleString" ],
+        "is_blocked_for_update" : true,
+        "is_quarantined" : true,
+        "system_attributes" : {
+          "anyKey" : "anyValue"
+        },
+        "type" : "record",
+        "type_name" : "exampleString"
+      },
+      "type" : "relationship",
+      "type_name" : "exampleString"
+    } ],
+    "group_number" : 26,
+    "member_count" : 26,
+    "system_attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "type" : "group",
+    "type_name" : "exampleString"
+  } ],
+  "hierarchies" : [ {
+    "associated_objects" : [ {
+      "anyKey" : "anyValue"
+    }, {
+      "anotherAnyKey" : "anotherAnyValue"
+    } ],
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "nodes" : [ {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "reference_id" : "exampleString",
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "type" : "node",
+      "type_name" : "exampleString"
+    } ],
+    "reference_id" : "exampleString",
+    "relationships" : [ {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "source" : {
+        "attributes" : {
+          "anyKey" : "anyValue"
+        },
+        "entity_ids" : [ "exampleString", "anotherExampleString" ],
+        "is_blocked_for_update" : true,
+        "is_quarantined" : true,
+        "system_attributes" : {
+          "anyKey" : "anyValue"
+        },
+        "type" : "record",
+        "type_name" : "exampleString"
+      },
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "target" : {
+        "attributes" : {
+          "anyKey" : "anyValue"
+        },
+        "entity_ids" : [ "exampleString", "anotherExampleString" ],
+        "is_blocked_for_update" : true,
+        "is_quarantined" : true,
+        "system_attributes" : {
+          "anyKey" : "anyValue"
+        },
+        "type" : "record",
+        "type_name" : "exampleString"
+      },
+      "type" : "relationship",
+      "type_name" : "exampleString"
+    } ],
+    "system_attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "type" : "hierarchy",
+    "type_name" : "exampleString"
+  } ],
+  "records" : [ {
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "entity_ids" : [ "exampleString", "anotherExampleString" ],
+    "is_blocked_for_update" : true,
+    "is_quarantined" : true,
+    "system_attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "type" : "record",
+    "type_name" : "exampleString"
+  } ],
+  "relationships" : [ {
+    "attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "source" : {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "entity_ids" : [ "exampleString", "anotherExampleString" ],
+      "is_blocked_for_update" : true,
+      "is_quarantined" : true,
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "type" : "record",
+      "type_name" : "exampleString"
+    },
+    "system_attributes" : {
+      "anyKey" : "anyValue"
+    },
+    "target" : {
+      "attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "entity_ids" : [ "exampleString", "anotherExampleString" ],
+      "is_blocked_for_update" : true,
+      "is_quarantined" : true,
+      "system_attributes" : {
+        "anyKey" : "anyValue"
+      },
+      "type" : "record",
+      "type_name" : "exampleString"
+    },
+    "type" : "relationship",
+    "type_name" : "exampleString"
   } ]
 }
 ```
@@ -29036,6 +32387,34 @@ The following example shows the format of the TransactionalProjectStorageObjectP
   "shared" : true
 }
 ```
+### <a name="cli-ui-history-example-schema">UIHistory</a>
+
+The following example shows the format of the UIHistory object.
+
+```json
+
+{
+  "id" : "exampleString",
+  "record_type" : "exampleString",
+  "timestamp" : "exampleString",
+  "type" : "exampleString"
+}
+```
+### <a name="cli-u-iworkspace-example-schema">UIworkspace</a>
+
+The following example shows the format of the UIworkspace object.
+
+```json
+
+{
+  "history" : [ {
+    "id" : "exampleString",
+    "record_type" : "exampleString",
+    "timestamp" : "exampleString",
+    "type" : "exampleString"
+  } ]
+}
+```
 ### <a name="cli-update-member-body-example-schema">UpdateMemberBody[]</a>
 
 The following example shows the format of the UpdateMemberBody[] object.
@@ -29059,28 +32438,28 @@ The following example shows the format of the UpdateStoragePropertiesBody object
   "credentials" : {
     "admin" : {
       "access_key_id" : "abcdefABCDEF0123456789abcdefABCD",
-      "api_key" : "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8",
-      "secret_access_key" : "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd",
-      "service_id" : "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"
+      "api_key" : "ABC123def---abc123DEF45_ABC123def456ABC789de",
+      "secret_access_key" : "aBxY1234aBxY1234aBxY1234aBxY1234aBxY1234aBxY1234",
+      "service_id" : "iam-ServiceId-abcd1234-efgh-5678-abcd-1234efgh5678"
     },
     "editor" : {
       "access_key_id" : "abcdefABCDEF0123456789abcdefABCD",
-      "api_key" : "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8",
-      "resource_key_crn" : "crn:v1:bluemix:public:cloud-object-storage:global:a/b56585fe60e71be0a22e6587f781ed91:dc36b4a5-cf81-6541-b855-f68a6f321cac::",
-      "secret_access_key" : "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd",
-      "service_id" : "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"
+      "api_key" : "ABC123def---abc123DEF45_ABC123def456ABC789de",
+      "resource_key_crn" : "crn:v1:bluemix:public:cloud-object-storage:global:a/1234abcdef1234abcdef1234abcdef12:1234abcd-1234-abcd-1234-abcd1234abcd::",
+      "secret_access_key" : "aBxY1234aBxY1234aBxY1234aBxY1234aBxY1234aBxY1234",
+      "service_id" : "iam-ServiceId-abcd1234-efgh-5678-abcd-1234efgh5678"
     },
     "viewer" : {
       "access_key_id" : "abcdefABCDEF0123456789abcdefABCD",
-      "api_key" : "Nr0aWPAlj---hlfOMxTfPHe_OWrgH8kqAkqFhUUugqN8",
-      "resource_key_crn" : "crn:v1:bluemix:public:cloud-object-storage:global:a/b56585fe60e71be0a22e6587f781ed91:dc36b4a5-cf81-6541-b855-f68a6f321cac::",
-      "secret_access_key" : "abcdefABCDEF0123456789abcdefABCDEF0123456789abcd",
-      "service_id" : "iam-ServiceId-dde7839f-1cca-4626-a499-889398b5d6dd"
+      "api_key" : "ABC123def---abc123DEF45_ABC123def456ABC789de",
+      "resource_key_crn" : "crn:v1:bluemix:public:cloud-object-storage:global:a/1234abcdef1234abcdef1234abcdef12:1234abcd-1234-abcd-1234-abcd1234abcd::",
+      "secret_access_key" : "aBxY1234aBxY1234aBxY1234aBxY1234aBxY1234aBxY1234",
+      "service_id" : "iam-ServiceId-abcd1234-efgh-5678-abcd-1234efgh5678"
     },
-    "access_key_id" : "ASIATE72IZPHW6D4PKS5",
+    "access_key_id" : "ABCD1234ABCD1234ABCD",
     "expiration" : "2022-08-04T00:08:49.000Z",
-    "secret_access_key" : "ZFQTTmB3Jl5CyPBHExz+J7oquSbxwn1n1k5R7OnZ",
-    "session_token" : "IQoJb3JpZ2luX2VjEEAaCXVzLWVhc3QtMSJHMEUCIQCz1WlH9O7lxO610RvbZm4yNEvRXe8wW1TH3kvn0qwWuQIgZU5cMhTvwcUt4uvfEWEYNILVi8A7g6jHNq+zxk4ElvsqsQIImP//////////ARACGgwyMTY4ODM4NDE5OTkiDMFc9fstm0X8ShB6CyqFAo7+Sp1QoI0IABZWgv7MklCiFrne7yXF7e5Flim9REH0vvfG1Fca565Z5SqVbO9ihmpwuFMSp+zuODqLf0q4LDd8ikQ06m+E1i0sdBA0QbINCbjJjufPPxOv/Bvv8Az6rIGOx9hbyuhN46vTqQhyCeQq2KzCAdGbFu5lxA/G501T48i09E7JrCsq+l+z2BZix+2SWo2TgZktYEvItD8MTZWYku2fZRZvfOzzpW/CaC/niPjFVeGKTDv0rmW96gR7azsTqz9v+bIDimMf7uHet4Z8jVOpUhrtGzoceAZu0U6Dcjja44jpheCSzVb/K3xOTRi2MfM69xqP6xgS8C8QS9y+AnWP9DCBgKyXBjqdAYLhcD4n9YDbokr/3eRX9tPuC56CoOk4W4DcNyCm/VqdMM8s2hJgKbtIaXiSptKIUxAulNH65stR/O79qyqhYTyBRi4X/mmubK52Lape3kXiAuMFgC5OfEHEsBz++nhcSWFDQQeFHdHAZ3Z+ucqEpmko9/5GoNEOJoNgQb5vjLftXQc6jsNGu4dfrQus/o41+AUSE9gQtzohcbvtB2I="
+    "secret_access_key" : "ZYXW12345abcdef6789+ZYXW12345abcdef67890",
+    "session_token" : "AQoDYXdzEJr..."
   }
 }
 ```
@@ -29124,6 +32503,91 @@ The following example shows the format of the Volumes[] object.
   "mount_path" : "exampleString",
   "name" : "exampleString",
   "source_sub_path" : "exampleString"
+} ]
+```
+### <a name="cli-when-example-schema">When</a>
+
+The following example shows the format of the When object.
+
+```json
+
+{
+  "exclude_in_response" : true,
+  "method" : "exampleString",
+  "params" : {
+    "anyKey" : "anyValue"
+  },
+  "path" : "exampleString",
+  "req_body" : {
+    "anyKey" : "anyValue"
+  },
+  "request_id" : 38
+}
+```
+### <a name="cli-workflow-configuration-entity-type-trigger-operator-example-schema">WorkflowConfigurationEntityTypeTriggerOperator</a>
+
+The following example shows the format of the WorkflowConfigurationEntityTypeTriggerOperator object.
+
+```json
+
+{
+  "id" : "exampleString",
+  "name" : "exampleString"
+}
+```
+### <a name="cli-workflow-configuration-record-type-trigger-operator-example-schema">WorkflowConfigurationRecordTypeTriggerOperator</a>
+
+The following example shows the format of the WorkflowConfigurationRecordTypeTriggerOperator object.
+
+```json
+
+{
+  "triggers" : {
+    "anyKey" : "anyValue"
+  }
+}
+```
+### <a name="cli-workflow-configuration-trigger-operator-example-schema">WorkflowConfigurationTriggerOperator</a>
+
+The following example shows the format of the WorkflowConfigurationTriggerOperator object.
+
+```json
+
+{
+  "entity_types" : { },
+  "hierarchy_types" : {
+    "anyKey" : "anyValue"
+  },
+  "record_types" : { }
+}
+```
+### <a name="cli-workflows-configuration-settings-trigger-example-schema">WorkflowsConfigurationSettingsTrigger[]</a>
+
+The following example shows the format of the WorkflowsConfigurationSettingsTrigger[] object.
+
+```json
+
+[ {
+  "applicable_sources" : "exampleString",
+  "custom_sources" : [ "exampleString", "anotherExampleString" ],
+  "label" : "exampleString",
+  "recipe" : {
+    "anyKey" : "anyValue"
+  },
+  "status" : "exampleString"
+} ]
+```
+### <a name="cli-workflows-configuration-settings-workflow-configuration-example-schema">WorkflowsConfigurationSettingsWorkflowConfiguration[]</a>
+
+The following example shows the format of the WorkflowsConfigurationSettingsWorkflowConfiguration[] object.
+
+```json
+
+[ {
+  "applicable_sources" : "exampleString",
+  "custom_sources" : [ "exampleString", "anotherExampleString" ],
+  "id" : "exampleString",
+  "name" : "exampleString"
 } ]
 ```
 ### <a name="cli-wx-prompt-patch-model-version-example-schema">WxPromptPatchModelVersion</a>
@@ -29208,6 +32672,38 @@ The following example shows the format of the WxUtilityAgentToolsRunRequest obje
   }
 }
 ```
+### <a name="cli-map-string-algorithm-example-schema">map[string]Algorithm</a>
+
+The following example shows the format of the map[string]Algorithm object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-algorithm-entity-type-example-schema">map[string]AlgorithmEntityType</a>
+
+The following example shows the format of the map[string]AlgorithmEntityType object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-algorithm-generation-entity-type-example-schema">map[string]AlgorithmGenerationEntityType</a>
+
+The following example shows the format of the map[string]AlgorithmGenerationEntityType object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-algorithm-standardizer-example-schema">map[string]AlgorithmStandardizer</a>
+
+The following example shows the format of the map[string]AlgorithmStandardizer object.
+
+```json
+
+{ }
+```
 ### <a name="cli-map-string-asset-type-property-example-schema">map[string]AssetTypeProperty</a>
 
 The following example shows the format of the map[string]AssetTypeProperty object.
@@ -29216,9 +32712,169 @@ The following example shows the format of the map[string]AssetTypeProperty objec
 
 { }
 ```
+### <a name="cli-map-string-compare-spec-resource-example-schema">map[string]CompareSpecResource</a>
+
+The following example shows the format of the map[string]CompareSpecResource object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-compare-spec-resource-feature-category-example-schema">map[string]CompareSpecResourceFeatureCategory</a>
+
+The following example shows the format of the map[string]CompareSpecResourceFeatureCategory object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-data-model-attribute-type-example-schema">map[string]DataModelAttributeType</a>
+
+The following example shows the format of the map[string]DataModelAttributeType object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-data-model-group-type-example-schema">map[string]DataModelGroupType</a>
+
+The following example shows the format of the map[string]DataModelGroupType object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-data-model-hierarchy-type-example-schema">map[string]DataModelHierarchyType</a>
+
+The following example shows the format of the map[string]DataModelHierarchyType object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-data-model-node-type-example-schema">map[string]DataModelNodeType</a>
+
+The following example shows the format of the map[string]DataModelNodeType object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-data-model-record-type-example-schema">map[string]DataModelRecordType</a>
+
+The following example shows the format of the map[string]DataModelRecordType object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-data-model-relationship-type-example-schema">map[string]DataModelRelationshipType</a>
+
+The following example shows the format of the map[string]DataModelRelationshipType object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-governance-metadata-entity-type-example-schema">map[string]GovernanceMetadataEntityType</a>
+
+The following example shows the format of the map[string]GovernanceMetadataEntityType object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-governance-metadata-record-type-example-schema">map[string]GovernanceMetadataRecordType</a>
+
+The following example shows the format of the map[string]GovernanceMetadataRecordType object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-instance-metadata-workflow-example-schema">map[string]InstanceMetadataWorkflow</a>
+
+The following example shows the format of the map[string]InstanceMetadataWorkflow object.
+
+```json
+
+{ }
+```
 ### <a name="cli-map-string-prompt-variable-example-schema">map[string]PromptVariable</a>
 
 The following example shows the format of the map[string]PromptVariable object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-relationship-discovery-rules-example-schema">map[string]RelationshipDiscoveryRules</a>
+
+The following example shows the format of the map[string]RelationshipDiscoveryRules object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-set-resource-entry-example-schema">map[string]SetResourceEntry</a>
+
+The following example shows the format of the map[string]SetResourceEntry object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-ui-attribute-type-example-schema">map[string]UIAttributeType</a>
+
+The following example shows the format of the map[string]UIAttributeType object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-ui-entity-type-example-schema">map[string]UIEntityType</a>
+
+The following example shows the format of the map[string]UIEntityType object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-ui-group-type-example-schema">map[string]UIGroupType</a>
+
+The following example shows the format of the map[string]UIGroupType object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-ui-record-type-example-schema">map[string]UIRecordType</a>
+
+The following example shows the format of the map[string]UIRecordType object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-ui-hierarchy-type-example-schema">map[string]UiHierarchyType</a>
+
+The following example shows the format of the map[string]UiHierarchyType object.
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-map-resource-entry-example-schema">map[string][]MapResourceEntry</a>
+
+<!-- markdownlint-disable-next-line reference-links-images -->
+
+```json
+
+{ }
+```
+### <a name="cli-map-string-map-string-map-resource-entry-example-schema">map[string]map[string][]MapResourceEntry</a>
+
+<!-- markdownlint-disable-next-line reference-links-images -->
 
 ```json
 
