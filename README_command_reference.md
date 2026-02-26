@@ -274,6 +274,7 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 - [pipeline run get-log](#pipeline_run_get-log)
 - [pipeline run get-logs](#pipeline_run_get-logs)
 - [pipeline run get-status](#pipeline_run_get-status)
+- [pipeline run list](#pipeline_run_list)
 - [pipeline run list-parameter](#pipeline_run_list-parameter)
 - [pipeline run migrate-cache](#pipeline_run_migrate-cache)
 - [pipeline run task-result get](#pipeline_run_task-result_get)
@@ -2715,7 +2716,7 @@ cpdctl asset relationship unset [--relationships RELATIONSHIPS | @RELATIONSHIPS-
 Use this command to create a script asset from a local file.
 
 ```sh
-cpdctl asset script create --file FILE [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--origin-country ORIGIN-COUNTRY] [--tag TAG] [--mime MIME] [--software-specification-id SOFTWARE-SPECIFICATION-ID] [--language LANGUAGE] [flags]
+cpdctl asset script create --file FILE [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--origin-country ORIGIN-COUNTRY] [--tag TAG] [--mime MIME] [{--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME}] [--language LANGUAGE] [flags]
 ```
 
 #### Command options
@@ -3859,7 +3860,7 @@ cpdctl connection create [command options]
     --asset-category user \
     --child-source-systems '[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}]' \
     --description exampleString \
-    --flags restricted,internal_use_only,personal_credentials \
+    --flags restricted,internal_use_only,personal_credentials,parameterized \
     --gateway-id exampleString \
     --interaction-properties '{"source": [{"aliases": [{"name": "exampleString", "supported_products": ["exampleString","anotherTestString"]}], "default_from_env": "exampleString", "default_value": "exampleString", "default_value_conditions": [{"evaluate": {"condition": "contains", "property_name": "exampleString", "uiOnly": true, "values": ["exampleString","anotherTestString"]}, "value": "exampleString"}], "description": "exampleString", "displayGroup": "exampleString", "displayOrdinal": 38, "group": "exampleString", "hidden": true, "label": "exampleString", "masked": true, "multichoice": true, "multiline": true, "name": "exampleString", "placeholder": "exampleString", "readonly": true, "required": true, "supported_environments": ["exampleString","anotherTestString"], "supported_products": ["exampleString","anotherTestString"], "tags": ["exampleString","anotherTestString"], "type": "boolean", "uiOnly": true, "user_defined": true, "values": [{"label": "exampleString", "supported_environments": ["exampleString","anotherTestString"], "supported_products": ["exampleString","anotherTestString"], "value": "exampleString"}]}], "target": [{"aliases": [{"name": "exampleString", "supported_products": ["exampleString","anotherTestString"]}], "default_from_env": "exampleString", "default_value": "exampleString", "default_value_conditions": [{"evaluate": {"condition": "contains", "property_name": "exampleString", "uiOnly": true, "values": ["exampleString","anotherTestString"]}, "value": "exampleString"}], "description": "exampleString", "displayGroup": "exampleString", "displayOrdinal": 38, "group": "exampleString", "hidden": true, "label": "exampleString", "masked": true, "multichoice": true, "multiline": true, "name": "exampleString", "placeholder": "exampleString", "readonly": true, "required": true, "supported_environments": ["exampleString","anotherTestString"], "supported_products": ["exampleString","anotherTestString"], "tags": ["exampleString","anotherTestString"], "type": "boolean", "uiOnly": true, "user_defined": true, "values": [{"label": "exampleString", "supported_environments": ["exampleString","anotherTestString"], "supported_products": ["exampleString","anotherTestString"], "value": "exampleString"}]}]}' \
     --location-definition '{"physical_location_code": "exampleString", "sovereign_location_code": "exampleString"}' \
@@ -4143,7 +4144,7 @@ cpdctl connection discover-adhoc [command options]
     --asset-category user \
     --child-source-systems '[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}]' \
     --description exampleString \
-    --flags restricted,internal_use_only,personal_credentials \
+    --flags restricted,internal_use_only,personal_credentials,parameterized \
     --gateway-id exampleString \
     --interaction-properties '{"source": [{"aliases": [{"name": "exampleString", "supported_products": ["exampleString","anotherTestString"]}], "default_from_env": "exampleString", "default_value": "exampleString", "default_value_conditions": [{"evaluate": {"condition": "contains", "property_name": "exampleString", "uiOnly": true, "values": ["exampleString","anotherTestString"]}, "value": "exampleString"}], "description": "exampleString", "displayGroup": "exampleString", "displayOrdinal": 38, "group": "exampleString", "hidden": true, "label": "exampleString", "masked": true, "multichoice": true, "multiline": true, "name": "exampleString", "placeholder": "exampleString", "readonly": true, "required": true, "supported_environments": ["exampleString","anotherTestString"], "supported_products": ["exampleString","anotherTestString"], "tags": ["exampleString","anotherTestString"], "type": "boolean", "uiOnly": true, "user_defined": true, "values": [{"label": "exampleString", "supported_environments": ["exampleString","anotherTestString"], "supported_products": ["exampleString","anotherTestString"], "value": "exampleString"}]}], "target": [{"aliases": [{"name": "exampleString", "supported_products": ["exampleString","anotherTestString"]}], "default_from_env": "exampleString", "default_value": "exampleString", "default_value_conditions": [{"evaluate": {"condition": "contains", "property_name": "exampleString", "uiOnly": true, "values": ["exampleString","anotherTestString"]}, "value": "exampleString"}], "description": "exampleString", "displayGroup": "exampleString", "displayOrdinal": 38, "group": "exampleString", "hidden": true, "label": "exampleString", "masked": true, "multichoice": true, "multiline": true, "name": "exampleString", "placeholder": "exampleString", "readonly": true, "required": true, "supported_environments": ["exampleString","anotherTestString"], "supported_products": ["exampleString","anotherTestString"], "tags": ["exampleString","anotherTestString"], "type": "boolean", "uiOnly": true, "user_defined": true, "values": [{"label": "exampleString", "supported_environments": ["exampleString","anotherTestString"], "supported_products": ["exampleString","anotherTestString"], "value": "exampleString"}]}]}' \
     --new-location-definition '{"physical_location_code": "exampleString", "sovereign_location_code": "exampleString"}' \
@@ -7741,7 +7742,7 @@ Global default hardware specifications are read from a well-known location on di
 Authorization rules for (1) and (2) follow those for `/v2/assets` for projects and spaces, respectively. Alternatively, the request is authorized for a valid authentication by Service Auth. Only WSL/CPD administrators are authorized to make a request of type (3) - global custom hardware specifications. Alternatively, the request is authorized for a valid authentication by Service Auth.
 
 ```sh
-cpdctl environment hardware-specification delete --hardware-specification-id HARDWARE-SPECIFICATION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment hardware-specification delete {--hardware-specification-id HARDWARE-SPECIFICATION-ID | --hardware-specification HARDWARE-SPECIFICATION-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -7793,7 +7794,7 @@ Specify either space_id or project_id, or none of them. This makes 4 valid cases
 (3) and (4) retrieve global hardware specifications, which any WSL/CPD user is authorized for.
 
 ```sh
-cpdctl environment hardware-specification get --hardware-specification-id HARDWARE-SPECIFICATION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment hardware-specification get {--hardware-specification-id HARDWARE-SPECIFICATION-ID | --hardware-specification HARDWARE-SPECIFICATION-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -8311,7 +8312,7 @@ The request is valid if and only if:
   3. The user is authorized to update the software specification asset.
 
 ```sh
-cpdctl environment software-specification add-package-extensions --software-specification-id SOFTWARE-SPECIFICATION-ID --package-extension-id PACKAGE-EXTENSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment software-specification add-package-extensions {--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME} --package-extension-id PACKAGE-EXTENSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -8438,7 +8439,7 @@ Global default software specifications are read from a well-known location on di
 Authorization rules for (1) and (2) follow those for `/v2/assets` for projects and spaces, respectively. Alternatively, the request is authorized for a valid authentication by Service Auth. Only WSL/CPD administrators are authorized to make a request of type (3) - global custom software specifications. Alternatively, the request is authorized for a valid authentication by Service Auth.
 
 ```sh
-cpdctl environment software-specification delete --software-specification-id SOFTWARE-SPECIFICATION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment software-specification delete {--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -8492,7 +8493,7 @@ Specify either space_id or project_id, or none of them. This makes 4 valid cases
 Derived software specifications inherit the values of the `entity.software_specification.software_configuration.included_packages` and `entity.software_specification.software_configuration.platform` properties from the `entity.software_specification.base_software_specification` they reference.
 
 ```sh
-cpdctl environment software-specification get --software-specification-id SOFTWARE-SPECIFICATION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment software-specification get {--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -8578,7 +8579,7 @@ Remove a particular package extension from a particular software specification. 
 Specify either `project_id`, or `space_id`.
 
 ```sh
-cpdctl environment software-specification remove-package-extensions --software-specification-id SOFTWARE-SPECIFICATION-ID --package-extension-id PACKAGE-EXTENSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment software-specification remove-package-extensions {--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME} --package-extension-id PACKAGE-EXTENSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -8631,7 +8632,7 @@ Software specifications scoped to a particular space cannot be updated. Instead,
 Authorization rules for (1) follows those for `/v2/assets` for projects and spaces, respectively. Alternatively, the request is authorized for a valid authentication by Service Auth. Only WSL/CPD administrators are authorized to make a request of type (2) - global custom software specifications. Alternatively, the request is authorized for a valid authentication by Service Auth.
 
 ```sh
-cpdctl environment software-specification update --software-specification-id SOFTWARE-SPECIFICATION-ID [--display-name DISPLAY-NAME] [--description DESCRIPTION] [--name NAME] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment software-specification update {--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME} [--display-name DISPLAY-NAME] [--description DESCRIPTION] [--name NAME] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -15099,6 +15100,65 @@ cpdctl pipeline run get-status {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-
     --space-id exampleString \
     --project-id exampleString
 ```
+## • <a name="pipeline_run_list">`pipeline run list`</a>
+Lists the job runs for all jobs in a pipeline, or for a specific job if --job-id is provided. Can be further filtered by run name.
+
+```sh
+cpdctl pipeline run list {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--job-id JOB-ID | --job JOB-NAME}] [--run-name RUN-NAME] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--limit LIMIT] [--states STATES]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--job` (string)
+:   Job name. This option is mutually exclusive with '--job-id'.
+
+`--job-id` (string)
+:   Optional: The ID of a specific job to filter results. This option is mutually exclusive with '--job'.
+
+`--limit` (int64)
+:   The limit of the number of items to return per job (default: 100, max: 200).
+
+    The default value is `100`.
+
+`--pipeline` (string)
+:   Pipeline name. This option is mutually exclusive with '--pipeline-id'.
+
+`--pipeline-id` (string)
+:   The ID of the pipeline. This option is mutually exclusive with '--pipeline'.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The id of the project. This option is mutually exclusive with '--project'.
+
+`--run-name` (string)
+:   Optional: Filter results to only runs with this name.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The id of the space. This option is mutually exclusive with '--space'.
+
+`--states` (stringSlice)
+:   A list of comma-separated job run states to filter by (e.g., Completed,Failed,Running).
+
+    The default value is `[]`.
+
+##### Example
+
+```sh
+   cpdctl pipeline run list \
+    --pipeline-id exampleString \
+    --project-id exampleString \
+    --limit 50 \
+    --states Completed,Failed \
+    --run-name my-run-name
+```
 ## • <a name="pipeline_run_list-parameter">`pipeline run list-parameter`</a>
 Lists parameters of the run.
 
@@ -15587,7 +15647,7 @@ cpdctl pipeline version upload --file FILE [--uploadfile-content-type UPLOADFILE
 `--cpd-scope` (string)
 :   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--file` (io.ReadCloser)
+`--file` (string)
 :   Required. Pipeline file to be uploaded.
 
 The supported file formats are pipeline.json and zip which contains pipeline.json inside, with content-type being absent, equal to "application/json" or "application/zip".
@@ -24200,30 +24260,6 @@ The following example shows the format of the AnalyticsEngine object.
   "type" : "exampleString"
 }
 ```
-### <a name="cli-api-component-source-example-schema">ApiComponentSource</a>
-
-The following example shows the format of the ApiComponentSource object.
-
-```json
-
-{
-  "content" : "exampleString",
-  "type" : "exampleString"
-}
-```
-### <a name="cli-api-task-result-create-example-schema">ApiTaskResultCreate</a>
-
-The following example shows the format of the ApiTaskResultCreate object.
-
-```json
-
-{
-  "content_hash" : "exampleString",
-  "name" : "exampleString",
-  "path" : "exampleString",
-  "value" : "exampleString"
-}
-```
 ### <a name="cli-applicability-selection-example-schema">ApplicabilitySelection</a>
 
 The following example shows the format of the ApplicabilitySelection object.
@@ -25263,34 +25299,6 @@ The following example shows the format of the CosDataLocation object.
 {
   "file_name" : "exampleString",
   "bucket" : "exampleString"
-}
-```
-### <a name="cli-create-task-results-request-example-schema">CreateTaskResultsRequest</a>
-
-The following example shows the format of the CreateTaskResultsRequest object.
-
-```json
-
-{
-  "pipeline_id" : "exampleString",
-  "pipeline_run_name" : "exampleString",
-  "results" : [ {
-    "content_hash" : "exampleString",
-    "name" : "exampleString",
-    "path" : "exampleString",
-    "value" : "exampleString"
-  } ]
-}
-```
-### <a name="cli-create-task-results-request-results-from-example-schema">CreateTaskResultsRequestResultsFrom</a>
-
-The following example shows the format of the CreateTaskResultsRequestResultsFrom object.
-
-```json
-
-{
-  "run_id" : "exampleString",
-  "task_run_name" : "exampleString"
 }
 ```
 ### <a name="cli-creation-type-attribute-behavior-example-schema">CreationTypeAttributeBehavior</a>
@@ -30190,18 +30198,6 @@ The following example shows the format of the PatchItem[] object.
   "value" : {
     "anyKey" : "anyValue"
   }
-} ]
-```
-### <a name="cli-patch-operation-payload-item-example-schema">PatchOperationPayloadItem[]</a>
-
-The following example shows the format of the PatchOperationPayloadItem[] object.
-
-```json
-
-[ {
-  "op" : "add",
-  "path" : "/allowed_operational_scope",
-  "value" : "exampleString"
 } ]
 ```
 ### <a name="cli-payload-field-example-schema">PayloadField[]</a>

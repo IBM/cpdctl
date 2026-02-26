@@ -1,5 +1,5 @@
 # IBM Cloud Pak for Data Command Line Interface
-**IBM Cloud Pak for Data Command Line Interface** (**IBM cpdctl**) is a command-line interface (CLI) you can use to manage the lifecycle of a model from IBM Cloud Pak for Data 3.0.1, 3.5, 4.x, and 5.x.
+**IBM Cloud Pak for Data Command Line Interface** (**IBM cpdctl**) is a command-line interface (CLI) you can use to manage the lifecycle of a model from IBM Cloud Pak for Data 4.x, and 5.x.
 > ![New in 1.4.0](https://img.shields.io/badge/New%20in-1.4.0-blue)
 >
 > **IBM cpdctl** now supports installation of Cloud Pak for Data on private cloud as well as Cloud Pak for Data as a Service (Cloud Pak for Data running on IBM Cloud).
@@ -39,18 +39,14 @@ then either:
 > ! ./cpdctl asset search --type-name asset --query '*:*'  --limit 5 --project-id $PROJECT_ID
 > ```
 * or **configure connection with on-premise Cloud Pak for Data**
-> When running `IBM cpdctl` against remote on-premise CP4D instance, you must provide connection information. 
-> 
 > **Note**: set variables `cpd_url`, `cpd_username`, and `cpd_apikey` before running these commands.
 > ```shell
 > ./cpdctl config profile set cpd --url $cpd_url --username $cpd_username --apikey $cpd_apikey
 > ./cpdctl config profile use cpd
 
 * or **configure connection with Cloud Pak for Data as a Service on IBM Cloud**
-> When running `IBM cpdctl` against CP4D instance hosted on IBM Cloud, you must provide connection information.
-> 
 > **Note**: set variable `ibmcloud_apikey` and optionally `region` before running these commands.
-> * default region (Dallas - `us-south`):
+> * default region (`us-south` - Dallas):
 > ```shell
 > ./cpdctl config profile set cpdaas --url https://cloud.ibm.com --apikey $ibmcloud_apikey 
 > ./cpdctl config profile use cpdaas
@@ -61,13 +57,24 @@ then either:
 > ./cpdctl config profile use cpdaas
 > ```
 
-* or **configure connection with Cloud Pak for Data as a Service on Amazon Web Services (AWS)**.
-> When running `IBM cpdctl` against CP4D instance hosted on AWS, you must provide connection information.
->
-> **Note**: set variables `aws_account_id` and `aws_apikey` before running these commands.
+* or **configure connection with Cloud Pak for Data as a Service on Amazon Web Services (AWS)**
+> **Note**: set variables `aws_account_id` and `aws_apikey` and optionally `region` before running these commands.
+> * default region (`ap-south-1` - Mumbai):
 > ```shell
 > ./cpdctl config profile set cpd-aws --url https://aws.data.ibm.com --auth-id $aws_account_id --apikey $aws_apikey
 > ./cpdctl config profile use cpd-aws
+> ```
+> * other regions (`us-east-1` for Virginia):
+> ```shell
+> ./cpdctl config profile set cpd-aws --url https://aws.data.ibm.com --auth-id $aws_account_id --apikey $aws_apikey --region $region
+> ./cpdctl config profile use cpd-aws
+> ```
+
+* or **configure connection with Cloud Pak for Data as a Service on GovCloud (FedRAMP)**.
+> **Note**: set variable `govcloud_apikey`  before running these commands.
+> ```shell
+> ./cpdctl config profile set govcloud --url https://dai.ibmforusgov.com --apikey $govcloud_apikey
+> ./cpdctl config profile use govcloud
 > ```
 
 ## Installation
@@ -259,6 +266,13 @@ Next, create profile with a specific URL of IBM Cloud Pak for Data instance and 
 > ./cpdctl config profile set cpd-aws --auth-id <account_id> --apikey=<apikey> --url https://aws.data.ibm.com [--auth-scope=<aws_auth_scope>] [--region <cloud_region>]
 > ```
 
+> ![New in 1.8.23](https://img.shields.io/badge/New%20in-1.8.23-blue)
+>
+> To configure profile to connect to Cloud Pak for Data as a Service on GovCloud:
+> ```
+> ./cpdctl config profile set govcloud --url https://dai.ibmforusgov.com --apikey <apikey>
+> ```
+
 Print list of profiles:
 ```
 $ ./cpdctl config profile list
@@ -277,54 +291,43 @@ In order to temporarily change current profile:
 * for a single command: use `--profile <profile>` flag,
 * for a terminal session or shell script: use `CPD_PROFILE` environment variable.
 
-### Support for IAM Service integration
-Cloud Pak for Data 4.0 introduces [LDAP integration provided by the Identity and Access Management Service](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-integrating-iam-service) (IAM Service) in IBM Cloud Pak® foundational services.
-**IBM cpdctl** supports authentication with IAM integration enabled and disabled.
-
-When IAM integration is enabled, **IBM cpdctl** must have the URL that is the route to the foundational services in order to authenticate users.
-When it is not specified, it is auto-discovered from IBM Cloud Pak for Data instance. In order to override the discovered route, use the following command:
-```shell
-./cpdctl config profile set <profile_name> --common-services-url <foundational-services-route>
-```
-To retrieve the foundational services route, log in to Red Hat® OpenShift® Container Platform and issue this command:
-```shell
-oc get route cp-console -n <foundational-services-ns> --template='{{ .spec.host }}'
-```
-where `<foundational-services-ns>` is the namespace of foundational services, by default `ibm-common-services`.
-
 ## Available commands
 ```
 $ ./cpdctl --help
-IBM Cloud Pak for Data Command Line Interface
+NAME:
+  cpdctl - IBM Cloud Pak for Data Command Line Interface
 
-Usage:
-  cpdctl [command]
+USAGE:
+  cpdctl [command] [options]
 
-Available Commands:
-  config        Manage Configuration
-  asset         Manage Assets
-  project       Manage Projects
-  space         Manage Spaces
-  connection    Manage IBM Watson Data Platform Connections service.
-  environment   Manage Environments and Runtimes API.
-  notebook      Manage Notebooks
-  job           Manage IBM Watson Data Platform Jobs and Scheduling Service.
-  ml            Manage Watson Machine Learning
-  datastage   Manage IBM APIs for DataStage.
-  find          Find a resource with CPD Path
-  version       Display the tool version
-  help          Help about any command
-  completion  generate the autocompletion script for the specified shell
+COMMANDS:
+  config         Manage Configuration
+  asset          Manage Assets
+  project        Manage Watson Studio - Projects API - OpenAPI Docs.
+  space          Manage Spaces
+  connection     Manage IBM Watson Data Platform Connections service.
+  environment    Manage Environments and Runtimes API.
+  notebook       Manage Notebooks API.
+  code-package   Manage Code Packages API.
+  job            Manage IBM Watson Data Platform Jobs and Scheduling Service.
+  ml             Manage Watson Machine Learning.
+  datastage      Manage IBM APIs for DataStage.
+  find           Find a resource with CPD Path
+  pipeline       Manage IBM Orchestration Pipelines API.
+  wx-data        Manage watsonx.data.
+  version        Display the tool version
+  wx-ai          Manage watsonx.ai.
+  completion     Generate the autocompletion script for the specified shell
 
-Flags:
-      --cpd-config string    Configuration file path
-      --cpdconfig string     [Deprecated] Use --cpd-config instead
-  -h, --help                 help for cpdctl
-      --profile string       Name of the configuration profile to use
-      --raw-output           If set to true, single values in JSON output mode are not surrounded by quotes
-  -v, --version              version for cpdctl
+OPTIONS:
+      --cpd-config string   Configuration file path
+      --cpdconfig string    [Deprecated] Use --cpd-config instead
+  -h, --help                Show help
+      --profile string      Name of the configuration profile to use
+      --raw-output          If set to true, single values in JSON output mode are not surrounded by quotes
+  -v, --version             Version of the plugin.
 
-Use "cpdctl [command] --help" for more information about a command.
+Use "cpdctl service-command --help" for more information about a command.
 ```
 Descriptions for all available commands along with examples showing the structure of complex parameters are provided in a [separate document](/README_command_reference.md).
 
