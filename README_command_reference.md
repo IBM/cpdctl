@@ -834,7 +834,7 @@ Edit an existing asset properties, if you have proper permissions. Who can edit 
  * source_system.last_modification_timestamp, Expected Format: "yyyy-MM-ddTHH:mm:ssX".
 
 ```sh
-cpdctl asset update --asset-id ASSET-ID [--json-patch JSON-PATCH | @JSON-PATCH-FILE] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl asset update --asset-id ASSET-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | (--classification CLASSIFICATION | @CLASSIFICATION-FILE) --description DESCRIPTION --name NAME --resource-key RESOURCE-KEY (--source-system SOURCE-SYSTEM | @SOURCE-SYSTEM-FILE) --tags TAGS} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
 ```
 
 #### Command options
@@ -1903,7 +1903,7 @@ cpdctl asset export get --export-id EXPORT-ID [{--space-id SPACE-ID | --space SP
 Retrieves the asset export list for the specified space, project, or catalog.
 
 ```sh
-cpdctl asset export list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--start START] [--limit LIMIT]
+cpdctl asset export list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--start START | --all-pages] [--limit LIMIT]
 ```
 
 #### Command options
@@ -1956,7 +1956,7 @@ cpdctl asset export list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--projec
 Starts the asset export process for the specified space, project, or catalog. On CPD 3.0.1 assets export is supported only in the context of a space.
 
 ```sh
-cpdctl asset export start [--assets (ASSETS | @ASSETS-FILE) | --assets-all-assets=ASSETS-ALL-ASSETS --assets-asset-ids ASSETS-ASSET-IDS --assets-asset-types ASSETS-ASSET-TYPES] [--description DESCRIPTION] [--encryption-key ENCRYPTION-KEY] [--format FORMAT] [--module-keys MODULE-KEYS] [--name NAME] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}]
+cpdctl asset export start [--assets (ASSETS | @ASSETS-FILE) | --assets-all-assets=ASSETS-ALL-ASSETS --assets-asset-ids ASSETS-ASSET-IDS --assets-asset-types ASSETS-ASSET-TYPES] [--description DESCRIPTION] [--encryption-key ENCRYPTION-KEY] [--format json | csv] [--module-keys MODULE-KEYS] [--name NAME] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}]
 ```
 
 #### Command options
@@ -2194,7 +2194,7 @@ cpdctl asset file download [command options]
 Returns a list of file paths (similar to S3 listObjects) for the provided project, catalog, space or account. Requires viewer or higher permission. Assets for a catalog are not retrievable by external users.
 
 ```sh
-cpdctl asset file list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--account-id ACCOUNT-ID] [{--space-id SPACE-ID | --space SPACE-NAME}] [--iam-id IAM-ID] [--limit LIMIT] [--offset OFFSET] [--flat=FLAT] [--hidden-files=HIDDEN-FILES] [--minimal=MINIMAL] [--root=ROOT] [--stream=STREAM]
+cpdctl asset file list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--account-id ACCOUNT-ID] [{--space-id SPACE-ID | --space SPACE-NAME}] [--iam-id IAM-ID] [--limit LIMIT] [--offset OFFSET | --all-pages] [--flat=FLAT] [--hidden-files=HIDDEN-FILES] [--minimal=MINIMAL] [--root=ROOT] [--stream=STREAM]
 ```
 
 #### Command options
@@ -2286,7 +2286,7 @@ cpdctl asset file list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--
 Uploads the bytes into the file with the provided file name using HTTP multi-part format, creating a new file if missing, overriding if existing (unless override=false). Assets cannot be uploaded to a catalog by external users. Adding project or space assets accepts all formats that grant editor access or higher. Adding to accounts requires a user with account admin access. This endpoint supports authentication via signature parameter. See 'Get auth signature' call for more info on signed urls.
 
 ```sh
-cpdctl asset file upload --path PATH [--file FILE] [--file-content-type FILE-CONTENT-TYPE] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--account-id ACCOUNT-ID] [{--space-id SPACE-ID | --space SPACE-NAME}] [--iam-id IAM-ID] [--override=OVERRIDE] [--signature SIGNATURE] [--inflate=INFLATE] [--inflate-mode INFLATE-MODE] [--ensure-dir=ENSURE-DIR] [--root=ROOT]
+cpdctl asset file upload --path PATH [--file FILE] [--file-content-type FILE-CONTENT-TYPE] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--account-id ACCOUNT-ID] [{--space-id SPACE-ID | --space SPACE-NAME}] [--iam-id IAM-ID] [--override=OVERRIDE] [--signature SIGNATURE] [--inflate=INFLATE] [--inflate-mode default | inline | overwrite | skip | rename] [--ensure-dir=ENSURE-DIR] [--root=ROOT]
 ```
 
 #### Command options
@@ -2471,7 +2471,7 @@ cpdctl asset import get --import-id IMPORT-ID [{--space-id SPACE-ID | --space SP
 Retrieves the asset import list for the specified space, project, or catalog.
 
 ```sh
-cpdctl asset import list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--start START] [--limit LIMIT]
+cpdctl asset import list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--start START | --all-pages] [--limit LIMIT]
 ```
 
 #### Command options
@@ -2524,7 +2524,7 @@ cpdctl asset import list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--projec
 Starts the asset import process for the specified space, project, or catalog. On CPD 3.0.1 assets import is supported only in the context of a space.
 
 ```sh
-cpdctl asset import start --import-file IMPORT-FILE [--file-content-type FILE-CONTENT-TYPE] [--encryption-key ENCRYPTION-KEY] [--format FORMAT] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}]
+cpdctl asset import start --import-file IMPORT-FILE [--file-content-type FILE-CONTENT-TYPE] [--encryption-key ENCRYPTION-KEY] [--format json | csv] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}]
 ```
 
 #### Command options
@@ -4069,6 +4069,12 @@ cpdctl connection discover-adhoc [command options]
 `--interaction-properties` ([`ConnectionInteractionProperties`](#cli-connection-interaction-properties-example-schema))
 :   Interaction properties allowed for a connection.
 
+`--interaction-properties-source` ([`DatasourceTypeProperty[]`](#cli-datasource-type-property-example-schema))
+:   The properties that can be set for a source interaction. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--interaction-properties-target` ([`DatasourceTypeProperty[]`](#cli-datasource-type-property-example-schema))
+:   The properties that can be set for a target interaction. It should be a JSON string or a path to a JSON file prepended with @.
+
 `--limit` (int64)
 :   The limit of the number of items to return, for example limit=50. If not specified a default of 100 will be  used.
 
@@ -4076,12 +4082,6 @@ cpdctl connection discover-adhoc [command options]
 
 `--name` (string)
 :   The name of the connection.
-
-`--new-interaction-properties-source` ([`DatasourceTypeProperty[]`](#cli-datasource-type-property-example-schema))
-:   The properties that can be set for a source interaction.
-
-`--new-interaction-properties-target` ([`DatasourceTypeProperty[]`](#cli-datasource-type-property-example-schema))
-:   The properties that can be set for a target interaction.
 
 `--new-location-definition` ([`LocationDefinition`](#cli-location-definition-example-schema))
 :   Indicates the location used by this connection.
@@ -4091,16 +4091,6 @@ cpdctl connection discover-adhoc [command options]
 
 `--new-location-definition-sovereign-location-code` (string)
 :   The code of the sovereign location.
-
-`--new-rov-mode` (int64)
-:   The Rules of Visibility mode. Value can be:
-
-| mode | description|
-| 0    | Connection is searchable and viewable by everyone with access to the catalog or project associated with this connection |
-| 8    | Connection is searchable by everyone and cannot be viewed unless the user has proper view permissions |
-| 16   | Connection is searchable by users with proper view permissions |.
-
-    The default value is `0`.
 
 `--new-source-system` (generic map)
 :   Custom data to be associated with a given object.
@@ -4130,6 +4120,16 @@ cpdctl connection discover-adhoc [command options]
 
 `--rov` ([`ConnectionRov`](#cli-connection-rov-example-schema))
 :   Rules of visibility for connections.
+
+`--rov-mode` (int64)
+:   The Rules of Visibility mode. Value can be:
+
+| mode | description|
+| 0    | Connection is searchable and viewable by everyone with access to the catalog or project associated with this connection |
+| 8    | Connection is searchable by everyone and cannot be viewed unless the user has proper view permissions |
+| 16   | Connection is searchable by users with proper view permissions |.
+
+    The default value is `0`.
 
 `--tags` (string)
 :   A list of tags.
@@ -4168,7 +4168,7 @@ cpdctl connection discover-adhoc [command options]
 Discover a data asset.
 
 ```sh
-cpdctl connection discover-data-asset --data-asset-id DATA-ASSET-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--limit LIMIT] [--offset OFFSET] [--fetch FETCH] [--detail=DETAIL] [--context CONTEXT] [--properties PROPERTIES] [--filters FILTERS] [--path PATH]
+cpdctl connection discover-data-asset --data-asset-id DATA-ASSET-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--limit LIMIT] [--offset OFFSET] [--fetch FETCH] [--detail=DETAIL] [--context source | target] [--properties PROPERTIES] [--filters FILTERS] [--path PATH]
 ```
 
 #### Command options
@@ -4339,7 +4339,7 @@ Adding the name of a flag to entity.flags will add the connections  with that fl
 Adding the name of a flag to entity.flags with a minus sign (-) prefix will remove those connections with that flag from the list  results. All additions are done before the subtractions.
 
 ```sh
-cpdctl connection list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START] [--limit LIMIT] [--metadata-creator METADATA-CREATOR] [--entity-name ENTITY-NAME] [--entity-datasource-type ENTITY-DATASOURCE-TYPE] [--entity-context ENTITY-CONTEXT] [--entity-properties ENTITY-PROPERTIES] [--entity-flags ENTITY-FLAGS] [--inject-token=INJECT-TOKEN]
+cpdctl connection list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--metadata-creator METADATA-CREATOR] [--entity-name ENTITY-NAME] [--entity-datasource-type ENTITY-DATASOURCE-TYPE] [--entity-context ENTITY-CONTEXT] [--entity-properties ENTITY-PROPERTIES] [--entity-flags ENTITY-FLAGS] [--inject-token=INJECT-TOKEN]
 ```
 
 #### Command options
@@ -4475,7 +4475,7 @@ cpdctl connection list-actions {--connection-id CONNECTION-ID | --connection CON
 Performs an action on the data source accessed using the connection.
 
 ```sh
-cpdctl connection perform-action {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} --action-name ACTION-NAME --request REQUEST | @REQUEST-FILE [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl connection perform-action {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} --action-name get_oauth2_tokens | get_record_count | get_signed_url | test | validate --request REQUEST | @REQUEST-FILE [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
 ```
 
 #### Command options
@@ -4597,7 +4597,7 @@ cpdctl connection update {--connection-id CONNECTION-ID | --connection CONNECTIO
 Get details for type of data source.
 
 ```sh
-cpdctl connection datasource-type get --datasource-type DATASOURCE-TYPE [--accept-language ACCEPT-LANGUAGE] [--connection-properties=CONNECTION-PROPERTIES] [--interaction-properties=INTERACTION-PROPERTIES] [--discovery=DISCOVERY] [--actions=ACTIONS] [--entity-environment ENTITY-ENVIRONMENT] [--entity-product ENTITY-PRODUCT] [--product-selector-scope PRODUCT-SELECTOR-SCOPE] [--generate-transitive-conditions=GENERATE-TRANSITIVE-CONDITIONS]
+cpdctl connection datasource-type get --datasource-type DATASOURCE-TYPE [--accept-language ACCEPT-LANGUAGE] [--connection-properties=CONNECTION-PROPERTIES] [--interaction-properties=INTERACTION-PROPERTIES] [--discovery=DISCOVERY] [--actions=ACTIONS] [--entity-environment ENTITY-ENVIRONMENT] [--entity-product ENTITY-PRODUCT] [--product-selector-scope global | context] [--generate-transitive-conditions=GENERATE-TRANSITIVE-CONDITIONS]
 ```
 
 #### Command options
@@ -4668,7 +4668,7 @@ The following fields are available for use with the sort parameter:
 | entity.type  | The major type of the data source type.              |.
 
 ```sh
-cpdctl connection datasource-type list [--accept-language ACCEPT-LANGUAGE] [--sort SORT] [--offset OFFSET] [--limit LIMIT] [--connection-properties=CONNECTION-PROPERTIES] [--interaction-properties=INTERACTION-PROPERTIES] [--discovery=DISCOVERY] [--actions=ACTIONS] [--entity-environment ENTITY-ENVIRONMENT] [--entity-product ENTITY-PRODUCT] [--product-selector-scope PRODUCT-SELECTOR-SCOPE] [--generate-transitive-conditions=GENERATE-TRANSITIVE-CONDITIONS]
+cpdctl connection datasource-type list [--accept-language ACCEPT-LANGUAGE] [--sort SORT] [--offset OFFSET | --all-pages] [--limit LIMIT] [--connection-properties=CONNECTION-PROPERTIES] [--interaction-properties=INTERACTION-PROPERTIES] [--discovery=DISCOVERY] [--actions=ACTIONS] [--entity-environment ENTITY-ENVIRONMENT] [--entity-product ENTITY-PRODUCT] [--product-selector-scope global | context] [--generate-transitive-conditions=GENERATE-TRANSITIVE-CONDITIONS]
 ```
 
 #### Command options
@@ -5021,37 +5021,37 @@ cpdctl datastage flow create [command options]
 `--pipeline-flow` ([`PipelineJSON`](#cli-pipeline-json-example-schema))
 :   Pipeline flow to be stored.
 
-`--pipeline-flows-app-data` (generic map)
-:   Object containing app-specific data.
+`--pipeline-flow-app-data` (generic map)
+:   Object containing app-specific data. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-doc-type` (string)
+`--pipeline-flow-doc-type` (string)
 :   The document type.
 
-`--pipeline-flows-external-paramsets` ([]map[string]interface{})
-:   Array of parameter set references.
+`--pipeline-flow-external-paramsets` ([]map[string]interface{})
+:   Array of parameter set references. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-id` (string)
+`--pipeline-flow-id` (string)
 :   Document identifier, GUID recommended.
 
-`--pipeline-flows-json-schema` (string)
+`--pipeline-flow-json-schema` (string)
 :   Refers to the JSON schema used to validate documents of this type.
 
-`--pipeline-flows-parameters` (generic map)
-:   Parameters for the flow document.
+`--pipeline-flow-parameters` (generic map)
+:   Parameters for the flow document. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-pipelines` ([`Pipelines[]`](#cli-pipelines-example-schema))
-:   null It can also be a path to a JSON file.
+`--pipeline-flow-pipelines` ([`Pipelines[]`](#cli-pipelines-example-schema))
+:   null It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-primary-pipeline` (string)
+`--pipeline-flow-primary-pipeline` (string)
 :   Reference to the primary (main) pipeline flow within the document.
 
-`--pipeline-flows-runtimes` ([]map[string]interface{})
-:   Runtime information for pipeline flow.
+`--pipeline-flow-runtimes` ([]map[string]interface{})
+:   Runtime information for pipeline flow. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-schemas` ([]map[string]interface{})
-:   Array of data record schemas used in the pipeline.
+`--pipeline-flow-schemas` ([]map[string]interface{})
+:   Array of data record schemas used in the pipeline. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-version` (string)
+`--pipeline-flow-version` (string)
 :   Pipeline flow version.
 
 `--project` (string)
@@ -5240,7 +5240,7 @@ To sort the results, use one or more of the parameters  described in the followi
 Multiple sort keys can be specified by delimiting them with a comma. For example, to sort in descending order on `create_time` and then in ascending order on name use: `sort=-metadata.create_time`,`+entity.name`.
 
 ```sh
-cpdctl datastage flow list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START] [--limit LIMIT] [--name NAME] [--description DESCRIPTION]
+cpdctl datastage flow list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--name NAME] [--description DESCRIPTION]
 ```
 
 #### Command options
@@ -5385,37 +5385,37 @@ cpdctl datastage flow update [command options]
 `--pipeline-flow` ([`PipelineJSON`](#cli-pipeline-json-example-schema))
 :   Pipeline flow to be stored.
 
-`--pipeline-flows-app-data` (generic map)
-:   Object containing app-specific data.
+`--pipeline-flow-app-data` (generic map)
+:   Object containing app-specific data. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-doc-type` (string)
+`--pipeline-flow-doc-type` (string)
 :   The document type.
 
-`--pipeline-flows-external-paramsets` ([]map[string]interface{})
-:   Array of parameter set references.
+`--pipeline-flow-external-paramsets` ([]map[string]interface{})
+:   Array of parameter set references. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-id` (string)
+`--pipeline-flow-id` (string)
 :   Document identifier, GUID recommended.
 
-`--pipeline-flows-json-schema` (string)
+`--pipeline-flow-json-schema` (string)
 :   Refers to the JSON schema used to validate documents of this type.
 
-`--pipeline-flows-parameters` (generic map)
-:   Parameters for the flow document.
+`--pipeline-flow-parameters` (generic map)
+:   Parameters for the flow document. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-pipelines` ([`Pipelines[]`](#cli-pipelines-example-schema))
-:   null It can also be a path to a JSON file.
+`--pipeline-flow-pipelines` ([`Pipelines[]`](#cli-pipelines-example-schema))
+:   null It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-primary-pipeline` (string)
+`--pipeline-flow-primary-pipeline` (string)
 :   Reference to the primary (main) pipeline flow within the document.
 
-`--pipeline-flows-runtimes` ([]map[string]interface{})
-:   Runtime information for pipeline flow.
+`--pipeline-flow-runtimes` ([]map[string]interface{})
+:   Runtime information for pipeline flow. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-schemas` ([]map[string]interface{})
-:   Array of data record schemas used in the pipeline.
+`--pipeline-flow-schemas` ([]map[string]interface{})
+:   Array of data record schemas used in the pipeline. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-version` (string)
+`--pipeline-flow-version` (string)
 :   Pipeline flow version.
 
 `--project` (string)
@@ -5591,7 +5591,7 @@ cpdctl datastage migration create [command options]
 Creates data flows from the attached job export file. This is an asynchronous call. The API call returns almost immediately which does not necessarily imply the completion of the import request. It only means that the import request has been accepted. The status field of the import request is included in the import response object. The status "completed" ("in_progress", "failed", resp.) indicates the import request is completed (in progress, and failed, resp.) The job export file for an import request may contain one mor more data flows. Unless the on_failure option is set to "stop", a completed import request may contain not only successfully imported data flows but also data flows that cannot be imported.
 
 ```sh
-cpdctl datastage migration create-from-zip --body BODY [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--on-failure ON-FAILURE] [--conflict-resolution CONFLICT-RESOLUTION] [--file-name FILE-NAME] [--enable-notification=ENABLE-NOTIFICATION] [--import-only=IMPORT-ONLY] [--include-dependencies=INCLUDE-DEPENDENCIES] [--asset-type ASSET-TYPE] [--skip-dependencies SKIP-DEPENDENCIES] [--replace-mode REPLACE-MODE] [--x-migration-enc-key X-MIGRATION-ENC-KEY]
+cpdctl datastage migration create-from-zip --body BODY [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--on-failure continue | stop] [--conflict-resolution skip | rename | replace | rename_replace] [--file-name FILE-NAME] [--enable-notification=ENABLE-NOTIFICATION] [--import-only=IMPORT-ONLY] [--include-dependencies=INCLUDE-DEPENDENCIES] [--asset-type ASSET-TYPE] [--skip-dependencies SKIP-DEPENDENCIES] [--replace-mode soft | hard] [--x-migration-enc-key X-MIGRATION-ENC-KEY]
 ```
 
 #### Command options
@@ -5864,7 +5864,7 @@ cpdctl datastage migration export-flows-with-dependencies --flows FLOWS | @FLOWS
 Gets the status of an import request. The status field in the response object indicates if the given import is completed, in progress, or failed. Detailed status information about each imported data flow is also contained in the response object.
 
 ```sh
-cpdctl datastage migration get --import-id IMPORT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--format FORMAT]
+cpdctl datastage migration get --import-id IMPORT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--format json | csv]
 ```
 
 #### Command options
@@ -5910,7 +5910,7 @@ cpdctl datastage migration get --import-id IMPORT-ID [{--catalog-id CATALOG-ID |
 Gets the status of an import request. The status field in the response object indicates if the given import is completed, in progress, or failed. Detailed status information about each imported data flow is also contained in the response object.
 
 ```sh
-cpdctl datastage migration get-zip --import-id IMPORT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--format FORMAT]
+cpdctl datastage migration get-zip --import-id IMPORT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--format json | csv]
 ```
 
 #### Command options
@@ -6025,37 +6025,37 @@ cpdctl datastage subflow create [command options]
 `--pipeline-flow` ([`PipelineJSON`](#cli-pipeline-json-example-schema))
 :   Pipeline flow to be stored.
 
-`--pipeline-flows-app-data` (generic map)
-:   Object containing app-specific data.
+`--pipeline-flow-app-data` (generic map)
+:   Object containing app-specific data. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-doc-type` (string)
+`--pipeline-flow-doc-type` (string)
 :   The document type.
 
-`--pipeline-flows-external-paramsets` ([]map[string]interface{})
-:   Array of parameter set references.
+`--pipeline-flow-external-paramsets` ([]map[string]interface{})
+:   Array of parameter set references. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-id` (string)
+`--pipeline-flow-id` (string)
 :   Document identifier, GUID recommended.
 
-`--pipeline-flows-json-schema` (string)
+`--pipeline-flow-json-schema` (string)
 :   Refers to the JSON schema used to validate documents of this type.
 
-`--pipeline-flows-parameters` (generic map)
-:   Parameters for the flow document.
+`--pipeline-flow-parameters` (generic map)
+:   Parameters for the flow document. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-pipelines` ([`Pipelines[]`](#cli-pipelines-example-schema))
-:   null It can also be a path to a JSON file.
+`--pipeline-flow-pipelines` ([`Pipelines[]`](#cli-pipelines-example-schema))
+:   null It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-primary-pipeline` (string)
+`--pipeline-flow-primary-pipeline` (string)
 :   Reference to the primary (main) pipeline flow within the document.
 
-`--pipeline-flows-runtimes` ([]map[string]interface{})
-:   Runtime information for pipeline flow.
+`--pipeline-flow-runtimes` ([]map[string]interface{})
+:   Runtime information for pipeline flow. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-schemas` ([]map[string]interface{})
-:   Array of data record schemas used in the pipeline.
+`--pipeline-flow-schemas` ([]map[string]interface{})
+:   Array of data record schemas used in the pipeline. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-version` (string)
+`--pipeline-flow-version` (string)
 :   Pipeline flow version.
 
 `--project` (string)
@@ -6189,7 +6189,7 @@ To sort the results, use one or more of the parameters  described in the followi
 Multiple sort keys can be specified by delimiting them with a comma. For example, to sort in descending order on `create_time` and then in ascending order on name use: `sort=-metadata.create_time`,`+entity.name`.
 
 ```sh
-cpdctl datastage subflow list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START] [--limit LIMIT] [--name NAME] [--description DESCRIPTION]
+cpdctl datastage subflow list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--name NAME] [--description DESCRIPTION]
 ```
 
 #### Command options
@@ -6331,37 +6331,37 @@ cpdctl datastage subflow update [command options]
 `--pipeline-flow` ([`PipelineJSON`](#cli-pipeline-json-example-schema))
 :   Pipeline flow to be stored.
 
-`--pipeline-flows-app-data` (generic map)
-:   Object containing app-specific data.
+`--pipeline-flow-app-data` (generic map)
+:   Object containing app-specific data. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-doc-type` (string)
+`--pipeline-flow-doc-type` (string)
 :   The document type.
 
-`--pipeline-flows-external-paramsets` ([]map[string]interface{})
-:   Array of parameter set references.
+`--pipeline-flow-external-paramsets` ([]map[string]interface{})
+:   Array of parameter set references. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-id` (string)
+`--pipeline-flow-id` (string)
 :   Document identifier, GUID recommended.
 
-`--pipeline-flows-json-schema` (string)
+`--pipeline-flow-json-schema` (string)
 :   Refers to the JSON schema used to validate documents of this type.
 
-`--pipeline-flows-parameters` (generic map)
-:   Parameters for the flow document.
+`--pipeline-flow-parameters` (generic map)
+:   Parameters for the flow document. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-pipelines` ([`Pipelines[]`](#cli-pipelines-example-schema))
-:   null It can also be a path to a JSON file.
+`--pipeline-flow-pipelines` ([`Pipelines[]`](#cli-pipelines-example-schema))
+:   null It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-primary-pipeline` (string)
+`--pipeline-flow-primary-pipeline` (string)
 :   Reference to the primary (main) pipeline flow within the document.
 
-`--pipeline-flows-runtimes` ([]map[string]interface{})
-:   Runtime information for pipeline flow.
+`--pipeline-flow-runtimes` ([]map[string]interface{})
+:   Runtime information for pipeline flow. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-schemas` ([]map[string]interface{})
-:   Array of data record schemas used in the pipeline.
+`--pipeline-flow-schemas` ([]map[string]interface{})
+:   Array of data record schemas used in the pipeline. It should be a JSON string or a path to a JSON file prepended with @.
 
-`--pipeline-flows-version` (string)
+`--pipeline-flow-version` (string)
 :   Pipeline flow version.
 
 `--project` (string)
@@ -6437,7 +6437,7 @@ cpdctl datastage table-definition clone --table-definition-id TABLE-DEFINITION-I
 Creates a table definition in the specified project or catalog (either project_id or catalog_id must be set). All subsequent calls to use the parameter set must specify the project or catalog ID the table definition was created in.
 
 ```sh
-cpdctl datastage table-definition create [--entity (ENTITY | @ENTITY-FILE) | --entity-column-info ENTITY-COLUMN-INFO --entity-data-asset ENTITY-DATA-ASSET --entity-data-definition ENTITY-DATA-DEFINITION --entity-directory-asset ENTITY-DIRECTORY-ASSET --entity-ds-info ENTITY-DS-INFO] [--metadata (METADATA | @METADATA-FILE) | --metadata-description METADATA-DESCRIPTION --metadata-name METADATA-NAME] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [--asset-category ASSET-CATEGORY]
+cpdctl datastage table-definition create {--entity (ENTITY | @ENTITY-FILE) | (--entity-column-info ENTITY-COLUMN-INFO | @ENTITY-COLUMN-INFO-FILE) (--entity-data-asset ENTITY-DATA-ASSET | @ENTITY-DATA-ASSET-FILE) (--entity-data-definition ENTITY-DATA-DEFINITION | @ENTITY-DATA-DEFINITION-FILE) (--entity-directory-asset ENTITY-DIRECTORY-ASSET | @ENTITY-DIRECTORY-ASSET-FILE) (--entity-ds-info ENTITY-DS-INFO | @ENTITY-DS-INFO-FILE)} {--metadata (METADATA | @METADATA-FILE) | --metadata-description METADATA-DESCRIPTION --metadata-name METADATA-NAME} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [--asset-category SYSTEM | USER]
 ```
 
 #### Command options
@@ -6612,7 +6612,7 @@ To sort the returned results, use one or more of the parameters described in the
 Multiple sort keys can be specified by delimiting them with a comma. For example, to sort in descending order on create_time and then in ascending order on name use: `?sort=-metadata.create_time,+asset.name.
 
 ```sh
-cpdctl datastage table-definition list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START] [--limit LIMIT] [--name NAME] [--description DESCRIPTION]
+cpdctl datastage table-definition list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--name NAME] [--description DESCRIPTION]
 ```
 
 #### Command options
@@ -6677,7 +6677,7 @@ cpdctl datastage table-definition list [{--catalog-id CATALOG-ID | --catalog CAT
 Replace the contents of a table definition in the specified project or catalog (either project_id or catalog_id must be set).
 
 ```sh
-cpdctl datastage table-definition replace --table-definition-id TABLE-DEFINITION-ID [--entity (ENTITY | @ENTITY-FILE) | --entity-column-info ENTITY-COLUMN-INFO --entity-data-asset ENTITY-DATA-ASSET --entity-data-definition ENTITY-DATA-DEFINITION --entity-directory-asset ENTITY-DIRECTORY-ASSET --entity-ds-info ENTITY-DS-INFO] [--metadata (METADATA | @METADATA-FILE) | --metadata-description METADATA-DESCRIPTION --metadata-name METADATA-NAME] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage table-definition replace --table-definition-id TABLE-DEFINITION-ID {--entity (ENTITY | @ENTITY-FILE) | (--entity-column-info ENTITY-COLUMN-INFO | @ENTITY-COLUMN-INFO-FILE) (--entity-data-asset ENTITY-DATA-ASSET | @ENTITY-DATA-ASSET-FILE) (--entity-data-definition ENTITY-DATA-DEFINITION | @ENTITY-DATA-DEFINITION-FILE) (--entity-directory-asset ENTITY-DIRECTORY-ASSET | @ENTITY-DIRECTORY-ASSET-FILE) (--entity-ds-info ENTITY-DS-INFO | @ENTITY-DS-INFO-FILE)} {--metadata (METADATA | @METADATA-FILE) | --metadata-description METADATA-DESCRIPTION --metadata-name METADATA-NAME} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
 ```
 
 #### Command options
@@ -7999,7 +7999,7 @@ The new package extension is created in the given project or space, depending on
 `POST /v2/package_extensions/{package_extension_guid}/upload_complete` to indicate the API that the package extension is usable. If the `/upload_complete` returns successfully, the package extension is usable, i.e., can be assigned to a software specification.
 
 ```sh
-cpdctl environment package-extension create --name NAME --type TYPE [--description DESCRIPTION] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment package-extension create --name NAME --type pip_zip | conda_yml [--description DESCRIPTION] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -8118,7 +8118,7 @@ List all Package Extensions.
 Returns all package extensions within the given project or space. Authorization rules for package extensions follow those of `/v2/assets` for projects or spaces.
 
 ```sh
-cpdctl environment package-extension list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--name NAME] [--type TYPE]
+cpdctl environment package-extension list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--name NAME] [--type conda_yml | pip_zip]
 ```
 
 #### Command options
@@ -8157,7 +8157,7 @@ cpdctl environment package-extension list [{--space-id SPACE-ID | --space SPACE-
 Update a package extension. Authorization rules for package extensions follow those of `/v2/assets` for projects or spaces.
 
 ```sh
-cpdctl environment package-extension update --package-extension-id PACKAGE-EXTENSION-ID [--type TYPE] [--description DESCRIPTION] [--name NAME] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment package-extension update --package-extension-id PACKAGE-EXTENSION-ID [--type conda_yml | pip_zip] [--description DESCRIPTION] [--name NAME] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -8366,7 +8366,7 @@ You can add any number of references to package extensions while creating a soft
 Authorization rules for (1) and (2) follow those for `/v2/assets` for projects and spaces, respectively. Alternatively, the request is authorized for a valid authentication by Service Auth. Only WSL/CPD administrators are authorized to make a request of type (3) - global custom software specifications. Alternatively, the request is authorized for a valid authentication by Service Auth.
 
 ```sh
-cpdctl environment software-specification create --name NAME [--software-configuration (SOFTWARE-CONFIGURATION | @SOFTWARE-CONFIGURATION-FILE) | --software-configuration-included-packages SOFTWARE-CONFIGURATION-INCLUDED-PACKAGES --software-configuration-platform SOFTWARE-CONFIGURATION-PLATFORM] [--base-software-specification (BASE-SOFTWARE-SPECIFICATION | @BASE-SOFTWARE-SPECIFICATION-FILE) | --base-software-specification-guid BASE-SOFTWARE-SPECIFICATION-GUID --base-software-specification-href BASE-SOFTWARE-SPECIFICATION-HREF] [--description DESCRIPTION] [--package-extensions PACKAGE-EXTENSIONS | @PACKAGE-EXTENSIONS-FILE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment software-specification create --name NAME {--software-configuration (SOFTWARE-CONFIGURATION | @SOFTWARE-CONFIGURATION-FILE) | (--software-configuration-included-packages SOFTWARE-CONFIGURATION-INCLUDED-PACKAGES | @SOFTWARE-CONFIGURATION-INCLUDED-PACKAGES-FILE) (--software-configuration-platform SOFTWARE-CONFIGURATION-PLATFORM | @SOFTWARE-CONFIGURATION-PLATFORM-FILE)} [--base-software-specification (BASE-SOFTWARE-SPECIFICATION | @BASE-SOFTWARE-SPECIFICATION-FILE) | --base-software-specification-guid BASE-SOFTWARE-SPECIFICATION-GUID --base-software-specification-href BASE-SOFTWARE-SPECIFICATION-HREF] [--description DESCRIPTION] [--package-extensions PACKAGE-EXTENSIONS | @PACKAGE-EXTENSIONS-FILE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -8717,7 +8717,7 @@ cpdctl job bulk-delete --job-ids JOB-IDS [{--project-id PROJECT-ID | --project P
 Creates a new job in the specified project or space (either project_id or space_id must be set).
 
 ```sh
-cpdctl job create [--job (JOB | @JOB-FILE) | --job-asset-ref JOB-ASSET-REF --job-asset-ref-type JOB-ASSET-REF-TYPE --job-configuration JOB-CONFIGURATION --job-description JOB-DESCRIPTION --job-job-parameters JOB-JOB-PARAMETERS --job-name JOB-NAME --job-parameter-sets JOB-PARAMETER-SETS --job-retention-policy JOB-RETENTION-POLICY --job-schedule JOB-SCHEDULE --job-schedule-info JOB-SCHEDULE-INFO --job-serving-name JOB-SERVING-NAME] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl job create [--job (JOB | @JOB-FILE) | --job-asset-ref JOB-ASSET-REF --job-asset-ref-type JOB-ASSET-REF-TYPE (--job-configuration JOB-CONFIGURATION | @JOB-CONFIGURATION-FILE) --job-description JOB-DESCRIPTION (--job-job-parameters JOB-JOB-PARAMETERS | @JOB-JOB-PARAMETERS-FILE) --job-name JOB-NAME (--job-parameter-sets JOB-PARAMETER-SETS | @JOB-PARAMETER-SETS-FILE) (--job-retention-policy JOB-RETENTION-POLICY | @JOB-RETENTION-POLICY-FILE) --job-schedule JOB-SCHEDULE (--job-schedule-info JOB-SCHEDULE-INFO | @JOB-SCHEDULE-INFO-FILE) --job-serving-name JOB-SERVING-NAME] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
 ```
 
 #### Command options
@@ -8935,7 +8935,7 @@ cpdctl job serving-name --name NAME
 Updates specific attributes of a job in the specified project or space (either project_id or space_id must be set). You must specify the updates by using the JSON patch format, described in RFC 6902. Use 'last_run_initiator' for the initiator of the last job run, use 'last_run_status' for the status of the last job run.
 
 ```sh
-cpdctl job update {--job-id JOB-ID | --job JOB-NAME} [--body BODY | @BODY-FILE] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl job update {--job-id JOB-ID | --job JOB-NAME} {--body (BODY | @BODY-FILE) | (--configuration CONFIGURATION | @CONFIGURATION-FILE) --description DESCRIPTION --name NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
 ```
 
 #### Command options
@@ -9034,7 +9034,7 @@ cpdctl job run cancel {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --ru
 Starts the specified job contained in a project or space (either project_id or space_id must be set).
 
 ```sh
-cpdctl job run create --job-id JOB-ID [--job-run (JOB-RUN | @JOB-RUN-FILE) | --job-run-configuration JOB-RUN-CONFIGURATION --job-run-description JOB-RUN-DESCRIPTION --job-run-job-parameters JOB-RUN-JOB-PARAMETERS --job-run-name JOB-RUN-NAME --job-run-parameter-sets JOB-RUN-PARAMETER-SETS] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl job run create --job-id JOB-ID {--job-run (JOB-RUN | @JOB-RUN-FILE) | (--job-run-configuration JOB-RUN-CONFIGURATION | @JOB-RUN-CONFIGURATION-FILE) --job-run-description JOB-RUN-DESCRIPTION (--job-run-job-parameters JOB-RUN-JOB-PARAMETERS | @JOB-RUN-JOB-PARAMETERS-FILE) --job-run-name JOB-RUN-NAME (--job-run-parameter-sets JOB-RUN-PARAMETER-SETS | @JOB-RUN-PARAMETER-SETS-FILE)} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
 ```
 
 #### Command options
@@ -9225,7 +9225,7 @@ cpdctl job run get {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run R
 Lists the job runs for a specific job in the specified project or space (either project_id or space_id must be set). Only the metadata and certain elements of the entity component of each run are returned.
 
 ```sh
-cpdctl job run list {--job-id JOB-ID | --job JOB-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--next NEXT] [--limit LIMIT] [--states STATES]
+cpdctl job run list {--job-id JOB-ID | --job JOB-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--next NEXT] [--limit LIMIT] [--states Queued,Starting,Running,Paused,Resuming,Canceling,Canceled,Failed,Completed,CompletedWithErrors,CompletedWithWarnings]
 ```
 
 #### Command options
@@ -9796,7 +9796,7 @@ In case of online deployments, using PATCH operation of `/ml/v4/deployments`, us
 In the case of an online deployment, the PATCH operation with path specified as `/online/parameters` can be used to update the `serving_name`. In the case of a Shiny deployment, the PATCH operation with path specified as `/r_shiny/parameters` can be used to update the `serving_name`.
 
 ```sh
-cpdctl ml deployment update --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID | --space SPACE-NAME} [--json-patch JSON-PATCH | @JSON-PATCH-FILE]
+cpdctl ml deployment update --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID | --space SPACE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--asset ASSET | @ASSET-FILE) (--hardware-spec HARDWARE-SPEC | @HARDWARE-SPEC-FILE) (--hybrid-pipeline-hardware-specs HYBRID-PIPELINE-HARDWARE-SPECS | @HYBRID-PIPELINE-HARDWARE-SPECS-FILE) (--r-shiny R-SHINY | @R-SHINY-FILE)}
 ```
 
 #### Command options
@@ -10382,7 +10382,7 @@ cpdctl ml deployment-job-definition get --job-definition-id JOB-DEFINITION-ID {-
 Retrieve the deployment job definitions for the specified space.
 
 ```sh
-cpdctl ml deployment-job-definition list {--space-id SPACE-ID | --space SPACE-NAME} [--start START] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
+cpdctl ml deployment-job-definition list {--space-id SPACE-ID | --space SPACE-NAME} [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
 ```
 
 #### Command options
@@ -10430,7 +10430,7 @@ cpdctl ml deployment-job-definition list {--space-id SPACE-ID | --space SPACE-NA
 Retrieve the deployment job definition revisions. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml deployment-job-definition list-revisions --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [--start START] [--limit LIMIT]
+cpdctl ml deployment-job-definition list-revisions --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [--start START | --all-pages] [--limit LIMIT]
 ```
 
 #### Command options
@@ -10479,7 +10479,7 @@ Update the deployment job definition with the provided patch data. The following
 - `/deployment`.
 
 ```sh
-cpdctl ml deployment-job-definition update --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [--json-patch JSON-PATCH | @JSON-PATCH-FILE]
+cpdctl ml deployment-job-definition update --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--deployment DEPLOYMENT | @DEPLOYMENT-FILE)}
 ```
 
 #### Command options
@@ -10529,7 +10529,7 @@ cpdctl ml deployment-job-definition update --job-definition-id JOB-DEFINITION-ID
 Create a new experiment with the given payload. An experiment represents an asset that captures a set of `pipeline` or `model definition` assets that will be trained at the same time on the same data set.
 
 ```sh
-cpdctl ml experiment create --name NAME [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--tags TAGS] [--label-column LABEL-COLUMN] [--evaluation-definition (EVALUATION-DEFINITION | @EVALUATION-DEFINITION-FILE) | --evaluation-definition-method EVALUATION-DEFINITION-METHOD --evaluation-definition-metrics EVALUATION-DEFINITION-METRICS] [--training-references TRAINING-REFERENCES | @TRAINING-REFERENCES-FILE] [--custom CUSTOM | @CUSTOM-FILE]
+cpdctl ml experiment create --name NAME [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--tags TAGS] [--label-column LABEL-COLUMN] [--evaluation-definition (EVALUATION-DEFINITION | @EVALUATION-DEFINITION-FILE) | --evaluation-definition-method binary | regression | multiclass (--evaluation-definition-metrics EVALUATION-DEFINITION-METRICS | @EVALUATION-DEFINITION-METRICS-FILE)] [--training-references TRAINING-REFERENCES | @TRAINING-REFERENCES-FILE] [--custom CUSTOM | @CUSTOM-FILE]
 ```
 
 #### Command options
@@ -10712,7 +10712,7 @@ cpdctl ml experiment get --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | -
 Retrieve the experiments for the specified space or project.
 
 ```sh
-cpdctl ml experiment list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
+cpdctl ml experiment list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
 ```
 
 #### Command options
@@ -10767,7 +10767,7 @@ cpdctl ml experiment list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--proje
 Retrieve the experiment revisions.
 
 ```sh
-cpdctl ml experiment list-revisions --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START] [--limit LIMIT]
+cpdctl ml experiment list-revisions --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
 ```
 
 #### Command options
@@ -10822,7 +10822,7 @@ Update the experiment with the provided patch data. The following fields can be 
 - `/custom`.
 
 ```sh
-cpdctl ml experiment update --experiment-id EXPERIMENT-ID [--json-patch JSON-PATCH | @JSON-PATCH-FILE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml experiment update --experiment-id EXPERIMENT-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -11134,7 +11134,7 @@ cpdctl ml function get --function-id FUNCTION-ID [{--space-id SPACE-ID | --space
 Retrieve the functions for the specified space or project.
 
 ```sh
-cpdctl ml function list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
+cpdctl ml function list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
 ```
 
 #### Command options
@@ -11189,7 +11189,7 @@ cpdctl ml function list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project
 Retrieve the function revisions.
 
 ```sh
-cpdctl ml function list-revisions --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START] [--limit LIMIT]
+cpdctl ml function list-revisions --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
 ```
 
 #### Command options
@@ -11244,7 +11244,7 @@ Update the function with the provided patch data. The following fields can be pa
 - `/custom`.
 
 ```sh
-cpdctl ml function update --function-id FUNCTION-ID [--json-patch JSON-PATCH | @JSON-PATCH-FILE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml function update --function-id FUNCTION-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -11651,7 +11651,7 @@ cpdctl ml model delete-content --model-id MODEL-ID --attachment-id ATTACHMENT-ID
 Download the model content.
 
 ```sh
-cpdctl ml model download-content --model-id MODEL-ID --attachment-id ATTACHMENT-ID [--accept ACCEPT] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV]
+cpdctl ml model download-content --model-id MODEL-ID --attachment-id ATTACHMENT-ID [--accept application/zip | application/gzip | application/json | text/plain | application/xml] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV]
 ```
 
 #### Command options
@@ -11704,7 +11704,7 @@ Download the model content identified by the provided criteria. If more than one
 `400` error is returned. If there are no attachments that match the filter then a `404` error is returned. If there are no filters then, if there is a single attachment, the attachment content will be returned otherwise a `400` or `404` error will be returned as described above. This method is just a shortcut for getting the attachment metadata and then downloading by attachment id. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model filtered-download --model-id MODEL-ID [--accept ACCEPT] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--pipeline-node-id PIPELINE-NODE-ID] [--deployment-id DEPLOYMENT-ID] [--name NAME] [--content-format CONTENT-FORMAT]
+cpdctl ml model filtered-download --model-id MODEL-ID [--accept application/zip | application/gzip | application/json | text/plain | application/xml] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--pipeline-node-id PIPELINE-NODE-ID] [--deployment-id DEPLOYMENT-ID] [--name NAME] [--content-format CONTENT-FORMAT]
 ```
 
 #### Command options
@@ -11809,7 +11809,7 @@ cpdctl ml model get --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NA
 Retrieve the models for the specified space or project.
 
 ```sh
-cpdctl ml model list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
+cpdctl ml model list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
 ```
 
 #### Command options
@@ -11912,7 +11912,7 @@ cpdctl ml model list-attachments --model-id MODEL-ID [{--space-id SPACE-ID | --s
 Retrieve the model revisions.
 
 ```sh
-cpdctl ml model list-revisions --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START] [--limit LIMIT]
+cpdctl ml model list-revisions --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
 ```
 
 #### Command options
@@ -11968,7 +11968,7 @@ Update the model with the provided patch data. The following fields can be patch
 - `/software_spec` (operation 'replace' only).
 
 ```sh
-cpdctl ml model update --model-id MODEL-ID [--json-patch JSON-PATCH | @JSON-PATCH-FILE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml model update --model-id MODEL-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -12020,7 +12020,7 @@ cpdctl ml model update --model-id MODEL-ID [--json-patch JSON-PATCH | @JSON-PATC
 Upload the content for the specified model.
 
 ```sh
-cpdctl ml model upload-content --model-id MODEL-ID --content-format CONTENT-FORMAT [--upload-content UPLOAD-CONTENT | @UPLOAD-CONTENT-FILE] [--body BODY] [--content-type CONTENT-TYPE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--pipeline-node-id PIPELINE-NODE-ID] [--deployment-id DEPLOYMENT-ID] [--name NAME]
+cpdctl ml model upload-content --model-id MODEL-ID --content-format CONTENT-FORMAT [--upload-content UPLOAD-CONTENT | @UPLOAD-CONTENT-FILE] [--body BODY] [--content-type application/json | application/zip | text/plain | application/xml] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--pipeline-node-id PIPELINE-NODE-ID] [--deployment-id DEPLOYMENT-ID] [--name NAME]
 ```
 
 #### Command options
@@ -12110,7 +12110,7 @@ cpdctl ml model wait --model-id MODEL_ID [--space-id SPACE_ID] [--project-id PRO
 Create a new model definition with the given payload. A model definition represents the code that is used to train one or more models. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition create --name NAME --package-version PACKAGE-VERSION [--platform (PLATFORM | @PLATFORM-FILE) | --platform-name PLATFORM-NAME --platform-versions PLATFORM-VERSIONS] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--tags TAGS] [--command COMMAND] [--software-spec (SOFTWARE-SPEC | @SOFTWARE-SPEC-FILE) | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME] [--custom CUSTOM | @CUSTOM-FILE]
+cpdctl ml model-definition create --name NAME --package-version PACKAGE-VERSION {--platform (PLATFORM | @PLATFORM-FILE) | --platform-name PLATFORM-NAME --platform-versions PLATFORM-VERSIONS} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--tags TAGS] [--command COMMAND] [--software-spec (SOFTWARE-SPEC | @SOFTWARE-SPEC-FILE) | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME] [--custom CUSTOM | @CUSTOM-FILE]
 ```
 
 #### Command options
@@ -12350,7 +12350,7 @@ cpdctl ml model-definition get --model-definition-id MODEL-DEFINITION-ID [{--spa
 Retrieve the model definitions for the specified space or project. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
+cpdctl ml model-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
 ```
 
 #### Command options
@@ -12405,7 +12405,7 @@ cpdctl ml model-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] [{-
 Retrieve the model definition revisions. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition list-revisions --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START] [--limit LIMIT]
+cpdctl ml model-definition list-revisions --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
 ```
 
 #### Command options
@@ -12460,7 +12460,7 @@ Update the model definition with the provided patch data. The following fields c
 - `/custom` This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition update --model-definition-id MODEL-DEFINITION-ID [--json-patch JSON-PATCH | @JSON-PATCH-FILE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml model-definition update --model-definition-id MODEL-DEFINITION-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -12731,7 +12731,7 @@ cpdctl ml pipeline get {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{
 Retrieve the pipelines for the specified space or project.
 
 ```sh
-cpdctl ml pipeline list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
+cpdctl ml pipeline list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
 ```
 
 #### Command options
@@ -12786,7 +12786,7 @@ cpdctl ml pipeline list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project
 Retrieve the pipeline revisions.
 
 ```sh
-cpdctl ml pipeline list-revisions {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START] [--limit LIMIT]
+cpdctl ml pipeline list-revisions {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
 ```
 
 #### Command options
@@ -12844,7 +12844,7 @@ Update the pipeline with the provided patch data. The following fields can be pa
 - `/custom`.
 
 ```sh
-cpdctl ml pipeline update {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [--json-patch JSON-PATCH | @JSON-PATCH-FILE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml pipeline update {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -13260,7 +13260,7 @@ cpdctl ml training get --training-id TRAINING-ID [{--space-id SPACE-ID | --space
 Retrieve the list of trainings for the specified space or project.
 
 ```sh
-cpdctl ml training list [--start START] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--type TYPE] [--state STATE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parent-id PARENT-ID]
+cpdctl ml training list [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--type TYPE] [--state STATE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parent-id PARENT-ID]
 ```
 
 #### Command options
@@ -13751,7 +13751,7 @@ cpdctl ml training-definition get --training-definition-id TRAINING-DEFINITION-I
 Retrieve the training definitions for the specified space or project. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
+cpdctl ml training-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
 ```
 
 #### Command options
@@ -13806,7 +13806,7 @@ cpdctl ml training-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] 
 Retrieve the training definition revisions. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition list-revisions --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START] [--limit LIMIT]
+cpdctl ml training-definition list-revisions --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
 ```
 
 #### Command options
@@ -13862,7 +13862,7 @@ Update the training definition with the provided patch data. The following field
 - `/federated_learning` This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition update --training-definition-id TRAINING-DEFINITION-ID [--json-patch JSON-PATCH | @JSON-PATCH-FILE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml training-definition update --training-definition-id TRAINING-DEFINITION-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--federated-learning FEDERATED-LEARNING | @FEDERATED-LEARNING-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -14037,7 +14037,7 @@ cpdctl notebook revert --notebook-id NOTEBOOK-ID [--source SOURCE]
 Update a particular notebook.
 
 ```sh
-cpdctl notebook update --notebook-id NOTEBOOK-ID [--compute COMPUTE] [--environment ENVIRONMENT] [--kernel (KERNEL | @KERNEL-FILE) | --kernel-display-name KERNEL-DISPLAY-NAME --kernel-language KERNEL-LANGUAGE --kernel-name KERNEL-NAME] [--schedule SCHEDULE] [--shares (SHARES | @SHARES-FILE) | --shares-gist SHARES-GIST --shares-github SHARES-GITHUB --shares-public SHARES-PUBLIC] [--spark-monitoring-enabled=SPARK-MONITORING-ENABLED]
+cpdctl notebook update --notebook-id NOTEBOOK-ID [--compute COMPUTE] [--environment ENVIRONMENT] [--kernel (KERNEL | @KERNEL-FILE) | --kernel-display-name KERNEL-DISPLAY-NAME --kernel-language KERNEL-LANGUAGE --kernel-name KERNEL-NAME] [--schedule SCHEDULE] [--shares (SHARES | @SHARES-FILE) | (--shares-gist SHARES-GIST | @SHARES-GIST-FILE) (--shares-github SHARES-GITHUB | @SHARES-GITHUB-FILE) (--shares-public SHARES-PUBLIC | @SHARES-PUBLIC-FILE)] [--spark-monitoring-enabled=SPARK-MONITORING-ENABLED]
 ```
 
 #### Command options
@@ -14453,7 +14453,7 @@ cpdctl pipeline get {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--s
 Returns code (YAML template, Orchestration Flow json) that contains the specified pipeline's description, parameters and metadata. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline get-template {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--format FORMAT] [--volatile=VOLATILE] [--version VERSION]
+cpdctl pipeline get-template {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--format template | flow | all] [--volatile=VOLATILE] [--version any | latest | volatile]
 ```
 
 #### Command options
@@ -15509,7 +15509,7 @@ cpdctl pipeline version get --version-id VERSION-ID [{--space-id SPACE-ID | --sp
 Returns code (YAML template, Orchestration Flow json embedded in a string) that contains the specified pipeline version's description, parameters and metadata. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline version get-template --version-id VERSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--format FORMAT]
+cpdctl pipeline version get-template --version-id VERSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--format template | flow | all]
 ```
 
 #### Command options
@@ -15548,7 +15548,7 @@ cpdctl pipeline version get-template --version-id VERSION-ID [{--space-id SPACE-
 Returns code (YAML template, Orchestration Flow json) that contains the specified pipeline version's description, parameters and metadata.
 
 ```sh
-cpdctl pipeline version get-template-format --version-id VERSION-ID --format FORMAT [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl pipeline version get-template-format --version-id VERSION-ID --format template | flow [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -15647,7 +15647,7 @@ cpdctl pipeline version upload --file FILE [--uploadfile-content-type UPLOADFILE
 `--cpd-scope` (string)
 :   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
-`--file` (string)
+`--file` (io.ReadCloser)
 :   Required. Pipeline file to be uploaded.
 
 The supported file formats are pipeline.json and zip which contains pipeline.json inside, with content-type being absent, equal to "application/json" or "application/zip".
@@ -15808,7 +15808,7 @@ cpdctl project delete {--project-id PROJECT-ID | --project PROJECT-NAME}
 Returns the metadata for a target project specified by ID.
 
 ```sh
-cpdctl project get {--project-id PROJECT-ID | --project PROJECT-NAME} [--include INCLUDE]
+cpdctl project get {--project-id PROJECT-ID | --project PROJECT-NAME} [--include name,fields,members,tags,settings,integrations,storage,credentials,everything,nothing]
 ```
 
 #### Command options
@@ -15860,7 +15860,7 @@ cpdctl project get-pipeline-settings [{--project-id PROJECT-ID | --project PROJE
 Returns a list of projects filtered by the specified query parameters. By default, only projects that the authenticated user is a member of are returned. In IBM Cloud Pak for Data (CPD), all projects in the cluster are returned (regardless of project membership) if the authenticated user is assigned either the "Manage projects" or "Monitor project workloads" CPD permission. In IBM Cloud Pak for Data (CPDaaS), all projects associated with an IBM Cloud Account are returned (regardless of project membership) if the authenticated user is added to the IBM Cloud Account and assigned the IAM "Manager" role. This command lists only Analytics projects. Data Quality projects are not supported.
 
 ```sh
-cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--type TYPE] [--member MEMBER] [--roles ROLES] [--tag-names TAG-NAMES] [--name NAME] [--match MATCH] [--guids GUIDS] [--include INCLUDE] [--limit LIMIT] [--bookmark BOOKMARK] [--skip SKIP] [--cpdaas-include-permissions=CPDAAS-INCLUDE-PERMISSIONS]
+cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--type cpd,wx,wca,dpx,wxbi] [--member MEMBER] [--roles admin,editor,viewer] [--tag-names TAG-NAMES] [--name NAME] [--match exact | keyword] [--guids GUIDS] [--include name,fields,members,tags,settings,everything,nothing] [--limit LIMIT] [--bookmark BOOKMARK] [--skip SKIP] [--cpdaas-include-permissions=CPDAAS-INCLUDE-PERMISSIONS]
 ```
 
 #### Command options
@@ -15932,7 +15932,7 @@ cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--type TYPE] [--member ME
 Partially updates the project with only a subset of properties.
 
 ```sh
-cpdctl project update {--project-id PROJECT-ID | --project PROJECT-NAME} [--catalog (CATALOG | @CATALOG-FILE) | --catalog-guid CATALOG-GUID --catalog-public=CATALOG-PUBLIC] [--compute COMPUTE | @COMPUTE-FILE] [--description DESCRIPTION] [--name NAME] [--public=PUBLIC] [--tools TOOLS] [--type TYPE]
+cpdctl project update {--project-id PROJECT-ID | --project PROJECT-NAME} [--catalog (CATALOG | @CATALOG-FILE) | --catalog-guid CATALOG-GUID --catalog-public=CATALOG-PUBLIC] [--compute COMPUTE | @COMPUTE-FILE] [--description DESCRIPTION] [--name NAME] [--public=PUBLIC] [--tools jupyter_notebooks,watson_visual_recognition,streams_designer,spss_modeler,experiments,data_refinery] [--type cpd | wx | wca | dpx | wxbi]
 ```
 
 #### Command options
@@ -15994,7 +15994,7 @@ cpdctl project update {--project-id PROJECT-ID | --project PROJECT-NAME} [--cata
 Update project settings for Orchestration Pipelines.
 
 ```sh
-cpdctl project update-pipeline-settings [--allowed-operational-scope ALLOWED-OPERATIONAL-SCOPE] [--default-pipeline-job-name-suffix DEFAULT-PIPELINE-JOB-NAME-SUFFIX] [{--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME}] [--jobs-deletion-mode JOBS-DELETION-MODE] [--nested-job-execution-mode NESTED-JOB-EXECUTION-MODE] [--pipeline-save-mode PIPELINE-SAVE-MODE] [--resource-reference-type RESOURCE-REFERENCE-TYPE] [--runner-type RUNNER-TYPE] [{--project-id PROJECT-ID | --project PROJECT-NAME}] --settings SETTINGS
+cpdctl project update-pipeline-settings [--allowed-operational-scope WIDE_SCOPE | INNER_SCOPE] [--default-pipeline-job-name-suffix DEFAULT-PIPELINE-JOB-NAME-SUFFIX] [{--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME}] [--jobs-deletion-mode DELETE_PIPELINE_JOBS | LEAVE_ORPHAN_JOBS] [--nested-job-execution-mode INLINE_MODE | INDEPENDENT_JOBS_MODE] [--pipeline-save-mode AUTO_SAVE | MANUAL_SAVE] [--resource-reference-type SEARCH_BY_ATTRIBUTES | EXACT_BY_ID] [--runner-type PIPELINE_RUNNER | DATASTAGE_OPTIMIZED_RUNNER] [{--project-id PROJECT-ID | --project PROJECT-NAME}] --settings SETTINGS
 ```
 
 #### Command options
@@ -16153,7 +16153,7 @@ cpdctl project member get {--project-id PROJECT-ID | --project PROJECT-NAME} --u
 Returns the list of project members.
 
 ```sh
-cpdctl project member list {--project-id PROJECT-ID | --project PROJECT-NAME} [--roles ROLES] [--user-names USER-NAMES]
+cpdctl project member list {--project-id PROJECT-ID | --project PROJECT-NAME} [--roles admin,editor,viewer] [--user-names USER-NAMES]
 ```
 
 #### Command options
@@ -16219,7 +16219,7 @@ cpdctl project member update {--project-id PROJECT-ID | --project PROJECT-NAME} 
 Update the storage properties associated with the target project specified by ID.
 
 ```sh
-cpdctl project storage update {--project-id PROJECT-ID | --project PROJECT-NAME} [--update-storage-properties-body (UPDATE-STORAGE-PROPERTIES-BODY | @UPDATE-STORAGE-PROPERTIES-BODY-FILE) | --update-storage-properties-body-credentials UPDATE-STORAGE-PROPERTIES-BODY-CREDENTIALS --update-storage-properties-body-repository UPDATE-STORAGE-PROPERTIES-BODY-REPOSITORY]
+cpdctl project storage update {--project-id PROJECT-ID | --project PROJECT-NAME} {--update-storage-properties-body (UPDATE-STORAGE-PROPERTIES-BODY | @UPDATE-STORAGE-PROPERTIES-BODY-FILE) | (--update-storage-properties-body-credentials UPDATE-STORAGE-PROPERTIES-BODY-CREDENTIALS | @UPDATE-STORAGE-PROPERTIES-BODY-CREDENTIALS-FILE) (--update-storage-properties-body-repository UPDATE-STORAGE-PROPERTIES-BODY-REPOSITORY | @UPDATE-STORAGE-PROPERTIES-BODY-REPOSITORY-FILE)}
 ```
 
 #### Command options
@@ -16533,7 +16533,7 @@ cpdctl space get-pipeline-settings [{--space-id SPACE-ID | --space SPACE-NAME}]
 Retrieves the space list.
 
 ```sh
-cpdctl space list [--start START] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--id ID] [--tags TAGS] [--include INCLUDE] [--member MEMBER] [--roles ROLES] [--bss-account-id BSS-ACCOUNT-ID] [--sub-name SUB-NAME] [--compute-crn COMPUTE-CRN] [--type TYPE]
+cpdctl space list [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--id ID] [--tags TAGS] [--include INCLUDE] [--member MEMBER] [--roles ROLES] [--bss-account-id BSS-ACCOUNT-ID] [--sub-name SUB-NAME] [--compute-crn COMPUTE-CRN] [--type TYPE]
 ```
 
 #### Command options
@@ -16619,7 +16619,7 @@ Partially update this space. Allowed paths are:
   - /stage/name.
 
 ```sh
-cpdctl space update {--space-id SPACE-ID | --space SPACE-NAME} [--json-patch JSON-PATCH | @JSON-PATCH-FILE]
+cpdctl space update {--space-id SPACE-ID | --space SPACE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | (--compute COMPUTE | @COMPUTE-FILE) --description DESCRIPTION --name NAME --stage-name STAGE-NAME}
 ```
 
 #### Command options
@@ -16661,7 +16661,7 @@ cpdctl space update {--space-id SPACE-ID | --space SPACE-NAME} [--json-patch JSO
 Update deployment space settings for Orchestration Pipelines.
 
 ```sh
-cpdctl space update-pipeline-settings [--allowed-operational-scope ALLOWED-OPERATIONAL-SCOPE] [--default-pipeline-job-name-suffix DEFAULT-PIPELINE-JOB-NAME-SUFFIX] [{--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME}] [--jobs-deletion-mode JOBS-DELETION-MODE] [--nested-job-execution-mode NESTED-JOB-EXECUTION-MODE] [--pipeline-save-mode PIPELINE-SAVE-MODE] [--resource-reference-type RESOURCE-REFERENCE-TYPE] [--runner-type RUNNER-TYPE] [{--space-id SPACE-ID | --space SPACE-NAME}] --settings SETTINGS
+cpdctl space update-pipeline-settings [--allowed-operational-scope WIDE_SCOPE | INNER_SCOPE] [--default-pipeline-job-name-suffix DEFAULT-PIPELINE-JOB-NAME-SUFFIX] [{--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME}] [--jobs-deletion-mode DELETE_PIPELINE_JOBS | LEAVE_ORPHAN_JOBS] [--nested-job-execution-mode INLINE_MODE | INDEPENDENT_JOBS_MODE] [--pipeline-save-mode AUTO_SAVE | MANUAL_SAVE] [--resource-reference-type SEARCH_BY_ATTRIBUTES | EXACT_BY_ID] [--runner-type PIPELINE_RUNNER | DATASTAGE_OPTIMIZED_RUNNER] [{--space-id SPACE-ID | --space SPACE-NAME}] --settings SETTINGS
 ```
 
 #### Command options
@@ -16826,7 +16826,7 @@ cpdctl space member get {--space-id SPACE-ID | --space SPACE-NAME} --member-id M
 Retrieves the member list for the specified space.
 
 ```sh
-cpdctl space member list {--space-id SPACE-ID | --space SPACE-NAME} [--start START] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--type TYPE] [--role ROLE] [--state STATE]
+cpdctl space member list {--space-id SPACE-ID | --space SPACE-NAME} [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--type TYPE] [--role ROLE] [--state STATE]
 ```
 
 #### Command options
@@ -16885,7 +16885,7 @@ Partially update the member selected with the specified identifier. Allowed path
   - /state.
 
 ```sh
-cpdctl space member update {--space-id SPACE-ID | --space SPACE-NAME} --member-id MEMBER-ID [--json-patch JSON-PATCH | @JSON-PATCH-FILE]
+cpdctl space member update {--space-id SPACE-ID | --space SPACE-NAME} --member-id MEMBER-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --role viewer | editor | admin --state active | pending}
 ```
 
 #### Command options
@@ -16922,7 +16922,7 @@ cpdctl space member update {--space-id SPACE-ID | --space SPACE-NAME} --member-i
 Create a new AI service with the given payload. A AI service is some code that can be deployed as a deployment.
 
 ```sh
-cpdctl wx-ai ai-service create {--space-id SPACE-ID | --space SPACE-NAME} --name NAME [--software-spec (SOFTWARE-SPEC | @SOFTWARE-SPEC-FILE) | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME] [--description DESCRIPTION] [--tags TAGS] [--code-type CODE-TYPE] [--documentation (DOCUMENTATION | @DOCUMENTATION-FILE) | --documentation-request DOCUMENTATION-REQUEST --documentation-response DOCUMENTATION-RESPONSE] [--custom CUSTOM | @CUSTOM-FILE] [--tooling TOOLING | @TOOLING-FILE]
+cpdctl wx-ai ai-service create {--space-id SPACE-ID | --space SPACE-NAME} --name NAME {--software-spec (SOFTWARE-SPEC | @SOFTWARE-SPEC-FILE) | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME} [--description DESCRIPTION] [--tags TAGS] [--code-type python] [--documentation (DOCUMENTATION | @DOCUMENTATION-FILE) | (--documentation-request DOCUMENTATION-REQUEST | @DOCUMENTATION-REQUEST-FILE) (--documentation-response DOCUMENTATION-RESPONSE | @DOCUMENTATION-RESPONSE-FILE)] [--custom CUSTOM | @CUSTOM-FILE] [--tooling TOOLING | @TOOLING-FILE]
 ```
 
 #### Command options
@@ -17156,7 +17156,7 @@ cpdctl wx-ai ai-service get --ai-service-id AI-SERVICE-ID [{--space-id SPACE-ID 
 Retrieve the AI services for the specified space or project.
 
 ```sh
-cpdctl wx-ai ai-service list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
+cpdctl wx-ai ai-service list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
 ```
 
 #### Command options
@@ -17211,7 +17211,7 @@ cpdctl wx-ai ai-service list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--pr
 Retrieve the AI service revisions.
 
 ```sh
-cpdctl wx-ai ai-service list-revisions --ai-service-id AI-SERVICE-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START] [--limit LIMIT]
+cpdctl wx-ai ai-service list-revisions --ai-service-id AI-SERVICE-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
 ```
 
 #### Command options
@@ -17266,7 +17266,7 @@ Update the AI service with the provided patch data. The following fields can be 
 - `/custom`.
 
 ```sh
-cpdctl wx-ai ai-service update --ai-service-id AI-SERVICE-ID [--json-patch JSON-PATCH | @JSON-PATCH-FILE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai ai-service update --ai-service-id AI-SERVICE-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -17549,7 +17549,7 @@ Retrieve the list of AutoAI RAG requests for the specified space or project.
 This operation does not save the history, any requests that were deleted or purged will not appear in this list.
 
 ```sh
-cpdctl wx-ai autoai-rag list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START] [--limit LIMIT]
+cpdctl wx-ai autoai-rag list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
 ```
 
 #### Command options
@@ -18256,7 +18256,7 @@ The PATCH operation with path specified as `/online/parameters` can be used to u
 Patching `/asset` or `/prompt_template` should normally be used in the case when these fields already exist.
 
 ```sh
-cpdctl wx-ai deployment update --deployment-id DEPLOYMENT-ID [--json-patch JSON-PATCH | @JSON-PATCH-FILE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai deployment update --deployment-id DEPLOYMENT-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--asset ASSET | @ASSET-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -18341,7 +18341,7 @@ cpdctl wx-ai deployment wait --deployment-id DEPLOYMENT_ID --space-id SPACE_ID
 Create a document extraction.
 
 ```sh
-cpdctl wx-ai document-extraction create --name NAME --document-references DOCUMENT-REFERENCES | @DOCUMENT-REFERENCES-FILE [--results-reference (RESULTS-REFERENCE | @RESULTS-REFERENCE-FILE) | --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-location RESULTS-REFERENCE-LOCATION] [--tags TAGS] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl wx-ai document-extraction create --name NAME --document-references DOCUMENT-REFERENCES | @DOCUMENT-REFERENCES-FILE {--results-reference (RESULTS-REFERENCE | @RESULTS-REFERENCE-FILE) | --results-reference-type github (--results-reference-location RESULTS-REFERENCE-LOCATION | @RESULTS-REFERENCE-LOCATION-FILE)} [--tags TAGS] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
 ```
 
 #### Command options
@@ -18728,7 +18728,7 @@ cpdctl wx-ai fine-tuning get --id ID [{--space-id SPACE-ID | --space SPACE-NAME}
 Retrieve the list of fine tuning jobs for the specified space or project.
 
 ```sh
-cpdctl wx-ai fine-tuning list [--start START] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--state STATE] [--type TYPE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai fine-tuning list [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--state STATE] [--type ilab] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -18793,7 +18793,7 @@ cpdctl wx-ai fine-tuning list [--start START] [--limit LIMIT] [--total-count=TOT
 Retrieve the list of deployed foundation models.
 
 ```sh
-cpdctl wx-ai foundation-model list-models [--start START] [--limit LIMIT] [--filters FILTERS] [--tech-preview=TECH-PREVIEW]
+cpdctl wx-ai foundation-model list-models [--start START | --all-pages] [--limit LIMIT] [--filters FILTERS] [--tech-preview=TECH-PREVIEW]
 ```
 
 #### Command options
@@ -18858,7 +18858,7 @@ cpdctl wx-ai foundation-model list-models [--start START] [--limit LIMIT] [--fil
 Retrieve the list of tasks that are supported by the foundation models.
 
 ```sh
-cpdctl wx-ai foundation-model list-tasks [--start START] [--limit LIMIT]
+cpdctl wx-ai foundation-model list-tasks [--start START | --all-pages] [--limit LIMIT]
 ```
 
 #### Command options
@@ -19023,7 +19023,7 @@ cpdctl wx-ai prompt create [command options]
 ```sh
    cpdctl wx-ai prompt create \
     --name 'My Prompt' \
-    --prompt '{"input": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}], "external_information": {"external_prompt_id": "exampleString", "external_model_id": "exampleString", "external_model_provider": "exampleString", "external_prompt": {"url": "exampleString", "additional_information": [[{"key": "exampleString"}]]}, "external_model": {"name": "exampleString", "url": "exampleString"}}}' \
+    --prompt '{"input": [exampleString,anotherTestString,exampleString,anotherTestString],[exampleString,anotherTestString, exampleString,anotherTestString], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [exampleString,anotherTestString,exampleString,anotherTestString],[exampleString,anotherTestString, exampleString,anotherTestString]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}], "external_information": {"external_prompt_id": "exampleString", "external_model_id": "exampleString", "external_model_provider": "exampleString", "external_prompt": {"url": "exampleString", "additional_information": [[{"key": "exampleString"}]]}, "external_model": {"name": "exampleString", "url": "exampleString"}}}' \
     --description 'My First Prompt' \
     --created-at 1711504485261 \
     --task-ids exampleString,anotherTestString \
@@ -19280,7 +19280,7 @@ cpdctl wx-ai prompt update [command options]
    cpdctl wx-ai prompt update \
     --prompt-id exampleString \
     --name 'My Prompt' \
-    --prompt '{"input": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]}' \
+    --prompt '{"input": [exampleString,anotherTestString,exampleString,anotherTestString],[exampleString,anotherTestString, exampleString,anotherTestString], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [exampleString,anotherTestString,exampleString,anotherTestString],[exampleString,anotherTestString, exampleString,anotherTestString]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]}' \
     --id 1c29d9a1-9ba6-422d-aa39-517b26adc147 \
     --description 'My First Prompt' \
     --task-ids generation,generation \
@@ -19296,7 +19296,7 @@ cpdctl wx-ai prompt update [command options]
 Modifies the current locked state of a prompt.
 
 ```sh
-cpdctl wx-ai prompt update-lock --prompt-id PROMPT-ID --locked=LOCKED [--lock-type LOCK-TYPE] [--locked-by LOCKED-BY] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--force=FORCE]
+cpdctl wx-ai prompt update-lock --prompt-id PROMPT-ID --locked=LOCKED [--lock-type edit | governance] [--locked-by LOCKED-BY] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--force=FORCE]
 ```
 
 #### Command options
@@ -19459,7 +19459,7 @@ cpdctl wx-ai prompt-session add-entry [command options]
     --session-id exampleString \
     --name 'My Prompt' \
     --created-at 1711504485261 \
-    --prompt '{"input": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]}' \
+    --prompt '{"input": [exampleString,anotherTestString,exampleString,anotherTestString],[exampleString,anotherTestString, exampleString,anotherTestString], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [exampleString,anotherTestString,exampleString,anotherTestString],[exampleString,anotherTestString, exampleString,anotherTestString]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]}' \
     --id 1c29d9a1-9ba6-422d-aa39-517b26adc147 \
     --description 'My First Prompt' \
     --prompt-variables '{}' \
@@ -19472,7 +19472,7 @@ cpdctl wx-ai prompt-session add-entry [command options]
 This creates a new prompt session.
 
 ```sh
-cpdctl wx-ai prompt-session create --name NAME [--id ID] [--description DESCRIPTION] [--created-at CREATED-AT] [--created-by CREATED-BY] [--last-updated-at LAST-UPDATED-AT] [--last-updated-by LAST-UPDATED-BY] [--lock (LOCK | @LOCK-FILE) | --lock-locked=LOCK-LOCKED --lock-lock-type LOCK-LOCK-TYPE --lock-locked-by LOCK-LOCKED-BY] [--prompts PROMPTS | @PROMPTS-FILE] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai prompt-session create --name NAME [--id ID] [--description DESCRIPTION] [--created-at CREATED-AT] [--created-by CREATED-BY] [--last-updated-at LAST-UPDATED-AT] [--last-updated-by LAST-UPDATED-BY] [--lock (LOCK | @LOCK-FILE) | --lock-locked=LOCK-LOCKED --lock-lock-type edit | governance --lock-locked-by LOCK-LOCKED-BY] [--prompts PROMPTS | @PROMPTS-FILE] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -19540,7 +19540,7 @@ cpdctl wx-ai prompt-session create --name NAME [--id ID] [--description DESCRIPT
     --last-updated-at 1711504485261 \
     --last-updated-by IBMid-000000YYY0 \
     --lock '{"locked": true, "lock_type": "edit", "locked_by": "IBMid-000000YYY0"}' \
-    --prompts '[{"id": "1c29d9a1-9ba6-422d-aa39-517b26adc147", "name": "My Prompt", "description": "My First Prompt", "prompt_variables": {}, "is_template": true, "created_at": 1711504485261, "input_mode": "structured", "prompt": {"input": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [[],exampleString,anotherTestString],[exampleString,anotherTestString, []]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]}}]' \
+    --prompts '[{"id": "1c29d9a1-9ba6-422d-aa39-517b26adc147", "name": "My Prompt", "description": "My First Prompt", "prompt_variables": {}, "is_template": true, "created_at": 1711504485261, "input_mode": "structured", "prompt": {"input": [exampleString,anotherTestString,exampleString,anotherTestString],[exampleString,anotherTestString, exampleString,anotherTestString], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [exampleString,anotherTestString,exampleString,anotherTestString],[exampleString,anotherTestString, exampleString,anotherTestString]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]}}]' \
     --project-id exampleString \
     --version 2019-01-01
 ```
@@ -19781,7 +19781,7 @@ cpdctl wx-ai prompt-session update --session-id SESSION-ID [--name NAME] [--desc
 Modifies the current locked state of a prompt session.
 
 ```sh
-cpdctl wx-ai prompt-session update-lock --session-id SESSION-ID --locked=LOCKED [--lock-type LOCK-TYPE] [--locked-by LOCKED-BY] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--force=FORCE]
+cpdctl wx-ai prompt-session update-lock --session-id SESSION-ID --locked=LOCKED [--lock-type edit | governance] [--locked-by LOCKED-BY] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--force=FORCE]
 ```
 
 #### Command options
@@ -19830,7 +19830,7 @@ cpdctl wx-ai prompt-session update-lock --session-id SESSION-ID --locked=LOCKED 
 Create a synthetic data generation job.
 
 ```sh
-cpdctl wx-ai synthetic-data-generation create --name NAME [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-type DATA-REFERENCE-TYPE --data-reference-location DATA-REFERENCE-LOCATION --data-reference-connection DATA-REFERENCE-CONNECTION --data-reference-id DATA-REFERENCE-ID] [--results-reference (RESULTS-REFERENCE | @RESULTS-REFERENCE-FILE) | --results-reference-type RESULTS-REFERENCE-TYPE --results-reference-location RESULTS-REFERENCE-LOCATION --results-reference-connection RESULTS-REFERENCE-CONNECTION --results-reference-id RESULTS-REFERENCE-ID]
+cpdctl wx-ai synthetic-data-generation create --name NAME [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-type DATA-REFERENCE-TYPE (--data-reference-location DATA-REFERENCE-LOCATION | @DATA-REFERENCE-LOCATION-FILE) (--data-reference-connection DATA-REFERENCE-CONNECTION | @DATA-REFERENCE-CONNECTION-FILE) --data-reference-id DATA-REFERENCE-ID] [--results-reference (RESULTS-REFERENCE | @RESULTS-REFERENCE-FILE) | --results-reference-type RESULTS-REFERENCE-TYPE (--results-reference-location RESULTS-REFERENCE-LOCATION | @RESULTS-REFERENCE-LOCATION-FILE) (--results-reference-connection RESULTS-REFERENCE-CONNECTION | @RESULTS-REFERENCE-CONNECTION-FILE) --results-reference-id RESULTS-REFERENCE-ID]
 ```
 
 #### Command options
@@ -20018,7 +20018,7 @@ cpdctl wx-ai synthetic-data-generation list [{--project-id PROJECT-ID | --projec
 Create a taxonomy job.
 
 ```sh
-cpdctl wx-ai taxonomy create --name NAME [--description DESCRIPTION] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-type DATA-REFERENCE-TYPE --data-reference-location DATA-REFERENCE-LOCATION --data-reference-connection DATA-REFERENCE-CONNECTION --data-reference-id DATA-REFERENCE-ID]
+cpdctl wx-ai taxonomy create --name NAME [--description DESCRIPTION] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-type DATA-REFERENCE-TYPE (--data-reference-location DATA-REFERENCE-LOCATION | @DATA-REFERENCE-LOCATION-FILE) (--data-reference-connection DATA-REFERENCE-CONNECTION | @DATA-REFERENCE-CONNECTION-FILE) --data-reference-id DATA-REFERENCE-ID]
 ```
 
 #### Command options
@@ -20190,7 +20190,7 @@ Generate embeddings from text input.
 See the [documentation](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-embed-overview.html?context=wx&audience=wdp) for a description of text embeddings.
 
 ```sh
-cpdctl wx-ai text calculate-embeddings --model-id MODEL-ID --inputs INPUTS [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS]
+cpdctl wx-ai text calculate-embeddings --model-id MODEL-ID --inputs INPUTS [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS (--parameters-return-options PARAMETERS-RETURN-OPTIONS | @PARAMETERS-RETURN-OPTIONS-FILE)]
 ```
 
 #### Command options
@@ -20760,7 +20760,7 @@ Depending on the users plan, and on the model being used, there may be an enforc
 Rerank texts based on some queries.
 
 ```sh
-cpdctl wx-ai text rerank --model-id MODEL-ID --inputs INPUTS | @INPUTS-FILE --query QUERY [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS --parameters-return-options PARAMETERS-RETURN-OPTIONS]
+cpdctl wx-ai text rerank --model-id MODEL-ID --inputs INPUTS | @INPUTS-FILE --query QUERY [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS (--parameters-return-options PARAMETERS-RETURN-OPTIONS | @PARAMETERS-RETURN-OPTIONS-FILE)]
 ```
 
 #### Command options
@@ -21036,7 +21036,7 @@ Retrieve the list of text extraction requests for the specified space or project
 This operation does not save the history, any requests that were deleted or purged will not appear in this list.
 
 ```sh
-cpdctl wx-ai text-extraction list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START] [--limit LIMIT]
+cpdctl wx-ai text-extraction list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
 ```
 
 #### Command options
@@ -21083,7 +21083,7 @@ cpdctl wx-ai text-extraction list [{--space-id SPACE-ID | --space SPACE-NAME}] [
 Generate forecasts, or predictions for future time points, given historical time series data.
 
 ```sh
-cpdctl wx-ai time-series forecast --model-id MODEL-ID --data DATA | @DATA-FILE [--schema (SCHEMA | @SCHEMA-FILE) | --schema-timestamp-column SCHEMA-TIMESTAMP-COLUMN --schema-id-columns SCHEMA-ID-COLUMNS --schema-freq SCHEMA-FREQ --schema-target-columns SCHEMA-TARGET-COLUMNS] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-prediction-length PARAMETERS-PREDICTION-LENGTH]
+cpdctl wx-ai time-series forecast --model-id MODEL-ID --data DATA | @DATA-FILE {--schema (SCHEMA | @SCHEMA-FILE) | --schema-timestamp-column SCHEMA-TIMESTAMP-COLUMN --schema-id-columns SCHEMA-ID-COLUMNS --schema-freq SCHEMA-FREQ --schema-target-columns SCHEMA-TARGET-COLUMNS} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-prediction-length PARAMETERS-PREDICTION-LENGTH]
 ```
 
 #### Command options
@@ -21365,7 +21365,7 @@ cpdctl wx-ai training get --training-id TRAINING-ID [{--space-id SPACE-ID | --sp
 Retrieve the list of trainings for the specified space or project.
 
 ```sh
-cpdctl wx-ai training list [--start START] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--state STATE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai training list [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--state queued | pending | running | storing | completed | failed | canceled] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
 ```
 
 #### Command options
@@ -21490,7 +21490,7 @@ This runs a utility agent tool given an input and optional configuration paramet
 Some tools can choose to tailor the response based on the access token identity.
 
 ```sh
-cpdctl wx-ai utility-agent-tools run [--wx-utility-agent-tools-run-request (WX-UTILITY-AGENT-TOOLS-RUN-REQUEST | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-FILE) | --wx-utility-agent-tools-run-request-tool-name WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-TOOL-NAME --wx-utility-agent-tools-run-request-input WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-INPUT --wx-utility-agent-tools-run-request-config WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG]
+cpdctl wx-ai utility-agent-tools run {--wx-utility-agent-tools-run-request (WX-UTILITY-AGENT-TOOLS-RUN-REQUEST | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-FILE) | --wx-utility-agent-tools-run-request-tool-name WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-TOOL-NAME --wx-utility-agent-tools-run-request-input WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-INPUT (--wx-utility-agent-tools-run-request-config WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG-FILE)}
 ```
 
 #### Command options
@@ -21520,7 +21520,7 @@ This runs a utility agent tool given an input and optional configuration paramet
 Some tools can choose to tailor the response based on the access token identity.
 
 ```sh
-cpdctl wx-ai utility-agent-tools run-by-name --tool-id TOOL-ID [--wx-utility-agent-tools-run-request (WX-UTILITY-AGENT-TOOLS-RUN-REQUEST | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-FILE) | --wx-utility-agent-tools-run-request-tool-name WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-TOOL-NAME --wx-utility-agent-tools-run-request-input WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-INPUT --wx-utility-agent-tools-run-request-config WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG]
+cpdctl wx-ai utility-agent-tools run-by-name --tool-id TOOL-ID {--wx-utility-agent-tools-run-request (WX-UTILITY-AGENT-TOOLS-RUN-REQUEST | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-FILE) | --wx-utility-agent-tools-run-request-tool-name WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-TOOL-NAME --wx-utility-agent-tools-run-request-input WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-INPUT (--wx-utility-agent-tools-run-request-config WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG-FILE)}
 ```
 
 #### Command options
@@ -21614,7 +21614,7 @@ cpdctl wx-data access-control revoke-access [command options]
 `--name` (string)
 :   Resource Display Name. Provide either --id or --name. Required when --type is catalog, optional for other --type values
 
-`--subjects` ([`SubjectPatch[]`](#cli-subject-patch-example-schema))
+`--subjects` (string)
 :   (Required) Subjects (users or groups) whose access will be revoked. Format: For Users - user:userName For Groups - group:groupID. Multiple subjects can be revoked under same resource type (--type) separated by commas
 
 `--type` (string)
@@ -21699,7 +21699,7 @@ cpdctl wx-data bucket create [command options]
 
 #### Command options
 
-`--associated-catalog` ([`StorageCatalogPrototype`](#cli-storage-catalog-prototype-example-schema))
+`--associated-catalog` ([`BucketCatalog`](#cli-bucket-catalog-example-schema))
 :   Provide adhoc catalog details. Format: {"base_path":"/abc/def", "catalog_name":"sampleCatalog","catalog_type":"iceberg", "catalog_tags":["catalog_tag_1","catalog_tag_2"]}
 
 `--associated-catalog-base-path` (string)
@@ -21717,7 +21717,7 @@ cpdctl wx-data bucket create [command options]
 `--bucket-use` (string)
 :   Bucket use, to define whether the storage is for query monitoring or acl. Allowable values are: qhmm, acl
 
-`--connection` ([`StorageDetails`](#cli-storage-details-example-schema))
+`--connection` ([`StorageConnectionDetails`](#cli-storage-connection-details-example-schema))
 :   Provide storage connection details. Format: {"access_key":"<access_key>", "access_key_vault":{"key":"secret key", "secret_name":"secret name", "secret_urn":"secret urn"}, "account_name":"sample-storage", "application_id":"application-id", "auth_mode":"iam", "container_name":"sample-container", "directory_id":"directory-id", "endpoint":"https://s3.us-south.cloud-object-storage.appdomain.cloud/", "key_file":"key_file", "name":"sample-storage", "provider":"ibm-cos", "region":"us-south", "role_arn":"arn:aws:iam::5ssdd5467-002c-a4f8cac3f3f9", "sas_token":"<sas-token>", "secret_key":"secret_key", "secret_key_vault":{"key":"secret key", "secret_name":"secret name", "secret_urn":"secret urn"}, "vault_enabled":true}
 
 `--connection-access-key` (string)
@@ -22545,7 +22545,7 @@ cpdctl wx-data engine attach --catalog-names CATALOG-NAMES [--name ENGINE-NAME] 
 Create a new engine.
 
 ```sh
-cpdctl wx-data engine create --origin ORIGIN [--associated-catalogs ASSOCIATED-CATALOGS] [--configuration (CONFIGURATION | @CONFIGURATION-FILE) | --configuration-connection-string CONFIGURATION-CONNECTION-STRING --configuration-managed-by CONFIGURATION-MANAGED-BY --configuration-api-key CONFIGURATION-API-KEY --configuration-coordinator CONFIGURATION-COORDINATOR --configuration-size-config CONFIGURATION-SIZE-CONFIG --configuration-worker CONFIGURATION-WORKER] [--description DESCRIPTION] [--display-name DISPLAY-NAME] [--region REGION] [--tags TAGS] [--version VERSION] [--instance-id INSTANCE-ID]
+cpdctl wx-data engine create --origin native [--associated-catalogs ASSOCIATED-CATALOGS] [--configuration (CONFIGURATION | @CONFIGURATION-FILE) | --configuration-connection-string CONFIGURATION-CONNECTION-STRING --configuration-managed-by CONFIGURATION-MANAGED-BY --configuration-api-key CONFIGURATION-API-KEY (--configuration-coordinator CONFIGURATION-COORDINATOR | @CONFIGURATION-COORDINATOR-FILE) --configuration-size-config starter | cache_optimized | compute_optimized | small | medium | large | custom | lite | xlarge | xxlarge (--configuration-worker CONFIGURATION-WORKER | @CONFIGURATION-WORKER-FILE)] [--description DESCRIPTION] [--display-name DISPLAY-NAME] [--region REGION] [--tags TAGS] [--version VERSION] [--instance-id INSTANCE-ID]
 ```
 
 #### Command options
@@ -24147,26 +24147,6 @@ The following example shows the format of the AIServiceDocumentation object.
   "response" : { }
 }
 ```
-### <a name="cli-access-policy-patch-example-schema">AccessPolicyPatch[]</a>
-
-The following example shows the format of the AccessPolicyPatch[] object.
-
-```json
-
-[ {
-  "resources" : [ {
-    "resource_id" : "presto01",
-    "resource_type" : "presto"
-  } ],
-  "subjects" : [ {
-    "permissions" : [ "exampleString", "anotherExampleString" ],
-    "subject" : {
-      "type" : "user",
-      "value" : "user1"
-    }
-  } ]
-} ]
-```
 ### <a name="cli-access-restrictions-example-schema">AccessRestrictions</a>
 
 The following example shows the format of the AccessRestrictions object.
@@ -24232,6 +24212,17 @@ The following example shows the format of the AlgorithmEncryption object.
   "type" : "exampleString"
 }
 ```
+### <a name="cli-allowed-identity-example-schema">AllowedIdentity</a>
+
+The following example shows the format of the AllowedIdentity object.
+
+```json
+
+{
+  "id" : "hjsdgwsdtyt",
+  "type" : "user"
+}
+```
 ### <a name="cli-allowed-identity-example-schema">AllowedIdentity[]</a>
 
 The following example shows the format of the AllowedIdentity[] object.
@@ -24258,6 +24249,43 @@ The following example shows the format of the AnalyticsEngine object.
     "anyKey" : "anyValue"
   },
   "type" : "exampleString"
+}
+```
+### <a name="cli-api-cache-entry-filter-example-schema">ApiCacheEntryFilter[]</a>
+
+The following example shows the format of the ApiCacheEntryFilter[] object.
+
+```json
+
+[ {
+  "job_id" : "exampleString",
+  "job_runs" : [ {
+    "name" : "exampleString"
+  } ]
+} ]
+```
+### <a name="cli-api-component-source-example-schema">ApiComponentSource</a>
+
+The following example shows the format of the ApiComponentSource object.
+
+```json
+
+{
+  "content" : "exampleString",
+  "type" : "exampleString"
+}
+```
+### <a name="cli-api-task-result-create-example-schema">ApiTaskResultCreate</a>
+
+The following example shows the format of the ApiTaskResultCreate object.
+
+```json
+
+{
+  "content_hash" : "exampleString",
+  "name" : "exampleString",
+  "path" : "exampleString",
+  "value" : "exampleString"
 }
 ```
 ### <a name="cli-applicability-selection-example-schema">ApplicabilitySelection</a>
@@ -24665,6 +24693,18 @@ The following example shows the format of the BatchComparePairsRequestPair[] obj
   "record_number2" : "456"
 } ]
 ```
+### <a name="cli-bucket-catalog-example-schema">BucketCatalog</a>
+
+The following example shows the format of the BucketCatalog object.
+
+```json
+
+{
+  "catalog_name" : "sampleCatalog",
+  "catalog_tags" : [ "catalog_tag_1", "catalog_tag_2" ],
+  "catalog_type" : "iceberg"
+}
+```
 ### <a name="cli-bucket-details-example-schema">BucketDetails</a>
 
 The following example shows the format of the BucketDetails object.
@@ -24672,19 +24712,13 @@ The following example shows the format of the BucketDetails object.
 ```json
 
 {
-  "access_key" : "exampleString",
-  "account_name" : "exampleString",
-  "application_id" : "exampleString",
-  "container_name" : "exampleString",
-  "directory_id" : "exampleString",
-  "endpoint" : "exampleString",
-  "region" : "exampleString",
-  "secret_key" : "exampleString",
-  "auth_mode" : "aws_assume_role",
-  "role_arn" : "exampleString",
-  "managed_by" : "exampleString",
-  "name" : "exampleString",
-  "type" : "adls_gen1"
+  "access_key" : "b9cbf248ea5c4c96947e64407108559j",
+  "bucket_name" : "sample-bucket",
+  "endpoint" : "https://s3.<region>.cloud-object-storage.appdomain.cloud/",
+  "key_file" : "key_file",
+  "provider" : "ibm_cos",
+  "region" : "us-south",
+  "secret_key" : "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"
 }
 ```
 ### <a name="cli-buildop-build-example-schema">BuildopBuild</a>
@@ -24917,17 +24951,6 @@ The following example shows the format of the BusinessMetric[] object.
   } ]
 } ]
 ```
-### <a name="cli-catalog-operations-operations-items-example-schema">CatalogOperationsOperationsItems[]</a>
-
-The following example shows the format of the CatalogOperationsOperationsItems[] object.
-
-```json
-
-[ {
-  "action" : "add",
-  "catalog" : [ "exampleString", "anotherExampleString" ]
-} ]
-```
 ### <a name="cli-chat-item-example-schema">ChatItem</a>
 
 The following example shows the format of the ChatItem object.
@@ -25096,6 +25119,19 @@ The following example shows the format of the CompositeRulesRules object.
     "sources" : [ "exampleString", "anotherExampleString" ]
   },
   "record_types" : { }
+}
+```
+### <a name="cli-compute-entity-example-schema">ComputeEntity</a>
+
+The following example shows the format of the ComputeEntity object.
+
+```json
+
+{
+  "crn" : "exampleString",
+  "name" : "exampleString",
+  "guid" : "exampleString",
+  "type" : "machine_learning"
 }
 ```
 ### <a name="cli-compute-entity-example-schema">ComputeEntity[]</a>
@@ -25299,6 +25335,34 @@ The following example shows the format of the CosDataLocation object.
 {
   "file_name" : "exampleString",
   "bucket" : "exampleString"
+}
+```
+### <a name="cli-create-task-results-request-example-schema">CreateTaskResultsRequest</a>
+
+The following example shows the format of the CreateTaskResultsRequest object.
+
+```json
+
+{
+  "pipeline_id" : "exampleString",
+  "pipeline_run_name" : "exampleString",
+  "results" : [ {
+    "content_hash" : "exampleString",
+    "name" : "exampleString",
+    "path" : "exampleString",
+    "value" : "exampleString"
+  } ]
+}
+```
+### <a name="cli-create-task-results-request-results-from-example-schema">CreateTaskResultsRequestResultsFrom</a>
+
+The following example shows the format of the CreateTaskResultsRequestResultsFrom object.
+
+```json
+
+{
+  "run_id" : "exampleString",
+  "task_run_name" : "exampleString"
 }
 ```
 ### <a name="cli-creation-type-attribute-behavior-example-schema">CreationTypeAttributeBehavior</a>
@@ -27328,14 +27392,15 @@ The following example shows the format of the DataSource[] object.
   "type" : "exampleString"
 } ]
 ```
-### <a name="cli-database-catalog-prototype-example-schema">DatabaseCatalogPrototype</a>
+### <a name="cli-database-catalog-example-schema">DatabaseCatalog</a>
 
-The following example shows the format of the DatabaseCatalogPrototype object.
+The following example shows the format of the DatabaseCatalog object.
 
 ```json
 
 {
   "catalog_name" : "sampleCatalog",
+  "catalog_tags" : [ "catalog_tag_1", "catalog_tag_2" ],
   "catalog_type" : "iceberg"
 }
 ```
@@ -27357,27 +27422,22 @@ The following example shows the format of the DatabaseConfigurationRequest objec
   "name" : "exampleString"
 }
 ```
-### <a name="cli-database-details-prototype-example-schema">DatabaseDetailsPrototype</a>
+### <a name="cli-database-details-example-schema">DatabaseDetails</a>
 
-The following example shows the format of the DatabaseDetailsPrototype object.
+The following example shows the format of the DatabaseDetails object.
 
 ```json
 
 {
-  "authentication_type" : "LDAP, NTLM, ActiveDirectoryServicePrincipal, ActiveDirectoryPassword",
+  "authentication_type" : "LDAP",
   "authentication_value" : "LDAP",
-  "authentication_value_key_vault" : {
-    "key" : "secret key",
-    "secret_name" : "secret name",
-    "secret_urn" : "secret urn"
-  },
   "broker_authentication_password" : "samplepassword",
   "broker_authentication_type" : "PASSWORD",
   "broker_authentication_user" : "sampleuser",
-  "broker_host" : "samplehost",
   "broker_port" : 4553,
-  "certificate" : "exampleCertificate",
-  "certificate_extension" : "pem",
+  "broker_host" : "samplehost",
+  "certificate" : "contents of a pem/crt file",
+  "certificate_extension" : "pem/crt",
   "connection_method" : "basic, apikey",
   "connection_mode" : "service_name",
   "connection_mode_value" : "orclpdb",
@@ -27389,24 +27449,16 @@ The following example shows the format of the DatabaseDetailsPrototype object.
   "coordinator_port" : 4553,
   "cpd_hostname" : "samplecpdhostname",
   "credentials_key" : "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......",
-  "name" : "new_database",
-  "domain_name" : "conops-mssql.conops.local",
-  "hostname" : "http://db2@localhost:9900.com",
+  "database_name" : "new_database",
+  "hostname" : "db2@<hostname>.com",
   "hostname_in_certificate" : "samplehostname",
   "hosts" : "abc.com:1234,xyz.com:4321",
   "informix_server" : "ol_informix1410",
   "password" : "samplepassword",
-  "password_key_vault" : {
-    "key" : "secret key",
-    "secret_name" : "secret name",
-    "secret_urn" : "secret urn"
-  },
   "port" : 4553,
   "project_id" : "conops-bigquery",
   "sasl" : true,
   "sasl_mechanism" : "plain",
-  "schema_name" : "sampleSchema",
-  "schemas" : "redis__name",
   "service_api_key" : "sampleapikey",
   "service_hostname" : "api.dataplatform.dev.cloud.ibm.com",
   "service_password" : "samplepassword",
@@ -27415,34 +27467,10 @@ The following example shows the format of the DatabaseDetailsPrototype object.
   "service_token_url" : "sampletoakenurl",
   "service_username" : "sampleusername",
   "ssl" : true,
-  "sslcertificate_key_vault" : {
-    "key" : "secret key",
-    "secret_name" : "secret name",
-    "secret_urn" : "secret urn"
-  },
-  "tables" : "kafka_table_name, redis_table_name",
+  "tables" : "kafka_table_name",
   "username" : "sampleuser",
-  "username_key_vault" : {
-    "key" : "secret key",
-    "secret_name" : "secret name",
-    "secret_urn" : "secret urn"
-  },
   "validate_server_certificate" : true,
-  "vault_enabled" : true,
-  "verify_host_name" : true,
-  "warehouse_name" : "samplewrehouse"
-}
-```
-### <a name="cli-database-details-prototype-authentication-value-key-vault-example-schema">DatabaseDetailsPrototypeAuthenticationValueKeyVault</a>
-
-The following example shows the format of the DatabaseDetailsPrototypeAuthenticationValueKeyVault object.
-
-```json
-
-{
-  "key" : "secret key",
-  "secret_name" : "secret name",
-  "secret_urn" : "secret urn"
+  "verify_host_name" : true
 }
 ```
 ### <a name="cli-database-registration-prototype-database-properties-items-example-schema">DatabaseRegistrationPrototypeDatabasePropertiesItems[]</a>
@@ -27474,29 +27502,6 @@ The following example shows the format of the DatasourceTypeProperty object.
 {
   "name" : "exampleString",
   "supported_products" : [ "exampleString", "anotherExampleString" ]
-}
-```
-### <a name="cli-db-connection-model-example-schema">DbConnectionModel</a>
-
-The following example shows the format of the DbConnectionModel object.
-
-```json
-
-{
-  "database_id" : "exampleString",
-  "db_type" : "exampleString",
-  "host" : "exampleString",
-  "port" : "exampleString",
-  "db_name" : "exampleString",
-  "db_username" : "exampleString",
-  "password" : "exampleString",
-  "authentication_value" : "exampleString",
-  "is_ssl" : false,
-  "cert_extension" : "exampleString",
-  "cert_content" : "exampleString",
-  "connection_mode" : "exampleString",
-  "connection_mode_value" : "exampleString",
-  "jdbc_url" : "exampleString"
 }
 ```
 ### <a name="cli-deployment-entity-request-batch-example-schema">DeploymentEntityRequestBatch</a>
@@ -27576,13 +27581,7 @@ The following example shows the format of the DeploymentPatchRequestHelperRShiny
 ```json
 
 {
-  "authentication" : "members_of_deployment_space",
-  "parameters" : {
-    "serving_name" : "churn",
-    "code_package" : {
-      "path" : "RShiny/apps/app1"
-    }
-  }
+  "path" : "RShiny/apps/app1"
 }
 ```
 ### <a name="cli-deployment-rel-example-schema">DeploymentRel</a>
@@ -27695,24 +27694,25 @@ The following example shows the format of the EmbeddingReturnOptions object.
   "input_text" : true
 }
 ```
-### <a name="cli-engine-details-example-schema">EngineDetails</a>
+### <a name="cli-engine-details-body-example-schema">EngineDetailsBody</a>
 
-The following example shows the format of the EngineDetails object.
+The following example shows the format of the EngineDetailsBody object.
 
 ```json
 
 {
-  "connection_string" : "1.2.3.4",
-  "managed_by" : "fully/self",
   "api_key" : "<api_key>",
+  "connection_string" : "1.2.3.4",
   "coordinator" : {
     "node_type" : "worker",
-    "quantity" : 1
+    "quantity" : 38
   },
+  "instance_id" : "instance_id",
+  "managed_by" : "fully/self",
   "size_config" : "starter",
   "worker" : {
     "node_type" : "worker",
-    "quantity" : 1
+    "quantity" : 38
   }
 }
 ```
@@ -27787,20 +27787,6 @@ The following example shows the format of the EventSubscriptionStreamConnection 
   },
   "stream_type" : "exampleString",
   "topic" : "exampleString"
-}
-```
-### <a name="cli-execute-config-example-schema">ExecuteConfig</a>
-
-The following example shows the format of the ExecuteConfig object.
-
-```json
-
-{
-  "driver_memory" : "exampleString",
-  "driver_cores" : 1,
-  "executor_memory" : "exampleString",
-  "executor_cores" : 1,
-  "num_executors" : 1
 }
 ```
 ### <a name="cli-experiment-resource-entity-request-evaluation-definition-example-schema">ExperimentResourceEntityRequestEvaluationDefinition</a>
@@ -28083,20 +28069,6 @@ The following example shows the format of the FederatedLearningRemoteTraining ob
 {
   "id" : "1918939c-2660-4f6a-b727-4b402383dc63",
   "required" : true
-}
-```
-### <a name="cli-file-format-properties-example-schema">FileFormatProperties</a>
-
-The following example shows the format of the FileFormatProperties object.
-
-```json
-
-{
-  "encoding" : "exampleString",
-  "escape_character" : "exampleString",
-  "field_delimiter" : "exampleString",
-  "header" : true,
-  "line_delimiter" : "exampleString"
 }
 ```
 ### <a name="cli-file-system-copy-move-source-example-schema">FileSystemCopyMoveSource</a>
@@ -28547,11 +28519,11 @@ The following example shows the format of the IcebergSourceTable object.
 ```json
 
 {
-  "schema_name" : "exampleString",
-  "table_name" : "exampleString",
-  "catalog_name" : "exampleString",
-  "warehouse_name" : "exampleString",
-  "snapshot_id" : 0
+  "catalog_name" : "catalog",
+  "schema_name" : "test_schema",
+  "snapshot_id" : "8415204386124336000",
+  "table_name" : "test_table",
+  "warehouse_name" : "warehouse"
 }
 ```
 ### <a name="cli-included-packages-definition-example-schema">IncludedPackagesDefinition</a>
@@ -28565,16 +28537,78 @@ The following example shows the format of the IncludedPackagesDefinition object.
   "version" : "0.20.0"
 }
 ```
-### <a name="cli-ingestion-schema-response-example-schema">IngestionSchemaResponse</a>
+### <a name="cli-ingestion-bucket-details-example-schema">IngestionBucketDetails</a>
 
-The following example shows the format of the IngestionSchemaResponse object.
+The following example shows the format of the IngestionBucketDetails object.
 
 ```json
 
 {
-  "field_id" : 0,
-  "header_name" : "exampleString",
-  "type" : "exampleString"
+  "access_key" : "access-key",
+  "bucket_name" : "sample-bucket",
+  "bucket_type" : "ibm_cos",
+  "endpoint" : "https://s3.us-south.cloud-object-storage.appdomain.cloud/",
+  "region" : "us-south",
+  "secret_key" : "secret-key"
+}
+```
+### <a name="cli-ingestion-execute-config-example-schema">IngestionExecuteConfig</a>
+
+The following example shows the format of the IngestionExecuteConfig object.
+
+```json
+
+{
+  "driver_cores" : 1,
+  "driver_memory" : "2G",
+  "executor_cores" : 1,
+  "executor_memory" : "2G",
+  "num_executors" : 1
+}
+```
+### <a name="cli-ingestion-job-prototype-csv-property-example-schema">IngestionJobPrototypeCsvProperty</a>
+
+The following example shows the format of the IngestionJobPrototypeCsvProperty object.
+
+```json
+
+{
+  "encoding" : "utf-8",
+  "escape_character" : "\\",
+  "field_delimiter" : ",",
+  "header" : true,
+  "line_delimiter" : "\n"
+}
+```
+### <a name="cli-ingestion-source-database-example-schema">IngestionSourceDatabase</a>
+
+The following example shows the format of the IngestionSourceDatabase object.
+
+```json
+
+{
+  "authentication_type" : "LDAP",
+  "authentication_value" : "sampleapikey",
+  "cert_extension" : "samplepass",
+  "certificate" : "/path/to/certificate",
+  "connection_mode" : "test_table",
+  "connection_mode_value" : "test_table",
+  "database_id" : "psql12132",
+  "database_name" : "new_database",
+  "database_type" : "postgres",
+  "display_name" : "test_table",
+  "host" : "test_Catalog",
+  "informix_server" : "ol_informix1410",
+  "isssl" : true,
+  "password" : "spark123",
+  "port" : "test_Schema",
+  "sasl" : true,
+  "sasl_mechanism" : "plain",
+  "schema_name" : "test_schema",
+  "table_name" : "test_table",
+  "user_id" : "test_Schema",
+  "validate_server_certificate" : true,
+  "warehouse_name" : "samplewarehouse"
 }
 ```
 ### <a name="cli-input-data-array-example-schema">InputDataArray</a>
@@ -29693,7 +29727,7 @@ The following example shows the format of the NodeDescriptionBody object.
 
 {
   "node_type" : "worker",
-  "quantity" : 1
+  "quantity" : 38
 }
 ```
 ### <a name="cli-node-with-attributes-example-schema">NodeWithAttributes</a>
@@ -29910,17 +29944,6 @@ The following example shows the format of the OnlineDeploymentParameters object.
 {
   "serving_name" : "churn"
 }
-```
-### <a name="cli-option-example-schema">Option[]</a>
-
-The following example shows the format of the Option[] object.
-
-```json
-
-[ {
-  "key" : "exampleString",
-  "value" : "exampleString"
-} ]
 ```
 ### <a name="cli-organization-example-schema">Organization</a>
 
@@ -30200,6 +30223,18 @@ The following example shows the format of the PatchItem[] object.
   }
 } ]
 ```
+### <a name="cli-patch-operation-payload-item-example-schema">PatchOperationPayloadItem[]</a>
+
+The following example shows the format of the PatchOperationPayloadItem[] object.
+
+```json
+
+[ {
+  "op" : "add",
+  "path" : "/allowed_operational_scope",
+  "value" : "exampleString"
+} ]
+```
 ### <a name="cli-payload-field-example-schema">PayloadField[]</a>
 
 The following example shows the format of the PayloadField[] object.
@@ -30211,6 +30246,17 @@ The following example shows the format of the PayloadField[] object.
   "name" : "exampleString",
   "type" : "string",
   "unit" : "exampleString"
+} ]
+```
+### <a name="cli-pipeline-cache-filter-criteria-example-schema">PipelineCacheFilterCriteria[]</a>
+
+The following example shows the format of the PipelineCacheFilterCriteria[] object.
+
+```json
+
+[ {
+  "job_id" : "exampleString",
+  "job_run_names" : [ "exampleString", "anotherExampleString" ]
 } ]
 ```
 ### <a name="cli-pipeline-json-example-schema">PipelineJSON</a>
@@ -30780,17 +30826,6 @@ The following example shows the format of the ResiliencyRulesRecord object.
   "merge_entities" : "exampleString"
 }
 ```
-### <a name="cli-resource-details-example-schema">ResourceDetails[]</a>
-
-The following example shows the format of the ResourceDetails[] object.
-
-```json
-
-[ {
-  "resource_id" : "presto01",
-  "resource_type" : "presto"
-} ]
-```
 ### <a name="cli-results-location-example-schema">ResultsLocation</a>
 
 The following example shows the format of the ResultsLocation object.
@@ -30855,18 +30890,6 @@ The following example shows the format of the ScheduleStartTime object.
   "delay_unit" : "minute",
   "timestamp" : "2018-11-21T09:37:55.523Z",
   "type" : "relative"
-}
-```
-### <a name="cli-schema-transformation-example-schema">SchemaTransformation</a>
-
-The following example shows the format of the SchemaTransformation object.
-
-```json
-
-{
-  "old_column" : "old_column_name",
-  "new_column" : "new_column_name",
-  "new_type" : "string"
 }
 ```
 ### <a name="cli-scope-example-schema">Scope</a>
@@ -31081,76 +31104,6 @@ The following example shows the format of the SoftwareSpecificationEntitySoftwar
   }
 }
 ```
-### <a name="cli-source-details-example-schema">SourceDetails</a>
-
-The following example shows the format of the SourceDetails object.
-
-```json
-
-{
-  "file_paths" : "exampleString",
-  "file_type" : "csv",
-  "source_type" : "STORAGE",
-  "schema" : [ {
-    "field_id" : 0,
-    "header_name" : "exampleString",
-    "type" : "exampleString"
-  } ],
-  "schema_transformations" : [ {
-    "old_column" : "old_column_name",
-    "new_column" : "new_column_name",
-    "new_type" : "string"
-  } ],
-  "schema_name" : "exampleString",
-  "table_name" : "exampleString",
-  "bucket_details" : {
-    "access_key" : "exampleString",
-    "account_name" : "exampleString",
-    "application_id" : "exampleString",
-    "container_name" : "exampleString",
-    "directory_id" : "exampleString",
-    "endpoint" : "exampleString",
-    "region" : "exampleString",
-    "secret_key" : "exampleString",
-    "auth_mode" : "aws_assume_role",
-    "role_arn" : "exampleString",
-    "managed_by" : "exampleString",
-    "name" : "exampleString",
-    "type" : "adls_gen1"
-  },
-  "iceberg_source_table" : {
-    "schema_name" : "exampleString",
-    "table_name" : "exampleString",
-    "catalog_name" : "exampleString",
-    "warehouse_name" : "exampleString",
-    "snapshot_id" : 0
-  },
-  "source_database" : {
-    "database_id" : "exampleString",
-    "db_type" : "exampleString",
-    "host" : "exampleString",
-    "port" : "exampleString",
-    "db_name" : "exampleString",
-    "db_username" : "exampleString",
-    "password" : "exampleString",
-    "authentication_value" : "exampleString",
-    "is_ssl" : false,
-    "cert_extension" : "exampleString",
-    "cert_content" : "exampleString",
-    "connection_mode" : "exampleString",
-    "connection_mode_value" : "exampleString",
-    "jdbc_url" : "exampleString"
-  },
-  "file_format_properties" : {
-    "encoding" : "exampleString",
-    "escape_character" : "exampleString",
-    "field_delimiter" : "exampleString",
-    "header" : true,
-    "line_delimiter" : "exampleString"
-  },
-  "is_local_ingestion" : false
-}
-```
 ### <a name="cli-source-system-example-schema">SourceSystem</a>
 
 The following example shows the format of the SourceSystem object.
@@ -31208,47 +31161,35 @@ The following example shows the format of the SparkApplicationDetails object.
 ```json
 
 {
-  "application" : "s3://mybucket/wordcount.py",
+  "application" : "/opt/ibm/spark/examples/src/main/python/wordcount.py",
   "applicationlocal" : "Users/Downloads/wordcount.py",
-  "archives" : "s3://mybucket/myarchive.zip",
-  "arguments" : [ "people.txt", "people.txt" ],
+  "arguments" : [ "/opt/ibm/spark/examples/src/main/resources/people.txt" ],
   "class" : "org.apache.spark.examples.SparkPi",
   "conf" : { },
-  "env" : { },
+  "env" : {
+    "sample_env_key" : "exampleString"
+  },
   "files" : "s3://mybucket/myfile.txt",
   "jars" : "exampleString",
   "name" : "SparkApplicaton1",
-  "bucket_name" : "bucketnameexample",
-  "bucket_access_key" : "2189duh1293e892ehhdx",
-  "bucket_secret_key" : "9832hd982yd9h23db2bx",
-  "bucket_endpoint" : "s3.cld-obj-stage.appdomain.cloud",
-  "api_key" : "H790hjka8909s09A9D9de",
   "packages" : "org.apache.spark:example_1.2.3",
   "repositories" : "https://repo1.maven.org/maven2/",
-  "runtime" : {
-    "spark_version" : "3.4"
-  },
+  "bucket_name" : "bucketname1",
+  "bucket_access_key" : "CBA998Sajk8AS8sdj9S8fA",
+  "bucket_secret_key" : "CBA998Sajk8AS8sdj9S8fA",
+  "bucket_endpoint" : "cloud-object-storage.appdomain.cloud",
+  "api_key" : "H790hjka8909s09A9D9de",
   "spark_version" : "3.3"
 }
 ```
-### <a name="cli-spark-application-runtime-example-schema">SparkApplicationRuntime</a>
+### <a name="cli-spark-application-env-example-schema">SparkApplicationEnv</a>
 
-The following example shows the format of the SparkApplicationRuntime object.
-
-```json
-
-{
-  "spark_version" : "3.4"
-}
-```
-### <a name="cli-spark-engine-application-callback-example-schema">SparkEngineApplicationCallback</a>
-
-The following example shows the format of the SparkEngineApplicationCallback object.
+The following example shows the format of the SparkApplicationEnv object.
 
 ```json
 
 {
-  "url" : "exampleString"
+  "sample_env_key" : "exampleString"
 }
 ```
 ### <a name="cli-spark-struct-example-schema">SparkStruct</a>
@@ -31340,22 +31281,9 @@ The following example shows the format of the StartBulkWorkflowRequestSearchCrit
   "search_type" : "record"
 }
 ```
-### <a name="cli-storage-catalog-prototype-example-schema">StorageCatalogPrototype</a>
+### <a name="cli-storage-connection-details-example-schema">StorageConnectionDetails</a>
 
-The following example shows the format of the StorageCatalogPrototype object.
-
-```json
-
-{
-  "base_path" : "/abc/def",
-  "catalog_name" : "sampleCatalog",
-  "catalog_tags" : [ "catalog_tag_1", "catalog_tag_2" ],
-  "catalog_type" : "iceberg"
-}
-```
-### <a name="cli-storage-details-example-schema">StorageDetails</a>
-
-The following example shows the format of the StorageDetails object.
+The following example shows the format of the StorageConnectionDetails object.
 
 ```json
 
@@ -31387,6 +31315,24 @@ The following example shows the format of the StorageDetails object.
   "vault_enabled" : true
 }
 ```
+### <a name="cli-storage-details-example-schema">StorageDetails</a>
+
+The following example shows the format of the StorageDetails object.
+
+```json
+
+{
+  "access_key" : "<access_key>",
+  "application_id" : "<application_id>",
+  "auth_mode" : "<account_key/sas/service_principle>",
+  "container_name" : "sample-container",
+  "directory_id" : "<directory_id>",
+  "endpoint" : "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/",
+  "sas_token" : "<sas_token>",
+  "secret_key" : "secret_key",
+  "storage_account_name" : "sample-storage"
+}
+```
 ### <a name="cli-storage-request-example-schema">StorageRequest</a>
 
 The following example shows the format of the StorageRequest object.
@@ -31411,20 +31357,6 @@ The following example shows the format of the StorageRequestProperties object.
 {
   "shared" : true
 }
-```
-### <a name="cli-subject-patch-example-schema">SubjectPatch[]</a>
-
-The following example shows the format of the SubjectPatch[] object.
-
-```json
-
-[ {
-  "permissions" : [ "exampleString", "anotherExampleString" ],
-  "subject" : {
-    "type" : "user",
-    "value" : "user1"
-  }
-} ]
 ```
 ### <a name="cli-sync-scoring-data-example-schema">SyncScoringData</a>
 
@@ -31993,6 +31925,18 @@ The following example shows the format of the TableDefinitionMetadata object.
   "name" : "exampleString"
 }
 ```
+### <a name="cli-table-schema-items-example-schema">TableSchemaItems[]</a>
+
+The following example shows the format of the TableSchemaItems[] object.
+
+```json
+
+[ {
+  "field_id" : 0,
+  "header_name" : "model",
+  "type" : "string"
+} ]
+```
 ### <a name="cli-target-example-schema">Target</a>
 
 The following example shows the format of the Target object.
@@ -32002,21 +31946,6 @@ The following example shows the format of the Target object.
 {
   "target_id" : "4b133ea1-3097-4175-82a1-4fd80759de26",
   "target_type" : "subscription"
-}
-```
-### <a name="cli-target-details-example-schema">TargetDetails</a>
-
-The following example shows the format of the TargetDetails object.
-
-```json
-
-{
-  "catalog" : "exampleString",
-  "schema" : "exampleString",
-  "table" : "exampleString",
-  "write_mode" : "exampleString",
-  "merge_on_read" : false,
-  "schema_mode" : "exampleString"
 }
 ```
 ### <a name="cli-text-chat-messages-example-schema">TextChatMessages[]</a>
@@ -32382,6 +32311,18 @@ The following example shows the format of the TransactionalProjectStorageObjectP
 {
   "shared" : true
 }
+```
+### <a name="cli-transformation-items-example-schema">TransformationItems[]</a>
+
+The following example shows the format of the TransformationItems[] object.
+
+```json
+
+[ {
+  "new_column" : "newCol",
+  "new_type" : "string",
+  "old_column" : "Col"
+} ]
 ```
 ### <a name="cli-ui-history-example-schema">UIHistory</a>
 
