@@ -22001,7 +22001,29 @@ LIST NESTED OBJECTS BY PAGINATION:
     --instance-id exampleString
 ```
 ## • <a name="wx-data_bucket_upload">`wx-data bucket upload`</a>
-Upload a file from local filesystem to a watsonx.data object storage bucket.
+Upload one or more files from local filesystem to a watsonx.data object storage bucket.
+
+	Single File Upload:
+		Use --local-path for a single file.
+		Use --storage-path to specify the full remote path (including filename).
+		Use --storage-dir to specify only the remote directory (filename will be preserved).
+		
+	Multiple File Upload:
+		Specify --local-path multiple times for each file.
+		Use --storage-dir to specify the remote directory for all files.
+		All files will be uploaded with their original filenames.
+
+	Important Notes:
+		- --storage-path cannot be used with multiple files (use --storage-dir instead)
+		- If both --storage-path and --storage-dir are specified, --storage-path takes precedence
+		- Files with duplicate basenames are automatically deduplicated (only first occurrence is uploaded)
+
+	Supported File Types:
+		Data Formats: csv, parquet, json, txt, orc, avro
+		Code/Scripts: py, ipynb, jar, scala, sh, bash, r, sql
+		Configuration: xml, yaml, yml, properties, conf, config, ini, toml
+		Documents: pdf, doc, docx, xls, xlsx, ppt, pptx, rtf, odt, txt, md, log, html, htm
+		Archives: zip, tar, gz, bz2
 
 	File Size Limits:
 		- Maximum file size: 2GB (hard limit)
@@ -22010,7 +22032,7 @@ Upload a file from local filesystem to a watsonx.data object storage bucket.
 	Files larger than 200MB may cause service disruptions during high traffic periods.
 
 ```sh
-cpdctl wx-data bucket upload --local-path LOCAL-PATH --storage-name STORAGE-NAME [--storage-path STORAGE-PATH] [--instance-id INSTANCE-ID]
+cpdctl wx-data bucket upload --local-path LOCAL-PATH --storage-name STORAGE-NAME [--storage-path STORAGE-PATH] [--storage-dir STORAGE-DIR] [--instance-id INSTANCE-ID]
 ```
 
 #### Command options
@@ -22018,23 +22040,45 @@ cpdctl wx-data bucket upload --local-path LOCAL-PATH --storage-name STORAGE-NAME
 `--instance-id` (string)
 :   Instance ID for CPD/Dev-edition (auto-fetched unless set via --instance-id flag or with --env 'WATSONX_DATA_INSTANCE_ID=<instance-id>' in profile set command) or instance CRN for CPDaaS. If both are set, --instance-id flag takes precedence .
 
-`--local-path` (string)
-:   Path to the local file to upload (required)
+`--local-path` (stringArray)
+:   Path to local file (can be specified multiple times for batch upload)
+
+    The default value is `[]`.
+
+`--storage-dir` (string)
+:   Remote directory path (filename will be preserved from local path)
 
 `--storage-name` (string)
 :   Name of the storage/bucket to upload to (required)
 
 `--storage-path` (string)
-:   Remote file path in the storage (optional, defaults to the basename of local file)
+:   Full remote file path including filename (takes precedence over --storage-dir)
 
 ##### Example
 
 ```sh
+   # Upload a single file with full path
    cpdctl wx-data bucket upload \
-	  --local-path /path/to/local/file.csv \
-	  --storage-name my-bucket \
-	  --storage-path data/file.csv \
-	  --instance-id 1735472262311515
+      --local-path /path/to/local/file.csv \
+      --storage-name my-bucket \
+      --storage-path data/file.csv \
+      --instance-id 1735472262311515
+
+   # Upload a single file to a directory
+   cpdctl wx-data bucket upload \
+      --local-path /path/to/local/file.csv \
+      --storage-name my-bucket \
+      --storage-dir data/uploads \
+      --instance-id 1735472262311515
+
+   # Upload multiple files to a directory
+   cpdctl wx-data bucket upload \
+     --local-path /path/file1.csv \
+     --local-path /path/file2.csv \
+     --local-path /path/file3.csv \
+     --storage-name my-bucket \
+     --storage-dir data/uploads \
+     --instance-id 1735472262311515
 ```
 ## • <a name="wx-data_component_get-cas-cpg-endpoint">`wx-data component get-cas-cpg-endpoint`</a>
 Get Common policy gateway (CPG) and  Data Access Service(CAS) endpoints.
@@ -23336,7 +23380,7 @@ cpdctl wx-data service get-qhmm-config [--instance-id INSTANCE-ID]
 Get all engine tables details.
 
 ```sh
-cpdctl wx-data service list-tables --engine-id ENGINE-ID [--connector-list CONNECTOR-LIST] [--catalog-name CATALOG-NAME] [--schema-name SCHEMA-NAME] [--instance-id INSTANCE-ID]
+cpdctl wx-data service list-tables --engine-id ENGINE-ID [--type TYPE] [--connector-list CONNECTOR-LIST] [--catalog-name CATALOG-NAME] [--schema-name SCHEMA-NAME] [--instance-id INSTANCE-ID]
 ```
 
 #### Command options
@@ -23356,6 +23400,9 @@ cpdctl wx-data service list-tables --engine-id ENGINE-ID [--connector-list CONNE
 `--schema-name` (string)
 :   Schema name.
 
+`--type` (string)
+:   table/view for tables or views respectively. Leave empty to get all tables and views.
+
 ##### Example
 
 ```sh
@@ -23364,6 +23411,7 @@ cpdctl wx-data service list-tables --engine-id ENGINE-ID [--connector-list CONNE
     --connector-list exampleString \
     --catalog-name exampleString \
     --schema-name exampleString \
+	--type table/view \
     --instance-id exampleString
 ```
 ## • <a name="wx-data_service_monitor">`wx-data service monitor`</a>
@@ -23617,7 +23665,7 @@ cpdctl wx-data sparkjob list \
 	  --instance-id 67382999037902
 ```
 ## • <a name="wx-data_tablemaint_cherrypick-snapshot">`wx-data tablemaint cherrypick-snapshot`</a>
-Cherrypick Snapshot Command
+Cherrypick creates a new snapshot from an existing snapshot without altering or removing the original
 
 ```sh
 cpdctl wx-data tablemaint cherrypick-snapshot --catalog-name CATALOG-NAME --schema-name SCHEMA-NAME --table-name TABLE-NAME --snapshot-id SNAPSHOT-ID [--api-key API-KEY] --bucket-name BUCKET-NAME --engine-id ENGINE-ID --bucket-access-key BUCKET-ACCESS-KEY --bucket-secret-key BUCKET-SECRET-KEY --bucket-endpoint BUCKET-ENDPOINT [--force true] [--debug true] [--instance-id INSTANCE-ID]
@@ -23673,9 +23721,11 @@ cpdctl wx-data tablemaint cherrypick-snapshot --catalog-name CATALOG-NAME --sche
 	 --force \
 	 --debug \
 	 --instance-id 67382999037902
+	 
+# Official Documentation: https://iceberg.apache.org/docs/nightly/spark-procedures/#cherrypick_snapshot
 ```
 ## • <a name="wx-data_tablemaint_expire-snapshot">`wx-data tablemaint expire-snapshot`</a>
-Expire Snapshot Command
+Remove old snapshots and data files which are uniquely required by those old snapshots. This will never remove files which are still required by a non-expired snapshot.
 
 ```sh
 cpdctl wx-data tablemaint expire-snapshot --catalog-name CATALOG-NAME --schema-name SCHEMA-NAME --table-name TABLE-NAME --snapshot-array SNAPSHOT-ARRAY [--api-key API-KEY] --bucket-name BUCKET-NAME --engine-id ENGINE-ID --bucket-access-key BUCKET-ACCESS-KEY --bucket-secret-key BUCKET-SECRET-KEY --bucket-endpoint BUCKET-ENDPOINT [--force true] [--debug true] [--instance-id INSTANCE-ID]
@@ -23731,9 +23781,11 @@ cpdctl wx-data tablemaint expire-snapshot --catalog-name CATALOG-NAME --schema-n
 	 --force \
 	 --debug \
 	 --instance-id 67382999037902
+	 
+# Official Documentation: https://iceberg.apache.org/docs/nightly/spark-procedures/#expire_snapshots
 ```
 ## • <a name="wx-data_tablemaint_register-table">`wx-data tablemaint register-table`</a>
-Register Table Command
+Creates a catalog entry for a metadata.json file which already exists but does not have a corresponding catalog identifier
 
 ```sh
 cpdctl wx-data tablemaint register-table --catalog-name CATALOG-NAME --schema-name SCHEMA-NAME --table-name TABLE-NAME --metadata-path METADATA-PATH [--api-key API-KEY] --bucket-name BUCKET-NAME --engine-id ENGINE-ID --bucket-access-key BUCKET-ACCESS-KEY --bucket-secret-key BUCKET-SECRET-KEY --bucket-endpoint BUCKET-ENDPOINT [--force true] [--debug true] [--instance-id INSTANCE-ID]
@@ -23789,9 +23841,11 @@ cpdctl wx-data tablemaint register-table --catalog-name CATALOG-NAME --schema-na
 	 --force \
 	 --debug \
 	 --instance-id 67382999037902
+	 
+# Official Documentation: https://iceberg.apache.org/docs/nightly/spark-procedures/#register_table
 ```
 ## • <a name="wx-data_tablemaint_remove-orphan">`wx-data tablemaint remove-orphan`</a>
-Remove Orphan Files Command
+Remove files which are not referenced in any metadata files of an Iceberg table and can thus be considered 'orphaned'
 
 ```sh
 cpdctl wx-data tablemaint remove-orphan --catalog-name CATALOG-NAME --schema-name SCHEMA-NAME --table-name TABLE-NAME --location LOCATION [--api-key API-KEY] --bucket-name BUCKET-NAME --engine-id ENGINE-ID --bucket-access-key BUCKET-ACCESS-KEY --bucket-secret-key BUCKET-SECRET-KEY --bucket-endpoint BUCKET-ENDPOINT [--force true] [--debug true] [--instance-id INSTANCE-ID]
@@ -23847,9 +23901,11 @@ cpdctl wx-data tablemaint remove-orphan --catalog-name CATALOG-NAME --schema-nam
 	 --force \
 	 --debug \
 	 --instance-id 67382999037902
+	 
+# Official Documentation: https://iceberg.apache.org/docs/nightly/spark-procedures/#remove_orphan_files
 ```
 ## • <a name="wx-data_tablemaint_rewrite-data">`wx-data tablemaint rewrite-data`</a>
-Rewrite Data Files Command
+Combine small files into larger files to reduce metadata overhead and runtime file open cost
 
 ```sh
 cpdctl wx-data tablemaint rewrite-data --catalog-name CATALOG-NAME --schema-name SCHEMA-NAME --table-name TABLE-NAME [--api-key API-KEY] --bucket-name BUCKET-NAME --engine-id ENGINE-ID --bucket-access-key BUCKET-ACCESS-KEY --bucket-secret-key BUCKET-SECRET-KEY --bucket-endpoint BUCKET-ENDPOINT [--force true] [--debug true] [--instance-id INSTANCE-ID]
@@ -23901,9 +23957,11 @@ cpdctl wx-data tablemaint rewrite-data --catalog-name CATALOG-NAME --schema-name
 	 --force \
 	 --debug \
 	 --instance-id 67382999037902
+	 
+# Official Documentation: https://iceberg.apache.org/docs/nightly/spark-procedures/#rewrite_data_files
 ```
 ## • <a name="wx-data_tablemaint_rewrite-manifests">`wx-data tablemaint rewrite-manifests`</a>
-Rewrite Manifests Command
+Rewrite manifests for a table to optimize scan planning
 
 ```sh
 cpdctl wx-data tablemaint rewrite-manifests --catalog-name CATALOG-NAME --schema-name SCHEMA-NAME --table-name TABLE-NAME [--api-key API-KEY] --bucket-name BUCKET-NAME --engine-id ENGINE-ID --bucket-access-key BUCKET-ACCESS-KEY --bucket-secret-key BUCKET-SECRET-KEY --bucket-endpoint BUCKET-ENDPOINT [--force true] [--debug true] [--instance-id INSTANCE-ID]
@@ -23955,9 +24013,11 @@ cpdctl wx-data tablemaint rewrite-manifests --catalog-name CATALOG-NAME --schema
 	 --force \
 	 --debug \
 	 --instance-id 67382999037902
+	 
+# Official Documentation: https://iceberg.apache.org/docs/nightly/spark-procedures/#rewrite_manifests
 ```
 ## • <a name="wx-data_tablemaint_rollback-to-snapshot">`wx-data tablemaint rollback-to-snapshot`</a>
-Rollback To Snapshot Command
+Rollback a table to a specific snapshot ID
 
 ```sh
 cpdctl wx-data tablemaint rollback-to-snapshot --catalog-name CATALOG-NAME --schema-name SCHEMA-NAME --table-name TABLE-NAME --snapshot-id SNAPSHOT-ID [--api-key API-KEY] --bucket-name BUCKET-NAME --engine-id ENGINE-ID --bucket-access-key BUCKET-ACCESS-KEY --bucket-secret-key BUCKET-SECRET-KEY --bucket-endpoint BUCKET-ENDPOINT [--force true] [--debug true] [--instance-id INSTANCE-ID]
@@ -24013,6 +24073,8 @@ cpdctl wx-data tablemaint rollback-to-snapshot --catalog-name CATALOG-NAME --sch
 	 --force \
 	 --debug \
 	 --instance-id 67382999037902
+	 
+# Official Documentation: https://iceberg.apache.org/docs/nightly/spark-procedures/#rollback_to_snapshot
 ```
 ## • <a name="wx-data_tablemaint_rollback-to-timestamp">`wx-data tablemaint rollback-to-timestamp`</a>
 Roll this table's data back to the last Snapshot before the given timestamp.
@@ -24072,10 +24134,11 @@ cpdctl wx-data tablemaint rollback-to-timestamp --catalog-name CATALOG-NAME --sc
 	 --debug \
 	 --instance-id 67382999037902
 	 
-### Throws java.lang.IllegalArgumentException - If the table has no old snapshot before the given timestamp ###
+# Throws java.lang.IllegalArgumentException - If the table has no old snapshot before the given timestamp #
+# Official Documentation: https://iceberg.apache.org/docs/nightly/spark-procedures/#rollback_to_timestamp
 ```
 ## • <a name="wx-data_tablemaint_set-current-snapshot">`wx-data tablemaint set-current-snapshot`</a>
-Set Current Snapshot Command
+Sets the current snapshot ID for a table
 
 ```sh
 cpdctl wx-data tablemaint set-current-snapshot --catalog-name CATALOG-NAME --schema-name SCHEMA-NAME --table-name TABLE-NAME --snapshot-id SNAPSHOT-ID [--api-key API-KEY] --bucket-name BUCKET-NAME --engine-id ENGINE-ID --bucket-access-key BUCKET-ACCESS-KEY --bucket-secret-key BUCKET-SECRET-KEY --bucket-endpoint BUCKET-ENDPOINT [--force true] [--debug true] [--instance-id INSTANCE-ID]
@@ -24131,6 +24194,8 @@ cpdctl wx-data tablemaint set-current-snapshot --catalog-name CATALOG-NAME --sch
 	 --force \
 	 --debug \
 	 --instance-id 67382999037902
+	 
+# Official Documentation: https://iceberg.apache.org/docs/nightly/spark-procedures/#set_current_snapshot
 ```
 ## Schema Examples
 
