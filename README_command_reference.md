@@ -16440,7 +16440,7 @@ cpdctl space create [command options]
     --generator Spaces-API_Swagger-Docs \
     --settings '{"access_restrictions": {"reporting": {"authorized": true}}, "folders": {"enabled": true}}' \
     --stage '{"name": "exampleString", "production": false}' \
-    --storage '{"delegated": false, "plan_id": "1e4e33e4-cfa6-4f12-9016-be594a6d5f87", "properties": {"shared": true}, "resource_crn": "exampleString"}' \
+    --storage '{"delegated": false, "plan_id": "1e4e33e4-cfa6-4f12-9016-be594a6d5f87", "properties": {"shared": true, "use_delegated_KMS_key": false}, "resource_crn": "exampleString"}' \
     --tags exampleString,anotherTestString \
     --type cpd
 ```
@@ -16885,7 +16885,7 @@ Partially update the member selected with the specified identifier. Allowed path
   - /state.
 
 ```sh
-cpdctl space member update {--space-id SPACE-ID | --space SPACE-NAME} --member-id MEMBER-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --role viewer | editor | admin --state active | pending}
+cpdctl space member update {--space-id SPACE-ID | --space SPACE-NAME} --member-id MEMBER-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --role viewer | editor | admin | job_operator --state active | pending}
 ```
 
 #### Command options
@@ -21840,6 +21840,27 @@ cpdctl wx-data bucket create [command options]
     --tags storage-tag1,storage-tag2 \
     --instance-id exampleString 
 
+AWS S3 SAMPLE:
+
+   cpdctl wx-data bucket create \
+    --type aws_s3 \
+    --display-name s3 \
+    --description 'bucket for customer data' \
+    --managed-by customer \
+    --tags bucket-tag1,bucket-tag2 \
+    --region eu-central-1 \
+    --associated-catalog '{
+	  "catalog_name": "aws_s3",
+	  "catalog_tags": ["tag_1", "tag_2"],
+	  "catalog_type": "iceberg"
+    }' \
+    --connection '{
+	  "name": "mys3bucket",
+	  "auth_mode":"hmac",
+	  "endpoint": "https://s3.eu-central-1.amazonaws.com",
+	  "access_key": "AKIA4LT*******",
+	  "secret_key": "2cdWKMPDh********"
+    }'
 
 ADLS SAMPLE:
 
@@ -21855,12 +21876,11 @@ ADLS SAMPLE:
 	  "catalog_type": "iceberg"
     }' \
     --connection '{
-	  "name": "myBucketName",
 	  "auth_mode": "account_key",
 	  "container_name": "mycontainer",
 	  "account_name": "myaccountname",
 	  "endpoint": "abfss://pyspark@sparkad.dfs.core.windows.net/",
-	  "access_key": "TXRGeMdrF/omXBgzhtCFzpRhQm/96Jf2Rz+AStPhKDWA=="
+	  "access_key": "TXRGeMdrF/omXBgzhtCFz6*****"
     }'
 
 	
@@ -31408,7 +31428,8 @@ The following example shows the format of the StorageRequest object.
   "delegated" : false,
   "plan_id" : "1e4e33e4-cfa6-4f12-9016-be594a6d5f87",
   "properties" : {
-    "shared" : true
+    "shared" : true,
+    "use_delegated_KMS_key" : false
   },
   "resource_crn" : "exampleString"
 }
@@ -31420,7 +31441,8 @@ The following example shows the format of the StorageRequestProperties object.
 ```json
 
 {
-  "shared" : true
+  "shared" : true,
+  "use_delegated_KMS_key" : false
 }
 ```
 ### <a name="cli-sync-scoring-data-example-schema">SyncScoringData</a>
