@@ -262,9 +262,11 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 - [pipeline copy](#pipeline_copy)
 - [pipeline delete](#pipeline_delete)
 - [pipeline get](#pipeline_get)
+- [pipeline get-settings](#pipeline_get-settings)
 - [pipeline get-template](#pipeline_get-template)
 - [pipeline list](#pipeline_list)
 - [pipeline store-logs](#pipeline_store-logs)
+- [pipeline update-settings](#pipeline_update-settings)
 - [pipeline upload](#pipeline_upload)
 - [pipeline validate](#pipeline_validate)
 - [pipeline cleanup delete-artifacts](#pipeline_cleanup_delete-artifacts)
@@ -14449,6 +14451,36 @@ cpdctl pipeline get {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--s
     --space-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673 \
     --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673
 ```
+## • <a name="pipeline_get-settings">`pipeline get-settings`</a>
+Gather tenant (account or instance) settings. When a setting name or prefix is given, returns only settings that match the name (prefix).
+
+```sh
+cpdctl pipeline get-settings [setting_name_or_prefix]
+```
+
+#### Command options
+
+`-d`, `--description` (bool)
+:   Show setting descriptions
+
+    The default value is `false`.
+
+##### Example
+
+```sh
+   cpdctl pipeline get-settings
+    
+      - if no argument is given, all tenant settings are listed.
+
+   cpdctl pipeline get-settings default_pipeline_settings
+
+      - command started with an argument 'default_pipeline_settings' lists settings that match this prefix.
+
+   cpdctl pipeline get-settings default_pipeline_settings.appearance.auto_save_frequency
+
+      - command started with a full setting name shows value for this particular setting.
+
+```
 ## • <a name="pipeline_get-template">`pipeline get-template`</a>
 Returns code (YAML template, Orchestration Flow json) that contains the specified pipeline's description, parameters and metadata. You need to specify either `project_id` or `space_id`.
 
@@ -14603,6 +14635,34 @@ cpdctl pipeline store-logs [flags]
 
     The default value is `false`.
 
+## • <a name="pipeline_update-settings">`pipeline update-settings`</a>
+Update tenant (account or instance) settings.
+
+```sh
+cpdctl pipeline update-settings [setting_name_or_prefix] value
+```
+
+##### Example
+
+```sh
+   cpdctl pipeline update-settings \
+       '{"default_asset_container_settings": {"allowed_operational_scope": "WIDE_SCOPE"}}'
+
+      - this command updates a setting with value from inline JSON string. To learn available settings and JSON structure run command 'cpdctl pipeline get-settings --output json'. 
+
+    cpdctl pipeline update-settings @tenant-settings.json
+
+      - this command updates settings with values from JSON stored in a file named 'tenant-settings.json'.
+
+    cpdctl pipeline update-settings default_pipeline_settings @default-pipeline-settings.json
+
+      - this command updates settings that belong to group 'default_pipeline_settings' from file named 'default-pipeline-settings.json'. Example file can be created with command 'cpdctl pipeline get-settings default_pipeline_settings --output json'.
+
+    cpdctl pipeline update-settings default_pipeline_settings.execution_cache.caching_conditions RETRY_ON_FAILURE,PIPELINE_UNCHANGED,INPUTS_UNCHANGED
+
+      - this command updates setting that accepts a list of values.
+
+```
 ## • <a name="pipeline_upload">`pipeline upload`</a>
 Uploads a pipeline file and create a new pipeline. You need to specify either `project_id` or `space_id`.
 
@@ -14702,10 +14762,10 @@ The supported file formats are pipeline.json and zip which contains pipeline.jso
     --project-id 9fab83da-98cb-4f18-a7ba-b6f0435c9673
 ```
 ## • <a name="pipeline_cleanup_delete-artifacts">`pipeline cleanup delete-artifacts`</a>
-This command deletes artifact files created by Watson Pipeline job runs. Only files from job runs that started before a specific point in time are deleted. Identifiers of jobs and runs whose artifacts are deleted are preserved in the output file. The number of job runs can be limited (--limit parameter). Artifacts can be deleted directly from a mounted filesystem, from asset files pvc (--assets-dir-path) and artifact store pvc (--artifact-store-assets-dir-path).
+This command deletes artifact files created by Watson Pipeline job runs. Only files from job runs that started before a specific point in time are deleted. Identifiers of jobs and runs whose artifacts are deleted are preserved in the output file. The number of job runs can be limited (--limit parameter). Artifacts can be deleted directly from a mounted filesystem, from asset files pvc (--assets-dir-path) and artifact store pvc (--artifact-store-assets-dir-path). Use --parallelism to control parallel processing (default: 1 for single-threaded).
 
 ```sh
-cpdctl pipeline cleanup delete-artifacts --retention-time RETENTION --output-file OUTPUT-FILE [{--project-id PROJECT-ID | --project PROJECT-NAME} | {--space-id SPACE-ID | --space SPACE-NAME}] [--assets-dir-path ASSETS-DIR-PATH] [--artifact-store-assets-dir-path ARTIFACT-STORE-ASSETS-DIR-PATH] [--retention-time RETENTION-TIME] [--output-file OUTPUT-FILE] [--limit LIMIT] [--clean-job-runs] [--force] [flags]
+cpdctl pipeline cleanup delete-artifacts --retention-time RETENTION --output-file OUTPUT-FILE [{--project-id PROJECT-ID | --project PROJECT-NAME} | {--space-id SPACE-ID | --space SPACE-NAME}] [--assets-dir-path ASSETS-DIR-PATH] [--artifact-store-assets-dir-path ARTIFACT-STORE-ASSETS-DIR-PATH] [--limit LIMIT] [--parallelism PARALLELISM] [--clean-job-runs] [--force] [flags]
 ```
 
 #### Command options
@@ -14717,7 +14777,7 @@ cpdctl pipeline cleanup delete-artifacts --retention-time RETENTION --output-fil
 :   The path to mounted assets directory (e.g. /mnt/asset_file_api/projects/{project-id}/assets/)
 
 `--clean-job-runs` (bool)
-:   Delete job runs along with artifacts
+:   Delete job runs along with artifacts. WARNING: usage is not recommended for large environments.
 
     The default value is `false`.
 
@@ -14725,17 +14785,22 @@ cpdctl pipeline cleanup delete-artifacts --retention-time RETENTION --output-fil
 :   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--force` (bool)
-:   Force delete artifacts even if metadata are missing
+:   Force delete artifacts even if metadata are missing. It is also optimizing cleanup performance.
 
     The default value is `false`.
 
 `--limit` (int)
-:   Max number of job runs for which artifacts are deleted
+:   Max number of job runs for which artifacts are deleted. If the parallelism is specified the limit can be exceeded up to the the parallelism value.
 
     The default value is `9223372036854775807`.
 
 `--output-file` (string)
 :   Path to the file where the identifiers of pipelines, jobs, and job runs are saved after the artifacts are deleted
+
+`--parallelism` (int)
+:   Number of concurrent worker threads for parallel processing (default: 1 for single-threaded)
+
+    The default value is `1`.
 
 `--project` (string)
 :   Project name. This option is mutually exclusive with '--project-id'.
@@ -14762,6 +14827,7 @@ cpdctl pipeline cleanup delete-artifacts --retention-time RETENTION --output-fil
 	--retention-time=100h0m0s \
 	--output-file=/tmp/delete-artifacts.log \
 	--limit=100 \
+	--parallelism=10 \
 	--clean-job-runs
 	--force
 ```
@@ -21649,7 +21715,7 @@ cpdctl wx-data access-control update-access [command options]
 :   Resource Display Name. Provide either --id or --name. Required when --type is catalog, optional for other --type values
 
 `--subjects` (string)
-:   (Required) Subjects (users or groups) whose access permissions to be updated. Format: For Users- user:userName:permission For Groups- group:groupID:permission. Allowable permission values: admin, manager, reader, writer, user. Multiple subjects can be updated under same resource type (--type) separated by commas
+:   (Required) Subjects (users or groups) whose access permissions to be updated. Format: For Users- user:userName:permission For Groups- group:groupID:permission. Allowable permission values: admin, manager, reader, writer, user, viewer, editor. Multiple subjects can be updated under same resource type (--type) separated by commas
 
 `--type` (string)
 :   (Required) Resource type. Allowable values: catalog, database, storage, presto, prestissimo, spark, milvus
@@ -21785,6 +21851,9 @@ cpdctl wx-data bucket create [command options]
 `--managed-by` (string)
 :   Managed by
 
+`--path-style-enabled` (string)
+:   Path style endpoint support for CUSTOM s3 storage.
+
 `--region` (string)
 :   Region where the storage is located
 
@@ -21792,7 +21861,7 @@ cpdctl wx-data bucket create [command options]
 :   Storage tags
 
 `--type` (string)
-:   Storage type, supported types are (aws_s3, minio, ibm_cos, ibm_ceph, adls_gen1, adls_gen2, google_cs, ibm_storage_scale, ozone)
+:   Storage type, supported types are (aws_s3, custom_s3, minio, ibm_cos, ibm_ceph, adls_gen1, adls_gen2, google_cs, ibm_storage_scale, ozone)
 
 ##### Example
 
@@ -32505,6 +32574,173 @@ The following example shows the format of the UserPreferencesUpdateRequest objec
 ```json
 
 { }
+```
+### <a name="cli-v1-appearance-settings-example-schema">V1AppearanceSettings</a>
+
+The following example shows the format of the V1AppearanceSettings object.
+
+```json
+
+{
+  "auto_link_color" : true,
+  "auto_save_frequency" : "exampleString",
+  "enable_auto_save" : true,
+  "enable_datastage_functions" : true,
+  "limit_asset_browser_jobs_scope" : true,
+  "shape_nodes" : true
+}
+```
+### <a name="cli-v1-asset-container-settings-example-schema">V1AssetContainerSettings</a>
+
+The following example shows the format of the V1AssetContainerSettings object.
+
+```json
+
+{
+  "allowed_operational_scope" : "WIDE_SCOPE",
+  "default_pipeline_job_name_suffix" : "exampleString",
+  "environment_id" : "exampleString",
+  "jobs_deletion_mode" : "DELETE_PIPELINE_JOBS",
+  "nested_job_execution_mode" : "INLINE_MODE",
+  "pipeline_save_mode" : "AUTO_SAVE",
+  "resource_reference_type" : "SEARCH_BY_ATTRIBUTES",
+  "runner_type" : "PIPELINE_RUNNER"
+}
+```
+### <a name="cli-v1-error-policy-example-schema">V1ErrorPolicy</a>
+
+The following example shows the format of the V1ErrorPolicy object.
+
+```json
+
+{ }
+```
+### <a name="cli-v1-execution-cache-settings-example-schema">V1ExecutionCacheSettings</a>
+
+The following example shows the format of the V1ExecutionCacheSettings object.
+
+```json
+
+{
+  "caching_conditions" : [ "RETRY_ON_FAILURE", "PIPELINE_UNCHANGED", "INPUTS_UNCHANGED" ],
+  "caching_method" : "MANUAL",
+  "default_cache_mode" : "CONDITIONAL"
+}
+```
+### <a name="cli-v1-pipeline-settings-example-schema">V1PipelineSettings</a>
+
+The following example shows the format of the V1PipelineSettings object.
+
+```json
+
+{
+  "appearance" : {
+    "auto_link_color" : true,
+    "auto_save_frequency" : "exampleString",
+    "enable_auto_save" : true,
+    "enable_datastage_functions" : true,
+    "limit_asset_browser_jobs_scope" : true,
+    "shape_nodes" : true
+  },
+  "default_error_policy" : { },
+  "environment_id" : "exampleString",
+  "execution_cache" : {
+    "caching_conditions" : [ "RETRY_ON_FAILURE", "PIPELINE_UNCHANGED", "INPUTS_UNCHANGED" ],
+    "caching_method" : "MANUAL",
+    "default_cache_mode" : "CONDITIONAL"
+  },
+  "job_concurrency_mode" : "SINGLE_INSTANCE",
+  "settings" : {
+    "cancelled_as_failed_in_conditions" : true,
+    "mark_completed_with_errors" : true,
+    "propagate_cancelled_status" : true,
+    "propagate_completed_with_warnings_status" : true
+  }
+}
+```
+### <a name="cli-v1-pipeline-various-settings-example-schema">V1PipelineVariousSettings</a>
+
+The following example shows the format of the V1PipelineVariousSettings object.
+
+```json
+
+{
+  "cancelled_as_failed_in_conditions" : true,
+  "mark_completed_with_errors" : true,
+  "propagate_cancelled_status" : true,
+  "propagate_completed_with_warnings_status" : true
+}
+```
+### <a name="cli-v1-runtime-settings-example-schema">V1RuntimeSettings</a>
+
+The following example shows the format of the V1RuntimeSettings object.
+
+```json
+
+{
+  "bash_script_embed_stderr_in_stdout" : true,
+  "completion_check_delay" : "exampleString",
+  "connection_check_timeout" : "exampleString",
+  "default_runtime_type" : "exampleString",
+  "deletion_idle_time" : "exampleString",
+  "keep_alive_interval" : "exampleString",
+  "max_background_tasks" : 38,
+  "max_replicas" : 38,
+  "min_replicas" : 38,
+  "scale_to_zero_idle_time" : "exampleString",
+  "worker_check_delay" : "exampleString",
+  "worker_check_timeout" : "exampleString",
+  "worker_parallelism_level" : 38,
+  "worker_requests_cpu" : "exampleString",
+  "worker_requests_memory" : "exampleString",
+  "workers" : 38
+}
+```
+### <a name="cli-v1-system-settings-example-schema">V1SystemSettings</a>
+
+The following example shows the format of the V1SystemSettings object.
+
+```json
+
+{
+  "cache_clear_jobs_count" : 38,
+  "completed_pipeline_ttl" : "exampleString",
+  "custom_bash_script_config" : "exampleString",
+  "custom_bash_script_image" : "exampleString",
+  "custom_python_image" : "exampleString",
+  "default_container_env" : "exampleString",
+  "default_workspace_bindings" : [ "exampleString", "anotherExampleString" ],
+  "default_workspaces" : [ "exampleString", "anotherExampleString" ],
+  "execution_cache_separation" : "exampleString",
+  "hidden_components" : [ "exampleString", "anotherExampleString" ],
+  "incomplete_pipeline_reporting_delay" : "exampleString",
+  "overlooked_pipeline_ttl" : "exampleString",
+  "pipeline_force_deletion_delay" : "exampleString",
+  "rate_limit_config" : "exampleString",
+  "redis_dial_timeout" : "exampleString",
+  "runtime_settings" : {
+    "bash_script_embed_stderr_in_stdout" : true,
+    "completion_check_delay" : "exampleString",
+    "connection_check_timeout" : "exampleString",
+    "default_runtime_type" : "exampleString",
+    "deletion_idle_time" : "exampleString",
+    "keep_alive_interval" : "exampleString",
+    "max_background_tasks" : 38,
+    "max_replicas" : 38,
+    "min_replicas" : 38,
+    "scale_to_zero_idle_time" : "exampleString",
+    "worker_check_delay" : "exampleString",
+    "worker_check_timeout" : "exampleString",
+    "worker_parallelism_level" : 38,
+    "worker_requests_cpu" : "exampleString",
+    "worker_requests_memory" : "exampleString",
+    "workers" : 38
+  },
+  "secrets_cache_duration" : "exampleString",
+  "unmask_email_address" : true,
+  "unpersisted_pipeline_ttl" : "exampleString",
+  "user_variables_size_limit" : "exampleString"
+}
 ```
 ### <a name="cli-value-set-example-schema">ValueSet</a>
 
