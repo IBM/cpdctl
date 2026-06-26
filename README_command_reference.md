@@ -14262,7 +14262,7 @@ cpdctl pipeline commit {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [-
 Generate Runtime code for a Watson pipeline in the specified project or catalog for a specified runtime type. Either project_id or catalog_id must be specified.
 
 ```sh
-cpdctl pipeline compile {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [--recursive=RECURSIVE] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--enable-inline=ENABLE-INLINE] [--enable-versioning=ENABLE-VERSIONING]
+cpdctl pipeline compile {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [--recursive=RECURSIVE] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--enable-debug=ENABLE_DEBUG] [--enable-inline=ENABLE-INLINE] [--enable-versioning=ENABLE-VERSIONING] [--code] [--verbose]
 ```
 
 #### Command options
@@ -14273,11 +14273,21 @@ cpdctl pipeline compile {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [
 `--catalog-id` (string)
 :   The ID of the catalog to use. 'catalog_id' or 'project_id' or 'space_id' is required. This option is mutually exclusive with '--catalog'.
 
+`-c`, `--code` (bool)
+:   Whether to enable detailed stage information when compiling a flow.
+
+    The default value is `false`.
+
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--enable-caching` (bool)
 :   Whether to enable pipeline caching or not. Caching is enabled by default. (DEPRECATED)
+
+    The default value is `false`.
+
+`--enable-debug` (bool)
+:   Whether to enable debug info in job run. Debug info is disabled by default.
 
     The default value is `false`.
 
@@ -14316,6 +14326,11 @@ cpdctl pipeline compile {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [
 
 `--space-id` (string)
 :   The ID of the space to use. 'catalog_id' or 'project_id' or 'space_id' is required. This option is mutually exclusive with '--space'.
+
+`-v`, `--verbose` (bool)
+:   Show details useful for debugging
+
+    The default value is `false`.
 
 ##### Example
 
@@ -14631,7 +14646,7 @@ cpdctl pipeline store-logs [flags]
     The default value is `50`.
 
 `-v`, `--verbose` (bool)
-:   Log details useful for debugging
+:   Show details useful for debugging
 
     The default value is `false`.
 
