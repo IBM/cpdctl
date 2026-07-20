@@ -32599,7 +32599,6 @@ The following example shows the format of the V1AppearanceSettings object.
 {
   "auto_link_color" : true,
   "auto_save_frequency" : "exampleString",
-  "enable_auto_save" : true,
   "enable_datastage_functions" : true,
   "limit_asset_browser_jobs_scope" : true,
   "shape_nodes" : true
@@ -32621,14 +32620,6 @@ The following example shows the format of the V1AssetContainerSettings object.
   "resource_reference_type" : "SEARCH_BY_ATTRIBUTES",
   "runner_type" : "PIPELINE_RUNNER"
 }
-```
-### <a name="cli-v1-error-policy-example-schema">V1ErrorPolicy</a>
-
-The following example shows the format of the V1ErrorPolicy object.
-
-```json
-
-{ }
 ```
 ### <a name="cli-v1-execution-cache-settings-example-schema">V1ExecutionCacheSettings</a>
 
@@ -32652,12 +32643,11 @@ The following example shows the format of the V1PipelineSettings object.
   "appearance" : {
     "auto_link_color" : true,
     "auto_save_frequency" : "exampleString",
-    "enable_auto_save" : true,
     "enable_datastage_functions" : true,
     "limit_asset_browser_jobs_scope" : true,
     "shape_nodes" : true
   },
-  "default_error_policy" : { },
+  "default_error_policy" : "CONTINUE_ON_ERROR",
   "environment_id" : "exampleString",
   "execution_cache" : {
     "caching_conditions" : [ "RETRY_ON_FAILURE", "PIPELINE_UNCHANGED", "INPUTS_UNCHANGED" ],
