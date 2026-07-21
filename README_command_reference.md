@@ -21695,7 +21695,7 @@ cpdctl wx-data access-control revoke-access [command options]
 `--name` (string)
 :   Resource Display Name. Provide either --id or --name. Required when --type is catalog, optional for other --type values
 
-`--subjects` (string)
+`--subjects` ([`SubjectPatch[]`](#cli-subject-patch-example-schema))
 :   (Required) Subjects (users or groups) whose access will be revoked. Format: For Users - user:userName For Groups - group:groupID. Multiple subjects can be revoked under same resource type (--type) separated by commas
 
 `--type` (string)
@@ -21780,7 +21780,7 @@ cpdctl wx-data bucket create [command options]
 
 #### Command options
 
-`--associated-catalog` ([`BucketCatalog`](#cli-bucket-catalog-example-schema))
+`--associated-catalog` ([`StorageCatalogPrototype`](#cli-storage-catalog-prototype-example-schema))
 :   Provide adhoc catalog details. Format: {"base_path":"/abc/def", "catalog_name":"sampleCatalog","catalog_type":"iceberg", "catalog_tags":["catalog_tag_1","catalog_tag_2"]}
 
 `--associated-catalog-base-path` (string)
@@ -21798,7 +21798,7 @@ cpdctl wx-data bucket create [command options]
 `--bucket-use` (string)
 :   Bucket use, to define whether the storage is for query monitoring or acl. Allowable values are: qhmm, acl
 
-`--connection` ([`StorageConnectionDetails`](#cli-storage-connection-details-example-schema))
+`--connection` ([`StorageDetails`](#cli-storage-details-example-schema))
 :   Provide storage connection details. Format: {"access_key":"<access_key>", "access_key_vault":{"key":"secret key", "secret_name":"secret name", "secret_urn":"secret urn"}, "account_name":"sample-storage", "application_id":"application-id", "auth_mode":"iam", "container_name":"sample-container", "directory_id":"directory-id", "endpoint":"https://s3.us-south.cloud-object-storage.appdomain.cloud/", "key_file":"key_file", "name":"sample-storage", "provider":"ibm-cos", "region":"us-south", "role_arn":"arn:aws:iam::5ssdd5467-002c-a4f8cac3f3f9", "sas_token":"<sas-token>", "secret_key":"secret_key", "secret_key_vault":{"key":"secret key", "secret_name":"secret name", "secret_urn":"secret urn"}, "vault_enabled":true}
 
 `--connection-access-key` (string)
@@ -24316,6 +24316,30 @@ The following example shows the format of the AIServiceDocumentation object.
   "response" : { }
 }
 ```
+### <a name="cli-access-policy-patch-example-schema">AccessPolicyPatch[]</a>
+
+The following example shows the format of the AccessPolicyPatch[] object.
+
+```json
+
+[ {
+  "resources" : [ {
+    "resource_id" : "presto01",
+    "resource_name" : "hive_data",
+    "resource_type" : "presto",
+    "id" : "presto01",
+    "name" : "hive_data",
+    "type" : "presto"
+  } ],
+  "subjects" : [ {
+    "permissions" : [ "exampleString", "anotherExampleString" ],
+    "subject" : {
+      "type" : "user",
+      "value" : "user1"
+    }
+  } ]
+} ]
+```
 ### <a name="cli-access-restrictions-example-schema">AccessRestrictions</a>
 
 The following example shows the format of the AccessRestrictions object.
@@ -24862,18 +24886,6 @@ The following example shows the format of the BatchComparePairsRequestPair[] obj
   "record_number2" : "456"
 } ]
 ```
-### <a name="cli-bucket-catalog-example-schema">BucketCatalog</a>
-
-The following example shows the format of the BucketCatalog object.
-
-```json
-
-{
-  "catalog_name" : "sampleCatalog",
-  "catalog_tags" : [ "catalog_tag_1", "catalog_tag_2" ],
-  "catalog_type" : "iceberg"
-}
-```
 ### <a name="cli-bucket-details-example-schema">BucketDetails</a>
 
 The following example shows the format of the BucketDetails object.
@@ -24881,13 +24893,20 @@ The following example shows the format of the BucketDetails object.
 ```json
 
 {
-  "access_key" : "b9cbf248ea5c4c96947e64407108559j",
-  "bucket_name" : "sample-bucket",
-  "endpoint" : "https://s3.<region>.cloud-object-storage.appdomain.cloud/",
-  "key_file" : "key_file",
-  "provider" : "ibm_cos",
-  "region" : "us-south",
-  "secret_key" : "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"
+  "access_key" : "exampleString",
+  "account_name" : "exampleString",
+  "application_id" : "exampleString",
+  "container_name" : "exampleString",
+  "directory_id" : "exampleString",
+  "endpoint" : "exampleString",
+  "region" : "exampleString",
+  "secret_key" : "exampleString",
+  "auth_mode" : "aws_assume_role",
+  "role_arn" : "exampleString",
+  "path_style_enabled" : true,
+  "managed_by" : "exampleString",
+  "name" : "exampleString",
+  "type" : "adls_gen1"
 }
 ```
 ### <a name="cli-buildop-build-example-schema">BuildopBuild</a>
@@ -25118,6 +25137,17 @@ The following example shows the format of the BusinessMetric[] object.
     } ],
     "type" : "lower_limit"
   } ]
+} ]
+```
+### <a name="cli-catalog-operations-operations-items-example-schema">CatalogOperationsOperationsItems[]</a>
+
+The following example shows the format of the CatalogOperationsOperationsItems[] object.
+
+```json
+
+[ {
+  "action" : "add",
+  "catalog" : [ "exampleString", "anotherExampleString" ]
 } ]
 ```
 ### <a name="cli-chat-item-example-schema">ChatItem</a>
@@ -27561,15 +27591,14 @@ The following example shows the format of the DataSource[] object.
   "type" : "exampleString"
 } ]
 ```
-### <a name="cli-database-catalog-example-schema">DatabaseCatalog</a>
+### <a name="cli-database-catalog-prototype-example-schema">DatabaseCatalogPrototype</a>
 
-The following example shows the format of the DatabaseCatalog object.
+The following example shows the format of the DatabaseCatalogPrototype object.
 
 ```json
 
 {
   "catalog_name" : "sampleCatalog",
-  "catalog_tags" : [ "catalog_tag_1", "catalog_tag_2" ],
   "catalog_type" : "iceberg"
 }
 ```
@@ -27591,22 +27620,27 @@ The following example shows the format of the DatabaseConfigurationRequest objec
   "name" : "exampleString"
 }
 ```
-### <a name="cli-database-details-example-schema">DatabaseDetails</a>
+### <a name="cli-database-details-prototype-example-schema">DatabaseDetailsPrototype</a>
 
-The following example shows the format of the DatabaseDetails object.
+The following example shows the format of the DatabaseDetailsPrototype object.
 
 ```json
 
 {
-  "authentication_type" : "LDAP",
+  "authentication_type" : "LDAP, NTLM, ActiveDirectoryServicePrincipal, ActiveDirectoryPassword",
   "authentication_value" : "LDAP",
+  "authentication_value_key_vault" : {
+    "key" : "secret key",
+    "secret_name" : "secret name",
+    "secret_urn" : "secret urn"
+  },
   "broker_authentication_password" : "samplepassword",
   "broker_authentication_type" : "PASSWORD",
   "broker_authentication_user" : "sampleuser",
-  "broker_port" : 4553,
   "broker_host" : "samplehost",
-  "certificate" : "contents of a pem/crt file",
-  "certificate_extension" : "pem/crt",
+  "broker_port" : 4553,
+  "certificate" : "exampleCertificate",
+  "certificate_extension" : "pem",
   "connection_method" : "basic, apikey",
   "connection_mode" : "service_name",
   "connection_mode_value" : "orclpdb",
@@ -27618,16 +27652,24 @@ The following example shows the format of the DatabaseDetails object.
   "coordinator_port" : 4553,
   "cpd_hostname" : "samplecpdhostname",
   "credentials_key" : "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......",
-  "database_name" : "new_database",
-  "hostname" : "db2@<hostname>.com",
+  "name" : "new_database",
+  "domain_name" : "conops-mssql.conops.local",
+  "hostname" : "http://db2@localhost:9900.com",
   "hostname_in_certificate" : "samplehostname",
   "hosts" : "abc.com:1234,xyz.com:4321",
   "informix_server" : "ol_informix1410",
   "password" : "samplepassword",
+  "password_key_vault" : {
+    "key" : "secret key",
+    "secret_name" : "secret name",
+    "secret_urn" : "secret urn"
+  },
   "port" : 4553,
   "project_id" : "conops-bigquery",
   "sasl" : true,
   "sasl_mechanism" : "plain",
+  "schema_name" : "sampleSchema",
+  "schemas" : "redis__name",
   "service_api_key" : "sampleapikey",
   "service_hostname" : "api.dataplatform.dev.cloud.ibm.com",
   "service_password" : "samplepassword",
@@ -27636,10 +27678,34 @@ The following example shows the format of the DatabaseDetails object.
   "service_token_url" : "sampletoakenurl",
   "service_username" : "sampleusername",
   "ssl" : true,
-  "tables" : "kafka_table_name",
+  "sslcertificate_key_vault" : {
+    "key" : "secret key",
+    "secret_name" : "secret name",
+    "secret_urn" : "secret urn"
+  },
+  "tables" : "kafka_table_name, redis_table_name",
   "username" : "sampleuser",
+  "username_key_vault" : {
+    "key" : "secret key",
+    "secret_name" : "secret name",
+    "secret_urn" : "secret urn"
+  },
   "validate_server_certificate" : true,
-  "verify_host_name" : true
+  "vault_enabled" : true,
+  "verify_host_name" : true,
+  "warehouse_name" : "samplewrehouse"
+}
+```
+### <a name="cli-database-details-prototype-authentication-value-key-vault-example-schema">DatabaseDetailsPrototypeAuthenticationValueKeyVault</a>
+
+The following example shows the format of the DatabaseDetailsPrototypeAuthenticationValueKeyVault object.
+
+```json
+
+{
+  "key" : "secret key",
+  "secret_name" : "secret name",
+  "secret_urn" : "secret urn"
 }
 ```
 ### <a name="cli-database-registration-prototype-database-properties-items-example-schema">DatabaseRegistrationPrototypeDatabasePropertiesItems[]</a>
@@ -27671,6 +27737,29 @@ The following example shows the format of the DatasourceTypeProperty object.
 {
   "name" : "exampleString",
   "supported_products" : [ "exampleString", "anotherExampleString" ]
+}
+```
+### <a name="cli-db-connection-model-example-schema">DbConnectionModel</a>
+
+The following example shows the format of the DbConnectionModel object.
+
+```json
+
+{
+  "database_id" : "exampleString",
+  "db_type" : "exampleString",
+  "host" : "exampleString",
+  "port" : "exampleString",
+  "db_name" : "exampleString",
+  "db_username" : "exampleString",
+  "password" : "exampleString",
+  "authentication_value" : "exampleString",
+  "is_ssl" : false,
+  "cert_extension" : "exampleString",
+  "cert_content" : "exampleString",
+  "connection_mode" : "exampleString",
+  "connection_mode_value" : "exampleString",
+  "jdbc_url" : "exampleString"
 }
 ```
 ### <a name="cli-deployment-entity-request-batch-example-schema">DeploymentEntityRequestBatch</a>
@@ -27863,25 +27952,24 @@ The following example shows the format of the EmbeddingReturnOptions object.
   "input_text" : true
 }
 ```
-### <a name="cli-engine-details-body-example-schema">EngineDetailsBody</a>
+### <a name="cli-engine-details-example-schema">EngineDetails</a>
 
-The following example shows the format of the EngineDetailsBody object.
+The following example shows the format of the EngineDetails object.
 
 ```json
 
 {
-  "api_key" : "<api_key>",
   "connection_string" : "1.2.3.4",
+  "managed_by" : "fully/self",
+  "api_key" : "<api_key>",
   "coordinator" : {
     "node_type" : "worker",
-    "quantity" : 38
+    "quantity" : 1
   },
-  "instance_id" : "instance_id",
-  "managed_by" : "fully/self",
   "size_config" : "starter",
   "worker" : {
     "node_type" : "worker",
-    "quantity" : 38
+    "quantity" : 1
   }
 }
 ```
@@ -27956,6 +28044,20 @@ The following example shows the format of the EventSubscriptionStreamConnection 
   },
   "stream_type" : "exampleString",
   "topic" : "exampleString"
+}
+```
+### <a name="cli-execute-config-example-schema">ExecuteConfig</a>
+
+The following example shows the format of the ExecuteConfig object.
+
+```json
+
+{
+  "driver_memory" : "exampleString",
+  "driver_cores" : 1,
+  "executor_memory" : "exampleString",
+  "executor_cores" : 1,
+  "num_executors" : 1
 }
 ```
 ### <a name="cli-experiment-resource-entity-request-evaluation-definition-example-schema">ExperimentResourceEntityRequestEvaluationDefinition</a>
@@ -28238,6 +28340,20 @@ The following example shows the format of the FederatedLearningRemoteTraining ob
 {
   "id" : "1918939c-2660-4f6a-b727-4b402383dc63",
   "required" : true
+}
+```
+### <a name="cli-file-format-properties-example-schema">FileFormatProperties</a>
+
+The following example shows the format of the FileFormatProperties object.
+
+```json
+
+{
+  "encoding" : "exampleString",
+  "escape_character" : "exampleString",
+  "field_delimiter" : "exampleString",
+  "header" : true,
+  "line_delimiter" : "exampleString"
 }
 ```
 ### <a name="cli-file-system-copy-move-source-example-schema">FileSystemCopyMoveSource</a>
@@ -28688,11 +28804,11 @@ The following example shows the format of the IcebergSourceTable object.
 ```json
 
 {
-  "catalog_name" : "catalog",
-  "schema_name" : "test_schema",
-  "snapshot_id" : "8415204386124336000",
-  "table_name" : "test_table",
-  "warehouse_name" : "warehouse"
+  "schema_name" : "exampleString",
+  "table_name" : "exampleString",
+  "catalog_name" : "exampleString",
+  "warehouse_name" : "exampleString",
+  "snapshot_id" : 0
 }
 ```
 ### <a name="cli-included-packages-definition-example-schema">IncludedPackagesDefinition</a>
@@ -28706,78 +28822,16 @@ The following example shows the format of the IncludedPackagesDefinition object.
   "version" : "0.20.0"
 }
 ```
-### <a name="cli-ingestion-bucket-details-example-schema">IngestionBucketDetails</a>
+### <a name="cli-ingestion-schema-response-example-schema">IngestionSchemaResponse</a>
 
-The following example shows the format of the IngestionBucketDetails object.
-
-```json
-
-{
-  "access_key" : "access-key",
-  "bucket_name" : "sample-bucket",
-  "bucket_type" : "ibm_cos",
-  "endpoint" : "https://s3.us-south.cloud-object-storage.appdomain.cloud/",
-  "region" : "us-south",
-  "secret_key" : "secret-key"
-}
-```
-### <a name="cli-ingestion-execute-config-example-schema">IngestionExecuteConfig</a>
-
-The following example shows the format of the IngestionExecuteConfig object.
+The following example shows the format of the IngestionSchemaResponse object.
 
 ```json
 
 {
-  "driver_cores" : 1,
-  "driver_memory" : "2G",
-  "executor_cores" : 1,
-  "executor_memory" : "2G",
-  "num_executors" : 1
-}
-```
-### <a name="cli-ingestion-job-prototype-csv-property-example-schema">IngestionJobPrototypeCsvProperty</a>
-
-The following example shows the format of the IngestionJobPrototypeCsvProperty object.
-
-```json
-
-{
-  "encoding" : "utf-8",
-  "escape_character" : "\\",
-  "field_delimiter" : ",",
-  "header" : true,
-  "line_delimiter" : "\n"
-}
-```
-### <a name="cli-ingestion-source-database-example-schema">IngestionSourceDatabase</a>
-
-The following example shows the format of the IngestionSourceDatabase object.
-
-```json
-
-{
-  "authentication_type" : "LDAP",
-  "authentication_value" : "sampleapikey",
-  "cert_extension" : "samplepass",
-  "certificate" : "/path/to/certificate",
-  "connection_mode" : "test_table",
-  "connection_mode_value" : "test_table",
-  "database_id" : "psql12132",
-  "database_name" : "new_database",
-  "database_type" : "postgres",
-  "display_name" : "test_table",
-  "host" : "test_Catalog",
-  "informix_server" : "ol_informix1410",
-  "isssl" : true,
-  "password" : "spark123",
-  "port" : "test_Schema",
-  "sasl" : true,
-  "sasl_mechanism" : "plain",
-  "schema_name" : "test_schema",
-  "table_name" : "test_table",
-  "user_id" : "test_Schema",
-  "validate_server_certificate" : true,
-  "warehouse_name" : "samplewarehouse"
+  "field_id" : 0,
+  "header_name" : "exampleString",
+  "type" : "exampleString"
 }
 ```
 ### <a name="cli-input-data-array-example-schema">InputDataArray</a>
@@ -29896,7 +29950,7 @@ The following example shows the format of the NodeDescriptionBody object.
 
 {
   "node_type" : "worker",
-  "quantity" : 38
+  "quantity" : 1
 }
 ```
 ### <a name="cli-node-with-attributes-example-schema">NodeWithAttributes</a>
@@ -30113,6 +30167,17 @@ The following example shows the format of the OnlineDeploymentParameters object.
 {
   "serving_name" : "churn"
 }
+```
+### <a name="cli-option-example-schema">Option[]</a>
+
+The following example shows the format of the Option[] object.
+
+```json
+
+[ {
+  "key" : "exampleString",
+  "value" : "exampleString"
+} ]
 ```
 ### <a name="cli-organization-example-schema">Organization</a>
 
@@ -30995,6 +31060,21 @@ The following example shows the format of the ResiliencyRulesRecord object.
   "merge_entities" : "exampleString"
 }
 ```
+### <a name="cli-resource-details-example-schema">ResourceDetails[]</a>
+
+The following example shows the format of the ResourceDetails[] object.
+
+```json
+
+[ {
+  "resource_id" : "presto01",
+  "resource_name" : "hive_data",
+  "resource_type" : "presto",
+  "id" : "presto01",
+  "name" : "hive_data",
+  "type" : "presto"
+} ]
+```
 ### <a name="cli-results-location-example-schema">ResultsLocation</a>
 
 The following example shows the format of the ResultsLocation object.
@@ -31059,6 +31139,18 @@ The following example shows the format of the ScheduleStartTime object.
   "delay_unit" : "minute",
   "timestamp" : "2018-11-21T09:37:55.523Z",
   "type" : "relative"
+}
+```
+### <a name="cli-schema-transformation-example-schema">SchemaTransformation</a>
+
+The following example shows the format of the SchemaTransformation object.
+
+```json
+
+{
+  "old_column" : "old_column_name",
+  "new_column" : "new_column_name",
+  "new_type" : "string"
 }
 ```
 ### <a name="cli-scope-example-schema">Scope</a>
@@ -31273,6 +31365,77 @@ The following example shows the format of the SoftwareSpecificationEntitySoftwar
   }
 }
 ```
+### <a name="cli-source-details-example-schema">SourceDetails</a>
+
+The following example shows the format of the SourceDetails object.
+
+```json
+
+{
+  "file_paths" : "exampleString",
+  "file_type" : "csv",
+  "source_type" : "STORAGE",
+  "schema" : [ {
+    "field_id" : 0,
+    "header_name" : "exampleString",
+    "type" : "exampleString"
+  } ],
+  "schema_transformations" : [ {
+    "old_column" : "old_column_name",
+    "new_column" : "new_column_name",
+    "new_type" : "string"
+  } ],
+  "schema_name" : "exampleString",
+  "table_name" : "exampleString",
+  "bucket_details" : {
+    "access_key" : "exampleString",
+    "account_name" : "exampleString",
+    "application_id" : "exampleString",
+    "container_name" : "exampleString",
+    "directory_id" : "exampleString",
+    "endpoint" : "exampleString",
+    "region" : "exampleString",
+    "secret_key" : "exampleString",
+    "auth_mode" : "aws_assume_role",
+    "role_arn" : "exampleString",
+    "path_style_enabled" : true,
+    "managed_by" : "exampleString",
+    "name" : "exampleString",
+    "type" : "adls_gen1"
+  },
+  "iceberg_source_table" : {
+    "schema_name" : "exampleString",
+    "table_name" : "exampleString",
+    "catalog_name" : "exampleString",
+    "warehouse_name" : "exampleString",
+    "snapshot_id" : 0
+  },
+  "source_database" : {
+    "database_id" : "exampleString",
+    "db_type" : "exampleString",
+    "host" : "exampleString",
+    "port" : "exampleString",
+    "db_name" : "exampleString",
+    "db_username" : "exampleString",
+    "password" : "exampleString",
+    "authentication_value" : "exampleString",
+    "is_ssl" : false,
+    "cert_extension" : "exampleString",
+    "cert_content" : "exampleString",
+    "connection_mode" : "exampleString",
+    "connection_mode_value" : "exampleString",
+    "jdbc_url" : "exampleString"
+  },
+  "file_format_properties" : {
+    "encoding" : "exampleString",
+    "escape_character" : "exampleString",
+    "field_delimiter" : "exampleString",
+    "header" : true,
+    "line_delimiter" : "exampleString"
+  },
+  "is_local_ingestion" : false
+}
+```
 ### <a name="cli-source-system-example-schema">SourceSystem</a>
 
 The following example shows the format of the SourceSystem object.
@@ -31330,35 +31493,47 @@ The following example shows the format of the SparkApplicationDetails object.
 ```json
 
 {
-  "application" : "/opt/ibm/spark/examples/src/main/python/wordcount.py",
+  "application" : "s3://mybucket/wordcount.py",
   "applicationlocal" : "Users/Downloads/wordcount.py",
-  "arguments" : [ "/opt/ibm/spark/examples/src/main/resources/people.txt" ],
+  "archives" : "s3://mybucket/myarchive.zip",
+  "arguments" : [ "people.txt", "people.txt" ],
   "class" : "org.apache.spark.examples.SparkPi",
   "conf" : { },
-  "env" : {
-    "sample_env_key" : "exampleString"
-  },
+  "env" : { },
   "files" : "s3://mybucket/myfile.txt",
   "jars" : "exampleString",
   "name" : "SparkApplicaton1",
+  "bucket_name" : "bucketnameexample",
+  "bucket_access_key" : "2189duh1293e892ehhdx",
+  "bucket_secret_key" : "9832hd982yd9h23db2bx",
+  "bucket_endpoint" : "s3.cld-obj-stage.appdomain.cloud",
+  "api_key" : "H790hjka8909s09A9D9de",
   "packages" : "org.apache.spark:example_1.2.3",
   "repositories" : "https://repo1.maven.org/maven2/",
-  "bucket_name" : "bucketname1",
-  "bucket_access_key" : "CBA998Sajk8AS8sdj9S8fA",
-  "bucket_secret_key" : "CBA998Sajk8AS8sdj9S8fA",
-  "bucket_endpoint" : "cloud-object-storage.appdomain.cloud",
-  "api_key" : "H790hjka8909s09A9D9de",
+  "runtime" : {
+    "spark_version" : "3.4"
+  },
   "spark_version" : "3.3"
 }
 ```
-### <a name="cli-spark-application-env-example-schema">SparkApplicationEnv</a>
+### <a name="cli-spark-application-runtime-example-schema">SparkApplicationRuntime</a>
 
-The following example shows the format of the SparkApplicationEnv object.
+The following example shows the format of the SparkApplicationRuntime object.
 
 ```json
 
 {
-  "sample_env_key" : "exampleString"
+  "spark_version" : "3.4"
+}
+```
+### <a name="cli-spark-engine-application-callback-example-schema">SparkEngineApplicationCallback</a>
+
+The following example shows the format of the SparkEngineApplicationCallback object.
+
+```json
+
+{
+  "url" : "exampleString"
 }
 ```
 ### <a name="cli-spark-struct-example-schema">SparkStruct</a>
@@ -31450,9 +31625,22 @@ The following example shows the format of the StartBulkWorkflowRequestSearchCrit
   "search_type" : "record"
 }
 ```
-### <a name="cli-storage-connection-details-example-schema">StorageConnectionDetails</a>
+### <a name="cli-storage-catalog-prototype-example-schema">StorageCatalogPrototype</a>
 
-The following example shows the format of the StorageConnectionDetails object.
+The following example shows the format of the StorageCatalogPrototype object.
+
+```json
+
+{
+  "base_path" : "/abc/def",
+  "catalog_name" : "sampleCatalog",
+  "catalog_tags" : [ "catalog_tag_1", "catalog_tag_2" ],
+  "catalog_type" : "iceberg"
+}
+```
+### <a name="cli-storage-details-example-schema">StorageDetails</a>
+
+The following example shows the format of the StorageDetails object.
 
 ```json
 
@@ -31484,24 +31672,6 @@ The following example shows the format of the StorageConnectionDetails object.
   "vault_enabled" : true
 }
 ```
-### <a name="cli-storage-details-example-schema">StorageDetails</a>
-
-The following example shows the format of the StorageDetails object.
-
-```json
-
-{
-  "access_key" : "<access_key>",
-  "application_id" : "<application_id>",
-  "auth_mode" : "<account_key/sas/service_principle>",
-  "container_name" : "sample-container",
-  "directory_id" : "<directory_id>",
-  "endpoint" : "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/",
-  "sas_token" : "<sas_token>",
-  "secret_key" : "secret_key",
-  "storage_account_name" : "sample-storage"
-}
-```
 ### <a name="cli-storage-request-example-schema">StorageRequest</a>
 
 The following example shows the format of the StorageRequest object.
@@ -31528,6 +31698,20 @@ The following example shows the format of the StorageRequestProperties object.
   "shared" : true,
   "use_delegated_KMS_key" : false
 }
+```
+### <a name="cli-subject-patch-example-schema">SubjectPatch[]</a>
+
+The following example shows the format of the SubjectPatch[] object.
+
+```json
+
+[ {
+  "permissions" : [ "exampleString", "anotherExampleString" ],
+  "subject" : {
+    "type" : "user",
+    "value" : "user1"
+  }
+} ]
 ```
 ### <a name="cli-sync-scoring-data-example-schema">SyncScoringData</a>
 
@@ -32096,18 +32280,6 @@ The following example shows the format of the TableDefinitionMetadata object.
   "name" : "exampleString"
 }
 ```
-### <a name="cli-table-schema-items-example-schema">TableSchemaItems[]</a>
-
-The following example shows the format of the TableSchemaItems[] object.
-
-```json
-
-[ {
-  "field_id" : 0,
-  "header_name" : "model",
-  "type" : "string"
-} ]
-```
 ### <a name="cli-target-example-schema">Target</a>
 
 The following example shows the format of the Target object.
@@ -32117,6 +32289,22 @@ The following example shows the format of the Target object.
 {
   "target_id" : "4b133ea1-3097-4175-82a1-4fd80759de26",
   "target_type" : "subscription"
+}
+```
+### <a name="cli-target-details-example-schema">TargetDetails</a>
+
+The following example shows the format of the TargetDetails object.
+
+```json
+
+{
+  "catalog" : "exampleString",
+  "schema" : "exampleString",
+  "table" : "exampleString",
+  "write_mode" : "exampleString",
+  "merge_on_read" : false,
+  "schema_mode" : "exampleString",
+  "schema_infer" : true
 }
 ```
 ### <a name="cli-text-chat-messages-example-schema">TextChatMessages[]</a>
@@ -32482,18 +32670,6 @@ The following example shows the format of the TransactionalProjectStorageObjectP
 {
   "shared" : true
 }
-```
-### <a name="cli-transformation-items-example-schema">TransformationItems[]</a>
-
-The following example shows the format of the TransformationItems[] object.
-
-```json
-
-[ {
-  "new_column" : "newCol",
-  "new_type" : "string",
-  "old_column" : "Col"
-} ]
 ```
 ### <a name="cli-ui-history-example-schema">UIHistory</a>
 
