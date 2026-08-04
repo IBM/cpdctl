@@ -16073,7 +16073,7 @@ cpdctl pipeline compile {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [
 :   The ID of the catalog to use. 'catalog_id' or 'project_id' or 'space_id' is required. This option is mutually exclusive with '--catalog'.
 
 `-c`, `--code` (bool)
-:   Whether to enable detailed stage information when compiling a flow.
+:   Whether to enable detailed stage information when compiling a flow. Only for Optimized Runner mode.
 
     The default value is `false`.
 
@@ -16081,27 +16081,27 @@ cpdctl pipeline compile {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
 
 `--enable-caching` (bool)
-:   Whether to enable pipeline caching or not. Caching is enabled by default. (DEPRECATED)
+:   Whether to enable pipeline caching or not. Caching is enabled by default. Only for Optimized Runner mode. (DEPRECATED)
 
     The default value is `false`.
 
 `--enable-debug` (bool)
-:   Whether to enable debug info in job run. Debug info is disabled by default.
+:   Whether to enable debug info in job run. Debug info is disabled by default. Only for Optimized Runner mode.
 
     The default value is `false`.
 
 `--enable-inline` (bool)
-:   Whether to enable inline pipeline execution or not. When this flag is set to true, no individual job runs will be created for nested pipelines. The flag is set to false by default.
+:   Whether to enable inline pipeline execution or not. When this flag is set to true, no individual job runs will be created for nested pipelines. The flag is set to false by default. Only for Optimized Runner mode.
 
     The default value is `false`.
 
 `--enable-versioning` (bool)
-:   Whether to enable pipeline versioning or not. Versioning is disabled by default.
+:   Whether to enable pipeline versioning or not. Versioning is disabled by default. Only for Optimized Runner mode.
 
     The default value is `false`.
 
 `--job-name-suffix` (string)
-:   The name suffix for the created job, will use the pipeline name suffix configured in datastage project settings. (DEPRECATED)
+:   The name suffix for the created job, will use the pipeline name suffix configured in datastage project settings. Only for Optimized Runner mode. (DEPRECATED)
 
 `--pipeline` (string)
 :   Pipeline name. This option is mutually exclusive with '--pipeline-id'.
