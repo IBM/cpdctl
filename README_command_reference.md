@@ -173,6 +173,73 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 - [job run resume](#job_run_resume)
 - [job run update](#job_run_update)
 - [job run wait](#job_run_wait)
+- [mdm algorithm generate](#mdm_algorithm_generate)
+- [mdm algorithm generate-default](#mdm_algorithm_generate-default)
+- [mdm algorithm get](#mdm_algorithm_get)
+- [mdm algorithm get-default-matching-fields](#mdm_algorithm_get-default-matching-fields)
+- [mdm algorithm get-matching-attributes](#mdm_algorithm_get-matching-attributes)
+- [mdm algorithm list](#mdm_algorithm_list)
+- [mdm algorithm replace](#mdm_algorithm_replace)
+- [mdm algorithm update](#mdm_algorithm_update)
+- [mdm asset add-from-catalog](#mdm_asset_add-from-catalog)
+- [mdm asset add-from-file](#mdm_asset_add-from-file)
+- [mdm asset add-from-project](#mdm_asset_add-from-project)
+- [mdm asset check-delete-status](#mdm_asset_check-delete-status)
+- [mdm asset check-publish-status](#mdm_asset_check-publish-status)
+- [mdm asset delete](#mdm_asset_delete)
+- [mdm asset get](#mdm_asset_get)
+- [mdm asset map-columns](#mdm_asset_map-columns)
+- [mdm asset map-columns-bulk](#mdm_asset_map-columns-bulk)
+- [mdm asset publish](#mdm_asset_publish)
+- [mdm asset set-datatype](#mdm_asset_set-datatype)
+- [mdm data-type check-publish-status](#mdm_data-type_check-publish-status)
+- [mdm data-type get-draft](#mdm_data-type_get-draft)
+- [mdm data-type get-published](#mdm_data-type_get-published)
+- [mdm data-type publish](#mdm_data-type_publish)
+- [mdm data-type replace](#mdm_data-type_replace)
+- [mdm entity check-export-status](#mdm_entity_check-export-status)
+- [mdm entity download-export-data](#mdm_entity_download-export-data)
+- [mdm entity export-data](#mdm_entity_export-data)
+- [mdm entity get](#mdm_entity_get)
+- [mdm entity get-history](#mdm_entity_get-history)
+- [mdm entity list-records](#mdm_entity_list-records)
+- [mdm entity list-related-records](#mdm_entity_list-related-records)
+- [mdm entity list-relationships](#mdm_entity_list-relationships)
+- [mdm entity preview](#mdm_entity_preview)
+- [mdm entity search](#mdm_entity_search)
+- [mdm entity update](#mdm_entity_update)
+- [mdm job cancel](#mdm_job_cancel)
+- [mdm job list](#mdm_job_list)
+- [mdm matching check-run-status](#mdm_matching_check-run-status)
+- [mdm matching get-statistics](#mdm_matching_get-statistics)
+- [mdm matching run](#mdm_matching_run)
+- [mdm orchestration add-asset-and-publish](#mdm_orchestration_add-asset-and-publish)
+- [mdm orchestration generate-algo-and-match](#mdm_orchestration_generate-algo-and-match)
+- [mdm project-metadata get](#mdm_project-metadata_get)
+- [mdm project-metadata replace](#mdm_project-metadata_replace)
+- [mdm project-metadata update](#mdm_project-metadata_update)
+- [mdm record check-export-status](#mdm_record_check-export-status)
+- [mdm record create](#mdm_record_create)
+- [mdm record delete](#mdm_record_delete)
+- [mdm record download-export-data](#mdm_record_download-export-data)
+- [mdm record export-data](#mdm_record_export-data)
+- [mdm record get](#mdm_record_get)
+- [mdm record get-by-source-id](#mdm_record_get-by-source-id)
+- [mdm record get-history](#mdm_record_get-history)
+- [mdm record list-accumulated-updates](#mdm_record_list-accumulated-updates)
+- [mdm record list-entities](#mdm_record_list-entities)
+- [mdm record list-related-records](#mdm_record_list-related-records)
+- [mdm record list-relationships](#mdm_record_list-relationships)
+- [mdm record search](#mdm_record_search)
+- [mdm record update](#mdm_record_update)
+- [mdm relationship create](#mdm_relationship_create)
+- [mdm relationship delete](#mdm_relationship_delete)
+- [mdm relationship get](#mdm_relationship_get)
+- [mdm relationship update](#mdm_relationship_update)
+- [mdm system get-instance-metadata](#mdm_system_get-instance-metadata)
+- [mdm system health](#mdm_system_health)
+- [mdm system reset](#mdm_system_reset)
+- [mdm system setup-master-data](#mdm_system_setup-master-data)
 - [ml deployment compute-predictions](#ml_deployment_compute-predictions)
 - [ml deployment create](#ml_deployment_create)
 - [ml deployment delete](#ml_deployment_delete)
@@ -9509,6 +9576,1738 @@ cpdctl job run wait --job-id JOB_ID --run-id RUN_ID [--project-id PROJECT_ID] [-
 `--space-id` (string)
 :   The ID of the space to use. project-id or space-id is required. This option is mutually exclusive with '--space'.
 
+## • <a name="mdm_algorithm_generate">`mdm algorithm generate`</a>
+Generate and publish the matching algorithm for a record type using a pre-defined algorithm generate payload from a JSON file.
+
+```sh
+cpdctl mdm algorithm generate --record-type RECORD-TYPE --algorithm-generate-payload FILE [flags]
+```
+
+#### Command options
+
+`--algorithm-generate-payload` (string)
+:   Path to a JSON file containing the algorithm generate payload
+
+`--record-type` (string)
+:   Record type to publish the algorithm for (e.g., person, organization)
+
+## • <a name="mdm_algorithm_generate-default">`mdm algorithm generate-default`</a>
+Automatically compute and publish the matching algorithm for a record type and entity type based on the asset mappings and data types.
+
+```sh
+cpdctl mdm algorithm generate-default --record-type RECORD-TYPE --entity-type ENTITY-TYPE [flags]
+```
+
+#### Command options
+
+`--entity-type` (string)
+:   Entity type to generate the algorithm for (e.g., person_entity)
+
+`--record-type` (string)
+:   Record type to generate the algorithm for (e.g., person, organization)
+
+## • <a name="mdm_algorithm_get">`mdm algorithm get`</a>
+View the generated matching algorithm for a specific record type. This command retrieves and displays the currently published algorithm configuration.
+
+```sh
+cpdctl mdm algorithm get --record-type RECORD-TYPE [flags]
+```
+
+#### Command options
+
+`--record-type` (string)
+:   Record type to retrieve the algorithm for (e.g., person, organization)
+
+## • <a name="mdm_algorithm_get-default-matching-fields">`mdm algorithm get-default-matching-fields`</a>
+Retrieve the default matching fields that are used across all attribute types in the MDM system. This command returns a list of field names that are commonly used for matching operations.
+
+```sh
+cpdctl mdm algorithm get-default-matching-fields [flags]
+```
+
+## • <a name="mdm_algorithm_get-matching-attributes">`mdm algorithm get-matching-attributes`</a>
+Retrieve the current matching attributes configured for a specific record type and entity type. This command returns a structured view of which attributes and their fields are being used for matching in the algorithm.
+
+```sh
+cpdctl mdm algorithm get-matching-attributes --record-type RECORD-TYPE --entity-type ENTITY-TYPE [flags]
+```
+
+#### Command options
+
+`--entity-type` (string)
+:   Entity type to retrieve matching attributes for (e.g., person_entity)
+
+`--record-type` (string)
+:   Record type to retrieve matching attributes for (e.g., person, organization)
+
+## • <a name="mdm_algorithm_list">`mdm algorithm list`</a>
+Retrieve the list of record types for all matching algorithms present in the MDM system.
+
+```sh
+cpdctl mdm algorithm list [flags]
+```
+
+## • <a name="mdm_algorithm_replace">`mdm algorithm replace`</a>
+Replace the matching algorithm for a record type using the content from a JSON file. The content of the input file will be used as-is to replace the matching algorithm in the MDM system.
+
+```sh
+cpdctl mdm algorithm replace --record-type RECORD-TYPE --algorithm-file FILE [flags]
+```
+
+#### Command options
+
+`--algorithm-file` (string)
+:   Path to the JSON file containing the algorithm configuration
+
+`--record-type` (string)
+:   Record type to replace the algorithm for (e.g., person, organization)
+
+## • <a name="mdm_algorithm_update">`mdm algorithm update`</a>
+Update specific fields in the matching algorithm for a record type using the content from a JSON file. This command performs a partial update (similar to PATCH APIs), updating only the fields specified in the input file while leaving other fields unchanged.
+
+```sh
+cpdctl mdm algorithm update --record-type RECORD-TYPE --algorithm-file FILE [flags]
+```
+
+#### Command options
+
+`--algorithm-file` (string)
+:   Path to the JSON file containing the fields to update in the algorithm configuration
+
+`--record-type` (string)
+:   Record type to update the algorithm for (e.g., person, organization)
+
+## • <a name="mdm_asset_add-from-catalog">`mdm asset add-from-catalog`</a>
+Register existing data assets from a catalog into MDM (Master Data Management). The assets must already exist in the catalog before using this command.
+
+This command fetches the asset details and registers them in MDM without uploading any new files. It automatically skips assets that are already registered in MDM.
+
+```sh
+cpdctl mdm asset add-from-catalog --asset-type ASSET-TYPE --asset-ids ASSET-ID1,ASSET-ID2,... [flags]
+```
+
+#### Command options
+
+`--asset-ids` (string)
+:   Comma-separated list of asset IDs to register in MDM
+
+`--asset-type` (string)
+:   Asset type (required). Must be either 'record' or 'relationship'.
+
+## • <a name="mdm_asset_add-from-file">`mdm asset add-from-file`</a>
+Upload a new asset file to the project and register it as an MDM (Master Data Management) asset.
+
+Assets must be designated as either 'record' type or 'relationship' type.
+
+```sh
+cpdctl mdm asset add-from-file --asset-type ASSET-TYPE --file FILE [--name NAME] [--description DESCRIPTION] [--mime MIME] [--progress=true|false] [flags]
+```
+
+#### Command options
+
+`--asset-type` (string)
+:   Asset type (required). Must be either 'record' or 'relationship'.
+
+`--description` (string)
+:   Asset description
+
+`--file` (string)
+:   Path to the local file to upload
+
+`--mime` (string)
+:   Content type of the file. Auto-detected from file extension when omitted
+
+`--name` (string)
+:   Asset name. If not specified, defaults to the uploaded file name
+
+`--progress` (bool)
+:   Show upload progress
+
+    The default value is `true`.
+
+## • <a name="mdm_asset_add-from-project">`mdm asset add-from-project`</a>
+Register existing data assets from a project into MDM (Master Data Management). The assets must already exist in the project before using this command.
+
+This command fetches the asset details and registers them in MDM without uploading any new files. It automatically skips assets that are already registered in MDM.
+
+```sh
+cpdctl mdm asset add-from-project --asset-type ASSET-TYPE --asset-ids ASSET-ID1,ASSET-ID2,... [flags]
+```
+
+#### Command options
+
+`--asset-ids` (string)
+:   Comma-separated list of asset IDs to register in MDM
+
+`--asset-type` (string)
+:   Asset type (required). Must be either 'record' or 'relationship'.
+
+## • <a name="mdm_asset_check-delete-status">`mdm asset check-delete-status`</a>
+Retrieves the current status of the asset delete operation and optionally waits until it completes.
+
+```sh
+cpdctl mdm asset check-delete-status [--wait=true|false] [--poll-interval 30s] [--timeout 0] [flags]
+```
+
+#### Command options
+
+`--poll-interval` (duration)
+:   Delay between status checks when waiting.
+
+    The default value is `30s`.
+
+`--timeout` (duration)
+:   Maximum time to wait when --wait is enabled. 0 means wait until the operation completes.
+
+    The default value is `0s`.
+
+`--wait` (bool)
+:   Wait for the operation to complete instead of returning the current status immediately.
+
+    The default value is `false`.
+
+## • <a name="mdm_asset_check-publish-status">`mdm asset check-publish-status`</a>
+Retrieves the current status of the asset publish operation and optionally waits until it completes.
+
+```sh
+cpdctl mdm asset check-publish-status [--wait=true|false] [--poll-interval 30s] [--timeout 0] [flags]
+```
+
+#### Command options
+
+`--poll-interval` (duration)
+:   Delay between status checks when waiting.
+
+    The default value is `30s`.
+
+`--timeout` (duration)
+:   Maximum time to wait when --wait is enabled. 0 means wait until the operation completes.
+
+    The default value is `0s`.
+
+`--wait` (bool)
+:   Wait for the operation to complete instead of returning the current status immediately.
+
+    The default value is `false`.
+
+## • <a name="mdm_asset_delete">`mdm asset delete`</a>
+Removes the specified assets from MDM and optionally waits for the operation to complete.
+
+```sh
+cpdctl mdm asset delete --asset-ids ASSET-ID1,ASSET-ID2,... [--wait=true|false] [--poll-interval 30s] [--timeout 0] [flags]
+```
+
+#### Command options
+
+`--asset-ids` (string)
+:   Comma-separated list of asset IDs to delete.
+
+`--poll-interval` (duration)
+:   Delay between status checks when waiting.
+
+    The default value is `30s`.
+
+`--timeout` (duration)
+:   Maximum time to wait when --wait is enabled. 0 means wait until the operation completes.
+
+    The default value is `0s`.
+
+`--wait` (bool)
+:   Wait for the operation to complete.
+
+    The default value is `true`.
+
+## • <a name="mdm_asset_get">`mdm asset get`</a>
+List all MDM assets or retrieve a specific asset by ID or name. This command retrieves assets from MDM and displays their IDs, names, status, record types, and column mappings.
+
+```sh
+cpdctl mdm asset get [--asset-id ASSET-ID | --name NAME] [flags]
+```
+
+#### Command options
+
+`--asset-id` (string)
+:   MDM asset ID to retrieve a specific asset.
+
+`--name` (string)
+:   Asset name to retrieve a specific asset.
+
+## • <a name="mdm_asset_map-columns">`mdm asset map-columns`</a>
+Map a single asset column to an MDM attribute. This command updates one column mapping for an MDM asset by specifying the column key, target mapping name, and attribute type.
+
+```sh
+cpdctl mdm asset map-columns --asset-id ASSET-ID --column-key COLUMN-KEY --mapping-name MAPPING-NAME --attribute-type ATTRIBUTE-TYPE [--exclude-column=true|false] [flags]
+```
+
+#### Command options
+
+`--asset-id` (string)
+:   MDM asset ID.
+
+`--attribute-type` (string)
+:   Target attribute type, for example person_name.
+
+`--column-key` (string)
+:   Column key to map, for example COLUMN1.
+
+`--exclude-column` (bool)
+:   Mark the column as excluded.
+
+    The default value is `false`.
+
+`--mapping-name` (string)
+:   Target data mapping name, for example legal_name.given_name.
+
+## • <a name="mdm_asset_map-columns-bulk">`mdm asset map-columns-bulk`</a>
+Updates multiple column mappings for an MDM asset. Provide a JSON file containing an array of column mappings to apply all mappings at once.
+
+```sh
+cpdctl mdm asset map-columns-bulk --asset-id ASSET-ID --mappings-file FILE [flags]
+```
+
+#### Command options
+
+`--asset-id` (string)
+:   MDM asset ID.
+
+`--mappings-file` (string)
+:   Path to JSON file containing the column mappings array.
+
+## • <a name="mdm_asset_publish">`mdm asset publish`</a>
+Loads uploaded assets into MDM and optionally waits for the operation to complete.
+
+```sh
+cpdctl mdm asset publish [--asset-ids ASSET-1,ASSET-2] [--wait=true|false] [--poll-interval 5s] [--timeout 0] [flags]
+```
+
+#### Command options
+
+`--asset-ids` (string)
+:   Comma-separated asset IDs to publish. When omitted, all eligible assets are published.
+
+`--poll-interval` (duration)
+:   Delay between status checks when waiting.
+
+    The default value is `5s`.
+
+`--timeout` (duration)
+:   Maximum time to wait when --wait is enabled. 0 means wait until the operation completes.
+
+    The default value is `0s`.
+
+`--wait` (bool)
+:   Wait for the operation to complete.
+
+    The default value is `true`.
+
+## • <a name="mdm_asset_set-datatype">`mdm asset set-datatype`</a>
+Assign a record type or relationship type to an MDM asset. This command updates an MDM asset with the selected record type (for record assets) or relationship type (for relationship assets).
+
+```sh
+cpdctl mdm asset set-datatype --asset-id ASSET-ID [--record-type RECORD-TYPE | --relationship-type RELATIONSHIP-TYPE] [flags]
+```
+
+#### Command options
+
+`--asset-id` (string)
+:   MDM asset ID.
+
+`--record-type` (string)
+:   Record type to assign (for record assets), for example Person.
+
+`--relationship-type` (string)
+:   Relationship type to assign (for relationship assets), for example PersonToOrganization.
+
+## • <a name="mdm_data-type_check-publish-status">`mdm data-type check-publish-status`</a>
+Check the current status of the data types publish operation and optionally waits until the operation completes.
+
+```sh
+cpdctl mdm data-type check-publish-status [--wait=true|false] [--poll-interval 5s] [--timeout 10m] [flags]
+```
+
+#### Command options
+
+`--poll-interval` (duration)
+:   Delay between status checks when waiting (default: 5s)
+
+    The default value is `5s`.
+
+`--timeout` (duration)
+:   Maximum time to wait when --wait is enabled (default: wait till operation completes)
+
+    The default value is `0s`.
+
+`--wait` (bool)
+:   Wait for the operation to complete instead of returning the current status immediately (default: false).
+
+    The default value is `false`.
+
+## • <a name="mdm_data-type_get-draft">`mdm data-type get-draft`</a>
+Retrieve the draft version of the data types configuration from the MDM system.
+
+```sh
+cpdctl mdm data-type get-draft [flags]
+```
+
+## • <a name="mdm_data-type_get-published">`mdm data-type get-published`</a>
+Retrieve the published version of the data types configuration from the MDM system.
+
+```sh
+cpdctl mdm data-type get-published [flags]
+```
+
+## • <a name="mdm_data-type_publish">`mdm data-type publish`</a>
+Publish the draft version of the data types and optionally waits for the operation to complete.
+
+```sh
+cpdctl mdm data-type publish [--wait=true|false] [--poll-interval 5s] [--timeout 10m] [flags]
+```
+
+#### Command options
+
+`--poll-interval` (duration)
+:   Delay between status checks when waiting (default: 5s)
+
+    The default value is `5s`.
+
+`--timeout` (duration)
+:   Maximum time to wait when --wait is enabled (default: wait till operation completes)
+
+    The default value is `0s`.
+
+`--wait` (bool)
+:   Wait for the publish operation to complete (default: true)
+
+    The default value is `true`.
+
+## • <a name="mdm_data-type_replace">`mdm data-type replace`</a>
+Replace the draft version of the data types configuration using the content from a JSON file.
+
+```sh
+cpdctl mdm data-type replace --data-types-file FILE [flags]
+```
+
+#### Command options
+
+`--data-types-file` (string)
+:   Path to the JSON file containing the data types configuration
+
+## • <a name="mdm_entity_check-export-status">`mdm entity check-export-status`</a>
+Check the current status of an entities export operation, and optionally wait until the operation completes. Use this command to monitor the progress of an export job that was started previously.
+
+```sh
+cpdctl mdm entity check-export-status --export-job-id EXPORT-JOB-ID [flags]
+```
+
+#### Command options
+
+`--export-job-id` (string)
+:   The ID of the export job to check status for
+
+`--poll-interval` (duration)
+:   Delay between status checks when waiting (default: 30s)
+
+    The default value is `30s`.
+
+`--timeout` (duration)
+:   Maximum time to wait when --wait is enabled. 0 waits indefinitely (default: 0)
+
+    The default value is `0s`.
+
+`--wait` (bool)
+:   Wait for the operation to complete instead of returning the current status immediately (default: false)
+
+    The default value is `false`.
+
+## • <a name="mdm_entity_download-export-data">`mdm entity download-export-data`</a>
+Download the output file from a completed entity export job. The export file is streamed to the specified output file path, or to stdout if no output file is specified. The export job must be in a succeeded state and the file must not have expired.
+
+```sh
+cpdctl mdm entity download-export-data --export-job-id EXPORT-JOB-ID [flags]
+```
+
+#### Command options
+
+`--export-job-id` (string)
+:   The ID of the export job to download (same as job_id returned by export-data)
+
+`--output-file` (string)
+:   Path to save the downloaded file. If not provided, the raw binary is written to stdout.
+
+## • <a name="mdm_entity_export-data">`mdm entity export-data`</a>
+Export search results to a specified format (e.g., CSV). This command triggers an export job based on the same search criteria as the entities search command, returns the export job ID, and can optionally poll the job status until completion.
+
+```sh
+cpdctl mdm entity export-data --query QUERY --format FORMAT [flags]
+```
+
+#### Command options
+
+`--exclude` (string)
+:   Comma-separated list of attributes to exclude from results (default: nothing excluded)
+
+`--filters` (string)
+:   Additional filters to apply to the search as a JSON array (default: [])
+
+`--format` (string)
+:   Export format for the data (e.g., csv, psv, tsv, json)
+
+`--include` (string)
+:   Comma-separated list of attributes to include in results (default: all attributes)
+
+`--poll-interval` (duration)
+:   Delay between status checks when waiting (default: 30s)
+
+    The default value is `30s`.
+
+`--query` (string)
+:   Query object containing operation and expressions for searching entities. Must be a JSON object with `operation` (AND/OR) and `expressions` array
+
+`--search-type` (string)
+:   Type of search to perform (default: record)
+
+    The default value is `record`.
+
+`--timeout` (duration)
+:   Maximum time to wait for completion. 0 waits indefinitely (default: 0)
+
+    The default value is `0s`.
+
+`--wait` (bool)
+:   Wait for the export process to complete (default: true)
+
+    The default value is `true`.
+
+## • <a name="mdm_entity_get">`mdm entity get`</a>
+View attributes for an entity in a consolidated view based on defined composite view rules from the Model APIs. The entity ID can be retrieved from the output of the entities search command.
+
+```sh
+cpdctl mdm entity get --id ID [flags]
+```
+
+#### Command options
+
+`--as-of` (string)
+:   Point in time to retrieve the record history. Accepts ISO-8601 date/time in UTC or local formats (e.g., '2025-09-10', '2025-09-10T13:59:59', '2025-09-10T13:59:59Z')
+
+`--exclude` (string)
+:   Comma-separated list of record attributes from the data model to exclude from the results (e.g., legal_name.given_name)
+
+`--force-compute` (bool)
+:   When set to true, forces computation of the entity view instead of using the persisted view (default: false)
+
+    The default value is `false`.
+
+`--id` (string)
+:   The unique identifier of the entity
+
+`--include` (string)
+:   Comma-separated list of record attributes from the data model to include in the results (e.g., legal_name.given_name)
+
+## • <a name="mdm_entity_get-history">`mdm entity get-history`</a>
+Retrieve the history of changes made to an entity within a specified time range. The response provides a chronological view of additions, updates, or deletions that occurred during the requested period. The entity ID can be retrieved from the output of the entities search command.
+
+```sh
+cpdctl mdm entity get-history --id ID --entity-type ENTITY_TYPE [flags]
+```
+
+#### Command options
+
+`--action-types` (string)
+:   Filter history events based on action performed. Accepts comma-separated values: create, update, delete
+
+`--end-time` (string)
+:   The end of the time range (inclusive) for retrieving entity history changes. Accepts ISO-8601 date/time in UTC or local formats (e.g., '2025-09-15', '2025-09-15T10:11:05', '2025-09-15T10:11:05Z'). If not provided, history changes till the latest available will be fetched
+
+`--entity-type` (string)
+:   The type of entity (e.g., person_entity, organization_entity)
+
+`--history-types` (string)
+:   Filter history events based on type of history data. Accepts comma-separated values: entity, relationship, linkage
+
+`--id` (string)
+:   The unique entity ID used to fetch entity history
+
+`--limit` (int64)
+:   The number of entity history changes to be returned. The maximum limit is 50 (default: 10)
+
+    The default value is `10`.
+
+`--offset` (int64)
+:   The number of entity history changes to skip over (default: 0)
+
+    The default value is `0`.
+
+`--start-time` (string)
+:   The start of the time range (inclusive) for retrieving entity history changes. Accepts ISO-8601 date/time in UTC or local formats (e.g., '2025-09-10', '2025-09-10T13:59:59', '2025-09-10T13:59:59Z'). If not provided, history changes from the earliest available will be fetched
+
+## • <a name="mdm_entity_list-records">`mdm entity list-records`</a>
+View a list of member records that form the entity. The entity ID can be retrieved from the output of the entities search command.
+
+```sh
+cpdctl mdm entity list-records --id ID [flags]
+```
+
+#### Command options
+
+`--as-of` (string)
+:   Point in time to retrieve the record history. Accepts ISO-8601 date/time in UTC or local formats (e.g., '2025-09-10', '2025-09-10T13:59:59', '2025-09-10T13:59:59Z')
+
+`--exclude` (string)
+:   Comma-separated list of record attributes from the data model to exclude from the results (e.g., legal_name.given_name)
+
+`--id` (string)
+:   The unique identifier of the entity
+
+`--include` (string)
+:   Comma-separated list of record attributes from the data model to include in the results (e.g., legal_name.given_name)
+
+`--include-total-count` (bool)
+:   Flag to include the total record count on pages other than the first (default: true)
+
+    The default value is `true`.
+
+`--limit` (int64)
+:   The maximum number of records to return in each page of results. The maximum limit is 50 (default: 10)
+
+    The default value is `10`.
+
+`--offset` (int64)
+:   The number of records to skip before returning a page of results (default: 0)
+
+    The default value is `0`.
+
+## • <a name="mdm_entity_list-related-records">`mdm entity list-related-records`</a>
+View a list of records that have a relationship to the member records of the specified entity based on the specified relationship type. All records related to the specified entity will be returned regardless of relationship direction. The entity ID can be retrieved from the output of the entities search command.
+
+```sh
+cpdctl mdm entity list-related-records --id ID --record-type RECORD_TYPE --relationship-type RELATIONSHIP_TYPE [flags]
+```
+
+#### Command options
+
+`--exclude` (string)
+:   Comma-separated list of record attributes from the data model to exclude from the results (e.g., legal_name.given_name)
+
+`--id` (string)
+:   The unique identifier of the entity
+
+`--include` (string)
+:   Comma-separated list of record attributes from the data model to include in the results (e.g., legal_name.given_name)
+
+`--include-total-count` (bool)
+:   Flag to include the total record count on pages other than the first (default: true)
+
+    The default value is `true`.
+
+`--limit` (int64)
+:   The maximum number of records to return in each page of results. The maximum limit is 50 (default: 10)
+
+    The default value is `10`.
+
+`--offset` (int64)
+:   The number of records to skip before returning a page of results (default: 0)
+
+    The default value is `0`.
+
+`--record-type` (string)
+:   The type of records to return in results
+
+`--relationship-type` (string)
+:   The type of relationship between related records and entity member records
+
+## • <a name="mdm_entity_list-relationships">`mdm entity list-relationships`</a>
+View a list of relationships that exist between the given entity and other nodes on the graph. This command does not include internal relationships in the resulting list. The entity ID can be retrieved from the output of the entities search command.
+
+```sh
+cpdctl mdm entity list-relationships --id ID [flags]
+```
+
+#### Command options
+
+`--as-of` (string)
+:   Point in time to retrieve the relationship history. Accepts ISO-8601 date/time in UTC or local formats (e.g., '2025-09-10', '2025-09-10T13:59:59', '2025-09-10T13:59:59Z')
+
+`--id` (string)
+:   The ID of the entity
+
+`--include-record-relationships` (bool)
+:   Whether to include entity record relationships to other nodes (default: false)
+
+    The default value is `false`.
+
+`--limit` (int64)
+:   The number of relationships to be returned. The maximum limit is 50 (default: 10)
+
+    The default value is `10`.
+
+`--offset` (int64)
+:   The number of relationships to skip over (default: 0)
+
+    The default value is `0`.
+
+`--relationship-types` (string)
+:   Comma-separated list of relationship types to return
+
+`--source-include` (string)
+:   Comma-separated list of attributes from the data model to include in the results for the source vertex (e.g., all)
+
+`--target-include` (string)
+:   Comma-separated list of attributes from the data model to include in the results for the target vertex (e.g., all)
+
+## • <a name="mdm_entity_preview">`mdm entity preview`</a>
+View attributes for an entity in a consolidated view based on defined composite view rules from the request.
+
+```sh
+cpdctl mdm entity preview --entity-type ENTITY_TYPE --record-ids-file FILE_PATH [flags]
+```
+
+#### Command options
+
+`--entity-type` (string)
+:   The type of entity to preview
+
+`--record-ids-file` (string)
+:   Path to JSON file containing the list of record IDs for which composite view is to be found
+
+## • <a name="mdm_entity_search">`mdm entity search`</a>
+Search for entities in the MDM system using a query object. Returns matching entities with configurable filtering, pagination, and attribute selection.
+
+```sh
+cpdctl mdm entity search --query QUERY [flags]
+```
+
+#### Command options
+
+`--exclude` (string)
+:   Comma-separated list of attributes to exclude from results (default: nothing excluded)
+
+`--filters` (string)
+:   Additional filters to apply to the search as a JSON array (default: [])
+
+`--include` (string)
+:   Comma-separated list of attributes to include in results (default: all attributes)
+
+`--include-total-count` (bool)
+:   Include total count of matching entities in response (default: false)
+
+    The default value is `false`.
+
+`--limit` (int64)
+:   Maximum number of entities to return (default: 10)
+
+    The default value is `10`.
+
+`--offset` (int64)
+:   Number of entities to skip for pagination (default: 0)
+
+    The default value is `0`.
+
+`--query` (string)
+:   Query object containing operation and expressions for searching entities. Must be a JSON object with `operation` (AND/OR) and `expressions` array
+
+`--search-type` (string)
+:   Type of search to perform (default: record)
+
+    The default value is `record`.
+
+## • <a name="mdm_entity_update">`mdm entity update`</a>
+Update the existing persisted entity with the new set of attributes. Any existing editable entity-level attributes not specified in the request will be retained in the entity. The entity ID can be retrieved from the output of the entities search command.
+
+```sh
+cpdctl mdm entity update --id ID --entity-file FILE_PATH [flags]
+```
+
+#### Command options
+
+`--entity-file` (string)
+:   Path to JSON file containing the attributes to update. All non-entity attributes will be ignored
+
+`--id` (string)
+:   The unique identifier of the entity
+
+## • <a name="mdm_job_cancel">`mdm job cancel`</a>
+Cancel a running job run or remove a job run from the queue by its ID. Requires the 'JobWriter' application role.
+
+```sh
+cpdctl mdm job cancel --id ID [flags]
+```
+
+#### Command options
+
+`--id` (string)
+:   The ID of the job run to cancel
+
+## • <a name="mdm_job_list">`mdm job list`</a>
+List jobs in the MDM system with optional filtering by status, type, or job ID. Jobs represent bulk operations and can be in various states throughout their lifecycle.
+
+```sh
+cpdctl mdm job list [--status STATUS] [--job-name JOB_NAME] [--id ID] [--offset OFFSET | --all-pages] [--limit LIMIT] [flags]
+```
+
+#### Command options
+
+`--all-pages` (bool)
+:   Retrieve all pages of results automatically
+
+    The default value is `false`.
+
+`--id` (string)
+:   Filter by specific job run ID
+
+`--job-name` (string)
+:   Filter by job name
+
+`--limit` (int64)
+:   Maximum number of jobs to return (default: 10)
+
+    The default value is `10`.
+
+`--offset` (int64)
+:   Number of jobs to skip for pagination (default: 0)
+
+    The default value is `0`.
+
+`--status` (string)
+:   Filter by job status (Queued, Running, Completed, Failed, Canceled)
+
+## • <a name="mdm_matching_check-run-status">`mdm matching check-run-status`</a>
+Check the current status of the matching run operation for a specific record type and entity type, and optionally wait until the operation completes.
+
+```sh
+cpdctl mdm matching check-run-status --record-type RECORD-TYPE --entity-type ENTITY-TYPE [--wait=true|false] [--poll-interval 30s] [--timeout 0] [flags]
+```
+
+#### Command options
+
+`--entity-type` (string)
+:   Entity type to check matching status for (required)
+
+`--poll-interval` (duration)
+:   Delay between status checks when waiting (default: 30s)
+
+    The default value is `30s`.
+
+`--record-type` (string)
+:   Record type to check matching status for (required)
+
+`--timeout` (duration)
+:   Maximum time to wait when --wait is enabled (default: wait till operation completes)
+
+    The default value is `0s`.
+
+`--wait` (bool)
+:   Wait for the operation to complete instead of returning the current status immediately (default: false)
+
+    The default value is `false`.
+
+##### Example
+
+```sh
+  cpdctl mdm matching check-run-status \
+	   --record-type person \
+	   --entity-type person_entity
+
+	 cpdctl mdm matching check-run-status \
+	   --record-type person \
+	   --entity-type person_entity \
+	   --wait=true \
+	   --poll-interval 30s \
+	   --timeout 20m
+```
+## • <a name="mdm_matching_get-statistics">`mdm matching get-statistics`</a>
+Get the matching statistics for the specified record type and entity type. This command retrieves statistical information such as number of entities, entity size distributions, and other matching-related metrics.
+
+```sh
+cpdctl mdm matching get-statistics --record-type RECORD-TYPE --entity-type ENTITY-TYPE [flags]
+```
+
+#### Command options
+
+`--entity-type` (string)
+:   Entity type to get matching statistics for (required)
+
+`--record-type` (string)
+:   Record type to get matching statistics for (required)
+
+##### Example
+
+```sh
+  cpdctl mdm matching get-statistics \
+	   --record-type person \
+	   --entity-type person_entity
+```
+## • <a name="mdm_matching_run">`mdm matching run`</a>
+Execute the matching process for a specified record type and entity type.
+
+By default the command checks the current matching status and automatically resumes
+from the failure point if a previous job failed or was canceled. If there is no
+previous job, or the previous job completed successfully, it starts from scratch.
+
+Use --restart to skip the status check and always start from scratch.
+
+```sh
+cpdctl mdm matching run --record-type RECORD-TYPE --entity-type ENTITY-TYPE [options] [flags]
+```
+
+#### Command options
+
+`--do-derive` (bool)
+:   Override: enable/disable derive operation (bypasses auto-resume logic)
+
+    The default value is `false`.
+
+`--do-force-derive` (bool)
+:   Force derive operation
+
+    The default value is `false`.
+
+`--do-force-entity-sync` (bool)
+:   Force entity sync operation
+
+    The default value is `false`.
+
+`--do-force-matching` (bool)
+:   Force matching operation
+
+    The default value is `false`.
+
+`--do-match` (bool)
+:   Override: enable/disable match operation (bypasses auto-resume logic)
+
+    The default value is `false`.
+
+`--do-sync` (bool)
+:   Override: enable/disable sync/persist operation (bypasses auto-resume logic)
+
+    The default value is `false`.
+
+`--entity-type` (string)
+:   Entity type for matching (required)
+
+`--poll-interval` (duration)
+:   Delay between status checks when waiting
+
+    The default value is `45s`.
+
+`--record-type` (string)
+:   Record type to run matching for (required)
+
+`--restart` (bool)
+:   Force a full restart from scratch, ignoring any previous job state (default: auto-resume)
+
+    The default value is `false`.
+
+`--timeout` (duration)
+:   Maximum time to wait for matching completion (0 = wait indefinitely)
+
+    The default value is `0s`.
+
+`--wait` (bool)
+:   Wait for matching process to complete
+
+    The default value is `true`.
+
+##### Example
+
+```sh
+  # Smart resume (default) - resumes from failure point if previous job failed
+  cpdctl mdm matching run \
+    --record-type person \
+    --entity-type person_entity
+
+  # Force restart from scratch, ignoring any previous job state
+  cpdctl mdm matching run \
+    --record-type person \
+    --entity-type person_entity \
+    --restart
+
+  # Override individual stage flags (advanced)
+  cpdctl mdm matching run \
+    --record-type organization \
+    --entity-type organization_entity \
+    --do-match=true \
+    --do-force-matching=true \
+    --wait=true \
+    --poll-interval 30s \
+    --timeout 20m
+```
+## • <a name="mdm_orchestration_add-asset-and-publish">`mdm orchestration add-asset-and-publish`</a>
+Performs the complete MDM asset publish workflow in a single command:
+1. Add the asset(s) to MDM:
+   - If using --file: Upload the asset file into the project and add it to MDM
+   - If using --asset-ids with --source project: Register existing project assets in MDM
+   - If using --asset-ids with --source catalog: Register existing catalog assets in MDM
+2. Assign the record type or relationship type to the asset(s)
+3. Apply column mappings from the mappings file to each asset
+4. Publish the MDM data types
+5. Load the asset(s) and keep them ready for processes such as matching and relationship discovery
+
+This streamlined workflow combines multiple operations into a single command.
+
+Important: Before running this command:
+- Ensure that the data types have been configured as per your requirements using the 'data-types replace' command or the data types screen of the MDM UI.
+- The record type or relationship type you specify must be present in the draft data types configuration.
+- This command will publish whatever data types configuration is currently in draft.
+- If the default data types are sufficient for your needs (which include 'person' and 'organization' as default record types), no changes are required.
+
+```sh
+cpdctl mdm orchestration add-asset-and-publish --asset-type ASSET-TYPE [--file FILE | --asset-ids ASSET-ID1,ASSET-ID2,... --source SOURCE] [--record-type RECORD-TYPE | --relationship-type RELATIONSHIP-TYPE] --mappings-file MAPPINGS-FILE [options] [flags]
+```
+
+#### Command options
+
+`--asset-ids` (string)
+:   Comma-separated list of asset IDs to add from project or catalog.
+
+`--asset-type` (string)
+:   Asset type: 'record' or 'relationship' (required).
+
+`--description` (string)
+:   Asset description.
+
+`--file` (string)
+:   Path to the local file to upload.
+
+`--mappings-file` (string)
+:   Path to JSON file containing the column mappings array (required).
+
+`--mime` (string)
+:   Content type of the file. Auto-detected from extension when omitted.
+
+`--name` (string)
+:   Asset name. Defaults to the uploaded file name.
+
+`--progress` (bool)
+:   Show upload progress.
+
+    The default value is `true`.
+
+`--publish-data-poll-interval` (duration)
+:   Delay between asset publish status checks.
+
+    The default value is `30s`.
+
+`--publish-data-timeout` (duration)
+:   Maximum time to wait for asset publish.
+
+    The default value is `10m0s`.
+
+`--publish-data-wait` (bool)
+:   Wait for asset publish to complete.
+
+    The default value is `true`.
+
+`--publish-model-poll-interval` (duration)
+:   Delay between data types publish status checks.
+
+    The default value is `5s`.
+
+`--publish-model-timeout` (duration)
+:   Maximum time to wait for data types publish.
+
+    The default value is `10m0s`.
+
+`--publish-model-wait` (bool)
+:   Wait for data types publish to complete.
+
+    The default value is `true`.
+
+`--record-type` (string)
+:   Record type to assign (for record assets, e.g., person).
+
+`--relationship-type` (string)
+:   Relationship type to assign (for relationship assets, e.g., PersonToOrganization).
+
+`--source` (string)
+:   Source location for assets specified in --asset-ids. Must be either 'project' or 'catalog'.
+
+## • <a name="mdm_orchestration_generate-algo-and-match">`mdm orchestration generate-algo-and-match`</a>
+Execute a complete matching workflow by first generating the matching algorithm
+and then initiating the matching process for a specified record type. This command
+combines the functionality of publish-algorithm and run-matching into a single operation.
+
+The command will:
+1. Compute and publish the default matching algorithm
+2. Update configuration metadata with matching attributes and fields
+3. Initiate the matching process with specified options
+4. Optionally wait for the matching process to complete
+
+```sh
+cpdctl mdm orchestration generate-algo-and-match --record-type RECORD-TYPE --entity-type ENTITY-TYPE [options] [flags]
+```
+
+#### Command options
+
+`--do-derive` (bool)
+:   Enable derive operation
+
+    The default value is `false`.
+
+`--do-force-derive` (bool)
+:   Force derive operation
+
+    The default value is `false`.
+
+`--do-force-entity-sync` (bool)
+:   Force entity sync operation
+
+    The default value is `false`.
+
+`--do-force-matching` (bool)
+:   Force matching operation
+
+    The default value is `false`.
+
+`--do-match` (bool)
+:   Enable match operation
+
+    The default value is `false`.
+
+`--do-sync` (bool)
+:   Enable sync operation
+
+    The default value is `false`.
+
+`--entity-type` (string)
+:   Entity type for matching (required)
+
+`--poll-interval` (duration)
+:   Delay between status checks when waiting
+
+    The default value is `30s`.
+
+`--record-type` (string)
+:   Record type to publish algorithm and run matching for (required)
+
+`--timeout` (duration)
+:   Maximum time to wait for matching completion (0 = wait indefinitely)
+
+    The default value is `0s`.
+
+`--wait` (bool)
+:   Wait for matching process to complete
+
+    The default value is `true`.
+
+##### Example
+
+```sh
+  # Generate algorithm and run matching with default settings
+		cpdctl mdm orchestration generate-algo-and-match \
+		  --record-type person \
+		  --entity-type person_entity
+
+		# Generate algorithm and run matching with custom timeout
+		cpdctl mdm orchestration generate-algo-and-match \
+		  --record-type organization \
+		  --entity-type organization_entity \
+		  --wait=true \
+		  --poll-interval 30s \
+		  --timeout 30m
+
+		# Generate algorithm and run matching without waiting
+		cpdctl mdm orchestration generate-algo-and-match \
+		  --record-type person \
+		  --entity-type person_entity \
+		  --wait=false
+```
+## • <a name="mdm_project-metadata_get">`mdm project-metadata get`</a>
+Retrieve the MDM project metadata from the MDM system. To understand the structure and available fields, use the output of this command as a reference for the replace and update commands.
+
+```sh
+cpdctl mdm project-metadata get [flags]
+```
+
+## • <a name="mdm_project-metadata_replace">`mdm project-metadata replace`</a>
+Replace the MDM project metadata using the content from a JSON file. The file content is used as-is. Remove the 'id', 'created_date', and 'last_updated_date' fields from the output of the get command before using it as input for this command.
+
+```sh
+cpdctl mdm project-metadata replace --project-metadata-file FILE [flags]
+```
+
+#### Command options
+
+`--project-metadata-file` (string)
+:   Path to the JSON file containing the MDM project metadata
+
+## • <a name="mdm_project-metadata_update">`mdm project-metadata update`</a>
+Update specific fields in the MDM project metadata using the content from a JSON file. Only the fields specified in the file are updated; all other fields remain unchanged. Remove the 'id', 'created_date', and 'last_updated_date' fields from the output of the get command before using it as input for this command.
+
+```sh
+cpdctl mdm project-metadata update --project-metadata-file FILE [flags]
+```
+
+#### Command options
+
+`--project-metadata-file` (string)
+:   Path to the JSON file containing the fields to update in the MDM project metadata
+
+## • <a name="mdm_record_check-export-status">`mdm record check-export-status`</a>
+Check the current status of a records export operation, and optionally wait until the operation completes. Use this command to monitor the progress of an export job that was started previously.
+
+```sh
+cpdctl mdm record check-export-status --export-job-id EXPORT-JOB-ID [flags]
+```
+
+#### Command options
+
+`--export-job-id` (string)
+:   The ID of the export job to check status for
+
+`--poll-interval` (duration)
+:   Delay between status checks when waiting (default: 30s)
+
+    The default value is `30s`.
+
+`--timeout` (duration)
+:   Maximum time to wait when --wait is enabled. 0 waits indefinitely (default: 0)
+
+    The default value is `0s`.
+
+`--wait` (bool)
+:   Wait for the operation to complete instead of returning the current status immediately (default: false)
+
+    The default value is `false`.
+
+## • <a name="mdm_record_create">`mdm record create`</a>
+Create a new record in the MDM system. An incremental matching operation is automatically triggered after the record is created to enable the record to join or form an entity.
+
+```sh
+cpdctl mdm record create --record-file FILE_PATH [flags]
+```
+
+#### Command options
+
+`--record-file` (string)
+:   Path to JSON file containing the record data including attributes and type_name
+
+## • <a name="mdm_record_delete">`mdm record delete`</a>
+Delete an existing record from the MDM system by its MDM internal ID. Deleting a record automatically triggers removal of the record from any formed entities. The internal ID can be retrieved from the output of the get-by-source-id or search commands.
+
+```sh
+cpdctl mdm record delete --id ID [flags]
+```
+
+#### Command options
+
+`--delete-history-data` (bool)
+:   When set to true, deletes all historical data for the record including relationship and linkage history (default: false)
+
+    The default value is `false`.
+
+`--id` (int64)
+:   The MDM internal ID of the record
+
+    The default value is `0`.
+
+## • <a name="mdm_record_download-export-data">`mdm record download-export-data`</a>
+Download the output file from a completed export job. The export file is streamed to the specified output file path, or to stdout if no output file is specified. The export job must be in a succeeded state and the file must not have expired.
+
+```sh
+cpdctl mdm record download-export-data --export-job-id EXPORT-JOB-ID [flags]
+```
+
+#### Command options
+
+`--export-job-id` (string)
+:   The ID of the export job to download (same as job_id returned by export-data)
+
+`--output-file` (string)
+:   Path to save the downloaded file. If not provided, the raw binary is written to stdout.
+
+## • <a name="mdm_record_export-data">`mdm record export-data`</a>
+Export search results to a specified format (e.g., CSV). This command triggers an export job based on the same search criteria as the search command, returns the export job ID, and can optionally poll the job status until completion.
+
+```sh
+cpdctl mdm record export-data --query QUERY --format FORMAT [flags]
+```
+
+#### Command options
+
+`--exclude` (string)
+:   Comma-separated list of attributes to exclude from results (default: nothing excluded)
+
+`--filters` (string)
+:   Additional filters to apply to the search as a JSON array (default: [])
+
+`--format` (string)
+:   Export format for the data (e.g., csv, psv, tsv, json)
+
+`--include` (string)
+:   Comma-separated list of attributes to include in results (default: all attributes)
+
+`--poll-interval` (duration)
+:   Delay between status checks when waiting (default: 30s)
+
+    The default value is `30s`.
+
+`--query` (string)
+:   Query object containing operation and expressions for searching records. Must be a JSON object with `operation` (AND/OR) and `expressions` array
+
+`--search-type` (string)
+:   Type of search to perform (default: record)
+
+    The default value is `record`.
+
+`--timeout` (duration)
+:   Maximum time to wait for completion. 0 waits indefinitely (default: 0)
+
+    The default value is `0s`.
+
+`--wait` (bool)
+:   Wait for the export process to complete (default: true)
+
+    The default value is `true`.
+
+## • <a name="mdm_record_get">`mdm record get`</a>
+Get a specific record by its MDM internal ID. The internal ID can be retrieved from the output of the get-by-source-id or search commands.
+
+```sh
+cpdctl mdm record get --id ID [flags]
+```
+
+#### Command options
+
+`--exclude` (string)
+:   Comma-separated list of attributes to exclude from results
+
+`--id` (int64)
+:   The MDM internal ID of the record
+
+    The default value is `0`.
+
+`--include` (string)
+:   Comma-separated list of attributes to include in results
+
+## • <a name="mdm_record_get-by-source-id">`mdm record get-by-source-id`</a>
+Get a specific record by its source system identifiers (record_type, record_source, and source_record_id). This command retrieves a single record based on its source system information.
+
+```sh
+cpdctl mdm record get-by-source-id --record-type RECORD_TYPE --record-source RECORD_SOURCE --source-record-id SOURCE_RECORD_ID [flags]
+```
+
+#### Command options
+
+`--record-source` (string)
+:   The source system of the record (e.g., MDM, CRM, ERP)
+
+`--record-type` (string)
+:   The type of the record (e.g., person, organization)
+
+`--source-record-id` (string)
+:   The unique identifier of the record in the source system
+
+## • <a name="mdm_record_get-history">`mdm record get-history`</a>
+Retrieve the history of changes made to a record within a specified time range. The response provides a chronological view of additions, updates, or deletions that occurred during the requested period. The internal ID can be retrieved from the output of the get-by-source-id or search commands.
+
+```sh
+cpdctl mdm record get-history --id ID --record-type RECORD_TYPE [flags]
+```
+
+#### Command options
+
+`--action-types` (string)
+:   Filter history events based on action performed. Accepts comma-separated values: create, update, delete
+
+`--end-time` (string)
+:   The end of the time range (inclusive) for retrieving record history changes. Accepts ISO-8601 date/time in UTC or local formats (e.g., '2025-09-15', '2025-09-15T10:11:05', '2025-09-15T10:11:05Z'). If not provided, history changes till the latest available will be fetched
+
+`--history-types` (string)
+:   Filter history events based on type of history data. Accepts comma-separated values: record, relationship, linkage
+
+`--id` (int64)
+:   The unique record number used to fetch its history
+
+    The default value is `0`.
+
+`--limit` (int64)
+:   The number of record history changes to be returned. The maximum limit is 50 (default: 10)
+
+    The default value is `10`.
+
+`--offset` (int64)
+:   The number of record history changes to skip over (default: 0)
+
+    The default value is `0`.
+
+`--record-type` (string)
+:   The type of record (e.g., person, organization)
+
+`--start-time` (string)
+:   The start of the time range (inclusive) for retrieving record history changes. Accepts ISO-8601 date/time in UTC or local formats (e.g., '2025-09-10', '2025-09-10T13:59:59', '2025-09-10T13:59:59Z'). If not provided, history changes from the earliest available will be fetched
+
+## • <a name="mdm_record_list-accumulated-updates">`mdm record list-accumulated-updates`</a>
+Retrieve a set of potential overlay records which are accumulated to the specified record. Potential overlays represent updates that may be applied to the record. The internal ID can be retrieved from the output of the get-by-source-id or search commands.
+
+```sh
+cpdctl mdm record list-accumulated-updates --id ID [flags]
+```
+
+#### Command options
+
+`--full-update` (bool)
+:   Show overlays only with updates
+
+    The default value is `false`.
+
+`--hide-unmodified-attrs` (bool)
+:   Hide unmodified attributes (default: false)
+
+    The default value is `false`.
+
+`--id` (int64)
+:   The ID of the record
+
+    The default value is `0`.
+
+`--limit` (int64)
+:   The maximum number of potential overlay records to return in each page of results. The maximum limit is 50 (default: 10)
+
+    The default value is `10`.
+
+`--offset` (int64)
+:   The number of records to skip before returning a page of results (default: 0)
+
+    The default value is `0`.
+
+`--sort-descend` (bool)
+:   Order of sorting of result (default: true)
+
+    The default value is `true`.
+
+## • <a name="mdm_record_list-entities">`mdm record list-entities`</a>
+View a list of entities which the record contributes to. This command helps you understand which entities a specific record is part of. The internal ID can be retrieved from the output of the get-by-source-id or search commands.
+
+```sh
+cpdctl mdm record list-entities --id ID [flags]
+```
+
+#### Command options
+
+`--as-of` (string)
+:   Point in time to retrieve the record history. Accepts ISO-8601 date/time in UTC or local formats (e.g., '2025-09-10', '2025-09-10T13:59:59', '2025-09-10T13:59:59Z')
+
+`--exclude` (string)
+:   Comma-separated list of record attributes from the data model to exclude from the results (e.g., legal_name.given_name)
+
+`--id` (int64)
+:   The ID of the record
+
+    The default value is `0`.
+
+`--include` (string)
+:   Comma-separated list of record attributes from the data model to include in the results (e.g., legal_name.given_name)
+
+`--limit` (int64)
+:   The maximum number of records to return in each page of results. The maximum limit is 50 (default: 10)
+
+    The default value is `10`.
+
+`--offset` (int64)
+:   The number of records to skip before returning a page of results (default: 0)
+
+    The default value is `0`.
+
+## • <a name="mdm_record_list-related-records">`mdm record list-related-records`</a>
+Retrieve a set of records which are directly connected to the specified record by a relationship. All records related to the specified record will be returned regardless of relationship direction. The internal ID can be retrieved from the output of the get-by-source-id or search commands.
+
+```sh
+cpdctl mdm record list-related-records --id ID [flags]
+```
+
+#### Command options
+
+`--id` (int64)
+:   The ID of the record
+
+    The default value is `0`.
+
+`--include-total-count` (bool)
+:   Flag to include the total record count on pages other than the first (default: true)
+
+    The default value is `true`.
+
+`--limit` (int64)
+:   The maximum number of records to return in each page of results. The maximum limit is 50 (default: 10)
+
+    The default value is `10`.
+
+`--offset` (int64)
+:   The number of records to skip before returning a page of results (default: 0)
+
+    The default value is `0`.
+
+`--record-type` (string)
+:   The type of record to filter in results (e.g., person)
+
+`--relationship-type` (string)
+:   The type of relationship between related records and the specified record (e.g., process_purpose)
+
+## • <a name="mdm_record_list-relationships">`mdm record list-relationships`</a>
+View a list of relationships that exist between the given record and other records in the graph. This command helps you understand the connections between records. The internal ID can be retrieved from the output of the get-by-source-id or search commands.
+
+```sh
+cpdctl mdm record list-relationships --id ID [flags]
+```
+
+#### Command options
+
+`--as-of` (string)
+:   Point in time to retrieve the relationship history. Accepts ISO-8601 date/time in UTC or local formats (e.g., '2025-09-10', '2025-09-10T13:59:59', '2025-09-10T13:59:59Z')
+
+`--id` (int64)
+:   The ID of the record
+
+    The default value is `0`.
+
+`--limit` (int64)
+:   The number of relationships to be returned. The maximum limit is 50 (default: 10)
+
+    The default value is `10`.
+
+`--offset` (int64)
+:   The number of relationships to skip over (default: 0)
+
+    The default value is `0`.
+
+`--relationship-types` (string)
+:   Comma-separated list of relationship types to return (e.g., preference_association)
+
+`--source-include` (string)
+:   Comma-separated list of attributes from the data model to include in the results for the source vertex (e.g., all)
+
+`--target-include` (string)
+:   Comma-separated list of attributes from the data model to include in the results for the target vertex (e.g., all)
+
+## • <a name="mdm_record_search">`mdm record search`</a>
+Search for records in the MDM system using a query object. Returns matching records with configurable filtering, pagination, and attribute selection.
+
+```sh
+cpdctl mdm record search --query QUERY [flags]
+```
+
+#### Command options
+
+`--exclude` (string)
+:   Comma-separated list of attributes to exclude from results (default: nothing excluded)
+
+`--filters` (string)
+:   Additional filters to apply to the search as a JSON array (default: [])
+
+`--include` (string)
+:   Comma-separated list of attributes to include in results (default: all attributes)
+
+`--include-total-count` (bool)
+:   Include total count of matching records in response (default: false)
+
+    The default value is `false`.
+
+`--limit` (int64)
+:   Maximum number of records to return (default: 10)
+
+    The default value is `10`.
+
+`--offset` (int64)
+:   Number of records to skip for pagination (default: 0)
+
+    The default value is `0`.
+
+`--query` (string)
+:   Query object containing operation and expressions for searching records. Must be a JSON object with `operation` (AND/OR) and `expressions` array
+
+`--search-type` (string)
+:   Type of search to perform (default: record)
+
+    The default value is `record`.
+
+## • <a name="mdm_record_update">`mdm record update`</a>
+Update the attributes of a record by its MDM internal ID. This operation patches the existing record with new attribute values. Attributes not specified in the request will be retained. The internal ID can be retrieved from the output of the get-by-source-id or search commands.
+
+```sh
+cpdctl mdm record update --id ID --record-file FILE_PATH [flags]
+```
+
+#### Command options
+
+`--id` (int64)
+:   The MDM internal ID of the record
+
+    The default value is `0`.
+
+`--record-file` (string)
+:   Path to JSON file containing the attributes to update
+
+## • <a name="mdm_relationship_create">`mdm relationship create`</a>
+Create a new relationship between two records in the MDM system. A relationship connects a source record to a target record with a specific relationship type.
+
+```sh
+cpdctl mdm relationship create --relationship-file FILE_PATH [flags]
+```
+
+#### Command options
+
+`--relationship-file` (string)
+:   Path to JSON file containing the relationship data including source, target, and attributes
+
+## • <a name="mdm_relationship_delete">`mdm relationship delete`</a>
+Delete an existing relationship from the MDM system by its ID.
+
+```sh
+cpdctl mdm relationship delete --id ID [flags]
+```
+
+#### Command options
+
+`--id` (string)
+:   The ID of the relationship
+
+## • <a name="mdm_relationship_get">`mdm relationship get`</a>
+Get a specific relationship by its ID. View information about the relationship including source and target records.
+
+```sh
+cpdctl mdm relationship get --id ID [flags]
+```
+
+#### Command options
+
+`--id` (string)
+:   The ID of the relationship
+
+`--relationship-type` (string)
+:   Relationship type from the data model to include in results
+
+`--source-include` (string)
+:   Comma-separated list of attributes to include for the source vertex
+
+`--target-include` (string)
+:   Comma-separated list of attributes to include for the target vertex
+
+## • <a name="mdm_relationship_update">`mdm relationship update`</a>
+Replace the attributes of an existing relationship by its ID. This operation replaces the existing relationship attributes with the new set of attributes.
+
+```sh
+cpdctl mdm relationship update --id ID --relationship-file FILE_PATH [flags]
+```
+
+#### Command options
+
+`--id` (string)
+:   The ID of the relationship
+
+`--relationship-file` (string)
+:   Path to JSON file containing the updated relationship data
+
+## • <a name="mdm_system_get-instance-metadata">`mdm system get-instance-metadata`</a>
+Retrieve the MDM instance metadata including project, catalog, COS, and governance configuration.
+
+```sh
+cpdctl mdm system get-instance-metadata [flags]
+```
+
+## • <a name="mdm_system_health">`mdm system health`</a>
+Check the health status of MDM services including matching, configuration, model, data, and job health.
+
+```sh
+cpdctl mdm system health [flags]
+```
+
+## • <a name="mdm_system_reset">`mdm system reset`</a>
+Reset the MDM system by clearing all configuration, model, matching, and data. This operation will wipe all data in your MDM system.
+
+```sh
+cpdctl mdm system reset [flags]
+```
+
+#### Command options
+
+`-f`, `--force` (bool)
+:   Skip the confirmation prompt and proceed with the reset immediately
+
+    The default value is `false`.
+
+## • <a name="mdm_system_setup-master-data">`mdm system setup-master-data`</a>
+Retrieve the current instance metadata via GET /mdm/v1/instance_metadata and merge the provided project, catalog, asset, and COS CRN settings before persisting them via PUT /mdm/v1/instance_metadata. The MDM configuration asset is created automatically if it does not already exist. On CP4D, --cos-crn is optional.
+
+```sh
+cpdctl mdm system setup-master-data {--project-id PROJECT-ID | --project PROJECT-NAME} {--catalog-id CATALOG-ID | --catalog CATALOG-NAME} [--cos-crn COS-CRN] [--governance-enabled=GOVERNANCE-ENABLED] [--label LABEL] [--generate-connected-data-asset=GENERATE-CONNECTED-DATA-ASSET] [--history-tracking=true|false] [--retention-enabled=true|false] [--retention-days DAYS]
+```
+
+#### Command options
+
+`--catalog` (string)
+:   Catalog name. This option is mutually exclusive with '--catalog-id'.
+
+`--catalog-id` (string)
+:   The UUID of the catalog (mandatory). This option is mutually exclusive with '--catalog'.
+
+`--cos-crn` (string)
+:   The Cloud Object Storage instance CRN (mandatory on public cloud; optional on CP4D).
+
+`--cpd-scope` (string)
+:   CPD project or catalog scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--generate-connected-data-asset` (bool)
+:   Whether to generate a connected data asset (default: false).
+
+    The default value is `false`.
+
+`--governance-enabled` (bool)
+:   Whether governance is enabled on the catalog (default: false).
+
+    The default value is `false`.
+
+`--history-tracking` (bool)
+:   Enable or disable history tracking (optional). When not provided the existing value is preserved.
+
+    The default value is `false`.
+
+`--label` (string)
+:   Display label for the MDM instance (default: "MDM Instance").
+
+    The default value is `MDM Instance`.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The UUID of the Watson Studio project (mandatory). This option is mutually exclusive with '--project'.
+
+`--retention-days` (string)
+:   Number of days to retain history (only used when --history-tracking=true and --retention-enabled=true).
+
+`--retention-enabled` (bool)
+:   Enable retention policy for history (only used when --history-tracking=true).
+
+    The default value is `false`.
+
+##### Example
+
+```sh
+   cpdctl mdm system setup-master-data \
+    --project-id <uuid> \
+    --catalog-id <uuid> \
+    --cos-crn <cos-instance-crn> \
+    --label "MDM Instance" \
+    --governance-enabled=false \
+    --generate-connected-data-asset=false
+
+   # Enable history tracking with retention for 180 days
+   cpdctl mdm system setup-master-data \
+    --project-id <uuid> \
+    --catalog-id <uuid> \
+    --cos-crn <cos-instance-crn> \
+    --history-tracking=true \
+    --retention-enabled=true \
+    --retention-days 180
+
+   # Disable history tracking entirely
+   cpdctl mdm system setup-master-data \
+    --project-id <uuid> \
+    --catalog-id <uuid> \
+    --cos-crn <cos-instance-crn> \
+    --history-tracking=false
+```
 ## • <a name="ml_deployment_compute-predictions">`ml deployment compute-predictions`</a>
 Execute a synchronous prediction for the deployment with the specified identifier. If a `serving_name` is used then it must match the `serving_name` that is returned in the `serving_urls`.
 
@@ -21695,7 +23494,7 @@ cpdctl wx-data access-control revoke-access [command options]
 `--name` (string)
 :   Resource Display Name. Provide either --id or --name. Required when --type is catalog, optional for other --type values
 
-`--subjects` ([`SubjectPatch[]`](#cli-subject-patch-example-schema))
+`--subjects` (string)
 :   (Required) Subjects (users or groups) whose access will be revoked. Format: For Users - user:userName For Groups - group:groupID. Multiple subjects can be revoked under same resource type (--type) separated by commas
 
 `--type` (string)
@@ -21780,7 +23579,7 @@ cpdctl wx-data bucket create [command options]
 
 #### Command options
 
-`--associated-catalog` ([`StorageCatalogPrototype`](#cli-storage-catalog-prototype-example-schema))
+`--associated-catalog` ([`BucketCatalog`](#cli-bucket-catalog-example-schema))
 :   Provide adhoc catalog details. Format: {"base_path":"/abc/def", "catalog_name":"sampleCatalog","catalog_type":"iceberg", "catalog_tags":["catalog_tag_1","catalog_tag_2"]}
 
 `--associated-catalog-base-path` (string)
@@ -21798,7 +23597,7 @@ cpdctl wx-data bucket create [command options]
 `--bucket-use` (string)
 :   Bucket use, to define whether the storage is for query monitoring or acl. Allowable values are: qhmm, acl
 
-`--connection` ([`StorageDetails`](#cli-storage-details-example-schema))
+`--connection` ([`StorageConnectionDetails`](#cli-storage-connection-details-example-schema))
 :   Provide storage connection details. Format: {"access_key":"<access_key>", "access_key_vault":{"key":"secret key", "secret_name":"secret name", "secret_urn":"secret urn"}, "account_name":"sample-storage", "application_id":"application-id", "auth_mode":"iam", "container_name":"sample-container", "directory_id":"directory-id", "endpoint":"https://s3.us-south.cloud-object-storage.appdomain.cloud/", "key_file":"key_file", "name":"sample-storage", "provider":"ibm-cos", "region":"us-south", "role_arn":"arn:aws:iam::5ssdd5467-002c-a4f8cac3f3f9", "sas_token":"<sas-token>", "secret_key":"secret_key", "secret_key_vault":{"key":"secret key", "secret_name":"secret name", "secret_urn":"secret urn"}, "vault_enabled":true}
 
 `--connection-access-key` (string)
@@ -24316,30 +26115,6 @@ The following example shows the format of the AIServiceDocumentation object.
   "response" : { }
 }
 ```
-### <a name="cli-access-policy-patch-example-schema">AccessPolicyPatch[]</a>
-
-The following example shows the format of the AccessPolicyPatch[] object.
-
-```json
-
-[ {
-  "resources" : [ {
-    "resource_id" : "presto01",
-    "resource_name" : "hive_data",
-    "resource_type" : "presto",
-    "id" : "presto01",
-    "name" : "hive_data",
-    "type" : "presto"
-  } ],
-  "subjects" : [ {
-    "permissions" : [ "exampleString", "anotherExampleString" ],
-    "subject" : {
-      "type" : "user",
-      "value" : "user1"
-    }
-  } ]
-} ]
-```
 ### <a name="cli-access-restrictions-example-schema">AccessRestrictions</a>
 
 The following example shows the format of the AccessRestrictions object.
@@ -24359,19 +26134,6 @@ The following example shows the format of the AccessToken object.
 {
   "git_host" : "github",
   "token_value" : "exampleString"
-}
-```
-### <a name="cli-algorithm-encryption-example-schema">AlgorithmEncryption</a>
-
-The following example shows the format of the AlgorithmEncryption object.
-
-```json
-
-{
-  "enabled" : true,
-  "pub_key" : [ "exampleString", "anotherExampleString" ],
-  "sub_type" : "exampleString",
-  "type" : "exampleString"
 }
 ```
 ### <a name="cli-allowed-identity-example-schema">AllowedIdentity</a>
@@ -24529,22 +26291,6 @@ The following example shows the format of the AssetDeploymentRequest object.
   },
   "url" : "exampleString"
 }
-```
-### <a name="cli-asset-mapping-example-schema">AssetMapping[]</a>
-
-The following example shows the format of the AssetMapping[] object.
-
-```json
-
-[ {
-  "auto_mapped" : false,
-  "classified_class" : "X",
-  "completeness_percent" : "100",
-  "data_mapping_attribute_type" : "string",
-  "data_mapping_name" : "record_source",
-  "exclude_column" : false,
-  "key" : "COLUMN1"
-} ]
 ```
 ### <a name="cli-asset-metadata-example-schema">AssetMetadata</a>
 
@@ -24804,16 +26550,17 @@ The following example shows the format of the BaseSoftwareSpecificationReference
   "href" : "/v2/software_specifications/903d3fc4-2e46-4581-a23a-b4484e13519e"
 }
 ```
-### <a name="cli-batch-compare-pairs-request-pair-example-schema">BatchComparePairsRequestPair[]</a>
+### <a name="cli-bucket-catalog-example-schema">BucketCatalog</a>
 
-The following example shows the format of the BatchComparePairsRequestPair[] object.
+The following example shows the format of the BucketCatalog object.
 
 ```json
 
-[ {
-  "record_number1" : "123",
-  "record_number2" : "456"
-} ]
+{
+  "catalog_name" : "sampleCatalog",
+  "catalog_tags" : [ "catalog_tag_1", "catalog_tag_2" ],
+  "catalog_type" : "iceberg"
+}
 ```
 ### <a name="cli-bucket-details-example-schema">BucketDetails</a>
 
@@ -24822,20 +26569,13 @@ The following example shows the format of the BucketDetails object.
 ```json
 
 {
-  "access_key" : "exampleString",
-  "account_name" : "exampleString",
-  "application_id" : "exampleString",
-  "container_name" : "exampleString",
-  "directory_id" : "exampleString",
-  "endpoint" : "exampleString",
-  "region" : "exampleString",
-  "secret_key" : "exampleString",
-  "auth_mode" : "aws_assume_role",
-  "role_arn" : "exampleString",
-  "path_style_enabled" : true,
-  "managed_by" : "exampleString",
-  "name" : "exampleString",
-  "type" : "adls_gen1"
+  "access_key" : "b9cbf248ea5c4c96947e64407108559j",
+  "bucket_name" : "sample-bucket",
+  "endpoint" : "https://s3.<region>.cloud-object-storage.appdomain.cloud/",
+  "key_file" : "key_file",
+  "provider" : "ibm_cos",
+  "region" : "us-south",
+  "secret_key" : "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"
 }
 ```
 ### <a name="cli-buildop-build-example-schema">BuildopBuild</a>
@@ -25068,17 +26808,6 @@ The following example shows the format of the BusinessMetric[] object.
   } ]
 } ]
 ```
-### <a name="cli-catalog-operations-operations-items-example-schema">CatalogOperationsOperationsItems[]</a>
-
-The following example shows the format of the CatalogOperationsOperationsItems[] object.
-
-```json
-
-[ {
-  "action" : "add",
-  "catalog" : [ "exampleString", "anotherExampleString" ]
-} ]
-```
 ### <a name="cli-chat-item-example-schema">ChatItem</a>
 
 The following example shows the format of the ChatItem object.
@@ -25139,106 +26868,6 @@ The following example shows the format of the CommitInfo object.
 
 {
   "previous_revision" : 1
-}
-```
-### <a name="cli-composite-rules-example-schema">CompositeRules</a>
-
-The following example shows the format of the CompositeRules object.
-
-```json
-
-{
-  "locale" : "exampleString",
-  "rules" : {
-    "entity_rules" : { },
-    "global" : {
-      "choices" : [ "exampleString", "anotherExampleString" ],
-      "exclude" : [ "exampleString", "anotherExampleString" ],
-      "filters" : [ {
-        "params" : {
-          "anyKey" : "anyValue"
-        },
-        "type" : "exampleString"
-      } ],
-      "limit" : 26,
-      "sort_by" : [ {
-        "params" : {
-          "anyKey" : "anyValue"
-        },
-        "type" : "exampleString"
-      } ],
-      "sources" : [ "exampleString", "anotherExampleString" ]
-    },
-    "record_types" : { }
-  }
-}
-```
-### <a name="cli-composite-rules-entity-rules-example-schema">CompositeRulesEntityRules</a>
-
-The following example shows the format of the CompositeRulesEntityRules object.
-
-```json
-
-{
-  "params" : {
-    "anyKey" : "anyValue"
-  },
-  "type" : "exampleString"
-}
-```
-### <a name="cli-composite-rules-record-type-example-schema">CompositeRulesRecordType</a>
-
-The following example shows the format of the CompositeRulesRecordType object.
-
-```json
-
-{
-  "params" : {
-    "anyKey" : "anyValue"
-  },
-  "type" : "exampleString"
-}
-```
-### <a name="cli-composite-rules-rule-example-schema">CompositeRulesRule</a>
-
-The following example shows the format of the CompositeRulesRule object.
-
-```json
-
-{
-  "params" : {
-    "anyKey" : "anyValue"
-  },
-  "type" : "exampleString"
-}
-```
-### <a name="cli-composite-rules-rules-example-schema">CompositeRulesRules</a>
-
-The following example shows the format of the CompositeRulesRules object.
-
-```json
-
-{
-  "entity_rules" : { },
-  "global" : {
-    "choices" : [ "exampleString", "anotherExampleString" ],
-    "exclude" : [ "exampleString", "anotherExampleString" ],
-    "filters" : [ {
-      "params" : {
-        "anyKey" : "anyValue"
-      },
-      "type" : "exampleString"
-    } ],
-    "limit" : 26,
-    "sort_by" : [ {
-      "params" : {
-        "anyKey" : "anyValue"
-      },
-      "type" : "exampleString"
-    } ],
-    "sources" : [ "exampleString", "anotherExampleString" ]
-  },
-  "record_types" : { }
 }
 ```
 ### <a name="cli-compute-entity-example-schema">ComputeEntity</a>
@@ -25555,881 +27184,6 @@ The following example shows the format of the DataConnectionReference[] object.
   }
 } ]
 ```
-### <a name="cli-data-load-properties-example-schema">DataLoadProperties</a>
-
-The following example shows the format of the DataLoadProperties object.
-
-```json
-
-{
-  "columns" : "exampleString",
-  "delimiter" : "exampleString",
-  "includes_header_row" : true
-}
-```
-### <a name="cli-data-load-source-example-schema">DataLoadSource</a>
-
-The following example shows the format of the DataLoadSource object.
-
-```json
-
-{
-  "catalog_id" : "exampleString",
-  "details" : {
-    "api_key" : "exampleString",
-    "endpoint" : "exampleString",
-    "origin" : "internal"
-  },
-  "directory_path" : "exampleString",
-  "directory_ref" : "sample_contract_small",
-  "project_id" : "exampleString",
-  "type" : "dfs"
-}
-```
-### <a name="cli-data-load-source-credentials-example-schema">DataLoadSourceCredentials</a>
-
-The following example shows the format of the DataLoadSourceCredentials object.
-
-```json
-
-{
-  "api_key" : "exampleString",
-  "endpoint" : "exampleString",
-  "origin" : "internal"
-}
-```
-### <a name="cli-data-load-structure-example-schema">DataLoadStructure</a>
-
-The following example shows the format of the DataLoadStructure object.
-
-```json
-
-{
-  "group_associations_path" : "exampleString",
-  "group_associations_properties" : "exampleString",
-  "group_associations_properties_contents" : {
-    "collection_id" : "exampleString",
-    "csv_options" : {
-      "columns" : "exampleString",
-      "delimiter" : "exampleString",
-      "includes_header_row" : true
-    },
-    "default_source" : "exampleString",
-    "fail_on_missing_records" : true,
-    "file_type" : "csv",
-    "group_associations_type" : "exampleString",
-    "group_type" : "exampleString",
-    "record_type" : "exampleString",
-    "relationship_type" : "exampleString"
-  },
-  "group_path" : "exampleString",
-  "group_properties" : "exampleString",
-  "group_properties_contents" : {
-    "collection_id" : "exampleString",
-    "csv_options" : {
-      "columns" : "exampleString",
-      "delimiter" : "exampleString",
-      "includes_header_row" : true
-    },
-    "default_source" : "exampleString",
-    "fail_on_missing_records" : true,
-    "file_type" : "csv",
-    "group_associations_type" : "exampleString",
-    "group_type" : "exampleString",
-    "record_type" : "exampleString",
-    "relationship_type" : "exampleString"
-  },
-  "record_asset_id" : "exampleString",
-  "record_path" : "exampleString",
-  "record_properties" : "exampleString",
-  "record_properties_contents" : {
-    "collection_id" : "exampleString",
-    "csv_options" : {
-      "columns" : "exampleString",
-      "delimiter" : "exampleString",
-      "includes_header_row" : true
-    },
-    "default_source" : "exampleString",
-    "fail_on_missing_records" : true,
-    "file_type" : "csv",
-    "group_associations_type" : "exampleString",
-    "group_type" : "exampleString",
-    "record_type" : "exampleString",
-    "relationship_type" : "exampleString"
-  },
-  "relationship_asset_id" : "exampleString",
-  "relationship_path" : "exampleString",
-  "relationship_properties" : "exampleString",
-  "relationship_properties_contents" : {
-    "collection_id" : "exampleString",
-    "csv_options" : {
-      "columns" : "exampleString",
-      "delimiter" : "exampleString",
-      "includes_header_row" : true
-    },
-    "default_source" : "exampleString",
-    "fail_on_missing_records" : true,
-    "file_type" : "csv",
-    "group_associations_type" : "exampleString",
-    "group_type" : "exampleString",
-    "record_type" : "exampleString",
-    "relationship_type" : "exampleString"
-  }
-}
-```
-### <a name="cli-data-model-attribute-type-system-properties-example-schema">DataModelAttributeTypeSystemProperties</a>
-
-The following example shows the format of the DataModelAttributeTypeSystemProperties object.
-
-```json
-
-{
-  "classification" : "exampleString",
-  "data_type" : "exampleString",
-  "deprecated" : true,
-  "description" : "exampleString",
-  "editable" : true,
-  "indexed" : true,
-  "label" : "exampleString",
-  "settable" : true
-}
-```
-### <a name="cli-data-model-entity-type-system-properties-example-schema">DataModelEntityTypeSystemProperties</a>
-
-The following example shows the format of the DataModelEntityTypeSystemProperties object.
-
-```json
-
-{
-  "classification" : "exampleString",
-  "data_type" : "exampleString",
-  "deprecated" : true,
-  "description" : "exampleString",
-  "editable" : true,
-  "indexed" : true,
-  "label" : "exampleString",
-  "settable" : true
-}
-```
-### <a name="cli-data-model-group-type-system-properties-example-schema">DataModelGroupTypeSystemProperties</a>
-
-The following example shows the format of the DataModelGroupTypeSystemProperties object.
-
-```json
-
-{
-  "classification" : "exampleString",
-  "data_type" : "exampleString",
-  "deprecated" : true,
-  "description" : "exampleString",
-  "editable" : true,
-  "indexed" : true,
-  "label" : "exampleString",
-  "settable" : true
-}
-```
-### <a name="cli-data-model-hierarchy-type-system-properties-example-schema">DataModelHierarchyTypeSystemProperties</a>
-
-The following example shows the format of the DataModelHierarchyTypeSystemProperties object.
-
-```json
-
-{
-  "classification" : "exampleString",
-  "data_type" : "exampleString",
-  "deprecated" : true,
-  "description" : "exampleString",
-  "editable" : true,
-  "indexed" : true,
-  "label" : "exampleString",
-  "settable" : true
-}
-```
-### <a name="cli-data-model-node-type-system-properties-example-schema">DataModelNodeTypeSystemProperties</a>
-
-The following example shows the format of the DataModelNodeTypeSystemProperties object.
-
-```json
-
-{
-  "classification" : "exampleString",
-  "data_type" : "exampleString",
-  "deprecated" : true,
-  "description" : "exampleString",
-  "editable" : true,
-  "indexed" : true,
-  "label" : "exampleString",
-  "settable" : true
-}
-```
-### <a name="cli-data-model-record-type-system-properties-example-schema">DataModelRecordTypeSystemProperties</a>
-
-The following example shows the format of the DataModelRecordTypeSystemProperties object.
-
-```json
-
-{
-  "classification" : "exampleString",
-  "data_type" : "exampleString",
-  "deprecated" : true,
-  "description" : "exampleString",
-  "editable" : true,
-  "indexed" : true,
-  "label" : "exampleString",
-  "settable" : true
-}
-```
-### <a name="cli-data-model-relationship-type-system-properties-example-schema">DataModelRelationshipTypeSystemProperties</a>
-
-The following example shows the format of the DataModelRelationshipTypeSystemProperties object.
-
-```json
-
-{
-  "classification" : "exampleString",
-  "data_type" : "exampleString",
-  "deprecated" : true,
-  "description" : "exampleString",
-  "editable" : true,
-  "indexed" : true,
-  "label" : "exampleString",
-  "settable" : true
-}
-```
-### <a name="cli-data-model-system-properties-example-schema">DataModelSystemProperties</a>
-
-The following example shows the format of the DataModelSystemProperties object.
-
-```json
-
-{
-  "attribute_types" : {
-    "attribute_last_updated" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    }
-  },
-  "entity_types" : {
-    "created_date" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "entity_id" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "entity_last_updated" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "last_updated_date" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "last_updated_user" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "link_last_updated_date" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "record_count" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    }
-  },
-  "group_types" : {
-    "created_date" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "created_user" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "group_id" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "group_number" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "group_source" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "last_updated_date" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "last_updated_user" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    }
-  },
-  "hierarchy_types" : {
-    "created_date" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "created_user" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "hierarchy_id" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "hierarchy_number" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "hierarchy_source" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "last_updated_date" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "last_updated_user" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    }
-  },
-  "node_types" : {
-    "context_id" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "created_date" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "created_user" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "last_updated_date" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "last_updated_user" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "node_number" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    }
-  },
-  "record_types" : {
-    "collection_id" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "created_date" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "created_user" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "last_updated_date" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "last_updated_user" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "record_id" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "record_last_updated" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "record_number" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "record_source" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    }
-  },
-  "relationship_types" : {
-    "created_date" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "created_user" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "from_internal_id" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "from_record_id" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "from_record_number" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "from_record_source" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "from_record_type" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "from_type" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "from_type_name" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "last_updated_date" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "last_updated_user" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "original_external_id" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "relationship_id" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "relationship_last_updated" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "relationship_number" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "relationship_source" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "relationship_type" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "to_internal_id" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "to_record_id" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "to_record_number" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "to_record_source" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "to_record_type" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "to_type" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    },
-    "to_type_name" : {
-      "classification" : "exampleString",
-      "data_type" : "exampleString",
-      "deprecated" : true,
-      "description" : "exampleString",
-      "editable" : true,
-      "indexed" : true,
-      "label" : "exampleString",
-      "settable" : true
-    }
-  },
-  "version" : "exampleString"
-}
-```
 ### <a name="cli-data-preprocessing-transformation-example-schema">DataPreprocessingTransformation[]</a>
 
 The following example shows the format of the DataPreprocessingTransformation[] object.
@@ -26467,32 +27221,6 @@ The following example shows the format of the DataSchema object.
   "name" : "exampleString"
 }
 ```
-### <a name="cli-data-search-criteria-example-schema">DataSearchCriteria</a>
-
-The following example shows the format of the DataSearchCriteria object.
-
-```json
-
-{
-  "filters" : [ {
-    "data_quality_issues" : [ "potential_match", "potential_overlay", "user_tasks_only", "same_source_only", "potential_duplicate" ],
-    "type" : "record",
-    "values" : [ "exampleString", "anotherExampleString" ]
-  } ],
-  "query" : {
-    "expressions" : [ {
-      "condition" : "equal",
-      "entity_type" : "exampleString",
-      "operation" : "and",
-      "property" : "exampleString",
-      "record_type" : "exampleString",
-      "value" : "exampleString"
-    } ],
-    "operation" : "and"
-  },
-  "search_type" : "record"
-}
-```
 ### <a name="cli-data-source-example-schema">DataSource[]</a>
 
 The following example shows the format of the DataSource[] object.
@@ -26522,14 +27250,15 @@ The following example shows the format of the DataSource[] object.
   "type" : "exampleString"
 } ]
 ```
-### <a name="cli-database-catalog-prototype-example-schema">DatabaseCatalogPrototype</a>
+### <a name="cli-database-catalog-example-schema">DatabaseCatalog</a>
 
-The following example shows the format of the DatabaseCatalogPrototype object.
+The following example shows the format of the DatabaseCatalog object.
 
 ```json
 
 {
   "catalog_name" : "sampleCatalog",
+  "catalog_tags" : [ "catalog_tag_1", "catalog_tag_2" ],
   "catalog_type" : "iceberg"
 }
 ```
@@ -26551,27 +27280,22 @@ The following example shows the format of the DatabaseConfigurationRequest objec
   "name" : "exampleString"
 }
 ```
-### <a name="cli-database-details-prototype-example-schema">DatabaseDetailsPrototype</a>
+### <a name="cli-database-details-example-schema">DatabaseDetails</a>
 
-The following example shows the format of the DatabaseDetailsPrototype object.
+The following example shows the format of the DatabaseDetails object.
 
 ```json
 
 {
-  "authentication_type" : "LDAP, NTLM, ActiveDirectoryServicePrincipal, ActiveDirectoryPassword",
+  "authentication_type" : "LDAP",
   "authentication_value" : "LDAP",
-  "authentication_value_key_vault" : {
-    "key" : "secret key",
-    "secret_name" : "secret name",
-    "secret_urn" : "secret urn"
-  },
   "broker_authentication_password" : "samplepassword",
   "broker_authentication_type" : "PASSWORD",
   "broker_authentication_user" : "sampleuser",
-  "broker_host" : "samplehost",
   "broker_port" : 4553,
-  "certificate" : "exampleCertificate",
-  "certificate_extension" : "pem",
+  "broker_host" : "samplehost",
+  "certificate" : "contents of a pem/crt file",
+  "certificate_extension" : "pem/crt",
   "connection_method" : "basic, apikey",
   "connection_mode" : "service_name",
   "connection_mode_value" : "orclpdb",
@@ -26583,24 +27307,16 @@ The following example shows the format of the DatabaseDetailsPrototype object.
   "coordinator_port" : 4553,
   "cpd_hostname" : "samplecpdhostname",
   "credentials_key" : "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......",
-  "name" : "new_database",
-  "domain_name" : "conops-mssql.conops.local",
-  "hostname" : "http://db2@localhost:9900.com",
+  "database_name" : "new_database",
+  "hostname" : "db2@<hostname>.com",
   "hostname_in_certificate" : "samplehostname",
   "hosts" : "abc.com:1234,xyz.com:4321",
   "informix_server" : "ol_informix1410",
   "password" : "samplepassword",
-  "password_key_vault" : {
-    "key" : "secret key",
-    "secret_name" : "secret name",
-    "secret_urn" : "secret urn"
-  },
   "port" : 4553,
   "project_id" : "conops-bigquery",
   "sasl" : true,
   "sasl_mechanism" : "plain",
-  "schema_name" : "sampleSchema",
-  "schemas" : "redis__name",
   "service_api_key" : "sampleapikey",
   "service_hostname" : "api.dataplatform.dev.cloud.ibm.com",
   "service_password" : "samplepassword",
@@ -26609,34 +27325,10 @@ The following example shows the format of the DatabaseDetailsPrototype object.
   "service_token_url" : "sampletoakenurl",
   "service_username" : "sampleusername",
   "ssl" : true,
-  "sslcertificate_key_vault" : {
-    "key" : "secret key",
-    "secret_name" : "secret name",
-    "secret_urn" : "secret urn"
-  },
-  "tables" : "kafka_table_name, redis_table_name",
+  "tables" : "kafka_table_name",
   "username" : "sampleuser",
-  "username_key_vault" : {
-    "key" : "secret key",
-    "secret_name" : "secret name",
-    "secret_urn" : "secret urn"
-  },
   "validate_server_certificate" : true,
-  "vault_enabled" : true,
-  "verify_host_name" : true,
-  "warehouse_name" : "samplewrehouse"
-}
-```
-### <a name="cli-database-details-prototype-authentication-value-key-vault-example-schema">DatabaseDetailsPrototypeAuthenticationValueKeyVault</a>
-
-The following example shows the format of the DatabaseDetailsPrototypeAuthenticationValueKeyVault object.
-
-```json
-
-{
-  "key" : "secret key",
-  "secret_name" : "secret name",
-  "secret_urn" : "secret urn"
+  "verify_host_name" : true
 }
 ```
 ### <a name="cli-database-registration-prototype-database-properties-items-example-schema">DatabaseRegistrationPrototypeDatabasePropertiesItems[]</a>
@@ -26668,29 +27360,6 @@ The following example shows the format of the DatasourceTypeProperty object.
 {
   "name" : "exampleString",
   "supported_products" : [ "exampleString", "anotherExampleString" ]
-}
-```
-### <a name="cli-db-connection-model-example-schema">DbConnectionModel</a>
-
-The following example shows the format of the DbConnectionModel object.
-
-```json
-
-{
-  "database_id" : "exampleString",
-  "db_type" : "exampleString",
-  "host" : "exampleString",
-  "port" : "exampleString",
-  "db_name" : "exampleString",
-  "db_username" : "exampleString",
-  "password" : "exampleString",
-  "authentication_value" : "exampleString",
-  "is_ssl" : false,
-  "cert_extension" : "exampleString",
-  "cert_content" : "exampleString",
-  "connection_mode" : "exampleString",
-  "connection_mode_value" : "exampleString",
-  "jdbc_url" : "exampleString"
 }
 ```
 ### <a name="cli-deployment-entity-request-batch-example-schema">DeploymentEntityRequestBatch</a>
@@ -26883,36 +27552,26 @@ The following example shows the format of the EmbeddingReturnOptions object.
   "input_text" : true
 }
 ```
-### <a name="cli-engine-details-example-schema">EngineDetails</a>
+### <a name="cli-engine-details-body-example-schema">EngineDetailsBody</a>
 
-The following example shows the format of the EngineDetails object.
+The following example shows the format of the EngineDetailsBody object.
 
 ```json
 
 {
-  "connection_string" : "1.2.3.4",
-  "managed_by" : "fully/self",
   "api_key" : "<api_key>",
+  "connection_string" : "1.2.3.4",
   "coordinator" : {
     "node_type" : "worker",
-    "quantity" : 1
+    "quantity" : 38
   },
+  "instance_id" : "instance_id",
+  "managed_by" : "fully/self",
   "size_config" : "starter",
   "worker" : {
     "node_type" : "worker",
-    "quantity" : 1
+    "quantity" : 38
   }
-}
-```
-### <a name="cli-entity-attributes-request-example-schema">EntityAttributesRequest</a>
-
-The following example shows the format of the EntityAttributesRequest object.
-
-```json
-
-{
-  "attribute_names" : [ "exampleString", "anotherExampleString" ],
-  "entity_type" : "exampleString"
 }
 ```
 ### <a name="cli-environment-variables-example-schema">EnvironmentVariables</a>
@@ -26958,37 +27617,6 @@ The following example shows the format of the EvaluationsSpecItem object.
   "id" : "exampleString",
   "input_target" : "exampleString",
   "metrics_names" : [ "exampleString", "anotherExampleString" ]
-}
-```
-### <a name="cli-event-subscription-stream-connection-example-schema">EventSubscriptionStreamConnection</a>
-
-The following example shows the format of the EventSubscriptionStreamConnection object.
-
-```json
-
-{
-  "asset_id" : "exampleString",
-  "asset_scope" : "exampleString",
-  "container_id" : "exampleString",
-  "stream_connection_properties" : {
-    "anyKey" : "anyValue"
-  },
-  "stream_type" : "exampleString",
-  "topic" : "exampleString"
-}
-```
-### <a name="cli-execute-config-example-schema">ExecuteConfig</a>
-
-The following example shows the format of the ExecuteConfig object.
-
-```json
-
-{
-  "driver_memory" : "exampleString",
-  "driver_cores" : 1,
-  "executor_memory" : "exampleString",
-  "executor_cores" : 1,
-  "num_executors" : 1
 }
 ```
 ### <a name="cli-experiment-resource-entity-request-evaluation-definition-example-schema">ExperimentResourceEntityRequestEvaluationDefinition</a>
@@ -27075,63 +27703,6 @@ The following example shows the format of the ExportAssets object.
   "all_assets" : true,
   "asset_ids" : [ "exampleString", "anotherExampleString" ],
   "asset_types" : [ "exampleString", "anotherExampleString" ]
-}
-```
-### <a name="cli-export-request-exclude-attributes-example-schema">ExportRequestExcludeAttributes</a>
-
-The following example shows the format of the ExportRequestExcludeAttributes object.
-
-```json
-
-{
-  "entity_attributes" : [ {
-    "attribute_names" : [ "exampleString", "anotherExampleString" ],
-    "entity_type" : "exampleString"
-  } ],
-  "record_attributes" : [ {
-    "attribute_names" : [ "exampleString", "anotherExampleString" ],
-    "record_type" : "exampleString"
-  } ],
-  "relationship_attributes" : [ {
-    "attribute_names" : [ "exampleString", "anotherExampleString" ],
-    "relationship_type" : "exampleString"
-  } ]
-}
-```
-### <a name="cli-export-request-include-attributes-example-schema">ExportRequestIncludeAttributes</a>
-
-The following example shows the format of the ExportRequestIncludeAttributes object.
-
-```json
-
-{
-  "entity_attributes" : [ {
-    "attribute_names" : [ "exampleString", "anotherExampleString" ],
-    "entity_type" : "exampleString"
-  } ],
-  "record_attributes" : [ {
-    "attribute_names" : [ "exampleString", "anotherExampleString" ],
-    "record_type" : "exampleString"
-  } ],
-  "relationship_attributes" : [ {
-    "attribute_names" : [ "exampleString", "anotherExampleString" ],
-    "relationship_type" : "exampleString"
-  } ]
-}
-```
-### <a name="cli-expression-example-schema">Expression</a>
-
-The following example shows the format of the Expression object.
-
-```json
-
-{
-  "condition" : "equal",
-  "entity_type" : "exampleString",
-  "operation" : "and",
-  "property" : "exampleString",
-  "record_type" : "exampleString",
-  "value" : "exampleString"
 }
 ```
 ### <a name="cli-external-asset-preview-example-schema">ExternalAssetPreview</a>
@@ -27271,20 +27842,6 @@ The following example shows the format of the FederatedLearningRemoteTraining ob
 {
   "id" : "1918939c-2660-4f6a-b727-4b402383dc63",
   "required" : true
-}
-```
-### <a name="cli-file-format-properties-example-schema">FileFormatProperties</a>
-
-The following example shows the format of the FileFormatProperties object.
-
-```json
-
-{
-  "encoding" : "exampleString",
-  "escape_character" : "exampleString",
-  "field_delimiter" : "exampleString",
-  "header" : true,
-  "line_delimiter" : "exampleString"
 }
 ```
 ### <a name="cli-file-system-copy-move-source-example-schema">FileSystemCopyMoveSource</a>
@@ -27687,11 +28244,11 @@ The following example shows the format of the IcebergSourceTable object.
 ```json
 
 {
-  "schema_name" : "exampleString",
-  "table_name" : "exampleString",
-  "catalog_name" : "exampleString",
-  "warehouse_name" : "exampleString",
-  "snapshot_id" : 0
+  "catalog_name" : "catalog",
+  "schema_name" : "test_schema",
+  "snapshot_id" : "8415204386124336000",
+  "table_name" : "test_table",
+  "warehouse_name" : "warehouse"
 }
 ```
 ### <a name="cli-included-packages-definition-example-schema">IncludedPackagesDefinition</a>
@@ -27705,16 +28262,78 @@ The following example shows the format of the IncludedPackagesDefinition object.
   "version" : "0.20.0"
 }
 ```
-### <a name="cli-ingestion-schema-response-example-schema">IngestionSchemaResponse</a>
+### <a name="cli-ingestion-bucket-details-example-schema">IngestionBucketDetails</a>
 
-The following example shows the format of the IngestionSchemaResponse object.
+The following example shows the format of the IngestionBucketDetails object.
 
 ```json
 
 {
-  "field_id" : 0,
-  "header_name" : "exampleString",
-  "type" : "exampleString"
+  "access_key" : "access-key",
+  "bucket_name" : "sample-bucket",
+  "bucket_type" : "ibm_cos",
+  "endpoint" : "https://s3.us-south.cloud-object-storage.appdomain.cloud/",
+  "region" : "us-south",
+  "secret_key" : "secret-key"
+}
+```
+### <a name="cli-ingestion-execute-config-example-schema">IngestionExecuteConfig</a>
+
+The following example shows the format of the IngestionExecuteConfig object.
+
+```json
+
+{
+  "driver_cores" : 1,
+  "driver_memory" : "2G",
+  "executor_cores" : 1,
+  "executor_memory" : "2G",
+  "num_executors" : 1
+}
+```
+### <a name="cli-ingestion-job-prototype-csv-property-example-schema">IngestionJobPrototypeCsvProperty</a>
+
+The following example shows the format of the IngestionJobPrototypeCsvProperty object.
+
+```json
+
+{
+  "encoding" : "utf-8",
+  "escape_character" : "\\",
+  "field_delimiter" : ",",
+  "header" : true,
+  "line_delimiter" : "\n"
+}
+```
+### <a name="cli-ingestion-source-database-example-schema">IngestionSourceDatabase</a>
+
+The following example shows the format of the IngestionSourceDatabase object.
+
+```json
+
+{
+  "authentication_type" : "LDAP",
+  "authentication_value" : "sampleapikey",
+  "cert_extension" : "samplepass",
+  "certificate" : "/path/to/certificate",
+  "connection_mode" : "test_table",
+  "connection_mode_value" : "test_table",
+  "database_id" : "psql12132",
+  "database_name" : "new_database",
+  "database_type" : "postgres",
+  "display_name" : "test_table",
+  "host" : "test_Catalog",
+  "informix_server" : "ol_informix1410",
+  "isssl" : true,
+  "password" : "spark123",
+  "port" : "test_Schema",
+  "sasl" : true,
+  "sasl_mechanism" : "plain",
+  "schema_name" : "test_schema",
+  "table_name" : "test_table",
+  "user_id" : "test_Schema",
+  "validate_server_certificate" : true,
+  "warehouse_name" : "samplewarehouse"
 }
 ```
 ### <a name="cli-input-data-array-example-schema">InputDataArray</a>
@@ -28703,27 +29322,7 @@ The following example shows the format of the NodeDescriptionBody object.
 
 {
   "node_type" : "worker",
-  "quantity" : 1
-}
-```
-### <a name="cli-node-with-attributes-example-schema">NodeWithAttributes</a>
-
-The following example shows the format of the NodeWithAttributes object.
-
-```json
-
-{
-  "attributes" : {
-    "anyKey" : "anyValue"
-  },
-  "entity_ids" : [ "exampleString", "anotherExampleString" ],
-  "is_blocked_for_update" : true,
-  "is_quarantined" : true,
-  "system_attributes" : {
-    "anyKey" : "anyValue"
-  },
-  "type" : "record",
-  "type_name" : "person"
+  "quantity" : 38
 }
 ```
 ### <a name="cli-notebook-kernel-example-schema">NotebookKernel</a>
@@ -28921,17 +29520,6 @@ The following example shows the format of the OnlineDeploymentParameters object.
   "serving_name" : "churn"
 }
 ```
-### <a name="cli-option-example-schema">Option[]</a>
-
-The following example shows the format of the Option[] object.
-
-```json
-
-[ {
-  "key" : "exampleString",
-  "value" : "exampleString"
-} ]
-```
 ### <a name="cli-organization-example-schema">Organization</a>
 
 The following example shows the format of the Organization object.
@@ -29023,142 +29611,18 @@ The following example shows the format of the PatchDocument[] object.
   }
 } ]
 ```
-### <a name="cli-patch-hierarchy-deletions-example-schema">PatchHierarchyDeletions</a>
-
-The following example shows the format of the PatchHierarchyDeletions object.
-
-```json
-
-{
-  "nodes" : [ {
-    "attributes" : {
-      "anyKey" : "anyValue"
-    },
-    "reference_id" : "exampleString",
-    "system_attributes" : {
-      "anyKey" : "anyValue"
-    },
-    "type" : "node",
-    "type_name" : "exampleString"
-  } ],
-  "relationships" : [ {
-    "attributes" : {
-      "anyKey" : "anyValue"
-    },
-    "source" : {
-      "attributes" : {
-        "anyKey" : "anyValue"
-      },
-      "entity_ids" : [ "exampleString", "anotherExampleString" ],
-      "is_blocked_for_update" : true,
-      "is_quarantined" : true,
-      "system_attributes" : {
-        "anyKey" : "anyValue"
-      },
-      "type" : "record",
-      "type_name" : "hierarchy_node"
-    },
-    "system_attributes" : {
-      "anyKey" : "anyValue"
-    },
-    "target" : {
-      "attributes" : {
-        "anyKey" : "anyValue"
-      },
-      "entity_ids" : [ "exampleString", "anotherExampleString" ],
-      "is_blocked_for_update" : true,
-      "is_quarantined" : true,
-      "system_attributes" : {
-        "anyKey" : "anyValue"
-      },
-      "type" : "record",
-      "type_name" : "hierarchy_node"
-    },
-    "type" : "relationship",
-    "type_name" : "hierarchy_node_association_relationship"
-  } ]
-}
-```
-### <a name="cli-patch-hierarchy-upserts-example-schema">PatchHierarchyUpserts</a>
-
-The following example shows the format of the PatchHierarchyUpserts object.
-
-```json
-
-{
-  "associated_objects" : [ {
-    "anyKey" : "anyValue"
-  }, {
-    "anotherAnyKey" : "anotherAnyValue"
-  } ],
-  "attributes" : {
-    "anyKey" : "anyValue"
-  },
-  "nodes" : [ {
-    "attributes" : {
-      "anyKey" : "anyValue"
-    },
-    "reference_id" : "exampleString",
-    "system_attributes" : {
-      "anyKey" : "anyValue"
-    },
-    "type" : "node",
-    "type_name" : "exampleString"
-  } ],
-  "reference_id" : "exampleString",
-  "relationships" : [ {
-    "attributes" : {
-      "anyKey" : "anyValue"
-    },
-    "source" : {
-      "attributes" : {
-        "anyKey" : "anyValue"
-      },
-      "entity_ids" : [ "exampleString", "anotherExampleString" ],
-      "is_blocked_for_update" : true,
-      "is_quarantined" : true,
-      "system_attributes" : {
-        "anyKey" : "anyValue"
-      },
-      "type" : "record",
-      "type_name" : "hierarchy_node"
-    },
-    "system_attributes" : {
-      "anyKey" : "anyValue"
-    },
-    "target" : {
-      "attributes" : {
-        "anyKey" : "anyValue"
-      },
-      "entity_ids" : [ "exampleString", "anotherExampleString" ],
-      "is_blocked_for_update" : true,
-      "is_quarantined" : true,
-      "system_attributes" : {
-        "anyKey" : "anyValue"
-      },
-      "type" : "record",
-      "type_name" : "hierarchy_node"
-    },
-    "type" : "relationship",
-    "type_name" : "hierarchy_node_association_relationship"
-  } ],
-  "system_attributes" : {
-    "anyKey" : "anyValue"
-  },
-  "type" : "hierarchy",
-  "type_name" : "generic_hierarchy"
-}
-```
 ### <a name="cli-patch-item-example-schema">PatchItem[]</a>
 
-The following example shows the format of the PatchOperationPayloadItem[] object.
+The following example shows the format of the PatchItem[] object.
 
 ```json
 
 [ {
   "op" : "add",
-  "path" : "/allowed_operational_scope",
-  "value" : "exampleString"
+  "path" : "exampleString",
+  "value" : {
+    "anyKey" : "anyValue"
+  }
 } ]
 ```
 ### <a name="cli-patch-operation-payload-item-example-schema">PatchOperationPayloadItem[]</a>
@@ -29350,53 +29814,6 @@ The following example shows the format of the PrimaryStorageCredentials object.
   "uri" : "postgres://user:password@sl-us-south-1-portal.21.dblayer.com:12345/compose"
 }
 ```
-### <a name="cli-process-request-asset-source-details-example-schema">ProcessRequestAssetSourceDetails</a>
-
-The following example shows the format of the ProcessRequestAssetSourceDetails object.
-
-```json
-
-{
-  "catalog" : {
-    "cos_api_key" : "exampleString",
-    "cos_bucket_name" : "exampleString",
-    "cos_endpoint" : "exampleString",
-    "id" : "exampleString"
-  },
-  "project" : {
-    "cos_api_key" : "exampleString",
-    "cos_bucket_name" : "exampleString",
-    "cos_endpoint" : "exampleString",
-    "id" : "exampleString"
-  }
-}
-```
-### <a name="cli-process-request-asset-source-details-catalog-example-schema">ProcessRequestAssetSourceDetailsCatalog</a>
-
-The following example shows the format of the ProcessRequestAssetSourceDetailsCatalog object.
-
-```json
-
-{
-  "cos_api_key" : "exampleString",
-  "cos_bucket_name" : "exampleString",
-  "cos_endpoint" : "exampleString",
-  "id" : "exampleString"
-}
-```
-### <a name="cli-process-request-asset-source-details-project-example-schema">ProcessRequestAssetSourceDetailsProject</a>
-
-The following example shows the format of the ProcessRequestAssetSourceDetailsProject object.
-
-```json
-
-{
-  "cos_api_key" : "exampleString",
-  "cos_bucket_name" : "exampleString",
-  "cos_endpoint" : "exampleString",
-  "id" : "exampleString"
-}
-```
 ### <a name="cli-project-catalog-example-schema">ProjectCatalog</a>
 
 The following example shows the format of the ProjectCatalog object.
@@ -29545,17 +29962,6 @@ The following example shows the format of the PromptWithExternalModelParameters 
   "repetition_penalty" : 72.5
 }
 ```
-### <a name="cli-record-attributes-request-example-schema">RecordAttributesRequest</a>
-
-The following example shows the format of the RecordAttributesRequest object.
-
-```json
-
-{
-  "attribute_names" : [ "exampleString", "anotherExampleString" ],
-  "record_type" : "exampleString"
-}
-```
 ### <a name="cli-records-count-summary-example-schema">RecordsCountSummary</a>
 
 The following example shows the format of the RecordsCountSummary object.
@@ -29596,17 +30002,6 @@ The following example shows the format of the Rel object.
 {
   "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
   "rev" : "2"
-}
-```
-### <a name="cli-relationship-attributes-request-example-schema">RelationshipAttributesRequest</a>
-
-The following example shows the format of the RelationshipAttributesRequest object.
-
-```json
-
-{
-  "attribute_names" : [ "exampleString", "anotherExampleString" ],
-  "relationship_type" : "exampleString"
 }
 ```
 ### <a name="cli-remote-admin-example-schema">RemoteAdmin</a>
@@ -29656,45 +30051,6 @@ The following example shows the format of the RerankReturnOptions object.
   "inputs" : false,
   "query" : false
 }
-```
-### <a name="cli-resiliency-rules-link-resiliency-rules-example-schema">ResiliencyRulesLinkResiliencyRules</a>
-
-The following example shows the format of the ResiliencyRulesLinkResiliencyRules object.
-
-```json
-
-{
-  "entities" : {
-    "anyKey" : "anyValue"
-  },
-  "records" : { }
-}
-```
-### <a name="cli-resiliency-rules-record-example-schema">ResiliencyRulesRecord</a>
-
-The following example shows the format of the ResiliencyRulesRecord object.
-
-```json
-
-{
-  "join_existing_entity" : "exampleString",
-  "merge_entities" : "exampleString"
-}
-```
-### <a name="cli-resource-details-example-schema">ResourceDetails[]</a>
-
-The following example shows the format of the ResourceDetails[] object.
-
-```json
-
-[ {
-  "resource_id" : "presto01",
-  "resource_name" : "hive_data",
-  "resource_type" : "presto",
-  "id" : "presto01",
-  "name" : "hive_data",
-  "type" : "presto"
-} ]
 ```
 ### <a name="cli-results-location-example-schema">ResultsLocation</a>
 
@@ -29750,18 +30106,6 @@ The following example shows the format of the ScheduleStartTime object.
   "type" : "relative"
 }
 ```
-### <a name="cli-schema-transformation-example-schema">SchemaTransformation</a>
-
-The following example shows the format of the SchemaTransformation object.
-
-```json
-
-{
-  "old_column" : "old_column_name",
-  "new_column" : "new_column_name",
-  "new_type" : "string"
-}
-```
 ### <a name="cli-scope-example-schema">Scope</a>
 
 The following example shows the format of the Scope object.
@@ -29801,45 +30145,6 @@ The following example shows the format of the ScoringEndpointRequest object.
 
 {
   "token" : "exampleString"
-}
-```
-### <a name="cli-search-filter-example-schema">SearchFilter</a>
-
-The following example shows the format of the SearchFilter object.
-
-```json
-
-{
-  "data_quality_issues" : [ "potential_match", "potential_overlay", "user_tasks_only", "same_source_only", "potential_duplicate" ],
-  "type" : "record",
-  "values" : [ "exampleString", "anotherExampleString" ]
-}
-```
-### <a name="cli-search-filter-example-schema">SearchFilter[]</a>
-
-The following example shows the format of the SearchFilter[] object.
-
-```json
-
-[ {
-  "data_quality_issues" : [ "potential_match", "potential_overlay", "user_tasks_only", "same_source_only", "potential_duplicate" ],
-  "type" : "record",
-  "values" : [ "exampleString", "anotherExampleString" ]
-} ]
-```
-### <a name="cli-search-query-example-schema">SearchQuery</a>
-
-The following example shows the format of the SearchQuery object.
-
-```json
-
-{
-  "condition" : "equal",
-  "entity_type" : "exampleString",
-  "operation" : "and",
-  "property" : "exampleString",
-  "record_type" : "exampleString",
-  "value" : "exampleString"
 }
 ```
 ### <a name="cli-secret-example-schema">Secret</a>
@@ -29891,18 +30196,6 @@ The following example shows the format of the SimpleRel object.
   "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"
 }
 ```
-### <a name="cli-single-record-request-attributes-example-schema">SingleRecordRequestAttributes</a>
-
-The following example shows the format of the SingleRecordRequestAttributes object.
-
-```json
-
-{
-  "record_id" : "2",
-  "record_last_updated" : 1506982103000,
-  "record_source" : "MDM"
-}
-```
 ### <a name="cli-software-spec-rel-example-schema">SoftwareSpecRel</a>
 
 The following example shows the format of the SoftwareSpecRel object.
@@ -29942,77 +30235,6 @@ The following example shows the format of the SoftwareSpecificationEntitySoftwar
     "name" : "python",
     "version" : "3.6"
   }
-}
-```
-### <a name="cli-source-details-example-schema">SourceDetails</a>
-
-The following example shows the format of the SourceDetails object.
-
-```json
-
-{
-  "file_paths" : "exampleString",
-  "file_type" : "csv",
-  "source_type" : "STORAGE",
-  "schema" : [ {
-    "field_id" : 0,
-    "header_name" : "exampleString",
-    "type" : "exampleString"
-  } ],
-  "schema_transformations" : [ {
-    "old_column" : "old_column_name",
-    "new_column" : "new_column_name",
-    "new_type" : "string"
-  } ],
-  "schema_name" : "exampleString",
-  "table_name" : "exampleString",
-  "bucket_details" : {
-    "access_key" : "exampleString",
-    "account_name" : "exampleString",
-    "application_id" : "exampleString",
-    "container_name" : "exampleString",
-    "directory_id" : "exampleString",
-    "endpoint" : "exampleString",
-    "region" : "exampleString",
-    "secret_key" : "exampleString",
-    "auth_mode" : "aws_assume_role",
-    "role_arn" : "exampleString",
-    "path_style_enabled" : true,
-    "managed_by" : "exampleString",
-    "name" : "exampleString",
-    "type" : "adls_gen1"
-  },
-  "iceberg_source_table" : {
-    "schema_name" : "exampleString",
-    "table_name" : "exampleString",
-    "catalog_name" : "exampleString",
-    "warehouse_name" : "exampleString",
-    "snapshot_id" : 0
-  },
-  "source_database" : {
-    "database_id" : "exampleString",
-    "db_type" : "exampleString",
-    "host" : "exampleString",
-    "port" : "exampleString",
-    "db_name" : "exampleString",
-    "db_username" : "exampleString",
-    "password" : "exampleString",
-    "authentication_value" : "exampleString",
-    "is_ssl" : false,
-    "cert_extension" : "exampleString",
-    "cert_content" : "exampleString",
-    "connection_mode" : "exampleString",
-    "connection_mode_value" : "exampleString",
-    "jdbc_url" : "exampleString"
-  },
-  "file_format_properties" : {
-    "encoding" : "exampleString",
-    "escape_character" : "exampleString",
-    "field_delimiter" : "exampleString",
-    "header" : true,
-    "line_delimiter" : "exampleString"
-  },
-  "is_local_ingestion" : false
 }
 ```
 ### <a name="cli-source-system-example-schema">SourceSystem</a>
@@ -30072,47 +30294,35 @@ The following example shows the format of the SparkApplicationDetails object.
 ```json
 
 {
-  "application" : "s3://mybucket/wordcount.py",
+  "application" : "/opt/ibm/spark/examples/src/main/python/wordcount.py",
   "applicationlocal" : "Users/Downloads/wordcount.py",
-  "archives" : "s3://mybucket/myarchive.zip",
-  "arguments" : [ "people.txt", "people.txt" ],
+  "arguments" : [ "/opt/ibm/spark/examples/src/main/resources/people.txt" ],
   "class" : "org.apache.spark.examples.SparkPi",
   "conf" : { },
-  "env" : { },
+  "env" : {
+    "sample_env_key" : "exampleString"
+  },
   "files" : "s3://mybucket/myfile.txt",
   "jars" : "exampleString",
   "name" : "SparkApplicaton1",
-  "bucket_name" : "bucketnameexample",
-  "bucket_access_key" : "2189duh1293e892ehhdx",
-  "bucket_secret_key" : "9832hd982yd9h23db2bx",
-  "bucket_endpoint" : "s3.cld-obj-stage.appdomain.cloud",
-  "api_key" : "H790hjka8909s09A9D9de",
   "packages" : "org.apache.spark:example_1.2.3",
   "repositories" : "https://repo1.maven.org/maven2/",
-  "runtime" : {
-    "spark_version" : "3.4"
-  },
+  "bucket_name" : "bucketname1",
+  "bucket_access_key" : "CBA998Sajk8AS8sdj9S8fA",
+  "bucket_secret_key" : "CBA998Sajk8AS8sdj9S8fA",
+  "bucket_endpoint" : "cloud-object-storage.appdomain.cloud",
+  "api_key" : "H790hjka8909s09A9D9de",
   "spark_version" : "3.3"
 }
 ```
-### <a name="cli-spark-application-runtime-example-schema">SparkApplicationRuntime</a>
+### <a name="cli-spark-application-env-example-schema">SparkApplicationEnv</a>
 
-The following example shows the format of the SparkApplicationRuntime object.
-
-```json
-
-{
-  "spark_version" : "3.4"
-}
-```
-### <a name="cli-spark-engine-application-callback-example-schema">SparkEngineApplicationCallback</a>
-
-The following example shows the format of the SparkEngineApplicationCallback object.
+The following example shows the format of the SparkApplicationEnv object.
 
 ```json
 
 {
-  "url" : "exampleString"
+  "sample_env_key" : "exampleString"
 }
 ```
 ### <a name="cli-spark-struct-example-schema">SparkStruct</a>
@@ -30155,71 +30365,9 @@ The following example shows the format of the StageRequest object.
   "production" : false
 }
 ```
-### <a name="cli-start-bulk-workflow-request-filter-example-schema">StartBulkWorkflowRequestFilter</a>
+### <a name="cli-storage-connection-details-example-schema">StorageConnectionDetails</a>
 
-The following example shows the format of the StartBulkWorkflowRequestFilter object.
-
-```json
-
-{
-  "data_quality_issues" : [ "exampleString", "anotherExampleString" ],
-  "type" : "exampleString",
-  "values" : [ "exampleString", "anotherExampleString" ]
-}
-```
-### <a name="cli-start-bulk-workflow-request-query-example-schema">StartBulkWorkflowRequestQuery</a>
-
-The following example shows the format of the StartBulkWorkflowRequestQuery object.
-
-```json
-
-{
-  "condition" : "exampleString",
-  "property" : "exampleString",
-  "record_type" : "exampleString",
-  "value" : "exampleString"
-}
-```
-### <a name="cli-start-bulk-workflow-request-search-criteria-example-schema">StartBulkWorkflowRequestSearchCriteria</a>
-
-The following example shows the format of the StartBulkWorkflowRequestSearchCriteria object.
-
-```json
-
-{
-  "filters" : [ {
-    "data_quality_issues" : [ "exampleString", "anotherExampleString" ],
-    "type" : "record",
-    "values" : [ "person" ]
-  } ],
-  "query" : {
-    "expressions" : [ {
-      "condition" : "equal",
-      "property" : "customer_segment.value",
-      "record_type" : "person",
-      "value" : "vip"
-    } ],
-    "operation" : "and"
-  },
-  "search_type" : "record"
-}
-```
-### <a name="cli-storage-catalog-prototype-example-schema">StorageCatalogPrototype</a>
-
-The following example shows the format of the StorageCatalogPrototype object.
-
-```json
-
-{
-  "base_path" : "/abc/def",
-  "catalog_name" : "sampleCatalog",
-  "catalog_tags" : [ "catalog_tag_1", "catalog_tag_2" ],
-  "catalog_type" : "iceberg"
-}
-```
-### <a name="cli-storage-details-example-schema">StorageDetails</a>
-
-The following example shows the format of the StorageDetails object.
+The following example shows the format of the StorageConnectionDetails object.
 
 ```json
 
@@ -30251,6 +30399,24 @@ The following example shows the format of the StorageDetails object.
   "vault_enabled" : true
 }
 ```
+### <a name="cli-storage-details-example-schema">StorageDetails</a>
+
+The following example shows the format of the StorageDetails object.
+
+```json
+
+{
+  "access_key" : "<access_key>",
+  "application_id" : "<application_id>",
+  "auth_mode" : "<account_key/sas/service_principle>",
+  "container_name" : "sample-container",
+  "directory_id" : "<directory_id>",
+  "endpoint" : "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/",
+  "sas_token" : "<sas_token>",
+  "secret_key" : "secret_key",
+  "storage_account_name" : "sample-storage"
+}
+```
 ### <a name="cli-storage-request-example-schema">StorageRequest</a>
 
 The following example shows the format of the StorageRequest object.
@@ -30277,20 +30443,6 @@ The following example shows the format of the StorageRequestProperties object.
   "shared" : true,
   "use_delegated_KMS_key" : false
 }
-```
-### <a name="cli-subject-patch-example-schema">SubjectPatch[]</a>
-
-The following example shows the format of the SubjectPatch[] object.
-
-```json
-
-[ {
-  "permissions" : [ "exampleString", "anotherExampleString" ],
-  "subject" : {
-    "type" : "user",
-    "value" : "user1"
-  }
-} ]
 ```
 ### <a name="cli-sync-scoring-data-example-schema">SyncScoringData</a>
 
@@ -30449,6 +30601,18 @@ The following example shows the format of the TableDefinitionMetadata object.
   "name" : "exampleString"
 }
 ```
+### <a name="cli-table-schema-items-example-schema">TableSchemaItems[]</a>
+
+The following example shows the format of the TableSchemaItems[] object.
+
+```json
+
+[ {
+  "field_id" : 0,
+  "header_name" : "model",
+  "type" : "string"
+} ]
+```
 ### <a name="cli-target-example-schema">Target</a>
 
 The following example shows the format of the Target object.
@@ -30458,22 +30622,6 @@ The following example shows the format of the Target object.
 {
   "target_id" : "4b133ea1-3097-4175-82a1-4fd80759de26",
   "target_type" : "subscription"
-}
-```
-### <a name="cli-target-details-example-schema">TargetDetails</a>
-
-The following example shows the format of the TargetDetails object.
-
-```json
-
-{
-  "catalog" : "exampleString",
-  "schema" : "exampleString",
-  "table" : "exampleString",
-  "write_mode" : "exampleString",
-  "merge_on_read" : false,
-  "schema_mode" : "exampleString",
-  "schema_infer" : true
 }
 ```
 ### <a name="cli-text-chat-messages-example-schema">TextChatMessages[]</a>
@@ -30840,33 +30988,17 @@ The following example shows the format of the TransactionalProjectStorageObjectP
   "shared" : true
 }
 ```
-### <a name="cli-ui-history-example-schema">UIHistory</a>
+### <a name="cli-transformation-items-example-schema">TransformationItems[]</a>
 
-The following example shows the format of the UIHistory object.
-
-```json
-
-{
-  "id" : "exampleString",
-  "record_type" : "exampleString",
-  "timestamp" : "exampleString",
-  "type" : "exampleString"
-}
-```
-### <a name="cli-u-iworkspace-example-schema">UIworkspace</a>
-
-The following example shows the format of the UIworkspace object.
+The following example shows the format of the TransformationItems[] object.
 
 ```json
 
-{
-  "history" : [ {
-    "id" : "exampleString",
-    "record_type" : "exampleString",
-    "timestamp" : "exampleString",
-    "type" : "exampleString"
-  } ]
-}
+[ {
+  "new_column" : "newCol",
+  "new_type" : "string",
+  "old_column" : "Col"
+} ]
 ```
 ### <a name="cli-update-member-body-example-schema">UpdateMemberBody[]</a>
 
@@ -31197,81 +31329,9 @@ The following example shows the format of the WxUtilityAgentToolsRunRequest obje
   }
 }
 ```
-### <a name="cli-map-string-algorithm-entity-type-example-schema">map[string]AlgorithmEntityType</a>
-
-The following example shows the format of the map[string]AlgorithmEntityType object.
-
-```json
-
-{ }
-```
-### <a name="cli-map-string-algorithm-generation-entity-type-example-schema">map[string]AlgorithmGenerationEntityType</a>
-
-The following example shows the format of the map[string]AlgorithmGenerationEntityType object.
-
-```json
-
-{ }
-```
-### <a name="cli-map-string-algorithm-standardizer-example-schema">map[string]AlgorithmStandardizer</a>
-
-The following example shows the format of the map[string]AlgorithmStandardizer object.
-
-```json
-
-{ }
-```
 ### <a name="cli-map-string-asset-type-property-example-schema">map[string]AssetTypeProperty</a>
 
 The following example shows the format of the map[string]AssetTypeProperty object.
-
-```json
-
-{ }
-```
-### <a name="cli-map-string-data-model-attribute-type-example-schema">map[string]DataModelAttributeType</a>
-
-The following example shows the format of the map[string]DataModelAttributeType object.
-
-```json
-
-{ }
-```
-### <a name="cli-map-string-data-model-group-type-example-schema">map[string]DataModelGroupType</a>
-
-The following example shows the format of the map[string]DataModelGroupType object.
-
-```json
-
-{ }
-```
-### <a name="cli-map-string-data-model-hierarchy-type-example-schema">map[string]DataModelHierarchyType</a>
-
-The following example shows the format of the map[string]DataModelHierarchyType object.
-
-```json
-
-{ }
-```
-### <a name="cli-map-string-data-model-node-type-example-schema">map[string]DataModelNodeType</a>
-
-The following example shows the format of the map[string]DataModelNodeType object.
-
-```json
-
-{ }
-```
-### <a name="cli-map-string-data-model-record-type-example-schema">map[string]DataModelRecordType</a>
-
-The following example shows the format of the map[string]DataModelRecordType object.
-
-```json
-
-{ }
-```
-### <a name="cli-map-string-data-model-relationship-type-example-schema">map[string]DataModelRelationshipType</a>
-
-The following example shows the format of the map[string]DataModelRelationshipType object.
 
 ```json
 
