@@ -31124,7 +31124,7 @@ The following example shows the format of the V1PipelineSettings object.
     "limit_asset_browser_jobs_scope" : true,
     "shape_nodes" : true
   },
-  "default_error_policy" : "CONTINUE_ON_ERROR",
+  "default_error_policy" : "FAIL_ON_ERROR",
   "environment_id" : "exampleString",
   "execution_cache" : {
     "caching_conditions" : [ "RETRY_ON_FAILURE", "PIPELINE_UNCHANGED", "INPUTS_UNCHANGED" ],
