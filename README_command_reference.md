@@ -554,7 +554,7 @@ cpdctl find --cpd-path PATH [flags]
 
 ## • <a name="version">`version`</a>
 ```sh
-cpdctl version
+cpdctl version [flags]
 ```
 
 ## • <a name="asset_create">`asset create`</a>
@@ -678,7 +678,7 @@ cpdctl asset create [command options]
 Delete an existing asset properties. You can delete an asset if you are the owner of the asset or a member of the asset with Admin or Editor permissions on the catalog or project.
 
 ```sh
-cpdctl asset delete --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--purge-on-delete=PURGE-ON-DELETE]
+cpdctl asset delete --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--purge-on-delete=PURGE-ON-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -730,7 +730,7 @@ cpdctl asset delete --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-
 Retrieve an asset located in catalog or project. Access to an asset is controlled by a combination of the privacy level and the members of the asset. For a governed catalog, data assets are protected from unauthorized access by the governance policies that are defined in Data Catalog. Data assets in ungoverned catalogs are not subject to governance policies.
 
 ```sh
-cpdctl asset get --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--revision-id REVISION-ID]
+cpdctl asset get --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--revision-id REVISION-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -780,7 +780,7 @@ cpdctl asset get --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CON
 Promote project assets to space. You must have Admin or Editor permissions on both the project and the space.
 
 ```sh
-cpdctl asset promote {--project-id PROJECT-ID | --project PROJECT-NAME} --asset-id ASSET-ID --request-body REQUEST-BODY | @REQUEST-BODY-FILE [--revision-id REVISION-ID]
+cpdctl asset promote {--project-id PROJECT-ID | --project PROJECT-NAME} --asset-id ASSET-ID --request-body (REQUEST-BODY | @REQUEST-BODY-FILE) [--revision-id REVISION-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -821,7 +821,7 @@ cpdctl asset promote {--project-id PROJECT-ID | --project PROJECT-NAME} --asset-
 Search for assets for generic asset type (asset) or any  specific asset type in given Catalog<br/><b> Examples of Search query<br/> Search With Pagination </b><br/>User can request specific number of Search results with  adding limit param to request as shown below.By default it will return upto 200  Search results <br/>Request Body<br/>{<br/>    "query" : "asset.name:Asset*," <br/>    "limit" : 2<br/>}<br/><br/>Response :<br/>{<br/>"next": {<br/>"bookmark": "g1AAAXXXXXXXX",<br/>    "query" : "asset.name:Asset*," <br/>    "limit" : 2<br/>},<br/>"results": [<br/> {  ..asset 1... }, {  ..asset 2... }],<br/>"total_rows": 3<br/>}<br/>When more search results available then  response will contain "next" json object."next" contains "bookmark" along with original query which needs to be returned to retrieve next sets of result.<br/> Please resend the request with whatever is returned in "next" object. <br/>The Last page will not have "next" object.
 
 ```sh
-cpdctl asset search --type-name TYPE-NAME --query QUERY [--bookmark BOOKMARK] [--counts COUNTS] [--drilldown DRILLDOWN | @DRILLDOWN-FILE] [--include INCLUDE] [--limit LIMIT] [--sort SORT] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl asset search --type-name TYPE-NAME --query QUERY [--bookmark BOOKMARK] [--counts COUNTS] [--drilldown DRILLDOWN | @DRILLDOWN-FILE] [--include INCLUDE] [--limit LIMIT] [--sort SORT] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -903,7 +903,7 @@ Edit an existing asset properties, if you have proper permissions. Who can edit 
  * source_system.last_modification_timestamp, Expected Format: "yyyy-MM-ddTHH:mm:ssX".
 
 ```sh
-cpdctl asset update --asset-id ASSET-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | (--classification CLASSIFICATION | @CLASSIFICATION-FILE) --description DESCRIPTION --name NAME --resource-key RESOURCE-KEY (--source-system SOURCE-SYSTEM | @SOURCE-SYSTEM-FILE) --tags TAGS} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl asset update --asset-id ASSET-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | (--classification CLASSIFICATION | @CLASSIFICATION-FILE) --description DESCRIPTION --name NAME --resource-key RESOURCE-KEY (--source-system SOURCE-SYSTEM | @SOURCE-SYSTEM-FILE) --tags TAGS} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1079,7 +1079,7 @@ cpdctl asset attachment create [command options]
 Delete an attachment.
 
 ```sh
-cpdctl asset attachment delete --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl asset attachment delete --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1169,7 +1169,7 @@ cpdctl asset attachment download [flags]
 Retrieve an attachment.
 
 ```sh
-cpdctl asset attachment get --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [--revision-id REVISION-ID] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--private-url=PRIVATE-URL] [--response-content-disposition RESPONSE-CONTENT-DISPOSITION] [--response-content-type RESPONSE-CONTENT-TYPE]
+cpdctl asset attachment get --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [--revision-id REVISION-ID] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--private-url=PRIVATE-URL] [--response-content-disposition RESPONSE-CONTENT-DISPOSITION] [--response-content-type RESPONSE-CONTENT-TYPE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1233,7 +1233,7 @@ cpdctl asset attachment get --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [-
 Marks an attachment as transfer complete.
 
 ```sh
-cpdctl asset attachment mark-complete --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl asset attachment mark-complete --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1279,7 +1279,7 @@ cpdctl asset attachment mark-complete --asset-id ASSET-ID --attachment-id ATTACH
 Update attachment metadata.
 
 ```sh
-cpdctl asset attachment update --asset-id ASSET-ID --attachment-id ATTACHMENT-ID --json-patch JSON-PATCH | @JSON-PATCH-FILE [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl asset attachment update --asset-id ASSET-ID --attachment-id ATTACHMENT-ID --json-patch (JSON-PATCH | @JSON-PATCH-FILE) [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1333,7 +1333,7 @@ cpdctl asset attachment update --asset-id ASSET-ID --attachment-id ATTACHMENT-ID
 Create an asset attribute.
 
 ```sh
-cpdctl asset attribute create --asset-id ASSET-ID --name NAME [--entity ENTITY | @ENTITY-FILE] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl asset attribute create --asset-id ASSET-ID --name NAME [--entity ENTITY | @ENTITY-FILE] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1387,7 +1387,7 @@ cpdctl asset attribute create --asset-id ASSET-ID --name NAME [--entity ENTITY |
 Delete an attribute of an asset.
 
 ```sh
-cpdctl asset attribute delete --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl asset attribute delete --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1437,7 +1437,7 @@ cpdctl asset attribute delete --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY 
 Retrieve an attribute of an asset.
 
 ```sh
-cpdctl asset attribute get --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--revision-id REVISION-ID]
+cpdctl asset attribute get --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--revision-id REVISION-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1491,7 +1491,7 @@ cpdctl asset attribute get --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY [--
 Retrieve all attributes of an asset.
 
 ```sh
-cpdctl asset attribute list --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--revision-id REVISION-ID]
+cpdctl asset attribute list --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--revision-id REVISION-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1541,7 +1541,7 @@ cpdctl asset attribute list --asset-id ASSET-ID [--x-open-id-connect-id-token X-
 Update/modify an asset attribute.
 
 ```sh
-cpdctl asset attribute update --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY --json-patch JSON-PATCH | @JSON-PATCH-FILE [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl asset attribute update --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY --json-patch (JSON-PATCH | @JSON-PATCH-FILE) [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1716,7 +1716,7 @@ Retrieve _metadata_ about a data asset. The response document will contain three
     **Step 3**: use the value in the 'url' field of the result from Step 2 to download (for example, with a browser) a copy of the file.
 
 ```sh
-cpdctl asset data-asset get --data-asset-id DATA-ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--revision-id REVISION-ID] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl asset data-asset get --data-asset-id DATA-ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--revision-id REVISION-ID] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1828,7 +1828,7 @@ cpdctl asset data-asset upload [flags]
 Cancels the asset export process with the specified identifier.
 
 ```sh
-cpdctl asset export cancel --export-id EXPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--hard-delete=HARD-DELETE]
+cpdctl asset export cancel --export-id EXPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1876,7 +1876,7 @@ cpdctl asset export cancel --export-id EXPORT-ID [{--space-id SPACE-ID | --space
 Downloads the content for the asset export process with the specified identifier.
 
 ```sh
-cpdctl asset export download --export-id EXPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}]
+cpdctl asset export download --export-id EXPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
@@ -1930,7 +1930,7 @@ cpdctl asset export download --export-id EXPORT-ID [{--space-id SPACE-ID | --spa
 Retrieves the asset export with the specified identifier.
 
 ```sh
-cpdctl asset export get --export-id EXPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}]
+cpdctl asset export get --export-id EXPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1972,7 +1972,7 @@ cpdctl asset export get --export-id EXPORT-ID [{--space-id SPACE-ID | --space SP
 Retrieves the asset export list for the specified space, project, or catalog.
 
 ```sh
-cpdctl asset export list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--start START | --all-pages] [--limit LIMIT]
+cpdctl asset export list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -2025,7 +2025,7 @@ cpdctl asset export list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--projec
 Starts the asset export process for the specified space, project, or catalog. On CPD 3.0.1 assets export is supported only in the context of a space.
 
 ```sh
-cpdctl asset export start [--assets (ASSETS | @ASSETS-FILE) | --assets-all-assets=ASSETS-ALL-ASSETS --assets-asset-ids ASSETS-ASSET-IDS --assets-asset-types ASSETS-ASSET-TYPES] [--description DESCRIPTION] [--encryption-key ENCRYPTION-KEY] [--format json | csv] [--module-keys MODULE-KEYS] [--name NAME] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}]
+cpdctl asset export start [--assets (ASSETS | @ASSETS-FILE) | --assets-all-assets=ASSETS-ALL-ASSETS --assets-asset-ids ASSETS-ASSET-IDS --assets-asset-types ASSETS-ASSET-TYPES] [--description DESCRIPTION] [--encryption-key ENCRYPTION-KEY] [--format json | csv] [--module-keys MODULE-KEYS] [--name NAME] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -2139,7 +2139,7 @@ cpdctl asset export wait --export-id EXPORT_ID [--space-id SPACE_ID] [--project-
 Streams the content of the specified file, with the appropriate HTTP headers for etag, file size, mime type etc. If the asset file is a directory, response will be JSON listing the content of the directory. If the asset is a file, response will be contents of the file. Requires viewer permission or higher. Assets for a catalog are not available to external users. This endpoint supports authentication via signature parameter. See 'Get auth signature' call for more info.
 
 ```sh
-cpdctl asset file download [command options]
+cpdctl asset file download [command options] --output-file OUTPUT_FILE
 ```
 
 #### Command options
@@ -2263,7 +2263,7 @@ cpdctl asset file download [command options]
 Returns a list of file paths (similar to S3 listObjects) for the provided project, catalog, space or account. Requires viewer or higher permission. Assets for a catalog are not retrievable by external users.
 
 ```sh
-cpdctl asset file list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--account-id ACCOUNT-ID] [{--space-id SPACE-ID | --space SPACE-NAME}] [--iam-id IAM-ID] [--limit LIMIT] [--offset OFFSET | --all-pages] [--flat=FLAT] [--hidden-files=HIDDEN-FILES] [--minimal=MINIMAL] [--root=ROOT] [--stream=STREAM]
+cpdctl asset file list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--account-id ACCOUNT-ID] [{--space-id SPACE-ID | --space SPACE-NAME}] [--iam-id IAM-ID] [--limit LIMIT] [--offset OFFSET | --all-pages] [--flat=FLAT] [--hidden-files=HIDDEN-FILES] [--minimal=MINIMAL] [--root=ROOT] [--stream=STREAM] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -2355,7 +2355,7 @@ cpdctl asset file list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--
 Uploads the bytes into the file with the provided file name using HTTP multi-part format, creating a new file if missing, overriding if existing (unless override=false). Assets cannot be uploaded to a catalog by external users. Adding project or space assets accepts all formats that grant editor access or higher. Adding to accounts requires a user with account admin access. This endpoint supports authentication via signature parameter. See 'Get auth signature' call for more info on signed urls.
 
 ```sh
-cpdctl asset file upload --path PATH [--file FILE] [--file-content-type FILE-CONTENT-TYPE] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--account-id ACCOUNT-ID] [{--space-id SPACE-ID | --space SPACE-NAME}] [--iam-id IAM-ID] [--override=OVERRIDE] [--signature SIGNATURE] [--inflate=INFLATE] [--inflate-mode default | inline | overwrite | skip | rename] [--ensure-dir=ENSURE-DIR] [--root=ROOT]
+cpdctl asset file upload --path PATH [--file FILE] [--file-content-type FILE-CONTENT-TYPE] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--account-id ACCOUNT-ID] [{--space-id SPACE-ID | --space SPACE-NAME}] [--iam-id IAM-ID] [--override=OVERRIDE] [--signature SIGNATURE] [--inflate=INFLATE] [--inflate-mode default | inline | overwrite | skip | rename] [--ensure-dir=ENSURE-DIR] [--root=ROOT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -2450,7 +2450,7 @@ cpdctl asset file upload --path PATH [--file FILE] [--file-content-type FILE-CON
 Cancels the asset import process with the specified identifier.
 
 ```sh
-cpdctl asset import cancel --import-id IMPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--hard-delete=HARD-DELETE]
+cpdctl asset import cancel --import-id IMPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -2498,7 +2498,7 @@ cpdctl asset import cancel --import-id IMPORT-ID [{--space-id SPACE-ID | --space
 Retrieves the asset import with the specified identifier.
 
 ```sh
-cpdctl asset import get --import-id IMPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}]
+cpdctl asset import get --import-id IMPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -2540,7 +2540,7 @@ cpdctl asset import get --import-id IMPORT-ID [{--space-id SPACE-ID | --space SP
 Retrieves the asset import list for the specified space, project, or catalog.
 
 ```sh
-cpdctl asset import list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--start START | --all-pages] [--limit LIMIT]
+cpdctl asset import list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -2593,7 +2593,7 @@ cpdctl asset import list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--projec
 Starts the asset import process for the specified space, project, or catalog. On CPD 3.0.1 assets import is supported only in the context of a space.
 
 ```sh
-cpdctl asset import start --import-file IMPORT-FILE [--file-content-type FILE-CONTENT-TYPE] [--encryption-key ENCRYPTION-KEY] [--format json | csv] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}]
+cpdctl asset import start --import-file IMPORT-FILE [--file-content-type FILE-CONTENT-TYPE] [--encryption-key ENCRYPTION-KEY] [--format json | csv] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -2688,7 +2688,7 @@ cpdctl asset import wait --import-id IMPORT_ID [--space-id SPACE_ID] [--project-
 Finds assets related to a given asset or a given governance artifact.
 
 ```sh
-cpdctl asset relationship get --asset-id ASSET-ID --relationship-names RELATIONSHIP-NAMES [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--limit LIMIT] [--bookmark BOOKMARK]
+cpdctl asset relationship get --asset-id ASSET-ID --relationship-names RELATIONSHIP-NAMES [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--limit LIMIT] [--bookmark BOOKMARK] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -2741,7 +2741,7 @@ cpdctl asset relationship get --asset-id ASSET-ID --relationship-names RELATIONS
 Use this API to create up to 20 asset relationships. - The relationship name must correspond to a relationship type defined on the source type. - The source must be an asset, column or governance artifact of the type specified in the relationship type definition. - Relationships created with a governance artifact as the source cannot be retrieved, modified, or deleted in the IKC UI. - These relationships can only be accessed through API calls such as POST /v2/assets/search_relationships, POST /v2/assets/get_relationships, and POST /v2/assets/unset_relationships. - The target must be an asset, column or governance artifact of the type specified in the relationship type definition. - If the specified relationship does not exist between a source and target, a new relationship is created. - If either end of the relationship is defined as multiplicity-one, any existing value of a multiplicity-one end is replaced.
 
 ```sh
-cpdctl asset relationship set [--relationships RELATIONSHIPS | @RELATIONSHIPS-FILE] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN]
+cpdctl asset relationship set [--relationships RELATIONSHIPS | @RELATIONSHIPS-FILE] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -2763,7 +2763,7 @@ cpdctl asset relationship set [--relationships RELATIONSHIPS | @RELATIONSHIPS-FI
 Use this API to delete up to 20 asset relationships. - The relationship name must correspond to a relationship type defined on the source type. - The source must be an asset, column or governance artifact of the type specified in the relationship type definition. - The target must be an asset, column or governance artifact of the type specified in the relationship type definition. - If the specified relationship does not exist between the source and the target, it will be ignored.
 
 ```sh
-cpdctl asset relationship unset [--relationships RELATIONSHIPS | @RELATIONSHIPS-FILE] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN]
+cpdctl asset relationship unset [--relationships RELATIONSHIPS | @RELATIONSHIPS-FILE] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -3016,7 +3016,7 @@ cpdctl asset type create [command options]
 Deletes an asset type in given account or container. Note that, deletion of an account scope asset type or a container scope asset type triggers background clean up of assets:<br/><ul><li>Assets of this type are deleted.</li><li>And in case of other assets, attributes of this type are removed.</li></ul>.
 
 ```sh
-cpdctl asset type delete --type-name TYPE-NAME [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--bss-account-id BSS-ACCOUNT-ID]
+cpdctl asset type delete --type-name TYPE-NAME [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--bss-account-id BSS-ACCOUNT-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -3062,7 +3062,7 @@ cpdctl asset type delete --type-name TYPE-NAME [{--catalog-id CATALOG-ID | --cat
 Retrieves an asset type of a given name.
 
 ```sh
-cpdctl asset type get --type-name TYPE-NAME [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl asset type get --type-name TYPE-NAME [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -3108,7 +3108,7 @@ cpdctl asset type get --type-name TYPE-NAME [--x-open-id-connect-id-token X-OPEN
 Get all asset types in a catalog.
 
 ```sh
-cpdctl asset type list [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl asset type list [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -3151,7 +3151,7 @@ Replace asset attributes for the given asset type or create a new asset type if 
  Enter url_parameters_from_asset_attributes : ["id", "name.short_name"].
 
 ```sh
-cpdctl asset type replace --type-name TYPE-NAME --fields FIELDS | @FIELDS-FILE [--description DESCRIPTION] [--external-asset-preview (EXTERNAL-ASSET-PREVIEW | @EXTERNAL-ASSET-PREVIEW-FILE) | --external-asset-preview-base-client-url EXTERNAL-ASSET-PREVIEW-BASE-CLIENT-URL --external-asset-preview-url-parameters-fixed EXTERNAL-ASSET-PREVIEW-URL-PARAMETERS-FIXED --external-asset-preview-url-parameters-from-asset-attributes EXTERNAL-ASSET-PREVIEW-URL-PARAMETERS-FROM-ASSET-ATTRIBUTES --external-asset-preview-url-path-from-asset-attributes EXTERNAL-ASSET-PREVIEW-URL-PATH-FROM-ASSET-ATTRIBUTES] [--properties PROPERTIES | @PROPERTIES-FILE] [--relationships RELATIONSHIPS | @RELATIONSHIPS-FILE] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl asset type replace --type-name TYPE-NAME --fields (FIELDS | @FIELDS-FILE) [--description DESCRIPTION] [--external-asset-preview (EXTERNAL-ASSET-PREVIEW | @EXTERNAL-ASSET-PREVIEW-FILE) | --external-asset-preview-base-client-url EXTERNAL-ASSET-PREVIEW-BASE-CLIENT-URL --external-asset-preview-url-parameters-fixed EXTERNAL-ASSET-PREVIEW-URL-PARAMETERS-FIXED --external-asset-preview-url-parameters-from-asset-attributes EXTERNAL-ASSET-PREVIEW-URL-PARAMETERS-FROM-ASSET-ATTRIBUTES --external-asset-preview-url-path-from-asset-attributes EXTERNAL-ASSET-PREVIEW-URL-PATH-FROM-ASSET-ATTRIBUTES] [--properties PROPERTIES | @PROPERTIES-FILE] [--relationships RELATIONSHIPS | @RELATIONSHIPS-FILE] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -3229,7 +3229,7 @@ cpdctl asset type replace --type-name TYPE-NAME --fields FIELDS | @FIELDS-FILE [
 Create a new code package in a given project or space. You must specify either `project_id` or `space_id`. If you create a code package from an existing zip file, you need to first upload the zip file to the project or space Cloud Object Storage (COS) and then reference it in the body of the creation request.
 
 ```sh
-cpdctl code-package create --name NAME [--description DESCRIPTION] [--file-reference FILE-REFERENCE] [--json-file-reference JSON-FILE-REFERENCE] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl code-package create --name NAME [--description DESCRIPTION] [--file-reference FILE-REFERENCE] [--json-file-reference JSON-FILE-REFERENCE] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -3276,7 +3276,7 @@ cpdctl code-package create --name NAME [--description DESCRIPTION] [--file-refer
 Delete a code package in a given project or space. You must specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl code-package delete --code-package-id CODE-PACKAGE-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl code-package delete --code-package-id CODE-PACKAGE-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -3311,7 +3311,7 @@ cpdctl code-package delete --code-package-id CODE-PACKAGE-ID [{--project-id PROJ
 Retrieve a code package in a given project or space. You must specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl code-package get --code-package-id CODE-PACKAGE-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl code-package get --code-package-id CODE-PACKAGE-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -3346,7 +3346,7 @@ cpdctl code-package get --code-package-id CODE-PACKAGE-ID [{--project-id PROJECT
 List all code packages in a given project or space. You must specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl code-package list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl code-package list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -3377,7 +3377,7 @@ cpdctl code-package list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{
 Promote a code package from a project to a space.
 
 ```sh
-cpdctl code-package promote --code-package-id CODE-PACKAGE-ID --revision-id REVISION-ID {--project-id PROJECT-ID | --project PROJECT-NAME} {--space-id SPACE-ID | --space SPACE-NAME} [--description DESCRIPTION] [--name NAME]
+cpdctl code-package promote --code-package-id CODE-PACKAGE-ID --revision-id REVISION-ID {--project-id PROJECT-ID | --project PROJECT-NAME} {--space-id SPACE-ID | --space SPACE-NAME} [--description DESCRIPTION] [--name NAME] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -3424,7 +3424,7 @@ cpdctl code-package promote --code-package-id CODE-PACKAGE-ID --revision-id REVI
 Create a revision of a given code package. You must specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl code-package revision create --code-package-id CODE-PACKAGE-ID [--commit-message COMMIT-MESSAGE] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl code-package revision create --code-package-id CODE-PACKAGE-ID [--commit-message COMMIT-MESSAGE] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -3463,7 +3463,7 @@ cpdctl code-package revision create --code-package-id CODE-PACKAGE-ID [--commit-
 Delete a revision of a given code package. You must specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl code-package revision delete --code-package-id CODE-PACKAGE-ID --revision-id REVISION-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl code-package revision delete --code-package-id CODE-PACKAGE-ID --revision-id REVISION-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -3502,7 +3502,7 @@ cpdctl code-package revision delete --code-package-id CODE-PACKAGE-ID --revision
 Retrieve a revision of a given code package. You must specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl code-package revision get --code-package-id CODE-PACKAGE-ID --revision-id REVISION-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl code-package revision get --code-package-id CODE-PACKAGE-ID --revision-id REVISION-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -3541,7 +3541,7 @@ cpdctl code-package revision get --code-package-id CODE-PACKAGE-ID --revision-id
 List revisions of a given code package. You must specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl code-package revision list --code-package-id CODE-PACKAGE-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl code-package revision list --code-package-id CODE-PACKAGE-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -3691,17 +3691,17 @@ cpdctl completion zsh [flags]
 
 ## • <a name="config_profile_current">`config profile current`</a>
 ```sh
-cpdctl config profile current
+cpdctl config profile current [flags]
 ```
 
 ## • <a name="config_profile_get">`config profile get`</a>
 ```sh
-cpdctl config profile get name
+cpdctl config profile get name [flags]
 ```
 
 ## • <a name="config_profile_list">`config profile list`</a>
 ```sh
-cpdctl config profile list
+cpdctl config profile list [flags]
 ```
 
 ## • <a name="config_profile_set">`config profile set`</a>
@@ -3709,7 +3709,7 @@ Create or update profile.
 Profile associates the location of CP4D instance (flag --url) with user (flag --user).
 
 ```sh
-cpdctl config profile set name
+cpdctl config profile set name [flags]
 ```
 
 #### Command options
@@ -3753,27 +3753,27 @@ cpdctl config profile set name
 
 ## • <a name="config_profile_unset">`config profile unset`</a>
 ```sh
-cpdctl config profile unset name
+cpdctl config profile unset name [flags]
 ```
 
 ## • <a name="config_profile_use">`config profile use`</a>
 ```sh
-cpdctl config profile use profile-name
+cpdctl config profile use profile-name [flags]
 ```
 
 ## • <a name="config_user_get">`config user get`</a>
 ```sh
-cpdctl config user get name
+cpdctl config user get name [flags]
 ```
 
 ## • <a name="config_user_list">`config user list`</a>
 ```sh
-cpdctl config user list
+cpdctl config user list [flags]
 ```
 
 ## • <a name="config_user_set">`config user set`</a>
 ```sh
-cpdctl config user set name
+cpdctl config user set name [flags]
 ```
 
 #### Command options
@@ -3800,7 +3800,7 @@ cpdctl config user set name
 
 ## • <a name="config_user_unset">`config user unset`</a>
 ```sh
-cpdctl config user unset name
+cpdctl config user unset name [flags]
 ```
 
 ## • <a name="connection_create">`connection create`</a>
@@ -3951,7 +3951,7 @@ cpdctl connection create [command options]
 Deletes a connection definition. This call does not check whether the connection is used by activities, data sets or other assets. The caller must check this before deleting a connection.
 
 ```sh
-cpdctl connection delete {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl connection delete {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -4237,7 +4237,7 @@ cpdctl connection discover-adhoc [command options]
 Discover a data asset.
 
 ```sh
-cpdctl connection discover-data-asset --data-asset-id DATA-ASSET-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--limit LIMIT] [--offset OFFSET] [--fetch FETCH] [--detail=DETAIL] [--context source | target] [--properties PROPERTIES] [--filters FILTERS] [--path PATH]
+cpdctl connection discover-data-asset --data-asset-id DATA-ASSET-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--limit LIMIT] [--offset OFFSET] [--fetch FETCH] [--detail=DETAIL] [--context source | target] [--properties PROPERTIES] [--filters FILTERS] [--path PATH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -4321,7 +4321,7 @@ Connections created with shared credentials will return secrets such as database
 Connections created with personal credentials will only display clear text credentials to the same user who provided them.
 
 ```sh
-cpdctl connection get {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--inject-token=INJECT-TOKEN] [--entity-product ENTITY-PRODUCT]
+cpdctl connection get {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--inject-token=INJECT-TOKEN] [--entity-product ENTITY-PRODUCT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -4408,7 +4408,7 @@ Adding the name of a flag to entity.flags will add the connections  with that fl
 Adding the name of a flag to entity.flags with a minus sign (-) prefix will remove those connections with that flag from the list  results. All additions are done before the subtractions.
 
 ```sh
-cpdctl connection list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--metadata-creator METADATA-CREATOR] [--entity-name ENTITY-NAME] [--entity-datasource-type ENTITY-DATASOURCE-TYPE] [--entity-context ENTITY-CONTEXT] [--entity-properties ENTITY-PROPERTIES] [--entity-flags ENTITY-FLAGS] [--inject-token=INJECT-TOKEN]
+cpdctl connection list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--metadata-creator METADATA-CREATOR] [--entity-name ENTITY-NAME] [--entity-datasource-type ENTITY-DATASOURCE-TYPE] [--entity-context ENTITY-CONTEXT] [--entity-properties ENTITY-PROPERTIES] [--entity-flags ENTITY-FLAGS] [--inject-token=INJECT-TOKEN] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -4495,7 +4495,7 @@ cpdctl connection list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--
 Lists all supported actions for the connection.
 
 ```sh
-cpdctl connection list-actions {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} [--accept-language ACCEPT-LANGUAGE] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl connection list-actions {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} [--accept-language ACCEPT-LANGUAGE] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -4544,7 +4544,7 @@ cpdctl connection list-actions {--connection-id CONNECTION-ID | --connection CON
 Performs an action on the data source accessed using the connection.
 
 ```sh
-cpdctl connection perform-action {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} --action-name get_oauth2_tokens | get_record_count | get_signed_url | test | validate --request REQUEST | @REQUEST-FILE [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl connection perform-action {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} --action-name get_oauth2_tokens | get_record_count | get_signed_url | test | validate --request (REQUEST | @REQUEST-FILE) [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -4605,7 +4605,7 @@ cpdctl connection perform-action {--connection-id CONNECTION-ID | --connection C
 Updates the definition of a connection.
 
 ```sh
-cpdctl connection update {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} --patch-request PATCH-REQUEST | @PATCH-REQUEST-FILE [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--test=TEST] [--skip-enforcement=SKIP-ENFORCEMENT]
+cpdctl connection update {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} --patch-request (PATCH-REQUEST | @PATCH-REQUEST-FILE) [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--test=TEST] [--skip-enforcement=SKIP-ENFORCEMENT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -4666,7 +4666,7 @@ cpdctl connection update {--connection-id CONNECTION-ID | --connection CONNECTIO
 Get details for type of data source.
 
 ```sh
-cpdctl connection datasource-type get --datasource-type DATASOURCE-TYPE [--accept-language ACCEPT-LANGUAGE] [--connection-properties=CONNECTION-PROPERTIES] [--interaction-properties=INTERACTION-PROPERTIES] [--discovery=DISCOVERY] [--actions=ACTIONS] [--entity-environment ENTITY-ENVIRONMENT] [--entity-product ENTITY-PRODUCT] [--product-selector-scope global | context] [--generate-transitive-conditions=GENERATE-TRANSITIVE-CONDITIONS]
+cpdctl connection datasource-type get --datasource-type DATASOURCE-TYPE [--accept-language ACCEPT-LANGUAGE] [--connection-properties=CONNECTION-PROPERTIES] [--interaction-properties=INTERACTION-PROPERTIES] [--discovery=DISCOVERY] [--actions=ACTIONS] [--entity-environment ENTITY-ENVIRONMENT] [--entity-product ENTITY-PRODUCT] [--product-selector-scope global | context] [--generate-transitive-conditions=GENERATE-TRANSITIVE-CONDITIONS] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -4737,7 +4737,7 @@ The following fields are available for use with the sort parameter:
 | entity.type  | The major type of the data source type.              |.
 
 ```sh
-cpdctl connection datasource-type list [--accept-language ACCEPT-LANGUAGE] [--sort SORT] [--offset OFFSET | --all-pages] [--limit LIMIT] [--connection-properties=CONNECTION-PROPERTIES] [--interaction-properties=INTERACTION-PROPERTIES] [--discovery=DISCOVERY] [--actions=ACTIONS] [--entity-environment ENTITY-ENVIRONMENT] [--entity-product ENTITY-PRODUCT] [--product-selector-scope global | context] [--generate-transitive-conditions=GENERATE-TRANSITIVE-CONDITIONS]
+cpdctl connection datasource-type list [--accept-language ACCEPT-LANGUAGE] [--sort SORT] [--offset OFFSET | --all-pages] [--limit LIMIT] [--connection-properties=CONNECTION-PROPERTIES] [--interaction-properties=INTERACTION-PROPERTIES] [--discovery=DISCOVERY] [--actions=ACTIONS] [--entity-environment ENTITY-ENVIRONMENT] [--entity-product ENTITY-PRODUCT] [--product-selector-scope global | context] [--generate-transitive-conditions=GENERATE-TRANSITIVE-CONDITIONS] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -4945,7 +4945,7 @@ cpdctl datastage codegen generate-buildop [command options]
 Create a DataStage flow in the specified project or catalog based on an existing DataStage flow in the same project or catalog.
 
 ```sh
-cpdctl datastage flow clone --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID]
+cpdctl datastage flow clone --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -4991,7 +4991,7 @@ cpdctl datastage flow clone --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --cata
 Generate the runtime assets for a DataStage flow in the specified project or catalog for a specified runtime type. Either project_id or catalog_id must be specified.
 
 ```sh
-cpdctl datastage flow compile --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--runtime-type RUNTIME-TYPE] [--enable-sql-pushdown=ENABLE-SQL-PUSHDOWN] [--enable-async-compile=ENABLE-ASYNC-COMPILE] [--enable-native-sql-pushdown=ENABLE-NATIVE-SQL-PUSHDOWN] [--enable-push-processing-to-source=ENABLE-PUSH-PROCESSING-TO-SOURCE] [--enable-push-join-to-source=ENABLE-PUSH-JOIN-TO-SOURCE]
+cpdctl datastage flow compile --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--runtime-type RUNTIME-TYPE] [--enable-sql-pushdown=ENABLE-SQL-PUSHDOWN] [--enable-async-compile=ENABLE-ASYNC-COMPILE] [--enable-native-sql-pushdown=ENABLE-NATIVE-SQL-PUSHDOWN] [--enable-push-processing-to-source=ENABLE-PUSH-PROCESSING-TO-SOURCE] [--enable-push-join-to-source=ENABLE-PUSH-JOIN-TO-SOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -5153,7 +5153,7 @@ If the deletion of the data flows and their runs will take some time to finish, 
          All the data flow runs associated with the data flows will also be deleted. If a data flow is still running, it will not be deleted unless the force parameter is set to true. If a data flow is still running and the force parameter is set to true, the call returns immediately with a 202 response. The related data flows are deleted after the data flow runs are stopped.
 
 ```sh
-cpdctl datastage flow delete --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--force=FORCE]
+cpdctl datastage flow delete --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--force=FORCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -5201,7 +5201,7 @@ cpdctl datastage flow delete --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --cat
 Lists the DataStage flow that is contained in the specified project. Attachments, metadata and a limited number of attributes from the entity of each DataStage flow is returned.
 
 ```sh
-cpdctl datastage flow get --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage flow get --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -5243,7 +5243,7 @@ cpdctl datastage flow get --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --catalo
 Request compile status of the flow that was previously submitted for compile. Either project_id or catalog_id must be specified.
 
 ```sh
-cpdctl datastage flow get-compile-status --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--enable-sql-pushdown=ENABLE-SQL-PUSHDOWN]
+cpdctl datastage flow get-compile-status --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--enable-sql-pushdown=ENABLE-SQL-PUSHDOWN] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -5309,7 +5309,7 @@ To sort the results, use one or more of the parameters  described in the followi
 Multiple sort keys can be specified by delimiting them with a comma. For example, to sort in descending order on `create_time` and then in ascending order on name use: `sort=-metadata.create_time`,`+entity.name`.
 
 ```sh
-cpdctl datastage flow list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--name NAME] [--description DESCRIPTION]
+cpdctl datastage flow list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--name NAME] [--description DESCRIPTION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -5374,7 +5374,7 @@ cpdctl datastage flow list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] 
 Modifies attributes of a DataStage flow in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage flow patch-attributes --flow-id FLOW-ID [--description DESCRIPTION] [--directory-asset-id DIRECTORY-ASSET-ID] [--name NAME] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage flow patch-attributes --flow-id FLOW-ID [--description DESCRIPTION] [--directory-asset-id DIRECTORY-ASSET-ID] [--name NAME] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -5660,7 +5660,7 @@ cpdctl datastage migration create [command options]
 Creates data flows from the attached job export file. This is an asynchronous call. The API call returns almost immediately which does not necessarily imply the completion of the import request. It only means that the import request has been accepted. The status field of the import request is included in the import response object. The status "completed" ("in_progress", "failed", resp.) indicates the import request is completed (in progress, and failed, resp.) The job export file for an import request may contain one mor more data flows. Unless the on_failure option is set to "stop", a completed import request may contain not only successfully imported data flows but also data flows that cannot be imported.
 
 ```sh
-cpdctl datastage migration create-from-zip --body BODY [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--on-failure continue | stop] [--conflict-resolution skip | rename | replace | rename_replace] [--file-name FILE-NAME] [--enable-notification=ENABLE-NOTIFICATION] [--import-only=IMPORT-ONLY] [--include-dependencies=INCLUDE-DEPENDENCIES] [--asset-type ASSET-TYPE] [--skip-dependencies SKIP-DEPENDENCIES] [--replace-mode soft | hard] [--x-migration-enc-key X-MIGRATION-ENC-KEY]
+cpdctl datastage migration create-from-zip --body BODY [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--on-failure continue | stop] [--conflict-resolution skip | rename | replace | rename_replace] [--file-name FILE-NAME] [--enable-notification=ENABLE-NOTIFICATION] [--import-only=IMPORT-ONLY] [--include-dependencies=INCLUDE-DEPENDENCIES] [--asset-type ASSET-TYPE] [--skip-dependencies SKIP-DEPENDENCIES] [--replace-mode soft | hard] [--x-migration-enc-key X-MIGRATION-ENC-KEY] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -5749,7 +5749,7 @@ cpdctl datastage migration create-from-zip --body BODY [{--catalog-id CATALOG-ID
 Cancel a previous import request. Use GET /v3/migration/imports/{import_id} to obtain the current status of the import, including whether it has been cancelled.
 
 ```sh
-cpdctl datastage migration delete --import-id IMPORT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage migration delete --import-id IMPORT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -5791,7 +5791,7 @@ cpdctl datastage migration delete --import-id IMPORT-ID [{--catalog-id CATALOG-I
 Cancel a previous import request.
 
 ```sh
-cpdctl datastage migration delete-zip --import-id IMPORT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage migration delete-zip --import-id IMPORT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -5833,7 +5833,7 @@ cpdctl datastage migration delete-zip --import-id IMPORT-ID [{--catalog-id CATAL
 Encrypt a single text phrase using NextGen encoding The test phrase can be either simple plain text phrase, encoded string from IIS or encoded string from NextGen This call returns an NextGen encoded text string back to the user.
 
 ```sh
-cpdctl datastage migration encrypt --input-text INPUT-TEXT
+cpdctl datastage migration encrypt --input-text INPUT-TEXT [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -5851,7 +5851,7 @@ cpdctl datastage migration encrypt --input-text INPUT-TEXT
 export flows with dependencies as a zip file.
 
 ```sh
-cpdctl datastage migration export-flows-with-dependencies --flows FLOWS | @FLOWS-FILE [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--remove-secrets=REMOVE-SECRETS] [--include-dependencies=INCLUDE-DEPENDENCIES] [--id ID] [--type TYPE] [--include-data-assets=INCLUDE-DATA-ASSETS] [--exclude-data-files=EXCLUDE-DATA-FILES] [--x-migration-enc-key X-MIGRATION-ENC-KEY]
+cpdctl datastage migration export-flows-with-dependencies --flows (FLOWS | @FLOWS-FILE) [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--remove-secrets=REMOVE-SECRETS] [--include-dependencies=INCLUDE-DEPENDENCIES] [--id ID] [--type TYPE] [--include-data-assets=INCLUDE-DATA-ASSETS] [--exclude-data-files=EXCLUDE-DATA-FILES] [--x-migration-enc-key X-MIGRATION-ENC-KEY] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
@@ -5933,7 +5933,7 @@ cpdctl datastage migration export-flows-with-dependencies --flows FLOWS | @FLOWS
 Gets the status of an import request. The status field in the response object indicates if the given import is completed, in progress, or failed. Detailed status information about each imported data flow is also contained in the response object.
 
 ```sh
-cpdctl datastage migration get --import-id IMPORT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--format json | csv]
+cpdctl datastage migration get --import-id IMPORT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--format json | csv] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -5979,7 +5979,7 @@ cpdctl datastage migration get --import-id IMPORT-ID [{--catalog-id CATALOG-ID |
 Gets the status of an import request. The status field in the response object indicates if the given import is completed, in progress, or failed. Detailed status information about each imported data flow is also contained in the response object.
 
 ```sh
-cpdctl datastage migration get-zip --import-id IMPORT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--format json | csv]
+cpdctl datastage migration get-zip --import-id IMPORT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--format json | csv] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6025,7 +6025,7 @@ cpdctl datastage migration get-zip --import-id IMPORT-ID [{--catalog-id CATALOG-
 Create a DataStage subflow in the specified project or catalog based on an existing DataStage subflow in the same project or catalog.
 
 ```sh
-cpdctl datastage subflow clone --subflow-id SUBFLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID]
+cpdctl datastage subflow clone --subflow-id SUBFLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6156,7 +6156,7 @@ Deletes the specified data subflows in a project or catalog (either `project_id`
 If the deletion of the data subflows will take some time to finish, then a 202 response will be returned and the deletion will continue asynchronously.
 
 ```sh
-cpdctl datastage subflow delete --subflow-id SUBFLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage subflow delete --subflow-id SUBFLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6198,7 +6198,7 @@ cpdctl datastage subflow delete --subflow-id SUBFLOW-ID [{--catalog-id CATALOG-I
 Lists the DataStage subflow that is contained in the specified project. Attachments, metadata and a limited number of attributes from the entity of each DataStage flow is returned.
 
 ```sh
-cpdctl datastage subflow get --subflow-id SUBFLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage subflow get --subflow-id SUBFLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6258,7 +6258,7 @@ To sort the results, use one or more of the parameters  described in the followi
 Multiple sort keys can be specified by delimiting them with a comma. For example, to sort in descending order on `create_time` and then in ascending order on name use: `sort=-metadata.create_time`,`+entity.name`.
 
 ```sh
-cpdctl datastage subflow list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--name NAME] [--description DESCRIPTION]
+cpdctl datastage subflow list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--name NAME] [--description DESCRIPTION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6323,7 +6323,7 @@ cpdctl datastage subflow list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME
 Modifies attributes of a data subflow in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage subflow patch-attributes --subflow-id SUBFLOW-ID [--description DESCRIPTION] [--directory-asset-id DIRECTORY-ASSET-ID] [--name NAME] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage subflow patch-attributes --subflow-id SUBFLOW-ID [--description DESCRIPTION] [--directory-asset-id DIRECTORY-ASSET-ID] [--name NAME] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6464,7 +6464,7 @@ cpdctl datastage subflow update [command options]
 Clone table definition.
 
 ```sh
-cpdctl datastage table-definition clone --table-definition-id TABLE-DEFINITION-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage table-definition clone --table-definition-id TABLE-DEFINITION-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6506,7 +6506,7 @@ cpdctl datastage table-definition clone --table-definition-id TABLE-DEFINITION-I
 Creates a table definition in the specified project or catalog (either project_id or catalog_id must be set). All subsequent calls to use the parameter set must specify the project or catalog ID the table definition was created in.
 
 ```sh
-cpdctl datastage table-definition create {--entity (ENTITY | @ENTITY-FILE) | (--entity-column-info ENTITY-COLUMN-INFO | @ENTITY-COLUMN-INFO-FILE) (--entity-data-asset ENTITY-DATA-ASSET | @ENTITY-DATA-ASSET-FILE) (--entity-data-definition ENTITY-DATA-DEFINITION | @ENTITY-DATA-DEFINITION-FILE) (--entity-directory-asset ENTITY-DIRECTORY-ASSET | @ENTITY-DIRECTORY-ASSET-FILE) (--entity-ds-info ENTITY-DS-INFO | @ENTITY-DS-INFO-FILE)} {--metadata (METADATA | @METADATA-FILE) | --metadata-description METADATA-DESCRIPTION --metadata-name METADATA-NAME} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [--asset-category SYSTEM | USER]
+cpdctl datastage table-definition create {--entity (ENTITY | @ENTITY-FILE) | (--entity-column-info ENTITY-COLUMN-INFO | @ENTITY-COLUMN-INFO-FILE) (--entity-data-asset ENTITY-DATA-ASSET | @ENTITY-DATA-ASSET-FILE) (--entity-data-definition ENTITY-DATA-DEFINITION | @ENTITY-DATA-DEFINITION-FILE) (--entity-directory-asset ENTITY-DIRECTORY-ASSET | @ENTITY-DIRECTORY-ASSET-FILE) (--entity-ds-info ENTITY-DS-INFO | @ENTITY-DS-INFO-FILE)} {--metadata (METADATA | @METADATA-FILE) | --metadata-description METADATA-DESCRIPTION --metadata-name METADATA-NAME} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [--asset-category SYSTEM | USER] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6581,7 +6581,7 @@ cpdctl datastage table-definition create {--entity (ENTITY | @ENTITY-FILE) | (--
 Delete the specified table definitions from a project or catalog (either project_id or catalog_id must be set).
 
 ```sh
-cpdctl datastage table-definition delete --table-definition-id TABLE-DEFINITION-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage table-definition delete --table-definition-id TABLE-DEFINITION-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6623,7 +6623,7 @@ cpdctl datastage table-definition delete --table-definition-id TABLE-DEFINITION-
 Get table definition.
 
 ```sh
-cpdctl datastage table-definition get --table-definition-id TABLE-DEFINITION-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage table-definition get --table-definition-id TABLE-DEFINITION-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6681,7 +6681,7 @@ To sort the returned results, use one or more of the parameters described in the
 Multiple sort keys can be specified by delimiting them with a comma. For example, to sort in descending order on create_time and then in ascending order on name use: `?sort=-metadata.create_time,+asset.name.
 
 ```sh
-cpdctl datastage table-definition list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--name NAME] [--description DESCRIPTION]
+cpdctl datastage table-definition list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--name NAME] [--description DESCRIPTION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6746,7 +6746,7 @@ cpdctl datastage table-definition list [{--catalog-id CATALOG-ID | --catalog CAT
 Replace the contents of a table definition in the specified project or catalog (either project_id or catalog_id must be set).
 
 ```sh
-cpdctl datastage table-definition replace --table-definition-id TABLE-DEFINITION-ID {--entity (ENTITY | @ENTITY-FILE) | (--entity-column-info ENTITY-COLUMN-INFO | @ENTITY-COLUMN-INFO-FILE) (--entity-data-asset ENTITY-DATA-ASSET | @ENTITY-DATA-ASSET-FILE) (--entity-data-definition ENTITY-DATA-DEFINITION | @ENTITY-DATA-DEFINITION-FILE) (--entity-directory-asset ENTITY-DIRECTORY-ASSET | @ENTITY-DIRECTORY-ASSET-FILE) (--entity-ds-info ENTITY-DS-INFO | @ENTITY-DS-INFO-FILE)} {--metadata (METADATA | @METADATA-FILE) | --metadata-description METADATA-DESCRIPTION --metadata-name METADATA-NAME} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage table-definition replace --table-definition-id TABLE-DEFINITION-ID {--entity (ENTITY | @ENTITY-FILE) | (--entity-column-info ENTITY-COLUMN-INFO | @ENTITY-COLUMN-INFO-FILE) (--entity-data-asset ENTITY-DATA-ASSET | @ENTITY-DATA-ASSET-FILE) (--entity-data-definition ENTITY-DATA-DEFINITION | @ENTITY-DATA-DEFINITION-FILE) (--entity-directory-asset ENTITY-DIRECTORY-ASSET | @ENTITY-DIRECTORY-ASSET-FILE) (--entity-ds-info ENTITY-DS-INFO | @ENTITY-DS-INFO-FILE)} {--metadata (METADATA | @METADATA-FILE) | --metadata-description METADATA-DESCRIPTION --metadata-name METADATA-NAME} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6817,7 +6817,7 @@ cpdctl datastage table-definition replace --table-definition-id TABLE-DEFINITION
 Patch a table definition in the specified project or catalog (either project_id or catalog_id must be set).
 
 ```sh
-cpdctl datastage table-definition update --table-definition-id TABLE-DEFINITION-ID --json-patch JSON-PATCH | @JSON-PATCH-FILE [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage table-definition update --table-definition-id TABLE-DEFINITION-ID --json-patch (JSON-PATCH | @JSON-PATCH-FILE) [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6863,7 +6863,7 @@ cpdctl datastage table-definition update --table-definition-id TABLE-DEFINITION-
 Clone a DataStage XML schema library based on the specify library id in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library clone --library-id LIBRARY-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage xml-schema-library clone --library-id LIBRARY-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6905,7 +6905,7 @@ cpdctl datastage xml-schema-library clone --library-id LIBRARY-ID [{--catalog-id
 Creates a new DataStage XML schema library in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library create --name NAME [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [--folder FOLDER] [--description DESCRIPTION]
+cpdctl datastage xml-schema-library create --name NAME [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [--folder FOLDER] [--description DESCRIPTION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6959,7 +6959,7 @@ cpdctl datastage xml-schema-library create --name NAME [{--catalog-id CATALOG-ID
 Delete a DataStage XML schema library in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library delete --library-id LIBRARY-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage xml-schema-library delete --library-id LIBRARY-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -7001,7 +7001,7 @@ cpdctl datastage xml-schema-library delete --library-id LIBRARY-ID [{--catalog-i
 Delete files from a DataStage XML schema library based on the file_names in the specified project or catalog (either `project_id` or `catalog_id` must be set). Thread unsafe.
 
 ```sh
-cpdctl datastage xml-schema-library delete-files --file-name FILE-NAME --library-id LIBRARY-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage xml-schema-library delete-files --file-name FILE-NAME --library-id LIBRARY-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -7047,7 +7047,7 @@ cpdctl datastage xml-schema-library delete-files --file-name FILE-NAME --library
 Download file from a DataStage XML schema library based on the file_name in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library download --library-id LIBRARY-ID [--file-name FILE-NAME] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage xml-schema-library download --library-id LIBRARY-ID [--file-name FILE-NAME] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
@@ -7097,7 +7097,7 @@ cpdctl datastage xml-schema-library download --library-id LIBRARY-ID [--file-nam
 Export a XML Schema Library in zip format.
 
 ```sh
-cpdctl datastage xml-schema-library export-datastage-library-zip --library-name LIBRARY-NAME [--folder FOLDER] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage xml-schema-library export-datastage-library-zip --library-name LIBRARY-NAME [--folder FOLDER] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
@@ -7147,7 +7147,7 @@ cpdctl datastage xml-schema-library export-datastage-library-zip --library-name 
 Get the specify DataStage XML schema library in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library get --library-id LIBRARY-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage xml-schema-library get --library-id LIBRARY-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -7189,7 +7189,7 @@ cpdctl datastage xml-schema-library get --library-id LIBRARY-ID [{--catalog-id C
 Import/create XML Schema Library from zip stream.
 
 ```sh
-cpdctl datastage xml-schema-library import-datastage-library-zip --library-name LIBRARY-NAME --body BODY [--folder FOLDER] [--conflict-option CONFLICT-OPTION] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID]
+cpdctl datastage xml-schema-library import-datastage-library-zip --library-name LIBRARY-NAME --body BODY [--folder FOLDER] [--conflict-option CONFLICT-OPTION] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -7247,7 +7247,7 @@ cpdctl datastage xml-schema-library import-datastage-library-zip --library-name 
 List existing DataStage XML schema libraries in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage xml-schema-library list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -7285,7 +7285,7 @@ cpdctl datastage xml-schema-library list [{--catalog-id CATALOG-ID | --catalog C
 Rename a DataStage XML schema library based on the specify library id in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library rename --library-id LIBRARY-ID --name NAME [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage xml-schema-library rename --library-id LIBRARY-ID --name NAME [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -7331,7 +7331,7 @@ cpdctl datastage xml-schema-library rename --library-id LIBRARY-ID --name NAME [
 Upload a file to an existing DataStage XML schema library in the specified project or catalog (either `project_id` or `catalog_id` must be set). Thread unsafe.
 
 ```sh
-cpdctl datastage xml-schema-library upload --library-id LIBRARY-ID --body BODY [--file-name FILE-NAME] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl datastage xml-schema-library upload --library-id LIBRARY-ID --body BODY [--file-name FILE-NAME] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -7485,7 +7485,7 @@ cpdctl environment create [command options]
 Delete a particular environment.
 
 ```sh
-cpdctl environment delete {--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl environment delete {--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -7523,7 +7523,7 @@ cpdctl environment delete {--environment-id ENVIRONMENT-ID | --environment ENVIR
 Retrieve a particular environment.
 
 ```sh
-cpdctl environment get {--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--response-format RESPONSE-FORMAT]
+cpdctl environment get {--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--response-format RESPONSE-FORMAT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -7565,7 +7565,7 @@ cpdctl environment get {--environment-id ENVIRONMENT-ID | --environment ENVIRONM
 List all environments in a given project, filtered by type. Includes all default environments, which are available in every project.
 
 ```sh
-cpdctl environment list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--types TYPES] [--exclude-types EXCLUDE-TYPES] [--exclude-languages EXCLUDE-LANGUAGES] [--spark-versions SPARK-VERSIONS]
+cpdctl environment list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--types TYPES] [--exclude-types EXCLUDE-TYPES] [--exclude-languages EXCLUDE-LANGUAGES] [--spark-versions SPARK-VERSIONS] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -7612,7 +7612,7 @@ cpdctl environment list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{-
 Update a particular environment.
 
 ```sh
-cpdctl environment update {--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME} {--project-id PROJECT-ID | --project PROJECT-NAME} [--authorization-variables AUTHORIZATION-VARIABLES | @AUTHORIZATION-VARIABLES-FILE] [--compute-specification COMPUTE-SPECIFICATION | @COMPUTE-SPECIFICATION-FILE] [--display-name DISPLAY-NAME] [--environment-variables ENVIRONMENT-VARIABLES | @ENVIRONMENT-VARIABLES-FILE] [--hardware-specification HARDWARE-SPECIFICATION | @HARDWARE-SPECIFICATION-FILE] [--location LOCATION | @LOCATION-FILE] [--runtime-idle-time RUNTIME-IDLE-TIME] [--software-specification SOFTWARE-SPECIFICATION | @SOFTWARE-SPECIFICATION-FILE] [--tools-specification TOOLS-SPECIFICATION | @TOOLS-SPECIFICATION-FILE] [--description DESCRIPTION] [--name NAME]
+cpdctl environment update {--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME} {--project-id PROJECT-ID | --project PROJECT-NAME} [--authorization-variables AUTHORIZATION-VARIABLES | @AUTHORIZATION-VARIABLES-FILE] [--compute-specification COMPUTE-SPECIFICATION | @COMPUTE-SPECIFICATION-FILE] [--display-name DISPLAY-NAME] [--environment-variables ENVIRONMENT-VARIABLES | @ENVIRONMENT-VARIABLES-FILE] [--hardware-specification HARDWARE-SPECIFICATION | @HARDWARE-SPECIFICATION-FILE] [--location LOCATION | @LOCATION-FILE] [--runtime-idle-time RUNTIME-IDLE-TIME] [--software-specification SOFTWARE-SPECIFICATION | @SOFTWARE-SPECIFICATION-FILE] [--tools-specification TOOLS-SPECIFICATION | @TOOLS-SPECIFICATION-FILE] [--description DESCRIPTION] [--name NAME] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -7811,7 +7811,7 @@ Global default hardware specifications are read from a well-known location on di
 Authorization rules for (1) and (2) follow those for `/v2/assets` for projects and spaces, respectively. Alternatively, the request is authorized for a valid authentication by Service Auth. Only WSL/CPD administrators are authorized to make a request of type (3) - global custom hardware specifications. Alternatively, the request is authorized for a valid authentication by Service Auth.
 
 ```sh
-cpdctl environment hardware-specification delete {--hardware-specification-id HARDWARE-SPECIFICATION-ID | --hardware-specification HARDWARE-SPECIFICATION-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment hardware-specification delete {--hardware-specification-id HARDWARE-SPECIFICATION-ID | --hardware-specification HARDWARE-SPECIFICATION-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -7863,7 +7863,7 @@ Specify either space_id or project_id, or none of them. This makes 4 valid cases
 (3) and (4) retrieve global hardware specifications, which any WSL/CPD user is authorized for.
 
 ```sh
-cpdctl environment hardware-specification get {--hardware-specification-id HARDWARE-SPECIFICATION-ID | --hardware-specification HARDWARE-SPECIFICATION-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment hardware-specification get {--hardware-specification-id HARDWARE-SPECIFICATION-ID | --hardware-specification HARDWARE-SPECIFICATION-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -7908,7 +7908,7 @@ Always includes all global (default and custom) hardware specifications, indepen
 If project_id or space_id is provided, access permissions for the requesting user follow `/v2/assets` rules for projects or spaces, respectively. If neither project_id nor space_id are provided, returns only global (default and custom) hardware specifications, which can be retrieved by any WSL/CPD user. Alternatively, the hardware specifications of any scope (any project, any space, or global hardware specifications) may be retrieved by Service Auth.
 
 ```sh
-cpdctl environment hardware-specification list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--name NAME]
+cpdctl environment hardware-specification list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--name NAME] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8068,7 +8068,7 @@ The new package extension is created in the given project or space, depending on
 `POST /v2/package_extensions/{package_extension_guid}/upload_complete` to indicate the API that the package extension is usable. If the `/upload_complete` returns successfully, the package extension is usable, i.e., can be assigned to a software specification.
 
 ```sh
-cpdctl environment package-extension create --name NAME --type pip_zip | conda_yml [--description DESCRIPTION] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment package-extension create --name NAME --type pip_zip | conda_yml [--description DESCRIPTION] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8113,7 +8113,7 @@ Delete a package extension.
 Authorization rules for package extensions follow those of `/v2/assets` for projects or spaces.
 
 ```sh
-cpdctl environment package-extension delete --package-extension-id PACKAGE-EXTENSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment package-extension delete --package-extension-id PACKAGE-EXTENSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8150,7 +8150,7 @@ Retrieve a particular package extension.
 Authorization rules for package extensions follow those of `/v2/assets` for projects or spaces.
 
 ```sh
-cpdctl environment package-extension get --package-extension-id PACKAGE-EXTENSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment package-extension get --package-extension-id PACKAGE-EXTENSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8187,7 +8187,7 @@ List all Package Extensions.
 Returns all package extensions within the given project or space. Authorization rules for package extensions follow those of `/v2/assets` for projects or spaces.
 
 ```sh
-cpdctl environment package-extension list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--name NAME] [--type conda_yml | pip_zip]
+cpdctl environment package-extension list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--name NAME] [--type conda_yml | pip_zip] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8226,7 +8226,7 @@ cpdctl environment package-extension list [{--space-id SPACE-ID | --space SPACE-
 Update a package extension. Authorization rules for package extensions follow those of `/v2/assets` for projects or spaces.
 
 ```sh
-cpdctl environment package-extension update --package-extension-id PACKAGE-EXTENSION-ID [--type conda_yml | pip_zip] [--description DESCRIPTION] [--name NAME] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment package-extension update --package-extension-id PACKAGE-EXTENSION-ID [--type conda_yml | pip_zip] [--description DESCRIPTION] [--name NAME] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8275,7 +8275,7 @@ Indicate that the upload of the library file attached to the package extension i
 Authorization rules for package extensions follow those of `/v2/assets` for projects or spaces.
 
 ```sh
-cpdctl environment package-extension upload-complete --package-extension-id PACKAGE-EXTENSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment package-extension upload-complete --package-extension-id PACKAGE-EXTENSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8310,7 +8310,7 @@ cpdctl environment package-extension upload-complete --package-extension-id PACK
 Retrieve a particular runtime definition. When secured by a user bearer token, the user must be granted view rights for the project. When secured by a service ID, the service ID must be whitelisted. Instead of a whitelisted serviceID, a request can be secured using by a whitelisted serviceToServiceToken using basic authentication.
 
 ```sh
-cpdctl environment runtime-definition get --runtime-definition-id RUNTIME-DEFINITION-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--include INCLUDE]
+cpdctl environment runtime-definition get --runtime-definition-id RUNTIME-DEFINITION-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--include INCLUDE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8342,7 +8342,7 @@ cpdctl environment runtime-definition get --runtime-definition-id RUNTIME-DEFINI
 List all runtime definitions. Always includes all default runtime definitions. When specifying project_id also includes all runtime definitions scoped to that project; when the microservice was started with APP_ENV_RUNTIME_DEFINITIONS_LIST_ACCOUNT_SCOPED_ENABLED=true, also includes all runtime definitions scoped to the account the project is associated with. when secured by a user bearer token, the user must be granted view rights for the specified project. When secured by a service ID, the service ID must be whitelisted. Instead of a whitelisted serviceID, a request can be secured using by a whitelisted serviceToServiceToken using basic authentication.
 
 ```sh
-cpdctl environment runtime-definition list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--runtime-type RUNTIME-TYPE] [--include INCLUDE]
+cpdctl environment runtime-definition list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--runtime-type RUNTIME-TYPE] [--include INCLUDE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8381,7 +8381,7 @@ The request is valid if and only if:
   3. The user is authorized to update the software specification asset.
 
 ```sh
-cpdctl environment software-specification add-package-extensions {--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME} --package-extension-id PACKAGE-EXTENSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment software-specification add-package-extensions {--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME} --package-extension-id PACKAGE-EXTENSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8435,7 +8435,7 @@ You can add any number of references to package extensions while creating a soft
 Authorization rules for (1) and (2) follow those for `/v2/assets` for projects and spaces, respectively. Alternatively, the request is authorized for a valid authentication by Service Auth. Only WSL/CPD administrators are authorized to make a request of type (3) - global custom software specifications. Alternatively, the request is authorized for a valid authentication by Service Auth.
 
 ```sh
-cpdctl environment software-specification create --name NAME {--software-configuration (SOFTWARE-CONFIGURATION | @SOFTWARE-CONFIGURATION-FILE) | (--software-configuration-included-packages SOFTWARE-CONFIGURATION-INCLUDED-PACKAGES | @SOFTWARE-CONFIGURATION-INCLUDED-PACKAGES-FILE) (--software-configuration-platform SOFTWARE-CONFIGURATION-PLATFORM | @SOFTWARE-CONFIGURATION-PLATFORM-FILE)} [--base-software-specification (BASE-SOFTWARE-SPECIFICATION | @BASE-SOFTWARE-SPECIFICATION-FILE) | --base-software-specification-guid BASE-SOFTWARE-SPECIFICATION-GUID --base-software-specification-href BASE-SOFTWARE-SPECIFICATION-HREF] [--description DESCRIPTION] [--package-extensions PACKAGE-EXTENSIONS | @PACKAGE-EXTENSIONS-FILE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment software-specification create --name NAME {--software-configuration (SOFTWARE-CONFIGURATION | @SOFTWARE-CONFIGURATION-FILE) | (--software-configuration-included-packages SOFTWARE-CONFIGURATION-INCLUDED-PACKAGES | @SOFTWARE-CONFIGURATION-INCLUDED-PACKAGES-FILE) (--software-configuration-platform SOFTWARE-CONFIGURATION-PLATFORM | @SOFTWARE-CONFIGURATION-PLATFORM-FILE)} [--base-software-specification (BASE-SOFTWARE-SPECIFICATION | @BASE-SOFTWARE-SPECIFICATION-FILE) | --base-software-specification-guid BASE-SOFTWARE-SPECIFICATION-GUID --base-software-specification-href BASE-SOFTWARE-SPECIFICATION-HREF] [--description DESCRIPTION] [--package-extensions PACKAGE-EXTENSIONS | @PACKAGE-EXTENSIONS-FILE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8508,7 +8508,7 @@ Global default software specifications are read from a well-known location on di
 Authorization rules for (1) and (2) follow those for `/v2/assets` for projects and spaces, respectively. Alternatively, the request is authorized for a valid authentication by Service Auth. Only WSL/CPD administrators are authorized to make a request of type (3) - global custom software specifications. Alternatively, the request is authorized for a valid authentication by Service Auth.
 
 ```sh
-cpdctl environment software-specification delete {--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment software-specification delete {--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8562,7 +8562,7 @@ Specify either space_id or project_id, or none of them. This makes 4 valid cases
 Derived software specifications inherit the values of the `entity.software_specification.software_configuration.included_packages` and `entity.software_specification.software_configuration.platform` properties from the `entity.software_specification.base_software_specification` they reference.
 
 ```sh
-cpdctl environment software-specification get {--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment software-specification get {--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8607,7 +8607,7 @@ Always includes all global (default and custom) software specifications, indepen
 If project_id or space_id is provided, access permissions for the requesting user follow `/v2/assets` rules for projects or spaces, respectively. If Service Auth is provided, access is granted for any project or space (given the service authentication is correct, of course). If neither project_id nor space_id are provided, returns only global (default and custom) software specifications, which can be retrieved by any WSL/CPD user.
 
 ```sh
-cpdctl environment software-specification list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--include-packages INCLUDE-PACKAGES] [--name NAME]
+cpdctl environment software-specification list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--include-packages INCLUDE-PACKAGES] [--name NAME] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8648,7 +8648,7 @@ Remove a particular package extension from a particular software specification. 
 Specify either `project_id`, or `space_id`.
 
 ```sh
-cpdctl environment software-specification remove-package-extensions {--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME} --package-extension-id PACKAGE-EXTENSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment software-specification remove-package-extensions {--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME} --package-extension-id PACKAGE-EXTENSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8701,7 +8701,7 @@ Software specifications scoped to a particular space cannot be updated. Instead,
 Authorization rules for (1) follows those for `/v2/assets` for projects and spaces, respectively. Alternatively, the request is authorized for a valid authentication by Service Auth. Only WSL/CPD administrators are authorized to make a request of type (2) - global custom software specifications. Alternatively, the request is authorized for a valid authentication by Service Auth.
 
 ```sh
-cpdctl environment software-specification update {--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME} [--display-name DISPLAY-NAME] [--description DESCRIPTION] [--name NAME] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl environment software-specification update {--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME} [--display-name DISPLAY-NAME] [--description DESCRIPTION] [--name NAME] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8751,7 +8751,7 @@ cpdctl environment software-specification update {--software-specification-id SO
 Deletes up to 20 jobs (either project_id or space_id must be set).
 
 ```sh
-cpdctl job bulk-delete --job-ids JOB-IDS [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl job bulk-delete --job-ids JOB-IDS [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8786,7 +8786,7 @@ cpdctl job bulk-delete --job-ids JOB-IDS [{--project-id PROJECT-ID | --project P
 Creates a new job in the specified project or space (either project_id or space_id must be set).
 
 ```sh
-cpdctl job create [--job (JOB | @JOB-FILE) | --job-asset-ref JOB-ASSET-REF --job-asset-ref-type JOB-ASSET-REF-TYPE (--job-configuration JOB-CONFIGURATION | @JOB-CONFIGURATION-FILE) --job-description JOB-DESCRIPTION (--job-job-parameters JOB-JOB-PARAMETERS | @JOB-JOB-PARAMETERS-FILE) --job-name JOB-NAME (--job-parameter-sets JOB-PARAMETER-SETS | @JOB-PARAMETER-SETS-FILE) (--job-retention-policy JOB-RETENTION-POLICY | @JOB-RETENTION-POLICY-FILE) --job-schedule JOB-SCHEDULE (--job-schedule-info JOB-SCHEDULE-INFO | @JOB-SCHEDULE-INFO-FILE) --job-serving-name JOB-SERVING-NAME] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl job create [--job (JOB | @JOB-FILE) | --job-asset-ref JOB-ASSET-REF --job-asset-ref-type JOB-ASSET-REF-TYPE (--job-configuration JOB-CONFIGURATION | @JOB-CONFIGURATION-FILE) --job-description JOB-DESCRIPTION (--job-job-parameters JOB-JOB-PARAMETERS | @JOB-JOB-PARAMETERS-FILE) --job-name JOB-NAME (--job-parameter-sets JOB-PARAMETER-SETS | @JOB-PARAMETER-SETS-FILE) (--job-retention-policy JOB-RETENTION-POLICY | @JOB-RETENTION-POLICY-FILE) --job-schedule JOB-SCHEDULE (--job-schedule-info JOB-SCHEDULE-INFO | @JOB-SCHEDULE-INFO-FILE) --job-serving-name JOB-SERVING-NAME] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8854,7 +8854,7 @@ cpdctl job create [--job (JOB | @JOB-FILE) | --job-asset-ref JOB-ASSET-REF --job
 Deletes a specific job in a project or space (either project_id or space_id must be set). If the deletion of the job and its runs will take some time to finish, then a 202 response will be returned and the deletion will continue asynchronously. All the jobs runs associated with the job will also be deleted. If the job is still running, it will not be deleted.
 
 ```sh
-cpdctl job delete {--job-id JOB-ID | --job JOB-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl job delete {--job-id JOB-ID | --job JOB-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8892,7 +8892,7 @@ cpdctl job delete {--job-id JOB-ID | --job JOB-NAME} [{--project-id PROJECT-ID |
 Gets the info for a single job associated from the specified project or space (either project_id or space_id must be set).
 
 ```sh
-cpdctl job get {--job-id JOB-ID | --job JOB-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl job get {--job-id JOB-ID | --job JOB-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8930,7 +8930,7 @@ cpdctl job get {--job-id JOB-ID | --job JOB-NAME} [{--project-id PROJECT-ID | --
 Lists the jobs in the specified project or space (either project_id or space_id must be set).
 
 ```sh
-cpdctl job list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--asset-ref ASSET-REF] [--asset-ref-type ASSET-REF-TYPE] [{--run-id RUN-ID | --run RUN-NAME}] [--limit LIMIT] [--next NEXT]
+cpdctl job list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--asset-ref ASSET-REF] [--asset-ref-type ASSET-REF-TYPE] [{--run-id RUN-ID | --run RUN-NAME}] [--limit LIMIT] [--next NEXT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -8986,7 +8986,7 @@ cpdctl job list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-i
 Gets the availability of a given serving_name, as serving_name must be globally unique. serving_name must be a combination of alphanumeric and underscore characters, and must be between 1 and 36 characters.
 
 ```sh
-cpdctl job serving-name --name NAME
+cpdctl job serving-name --name NAME [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -9004,7 +9004,7 @@ cpdctl job serving-name --name NAME
 Updates specific attributes of a job in the specified project or space (either project_id or space_id must be set). You must specify the updates by using the JSON patch format, described in RFC 6902. Use 'last_run_initiator' for the initiator of the last job run, use 'last_run_status' for the status of the last job run.
 
 ```sh
-cpdctl job update {--job-id JOB-ID | --job JOB-NAME} {--body (BODY | @BODY-FILE) | (--configuration CONFIGURATION | @CONFIGURATION-FILE) --description DESCRIPTION --name NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl job update {--job-id JOB-ID | --job JOB-NAME} {--body (BODY | @BODY-FILE) | (--configuration CONFIGURATION | @CONFIGURATION-FILE) --description DESCRIPTION --name NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -9054,7 +9054,7 @@ cpdctl job update {--job-id JOB-ID | --job JOB-NAME} {--body (BODY | @BODY-FILE)
 Cancels a job run that is in the running state.
 
 ```sh
-cpdctl job run cancel {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run RUN-NAME} --body BODY | @BODY-FILE [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl job run cancel {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run RUN-NAME} --body (BODY | @BODY-FILE) [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -9103,7 +9103,7 @@ cpdctl job run cancel {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --ru
 Starts the specified job contained in a project or space (either project_id or space_id must be set).
 
 ```sh
-cpdctl job run create --job-id JOB-ID {--job-run (JOB-RUN | @JOB-RUN-FILE) | (--job-run-configuration JOB-RUN-CONFIGURATION | @JOB-RUN-CONFIGURATION-FILE) --job-run-description JOB-RUN-DESCRIPTION (--job-run-job-parameters JOB-RUN-JOB-PARAMETERS | @JOB-RUN-JOB-PARAMETERS-FILE) --job-run-name JOB-RUN-NAME (--job-run-parameter-sets JOB-RUN-PARAMETER-SETS | @JOB-RUN-PARAMETER-SETS-FILE)} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl job run create --job-id JOB-ID {--job-run (JOB-RUN | @JOB-RUN-FILE) | (--job-run-configuration JOB-RUN-CONFIGURATION | @JOB-RUN-CONFIGURATION-FILE) --job-run-description JOB-RUN-DESCRIPTION (--job-run-job-parameters JOB-RUN-JOB-PARAMETERS | @JOB-RUN-JOB-PARAMETERS-FILE) --job-run-name JOB-RUN-NAME (--job-run-parameter-sets JOB-RUN-PARAMETER-SETS | @JOB-RUN-PARAMETER-SETS-FILE)} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -9165,7 +9165,7 @@ cpdctl job run create --job-id JOB-ID {--job-run (JOB-RUN | @JOB-RUN-FILE) | (--
 Delete the specified job run in a project or space (either project_id or space_id must be set).
 
 ```sh
-cpdctl job run delete {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run RUN-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl job run delete {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run RUN-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -9249,7 +9249,7 @@ cpdctl job run download-results --outputs OUTPUTS --run-id RUN_ID [--project-id 
 Gets the info for a single job run from the specified project or space (either project_id or space_id must be set).
 
 ```sh
-cpdctl job run get {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run RUN-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl job run get {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run RUN-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -9294,7 +9294,7 @@ cpdctl job run get {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run R
 Lists the job runs for a specific job in the specified project or space (either project_id or space_id must be set). Only the metadata and certain elements of the entity component of each run are returned.
 
 ```sh
-cpdctl job run list {--job-id JOB-ID | --job JOB-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--next NEXT] [--limit LIMIT] [--states Queued,Starting,Running,Paused,Resuming,Canceling,Canceled,Failed,Completed,CompletedWithErrors,CompletedWithWarnings]
+cpdctl job run list {--job-id JOB-ID | --job JOB-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--next NEXT] [--limit LIMIT] [--states Queued,Starting,Running,Paused,Resuming,Canceling,Canceled,Failed,Completed,CompletedWithErrors,CompletedWithWarnings] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -9346,7 +9346,7 @@ cpdctl job run list {--job-id JOB-ID | --job JOB-NAME} [{--project-id PROJECT-ID
 Gets the logs for a job run in the specified project or space (either project_id or space_id must be set).
 
 ```sh
-cpdctl job run logs {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run RUN-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--limit LIMIT]
+cpdctl job run logs {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run RUN-NAME} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -9397,7 +9397,7 @@ cpdctl job run logs {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run 
 Pauses a job run that is in the running state.
 
 ```sh
-cpdctl job run pause {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run RUN-NAME} --body BODY | @BODY-FILE [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl job run pause {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run RUN-NAME} --body (BODY | @BODY-FILE) [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -9446,7 +9446,7 @@ cpdctl job run pause {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run
 Resumes a job run that is in the paused state.
 
 ```sh
-cpdctl job run resume {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run RUN-NAME} --body BODY | @BODY-FILE [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl job run resume {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run RUN-NAME} --body (BODY | @BODY-FILE) [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -9495,7 +9495,7 @@ cpdctl job run resume {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --ru
 Updates specific attributes of a job run in the specified project or space (either project_id or space_id must be set). You must specify the updates using the JSON patch format, described in RFC 6902. Use 'runtime_job_id' for the unique id in the runtime system, and use 'duration' for the job run duration.
 
 ```sh
-cpdctl job run update {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run RUN-NAME} --body BODY | @BODY-FILE [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl job run update {--job-id JOB-ID | --job JOB-NAME} {--run-id RUN-ID | --run RUN-NAME} --body (BODY | @BODY-FILE) [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -11312,7 +11312,7 @@ cpdctl mdm system setup-master-data {--project-id PROJECT-ID | --project PROJECT
 Execute a synchronous prediction for the deployment with the specified identifier. If a `serving_name` is used then it must match the `serving_name` that is returned in the `serving_urls`.
 
 ```sh
-cpdctl ml deployment compute-predictions --deployment-id DEPLOYMENT-ID --input-data INPUT-DATA | @INPUT-DATA-FILE
+cpdctl ml deployment compute-predictions --deployment-id DEPLOYMENT-ID --input-data (INPUT-DATA | @INPUT-DATA-FILE) [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -11456,7 +11456,7 @@ If the online scoring schema has a 'type' of 'DataFrame' then the scoring payloa
 Delete the deployment with the specified identifier.
 
 ```sh
-cpdctl ml deployment delete --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID | --space SPACE-NAME}
+cpdctl ml deployment delete --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID | --space SPACE-NAME} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -11485,7 +11485,7 @@ cpdctl ml deployment delete --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID |
 Retrieve the deployment details with the specified identifier.
 
 ```sh
-cpdctl ml deployment get --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID | --space SPACE-NAME}
+cpdctl ml deployment get --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID | --space SPACE-NAME} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -11514,7 +11514,7 @@ cpdctl ml deployment get --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID | --
 Retrieve the list of deployments for the specified space.
 
 ```sh
-cpdctl ml deployment list [{--space-id SPACE-ID | --space SPACE-NAME}] [--serving-name SERVING-NAME] [--tag-value TAG-VALUE] [--asset-id ASSET-ID] [--name NAME] [--type TYPE] [--state STATE] [--stats=STATS] [--conflict=CONFLICT]
+cpdctl ml deployment list [{--space-id SPACE-ID | --space SPACE-NAME}] [--serving-name SERVING-NAME] [--tag-value TAG-VALUE] [--asset-id ASSET-ID] [--name NAME] [--type TYPE] [--state STATE] [--stats=STATS] [--conflict=CONFLICT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -11597,7 +11597,7 @@ In case of online deployments, using PATCH operation of `/ml/v4/deployments`, us
 In the case of an online deployment, the PATCH operation with path specified as `/online/parameters` can be used to update the `serving_name`. In the case of a Shiny deployment, the PATCH operation with path specified as `/r_shiny/parameters` can be used to update the `serving_name`.
 
 ```sh
-cpdctl ml deployment update --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID | --space SPACE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--asset ASSET | @ASSET-FILE) (--hardware-spec HARDWARE-SPEC | @HARDWARE-SPEC-FILE) (--hybrid-pipeline-hardware-specs HYBRID-PIPELINE-HARDWARE-SPECS | @HYBRID-PIPELINE-HARDWARE-SPECS-FILE) (--r-shiny R-SHINY | @R-SHINY-FILE)}
+cpdctl ml deployment update --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID | --space SPACE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--asset ASSET | @ASSET-FILE) (--hardware-spec HARDWARE-SPEC | @HARDWARE-SPEC-FILE) (--hybrid-pipeline-hardware-specs HYBRID-PIPELINE-HARDWARE-SPECS | @HYBRID-PIPELINE-HARDWARE-SPECS-FILE) (--r-shiny R-SHINY | @R-SHINY-FILE)} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -11827,7 +11827,7 @@ just the data schema.
 Cancel the specified deployment job.
 
 ```sh
-cpdctl ml deployment-job delete {--job-id JOB-ID | --job JOB-NAME} {--space-id SPACE-ID | --space SPACE-NAME} [--hard-delete=HARD-DELETE]
+cpdctl ml deployment-job delete {--job-id JOB-ID | --job JOB-NAME} {--space-id SPACE-ID | --space SPACE-NAME} [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -11865,7 +11865,7 @@ cpdctl ml deployment-job delete {--job-id JOB-ID | --job JOB-NAME} {--space-id S
 Retrieve the deployment job. The predicted data bound to this job_id is going to be kept around for a limited time based on the service configuration.
 
 ```sh
-cpdctl ml deployment-job get {--job-id JOB-ID | --job JOB-NAME} {--space-id SPACE-ID | --space SPACE-NAME} [--include INCLUDE]
+cpdctl ml deployment-job get {--job-id JOB-ID | --job JOB-NAME} {--space-id SPACE-ID | --space SPACE-NAME} [--include INCLUDE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -11902,7 +11902,7 @@ cpdctl ml deployment-job get {--job-id JOB-ID | --job JOB-NAME} {--space-id SPAC
 Retrieve the status of the current jobs. The system will apply a max limit of jobs retained by the system as we cannot accumulate an infinite number of jobs. Only most recent 300 jobs (system configurable) will be preserved. Older jobs will be purged by the system.
 
 ```sh
-cpdctl ml deployment-job list {--space-id SPACE-ID | --space SPACE-NAME} [--tag-value TAG-VALUE] [--state STATE] [--deployment-id DEPLOYMENT-ID] [--include INCLUDE]
+cpdctl ml deployment-job list {--space-id SPACE-ID | --space SPACE-NAME} [--tag-value TAG-VALUE] [--state STATE] [--deployment-id DEPLOYMENT-ID] [--include INCLUDE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12087,7 +12087,7 @@ just the data schema.
 Create a new deployment job definition revision. The current metadata and content for job_definition_id will be taken and a new revision created. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml deployment-job-definition create-revision --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [--commit-message COMMIT-MESSAGE]
+cpdctl ml deployment-job-definition create-revision --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [--commit-message COMMIT-MESSAGE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12120,7 +12120,7 @@ cpdctl ml deployment-job-definition create-revision --job-definition-id JOB-DEFI
 Delete the deployment job definition with the specified identifier. This will delete all revisions of this deployment job definition as well. For each revision all attachments will also be deleted.
 
 ```sh
-cpdctl ml deployment-job-definition delete --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME}
+cpdctl ml deployment-job-definition delete --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12150,7 +12150,7 @@ Retrieve the deployment job definition with the specified identifier. If `rev` q
 `rev=latest` will fetch the latest revision. A call with `rev={revision_number}` will fetch the given revision_number record.
 
 ```sh
-cpdctl ml deployment-job-definition get --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [--rev REV]
+cpdctl ml deployment-job-definition get --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [--rev REV] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12183,7 +12183,7 @@ cpdctl ml deployment-job-definition get --job-definition-id JOB-DEFINITION-ID {-
 Retrieve the deployment job definitions for the specified space.
 
 ```sh
-cpdctl ml deployment-job-definition list {--space-id SPACE-ID | --space SPACE-NAME} [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
+cpdctl ml deployment-job-definition list {--space-id SPACE-ID | --space SPACE-NAME} [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12231,7 +12231,7 @@ cpdctl ml deployment-job-definition list {--space-id SPACE-ID | --space SPACE-NA
 Retrieve the deployment job definition revisions. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml deployment-job-definition list-revisions --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [--start START | --all-pages] [--limit LIMIT]
+cpdctl ml deployment-job-definition list-revisions --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12280,7 +12280,7 @@ Update the deployment job definition with the provided patch data. The following
 - `/deployment`.
 
 ```sh
-cpdctl ml deployment-job-definition update --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--deployment DEPLOYMENT | @DEPLOYMENT-FILE)}
+cpdctl ml deployment-job-definition update --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--deployment DEPLOYMENT | @DEPLOYMENT-FILE)} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12330,7 +12330,7 @@ cpdctl ml deployment-job-definition update --job-definition-id JOB-DEFINITION-ID
 Create a new experiment with the given payload. An experiment represents an asset that captures a set of `pipeline` or `model definition` assets that will be trained at the same time on the same data set.
 
 ```sh
-cpdctl ml experiment create --name NAME [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--tags TAGS] [--label-column LABEL-COLUMN] [--evaluation-definition (EVALUATION-DEFINITION | @EVALUATION-DEFINITION-FILE) | --evaluation-definition-method binary | regression | multiclass (--evaluation-definition-metrics EVALUATION-DEFINITION-METRICS | @EVALUATION-DEFINITION-METRICS-FILE)] [--training-references TRAINING-REFERENCES | @TRAINING-REFERENCES-FILE] [--custom CUSTOM | @CUSTOM-FILE]
+cpdctl ml experiment create --name NAME [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--tags TAGS] [--label-column LABEL-COLUMN] [--evaluation-definition (EVALUATION-DEFINITION | @EVALUATION-DEFINITION-FILE) | --evaluation-definition-method binary | regression | multiclass (--evaluation-definition-metrics EVALUATION-DEFINITION-METRICS | @EVALUATION-DEFINITION-METRICS-FILE)] [--training-references TRAINING-REFERENCES | @TRAINING-REFERENCES-FILE] [--custom CUSTOM | @CUSTOM-FILE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12396,7 +12396,7 @@ cpdctl ml experiment create --name NAME [{--project-id PROJECT-ID | --project PR
 Create a new experiment revision. The current metadata and content for experiment_id will be taken and a new revision created. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl ml experiment create-revision --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE]
+cpdctl ml experiment create-revision --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12436,7 +12436,7 @@ cpdctl ml experiment create-revision --experiment-id EXPERIMENT-ID [{--space-id 
 Delete the experiment with the specified identifier. This will delete all revisions of this experiment as well. For each revision all attachments will also be deleted.
 
 ```sh
-cpdctl ml experiment delete --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml experiment delete --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12473,7 +12473,7 @@ Retrieve the experiment with the specified identifier. If `rev` query parameter 
 `rev=latest` will fetch the latest revision. A call with `rev={revision_number}` will fetch the given revision_number record. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl ml experiment get --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV]
+cpdctl ml experiment get --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12513,7 +12513,7 @@ cpdctl ml experiment get --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | -
 Retrieve the experiments for the specified space or project.
 
 ```sh
-cpdctl ml experiment list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
+cpdctl ml experiment list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12568,7 +12568,7 @@ cpdctl ml experiment list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--proje
 Retrieve the experiment revisions.
 
 ```sh
-cpdctl ml experiment list-revisions --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
+cpdctl ml experiment list-revisions --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12623,7 +12623,7 @@ Update the experiment with the provided patch data. The following fields can be 
 - `/custom`.
 
 ```sh
-cpdctl ml experiment update --experiment-id EXPERIMENT-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml experiment update --experiment-id EXPERIMENT-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12774,7 +12774,7 @@ This is illustrated in the example below:
 Create a new function revision. The current metadata and content for function_id will be taken and a new revision created. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl ml function create-revision --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE]
+cpdctl ml function create-revision --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12814,7 +12814,7 @@ cpdctl ml function create-revision --function-id FUNCTION-ID [{--space-id SPACE-
 Delete the function with the specified identifier. This will delete all revisions of this function as well. For each revision all attachments will also be deleted.
 
 ```sh
-cpdctl ml function delete --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml function delete --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12850,7 +12850,7 @@ cpdctl ml function delete --function-id FUNCTION-ID [{--space-id SPACE-ID | --sp
 Download the function code. It is possible to get the `code` for a given revision of the `function`. Functions expect a zip file that contains a python file     that make up the function. Python functions specify what needs to be run when     the function is deployed and what needs to be run when the scoring function is     called. In other words, you are able to customize what preparation WML does in     the environment when you deploy the function, as well as what steps WML takes to     generate the output when you call the API later on. The function consists of the     outer function (any place that is not within the score function) and the inner     score function. The code that sits in the outer function runs when the function     is deployed, and the environment is then frozen and ready to be used whenever     the online scoring or batch inline job processing API is called. The code that     sits in the inner score function runs when the online scoring or batch inline     job processing API is called, in the environment customized by the outer function.     See [Deploying Python function](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-deploy-py-function.html?context=cpdaas${content_description}audience=wdp) for more details.         This is illustrated in the example below:        <pre> <br />     ...python code used to set up the environment... <br />     <br />     def score(payload): <br />         df_payload = pd.DataFrame(payload[values]) <br />         df_payload.columns = payload[fields] <br />         ... <br />         output = {result : res} <br />         return output <br />     <br />     return score <br />     </pre>.
 
 ```sh
-cpdctl ml function download-code --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV]
+cpdctl ml function download-code --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
@@ -12895,7 +12895,7 @@ Retrieve the function with the specified identifier. If `rev` query parameter is
 `rev=latest` will fetch the latest revision. A call with `rev={revision_number}` will fetch the given revision_number record. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl ml function get --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV]
+cpdctl ml function get --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12935,7 +12935,7 @@ cpdctl ml function get --function-id FUNCTION-ID [{--space-id SPACE-ID | --space
 Retrieve the functions for the specified space or project.
 
 ```sh
-cpdctl ml function list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
+cpdctl ml function list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12990,7 +12990,7 @@ cpdctl ml function list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project
 Retrieve the function revisions.
 
 ```sh
-cpdctl ml function list-revisions --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
+cpdctl ml function list-revisions --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13045,7 +13045,7 @@ Update the function with the provided patch data. The following fields can be pa
 - `/custom`.
 
 ```sh
-cpdctl ml function update --function-id FUNCTION-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml function update --function-id FUNCTION-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13097,7 +13097,7 @@ cpdctl ml function update --function-id FUNCTION-ID {--json-patch (JSON-PATCH | 
 Upload the function code. Functions expect a zip file that contains a python file     that make up the function. Python functions specify what needs to be run when     the function is deployed and what needs to be run when the scoring function is     called. In other words, you are able to customize what preparation WML does in     the environment when you deploy the function, as well as what steps WML takes to     generate the output when you call the API later on. The function consists of the     outer function (any place that is not within the score function) and the inner     score function. The code that sits in the outer function runs when the function     is deployed, and the environment is then frozen and ready to be used whenever     the online scoring or batch inline job processing API is called. The code that     sits in the inner score function runs when the online scoring or batch inline     job processing API is called, in the environment customized by the outer function.     See [Deploying Python function](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-deploy-py-function.html?context=cpdaas${content_description}audience=wdp) for more details.         This is illustrated in the example below:        <pre> <br />     ...python code used to set up the environment... <br />     <br />     def score(payload): <br />         df_payload = pd.DataFrame(payload[values]) <br />         df_payload.columns = payload[fields] <br />         ... <br />         output = {result : res} <br />         return output <br />     <br />     return score <br />     </pre>.
 
 ```sh
-cpdctl ml function upload-code --function-id FUNCTION-ID --upload-code UPLOAD-CODE [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml function upload-code --function-id FUNCTION-ID --upload-code UPLOAD-CODE [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13336,7 +13336,7 @@ always specify the prediction schemas using this field.
 Create a new model revision. The current metadata and content for model_id will be taken and a new revision created. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl ml model create-revision --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE]
+cpdctl ml model create-revision --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13376,7 +13376,7 @@ cpdctl ml model create-revision --model-id MODEL-ID [{--space-id SPACE-ID | --sp
 Delete the model with the specified identifier. This will delete all revisions of this model as well. For each revision all attachments will also be deleted.
 
 ```sh
-cpdctl ml model delete --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml model delete --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13412,7 +13412,7 @@ cpdctl ml model delete --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE
 Delete the content for the specified model. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model delete-content --model-id MODEL-ID --attachment-id ATTACHMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml model delete-content --model-id MODEL-ID --attachment-id ATTACHMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13452,7 +13452,7 @@ cpdctl ml model delete-content --model-id MODEL-ID --attachment-id ATTACHMENT-ID
 Download the model content.
 
 ```sh
-cpdctl ml model download-content --model-id MODEL-ID --attachment-id ATTACHMENT-ID [--accept application/zip | application/gzip | application/json | text/plain | application/xml] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV]
+cpdctl ml model download-content --model-id MODEL-ID --attachment-id ATTACHMENT-ID [--accept application/zip | application/gzip | application/json | text/plain | application/xml] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
@@ -13505,7 +13505,7 @@ Download the model content identified by the provided criteria. If more than one
 `400` error is returned. If there are no attachments that match the filter then a `404` error is returned. If there are no filters then, if there is a single attachment, the attachment content will be returned otherwise a `400` or `404` error will be returned as described above. This method is just a shortcut for getting the attachment metadata and then downloading by attachment id. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model filtered-download --model-id MODEL-ID [--accept application/zip | application/gzip | application/json | text/plain | application/xml] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--pipeline-node-id PIPELINE-NODE-ID] [--deployment-id DEPLOYMENT-ID] [--name NAME] [--content-format CONTENT-FORMAT]
+cpdctl ml model filtered-download --model-id MODEL-ID [--accept application/zip | application/gzip | application/json | text/plain | application/xml] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--pipeline-node-id PIPELINE-NODE-ID] [--deployment-id DEPLOYMENT-ID] [--name NAME] [--content-format CONTENT-FORMAT] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
@@ -13570,7 +13570,7 @@ Retrieve the model with the specified identifier. If `rev` query parameter is pr
 `rev=latest` will fetch the latest revision. A call with `rev={revision_number}` will fetch the given revision_number record. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl ml model get --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV]
+cpdctl ml model get --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13610,7 +13610,7 @@ cpdctl ml model get --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NA
 Retrieve the models for the specified space or project.
 
 ```sh
-cpdctl ml model list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
+cpdctl ml model list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13665,7 +13665,7 @@ cpdctl ml model list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id
 Retrieve the content metadata list for the specified model attachments. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model list-attachments --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--name NAME] [--content-format CONTENT-FORMAT]
+cpdctl ml model list-attachments --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--name NAME] [--content-format CONTENT-FORMAT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13713,7 +13713,7 @@ cpdctl ml model list-attachments --model-id MODEL-ID [{--space-id SPACE-ID | --s
 Retrieve the model revisions.
 
 ```sh
-cpdctl ml model list-revisions --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
+cpdctl ml model list-revisions --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13769,7 +13769,7 @@ Update the model with the provided patch data. The following fields can be patch
 - `/software_spec` (operation 'replace' only).
 
 ```sh
-cpdctl ml model update --model-id MODEL-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml model update --model-id MODEL-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13821,7 +13821,7 @@ cpdctl ml model update --model-id MODEL-ID {--json-patch (JSON-PATCH | @JSON-PAT
 Upload the content for the specified model.
 
 ```sh
-cpdctl ml model upload-content --model-id MODEL-ID --content-format CONTENT-FORMAT [--upload-content UPLOAD-CONTENT | @UPLOAD-CONTENT-FILE] [--body BODY] [--content-type application/json | application/zip | text/plain | application/xml] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--pipeline-node-id PIPELINE-NODE-ID] [--deployment-id DEPLOYMENT-ID] [--name NAME]
+cpdctl ml model upload-content --model-id MODEL-ID --content-format CONTENT-FORMAT [--upload-content UPLOAD-CONTENT | @UPLOAD-CONTENT-FILE] [--body BODY] [--content-type application/json | application/zip | text/plain | application/xml] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--pipeline-node-id PIPELINE-NODE-ID] [--deployment-id DEPLOYMENT-ID] [--name NAME] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13911,7 +13911,7 @@ cpdctl ml model wait --model-id MODEL_ID [--space-id SPACE_ID] [--project-id PRO
 Create a new model definition with the given payload. A model definition represents the code that is used to train one or more models. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition create --name NAME --package-version PACKAGE-VERSION {--platform (PLATFORM | @PLATFORM-FILE) | --platform-name PLATFORM-NAME --platform-versions PLATFORM-VERSIONS} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--tags TAGS] [--command COMMAND] [--software-spec (SOFTWARE-SPEC | @SOFTWARE-SPEC-FILE) | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME] [--custom CUSTOM | @CUSTOM-FILE]
+cpdctl ml model-definition create --name NAME --package-version PACKAGE-VERSION {--platform (PLATFORM | @PLATFORM-FILE) | --platform-name PLATFORM-NAME --platform-versions PLATFORM-VERSIONS} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--tags TAGS] [--command COMMAND] [--software-spec (SOFTWARE-SPEC | @SOFTWARE-SPEC-FILE) | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME] [--custom CUSTOM | @CUSTOM-FILE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13990,7 +13990,7 @@ cpdctl ml model-definition create --name NAME --package-version PACKAGE-VERSION 
 Create a new model definition revision. The current metadata and content for model_definition_id will be taken and a new revision created. Either `space_id` or `project_id` has to be provided and is mandatory. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition create-revision --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE]
+cpdctl ml model-definition create-revision --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14030,7 +14030,7 @@ cpdctl ml model-definition create-revision --model-definition-id MODEL-DEFINITIO
 Delete the model definition with the specified identifier. This will delete all revisions of this model definition as well. For each revision all attachments will also be deleted. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition delete --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml model-definition delete --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14066,7 +14066,7 @@ cpdctl ml model-definition delete --model-definition-id MODEL-DEFINITION-ID [{--
 Download the model definition model. It is possible to get the `model` for a given revision of the `model definition`. Model definitions for Deep Learning accept a zip file that contains one or more     python files organized in any directory structure. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition download-model --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV]
+cpdctl ml model-definition download-model --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
@@ -14111,7 +14111,7 @@ Retrieve the model definition with the specified identifier. If `rev` query para
 `rev=latest` will fetch the latest revision. A call with `rev={revision_number}` will fetch the given revision_number record. Either `space_id` or `project_id` has to be provided and is mandatory. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition get --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV]
+cpdctl ml model-definition get --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14151,7 +14151,7 @@ cpdctl ml model-definition get --model-definition-id MODEL-DEFINITION-ID [{--spa
 Retrieve the model definitions for the specified space or project. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
+cpdctl ml model-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14206,7 +14206,7 @@ cpdctl ml model-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] [{-
 Retrieve the model definition revisions. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition list-revisions --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
+cpdctl ml model-definition list-revisions --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14261,7 +14261,7 @@ Update the model definition with the provided patch data. The following fields c
 - `/custom` This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition update --model-definition-id MODEL-DEFINITION-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml model-definition update --model-definition-id MODEL-DEFINITION-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14313,7 +14313,7 @@ cpdctl ml model-definition update --model-definition-id MODEL-DEFINITION-ID {--j
 Upload the model definition model. Model definitions for Deep Learning accept a zip file that contains one or more     python files organized in any directory structure. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition upload-model --model-definition-id MODEL-DEFINITION-ID --upload-model UPLOAD-MODEL [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml model-definition upload-model --model-definition-id MODEL-DEFINITION-ID --upload-model UPLOAD-MODEL [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14353,7 +14353,7 @@ cpdctl ml model-definition upload-model --model-definition-id MODEL-DEFINITION-I
 Create a new pipeline with the given payload. A pipeline represents a hybrid-pipeline, as a JSON document, that is used to train one or more models.
 
 ```sh
-cpdctl ml pipeline create --name NAME --document DOCUMENT | @DOCUMENT-FILE [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--tags TAGS] [--custom CUSTOM | @CUSTOM-FILE]
+cpdctl ml pipeline create --name NAME --document (DOCUMENT | @DOCUMENT-FILE) [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--tags TAGS] [--custom CUSTOM | @CUSTOM-FILE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14406,7 +14406,7 @@ cpdctl ml pipeline create --name NAME --document DOCUMENT | @DOCUMENT-FILE [{--p
 Create a new pipeline revision. The current metadata and content for pipeline_id will be taken and a new revision created. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl ml pipeline create-revision {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE]
+cpdctl ml pipeline create-revision {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14449,7 +14449,7 @@ cpdctl ml pipeline create-revision {--pipeline-id PIPELINE-ID | --pipeline PIPEL
 Delete the pipeline with the specified identifier. This will delete all revisions of this pipeline as well. For each revision all attachments will also be deleted.
 
 ```sh
-cpdctl ml pipeline delete {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml pipeline delete {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14489,7 +14489,7 @@ Retrieve the pipeline with the specified identifier. If `rev` query parameter is
 `rev=latest` will fetch the latest revision. A call with `rev={revision_number}` will fetch the given revision_number record. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl ml pipeline get {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV]
+cpdctl ml pipeline get {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14532,7 +14532,7 @@ cpdctl ml pipeline get {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{
 Retrieve the pipelines for the specified space or project.
 
 ```sh
-cpdctl ml pipeline list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
+cpdctl ml pipeline list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14587,7 +14587,7 @@ cpdctl ml pipeline list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project
 Retrieve the pipeline revisions.
 
 ```sh
-cpdctl ml pipeline list-revisions {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
+cpdctl ml pipeline list-revisions {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14645,7 +14645,7 @@ Update the pipeline with the provided patch data. The following fields can be pa
 - `/custom`.
 
 ```sh
-cpdctl ml pipeline update {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml pipeline update {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14983,7 +14983,7 @@ specify compute requirement for each pipeline node.
 Cancel the specified training and remove it.
 
 ```sh
-cpdctl ml training delete --training-id TRAINING-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE]
+cpdctl ml training delete --training-id TRAINING-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15025,7 +15025,7 @@ cpdctl ml training delete --training-id TRAINING-ID [{--space-id SPACE-ID | --sp
 Retrieve the training with the specified identifier. This call supports Web-Socket upgrade. However in order to preserve bandwidth, web-socket messages are not context complete. Meaning that a single web-socket message only reflects a message or metric happening in the context of a training job or sub-job (in case of experiment trainings or HPO/AutoML trainings). Hence the metadata property of a web-socket message contains a parent with the href information of the parent job that triggered this particular job. Also the metrics will be provided as they arrive from the backend runtime, and not as a cumulative list. In order to get the full view of the running training job the caller should do a regular GET call.
 
 ```sh
-cpdctl ml training get --training-id TRAINING-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml training get --training-id TRAINING-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15061,7 +15061,7 @@ cpdctl ml training get --training-id TRAINING-ID [{--space-id SPACE-ID | --space
 Retrieve the list of trainings for the specified space or project.
 
 ```sh
-cpdctl ml training list [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--type TYPE] [--state STATE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parent-id PARENT-ID]
+cpdctl ml training list [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--type TYPE] [--state STATE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parent-id PARENT-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15435,7 +15435,7 @@ specify compute requirement for each pipeline node.
 Create a new training definition revision. The current metadata and content for training_definition_id will be taken and a new revision created. Either `space_id` or `project_id` has to be provided and is mandatory. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition create-revision --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE]
+cpdctl ml training-definition create-revision --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15475,7 +15475,7 @@ cpdctl ml training-definition create-revision --training-definition-id TRAINING-
 Delete the training definition with the specified identifier. This will delete all revisions of this training definition as well. For each revision all attachments will also be deleted. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition delete --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml training-definition delete --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15512,7 +15512,7 @@ Retrieve the training definition with the specified identifier. If `rev` query p
 `rev=latest` will fetch the latest revision. A call with `rev={revision_number}` will fetch the given revision_number record. Either `space_id` or `project_id` has to be provided and is mandatory. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition get --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV]
+cpdctl ml training-definition get --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15552,7 +15552,7 @@ cpdctl ml training-definition get --training-definition-id TRAINING-DEFINITION-I
 Retrieve the training definitions for the specified space or project. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
+cpdctl ml training-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15607,7 +15607,7 @@ cpdctl ml training-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] 
 Retrieve the training definition revisions. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition list-revisions --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
+cpdctl ml training-definition list-revisions --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15663,7 +15663,7 @@ Update the training definition with the provided patch data. The following field
 - `/federated_learning` This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition update --training-definition-id TRAINING-DEFINITION-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--federated-learning FEDERATED-LEARNING | @FEDERATED-LEARNING-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl ml training-definition update --training-definition-id TRAINING-DEFINITION-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--federated-learning FEDERATED-LEARNING | @FEDERATED-LEARNING-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15725,7 +15725,7 @@ Then you can create a notebook by referencing the notebook content with the attr
 The attributes 'runtime' and 'compute' are used to specify the environment on which the notebook runs.  You can specify the environment either by the attribute 'runtime' if the engine is a 'default environment', 'Spark default environment' or a 'GPU environment' or by the attribute 'compute' if the engine is a 'Spark-aaS'.  A basic runtime can be defined as '{"environment": <your environment id>}'.
 
 ```sh
-cpdctl notebook create --file-reference FILE-REFERENCE --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--kernel (KERNEL | @KERNEL-FILE) | --kernel-display-name KERNEL-DISPLAY-NAME --kernel-language KERNEL-LANGUAGE --kernel-name KERNEL-NAME] [--originates-from (ORIGINATES-FROM | @ORIGINATES-FROM-FILE) | --originates-from-type ORIGINATES-FROM-TYPE] [--project-id PROJECT-ID] [--runtime (RUNTIME | @RUNTIME-FILE) | --runtime-environment RUNTIME-ENVIRONMENT --runtime-spark-monitoring-enabled=RUNTIME-SPARK-MONITORING-ENABLED] [--space-id SPACE-ID]
+cpdctl notebook create --file-reference FILE-REFERENCE --name NAME [--compute COMPUTE] [--description DESCRIPTION] [--kernel (KERNEL | @KERNEL-FILE) | --kernel-display-name KERNEL-DISPLAY-NAME --kernel-language KERNEL-LANGUAGE --kernel-name KERNEL-NAME] [--originates-from (ORIGINATES-FROM | @ORIGINATES-FROM-FILE) | --originates-from-type ORIGINATES-FROM-TYPE] [--project-id PROJECT-ID] [--runtime (RUNTIME | @RUNTIME-FILE) | --runtime-environment RUNTIME-ENVIRONMENT --runtime-spark-monitoring-enabled=RUNTIME-SPARK-MONITORING-ENABLED] [--space-id SPACE-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15798,7 +15798,7 @@ cpdctl notebook create --file-reference FILE-REFERENCE --name NAME [--compute CO
 Delete a particular notebook, including the notebook asset.
 
 ```sh
-cpdctl notebook delete --notebook-id NOTEBOOK-ID
+cpdctl notebook delete --notebook-id NOTEBOOK-ID [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15816,7 +15816,7 @@ cpdctl notebook delete --notebook-id NOTEBOOK-ID
 Revert the master notebook to a version.
 
 ```sh
-cpdctl notebook revert --notebook-id NOTEBOOK-ID [--source SOURCE]
+cpdctl notebook revert --notebook-id NOTEBOOK-ID [--source SOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15838,7 +15838,7 @@ cpdctl notebook revert --notebook-id NOTEBOOK-ID [--source SOURCE]
 Update a particular notebook.
 
 ```sh
-cpdctl notebook update --notebook-id NOTEBOOK-ID [--compute COMPUTE] [--environment ENVIRONMENT] [--kernel (KERNEL | @KERNEL-FILE) | --kernel-display-name KERNEL-DISPLAY-NAME --kernel-language KERNEL-LANGUAGE --kernel-name KERNEL-NAME] [--schedule SCHEDULE] [--shares (SHARES | @SHARES-FILE) | (--shares-gist SHARES-GIST | @SHARES-GIST-FILE) (--shares-github SHARES-GITHUB | @SHARES-GITHUB-FILE) (--shares-public SHARES-PUBLIC | @SHARES-PUBLIC-FILE)] [--spark-monitoring-enabled=SPARK-MONITORING-ENABLED]
+cpdctl notebook update --notebook-id NOTEBOOK-ID [--compute COMPUTE] [--environment ENVIRONMENT] [--kernel (KERNEL | @KERNEL-FILE) | --kernel-display-name KERNEL-DISPLAY-NAME --kernel-language KERNEL-LANGUAGE --kernel-name KERNEL-NAME] [--schedule SCHEDULE] [--shares (SHARES | @SHARES-FILE) | (--shares-gist SHARES-GIST | @SHARES-GIST-FILE) (--shares-github SHARES-GITHUB | @SHARES-GITHUB-FILE) (--shares-public SHARES-PUBLIC | @SHARES-PUBLIC-FILE)] [--spark-monitoring-enabled=SPARK-MONITORING-ENABLED] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15900,7 +15900,7 @@ cpdctl notebook update --notebook-id NOTEBOOK-ID [--compute COMPUTE] [--environm
 Create a version of a given notebook.
 
 ```sh
-cpdctl notebook version create --notebook-id NOTEBOOK-ID
+cpdctl notebook version create --notebook-id NOTEBOOK-ID [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15918,7 +15918,7 @@ cpdctl notebook version create --notebook-id NOTEBOOK-ID
 Delete a particular version of a given notebook.
 
 ```sh
-cpdctl notebook version delete --notebook-id NOTEBOOK-ID --version-id VERSION-ID
+cpdctl notebook version delete --notebook-id NOTEBOOK-ID --version-id VERSION-ID [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15940,7 +15940,7 @@ cpdctl notebook version delete --notebook-id NOTEBOOK-ID --version-id VERSION-ID
 Retrieve a particular version of a notebook.
 
 ```sh
-cpdctl notebook version get --notebook-id NOTEBOOK-ID --version-id VERSION-ID
+cpdctl notebook version get --notebook-id NOTEBOOK-ID --version-id VERSION-ID [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15962,7 +15962,7 @@ cpdctl notebook version get --notebook-id NOTEBOOK-ID --version-id VERSION-ID
 List all versions of a particular notebook.
 
 ```sh
-cpdctl notebook version list --notebook-id NOTEBOOK-ID
+cpdctl notebook version list --notebook-id NOTEBOOK-ID [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15980,7 +15980,7 @@ cpdctl notebook version list --notebook-id NOTEBOOK-ID
 Update a version of a given notebook.
 
 ```sh
-cpdctl notebook version update --notebook-id NOTEBOOK-ID --version-id VERSION-ID [--kernel (KERNEL | @KERNEL-FILE) | --kernel-display-name KERNEL-DISPLAY-NAME --kernel-language KERNEL-LANGUAGE --kernel-name KERNEL-NAME] [--schedule SCHEDULE]
+cpdctl notebook version update --notebook-id NOTEBOOK-ID --version-id VERSION-ID [--kernel (KERNEL | @KERNEL-FILE) | --kernel-display-name KERNEL-DISPLAY-NAME --kernel-language KERNEL-LANGUAGE --kernel-name KERNEL-NAME] [--schedule SCHEDULE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -16019,7 +16019,7 @@ cpdctl notebook version update --notebook-id NOTEBOOK-ID --version-id VERSION-ID
 Commits a pre-existing volatile default version to finished state. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline commit {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [--commit-message COMMIT-MESSAGE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl pipeline commit {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [--commit-message COMMIT-MESSAGE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -16147,7 +16147,7 @@ cpdctl pipeline compile {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [
 Creates a new pipeline from existing pipeline. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline copy --name NAME {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [--description DESCRIPTION] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl pipeline copy --name NAME {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [--description DESCRIPTION] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -16193,7 +16193,7 @@ cpdctl pipeline copy --name NAME {--pipeline-id PIPELINE-ID | --pipeline PIPELIN
 Deletes a pipeline and its pipeline versions. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline delete {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl pipeline delete {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -16231,7 +16231,7 @@ cpdctl pipeline delete {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{
 Finds a specific pipeline by ID. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline get {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl pipeline get {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -16269,7 +16269,7 @@ cpdctl pipeline get {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--s
 Gather tenant (account or instance) settings. When a setting name or prefix is given, returns only settings that match the name (prefix).
 
 ```sh
-cpdctl pipeline get-settings [setting_name_or_prefix]
+cpdctl pipeline get-settings [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet] [setting_name_or_prefix]
 ```
 
 #### Command options
@@ -16299,7 +16299,7 @@ cpdctl pipeline get-settings [setting_name_or_prefix]
 Returns code (YAML template, Orchestration Flow json) that contains the specified pipeline's description, parameters and metadata. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline get-template {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--format template | flow | all] [--volatile=VOLATILE] [--version any | latest | volatile]
+cpdctl pipeline get-template {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--format template | flow | all] [--volatile=VOLATILE] [--version any | latest | volatile] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -16354,7 +16354,7 @@ cpdctl pipeline get-template {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NA
 Finds all pipelines. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--page-token PAGE-TOKEN] [--page-size PAGE-SIZE] [--sort-by SORT-BY]
+cpdctl pipeline list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--page-token PAGE-TOKEN] [--page-size PAGE-SIZE] [--sort-by SORT-BY] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -16481,7 +16481,7 @@ cpdctl pipeline update-settings [setting_name_or_prefix] value
 Uploads a pipeline file and create a new pipeline. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline upload --file FILE [--uploadfile-content-type UPLOADFILE-CONTENT-TYPE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--name NAME] [--description DESCRIPTION] [--volatile=VOLATILE]
+cpdctl pipeline upload --file FILE [--uploadfile-content-type UPLOADFILE-CONTENT-TYPE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--name NAME] [--description DESCRIPTION] [--volatile=VOLATILE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -16538,7 +16538,7 @@ Work-in-progress pipeline versions can be updated (with this flag still set to t
 Validates a pipeline file.
 
 ```sh
-cpdctl pipeline validate --file FILE [--uploadfile-content-type UPLOADFILE-CONTENT-TYPE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl pipeline validate --file FILE [--uploadfile-content-type UPLOADFILE-CONTENT-TYPE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -16741,7 +16741,7 @@ cpdctl pipeline cleanup delete-cache --output-file OUTPUT-FILE [--project PROJEC
 Finds a specific run by ID. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline run get {--run-id RUN-ID | --run RUN-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--job-id JOB-ID | --job JOB-NAME}]
+cpdctl pipeline run get {--run-id RUN-ID | --run RUN-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--job-id JOB-ID | --job JOB-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -16786,7 +16786,7 @@ cpdctl pipeline run get {--run-id RUN-ID | --run RUN-NAME} [{--space-id SPACE-ID
 Gets artifact on path from the specified run.
 
 ```sh
-cpdctl pipeline run get-artifact {--run-id RUN-ID | --run RUN-NAME} --artifact-path ARTIFACT-PATH [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--job-id JOB-ID | --job JOB-NAME}]
+cpdctl pipeline run get-artifact {--run-id RUN-ID | --run RUN-NAME} --artifact-path ARTIFACT-PATH [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--job-id JOB-ID | --job JOB-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -16835,7 +16835,7 @@ cpdctl pipeline run get-artifact {--run-id RUN-ID | --run RUN-NAME} --artifact-p
 Finds log by its id. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline run get-log {--run-id RUN-ID | --run RUN-NAME} --task-run-name TASK-RUN-NAME [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--job-id JOB-ID | --job JOB-NAME}]
+cpdctl pipeline run get-log {--run-id RUN-ID | --run RUN-NAME} --task-run-name TASK-RUN-NAME [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--job-id JOB-ID | --job JOB-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -16884,7 +16884,7 @@ cpdctl pipeline run get-log {--run-id RUN-ID | --run RUN-NAME} --task-run-name T
 Finds logs related to the specified run. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline run get-logs {--run-id RUN-ID | --run RUN-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--job-id JOB-ID | --job JOB-NAME}] [--filter FILTER]
+cpdctl pipeline run get-logs {--run-id RUN-ID | --run RUN-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--job-id JOB-ID | --job JOB-NAME}] [--filter FILTER] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17043,7 +17043,7 @@ cpdctl pipeline run list {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} 
 Lists parameters of the run.
 
 ```sh
-cpdctl pipeline run list-parameter {--run-id RUN-ID | --run RUN-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--job-id JOB-ID | --job JOB-NAME}]
+cpdctl pipeline run list-parameter {--run-id RUN-ID | --run RUN-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--job-id JOB-ID | --job JOB-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17131,7 +17131,7 @@ cpdctl pipeline run migrate-cache --output-file OUTPUT-FILE [{--project-id PROJE
 Gets information about task result given by output name and `TaskRun` or `Run` name.
 
 ```sh
-cpdctl pipeline run task-result get {--run-id RUN-ID | --run RUN-NAME} --task-run-name TASK-RUN-NAME --name NAME [{--job-id JOB-ID | --job JOB-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME}] [--pipeline-run-name PIPELINE-RUN-NAME]
+cpdctl pipeline run task-result get {--run-id RUN-ID | --run RUN-NAME} --task-run-name TASK-RUN-NAME --name NAME [{--job-id JOB-ID | --job JOB-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME}] [--pipeline-run-name PIPELINE-RUN-NAME] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17195,7 +17195,7 @@ cpdctl pipeline run task-result get {--run-id RUN-ID | --run RUN-NAME} --task-ru
 Gets metadata about task result given by output name and `TaskRun` or `Run` name.
 
 ```sh
-cpdctl pipeline run task-result head {--run-id RUN-ID | --run RUN-NAME} --task-run-name TASK-RUN-NAME --name NAME [{--job-id JOB-ID | --job JOB-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME}] [--pipeline-run-name PIPELINE-RUN-NAME]
+cpdctl pipeline run task-result head {--run-id RUN-ID | --run RUN-NAME} --task-run-name TASK-RUN-NAME --name NAME [{--job-id JOB-ID | --job JOB-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME}] [--pipeline-run-name PIPELINE-RUN-NAME] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17259,7 +17259,7 @@ cpdctl pipeline run task-result head {--run-id RUN-ID | --run RUN-NAME} --task-r
 Gets information about all task results given by `TaskRun` or `Run` name.
 
 ```sh
-cpdctl pipeline run task-result list {--run-id RUN-ID | --run RUN-NAME} --task-run-name TASK-RUN-NAME [{--job-id JOB-ID | --job JOB-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME}] [--pipeline-run-name PIPELINE-RUN-NAME]
+cpdctl pipeline run task-result list {--run-id RUN-ID | --run RUN-NAME} --task-run-name TASK-RUN-NAME [{--job-id JOB-ID | --job JOB-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME}] [--pipeline-run-name PIPELINE-RUN-NAME] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17319,7 +17319,7 @@ cpdctl pipeline run task-result list {--run-id RUN-ID | --run RUN-NAME} --task-r
 Deletes a pipeline version by pipeline version ID. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline version delete --version-id VERSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl pipeline version delete --version-id VERSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17354,7 +17354,7 @@ cpdctl pipeline version delete --version-id VERSION-ID [{--space-id SPACE-ID | -
 Gets a pipeline version by pipeline version ID. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline version get --version-id VERSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl pipeline version get --version-id VERSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17389,7 +17389,7 @@ cpdctl pipeline version get --version-id VERSION-ID [{--space-id SPACE-ID | --sp
 Returns code (YAML template, Orchestration Flow json embedded in a string) that contains the specified pipeline version's description, parameters and metadata. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline version get-template --version-id VERSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--format template | flow | all]
+cpdctl pipeline version get-template --version-id VERSION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--format template | flow | all] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17428,7 +17428,7 @@ cpdctl pipeline version get-template --version-id VERSION-ID [{--space-id SPACE-
 Returns code (YAML template, Orchestration Flow json) that contains the specified pipeline version's description, parameters and metadata.
 
 ```sh
-cpdctl pipeline version get-template-format --version-id VERSION-ID --format template | flow [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl pipeline version get-template-format --version-id VERSION-ID --format template | flow [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17467,7 +17467,7 @@ cpdctl pipeline version get-template-format --version-id VERSION-ID --format tem
 Lists all pipeline versions of a given pipeline. You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline version list {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--page-size PAGE-SIZE] [--page-token PAGE-TOKEN] [--sort-by SORT-BY]
+cpdctl pipeline version list {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--page-size PAGE-SIZE] [--page-token PAGE-TOKEN] [--sort-by SORT-BY] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17519,7 +17519,7 @@ cpdctl pipeline version list {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NA
 Uploads a pipeline file and creates a new pipeline version (or updates a volatile one). You need to specify either `project_id` or `space_id`.
 
 ```sh
-cpdctl pipeline version upload --file FILE [--uploadfile-content-type UPLOADFILE-CONTENT-TYPE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--name NAME] [{--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME}] [--volatile=VOLATILE]
+cpdctl pipeline version upload --file FILE [--uploadfile-content-type UPLOADFILE-CONTENT-TYPE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--name NAME] [{--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME}] [--volatile=VOLATILE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17664,7 +17664,7 @@ cpdctl project create [command options]
 Deletes a project with a given ID, deletes COS bucket and all the files in it, all credentials and asset container in the order reverse from the project creation transaction. When deleting projects programmatically, always use this endpoint, not /v2/projects/{project_id}.
 
 ```sh
-cpdctl project delete {--project-id PROJECT-ID | --project PROJECT-NAME}
+cpdctl project delete {--project-id PROJECT-ID | --project PROJECT-NAME} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17688,7 +17688,7 @@ cpdctl project delete {--project-id PROJECT-ID | --project PROJECT-NAME}
 Returns the metadata for a target project specified by ID.
 
 ```sh
-cpdctl project get {--project-id PROJECT-ID | --project PROJECT-NAME} [--include name,fields,members,tags,settings,integrations,storage,credentials,everything,nothing]
+cpdctl project get {--project-id PROJECT-ID | --project PROJECT-NAME} [--include name,fields,members,tags,settings,integrations,storage,credentials,everything,nothing] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17716,7 +17716,7 @@ cpdctl project get {--project-id PROJECT-ID | --project PROJECT-NAME} [--include
 Gather project settings for Orchestration Pipelines.
 
 ```sh
-cpdctl project get-pipeline-settings [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl project get-pipeline-settings [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17740,7 +17740,7 @@ cpdctl project get-pipeline-settings [{--project-id PROJECT-ID | --project PROJE
 Returns a list of projects filtered by the specified query parameters. By default, only projects that the authenticated user is a member of are returned. In IBM Cloud Pak for Data (CPD), all projects in the cluster are returned (regardless of project membership) if the authenticated user is assigned either the "Manage projects" or "Monitor project workloads" CPD permission. In IBM Cloud Pak for Data (CPDaaS), all projects associated with an IBM Cloud Account are returned (regardless of project membership) if the authenticated user is added to the IBM Cloud Account and assigned the IAM "Manager" role. This command lists only Analytics projects. Data Quality projects are not supported.
 
 ```sh
-cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--type cpd,wx,wca,dpx,wxbi] [--member MEMBER] [--roles admin,editor,viewer] [--tag-names TAG-NAMES] [--name NAME] [--match exact | keyword] [--guids GUIDS] [--include name,fields,members,tags,settings,everything,nothing] [--limit LIMIT] [--bookmark BOOKMARK] [--skip SKIP] [--cpdaas-include-permissions=CPDAAS-INCLUDE-PERMISSIONS]
+cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--type cpd,wx,wca,dpx,wxbi] [--member MEMBER] [--roles admin,editor,viewer] [--tag-names TAG-NAMES] [--name NAME] [--match exact | keyword] [--guids GUIDS] [--include name,fields,members,tags,settings,everything,nothing] [--limit LIMIT] [--bookmark BOOKMARK] [--skip SKIP] [--cpdaas-include-permissions=CPDAAS-INCLUDE-PERMISSIONS] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17812,7 +17812,7 @@ cpdctl project list [--bss-account-id BSS-ACCOUNT-ID] [--type cpd,wx,wca,dpx,wxb
 Partially updates the project with only a subset of properties.
 
 ```sh
-cpdctl project update {--project-id PROJECT-ID | --project PROJECT-NAME} [--catalog (CATALOG | @CATALOG-FILE) | --catalog-guid CATALOG-GUID --catalog-public=CATALOG-PUBLIC] [--compute COMPUTE | @COMPUTE-FILE] [--description DESCRIPTION] [--name NAME] [--public=PUBLIC] [--tools jupyter_notebooks,watson_visual_recognition,streams_designer,spss_modeler,experiments,data_refinery] [--type cpd | wx | wca | dpx | wxbi]
+cpdctl project update {--project-id PROJECT-ID | --project PROJECT-NAME} [--catalog (CATALOG | @CATALOG-FILE) | --catalog-guid CATALOG-GUID --catalog-public=CATALOG-PUBLIC] [--compute COMPUTE | @COMPUTE-FILE] [--description DESCRIPTION] [--name NAME] [--public=PUBLIC] [--tools jupyter_notebooks,watson_visual_recognition,streams_designer,spss_modeler,experiments,data_refinery] [--type cpd | wx | wca | dpx | wxbi] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17874,7 +17874,7 @@ cpdctl project update {--project-id PROJECT-ID | --project PROJECT-NAME} [--cata
 Update project settings for Orchestration Pipelines.
 
 ```sh
-cpdctl project update-pipeline-settings [--allowed-operational-scope WIDE_SCOPE | INNER_SCOPE] [--default-pipeline-job-name-suffix DEFAULT-PIPELINE-JOB-NAME-SUFFIX] [{--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME}] [--jobs-deletion-mode DELETE_PIPELINE_JOBS | LEAVE_ORPHAN_JOBS] [--nested-job-execution-mode INLINE_MODE | INDEPENDENT_JOBS_MODE] [--pipeline-save-mode AUTO_SAVE | MANUAL_SAVE] [--resource-reference-type SEARCH_BY_ATTRIBUTES | EXACT_BY_ID] [--runner-type PIPELINE_RUNNER | DATASTAGE_OPTIMIZED_RUNNER] [{--project-id PROJECT-ID | --project PROJECT-NAME}] --settings SETTINGS
+cpdctl project update-pipeline-settings [--allowed-operational-scope WIDE_SCOPE | INNER_SCOPE] [--default-pipeline-job-name-suffix DEFAULT-PIPELINE-JOB-NAME-SUFFIX] [{--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME}] [--jobs-deletion-mode DELETE_PIPELINE_JOBS | LEAVE_ORPHAN_JOBS] [--nested-job-execution-mode INLINE_MODE | INDEPENDENT_JOBS_MODE] [--pipeline-save-mode AUTO_SAVE | MANUAL_SAVE] [--resource-reference-type SEARCH_BY_ATTRIBUTES | EXACT_BY_ID] [--runner-type PIPELINE_RUNNER | DATASTAGE_OPTIMIZED_RUNNER] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet] --settings SETTINGS
 ```
 
 #### Command options
@@ -17937,7 +17937,7 @@ cpdctl project update-pipeline-settings [--allowed-operational-scope WIDE_SCOPE 
 Adds new project members with the provided roles. A project must always have at least one admin.
 
 ```sh
-cpdctl project member create {--project-id PROJECT-ID | --project PROJECT-NAME} --members MEMBERS | @MEMBERS-FILE [--cpdaas-include-permissions=CPDAAS-INCLUDE-PERMISSIONS]
+cpdctl project member create {--project-id PROJECT-ID | --project PROJECT-NAME} --members (MEMBERS | @MEMBERS-FILE) [--cpdaas-include-permissions=CPDAAS-INCLUDE-PERMISSIONS] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17971,7 +17971,7 @@ cpdctl project member create {--project-id PROJECT-ID | --project PROJECT-NAME} 
 Deletes members from the project that match the provided usernames.
 
 ```sh
-cpdctl project member delete {--project-id PROJECT-ID | --project PROJECT-NAME} --user-names USER-NAMES
+cpdctl project member delete {--project-id PROJECT-ID | --project PROJECT-NAME} --user-names USER-NAMES [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -17999,7 +17999,7 @@ cpdctl project member delete {--project-id PROJECT-ID | --project PROJECT-NAME} 
 Returns the project member with the specified 'user_name' if any.
 
 ```sh
-cpdctl project member get {--project-id PROJECT-ID | --project PROJECT-NAME} --user-name USER-NAME [--resolve-groups=RESOLVE-GROUPS]
+cpdctl project member get {--project-id PROJECT-ID | --project PROJECT-NAME} --user-name USER-NAME [--resolve-groups=RESOLVE-GROUPS] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18033,7 +18033,7 @@ cpdctl project member get {--project-id PROJECT-ID | --project PROJECT-NAME} --u
 Returns the list of project members.
 
 ```sh
-cpdctl project member list {--project-id PROJECT-ID | --project PROJECT-NAME} [--roles admin,editor,viewer] [--user-names USER-NAMES]
+cpdctl project member list {--project-id PROJECT-ID | --project PROJECT-NAME} [--roles admin,editor,viewer] [--user-names USER-NAMES] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18065,7 +18065,7 @@ cpdctl project member list {--project-id PROJECT-ID | --project PROJECT-NAME} [-
 Change project member roles in a batch.
 
 ```sh
-cpdctl project member update {--project-id PROJECT-ID | --project PROJECT-NAME} --members MEMBERS | @MEMBERS-FILE [--cpdaas-include-permissions=CPDAAS-INCLUDE-PERMISSIONS]
+cpdctl project member update {--project-id PROJECT-ID | --project PROJECT-NAME} --members (MEMBERS | @MEMBERS-FILE) [--cpdaas-include-permissions=CPDAAS-INCLUDE-PERMISSIONS] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18099,7 +18099,7 @@ cpdctl project member update {--project-id PROJECT-ID | --project PROJECT-NAME} 
 Update the storage properties associated with the target project specified by ID.
 
 ```sh
-cpdctl project storage update {--project-id PROJECT-ID | --project PROJECT-NAME} {--update-storage-properties-body (UPDATE-STORAGE-PROPERTIES-BODY | @UPDATE-STORAGE-PROPERTIES-BODY-FILE) | (--update-storage-properties-body-credentials UPDATE-STORAGE-PROPERTIES-BODY-CREDENTIALS | @UPDATE-STORAGE-PROPERTIES-BODY-CREDENTIALS-FILE) (--update-storage-properties-body-repository UPDATE-STORAGE-PROPERTIES-BODY-REPOSITORY | @UPDATE-STORAGE-PROPERTIES-BODY-REPOSITORY-FILE)}
+cpdctl project storage update {--project-id PROJECT-ID | --project PROJECT-NAME} {--update-storage-properties-body (UPDATE-STORAGE-PROPERTIES-BODY | @UPDATE-STORAGE-PROPERTIES-BODY-FILE) | (--update-storage-properties-body-credentials UPDATE-STORAGE-PROPERTIES-BODY-CREDENTIALS | @UPDATE-STORAGE-PROPERTIES-BODY-CREDENTIALS-FILE) (--update-storage-properties-body-repository UPDATE-STORAGE-PROPERTIES-BODY-REPOSITORY | @UPDATE-STORAGE-PROPERTIES-BODY-REPOSITORY-FILE)} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18133,7 +18133,7 @@ cpdctl project storage update {--project-id PROJECT-ID | --project PROJECT-NAME}
 Adds new tags to a project.
 
 ```sh
-cpdctl project tag create {--project-id PROJECT-ID | --project PROJECT-NAME} --body BODY
+cpdctl project tag create {--project-id PROJECT-ID | --project PROJECT-NAME} --body BODY [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18161,7 +18161,7 @@ cpdctl project tag create {--project-id PROJECT-ID | --project PROJECT-NAME} --b
 Delete existing tags in a project. If no 'tag_names' are specified, then delete all existing tags in a project.
 
 ```sh
-cpdctl project tag delete {--project-id PROJECT-ID | --project PROJECT-NAME} [--tag-names TAG-NAMES]
+cpdctl project tag delete {--project-id PROJECT-ID | --project PROJECT-NAME} [--tag-names TAG-NAMES] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18189,7 +18189,7 @@ cpdctl project tag delete {--project-id PROJECT-ID | --project PROJECT-NAME} [--
 Returns the list of project tags.
 
 ```sh
-cpdctl project tag list {--project-id PROJECT-ID | --project PROJECT-NAME}
+cpdctl project tag list {--project-id PROJECT-ID | --project PROJECT-NAME} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18213,7 +18213,7 @@ cpdctl project tag list {--project-id PROJECT-ID | --project PROJECT-NAME}
 Adds new tags and removes existing tags from a project via a single bulk update operation.
 
 ```sh
-cpdctl project tag update {--project-id PROJECT-ID | --project PROJECT-NAME} --update-tags-operation UPDATE-TAGS-OPERATION | @UPDATE-TAGS-OPERATION-FILE
+cpdctl project tag update {--project-id PROJECT-ID | --project PROJECT-NAME} --update-tags-operation (UPDATE-TAGS-OPERATION | @UPDATE-TAGS-OPERATION-FILE) [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18328,7 +18328,7 @@ cpdctl space create [command options]
 Deletes the space with the specified identifier.
 
 ```sh
-cpdctl space delete {--space-id SPACE-ID | --space SPACE-NAME}
+cpdctl space delete {--space-id SPACE-ID | --space SPACE-NAME} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18357,7 +18357,7 @@ cpdctl space delete {--space-id SPACE-ID | --space SPACE-NAME}
 Retrieves the space with the specified identifier.
 
 ```sh
-cpdctl space get {--space-id SPACE-ID | --space SPACE-NAME} [--include INCLUDE]
+cpdctl space get {--space-id SPACE-ID | --space SPACE-NAME} [--include INCLUDE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18389,7 +18389,7 @@ Available fields:
 Gather deployment space settings for Orchestration Pipelines.
 
 ```sh
-cpdctl space get-pipeline-settings [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl space get-pipeline-settings [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18413,7 +18413,7 @@ cpdctl space get-pipeline-settings [{--space-id SPACE-ID | --space SPACE-NAME}]
 Retrieves the space list.
 
 ```sh
-cpdctl space list [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--id ID] [--tags TAGS] [--include INCLUDE] [--member MEMBER] [--roles ROLES] [--bss-account-id BSS-ACCOUNT-ID] [--sub-name SUB-NAME] [--compute-crn COMPUTE-CRN] [--type TYPE]
+cpdctl space list [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--id ID] [--tags TAGS] [--include INCLUDE] [--member MEMBER] [--roles ROLES] [--bss-account-id BSS-ACCOUNT-ID] [--sub-name SUB-NAME] [--compute-crn COMPUTE-CRN] [--type TYPE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18499,7 +18499,7 @@ Partially update this space. Allowed paths are:
   - /stage/name.
 
 ```sh
-cpdctl space update {--space-id SPACE-ID | --space SPACE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | (--compute COMPUTE | @COMPUTE-FILE) --description DESCRIPTION --name NAME --stage-name STAGE-NAME}
+cpdctl space update {--space-id SPACE-ID | --space SPACE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | (--compute COMPUTE | @COMPUTE-FILE) --description DESCRIPTION --name NAME --stage-name STAGE-NAME} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18541,7 +18541,7 @@ cpdctl space update {--space-id SPACE-ID | --space SPACE-NAME} {--json-patch (JS
 Update deployment space settings for Orchestration Pipelines.
 
 ```sh
-cpdctl space update-pipeline-settings [--allowed-operational-scope WIDE_SCOPE | INNER_SCOPE] [--default-pipeline-job-name-suffix DEFAULT-PIPELINE-JOB-NAME-SUFFIX] [{--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME}] [--jobs-deletion-mode DELETE_PIPELINE_JOBS | LEAVE_ORPHAN_JOBS] [--nested-job-execution-mode INLINE_MODE | INDEPENDENT_JOBS_MODE] [--pipeline-save-mode AUTO_SAVE | MANUAL_SAVE] [--resource-reference-type SEARCH_BY_ATTRIBUTES | EXACT_BY_ID] [--runner-type PIPELINE_RUNNER | DATASTAGE_OPTIMIZED_RUNNER] [{--space-id SPACE-ID | --space SPACE-NAME}] --settings SETTINGS
+cpdctl space update-pipeline-settings [--allowed-operational-scope WIDE_SCOPE | INNER_SCOPE] [--default-pipeline-job-name-suffix DEFAULT-PIPELINE-JOB-NAME-SUFFIX] [{--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME}] [--jobs-deletion-mode DELETE_PIPELINE_JOBS | LEAVE_ORPHAN_JOBS] [--nested-job-execution-mode INLINE_MODE | INDEPENDENT_JOBS_MODE] [--pipeline-save-mode AUTO_SAVE | MANUAL_SAVE] [--resource-reference-type SEARCH_BY_ATTRIBUTES | EXACT_BY_ID] [--runner-type PIPELINE_RUNNER | DATASTAGE_OPTIMIZED_RUNNER] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet] --settings SETTINGS
 ```
 
 #### Command options
@@ -18622,7 +18622,7 @@ cpdctl space wait --space-id SPACE_ID
 Adds a member to the specified space.
 
 ```sh
-cpdctl space member create {--space-id SPACE-ID | --space SPACE-NAME} --members MEMBERS | @MEMBERS-FILE
+cpdctl space member create {--space-id SPACE-ID | --space SPACE-NAME} --members (MEMBERS | @MEMBERS-FILE) [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18650,7 +18650,7 @@ cpdctl space member create {--space-id SPACE-ID | --space SPACE-NAME} --members 
 Removes the specified member from the space.
 
 ```sh
-cpdctl space member delete {--space-id SPACE-ID | --space SPACE-NAME} --member-id MEMBER-ID
+cpdctl space member delete {--space-id SPACE-ID | --space SPACE-NAME} --member-id MEMBER-ID [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18678,7 +18678,7 @@ cpdctl space member delete {--space-id SPACE-ID | --space SPACE-NAME} --member-i
 Retrieves the member information for the member and space with the specified identifiers.
 
 ```sh
-cpdctl space member get {--space-id SPACE-ID | --space SPACE-NAME} --member-id MEMBER-ID
+cpdctl space member get {--space-id SPACE-ID | --space SPACE-NAME} --member-id MEMBER-ID [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18706,7 +18706,7 @@ cpdctl space member get {--space-id SPACE-ID | --space SPACE-NAME} --member-id M
 Retrieves the member list for the specified space.
 
 ```sh
-cpdctl space member list {--space-id SPACE-ID | --space SPACE-NAME} [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--type TYPE] [--role ROLE] [--state STATE]
+cpdctl space member list {--space-id SPACE-ID | --space SPACE-NAME} [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--type TYPE] [--role ROLE] [--state STATE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18765,7 +18765,7 @@ Partially update the member selected with the specified identifier. Allowed path
   - /state.
 
 ```sh
-cpdctl space member update {--space-id SPACE-ID | --space SPACE-NAME} --member-id MEMBER-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --role viewer | editor | admin | job_operator --state active | pending}
+cpdctl space member update {--space-id SPACE-ID | --space SPACE-NAME} --member-id MEMBER-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --role viewer | editor | admin | job_operator --state active | pending} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18802,7 +18802,7 @@ cpdctl space member update {--space-id SPACE-ID | --space SPACE-NAME} --member-i
 Create a new AI service with the given payload. A AI service is some code that can be deployed as a deployment.
 
 ```sh
-cpdctl wx-ai ai-service create {--space-id SPACE-ID | --space SPACE-NAME} --name NAME {--software-spec (SOFTWARE-SPEC | @SOFTWARE-SPEC-FILE) | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME} [--description DESCRIPTION] [--tags TAGS] [--code-type python] [--documentation (DOCUMENTATION | @DOCUMENTATION-FILE) | (--documentation-request DOCUMENTATION-REQUEST | @DOCUMENTATION-REQUEST-FILE) (--documentation-response DOCUMENTATION-RESPONSE | @DOCUMENTATION-RESPONSE-FILE)] [--custom CUSTOM | @CUSTOM-FILE] [--tooling TOOLING | @TOOLING-FILE]
+cpdctl wx-ai ai-service create {--space-id SPACE-ID | --space SPACE-NAME} --name NAME --version VERSION {--software-spec (SOFTWARE-SPEC | @SOFTWARE-SPEC-FILE) | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME} [--description DESCRIPTION] [--tags TAGS] [--code-type python] [--documentation (DOCUMENTATION | @DOCUMENTATION-FILE) | (--documentation-request DOCUMENTATION-REQUEST | @DOCUMENTATION-REQUEST-FILE) (--documentation-response DOCUMENTATION-RESPONSE | @DOCUMENTATION-RESPONSE-FILE)] [--custom CUSTOM | @CUSTOM-FILE] [--tooling TOOLING | @TOOLING-FILE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18875,7 +18875,7 @@ Create a new AI service revision. The current metadata and content for
 `id` will be taken and a new revision created. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl wx-ai ai-service create-revision --ai-service-id AI-SERVICE-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE]
+cpdctl wx-ai ai-service create-revision --ai-service-id AI-SERVICE-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18915,7 +18915,7 @@ cpdctl wx-ai ai-service create-revision --ai-service-id AI-SERVICE-ID [{--space-
 Delete the AI service with the specified identifier. This will delete all revisions of this flow as well. For each revision all attachments will also be deleted.
 
 ```sh
-cpdctl wx-ai ai-service delete --ai-service-id AI-SERVICE-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai ai-service delete --ai-service-id AI-SERVICE-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18951,7 +18951,7 @@ cpdctl wx-ai ai-service delete --ai-service-id AI-SERVICE-ID [{--space-id SPACE-
 Download the AI service code. It is possible to download the `code` for a given revision of the `flow`. AI services expect a zip file that contains the code files that make up the flow.
 
 ```sh
-cpdctl wx-ai ai-service download-code --ai-service-id AI-SERVICE-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV]
+cpdctl wx-ai ai-service download-code --ai-service-id AI-SERVICE-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--region REGION] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
@@ -18996,7 +18996,7 @@ Retrieve the AI service with the specified identifier. If `rev` query parameter 
 `rev=latest` will fetch the latest revision. A call with `rev={revision_number}` will fetch the given revision_number record. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl wx-ai ai-service get --ai-service-id AI-SERVICE-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV]
+cpdctl wx-ai ai-service get --ai-service-id AI-SERVICE-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19036,7 +19036,7 @@ cpdctl wx-ai ai-service get --ai-service-id AI-SERVICE-ID [{--space-id SPACE-ID 
 Retrieve the AI services for the specified space or project.
 
 ```sh
-cpdctl wx-ai ai-service list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH]
+cpdctl wx-ai ai-service list --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19091,7 +19091,7 @@ cpdctl wx-ai ai-service list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--pr
 Retrieve the AI service revisions.
 
 ```sh
-cpdctl wx-ai ai-service list-revisions --ai-service-id AI-SERVICE-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
+cpdctl wx-ai ai-service list-revisions --ai-service-id AI-SERVICE-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19146,7 +19146,7 @@ Update the AI service with the provided patch data. The following fields can be 
 - `/custom`.
 
 ```sh
-cpdctl wx-ai ai-service update --ai-service-id AI-SERVICE-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai ai-service update --ai-service-id AI-SERVICE-ID --version VERSION {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19198,7 +19198,7 @@ cpdctl wx-ai ai-service update --ai-service-id AI-SERVICE-ID {--json-patch (JSON
 Upload the flow code. AI services expect a zip file that contains the code files that make up the flow.
 
 ```sh
-cpdctl wx-ai ai-service upload-code --ai-service-id AI-SERVICE-ID --upload-code UPLOAD-CODE [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai ai-service upload-code --ai-service-id AI-SERVICE-ID --upload-code UPLOAD-CODE --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19349,7 +19349,7 @@ See here for [details about specifying connections](#datareferences). It can als
 Cancel or delete the specified AutoAI RAG run, once deleted all trace of the run job is gone.
 
 ```sh
-cpdctl wx-ai autoai-rag delete --id ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE]
+cpdctl wx-ai autoai-rag delete --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19391,7 +19391,7 @@ cpdctl wx-ai autoai-rag delete --id ID [{--space-id SPACE-ID | --space SPACE-NAM
 Get the results of an AutoAI RAG run, or details if the job failed.
 
 ```sh
-cpdctl wx-ai autoai-rag get --id ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai autoai-rag get --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19429,7 +19429,7 @@ Retrieve the list of AutoAI RAG requests for the specified space or project.
 This operation does not save the history, any requests that were deleted or purged will not appear in this list.
 
 ```sh
-cpdctl wx-ai autoai-rag list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
+cpdctl wx-ai autoai-rag list --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19510,7 +19510,7 @@ In order to deploy a custom foundation model using one of the models in this lis
 Since CloudPak for Data `4.8.4`.
 
 ```sh
-cpdctl wx-ai custom-foundation-model list [--start START] [--limit LIMIT]
+cpdctl wx-ai custom-foundation-model list --version VERSION [--start START] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19537,7 +19537,7 @@ Infer the next chat message for a given deployment. The deployment must referenc
 If a `serving_name` is used then it must match the `serving_name` that is returned in the `inference` section when the deployment was created.
 
 ```sh
-cpdctl wx-ai deployment chat --id-or-name ID-OR-NAME --messages MESSAGES | @MESSAGES-FILE [--context CONTEXT]
+cpdctl wx-ai deployment chat --id-or-name ID-OR-NAME --messages (MESSAGES | @MESSAGES-FILE) --version VERSION [--context CONTEXT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19574,7 +19574,7 @@ Infer the next chat message for a given deployment. This operation will return t
 If a `serving_name` is used then it must match the `serving_name` that is returned in the `inference` section when the deployment was created.
 
 ```sh
-cpdctl wx-ai deployment chat-stream --id-or-name ID-OR-NAME --messages MESSAGES | @MESSAGES-FILE [--context CONTEXT]
+cpdctl wx-ai deployment chat-stream --id-or-name ID-OR-NAME --messages (MESSAGES | @MESSAGES-FILE) --version VERSION [--context CONTEXT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19721,7 +19721,7 @@ The 'serving_name' can be provided in the 'online.parameters'.
 Delete the deployment with the specified identifier.
 
 ```sh
-cpdctl wx-ai deployment delete --deployment-id DEPLOYMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai deployment delete --deployment-id DEPLOYMENT-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19757,7 +19757,7 @@ cpdctl wx-ai deployment delete --deployment-id DEPLOYMENT-ID [{--space-id SPACE-
 Retrieve the deployment details with the specified identifier.
 
 ```sh
-cpdctl wx-ai deployment get --deployment-id DEPLOYMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai deployment get --deployment-id DEPLOYMENT-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19793,7 +19793,7 @@ cpdctl wx-ai deployment get --deployment-id DEPLOYMENT-ID [{--space-id SPACE-ID 
 Retrieve the list of deployments for the specified space or project.
 
 ```sh
-cpdctl wx-ai deployment list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--serving-name SERVING-NAME] [--tag-value TAG-VALUE] [--asset-id ASSET-ID] [--prompt-template-id PROMPT-TEMPLATE-ID] [--name NAME] [--type TYPE] [--state STATE] [--conflict=CONFLICT]
+cpdctl wx-ai deployment list --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--serving-name SERVING-NAME] [--tag-value TAG-VALUE] [--asset-id ASSET-ID] [--prompt-template-id PROMPT-TEMPLATE-ID] [--name NAME] [--type TYPE] [--state STATE] [--conflict=CONFLICT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20136,7 +20136,7 @@ The PATCH operation with path specified as `/online/parameters` can be used to u
 Patching `/asset` or `/prompt_template` should normally be used in the case when these fields already exist.
 
 ```sh
-cpdctl wx-ai deployment update --deployment-id DEPLOYMENT-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--asset ASSET | @ASSET-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai deployment update --deployment-id DEPLOYMENT-ID --version VERSION {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--asset ASSET | @ASSET-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20221,7 +20221,7 @@ cpdctl wx-ai deployment wait --deployment-id DEPLOYMENT_ID --space-id SPACE_ID
 Create a document extraction.
 
 ```sh
-cpdctl wx-ai document-extraction create --name NAME --document-references DOCUMENT-REFERENCES | @DOCUMENT-REFERENCES-FILE {--results-reference (RESULTS-REFERENCE | @RESULTS-REFERENCE-FILE) | --results-reference-type github (--results-reference-location RESULTS-REFERENCE-LOCATION | @RESULTS-REFERENCE-LOCATION-FILE)} [--tags TAGS] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl wx-ai document-extraction create --name NAME --document-references (DOCUMENT-REFERENCES | @DOCUMENT-REFERENCES-FILE) --version VERSION {--results-reference (RESULTS-REFERENCE | @RESULTS-REFERENCE-FILE) | --results-reference-type github (--results-reference-location RESULTS-REFERENCE-LOCATION | @RESULTS-REFERENCE-LOCATION-FILE)} [--tags TAGS] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20275,7 +20275,7 @@ cpdctl wx-ai document-extraction create --name NAME --document-references DOCUME
 Cancel the specified document extraction and remove it.
 
 ```sh
-cpdctl wx-ai document-extraction delete --id ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--hard-delete=HARD-DELETE]
+cpdctl wx-ai document-extraction delete --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--hard-delete=HARD-DELETE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20317,7 +20317,7 @@ cpdctl wx-ai document-extraction delete --id ID [{--project-id PROJECT-ID | --pr
 Get document extraction.
 
 ```sh
-cpdctl wx-ai document-extraction get --id ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl wx-ai document-extraction get --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20353,7 +20353,7 @@ cpdctl wx-ai document-extraction get --id ID [{--project-id PROJECT-ID | --proje
 Get document extractions.
 
 ```sh
-cpdctl wx-ai document-extraction list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl wx-ai document-extraction list --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20530,7 +20530,7 @@ The holdout/test datasets. The maximum length is 20 items. The minimum length is
 Delete a fine tuning job if it exists, once deleted all trace of the job is gone.
 
 ```sh
-cpdctl wx-ai fine-tuning delete --id ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE]
+cpdctl wx-ai fine-tuning delete --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20572,7 +20572,7 @@ cpdctl wx-ai fine-tuning delete --id ID [{--space-id SPACE-ID | --space SPACE-NA
 Get the results of a fine tuning job, or details if the job failed.
 
 ```sh
-cpdctl wx-ai fine-tuning get --id ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai fine-tuning get --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20608,7 +20608,7 @@ cpdctl wx-ai fine-tuning get --id ID [{--space-id SPACE-ID | --space SPACE-NAME}
 Retrieve the list of fine tuning jobs for the specified space or project.
 
 ```sh
-cpdctl wx-ai fine-tuning list [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--state STATE] [--type ilab] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai fine-tuning list --version VERSION [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--state STATE] [--type ilab] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20673,7 +20673,7 @@ cpdctl wx-ai fine-tuning list [--start START | --all-pages] [--limit LIMIT] [--t
 Retrieve the list of deployed foundation models.
 
 ```sh
-cpdctl wx-ai foundation-model list-models [--start START | --all-pages] [--limit LIMIT] [--filters FILTERS] [--tech-preview=TECH-PREVIEW]
+cpdctl wx-ai foundation-model list-models --version VERSION [--start START | --all-pages] [--limit LIMIT] [--filters FILTERS] [--tech-preview=TECH-PREVIEW] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20738,7 +20738,7 @@ cpdctl wx-ai foundation-model list-models [--start START | --all-pages] [--limit
 Retrieve the list of tasks that are supported by the foundation models.
 
 ```sh
-cpdctl wx-ai foundation-model list-tasks [--start START | --all-pages] [--limit LIMIT]
+cpdctl wx-ai foundation-model list-tasks --version VERSION [--start START | --all-pages] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20768,7 +20768,7 @@ cpdctl wx-ai foundation-model list-tasks [--start START | --all-pages] [--limit 
 This adds new chat items to the given prompt.
 
 ```sh
-cpdctl wx-ai prompt add-chat-item --prompt-id PROMPT-ID --chat-item CHAT-ITEM | @CHAT-ITEM-FILE [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai prompt add-chat-item --prompt-id PROMPT-ID --chat-item (CHAT-ITEM | @CHAT-ITEM-FILE) --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20919,7 +20919,7 @@ cpdctl wx-ai prompt create [command options]
 This delets a prompt / prompt template with the given id.
 
 ```sh
-cpdctl wx-ai prompt delete --prompt-id PROMPT-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl wx-ai prompt delete --prompt-id PROMPT-ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20955,7 +20955,7 @@ cpdctl wx-ai prompt delete --prompt-id PROMPT-ID [{--project-id PROJECT-ID | --p
 This retrieves a prompt / prompt template with the given id.
 
 ```sh
-cpdctl wx-ai prompt get --prompt-id PROMPT-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--restrict-model-parameters RESTRICT-MODEL-PARAMETERS]
+cpdctl wx-ai prompt get --prompt-id PROMPT-ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--restrict-model-parameters RESTRICT-MODEL-PARAMETERS] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20995,7 +20995,7 @@ cpdctl wx-ai prompt get --prompt-id PROMPT-ID [{--project-id PROJECT-ID | --proj
 Computes the inference input string based on state of a prompt. Optionally replaces template params.
 
 ```sh
-cpdctl wx-ai prompt get-input --prompt-id PROMPT-ID [--input INPUT] [--prompt-variables PROMPT-VARIABLES | @PROMPT-VARIABLES-FILE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai prompt get-input --prompt-id PROMPT-ID --version VERSION [--input INPUT] [--prompt-variables PROMPT-VARIABLES | @PROMPT-VARIABLES-FILE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21039,7 +21039,7 @@ cpdctl wx-ai prompt get-input --prompt-id PROMPT-ID [--input INPUT] [--prompt-va
 Retrieves the current locked state of a prompt.
 
 ```sh
-cpdctl wx-ai prompt get-lock --prompt-id PROMPT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai prompt get-lock --prompt-id PROMPT-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21176,7 +21176,7 @@ cpdctl wx-ai prompt update [command options]
 Modifies the current locked state of a prompt.
 
 ```sh
-cpdctl wx-ai prompt update-lock --prompt-id PROMPT-ID --locked=LOCKED [--lock-type edit | governance] [--locked-by LOCKED-BY] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--force=FORCE]
+cpdctl wx-ai prompt update-lock --prompt-id PROMPT-ID --locked=LOCKED --version VERSION [--lock-type edit | governance] [--locked-by LOCKED-BY] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--force=FORCE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21232,7 +21232,7 @@ cpdctl wx-ai prompt update-lock --prompt-id PROMPT-ID --locked=LOCKED [--lock-ty
 This adds new chat items to the given entry.
 
 ```sh
-cpdctl wx-ai prompt-session add-chat-item --session-id SESSION-ID --entry-id ENTRY-ID --chat-item CHAT-ITEM | @CHAT-ITEM-FILE [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai prompt-session add-chat-item --session-id SESSION-ID --entry-id ENTRY-ID --chat-item (CHAT-ITEM | @CHAT-ITEM-FILE) --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21352,7 +21352,7 @@ cpdctl wx-ai prompt-session add-entry [command options]
 This creates a new prompt session.
 
 ```sh
-cpdctl wx-ai prompt-session create --name NAME [--id ID] [--description DESCRIPTION] [--created-at CREATED-AT] [--created-by CREATED-BY] [--last-updated-at LAST-UPDATED-AT] [--last-updated-by LAST-UPDATED-BY] [--lock (LOCK | @LOCK-FILE) | --lock-locked=LOCK-LOCKED --lock-lock-type edit | governance --lock-locked-by LOCK-LOCKED-BY] [--prompts PROMPTS | @PROMPTS-FILE] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai prompt-session create --name NAME --version VERSION [--id ID] [--description DESCRIPTION] [--created-at CREATED-AT] [--created-by CREATED-BY] [--last-updated-at LAST-UPDATED-AT] [--last-updated-by LAST-UPDATED-BY] [--lock (LOCK | @LOCK-FILE) | --lock-locked=LOCK-LOCKED --lock-lock-type edit | governance --lock-locked-by LOCK-LOCKED-BY] [--prompts PROMPTS | @PROMPTS-FILE] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21428,7 +21428,7 @@ cpdctl wx-ai prompt-session create --name NAME [--id ID] [--description DESCRIPT
 This deletes a prompt session with the given id.
 
 ```sh
-cpdctl wx-ai prompt-session delete --session-id SESSION-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai prompt-session delete --session-id SESSION-ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21457,7 +21457,7 @@ cpdctl wx-ai prompt-session delete --session-id SESSION-ID [{--project-id PROJEC
 This deletes a prompt session entry with the given id.
 
 ```sh
-cpdctl wx-ai prompt-session delete-entry --session-id SESSION-ID --entry-id ENTRY-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai prompt-session delete-entry --session-id SESSION-ID --entry-id ENTRY-ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21490,7 +21490,7 @@ cpdctl wx-ai prompt-session delete-entry --session-id SESSION-ID --entry-id ENTR
 This retrieves a prompt session with the given id.
 
 ```sh
-cpdctl wx-ai prompt-session get --session-id SESSION-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--prefetch=PREFETCH]
+cpdctl wx-ai prompt-session get --session-id SESSION-ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--prefetch=PREFETCH] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21525,7 +21525,7 @@ cpdctl wx-ai prompt-session get --session-id SESSION-ID [{--project-id PROJECT-I
 This retrieves a prompt session entry with the given id.
 
 ```sh
-cpdctl wx-ai prompt-session get-entry --session-id SESSION-ID --entry-id ENTRY-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai prompt-session get-entry --session-id SESSION-ID --entry-id ENTRY-ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21558,7 +21558,7 @@ cpdctl wx-ai prompt-session get-entry --session-id SESSION-ID --entry-id ENTRY-I
 Retrieves the current locked state of a prompt session.
 
 ```sh
-cpdctl wx-ai prompt-session get-lock --session-id SESSION-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai prompt-session get-lock --session-id SESSION-ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21587,7 +21587,7 @@ cpdctl wx-ai prompt-session get-lock --session-id SESSION-ID [{--project-id PROJ
 List entries from a given session.
 
 ```sh
-cpdctl wx-ai prompt-session list-entries --session-id SESSION-ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--bookmark BOOKMARK] [--limit LIMIT]
+cpdctl wx-ai prompt-session list-entries --session-id SESSION-ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--bookmark BOOKMARK] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21624,7 +21624,7 @@ cpdctl wx-ai prompt-session list-entries --session-id SESSION-ID [{--project-id 
 This updates a prompt session with the given id.
 
 ```sh
-cpdctl wx-ai prompt-session update --session-id SESSION-ID [--name NAME] [--description DESCRIPTION] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai prompt-session update --session-id SESSION-ID --version VERSION [--name NAME] [--description DESCRIPTION] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21661,7 +21661,7 @@ cpdctl wx-ai prompt-session update --session-id SESSION-ID [--name NAME] [--desc
 Modifies the current locked state of a prompt session.
 
 ```sh
-cpdctl wx-ai prompt-session update-lock --session-id SESSION-ID --locked=LOCKED [--lock-type edit | governance] [--locked-by LOCKED-BY] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--force=FORCE]
+cpdctl wx-ai prompt-session update-lock --session-id SESSION-ID --locked=LOCKED --version VERSION [--lock-type edit | governance] [--locked-by LOCKED-BY] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--force=FORCE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21710,7 +21710,7 @@ cpdctl wx-ai prompt-session update-lock --session-id SESSION-ID --locked=LOCKED 
 Create a synthetic data generation job.
 
 ```sh
-cpdctl wx-ai synthetic-data-generation create --name NAME [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-type DATA-REFERENCE-TYPE (--data-reference-location DATA-REFERENCE-LOCATION | @DATA-REFERENCE-LOCATION-FILE) (--data-reference-connection DATA-REFERENCE-CONNECTION | @DATA-REFERENCE-CONNECTION-FILE) --data-reference-id DATA-REFERENCE-ID] [--results-reference (RESULTS-REFERENCE | @RESULTS-REFERENCE-FILE) | --results-reference-type RESULTS-REFERENCE-TYPE (--results-reference-location RESULTS-REFERENCE-LOCATION | @RESULTS-REFERENCE-LOCATION-FILE) (--results-reference-connection RESULTS-REFERENCE-CONNECTION | @RESULTS-REFERENCE-CONNECTION-FILE) --results-reference-id RESULTS-REFERENCE-ID]
+cpdctl wx-ai synthetic-data-generation create --name NAME --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-type DATA-REFERENCE-TYPE (--data-reference-location DATA-REFERENCE-LOCATION | @DATA-REFERENCE-LOCATION-FILE) (--data-reference-connection DATA-REFERENCE-CONNECTION | @DATA-REFERENCE-CONNECTION-FILE) --data-reference-id DATA-REFERENCE-ID] [--results-reference (RESULTS-REFERENCE | @RESULTS-REFERENCE-FILE) | --results-reference-type RESULTS-REFERENCE-TYPE (--results-reference-location RESULTS-REFERENCE-LOCATION | @RESULTS-REFERENCE-LOCATION-FILE) (--results-reference-connection RESULTS-REFERENCE-CONNECTION | @RESULTS-REFERENCE-CONNECTION-FILE) --results-reference-id RESULTS-REFERENCE-ID] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21788,7 +21788,7 @@ The possible types will depend on the API and platform being used.
 Cancel the synthetic data generation and remove it.
 
 ```sh
-cpdctl wx-ai synthetic-data-generation delete --id ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--hard-delete=HARD-DELETE]
+cpdctl wx-ai synthetic-data-generation delete --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--hard-delete=HARD-DELETE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21830,7 +21830,7 @@ cpdctl wx-ai synthetic-data-generation delete --id ID [{--project-id PROJECT-ID 
 Get synthetic data generation job.
 
 ```sh
-cpdctl wx-ai synthetic-data-generation get --id ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl wx-ai synthetic-data-generation get --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21866,7 +21866,7 @@ cpdctl wx-ai synthetic-data-generation get --id ID [{--project-id PROJECT-ID | -
 Get synthetic data generation jobs.
 
 ```sh
-cpdctl wx-ai synthetic-data-generation list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl wx-ai synthetic-data-generation list --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21898,7 +21898,7 @@ cpdctl wx-ai synthetic-data-generation list [{--project-id PROJECT-ID | --projec
 Create a taxonomy job.
 
 ```sh
-cpdctl wx-ai taxonomy create --name NAME [--description DESCRIPTION] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-type DATA-REFERENCE-TYPE (--data-reference-location DATA-REFERENCE-LOCATION | @DATA-REFERENCE-LOCATION-FILE) (--data-reference-connection DATA-REFERENCE-CONNECTION | @DATA-REFERENCE-CONNECTION-FILE) --data-reference-id DATA-REFERENCE-ID]
+cpdctl wx-ai taxonomy create --name NAME --version VERSION [--description DESCRIPTION] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-type DATA-REFERENCE-TYPE (--data-reference-location DATA-REFERENCE-LOCATION | @DATA-REFERENCE-LOCATION-FILE) (--data-reference-connection DATA-REFERENCE-CONNECTION | @DATA-REFERENCE-CONNECTION-FILE) --data-reference-id DATA-REFERENCE-ID] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21958,7 +21958,7 @@ The possible types will depend on the API and platform being used.
 Cancel or delete the taxonomy job.
 
 ```sh
-cpdctl wx-ai taxonomy delete --id ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--hard-delete=HARD-DELETE]
+cpdctl wx-ai taxonomy delete --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--hard-delete=HARD-DELETE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -22000,7 +22000,7 @@ cpdctl wx-ai taxonomy delete --id ID [{--project-id PROJECT-ID | --project PROJE
 Get taxonomy job.
 
 ```sh
-cpdctl wx-ai taxonomy get --id ID [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl wx-ai taxonomy get --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -22036,7 +22036,7 @@ cpdctl wx-ai taxonomy get --id ID [{--project-id PROJECT-ID | --project PROJECT-
 Get taxonomy jobs.
 
 ```sh
-cpdctl wx-ai taxonomy list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}]
+cpdctl wx-ai taxonomy list --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -22070,7 +22070,7 @@ Generate embeddings from text input.
 See the [documentation](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-embed-overview.html?context=wx&audience=wdp) for a description of text embeddings.
 
 ```sh
-cpdctl wx-ai text calculate-embeddings --model-id MODEL-ID --inputs INPUTS [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS (--parameters-return-options PARAMETERS-RETURN-OPTIONS | @PARAMETERS-RETURN-OPTIONS-FILE)]
+cpdctl wx-ai text calculate-embeddings --model-id MODEL-ID --inputs INPUTS --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS (--parameters-return-options PARAMETERS-RETURN-OPTIONS | @PARAMETERS-RETURN-OPTIONS-FILE)] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -22640,7 +22640,7 @@ Depending on the users plan, and on the model being used, there may be an enforc
 Rerank texts based on some queries.
 
 ```sh
-cpdctl wx-ai text rerank --model-id MODEL-ID --inputs INPUTS | @INPUTS-FILE --query QUERY [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS (--parameters-return-options PARAMETERS-RETURN-OPTIONS | @PARAMETERS-RETURN-OPTIONS-FILE)]
+cpdctl wx-ai text rerank --model-id MODEL-ID --inputs (INPUTS | @INPUTS-FILE) --query QUERY --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS (--parameters-return-options PARAMETERS-RETURN-OPTIONS | @PARAMETERS-RETURN-OPTIONS-FILE)] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -22700,7 +22700,7 @@ If this value exceeds the 'maximum sequence length' (refer to the documentation 
 The text tokenize operation allows you to check the conversion of provided input to tokens for a given model. It splits text into words or sub-words, which then are converted to ids through a look-up table (vocabulary). Tokenization allows the model to have a reasonable vocabulary size.
 
 ```sh
-cpdctl wx-ai text tokenize --model-id MODEL-ID --input INPUT [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-return-tokens=PARAMETERS-RETURN-TOKENS]
+cpdctl wx-ai text tokenize --model-id MODEL-ID --input INPUT --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-return-tokens=PARAMETERS-RETURN-TOKENS] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -22834,7 +22834,7 @@ Note that this is not strictly required because if an
 Cancel the specified text extraction request and delete any associated results.
 
 ```sh
-cpdctl wx-ai text-extraction delete --id ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE]
+cpdctl wx-ai text-extraction delete --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -22878,7 +22878,7 @@ Retrieve the text extraction request with the specified identifier.
 Note that there is a retention period of 2 days. If this retention period is exceeded then the request will be deleted and the results no longer available. In this case this operation will return `404`.
 
 ```sh
-cpdctl wx-ai text-extraction get --id ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai text-extraction get --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -22916,7 +22916,7 @@ Retrieve the list of text extraction requests for the specified space or project
 This operation does not save the history, any requests that were deleted or purged will not appear in this list.
 
 ```sh
-cpdctl wx-ai text-extraction list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT]
+cpdctl wx-ai text-extraction list --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -22963,7 +22963,7 @@ cpdctl wx-ai text-extraction list [{--space-id SPACE-ID | --space SPACE-NAME}] [
 Generate forecasts, or predictions for future time points, given historical time series data.
 
 ```sh
-cpdctl wx-ai time-series forecast --model-id MODEL-ID --data DATA | @DATA-FILE {--schema (SCHEMA | @SCHEMA-FILE) | --schema-timestamp-column SCHEMA-TIMESTAMP-COLUMN --schema-id-columns SCHEMA-ID-COLUMNS --schema-freq SCHEMA-FREQ --schema-target-columns SCHEMA-TARGET-COLUMNS} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-prediction-length PARAMETERS-PREDICTION-LENGTH]
+cpdctl wx-ai time-series forecast --model-id MODEL-ID --data (DATA | @DATA-FILE) --version VERSION {--schema (SCHEMA | @SCHEMA-FILE) | --schema-timestamp-column SCHEMA-TIMESTAMP-COLUMN --schema-id-columns SCHEMA-ID-COLUMNS --schema-freq SCHEMA-FREQ --schema-target-columns SCHEMA-TARGET-COLUMNS} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-prediction-length PARAMETERS-PREDICTION-LENGTH] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -23167,7 +23167,7 @@ See here for [details about specifying connections](#datareferences).
 Cancel the specified training and remove it.
 
 ```sh
-cpdctl wx-ai training delete --training-id TRAINING-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE]
+cpdctl wx-ai training delete --training-id TRAINING-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -23209,7 +23209,7 @@ cpdctl wx-ai training delete --training-id TRAINING-ID [{--space-id SPACE-ID | -
 Retrieve the training with the specified identifier.
 
 ```sh
-cpdctl wx-ai training get --training-id TRAINING-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai training get --training-id TRAINING-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -23245,7 +23245,7 @@ cpdctl wx-ai training get --training-id TRAINING-ID [{--space-id SPACE-ID | --sp
 Retrieve the list of trainings for the specified space or project.
 
 ```sh
-cpdctl wx-ai training list [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--state queued | pending | running | storing | completed | failed | canceled] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}]
+cpdctl wx-ai training list --version VERSION [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--state queued | pending | running | storing | completed | failed | canceled] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -23336,7 +23336,7 @@ cpdctl wx-ai training wait --training-id TRAINING_ID [{--space-id SPACE-ID | --s
 This retrieves the details of an utility agent tool and contains information required for running the tool. Providing authentication and configuration params may return additional details.
 
 ```sh
-cpdctl wx-ai utility-agent-tools get --tool-id TOOL-ID
+cpdctl wx-ai utility-agent-tools get --tool-id TOOL-ID --version VERSION [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -23355,7 +23355,7 @@ cpdctl wx-ai utility-agent-tools get --tool-id TOOL-ID
 This retrieves the complete list of supported utility agent tools and contains information required for running each tool.
 
 ```sh
-cpdctl wx-ai utility-agent-tools list
+cpdctl wx-ai utility-agent-tools list --version VERSION [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 ##### Example
@@ -23370,7 +23370,7 @@ This runs a utility agent tool given an input and optional configuration paramet
 Some tools can choose to tailor the response based on the access token identity.
 
 ```sh
-cpdctl wx-ai utility-agent-tools run {--wx-utility-agent-tools-run-request (WX-UTILITY-AGENT-TOOLS-RUN-REQUEST | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-FILE) | --wx-utility-agent-tools-run-request-tool-name WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-TOOL-NAME --wx-utility-agent-tools-run-request-input WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-INPUT (--wx-utility-agent-tools-run-request-config WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG-FILE)}
+cpdctl wx-ai utility-agent-tools run --version VERSION {--wx-utility-agent-tools-run-request (WX-UTILITY-AGENT-TOOLS-RUN-REQUEST | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-FILE) | --wx-utility-agent-tools-run-request-tool-name WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-TOOL-NAME --wx-utility-agent-tools-run-request-input WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-INPUT (--wx-utility-agent-tools-run-request-config WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG-FILE)} [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -23400,7 +23400,7 @@ This runs a utility agent tool given an input and optional configuration paramet
 Some tools can choose to tailor the response based on the access token identity.
 
 ```sh
-cpdctl wx-ai utility-agent-tools run-by-name --tool-id TOOL-ID {--wx-utility-agent-tools-run-request (WX-UTILITY-AGENT-TOOLS-RUN-REQUEST | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-FILE) | --wx-utility-agent-tools-run-request-tool-name WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-TOOL-NAME --wx-utility-agent-tools-run-request-input WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-INPUT (--wx-utility-agent-tools-run-request-config WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG-FILE)}
+cpdctl wx-ai utility-agent-tools run-by-name --tool-id TOOL-ID --version VERSION {--wx-utility-agent-tools-run-request (WX-UTILITY-AGENT-TOOLS-RUN-REQUEST | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-FILE) | --wx-utility-agent-tools-run-request-tool-name WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-TOOL-NAME --wx-utility-agent-tools-run-request-input WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-INPUT (--wx-utility-agent-tools-run-request-config WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG-FILE)} [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -23494,7 +23494,7 @@ cpdctl wx-data access-control revoke-access [command options]
 `--name` (string)
 :   Resource Display Name. Provide either --id or --name. Required when --type is catalog, optional for other --type values
 
-`--subjects` (string)
+`--subjects` ([`SubjectPatch[]`](#cli-subject-patch-example-schema))
 :   (Required) Subjects (users or groups) whose access will be revoked. Format: For Users - user:userName For Groups - group:groupID. Multiple subjects can be revoked under same resource type (--type) separated by commas
 
 `--type` (string)
@@ -23579,7 +23579,7 @@ cpdctl wx-data bucket create [command options]
 
 #### Command options
 
-`--associated-catalog` ([`BucketCatalog`](#cli-bucket-catalog-example-schema))
+`--associated-catalog` ([`StorageCatalogPrototype`](#cli-storage-catalog-prototype-example-schema))
 :   Provide adhoc catalog details. Format: {"base_path":"/abc/def", "catalog_name":"sampleCatalog","catalog_type":"iceberg", "catalog_tags":["catalog_tag_1","catalog_tag_2"]}
 
 `--associated-catalog-base-path` (string)
@@ -23597,7 +23597,7 @@ cpdctl wx-data bucket create [command options]
 `--bucket-use` (string)
 :   Bucket use, to define whether the storage is for query monitoring or acl. Allowable values are: qhmm, acl
 
-`--connection` ([`StorageConnectionDetails`](#cli-storage-connection-details-example-schema))
+`--connection` ([`StorageDetails`](#cli-storage-details-example-schema))
 :   Provide storage connection details. Format: {"access_key":"<access_key>", "access_key_vault":{"key":"secret key", "secret_name":"secret name", "secret_urn":"secret urn"}, "account_name":"sample-storage", "application_id":"application-id", "auth_mode":"iam", "container_name":"sample-container", "directory_id":"directory-id", "endpoint":"https://s3.us-south.cloud-object-storage.appdomain.cloud/", "key_file":"key_file", "name":"sample-storage", "provider":"ibm-cos", "region":"us-south", "role_arn":"arn:aws:iam::5ssdd5467-002c-a4f8cac3f3f9", "sas_token":"<sas-token>", "secret_key":"secret_key", "secret_key_vault":{"key":"secret key", "secret_name":"secret name", "secret_urn":"secret urn"}, "vault_enabled":true}
 
 `--connection-access-key` (string)
@@ -23847,7 +23847,7 @@ cpdctl wx-data bucket list [--instance-id INSTANCE-ID]
 Fetch all objects from a given storage.
 
 ```sh
-cpdctl wx-data bucket list-objects --id ID --instance-id INSTANCE-ID [--path PATH] [--paginated=PAGINATED] [--page-size PAGE-SIZE] [--prefix PREFIX] [--start-after START-AFTER]
+cpdctl wx-data bucket list-objects --id ID --instance-id INSTANCE-ID [--path PATH] [--paginated=PAGINATED] [--page-size PAGE-SIZE] [--prefix PREFIX] [--start-after START-AFTER] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -23987,7 +23987,7 @@ cpdctl wx-data bucket upload --local-path LOCAL-PATH --storage-name STORAGE-NAME
 Get Common policy gateway (CPG) and  Data Access Service(CAS) endpoints.
 
 ```sh
-cpdctl wx-data component get-cas-cpg-endpoint [--instance-id INSTANCE-ID]
+cpdctl wx-data component get-cas-cpg-endpoint [--instance-id INSTANCE-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -24005,7 +24005,7 @@ cpdctl wx-data component get-cas-cpg-endpoint [--instance-id INSTANCE-ID]
 Get CES status.
 
 ```sh
-cpdctl wx-data component get-ces-status --instance-id INSTANCE-ID
+cpdctl wx-data component get-ces-status --instance-id INSTANCE-ID [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -24035,7 +24035,7 @@ cpdctl wx-data component get-console-status
 List all HMS metastores.
 
 ```sh
-cpdctl wx-data component get-hms-status --instance-id INSTANCE-ID
+cpdctl wx-data component get-hms-status --instance-id INSTANCE-ID [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -24492,7 +24492,7 @@ cpdctl wx-data engine attach --catalog-names CATALOG-NAMES [--name ENGINE-NAME] 
 Create a new engine.
 
 ```sh
-cpdctl wx-data engine create --origin native [--associated-catalogs ASSOCIATED-CATALOGS] [--configuration (CONFIGURATION | @CONFIGURATION-FILE) | --configuration-connection-string CONFIGURATION-CONNECTION-STRING --configuration-managed-by CONFIGURATION-MANAGED-BY --configuration-api-key CONFIGURATION-API-KEY (--configuration-coordinator CONFIGURATION-COORDINATOR | @CONFIGURATION-COORDINATOR-FILE) --configuration-size-config starter | cache_optimized | compute_optimized | small | medium | large | custom | lite | xlarge | xxlarge (--configuration-worker CONFIGURATION-WORKER | @CONFIGURATION-WORKER-FILE)] [--description DESCRIPTION] [--display-name DISPLAY-NAME] [--region REGION] [--tags TAGS] [--version VERSION] [--instance-id INSTANCE-ID]
+cpdctl wx-data engine create --origin native [--associated-catalogs ASSOCIATED-CATALOGS] [--configuration (CONFIGURATION | @CONFIGURATION-FILE) | --configuration-connection-string CONFIGURATION-CONNECTION-STRING --configuration-managed-by CONFIGURATION-MANAGED-BY --configuration-api-key CONFIGURATION-API-KEY (--configuration-coordinator CONFIGURATION-COORDINATOR | @CONFIGURATION-COORDINATOR-FILE) --configuration-size-config starter | cache_optimized | compute_optimized | small | medium | large | custom | lite | xlarge | xxlarge (--configuration-worker CONFIGURATION-WORKER | @CONFIGURATION-WORKER-FILE)] [--description DESCRIPTION] [--display-name DISPLAY-NAME] [--region REGION] [--tags TAGS] [--version VERSION] [--instance-id INSTANCE-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -25231,7 +25231,7 @@ Creates a heap or thread dump for a chosen Presto/Prestissimo worker or coordina
   Note: Operation only valid when QHMM is enabled, You may use 'cpdctl wx-data service get-qhmm-config' to know the QHMM status
 
 ```sh
-cpdctl wx-data service generate-engine-dump --instance-id INSTANCE-ID --dump-file-name DUMP-FILE-NAME --dump-type DUMP-TYPE --engine-id ENGINE-ID --pod-name POD-NAME
+cpdctl wx-data service generate-engine-dump --instance-id INSTANCE-ID --dump-file-name DUMP-FILE-NAME --dump-type DUMP-TYPE --engine-id ENGINE-ID --pod-name POD-NAME [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -25265,7 +25265,7 @@ cpdctl wx-data service generate-engine-dump --instance-id INSTANCE-ID --dump-fil
 Get configuration for qhmm bucket (Internal API).
 
 ```sh
-cpdctl wx-data service get-qhmm-config [--instance-id INSTANCE-ID]
+cpdctl wx-data service get-qhmm-config [--instance-id INSTANCE-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -25283,7 +25283,7 @@ cpdctl wx-data service get-qhmm-config [--instance-id INSTANCE-ID]
 Get all engine tables details.
 
 ```sh
-cpdctl wx-data service list-tables --engine-id ENGINE-ID [--type TYPE] [--connector-list CONNECTOR-LIST] [--catalog-name CATALOG-NAME] [--schema-name SCHEMA-NAME] [--instance-id INSTANCE-ID]
+cpdctl wx-data service list-tables --engine-id ENGINE-ID [--type TYPE] [--connector-list CONNECTOR-LIST] [--catalog-name CATALOG-NAME] [--schema-name SCHEMA-NAME] [--instance-id INSTANCE-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -26115,6 +26115,30 @@ The following example shows the format of the AIServiceDocumentation object.
   "response" : { }
 }
 ```
+### <a name="cli-access-policy-patch-example-schema">AccessPolicyPatch[]</a>
+
+The following example shows the format of the AccessPolicyPatch[] object.
+
+```json
+
+[ {
+  "resources" : [ {
+    "resource_id" : "presto01",
+    "resource_name" : "hive_data",
+    "resource_type" : "presto",
+    "id" : "presto01",
+    "name" : "hive_data",
+    "type" : "presto"
+  } ],
+  "subjects" : [ {
+    "permissions" : [ "exampleString", "anotherExampleString" ],
+    "subject" : {
+      "type" : "user",
+      "value" : "user1"
+    }
+  } ]
+} ]
+```
 ### <a name="cli-access-restrictions-example-schema">AccessRestrictions</a>
 
 The following example shows the format of the AccessRestrictions object.
@@ -26550,18 +26574,6 @@ The following example shows the format of the BaseSoftwareSpecificationReference
   "href" : "/v2/software_specifications/903d3fc4-2e46-4581-a23a-b4484e13519e"
 }
 ```
-### <a name="cli-bucket-catalog-example-schema">BucketCatalog</a>
-
-The following example shows the format of the BucketCatalog object.
-
-```json
-
-{
-  "catalog_name" : "sampleCatalog",
-  "catalog_tags" : [ "catalog_tag_1", "catalog_tag_2" ],
-  "catalog_type" : "iceberg"
-}
-```
 ### <a name="cli-bucket-details-example-schema">BucketDetails</a>
 
 The following example shows the format of the BucketDetails object.
@@ -26569,13 +26581,20 @@ The following example shows the format of the BucketDetails object.
 ```json
 
 {
-  "access_key" : "b9cbf248ea5c4c96947e64407108559j",
-  "bucket_name" : "sample-bucket",
-  "endpoint" : "https://s3.<region>.cloud-object-storage.appdomain.cloud/",
-  "key_file" : "key_file",
-  "provider" : "ibm_cos",
-  "region" : "us-south",
-  "secret_key" : "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"
+  "access_key" : "exampleString",
+  "account_name" : "exampleString",
+  "application_id" : "exampleString",
+  "container_name" : "exampleString",
+  "directory_id" : "exampleString",
+  "endpoint" : "exampleString",
+  "region" : "exampleString",
+  "secret_key" : "exampleString",
+  "auth_mode" : "aws_assume_role",
+  "role_arn" : "exampleString",
+  "path_style_enabled" : true,
+  "managed_by" : "exampleString",
+  "name" : "exampleString",
+  "type" : "adls_gen1"
 }
 ```
 ### <a name="cli-buildop-build-example-schema">BuildopBuild</a>
@@ -26806,6 +26825,17 @@ The following example shows the format of the BusinessMetric[] object.
     } ],
     "type" : "lower_limit"
   } ]
+} ]
+```
+### <a name="cli-catalog-operations-operations-items-example-schema">CatalogOperationsOperationsItems[]</a>
+
+The following example shows the format of the CatalogOperationsOperationsItems[] object.
+
+```json
+
+[ {
+  "action" : "add",
+  "catalog" : [ "exampleString", "anotherExampleString" ]
 } ]
 ```
 ### <a name="cli-chat-item-example-schema">ChatItem</a>
@@ -27250,15 +27280,14 @@ The following example shows the format of the DataSource[] object.
   "type" : "exampleString"
 } ]
 ```
-### <a name="cli-database-catalog-example-schema">DatabaseCatalog</a>
+### <a name="cli-database-catalog-prototype-example-schema">DatabaseCatalogPrototype</a>
 
-The following example shows the format of the DatabaseCatalog object.
+The following example shows the format of the DatabaseCatalogPrototype object.
 
 ```json
 
 {
   "catalog_name" : "sampleCatalog",
-  "catalog_tags" : [ "catalog_tag_1", "catalog_tag_2" ],
   "catalog_type" : "iceberg"
 }
 ```
@@ -27280,22 +27309,27 @@ The following example shows the format of the DatabaseConfigurationRequest objec
   "name" : "exampleString"
 }
 ```
-### <a name="cli-database-details-example-schema">DatabaseDetails</a>
+### <a name="cli-database-details-prototype-example-schema">DatabaseDetailsPrototype</a>
 
-The following example shows the format of the DatabaseDetails object.
+The following example shows the format of the DatabaseDetailsPrototype object.
 
 ```json
 
 {
-  "authentication_type" : "LDAP",
+  "authentication_type" : "LDAP, NTLM, ActiveDirectoryServicePrincipal, ActiveDirectoryPassword",
   "authentication_value" : "LDAP",
+  "authentication_value_key_vault" : {
+    "key" : "secret key",
+    "secret_name" : "secret name",
+    "secret_urn" : "secret urn"
+  },
   "broker_authentication_password" : "samplepassword",
   "broker_authentication_type" : "PASSWORD",
   "broker_authentication_user" : "sampleuser",
-  "broker_port" : 4553,
   "broker_host" : "samplehost",
-  "certificate" : "contents of a pem/crt file",
-  "certificate_extension" : "pem/crt",
+  "broker_port" : 4553,
+  "certificate" : "exampleCertificate",
+  "certificate_extension" : "pem",
   "connection_method" : "basic, apikey",
   "connection_mode" : "service_name",
   "connection_mode_value" : "orclpdb",
@@ -27307,16 +27341,24 @@ The following example shows the format of the DatabaseDetails object.
   "coordinator_port" : 4553,
   "cpd_hostname" : "samplecpdhostname",
   "credentials_key" : "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......",
-  "database_name" : "new_database",
-  "hostname" : "db2@<hostname>.com",
+  "name" : "new_database",
+  "domain_name" : "conops-mssql.conops.local",
+  "hostname" : "http://db2@localhost:9900.com",
   "hostname_in_certificate" : "samplehostname",
   "hosts" : "abc.com:1234,xyz.com:4321",
   "informix_server" : "ol_informix1410",
   "password" : "samplepassword",
+  "password_key_vault" : {
+    "key" : "secret key",
+    "secret_name" : "secret name",
+    "secret_urn" : "secret urn"
+  },
   "port" : 4553,
   "project_id" : "conops-bigquery",
   "sasl" : true,
   "sasl_mechanism" : "plain",
+  "schema_name" : "sampleSchema",
+  "schemas" : "redis__name",
   "service_api_key" : "sampleapikey",
   "service_hostname" : "api.dataplatform.dev.cloud.ibm.com",
   "service_password" : "samplepassword",
@@ -27325,10 +27367,34 @@ The following example shows the format of the DatabaseDetails object.
   "service_token_url" : "sampletoakenurl",
   "service_username" : "sampleusername",
   "ssl" : true,
-  "tables" : "kafka_table_name",
+  "sslcertificate_key_vault" : {
+    "key" : "secret key",
+    "secret_name" : "secret name",
+    "secret_urn" : "secret urn"
+  },
+  "tables" : "kafka_table_name, redis_table_name",
   "username" : "sampleuser",
+  "username_key_vault" : {
+    "key" : "secret key",
+    "secret_name" : "secret name",
+    "secret_urn" : "secret urn"
+  },
   "validate_server_certificate" : true,
-  "verify_host_name" : true
+  "vault_enabled" : true,
+  "verify_host_name" : true,
+  "warehouse_name" : "samplewrehouse"
+}
+```
+### <a name="cli-database-details-prototype-authentication-value-key-vault-example-schema">DatabaseDetailsPrototypeAuthenticationValueKeyVault</a>
+
+The following example shows the format of the DatabaseDetailsPrototypeAuthenticationValueKeyVault object.
+
+```json
+
+{
+  "key" : "secret key",
+  "secret_name" : "secret name",
+  "secret_urn" : "secret urn"
 }
 ```
 ### <a name="cli-database-registration-prototype-database-properties-items-example-schema">DatabaseRegistrationPrototypeDatabasePropertiesItems[]</a>
@@ -27360,6 +27426,29 @@ The following example shows the format of the DatasourceTypeProperty object.
 {
   "name" : "exampleString",
   "supported_products" : [ "exampleString", "anotherExampleString" ]
+}
+```
+### <a name="cli-db-connection-model-example-schema">DbConnectionModel</a>
+
+The following example shows the format of the DbConnectionModel object.
+
+```json
+
+{
+  "database_id" : "exampleString",
+  "db_type" : "exampleString",
+  "host" : "exampleString",
+  "port" : "exampleString",
+  "db_name" : "exampleString",
+  "db_username" : "exampleString",
+  "password" : "exampleString",
+  "authentication_value" : "exampleString",
+  "is_ssl" : false,
+  "cert_extension" : "exampleString",
+  "cert_content" : "exampleString",
+  "connection_mode" : "exampleString",
+  "connection_mode_value" : "exampleString",
+  "jdbc_url" : "exampleString"
 }
 ```
 ### <a name="cli-deployment-entity-request-batch-example-schema">DeploymentEntityRequestBatch</a>
@@ -27552,25 +27641,24 @@ The following example shows the format of the EmbeddingReturnOptions object.
   "input_text" : true
 }
 ```
-### <a name="cli-engine-details-body-example-schema">EngineDetailsBody</a>
+### <a name="cli-engine-details-example-schema">EngineDetails</a>
 
-The following example shows the format of the EngineDetailsBody object.
+The following example shows the format of the EngineDetails object.
 
 ```json
 
 {
-  "api_key" : "<api_key>",
   "connection_string" : "1.2.3.4",
+  "managed_by" : "fully/self",
+  "api_key" : "<api_key>",
   "coordinator" : {
     "node_type" : "worker",
-    "quantity" : 38
+    "quantity" : 1
   },
-  "instance_id" : "instance_id",
-  "managed_by" : "fully/self",
   "size_config" : "starter",
   "worker" : {
     "node_type" : "worker",
-    "quantity" : 38
+    "quantity" : 1
   }
 }
 ```
@@ -27617,6 +27705,20 @@ The following example shows the format of the EvaluationsSpecItem object.
   "id" : "exampleString",
   "input_target" : "exampleString",
   "metrics_names" : [ "exampleString", "anotherExampleString" ]
+}
+```
+### <a name="cli-execute-config-example-schema">ExecuteConfig</a>
+
+The following example shows the format of the ExecuteConfig object.
+
+```json
+
+{
+  "driver_memory" : "exampleString",
+  "driver_cores" : 1,
+  "executor_memory" : "exampleString",
+  "executor_cores" : 1,
+  "num_executors" : 1
 }
 ```
 ### <a name="cli-experiment-resource-entity-request-evaluation-definition-example-schema">ExperimentResourceEntityRequestEvaluationDefinition</a>
@@ -27842,6 +27944,20 @@ The following example shows the format of the FederatedLearningRemoteTraining ob
 {
   "id" : "1918939c-2660-4f6a-b727-4b402383dc63",
   "required" : true
+}
+```
+### <a name="cli-file-format-properties-example-schema">FileFormatProperties</a>
+
+The following example shows the format of the FileFormatProperties object.
+
+```json
+
+{
+  "encoding" : "exampleString",
+  "escape_character" : "exampleString",
+  "field_delimiter" : "exampleString",
+  "header" : true,
+  "line_delimiter" : "exampleString"
 }
 ```
 ### <a name="cli-file-system-copy-move-source-example-schema">FileSystemCopyMoveSource</a>
@@ -28244,11 +28360,11 @@ The following example shows the format of the IcebergSourceTable object.
 ```json
 
 {
-  "catalog_name" : "catalog",
-  "schema_name" : "test_schema",
-  "snapshot_id" : "8415204386124336000",
-  "table_name" : "test_table",
-  "warehouse_name" : "warehouse"
+  "schema_name" : "exampleString",
+  "table_name" : "exampleString",
+  "catalog_name" : "exampleString",
+  "warehouse_name" : "exampleString",
+  "snapshot_id" : 0
 }
 ```
 ### <a name="cli-included-packages-definition-example-schema">IncludedPackagesDefinition</a>
@@ -28262,78 +28378,16 @@ The following example shows the format of the IncludedPackagesDefinition object.
   "version" : "0.20.0"
 }
 ```
-### <a name="cli-ingestion-bucket-details-example-schema">IngestionBucketDetails</a>
+### <a name="cli-ingestion-schema-response-example-schema">IngestionSchemaResponse</a>
 
-The following example shows the format of the IngestionBucketDetails object.
-
-```json
-
-{
-  "access_key" : "access-key",
-  "bucket_name" : "sample-bucket",
-  "bucket_type" : "ibm_cos",
-  "endpoint" : "https://s3.us-south.cloud-object-storage.appdomain.cloud/",
-  "region" : "us-south",
-  "secret_key" : "secret-key"
-}
-```
-### <a name="cli-ingestion-execute-config-example-schema">IngestionExecuteConfig</a>
-
-The following example shows the format of the IngestionExecuteConfig object.
+The following example shows the format of the IngestionSchemaResponse object.
 
 ```json
 
 {
-  "driver_cores" : 1,
-  "driver_memory" : "2G",
-  "executor_cores" : 1,
-  "executor_memory" : "2G",
-  "num_executors" : 1
-}
-```
-### <a name="cli-ingestion-job-prototype-csv-property-example-schema">IngestionJobPrototypeCsvProperty</a>
-
-The following example shows the format of the IngestionJobPrototypeCsvProperty object.
-
-```json
-
-{
-  "encoding" : "utf-8",
-  "escape_character" : "\\",
-  "field_delimiter" : ",",
-  "header" : true,
-  "line_delimiter" : "\n"
-}
-```
-### <a name="cli-ingestion-source-database-example-schema">IngestionSourceDatabase</a>
-
-The following example shows the format of the IngestionSourceDatabase object.
-
-```json
-
-{
-  "authentication_type" : "LDAP",
-  "authentication_value" : "sampleapikey",
-  "cert_extension" : "samplepass",
-  "certificate" : "/path/to/certificate",
-  "connection_mode" : "test_table",
-  "connection_mode_value" : "test_table",
-  "database_id" : "psql12132",
-  "database_name" : "new_database",
-  "database_type" : "postgres",
-  "display_name" : "test_table",
-  "host" : "test_Catalog",
-  "informix_server" : "ol_informix1410",
-  "isssl" : true,
-  "password" : "spark123",
-  "port" : "test_Schema",
-  "sasl" : true,
-  "sasl_mechanism" : "plain",
-  "schema_name" : "test_schema",
-  "table_name" : "test_table",
-  "user_id" : "test_Schema",
-  "validate_server_certificate" : true,
-  "warehouse_name" : "samplewarehouse"
+  "field_id" : 0,
+  "header_name" : "exampleString",
+  "type" : "exampleString"
 }
 ```
 ### <a name="cli-input-data-array-example-schema">InputDataArray</a>
@@ -29322,7 +29376,7 @@ The following example shows the format of the NodeDescriptionBody object.
 
 {
   "node_type" : "worker",
-  "quantity" : 38
+  "quantity" : 1
 }
 ```
 ### <a name="cli-notebook-kernel-example-schema">NotebookKernel</a>
@@ -29519,6 +29573,17 @@ The following example shows the format of the OnlineDeploymentParameters object.
 {
   "serving_name" : "churn"
 }
+```
+### <a name="cli-option-example-schema">Option[]</a>
+
+The following example shows the format of the Option[] object.
+
+```json
+
+[ {
+  "key" : "exampleString",
+  "value" : "exampleString"
+} ]
 ```
 ### <a name="cli-organization-example-schema">Organization</a>
 
@@ -30052,6 +30117,21 @@ The following example shows the format of the RerankReturnOptions object.
   "query" : false
 }
 ```
+### <a name="cli-resource-details-example-schema">ResourceDetails[]</a>
+
+The following example shows the format of the ResourceDetails[] object.
+
+```json
+
+[ {
+  "resource_id" : "presto01",
+  "resource_name" : "hive_data",
+  "resource_type" : "presto",
+  "id" : "presto01",
+  "name" : "hive_data",
+  "type" : "presto"
+} ]
+```
 ### <a name="cli-results-location-example-schema">ResultsLocation</a>
 
 The following example shows the format of the ResultsLocation object.
@@ -30104,6 +30184,18 @@ The following example shows the format of the ScheduleStartTime object.
   "delay_unit" : "minute",
   "timestamp" : "2018-11-21T09:37:55.523Z",
   "type" : "relative"
+}
+```
+### <a name="cli-schema-transformation-example-schema">SchemaTransformation</a>
+
+The following example shows the format of the SchemaTransformation object.
+
+```json
+
+{
+  "old_column" : "old_column_name",
+  "new_column" : "new_column_name",
+  "new_type" : "string"
 }
 ```
 ### <a name="cli-scope-example-schema">Scope</a>
@@ -30237,6 +30329,77 @@ The following example shows the format of the SoftwareSpecificationEntitySoftwar
   }
 }
 ```
+### <a name="cli-source-details-example-schema">SourceDetails</a>
+
+The following example shows the format of the SourceDetails object.
+
+```json
+
+{
+  "file_paths" : "exampleString",
+  "file_type" : "csv",
+  "source_type" : "STORAGE",
+  "schema" : [ {
+    "field_id" : 0,
+    "header_name" : "exampleString",
+    "type" : "exampleString"
+  } ],
+  "schema_transformations" : [ {
+    "old_column" : "old_column_name",
+    "new_column" : "new_column_name",
+    "new_type" : "string"
+  } ],
+  "schema_name" : "exampleString",
+  "table_name" : "exampleString",
+  "bucket_details" : {
+    "access_key" : "exampleString",
+    "account_name" : "exampleString",
+    "application_id" : "exampleString",
+    "container_name" : "exampleString",
+    "directory_id" : "exampleString",
+    "endpoint" : "exampleString",
+    "region" : "exampleString",
+    "secret_key" : "exampleString",
+    "auth_mode" : "aws_assume_role",
+    "role_arn" : "exampleString",
+    "path_style_enabled" : true,
+    "managed_by" : "exampleString",
+    "name" : "exampleString",
+    "type" : "adls_gen1"
+  },
+  "iceberg_source_table" : {
+    "schema_name" : "exampleString",
+    "table_name" : "exampleString",
+    "catalog_name" : "exampleString",
+    "warehouse_name" : "exampleString",
+    "snapshot_id" : 0
+  },
+  "source_database" : {
+    "database_id" : "exampleString",
+    "db_type" : "exampleString",
+    "host" : "exampleString",
+    "port" : "exampleString",
+    "db_name" : "exampleString",
+    "db_username" : "exampleString",
+    "password" : "exampleString",
+    "authentication_value" : "exampleString",
+    "is_ssl" : false,
+    "cert_extension" : "exampleString",
+    "cert_content" : "exampleString",
+    "connection_mode" : "exampleString",
+    "connection_mode_value" : "exampleString",
+    "jdbc_url" : "exampleString"
+  },
+  "file_format_properties" : {
+    "encoding" : "exampleString",
+    "escape_character" : "exampleString",
+    "field_delimiter" : "exampleString",
+    "header" : true,
+    "line_delimiter" : "exampleString"
+  },
+  "is_local_ingestion" : false
+}
+```
 ### <a name="cli-source-system-example-schema">SourceSystem</a>
 
 The following example shows the format of the SourceSystem object.
@@ -30294,35 +30457,47 @@ The following example shows the format of the SparkApplicationDetails object.
 ```json
 
 {
-  "application" : "/opt/ibm/spark/examples/src/main/python/wordcount.py",
+  "application" : "s3://mybucket/wordcount.py",
   "applicationlocal" : "Users/Downloads/wordcount.py",
-  "arguments" : [ "/opt/ibm/spark/examples/src/main/resources/people.txt" ],
+  "archives" : "s3://mybucket/myarchive.zip",
+  "arguments" : [ "people.txt", "people.txt" ],
   "class" : "org.apache.spark.examples.SparkPi",
   "conf" : { },
-  "env" : {
-    "sample_env_key" : "exampleString"
-  },
+  "env" : { },
   "files" : "s3://mybucket/myfile.txt",
   "jars" : "exampleString",
   "name" : "SparkApplicaton1",
+  "bucket_name" : "bucketnameexample",
+  "bucket_access_key" : "2189duh1293e892ehhdx",
+  "bucket_secret_key" : "9832hd982yd9h23db2bx",
+  "bucket_endpoint" : "s3.cld-obj-stage.appdomain.cloud",
+  "api_key" : "H790hjka8909s09A9D9de",
   "packages" : "org.apache.spark:example_1.2.3",
   "repositories" : "https://repo1.maven.org/maven2/",
-  "bucket_name" : "bucketname1",
-  "bucket_access_key" : "CBA998Sajk8AS8sdj9S8fA",
-  "bucket_secret_key" : "CBA998Sajk8AS8sdj9S8fA",
-  "bucket_endpoint" : "cloud-object-storage.appdomain.cloud",
-  "api_key" : "H790hjka8909s09A9D9de",
+  "runtime" : {
+    "spark_version" : "3.4"
+  },
   "spark_version" : "3.3"
 }
 ```
-### <a name="cli-spark-application-env-example-schema">SparkApplicationEnv</a>
+### <a name="cli-spark-application-runtime-example-schema">SparkApplicationRuntime</a>
 
-The following example shows the format of the SparkApplicationEnv object.
+The following example shows the format of the SparkApplicationRuntime object.
 
 ```json
 
 {
-  "sample_env_key" : "exampleString"
+  "spark_version" : "3.4"
+}
+```
+### <a name="cli-spark-engine-application-callback-example-schema">SparkEngineApplicationCallback</a>
+
+The following example shows the format of the SparkEngineApplicationCallback object.
+
+```json
+
+{
+  "url" : "exampleString"
 }
 ```
 ### <a name="cli-spark-struct-example-schema">SparkStruct</a>
@@ -30365,9 +30540,22 @@ The following example shows the format of the StageRequest object.
   "production" : false
 }
 ```
-### <a name="cli-storage-connection-details-example-schema">StorageConnectionDetails</a>
+### <a name="cli-storage-catalog-prototype-example-schema">StorageCatalogPrototype</a>
 
-The following example shows the format of the StorageConnectionDetails object.
+The following example shows the format of the StorageCatalogPrototype object.
+
+```json
+
+{
+  "base_path" : "/abc/def",
+  "catalog_name" : "sampleCatalog",
+  "catalog_tags" : [ "catalog_tag_1", "catalog_tag_2" ],
+  "catalog_type" : "iceberg"
+}
+```
+### <a name="cli-storage-details-example-schema">StorageDetails</a>
+
+The following example shows the format of the StorageDetails object.
 
 ```json
 
@@ -30399,24 +30587,6 @@ The following example shows the format of the StorageConnectionDetails object.
   "vault_enabled" : true
 }
 ```
-### <a name="cli-storage-details-example-schema">StorageDetails</a>
-
-The following example shows the format of the StorageDetails object.
-
-```json
-
-{
-  "access_key" : "<access_key>",
-  "application_id" : "<application_id>",
-  "auth_mode" : "<account_key/sas/service_principle>",
-  "container_name" : "sample-container",
-  "directory_id" : "<directory_id>",
-  "endpoint" : "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/",
-  "sas_token" : "<sas_token>",
-  "secret_key" : "secret_key",
-  "storage_account_name" : "sample-storage"
-}
-```
 ### <a name="cli-storage-request-example-schema">StorageRequest</a>
 
 The following example shows the format of the StorageRequest object.
@@ -30443,6 +30613,20 @@ The following example shows the format of the StorageRequestProperties object.
   "shared" : true,
   "use_delegated_KMS_key" : false
 }
+```
+### <a name="cli-subject-patch-example-schema">SubjectPatch[]</a>
+
+The following example shows the format of the SubjectPatch[] object.
+
+```json
+
+[ {
+  "permissions" : [ "exampleString", "anotherExampleString" ],
+  "subject" : {
+    "type" : "user",
+    "value" : "user1"
+  }
+} ]
 ```
 ### <a name="cli-sync-scoring-data-example-schema">SyncScoringData</a>
 
@@ -30601,18 +30785,6 @@ The following example shows the format of the TableDefinitionMetadata object.
   "name" : "exampleString"
 }
 ```
-### <a name="cli-table-schema-items-example-schema">TableSchemaItems[]</a>
-
-The following example shows the format of the TableSchemaItems[] object.
-
-```json
-
-[ {
-  "field_id" : 0,
-  "header_name" : "model",
-  "type" : "string"
-} ]
-```
 ### <a name="cli-target-example-schema">Target</a>
 
 The following example shows the format of the Target object.
@@ -30622,6 +30794,22 @@ The following example shows the format of the Target object.
 {
   "target_id" : "4b133ea1-3097-4175-82a1-4fd80759de26",
   "target_type" : "subscription"
+}
+```
+### <a name="cli-target-details-example-schema">TargetDetails</a>
+
+The following example shows the format of the TargetDetails object.
+
+```json
+
+{
+  "catalog" : "exampleString",
+  "schema" : "exampleString",
+  "table" : "exampleString",
+  "write_mode" : "exampleString",
+  "merge_on_read" : false,
+  "schema_mode" : "exampleString",
+  "schema_infer" : true
 }
 ```
 ### <a name="cli-text-chat-messages-example-schema">TextChatMessages[]</a>
@@ -30987,18 +31175,6 @@ The following example shows the format of the TransactionalProjectStorageObjectP
 {
   "shared" : true
 }
-```
-### <a name="cli-transformation-items-example-schema">TransformationItems[]</a>
-
-The following example shows the format of the TransformationItems[] object.
-
-```json
-
-[ {
-  "new_column" : "newCol",
-  "new_type" : "string",
-  "old_column" : "Col"
-} ]
 ```
 ### <a name="cli-update-member-body-example-schema">UpdateMemberBody[]</a>
 
