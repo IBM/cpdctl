@@ -11312,7 +11312,7 @@ cpdctl mdm system setup-master-data {--project-id PROJECT-ID | --project PROJECT
 Execute a synchronous prediction for the deployment with the specified identifier. If a `serving_name` is used then it must match the `serving_name` that is returned in the `serving_urls`.
 
 ```sh
-cpdctl ml deployment compute-predictions --deployment-id DEPLOYMENT-ID --input-data (INPUT-DATA | @INPUT-DATA-FILE) [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml deployment compute-predictions --deployment-id DEPLOYMENT-ID --input-data (INPUT-DATA | @INPUT-DATA-FILE) [--scoring-parameters (SCORING-PARAMETERS | @SCORING-PARAMETERS-FILE) | --scoring-parameters-forecast-window SCORING-PARAMETERS-FORECAST-WINDOW] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -11320,8 +11320,16 @@ cpdctl ml deployment compute-predictions --deployment-id DEPLOYMENT-ID --input-d
 `--deployment-id` (string)
 :   The 'deployment_id' can be either the 'deployment_id' that identifies the deployment or a 'serving_name' that allows a predefined URL to be used to post a prediction.
 
-`--input-data` ([`InputDataArray[]`](#cli-input-data-array-example-schema))
+`--input-data` ([`SyncScoringDataItem[]`](#cli-sync-scoring-data-item-example-schema))
 :   The input data.
+
+`--scoring-parameters` ([`ScoringParameters`](#cli-scoring-parameters-example-schema))
+:   Parameters that can be used to control the prediction request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--scoring-parameters-forecast-window` (int64)
+:   The forecast window to use for the prediction. If no value is set then the value used during training will be used. The maximum value is 3000. The minimum value is 1.
+
+    The default value is `0`.
 
 ##### Example
 
@@ -11329,6 +11337,7 @@ cpdctl ml deployment compute-predictions --deployment-id DEPLOYMENT-ID --input-d
    cpdctl ml deployment compute-predictions \
     --deployment-id exampleString \
     --input-data '[{"id": "exampleString", "fields": ["name","age","occupation"], "values": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]]}]' \
+    --scoring-parameters '{"forecast_window": 1}' \
     --version 2019-01-01
 ```
 ## • <a name="ml_deployment_create">`ml deployment create`</a>
@@ -11368,7 +11377,7 @@ cpdctl ml deployment create [command options]
 
     The default value is `false`.
 
-`--batch` ([`DeploymentEntityRequestBatch`](#cli-deployment-entity-request-batch-example-schema))
+`--batch` ([`BatchRequest`](#cli-batch-request-example-schema))
 :   Indicates that this is a batch deployment. An empty object has to be specified.
 More properties will be added later on to setup the batch deployment.
 
@@ -11384,7 +11393,7 @@ More properties will be added later on to setup the batch deployment.
 `--description` (string)
 :   A description of the deployment.
 
-`--hardware-spec` ([`HardwareSpecRel`](#cli-hardware-spec-rel-example-schema))
+`--hardware-spec` ([`HardwareSpec`](#cli-hardware-spec-example-schema))
 :   A hardware specification.
 
 `--hardware-spec-id` (string)
@@ -11407,23 +11416,26 @@ More properties will be added later on to setup the batch deployment.
 `--name` (string)
 :   The name of the deployment.
 
-`--online` ([`DeploymentEntityRequestOnline`](#cli-deployment-entity-request-online-example-schema))
+`--observability` ([`DeploymentEntityRequestObservability`](#cli-deployment-entity-request-observability-example-schema))
+:   Configuration for observability features of the deployment. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--online` ([`OnlineRequest`](#cli-online-request-example-schema))
 :   Indicates that this is an online deployment. An empty object has to be specified.
 More properties will be added later on to setup the online deployment.
 The 'serving_name' can be provided in the 'online.parameters'. The serving name can only have the characters [a-z,0-9,_] 
 and the length should not be more than 36 characters. The 'serving_name' can be used in the prediction URL in place of the 'deployment_id'.
 If the online scoring schema has a 'type' of 'DataFrame' then the scoring payload will be converted to a 'Pandas' data frame.
 
-`--online-parameters` (generic map)
+`--online-parameters` ([`OnlineParameters`](#cli-online-parameters-example-schema))
 :   A set of key-value pairs where 'key' is the parameter name.
 
-`--r-shiny` ([`DeploymentEntityRequestRShiny`](#cli-deployment-entity-request-r-shiny-example-schema))
+`--r-shiny` ([`RShinyRequest`](#cli-r-shiny-request-example-schema))
 :   Indicates that this is a Shiny application deployment.
 
 `--r-shiny-authentication` (string)
 :   Specifies the type of users who can access the Shiny application. Allowable values are: anyone_with_url, any_valid_user, members_of_deployment_space.
 
-`--r-shiny-parameters` ([`DeploymentEntityRequestRShinyParameters`](#cli-deployment-entity-request-r-shiny-parameters-example-schema))
+`--r-shiny-parameters` ([`RShinyParameters`](#cli-r-shiny-parameters-example-schema))
 :   A set of parameters that specify details about the Shiny deployment.
 
 `--space` (string)
@@ -11440,23 +11452,24 @@ If the online scoring schema has a 'type' of 'DataFrame' then the scoring payloa
 ```sh
    cpdctl ml deployment create \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
-    --tags dev,TF \
-    --name customer_churn \
-    --description 'Customer churn prediction model deployment' \
     --custom '{"anyKey": "anyValue"}' \
     --asset '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}' \
     --hardware-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}' \
     --hybrid-pipeline-hardware-specs '[{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}}]' \
-    --online '{"parameters": {"anyKey": "anyValue"}}' \
+    --online '{"parameters": {"serving_name": "churn", "foundation_model": {"max_model_length": 2048, "max_num_seqs": 256, "functions": ["text_generation","text_chat"]}}}' \
     --batch '{"parameters": {"anyKey": "anyValue"}}' \
+    --observability '{"enable_tracing": true}' \
     --r-shiny '{"authentication": "members_of_deployment_space", "parameters": {"serving_name": "churn", "code_package": {"path": "RShiny/apps/app1"}}}' \
+    --tags dev,TF \
+    --name customer_churn \
+    --description 'Customer churn prediction model deployment' \
     --version 2019-01-01
 ```
 ## • <a name="ml_deployment_delete">`ml deployment delete`</a>
 Delete the deployment with the specified identifier.
 
 ```sh
-cpdctl ml deployment delete --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID | --space SPACE-NAME} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml deployment delete --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID | --space SPACE-NAME} [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -11485,10 +11498,15 @@ cpdctl ml deployment delete --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID |
 Retrieve the deployment details with the specified identifier.
 
 ```sh
-cpdctl ml deployment get --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID | --space SPACE-NAME} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml deployment get --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID | --space SPACE-NAME} [--attempt-activation=ATTEMPT-ACTIVATION] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
+
+`--attempt-activation` (bool)
+:   Attempts activation for the deployment with specified 'deployment_id', if it is hibernated and if it is set to true. The default value is false.
+
+    The default value is `false`.
 
 `--cpd-scope` (string)
 :   CPD space scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -11507,14 +11525,15 @@ cpdctl ml deployment get --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID | --
 ```sh
    cpdctl ml deployment get \
     --deployment-id exampleString \
-    --space-id 2ae804f8-fa85-4106-8228-cbc7e408ad79 \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --attempt-activation=true \
     --version 2019-01-01
 ```
 ## • <a name="ml_deployment_list">`ml deployment list`</a>
 Retrieve the list of deployments for the specified space.
 
 ```sh
-cpdctl ml deployment list [{--space-id SPACE-ID | --space SPACE-NAME}] [--serving-name SERVING-NAME] [--tag-value TAG-VALUE] [--asset-id ASSET-ID] [--name NAME] [--type TYPE] [--state STATE] [--stats=STATS] [--conflict=CONFLICT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml deployment list [{--space-id SPACE-ID | --space SPACE-NAME}] [--serving-name SERVING-NAME] [--tag-value TAG-VALUE] [--asset-id ASSET-ID] [--name NAME] [--type TYPE] [--state STATE] [--stats=STATS] [--conflict=CONFLICT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -11597,13 +11616,18 @@ In case of online deployments, using PATCH operation of `/ml/v4/deployments`, us
 In the case of an online deployment, the PATCH operation with path specified as `/online/parameters` can be used to update the `serving_name`. In the case of a Shiny deployment, the PATCH operation with path specified as `/r_shiny/parameters` can be used to update the `serving_name`.
 
 ```sh
-cpdctl ml deployment update --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID | --space SPACE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--asset ASSET | @ASSET-FILE) (--hardware-spec HARDWARE-SPEC | @HARDWARE-SPEC-FILE) (--hybrid-pipeline-hardware-specs HYBRID-PIPELINE-HARDWARE-SPECS | @HYBRID-PIPELINE-HARDWARE-SPECS-FILE) (--r-shiny R-SHINY | @R-SHINY-FILE)} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml deployment update --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID | --space SPACE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--asset ASSET | @ASSET-FILE) (--hardware-spec HARDWARE-SPEC | @HARDWARE-SPEC-FILE) (--hybrid-pipeline-hardware-specs HYBRID-PIPELINE-HARDWARE-SPECS | @HYBRID-PIPELINE-HARDWARE-SPECS-FILE) (--r-shiny R-SHINY | @R-SHINY-FILE)} [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
 `--asset` ([`Rel`](#cli-rel-example-schema))
 :   A reference to a resource.
+
+`--async` (bool)
+:   Run the command asynchronously. By default it waits for the processing to finish.
+
+    The default value is `false`.
 
 `--cpd-scope` (string)
 :   CPD space scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -11617,7 +11641,7 @@ cpdctl ml deployment update --deployment-id DEPLOYMENT-ID {--space-id SPACE-ID |
 `--description` (string)
 :   A description of the resource.
 
-`--hardware-spec` ([`HardwareSpecRel`](#cli-hardware-spec-rel-example-schema))
+`--hardware-spec` ([`HardwareSpec`](#cli-hardware-spec-example-schema))
 :   A hardware specification.
 
 `--hybrid-pipeline-hardware-specs` ([`HybridPipelineHardwareSpecsItem[]`](#cli-hybrid-pipeline-hardware-specs-item-example-schema))
@@ -11732,7 +11756,7 @@ input data for batch deployment job is available. The 'output_data_references' m
 `--description` (string)
 :   A description of the resource.
 
-`--hardware-spec` ([`HardwareSpecRel`](#cli-hardware-spec-rel-example-schema))
+`--hardware-spec` ([`HardwareSpec`](#cli-hardware-spec-example-schema))
 :   A hardware specification.
 
 `--hardware-spec-id` (string)
@@ -11818,8 +11842,8 @@ just the data schema.
     --custom '{"anyKey": "anyValue"}' \
     --hardware-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}' \
     --hybrid-pipeline-hardware-specs '[{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}}]' \
-    --scoring '{"input_data": [{"id": "exampleString", "type": "target", "fields": ["exampleString","anotherTestString"], "values": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]], "targets": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}]}], "input_data_references": [{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}], "output_data_reference": {"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}, "evaluations": [{"id": "exampleString", "input_target": "exampleString", "metrics_names": ["auroc","accuracy"]}], "environment_variables": {}}' \
-    --decision-optimization '{"solve_parameters": {"anyKey": "anyValue"}, "input_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "content": "exampleString"}], "input_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}], "output_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "content": "exampleString"}], "output_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}]}' \
+    --scoring '{"input_data": [{"id": "exampleString", "type": "target", "fields": ["exampleString","anotherTestString"], "values": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]], "targets": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]]}], "input_data_references": [{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}], "output_data_reference": {"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}, "evaluations": [{"id": "exampleString", "input_target": "exampleString", "metrics_names": ["auroc","accuracy"]}], "environment_variables": {}}' \
+    --decision-optimization '{"solve_parameters": {"anyKey": "anyValue"}, "input_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [[{}]], "content": "exampleString"}], "input_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}], "output_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [[{}]], "content": "exampleString"}], "output_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}]}' \
     --retention exampleString \
     --version 2019-01-01
 ```
@@ -11827,7 +11851,7 @@ just the data schema.
 Cancel the specified deployment job.
 
 ```sh
-cpdctl ml deployment-job delete {--job-id JOB-ID | --job JOB-NAME} {--space-id SPACE-ID | --space SPACE-NAME} [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml deployment-job delete {--job-id JOB-ID | --job JOB-NAME} {--space-id SPACE-ID | --space SPACE-NAME} [--hard-delete=HARD-DELETE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -11865,7 +11889,7 @@ cpdctl ml deployment-job delete {--job-id JOB-ID | --job JOB-NAME} {--space-id S
 Retrieve the deployment job. The predicted data bound to this job_id is going to be kept around for a limited time based on the service configuration.
 
 ```sh
-cpdctl ml deployment-job get {--job-id JOB-ID | --job JOB-NAME} {--space-id SPACE-ID | --space SPACE-NAME} [--include INCLUDE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml deployment-job get {--job-id JOB-ID | --job JOB-NAME} {--space-id SPACE-ID | --space SPACE-NAME} [--include INCLUDE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -11902,7 +11926,7 @@ cpdctl ml deployment-job get {--job-id JOB-ID | --job JOB-NAME} {--space-id SPAC
 Retrieve the status of the current jobs. The system will apply a max limit of jobs retained by the system as we cannot accumulate an infinite number of jobs. Only most recent 300 jobs (system configurable) will be preserved. Older jobs will be purged by the system.
 
 ```sh
-cpdctl ml deployment-job list {--space-id SPACE-ID | --space SPACE-NAME} [--tag-value TAG-VALUE] [--state STATE] [--deployment-id DEPLOYMENT-ID] [--include INCLUDE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml deployment-job list {--space-id SPACE-ID | --space SPACE-NAME} [--tag-value TAG-VALUE] [--state STATE] [--deployment-id DEPLOYMENT-ID] [--include INCLUDE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -11996,7 +12020,7 @@ input data for batch deployment job is available. The 'output_data_references' m
 `--description` (string)
 :   A description of the resource.
 
-`--hardware-spec` ([`HardwareSpecRel`](#cli-hardware-spec-rel-example-schema))
+`--hardware-spec` ([`HardwareSpec`](#cli-hardware-spec-example-schema))
 :   A hardware specification.
 
 `--hardware-spec-id` (string)
@@ -12079,15 +12103,15 @@ just the data schema.
     --custom '{"anyKey": "anyValue"}' \
     --hardware-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}' \
     --hybrid-pipeline-hardware-specs '[{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}}]' \
-    --scoring '{"input_data": [{"id": "exampleString", "type": "target", "fields": ["exampleString","anotherTestString"], "values": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]], "targets": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}]}], "input_data_references": [{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}], "output_data_reference": {"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}, "evaluations": [{"id": "exampleString", "input_target": "exampleString", "metrics_names": ["auroc","accuracy"]}], "environment_variables": {}}' \
-    --decision-optimization '{"solve_parameters": {"anyKey": "anyValue"}, "input_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "content": "exampleString"}], "input_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}], "output_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}],[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "content": "exampleString"}], "output_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}]}' \
+    --scoring '{"input_data": [{"id": "exampleString", "type": "target", "fields": ["exampleString","anotherTestString"], "values": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]], "targets": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]]}], "input_data_references": [{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}], "output_data_reference": {"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}, "evaluations": [{"id": "exampleString", "input_target": "exampleString", "metrics_names": ["auroc","accuracy"]}], "environment_variables": {}}' \
+    --decision-optimization '{"solve_parameters": {"anyKey": "anyValue"}, "input_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [[{}]], "content": "exampleString"}], "input_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}], "output_data": [{"id": "exampleString", "fields": ["exampleString","anotherTestString"], "values": [[{}]], "content": "exampleString"}], "output_data_references": [{"id": "b6e37189-90e8-4260-86d8-0a6d2a02aa99", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}]}' \
     --version 2019-01-01
 ```
 ## • <a name="ml_deployment-job-definition_create-revision">`ml deployment-job-definition create-revision`</a>
 Create a new deployment job definition revision. The current metadata and content for job_definition_id will be taken and a new revision created. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml deployment-job-definition create-revision --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [--commit-message COMMIT-MESSAGE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml deployment-job-definition create-revision --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [--commit-message COMMIT-MESSAGE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12120,7 +12144,7 @@ cpdctl ml deployment-job-definition create-revision --job-definition-id JOB-DEFI
 Delete the deployment job definition with the specified identifier. This will delete all revisions of this deployment job definition as well. For each revision all attachments will also be deleted.
 
 ```sh
-cpdctl ml deployment-job-definition delete --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml deployment-job-definition delete --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12150,7 +12174,7 @@ Retrieve the deployment job definition with the specified identifier. If `rev` q
 `rev=latest` will fetch the latest revision. A call with `rev={revision_number}` will fetch the given revision_number record.
 
 ```sh
-cpdctl ml deployment-job-definition get --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [--rev REV] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml deployment-job-definition get --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [--rev REV] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12183,7 +12207,7 @@ cpdctl ml deployment-job-definition get --job-definition-id JOB-DEFINITION-ID {-
 Retrieve the deployment job definitions for the specified space.
 
 ```sh
-cpdctl ml deployment-job-definition list {--space-id SPACE-ID | --space SPACE-NAME} [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml deployment-job-definition list {--space-id SPACE-ID | --space SPACE-NAME} [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12231,7 +12255,7 @@ cpdctl ml deployment-job-definition list {--space-id SPACE-ID | --space SPACE-NA
 Retrieve the deployment job definition revisions. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml deployment-job-definition list-revisions --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml deployment-job-definition list-revisions --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} [--start START | --all-pages] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12280,7 +12304,7 @@ Update the deployment job definition with the provided patch data. The following
 - `/deployment`.
 
 ```sh
-cpdctl ml deployment-job-definition update --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--deployment DEPLOYMENT | @DEPLOYMENT-FILE)} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml deployment-job-definition update --job-definition-id JOB-DEFINITION-ID {--space-id SPACE-ID | --space SPACE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--deployment DEPLOYMENT | @DEPLOYMENT-FILE)} [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12330,7 +12354,7 @@ cpdctl ml deployment-job-definition update --job-definition-id JOB-DEFINITION-ID
 Create a new experiment with the given payload. An experiment represents an asset that captures a set of `pipeline` or `model definition` assets that will be trained at the same time on the same data set.
 
 ```sh
-cpdctl ml experiment create --name NAME [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--tags TAGS] [--label-column LABEL-COLUMN] [--evaluation-definition (EVALUATION-DEFINITION | @EVALUATION-DEFINITION-FILE) | --evaluation-definition-method binary | regression | multiclass (--evaluation-definition-metrics EVALUATION-DEFINITION-METRICS | @EVALUATION-DEFINITION-METRICS-FILE)] [--training-references TRAINING-REFERENCES | @TRAINING-REFERENCES-FILE] [--custom CUSTOM | @CUSTOM-FILE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml experiment create --name NAME [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--tags TAGS] [--label-column LABEL-COLUMN] [--evaluation-definition (EVALUATION-DEFINITION | @EVALUATION-DEFINITION-FILE) | --evaluation-definition-method binary | regression | multiclass (--evaluation-definition-metrics EVALUATION-DEFINITION-METRICS | @EVALUATION-DEFINITION-METRICS-FILE)] [--training-references TRAINING-REFERENCES | @TRAINING-REFERENCES-FILE] [--custom CUSTOM | @CUSTOM-FILE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12396,7 +12420,7 @@ cpdctl ml experiment create --name NAME [{--project-id PROJECT-ID | --project PR
 Create a new experiment revision. The current metadata and content for experiment_id will be taken and a new revision created. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl ml experiment create-revision --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml experiment create-revision --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12436,7 +12460,7 @@ cpdctl ml experiment create-revision --experiment-id EXPERIMENT-ID [{--space-id 
 Delete the experiment with the specified identifier. This will delete all revisions of this experiment as well. For each revision all attachments will also be deleted.
 
 ```sh
-cpdctl ml experiment delete --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml experiment delete --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12465,7 +12489,7 @@ cpdctl ml experiment delete --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID 
    cpdctl ml experiment delete \
     --experiment-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --version 2019-01-01
 ```
 ## • <a name="ml_experiment_get">`ml experiment get`</a>
@@ -12473,7 +12497,7 @@ Retrieve the experiment with the specified identifier. If `rev` query parameter 
 `rev=latest` will fetch the latest revision. A call with `rev={revision_number}` will fetch the given revision_number record. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl ml experiment get --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml experiment get --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12505,7 +12529,7 @@ cpdctl ml experiment get --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | -
    cpdctl ml experiment get \
     --experiment-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --rev 2 \
     --version 2019-01-01
 ```
@@ -12513,7 +12537,7 @@ cpdctl ml experiment get --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | -
 Retrieve the experiments for the specified space or project.
 
 ```sh
-cpdctl ml experiment list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml experiment list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12557,7 +12581,7 @@ cpdctl ml experiment list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--proje
 ```sh
    cpdctl ml experiment list \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --start exampleString \
     --limit 50 \
     --tag-value 'tf2.0 or tf2.1' \
@@ -12568,7 +12592,7 @@ cpdctl ml experiment list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--proje
 Retrieve the experiment revisions.
 
 ```sh
-cpdctl ml experiment list-revisions --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml experiment list-revisions --experiment-id EXPERIMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12610,7 +12634,7 @@ cpdctl ml experiment list-revisions --experiment-id EXPERIMENT-ID [{--space-id S
    cpdctl ml experiment list-revisions \
     --experiment-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --start exampleString \
     --limit 50 \
     --version 2019-01-01
@@ -12623,7 +12647,7 @@ Update the experiment with the provided patch data. The following fields can be 
 - `/custom`.
 
 ```sh
-cpdctl ml experiment update --experiment-id EXPERIMENT-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml experiment update --experiment-id EXPERIMENT-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12704,8 +12728,11 @@ cpdctl ml function create [command options]
 `--sample-scoring-input` ([`SyncScoringData`](#cli-sync-scoring-data-example-schema))
 :   Scoring data.
 
-`--sample-scoring-input-input-data` ([`InputDataArray[]`](#cli-input-data-array-example-schema))
+`--sample-scoring-input-input-data` ([`SyncScoringDataItem[]`](#cli-sync-scoring-data-item-example-schema))
 :   The input data.
+
+`--sample-scoring-input-scoring-parameters` ([`ScoringParameters`](#cli-scoring-parameters-example-schema))
+:   Parameters that can be used to control the prediction request. It should be a JSON string or a path to a JSON file prepended with @.
 
 `--schemas` ([`FunctionEntitySchemas`](#cli-function-entity-schemas-example-schema))
 :   The schemas of the expected data.
@@ -12758,13 +12785,13 @@ This is illustrated in the example below:
 ```sh
    cpdctl ml function create \
     --name my-resource \
-    --software-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}' \
+    --software-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString"}' \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
     --description 'This is my first resource.' \
     --tags t1,t2 \
     --type python \
-    --sample-scoring-input '{"input_data": [{"id": "exampleString", "fields": ["name","age","occupation"], "values": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]]}]}' \
+    --sample-scoring-input '{"input_data": [{"id": "exampleString", "fields": ["name","age","occupation"], "values": [["exampleString","anotherTestString"],["exampleString","anotherTestString"]]}], "scoring_parameters": {"forecast_window": 1}}' \
     --schemas '{"input": [{"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}], "output": [{"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}]}' \
     --custom '{"anyKey": "anyValue"}' \
     --model-references '[{"space_id": "3fc54cf1-252f-424b-b52d-5cdd9814987f", "project_id": "12ac4cf1-252f-424b-b52d-5cdd9814987f", "id": "exampleString", "rev": "exampleString"}]' \
@@ -12774,7 +12801,7 @@ This is illustrated in the example below:
 Create a new function revision. The current metadata and content for function_id will be taken and a new revision created. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl ml function create-revision --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml function create-revision --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12814,7 +12841,7 @@ cpdctl ml function create-revision --function-id FUNCTION-ID [{--space-id SPACE-
 Delete the function with the specified identifier. This will delete all revisions of this function as well. For each revision all attachments will also be deleted.
 
 ```sh
-cpdctl ml function delete --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml function delete --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12843,14 +12870,14 @@ cpdctl ml function delete --function-id FUNCTION-ID [{--space-id SPACE-ID | --sp
    cpdctl ml function delete \
     --function-id 64dc8921-345f-234b-462d-78e41246987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --version 2019-01-01
 ```
 ## • <a name="ml_function_download-code">`ml function download-code`</a>
 Download the function code. It is possible to get the `code` for a given revision of the `function`. Functions expect a zip file that contains a python file     that make up the function. Python functions specify what needs to be run when     the function is deployed and what needs to be run when the scoring function is     called. In other words, you are able to customize what preparation WML does in     the environment when you deploy the function, as well as what steps WML takes to     generate the output when you call the API later on. The function consists of the     outer function (any place that is not within the score function) and the inner     score function. The code that sits in the outer function runs when the function     is deployed, and the environment is then frozen and ready to be used whenever     the online scoring or batch inline job processing API is called. The code that     sits in the inner score function runs when the online scoring or batch inline     job processing API is called, in the environment customized by the outer function.     See [Deploying Python function](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-deploy-py-function.html?context=cpdaas${content_description}audience=wdp) for more details.         This is illustrated in the example below:        <pre> <br />     ...python code used to set up the environment... <br />     <br />     def score(payload): <br />         df_payload = pd.DataFrame(payload[values]) <br />         df_payload.columns = payload[fields] <br />         ... <br />         output = {result : res} <br />         return output <br />     <br />     return score <br />     </pre>.
 
 ```sh
-cpdctl ml function download-code --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
+cpdctl ml function download-code --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--region REGION] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
@@ -12885,7 +12912,7 @@ cpdctl ml function download-code --function-id FUNCTION-ID [{--space-id SPACE-ID
    cpdctl ml function download-code \
     --function-id 64dc8921-345f-234b-462d-78e41246987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --rev 2 \
     --version 2019-01-01 \
     --output-file tempdir/example-output.txt
@@ -12895,7 +12922,7 @@ Retrieve the function with the specified identifier. If `rev` query parameter is
 `rev=latest` will fetch the latest revision. A call with `rev={revision_number}` will fetch the given revision_number record. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl ml function get --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml function get --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12927,7 +12954,7 @@ cpdctl ml function get --function-id FUNCTION-ID [{--space-id SPACE-ID | --space
    cpdctl ml function get \
     --function-id 64dc8921-345f-234b-462d-78e41246987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --rev 2 \
     --version 2019-01-01
 ```
@@ -12935,7 +12962,7 @@ cpdctl ml function get --function-id FUNCTION-ID [{--space-id SPACE-ID | --space
 Retrieve the functions for the specified space or project.
 
 ```sh
-cpdctl ml function list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml function list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -12979,7 +13006,7 @@ cpdctl ml function list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project
 ```sh
    cpdctl ml function list \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --start exampleString \
     --limit 50 \
     --tag-value 'tf2.0 or tf2.1' \
@@ -12990,7 +13017,7 @@ cpdctl ml function list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project
 Retrieve the function revisions.
 
 ```sh
-cpdctl ml function list-revisions --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml function list-revisions --function-id FUNCTION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13032,7 +13059,7 @@ cpdctl ml function list-revisions --function-id FUNCTION-ID [{--space-id SPACE-I
    cpdctl ml function list-revisions \
     --function-id 64dc8921-345f-234b-462d-78e41246987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --start exampleString \
     --limit 50 \
     --version 2019-01-01
@@ -13045,7 +13072,7 @@ Update the function with the provided patch data. The following fields can be pa
 - `/custom`.
 
 ```sh
-cpdctl ml function update --function-id FUNCTION-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml function update --function-id FUNCTION-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13097,7 +13124,7 @@ cpdctl ml function update --function-id FUNCTION-ID {--json-patch (JSON-PATCH | 
 Upload the function code. Functions expect a zip file that contains a python file     that make up the function. Python functions specify what needs to be run when     the function is deployed and what needs to be run when the scoring function is     called. In other words, you are able to customize what preparation WML does in     the environment when you deploy the function, as well as what steps WML takes to     generate the output when you call the API later on. The function consists of the     outer function (any place that is not within the score function) and the inner     score function. The code that sits in the outer function runs when the function     is deployed, and the environment is then frozen and ready to be used whenever     the online scoring or batch inline job processing API is called. The code that     sits in the inner score function runs when the online scoring or batch inline     job processing API is called, in the environment customized by the outer function.     See [Deploying Python function](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-deploy-py-function.html?context=cpdaas${content_description}audience=wdp) for more details.         This is illustrated in the example below:        <pre> <br />     ...python code used to set up the environment... <br />     <br />     def score(payload): <br />         df_payload = pd.DataFrame(payload[values]) <br />         df_payload.columns = payload[fields] <br />         ... <br />         output = {result : res} <br />         return output <br />     <br />     return score <br />     </pre>.
 
 ```sh
-cpdctl ml function upload-code --function-id FUNCTION-ID --upload-code UPLOAD-CODE [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml function upload-code --function-id FUNCTION-ID --upload-code UPLOAD-CODE [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13130,7 +13157,7 @@ cpdctl ml function upload-code --function-id FUNCTION-ID --upload-code UPLOAD-CO
     --function-id 64dc8921-345f-234b-462d-78e41246987f \
     --upload-code tempdir/test-file.txt \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --version 2019-01-01
 ```
 ## • <a name="ml_model_create">`ml model create`</a>
@@ -13285,11 +13312,26 @@ always specify the prediction schemas using this field.
 `--test-data-references` ([`DataConnectionReference[]`](#cli-data-connection-reference-example-schema))
 :   The holdout/test datasets.
 
+`--training` ([`TrainingDetails`](#cli-training-details-example-schema))
+:   Information about the training job that created this model. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--training-base-model` ([`BaseModel`](#cli-base-model-example-schema))
+:   The model id of the base model for this job. It should be a JSON string or a path to a JSON file prepended with @.
+
 `--training-data-references` ([`DataConnectionReference[]`](#cli-data-connection-reference-example-schema))
 :   The training data that was used to create this model.
 
+`--training-fine-tuning` ([`ModelFineTuningParameters`](#cli-model-fine-tuning-parameters-example-schema))
+:   The parameters for the job. It should be a JSON string or a path to a JSON file prepended with @.
+
 `--training-id` (string)
 :   Since CloudPak for Data '4.7.0'. This field can be used to store the 'id' of the training job that was used to produce this model.
+
+`--training-task-id` (string)
+:   The task that is targeted for this model.
+
+`--training-verbalizer` (string)
+:   The optional verbalizer that was used during the training, if appropriate.
 
 `--transformed-label-column` (string)
 :   The name of the  label column seen by the estimator, which may have been transformed by the previous transformers in the pipeline. This is not necessarily the same column as the 'label_column' in the initial data set.
@@ -13305,30 +13347,31 @@ always specify the prediction schemas using this field.
 
 ```sh
    cpdctl ml model create \
-    --name my-resource \
-    --type tensorflow_1.5 \
-    --software-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}' \
-    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
-    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
-    --description 'This is my first resource.' \
-    --tags t1,t2 \
+    --name my-flan-t5-xl \
+    --type curated_foundation_model_1.0 \
+    --project-id exampleString \
+    --space-id 37c69d0e-a2c2-413b-bd27-a03c15967b2f \
+    --description exampleString \
+    --tags exampleString,anotherTestString \
+    --software-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString"}' \
     --pipeline '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}' \
     --model-definition '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"}' \
     --hyper-parameters '{"anyKey": "anyValue"}' \
     --domain exampleString \
-    --training-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
-    --test-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
+    --training-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
+    --test-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
     --schemas '{"input": [{"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}], "output": [{"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}]}' \
     --label-column exampleString \
     --transformed-label-column exampleString \
     --size '{"in_memory": 72.5, "content": 72.5}' \
-    --metrics '[{"timestamp": "2018-12-01T10:11:12.000Z", "iteration": 2, "ml_metrics": {}, "ts_metrics": {"training": {"neg_symmetric_mean_absolute_percentage_error": -38.35790647931252}}, "tsad_metrics": {"iterations": [{"average_precision": {"localized_extreme": 0.5294117647058824, "level_shift": 1, "variance": 0.5471792823589406, "trend": 0.8183221870721871}, "roc_auc": {"anyKey": "anyValue"}, "f1": {"anyKey": "anyValue"}, "precision": {"anyKey": "anyValue"}, "recall": {"anyKey": "anyValue"}}], "agg": {"average_precision": {"level_shift": {"mean": 1, "range": [1,1]}, "localized_extreme": {"mean": 1, "range": [1,1]}, "trend": {"mean": 1, "range": [1,1]}, "variance": {"mean": 1, "range": [1,1]}}, "f1": {"level_shift": {"anyKey": "anyValue"}, "localized_extreme": {"anyKey": "anyValue"}, "trend": {"anyKey": "anyValue"}, "variance": {"anyKey": "anyValue"}}, "precision": {"level_shift": {"anyKey": "anyValue"}, "localized_extreme": {"anyKey": "anyValue"}, "trend": {"anyKey": "anyValue"}, "variance": {"anyKey": "anyValue"}}, "recall": {"level_shift": {"anyKey": "anyValue"}, "localized_extreme": {"anyKey": "anyValue"}, "trend": {"anyKey": "anyValue"}, "variance": {"anyKey": "anyValue"}}, "roc_auc": {"level_shift": {"anyKey": "anyValue"}, "localized_extreme": {"anyKey": "anyValue"}, "trend": {"anyKey": "anyValue"}, "variance": {"anyKey": "anyValue"}}}, "supporting_rank": {"average_precision": {"level_shift": {"p1": 2, "p2": 2, "p3": 2, "p4": 5, "p5": 5, "p6": 6}, "localized_extreme": {"anyKey": "anyValue"}, "trend": {"anyKey": "anyValue"}, "variance": {"anyKey": "anyValue"}}, "f1": {"anyKey": "anyValue"}, "roc_auc": {"anyKey": "anyValue"}, "precision": {"anyKey": "anyValue"}, "recall": {"anyKey": "anyValue"}}, "aggregated_score": [{"p1": 14.5, "p2": 12, "p3": 12, "p4": 10, "p5": 6, "p6": 5}]}, "ml_federated_metrics": {}, "context": {"deployment_id": "exampleString", "intermediate_model": {"name": "my_pipeline", "process": "exampleString", "location": {"pipeline": "exampleString", "pipeline_model": "exampleString", "model": "exampleString"}, "notebook_location": "exampleString", "sdk_notebook_location": "exampleString", "pipeline_nodes": ["exampleString","anotherTestString"], "composition_steps": ["exampleString","anotherTestString"], "duration": 38, "model_asset": "exampleString"}, "phase": "exampleString", "step": {"id": "exampleString", "name": "exampleString", "started_at": "2019-01-01T12:00:00.000Z", "completed_at": "2019-01-01T12:00:00.000Z", "hyper_parameters": {"anyKey": "anyValue"}, "data_allocation": 38, "estimator": "exampleString", "transformer": "exampleString", "score": 72.5}, "classes": ["positive", "negative", "neutral"], "binary_classification": {"confusion_matrices": [{"true_class": "exampleString", "tp": 38, "tn": 38, "fp": 38, "fn": 38}], "roc_curves": [{"true_class": "exampleString", "tpr": [72.5,73.9], "fpr": [72.5,73.9], "thresholds": [72.5,73.9]}]}, "multi_class_classification": {"one_vs_all": [{"class": "exampleString", "confusion_matrix_location": "data/7d9ac934-9073-4ffd-846c-7b1f912b1ab2/data/autoai/pre_hpo_d_output/Pipeline1/confusion_matrix.json", "confusion_matrix": {"true_class": "exampleString", "tp": 38, "tn": 38, "fp": 38, "fn": 38}, "roc_curve_location": "data/7d9ac934-9073-4ffd-846c-7b1f912b1ab2/data/autoai/pre_hpo_d_output/Pipeline1/roc_curve.json", "roc_curve": {"true_class": "exampleString", "tpr": [72.5,73.9], "fpr": [72.5,73.9], "thresholds": [72.5,73.9]}}], "one_vs_all_location": "data/7d9ac934-9073-4ffd-846c-7b1f912b1ab2/data/autoai/pre_hpo_d_output/Pipeline1/one_vs_all.json"}, "features_importance": [{"stage": "exampleString", "computation_type": "exampleString", "features": {"anyKey": "anyValue"}}], "schema": "exampleString", "estimators": ["exampleString","anotherTestString"], "incremental_training": {"iteration": 10, "total_iterations": 30, "measures_location": "/path_to_csv", "train_batch_samples_count": 10786, "holdout_samples_count": 6784, "early_stop_triggered": true}, "prediction_type": "regression"}}]' \
+    --metrics '[{"timestamp": "2018-12-01T10:11:12.000Z", "iteration": 2, "ml_metrics": {}, "ts_metrics": {"training": {"neg_symmetric_mean_absolute_percentage_error": -38.35790647931252}}, "tsad_metrics": {"iterations": [{"average_precision": {"localized_extreme": 0.5294117647058824, "level_shift": 1, "variance": 0.5471792823589406, "trend": 0.8183221870721871}, "roc_auc": {"anyKey": "anyValue"}, "f1": {"anyKey": "anyValue"}, "precision": {"anyKey": "anyValue"}, "recall": {"anyKey": "anyValue"}}], "agg": {"average_precision": {"level_shift": {"mean": 1, "range": [-1,1]}, "localized_extreme": {"mean": 1, "range": [-1,1]}, "trend": {"mean": 1, "range": [-1,1]}, "variance": {"mean": 1, "range": [-1,1]}}, "f1": {"level_shift": {"anyKey": "anyValue"}, "localized_extreme": {"anyKey": "anyValue"}, "trend": {"anyKey": "anyValue"}, "variance": {"mean": 1, "range": [-1,1]}}, "precision": {"level_shift": {"anyKey": "anyValue"}, "localized_extreme": {"anyKey": "anyValue"}, "trend": {"anyKey": "anyValue"}, "variance": {"mean": 1, "range": [-1,1]}}, "recall": {"level_shift": {"anyKey": "anyValue"}, "localized_extreme": {"anyKey": "anyValue"}, "trend": {"anyKey": "anyValue"}, "variance": {"mean": 1, "range": [-1,1]}}, "roc_auc": {"level_shift": {"anyKey": "anyValue"}, "localized_extreme": {"anyKey": "anyValue"}, "trend": {"anyKey": "anyValue"}, "variance": {"mean": 1, "range": [-1,1]}}}, "supporting_rank": {"average_precision": {"level_shift": {"p1": 2, "p2": 2, "p3": 2, "p4": 5, "p5": 5, "p6": 6}, "localized_extreme": {"anyKey": "anyValue"}, "trend": {"anyKey": "anyValue"}, "variance": {"anyKey": "anyValue"}}, "f1": {"anyKey": "anyValue"}, "roc_auc": {"anyKey": "anyValue"}, "precision": {"anyKey": "anyValue"}, "recall": {"anyKey": "anyValue"}}, "aggregated_score": [{"p1": 14.5, "p2": 12, "p3": 12, "p4": 10, "p5": 6, "p6": 5}]}, "context": {"deployment_id": "exampleString", "intermediate_model": {"name": "my_pipeline", "process": "exampleString", "location": {"pipeline": "exampleString", "pipeline_model": "exampleString", "model": "exampleString"}, "notebook_location": "exampleString", "sdk_notebook_location": "exampleString", "pipeline_nodes": ["exampleString","anotherTestString"], "composition_steps": ["exampleString","anotherTestString"], "duration": 38, "model_asset": "exampleString"}, "phase": "exampleString", "step": {"id": "exampleString", "name": "exampleString", "started_at": "2019-01-01T12:00:00.000Z", "completed_at": "2019-01-01T12:00:00.000Z", "hyper_parameters": {"anyKey": "anyValue"}, "data_allocation": 38, "estimator": "exampleString", "transformer": "exampleString", "score": 72.5}, "classes": ["positive", "negative", "neutral"], "binary_classification": {"confusion_matrices": [{"true_class": "exampleString", "tp": 38, "tn": 38, "fp": 38, "fn": 38}], "roc_curves": [{"true_class": "exampleString", "tpr": [72.5,73.9], "fpr": [72.5,73.9], "thresholds": [72.5,73.9]}]}, "multi_class_classification": {"one_vs_all": [{"class": "exampleString", "confusion_matrix_location": "data/7d9ac934-9073-4ffd-846c-7b1f912b1ab2/data/autoai/pre_hpo_d_output/Pipeline1/confusion_matrix.json", "confusion_matrix": {"true_class": "exampleString", "tp": 38, "tn": 38, "fp": 38, "fn": 38}, "roc_curve_location": "data/7d9ac934-9073-4ffd-846c-7b1f912b1ab2/data/autoai/pre_hpo_d_output/Pipeline1/roc_curve.json", "roc_curve": {"true_class": "exampleString", "tpr": [72.5,73.9], "fpr": [72.5,73.9], "thresholds": [72.5,73.9]}}], "one_vs_all_location": "data/7d9ac934-9073-4ffd-846c-7b1f912b1ab2/data/autoai/pre_hpo_d_output/Pipeline1/one_vs_all.json"}, "features_importance": [{"computation_type": "exampleString", "features": {}, "min_max_normalization": true}], "schema": "exampleString", "estimators": ["exampleString","anotherTestString"], "incremental_training": {"iteration": 10, "total_iterations": 30, "measures_location": "/path_to_csv", "train_batch_samples_count": 10786, "holdout_samples_count": 6784, "early_stop_triggered": true}, "prediction_type": "regression"}}]' \
     --custom '{"anyKey": "anyValue"}' \
     --user-defined-objects '{}' \
-    --hybrid-pipeline-software-specs '[{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}]' \
+    --hybrid-pipeline-software-specs '[{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString"}]' \
     --model-version '{"number": "1.0.0", "tag": "xgb classifier", "description": "Providing an update to the version."}' \
-    --training-id b8e64f4b-ead1-47f3-abf6-8247b2826763 \
+    --training-id exampleString \
     --data-preprocessing '[{"stage": "sampling", "input": {"rows": 50000, "columns": 81}, "output": {"rows": 1463, "columns": 81}, "props": {"anyKey": "anyValue"}}]' \
+    --training '{"id": "b8e64f4b-ead1-47f3-abf6-8247b2826763", "base_model": {"model_id": "google/flan-t5-xl"}, "task_id": "summarization", "verbalizer": "{{input}}", "fine_tuning": {"peft_parameters": {"type": "lora", "rank": 32, "target_modules": ["exampleString","anotherTestString"], "lora_alpha": 32, "lora_dropout": 0.05}}}' \
     --content-location '{"contents": [{"content_format": "exampleString", "location": "exampleString", "file_name": "exampleString", "pipeline_node_id": "exampleString", "deployment_id": "exampleString"}], "type": "connection_asset", "connection": {}, "location": {}}' \
     --version 2019-01-01
 ```
@@ -13336,7 +13379,7 @@ always specify the prediction schemas using this field.
 Create a new model revision. The current metadata and content for model_id will be taken and a new revision created. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl ml model create-revision --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml model create-revision --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13376,7 +13419,7 @@ cpdctl ml model create-revision --model-id MODEL-ID [{--space-id SPACE-ID | --sp
 Delete the model with the specified identifier. This will delete all revisions of this model as well. For each revision all attachments will also be deleted.
 
 ```sh
-cpdctl ml model delete --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml model delete --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13405,14 +13448,14 @@ cpdctl ml model delete --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE
    cpdctl ml model delete \
     --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --version 2019-01-01
 ```
 ## • <a name="ml_model_delete-content">`ml model delete-content`</a>
 Delete the content for the specified model. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model delete-content --model-id MODEL-ID --attachment-id ATTACHMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml model delete-content --model-id MODEL-ID --attachment-id ATTACHMENT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13445,14 +13488,14 @@ cpdctl ml model delete-content --model-id MODEL-ID --attachment-id ATTACHMENT-ID
     --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --attachment-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --version 2019-01-01
 ```
 ## • <a name="ml_model_download-content">`ml model download-content`</a>
 Download the model content.
 
 ```sh
-cpdctl ml model download-content --model-id MODEL-ID --attachment-id ATTACHMENT-ID [--accept application/zip | application/gzip | application/json | text/plain | application/xml] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
+cpdctl ml model download-content --model-id MODEL-ID --attachment-id ATTACHMENT-ID [--accept application/zip | application/gzip | application/json | text/plain | application/xml] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--region REGION] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
@@ -13495,7 +13538,7 @@ cpdctl ml model download-content --model-id MODEL-ID --attachment-id ATTACHMENT-
     --attachment-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --accept application/zip \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --rev 2 \
     --version 2019-01-01 \
     --output-file tempdir/example-output.txt
@@ -13505,7 +13548,7 @@ Download the model content identified by the provided criteria. If more than one
 `400` error is returned. If there are no attachments that match the filter then a `404` error is returned. If there are no filters then, if there is a single attachment, the attachment content will be returned otherwise a `400` or `404` error will be returned as described above. This method is just a shortcut for getting the attachment metadata and then downloading by attachment id. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model filtered-download --model-id MODEL-ID [--accept application/zip | application/gzip | application/json | text/plain | application/xml] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--pipeline-node-id PIPELINE-NODE-ID] [--deployment-id DEPLOYMENT-ID] [--name NAME] [--content-format CONTENT-FORMAT] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
+cpdctl ml model filtered-download --model-id MODEL-ID [--accept application/zip | application/gzip | application/json | text/plain | application/xml] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--pipeline-node-id PIPELINE-NODE-ID] [--deployment-id DEPLOYMENT-ID] [--name NAME] [--content-format CONTENT-FORMAT] [--region REGION] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
@@ -13556,7 +13599,7 @@ cpdctl ml model filtered-download --model-id MODEL-ID [--accept application/zip 
     --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --accept application/zip \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --rev 2 \
     --pipeline-node-id 62344cf1-252f-424b-b52d-5cdd9814aacd \
     --deployment-id 62344cf1-252f-424b-b52d-5cdd9814aacd \
@@ -13570,7 +13613,7 @@ Retrieve the model with the specified identifier. If `rev` query parameter is pr
 `rev=latest` will fetch the latest revision. A call with `rev={revision_number}` will fetch the given revision_number record. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl ml model get --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml model get --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13602,7 +13645,7 @@ cpdctl ml model get --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NA
    cpdctl ml model get \
     --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --rev 2 \
     --version 2019-01-01
 ```
@@ -13610,7 +13653,7 @@ cpdctl ml model get --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NA
 Retrieve the models for the specified space or project.
 
 ```sh
-cpdctl ml model list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml model list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13654,7 +13697,7 @@ cpdctl ml model list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id
 ```sh
    cpdctl ml model list \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --start exampleString \
     --limit 50 \
     --tag-value 'tf2.0 or tf2.1' \
@@ -13665,7 +13708,7 @@ cpdctl ml model list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id
 Retrieve the content metadata list for the specified model attachments. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model list-attachments --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--name NAME] [--content-format CONTENT-FORMAT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml model list-attachments --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--name NAME] [--content-format CONTENT-FORMAT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13703,7 +13746,7 @@ cpdctl ml model list-attachments --model-id MODEL-ID [{--space-id SPACE-ID | --s
    cpdctl ml model list-attachments \
     --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --rev 2 \
     --name my_model \
     --content-format native \
@@ -13713,7 +13756,7 @@ cpdctl ml model list-attachments --model-id MODEL-ID [{--space-id SPACE-ID | --s
 Retrieve the model revisions.
 
 ```sh
-cpdctl ml model list-revisions --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml model list-revisions --model-id MODEL-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13755,7 +13798,7 @@ cpdctl ml model list-revisions --model-id MODEL-ID [{--space-id SPACE-ID | --spa
    cpdctl ml model list-revisions \
     --model-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --start exampleString \
     --limit 50 \
     --version 2019-01-01
@@ -13769,7 +13812,7 @@ Update the model with the provided patch data. The following fields can be patch
 - `/software_spec` (operation 'replace' only).
 
 ```sh
-cpdctl ml model update --model-id MODEL-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml model update --model-id MODEL-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13821,7 +13864,7 @@ cpdctl ml model update --model-id MODEL-ID {--json-patch (JSON-PATCH | @JSON-PAT
 Upload the content for the specified model.
 
 ```sh
-cpdctl ml model upload-content --model-id MODEL-ID --content-format CONTENT-FORMAT [--upload-content UPLOAD-CONTENT | @UPLOAD-CONTENT-FILE] [--body BODY] [--content-type application/json | application/zip | text/plain | application/xml] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--pipeline-node-id PIPELINE-NODE-ID] [--deployment-id DEPLOYMENT-ID] [--name NAME] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml model upload-content --model-id MODEL-ID --content-format CONTENT-FORMAT [--upload-content UPLOAD-CONTENT | @UPLOAD-CONTENT-FILE] [--body BODY] [--content-type application/json | application/zip | text/plain | application/xml] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--pipeline-node-id PIPELINE-NODE-ID] [--deployment-id DEPLOYMENT-ID] [--name NAME] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13874,7 +13917,7 @@ cpdctl ml model upload-content --model-id MODEL-ID --content-format CONTENT-FORM
     --upload-content '{"anyKey": "anyValue"}' \
     --content-type application/json \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --pipeline-node-id 62344cf1-252f-424b-b52d-5cdd9814aacd \
     --deployment-id 62344cf1-252f-424b-b52d-5cdd9814aacd \
     --name my_models \
@@ -13911,7 +13954,7 @@ cpdctl ml model wait --model-id MODEL_ID [--space-id SPACE_ID] [--project-id PRO
 Create a new model definition with the given payload. A model definition represents the code that is used to train one or more models. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition create --name NAME --package-version PACKAGE-VERSION {--platform (PLATFORM | @PLATFORM-FILE) | --platform-name PLATFORM-NAME --platform-versions PLATFORM-VERSIONS} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--tags TAGS] [--command COMMAND] [--software-spec (SOFTWARE-SPEC | @SOFTWARE-SPEC-FILE) | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME] [--custom CUSTOM | @CUSTOM-FILE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml model-definition create --name NAME --package-version PACKAGE-VERSION {--platform (PLATFORM | @PLATFORM-FILE) | --platform-name PLATFORM-NAME --platform-versions PLATFORM-VERSIONS} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--tags TAGS] [--command COMMAND] [--software-spec (SOFTWARE-SPEC | @SOFTWARE-SPEC-FILE) | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME] [--custom CUSTOM | @CUSTOM-FILE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -13982,7 +14025,7 @@ cpdctl ml model-definition create --name NAME --package-version PACKAGE-VERSION 
     --description 'This is my first resource.' \
     --tags t1,t2 \
     --command exampleString \
-    --software-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}' \
+    --software-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString"}' \
     --custom '{"anyKey": "anyValue"}' \
     --version 2019-01-01
 ```
@@ -13990,7 +14033,7 @@ cpdctl ml model-definition create --name NAME --package-version PACKAGE-VERSION 
 Create a new model definition revision. The current metadata and content for model_definition_id will be taken and a new revision created. Either `space_id` or `project_id` has to be provided and is mandatory. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition create-revision --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml model-definition create-revision --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14030,7 +14073,7 @@ cpdctl ml model-definition create-revision --model-definition-id MODEL-DEFINITIO
 Delete the model definition with the specified identifier. This will delete all revisions of this model definition as well. For each revision all attachments will also be deleted. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition delete --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml model-definition delete --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14059,14 +14102,14 @@ cpdctl ml model-definition delete --model-definition-id MODEL-DEFINITION-ID [{--
    cpdctl ml model-definition delete \
     --model-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --version 2019-01-01
 ```
 ## • <a name="ml_model-definition_download-model">`ml model-definition download-model`</a>
 Download the model definition model. It is possible to get the `model` for a given revision of the `model definition`. Model definitions for Deep Learning accept a zip file that contains one or more     python files organized in any directory structure. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition download-model --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
+cpdctl ml model-definition download-model --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--region REGION] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
@@ -14101,7 +14144,7 @@ cpdctl ml model-definition download-model --model-definition-id MODEL-DEFINITION
    cpdctl ml model-definition download-model \
     --model-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --rev 2 \
     --version 2019-01-01 \
     --output-file tempdir/example-output.txt
@@ -14111,7 +14154,7 @@ Retrieve the model definition with the specified identifier. If `rev` query para
 `rev=latest` will fetch the latest revision. A call with `rev={revision_number}` will fetch the given revision_number record. Either `space_id` or `project_id` has to be provided and is mandatory. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition get --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml model-definition get --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14143,7 +14186,7 @@ cpdctl ml model-definition get --model-definition-id MODEL-DEFINITION-ID [{--spa
    cpdctl ml model-definition get \
     --model-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --rev 2 \
     --version 2019-01-01
 ```
@@ -14151,7 +14194,7 @@ cpdctl ml model-definition get --model-definition-id MODEL-DEFINITION-ID [{--spa
 Retrieve the model definitions for the specified space or project. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml model-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14195,7 +14238,7 @@ cpdctl ml model-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] [{-
 ```sh
    cpdctl ml model-definition list \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --start exampleString \
     --limit 50 \
     --tag-value 'tf2.0 or tf2.1' \
@@ -14206,7 +14249,7 @@ cpdctl ml model-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] [{-
 Retrieve the model definition revisions. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition list-revisions --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml model-definition list-revisions --model-definition-id MODEL-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14248,7 +14291,7 @@ cpdctl ml model-definition list-revisions --model-definition-id MODEL-DEFINITION
    cpdctl ml model-definition list-revisions \
     --model-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --start exampleString \
     --limit 50 \
     --version 2019-01-01
@@ -14261,7 +14304,7 @@ Update the model definition with the provided patch data. The following fields c
 - `/custom` This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition update --model-definition-id MODEL-DEFINITION-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml model-definition update --model-definition-id MODEL-DEFINITION-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14313,7 +14356,7 @@ cpdctl ml model-definition update --model-definition-id MODEL-DEFINITION-ID {--j
 Upload the model definition model. Model definitions for Deep Learning accept a zip file that contains one or more     python files organized in any directory structure. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml model-definition upload-model --model-definition-id MODEL-DEFINITION-ID --upload-model UPLOAD-MODEL [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml model-definition upload-model --model-definition-id MODEL-DEFINITION-ID --upload-model UPLOAD-MODEL [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14346,14 +14389,14 @@ cpdctl ml model-definition upload-model --model-definition-id MODEL-DEFINITION-I
     --model-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --upload-model tempdir/test-file.txt \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --version 2019-01-01
 ```
 ## • <a name="ml_pipeline_create">`ml pipeline create`</a>
 Create a new pipeline with the given payload. A pipeline represents a hybrid-pipeline, as a JSON document, that is used to train one or more models.
 
 ```sh
-cpdctl ml pipeline create --name NAME --document (DOCUMENT | @DOCUMENT-FILE) [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--tags TAGS] [--custom CUSTOM | @CUSTOM-FILE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml pipeline create --name NAME --document (DOCUMENT | @DOCUMENT-FILE) [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--tags TAGS] [--custom CUSTOM | @CUSTOM-FILE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14406,7 +14449,7 @@ cpdctl ml pipeline create --name NAME --document (DOCUMENT | @DOCUMENT-FILE) [{-
 Create a new pipeline revision. The current metadata and content for pipeline_id will be taken and a new revision created. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl ml pipeline create-revision {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml pipeline create-revision {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14449,7 +14492,7 @@ cpdctl ml pipeline create-revision {--pipeline-id PIPELINE-ID | --pipeline PIPEL
 Delete the pipeline with the specified identifier. This will delete all revisions of this pipeline as well. For each revision all attachments will also be deleted.
 
 ```sh
-cpdctl ml pipeline delete {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml pipeline delete {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14481,7 +14524,7 @@ cpdctl ml pipeline delete {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME}
    cpdctl ml pipeline delete \
     --pipeline-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --version 2019-01-01
 ```
 ## • <a name="ml_pipeline_get">`ml pipeline get`</a>
@@ -14489,7 +14532,7 @@ Retrieve the pipeline with the specified identifier. If `rev` query parameter is
 `rev=latest` will fetch the latest revision. A call with `rev={revision_number}` will fetch the given revision_number record. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl ml pipeline get {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml pipeline get {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14524,7 +14567,7 @@ cpdctl ml pipeline get {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{
    cpdctl ml pipeline get \
     --pipeline-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --rev 2 \
     --version 2019-01-01
 ```
@@ -14532,7 +14575,7 @@ cpdctl ml pipeline get {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{
 Retrieve the pipelines for the specified space or project.
 
 ```sh
-cpdctl ml pipeline list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml pipeline list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14576,7 +14619,7 @@ cpdctl ml pipeline list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project
 ```sh
    cpdctl ml pipeline list \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --start exampleString \
     --limit 50 \
     --tag-value 'tf2.0 or tf2.1' \
@@ -14587,7 +14630,7 @@ cpdctl ml pipeline list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project
 Retrieve the pipeline revisions.
 
 ```sh
-cpdctl ml pipeline list-revisions {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml pipeline list-revisions {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14632,7 +14675,7 @@ cpdctl ml pipeline list-revisions {--pipeline-id PIPELINE-ID | --pipeline PIPELI
    cpdctl ml pipeline list-revisions \
     --pipeline-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --start exampleString \
     --limit 50 \
     --version 2019-01-01
@@ -14645,7 +14688,7 @@ Update the pipeline with the provided patch data. The following fields can be pa
 - `/custom`.
 
 ```sh
-cpdctl ml pipeline update {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml pipeline update {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -14761,7 +14804,7 @@ Since CloudPak for Data '4.7.0'. Allowable values are: iter_avg, avg, pfnm, spah
 
     The default value is `0`.
 
-`--federated-learning-hardware-spec` ([`HardwareSpecRel`](#cli-hardware-spec-rel-example-schema))
+`--federated-learning-hardware-spec` ([`HardwareSpec`](#cli-hardware-spec-example-schema))
 :   A hardware specification.
 
 `--federated-learning-iters` (int64)
@@ -14876,7 +14919,7 @@ The 'hardware_spec' is a reference to a hardware specification.
 `--model-definition-command` (string)
 :   If present, it overrides the command specified to the library resource itself.
 
-`--model-definition-hardware-spec` ([`HardwareSpecRel`](#cli-hardware-spec-rel-example-schema))
+`--model-definition-hardware-spec` ([`HardwareSpec`](#cli-hardware-spec-example-schema))
 :   A hardware specification.
 
 `--model-definition-id` (string)
@@ -14906,7 +14949,7 @@ specify compute requirement for each pipeline node.
 `--pipeline-data-bindings` ([`PipelineRelDataBindingsItem[]`](#cli-pipeline-rel-data-bindings-item-example-schema))
 :   The data bindings.
 
-`--pipeline-hardware-spec` ([`HardwareSpecRel`](#cli-hardware-spec-rel-example-schema))
+`--pipeline-hardware-spec` ([`HardwareSpec`](#cli-hardware-spec-example-schema))
 :   A hardware specification.
 
 `--pipeline-hybrid-pipeline-hardware-specs` ([`HybridPipelineHardwareSpecsItem[]`](#cli-hybrid-pipeline-hardware-specs-item-example-schema))
@@ -14933,7 +14976,7 @@ specify compute requirement for each pipeline node.
 `--results-reference` ([`ObjectLocation`](#cli-object-location-example-schema))
 :   The training results.
 
-`--results-reference-connection` (generic map)
+`--results-reference-connection` ([`DataConnection`](#cli-data-connection-example-schema))
 :   Contains a set of fields specific to each connection. See here for [details about specifying connections](#datareferences).
 
 `--results-reference-id` (string)
@@ -14964,13 +15007,13 @@ specify compute requirement for each pipeline node.
 
 ```sh
    cpdctl ml training create \
-    --results-reference '{"id": "exampleString", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}' \
+    --results-reference '{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}' \
     --experiment '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}' \
     --pipeline '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "model_type": "exampleString", "data_bindings": [{"data_reference_name": "exampleString", "node_id": "exampleString"}], "nodes_parameters": [{"node_id": "exampleString", "parameters": {"anyKey": "anyValue"}}], "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "hybrid_pipeline_hardware_specs": [{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}}]}' \
-    --model-definition '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "model_type": "exampleString", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}, "command": "exampleString", "parameters": {"anyKey": "anyValue"}}' \
-    --federated-learning '{"model": {"type": "keras", "spec": {"href": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}}, "model_file": "exampleString"}, "fusion_type": "iter_avg", "remote_training": {"quorum": 0.9, "max_timeout": 60, "remote_training_systems": [{"id": "1918939c-2660-4f6a-b727-4b402383dc63", "required": true}]}, "rounds": 3, "termination_predicate": "accuracy > 0.9", "epochs": 3, "optimizer": {"name": "exampleString", "spec": {"anyKey": "anyValue"}}, "loss": "exampleString", "metrics": "exampleString", "max_depth": 38, "learning_rate": 72.5, "l2_regularization": 72.5, "max_bins": 38, "max_leaf_nodes": 38, "min_samples_leaf": 38, "random_state": 38, "verbose": true, "num_classes": 38, "byzantine_threshold": 38, "sigma": 72.5, "sigma0": 72.5, "gamma": 72.5, "iters": 38, "save_intermediate_models": true, "crypto": {"cipher_spec": "encryption_level_1"}, "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}, "version": "exampleString", "log_level": "info", "sketch_accuracy_vs_privacy": 0.01}' \
-    --training-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
-    --test-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
+    --model-definition '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "model_type": "exampleString", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString"}, "command": "exampleString", "parameters": {"anyKey": "anyValue"}}' \
+    --federated-learning '{"model": {"type": "keras", "spec": {"href": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}}, "model_file": "exampleString"}, "fusion_type": "iter_avg", "remote_training": {"quorum": 0.9, "max_timeout": 60, "remote_training_systems": [{"id": "1918939c-2660-4f6a-b727-4b402383dc63", "required": true}]}, "rounds": 3, "termination_predicate": "accuracy > 0.9", "epochs": 3, "optimizer": {"name": "exampleString", "spec": {"anyKey": "anyValue"}}, "loss": "exampleString", "metrics": "exampleString", "max_depth": 38, "learning_rate": 72.5, "l2_regularization": 72.5, "max_bins": 38, "max_leaf_nodes": 38, "min_samples_leaf": 38, "random_state": 38, "verbose": true, "num_classes": 38, "byzantine_threshold": 38, "sigma": 72.5, "sigma0": 72.5, "gamma": 72.5, "iters": 38, "save_intermediate_models": true, "crypto": {"cipher_spec": "encryption_level_1"}, "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString"}, "version": "exampleString", "log_level": "info", "sketch_accuracy_vs_privacy": 0.01}' \
+    --training-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
+    --test-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
     --custom '{"anyKey": "anyValue"}' \
     --tags t1,t2 \
     --name my-training \
@@ -14983,7 +15026,7 @@ specify compute requirement for each pipeline node.
 Cancel the specified training and remove it.
 
 ```sh
-cpdctl ml training delete --training-id TRAINING-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml training delete --training-id TRAINING-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15017,7 +15060,7 @@ cpdctl ml training delete --training-id TRAINING-ID [{--space-id SPACE-ID | --sp
    cpdctl ml training delete \
     --training-id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --hard-delete=true \
     --version 2019-01-01
 ```
@@ -15025,7 +15068,7 @@ cpdctl ml training delete --training-id TRAINING-ID [{--space-id SPACE-ID | --sp
 Retrieve the training with the specified identifier. This call supports Web-Socket upgrade. However in order to preserve bandwidth, web-socket messages are not context complete. Meaning that a single web-socket message only reflects a message or metric happening in the context of a training job or sub-job (in case of experiment trainings or HPO/AutoML trainings). Hence the metadata property of a web-socket message contains a parent with the href information of the parent job that triggered this particular job. Also the metrics will be provided as they arrive from the backend runtime, and not as a cumulative list. In order to get the full view of the running training job the caller should do a regular GET call.
 
 ```sh
-cpdctl ml training get --training-id TRAINING-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml training get --training-id TRAINING-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15054,14 +15097,14 @@ cpdctl ml training get --training-id TRAINING-ID [{--space-id SPACE-ID | --space
    cpdctl ml training get \
     --training-id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --version 2019-01-01
 ```
 ## • <a name="ml_training_list">`ml training list`</a>
 Retrieve the list of trainings for the specified space or project.
 
 ```sh
-cpdctl ml training list [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--type TYPE] [--state STATE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parent-id PARENT-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml training list [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--type TYPE] [--state STATE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parent-id PARENT-ID] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15122,7 +15165,7 @@ cpdctl ml training list [--start START | --all-pages] [--limit LIMIT] [--total-c
     --type exampleString \
     --state exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --parent-id exampleString \
     --version 2019-01-01
 ```
@@ -15213,7 +15256,7 @@ Since CloudPak for Data '4.7.0'. Allowable values are: iter_avg, avg, pfnm, spah
 
     The default value is `0`.
 
-`--federated-learning-hardware-spec` ([`HardwareSpecRel`](#cli-hardware-spec-rel-example-schema))
+`--federated-learning-hardware-spec` ([`HardwareSpec`](#cli-hardware-spec-example-schema))
 :   A hardware specification.
 
 `--federated-learning-iters` (int64)
@@ -15328,7 +15371,7 @@ The 'hardware_spec' is a reference to a hardware specification.
 `--model-definition-command` (string)
 :   If present, it overrides the command specified to the library resource itself.
 
-`--model-definition-hardware-spec` ([`HardwareSpecRel`](#cli-hardware-spec-rel-example-schema))
+`--model-definition-hardware-spec` ([`HardwareSpec`](#cli-hardware-spec-example-schema))
 :   A hardware specification.
 
 `--model-definition-id` (string)
@@ -15358,7 +15401,7 @@ specify compute requirement for each pipeline node.
 `--pipeline-data-bindings` ([`PipelineRelDataBindingsItem[]`](#cli-pipeline-rel-data-bindings-item-example-schema))
 :   The data bindings.
 
-`--pipeline-hardware-spec` ([`HardwareSpecRel`](#cli-hardware-spec-rel-example-schema))
+`--pipeline-hardware-spec` ([`HardwareSpec`](#cli-hardware-spec-example-schema))
 :   A hardware specification.
 
 `--pipeline-hybrid-pipeline-hardware-specs` ([`HybridPipelineHardwareSpecsItem[]`](#cli-hybrid-pipeline-hardware-specs-item-example-schema))
@@ -15385,7 +15428,7 @@ specify compute requirement for each pipeline node.
 `--results-reference` ([`ObjectLocation`](#cli-object-location-example-schema))
 :   The training results.
 
-`--results-reference-connection` (generic map)
+`--results-reference-connection` ([`DataConnection`](#cli-data-connection-example-schema))
 :   Contains a set of fields specific to each connection. See here for [details about specifying connections](#datareferences).
 
 `--results-reference-id` (string)
@@ -15417,17 +15460,17 @@ specify compute requirement for each pipeline node.
 ```sh
    cpdctl ml training-definition create \
     --name my-resource \
-    --results-reference '{"id": "exampleString", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}}' \
+    --results-reference '{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}' \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
     --description 'This is my first resource.' \
     --tags t1,t2 \
     --experiment '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}' \
     --pipeline '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "model_type": "exampleString", "data_bindings": [{"data_reference_name": "exampleString", "node_id": "exampleString"}], "nodes_parameters": [{"node_id": "exampleString", "parameters": {"anyKey": "anyValue"}}], "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "hybrid_pipeline_hardware_specs": [{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}}]}' \
-    --model-definition '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "model_type": "exampleString", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}, "command": "exampleString", "parameters": {"anyKey": "anyValue"}}' \
-    --federated-learning '{"model": {"type": "keras", "spec": {"href": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}}, "model_file": "exampleString"}, "fusion_type": "iter_avg", "remote_training": {"quorum": 0.9, "max_timeout": 60, "remote_training_systems": [{"id": "1918939c-2660-4f6a-b727-4b402383dc63", "required": true}]}, "rounds": 3, "termination_predicate": "accuracy > 0.9", "epochs": 3, "optimizer": {"name": "exampleString", "spec": {"anyKey": "anyValue"}}, "loss": "exampleString", "metrics": "exampleString", "max_depth": 38, "learning_rate": 72.5, "l2_regularization": 72.5, "max_bins": 38, "max_leaf_nodes": 38, "min_samples_leaf": 38, "random_state": 38, "verbose": true, "num_classes": 38, "byzantine_threshold": 38, "sigma": 72.5, "sigma0": 72.5, "gamma": 72.5, "iters": 38, "save_intermediate_models": true, "crypto": {"cipher_spec": "encryption_level_1"}, "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}, "version": "exampleString", "log_level": "info", "sketch_accuracy_vs_privacy": 0.01}' \
-    --training-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
-    --test-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {"anyKey": "anyValue"}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
+    --model-definition '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "model_type": "exampleString", "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString"}, "command": "exampleString", "parameters": {"anyKey": "anyValue"}}' \
+    --federated-learning '{"model": {"type": "keras", "spec": {"href": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}}, "model_file": "exampleString"}, "fusion_type": "iter_avg", "remote_training": {"quorum": 0.9, "max_timeout": 60, "remote_training_systems": [{"id": "1918939c-2660-4f6a-b727-4b402383dc63", "required": true}]}, "rounds": 3, "termination_predicate": "accuracy > 0.9", "epochs": 3, "optimizer": {"name": "exampleString", "spec": {"anyKey": "anyValue"}}, "loss": "exampleString", "metrics": "exampleString", "max_depth": 38, "learning_rate": 72.5, "l2_regularization": 72.5, "max_bins": 38, "max_leaf_nodes": 38, "min_samples_leaf": 38, "random_state": 38, "verbose": true, "num_classes": 38, "byzantine_threshold": 38, "sigma": 72.5, "sigma0": 72.5, "gamma": 72.5, "iters": 38, "save_intermediate_models": true, "crypto": {"cipher_spec": "encryption_level_1"}, "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString"}, "version": "exampleString", "log_level": "info", "sketch_accuracy_vs_privacy": 0.01}' \
+    --training-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
+    --test-data-references '[{"id": "8d3682dd-2858-43c9-bfd7-12a79abcfb0c", "type": "connection_asset", "connection": {}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
     --custom '{"anyKey": "anyValue"}' \
     --version 2019-01-01
 ```
@@ -15435,7 +15478,7 @@ specify compute requirement for each pipeline node.
 Create a new training definition revision. The current metadata and content for training_definition_id will be taken and a new revision created. Either `space_id` or `project_id` has to be provided and is mandatory. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition create-revision --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml training-definition create-revision --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15475,7 +15518,7 @@ cpdctl ml training-definition create-revision --training-definition-id TRAINING-
 Delete the training definition with the specified identifier. This will delete all revisions of this training definition as well. For each revision all attachments will also be deleted. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition delete --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml training-definition delete --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15504,7 +15547,7 @@ cpdctl ml training-definition delete --training-definition-id TRAINING-DEFINITIO
    cpdctl ml training-definition delete \
     --training-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --version 2019-01-01
 ```
 ## • <a name="ml_training-definition_get">`ml training-definition get`</a>
@@ -15512,7 +15555,7 @@ Retrieve the training definition with the specified identifier. If `rev` query p
 `rev=latest` will fetch the latest revision. A call with `rev={revision_number}` will fetch the given revision_number record. Either `space_id` or `project_id` has to be provided and is mandatory. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition get --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml training-definition get --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15544,7 +15587,7 @@ cpdctl ml training-definition get --training-definition-id TRAINING-DEFINITION-I
    cpdctl ml training-definition get \
     --training-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --rev 2 \
     --version 2019-01-01
 ```
@@ -15552,7 +15595,7 @@ cpdctl ml training-definition get --training-definition-id TRAINING-DEFINITION-I
 Retrieve the training definitions for the specified space or project. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml training-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15596,7 +15639,7 @@ cpdctl ml training-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] 
 ```sh
    cpdctl ml training-definition list \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --start exampleString \
     --limit 50 \
     --tag-value 'tf2.0 or tf2.1' \
@@ -15607,7 +15650,7 @@ cpdctl ml training-definition list [{--space-id SPACE-ID | --space SPACE-NAME}] 
 Retrieve the training definition revisions. This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition list-revisions --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml training-definition list-revisions --training-definition-id TRAINING-DEFINITION-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15649,7 +15692,7 @@ cpdctl ml training-definition list-revisions --training-definition-id TRAINING-D
    cpdctl ml training-definition list-revisions \
     --training-definition-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --start exampleString \
     --limit 50 \
     --version 2019-01-01
@@ -15663,7 +15706,7 @@ Update the training definition with the provided patch data. The following field
 - `/federated_learning` This command is supported starting with release 3.5 of Cloud Pak for Data.
 
 ```sh
-cpdctl ml training-definition update --training-definition-id TRAINING-DEFINITION-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--federated-learning FEDERATED-LEARNING | @FEDERATED-LEARNING-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl ml training-definition update --training-definition-id TRAINING-DEFINITION-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--federated-learning FEDERATED-LEARNING | @FEDERATED-LEARNING-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -15712,7 +15755,7 @@ cpdctl ml training-definition update --training-definition-id TRAINING-DEFINITIO
     --name my-resource \
     --description 'This is my first resource.' \
     --custom '{"anyKey": "anyValue"}' \
-    --federated-learning '{"model": {"type": "keras", "spec": {"href": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}}, "model_file": "exampleString"}, "fusion_type": "iter_avg", "remote_training": {"quorum": 0.9, "max_timeout": 60, "remote_training_systems": [{"id": "1918939c-2660-4f6a-b727-4b402383dc63", "required": true}]}, "rounds": 3, "termination_predicate": "accuracy > 0.9", "epochs": 3, "optimizer": {"name": "exampleString", "spec": {"anyKey": "anyValue"}}, "loss": "exampleString", "metrics": "exampleString", "max_depth": 38, "learning_rate": 72.5, "l2_regularization": 72.5, "max_bins": 38, "max_leaf_nodes": 38, "min_samples_leaf": 38, "random_state": 38, "verbose": true, "num_classes": 38, "byzantine_threshold": 38, "sigma": 72.5, "sigma0": 72.5, "gamma": 72.5, "iters": 38, "save_intermediate_models": true, "crypto": {"cipher_spec": "encryption_level_1"}, "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "..."}, "version": "exampleString", "log_level": "info", "sketch_accuracy_vs_privacy": 0.01}' \
+    --federated-learning '{"model": {"type": "keras", "spec": {"href": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}}, "model_file": "exampleString"}, "fusion_type": "iter_avg", "remote_training": {"quorum": 0.9, "max_timeout": 60, "remote_training_systems": [{"id": "1918939c-2660-4f6a-b727-4b402383dc63", "required": true}]}, "rounds": 3, "termination_predicate": "accuracy > 0.9", "epochs": 3, "optimizer": {"name": "exampleString", "spec": {"anyKey": "anyValue"}}, "loss": "exampleString", "metrics": "exampleString", "max_depth": 38, "learning_rate": 72.5, "l2_regularization": 72.5, "max_bins": 38, "max_leaf_nodes": 38, "min_samples_leaf": 38, "random_state": 38, "verbose": true, "num_classes": 38, "byzantine_threshold": 38, "sigma": 72.5, "sigma0": 72.5, "gamma": 72.5, "iters": 38, "save_intermediate_models": true, "crypto": {"cipher_spec": "encryption_level_1"}, "hardware_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}, "software_spec": {"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString"}, "version": "exampleString", "log_level": "info", "sketch_accuracy_vs_privacy": 0.01}' \
     --version 2019-01-01
 ```
 ## • <a name="notebook_create">`notebook create`</a>
@@ -26160,28 +26203,6 @@ The following example shows the format of the AccessToken object.
   "token_value" : "exampleString"
 }
 ```
-### <a name="cli-allowed-identity-example-schema">AllowedIdentity</a>
-
-The following example shows the format of the AllowedIdentity object.
-
-```json
-
-{
-  "id" : "hjsdgwsdtyt",
-  "type" : "user"
-}
-```
-### <a name="cli-allowed-identity-example-schema">AllowedIdentity[]</a>
-
-The following example shows the format of the AllowedIdentity[] object.
-
-```json
-
-[ {
-  "id" : "hjsdgwsdtyt",
-  "type" : "user"
-} ]
-```
 ### <a name="cli-analytics-engine-example-schema">AnalyticsEngine</a>
 
 The following example shows the format of the AnalyticsEngine object.
@@ -26572,6 +26593,18 @@ The following example shows the format of the BaseSoftwareSpecificationReference
 {
   "guid" : "903d3fc4-2e46-4581-a23a-b4484e13519e",
   "href" : "/v2/software_specifications/903d3fc4-2e46-4581-a23a-b4484e13519e"
+}
+```
+### <a name="cli-batch-request-example-schema">BatchRequest</a>
+
+The following example shows the format of the BatchRequest object.
+
+```json
+
+{
+  "parameters" : {
+    "anyKey" : "anyValue"
+  }
 }
 ```
 ### <a name="cli-bucket-details-example-schema">BucketDetails</a>
@@ -27181,15 +27214,7 @@ The following example shows the format of the DataConnectionReference object.
 
 ```json
 
-{
-  "fields" : [ {
-    "anyKey" : "anyValue"
-  }, {
-    "anotherAnyKey" : "anotherAnyValue"
-  } ],
-  "id" : "exampleString",
-  "name" : "exampleString"
-}
+{ }
 ```
 ### <a name="cli-data-connection-reference-example-schema">DataConnectionReference[]</a>
 
@@ -27242,13 +27267,14 @@ The following example shows the format of the DataSchema object.
 ```json
 
 {
+  "id" : "t1",
+  "name" : "Tasks",
   "fields" : [ {
     "anyKey" : "anyValue"
   }, {
     "anotherAnyKey" : "anotherAnyValue"
   } ],
-  "id" : "exampleString",
-  "name" : "exampleString"
+  "type" : "struct"
 }
 ```
 ### <a name="cli-data-source-example-schema">DataSource[]</a>
@@ -27451,74 +27477,14 @@ The following example shows the format of the DbConnectionModel object.
   "jdbc_url" : "exampleString"
 }
 ```
-### <a name="cli-deployment-entity-request-batch-example-schema">DeploymentEntityRequestBatch</a>
+### <a name="cli-deployment-entity-request-observability-example-schema">DeploymentEntityRequestObservability</a>
 
-The following example shows the format of the DeploymentEntityRequestBatch object.
-
-```json
-
-{
-  "parameters" : {
-    "anyKey" : "anyValue"
-  }
-}
-```
-### <a name="cli-deployment-entity-request-online-example-schema">DeploymentEntityRequestOnline</a>
-
-The following example shows the format of the DeploymentEntityRequestOnline object.
+The following example shows the format of the DeploymentEntityRequestObservability object.
 
 ```json
 
 {
-  "parameters" : {
-    "anyKey" : "anyValue"
-  }
-}
-```
-### <a name="cli-deployment-entity-request-r-shiny-example-schema">DeploymentEntityRequestRShiny</a>
-
-The following example shows the format of the DeploymentEntityRequestRShiny object.
-
-```json
-
-{
-  "authentication" : "anyone_with_url",
-  "parameters" : {
-    "anyKey" : "anyValue"
-  }
-}
-```
-### <a name="cli-deployment-entity-request-r-shiny-parameters-example-schema">DeploymentEntityRequestRShinyParameters</a>
-
-The following example shows the format of the DeploymentEntityRequestRShinyParameters object.
-
-```json
-
-{
-  "path" : "RShiny/apps/app1"
-}
-```
-### <a name="cli-deployment-entity-request-virtual-example-schema">DeploymentEntityRequestVirtual</a>
-
-The following example shows the format of the DeploymentEntityRequestVirtual object.
-
-```json
-
-{
-  "export_format" : "coreml",
-  "notification_system" : {
-    "connection" : {
-      "anyKey" : "anyValue"
-    },
-    "id" : "exampleString",
-    "location" : {
-      "anyKey" : "anyValue"
-    },
-    "type" : "s3"
-  },
-  "parameters" : {
-    "anyKey" : "anyValue"
-  }
+  "enable_tracing" : true
 }
 ```
 ### <a name="cli-deployment-patch-request-helper-r-shiny-example-schema">DeploymentPatchRequestHelperRShiny</a>
@@ -27529,16 +27495,6 @@ The following example shows the format of the DeploymentPatchRequestHelperRShiny
 
 {
   "path" : "RShiny/apps/app1"
-}
-```
-### <a name="cli-deployment-rel-example-schema">DeploymentRel</a>
-
-The following example shows the format of the DeploymentRel object.
-
-```json
-
-{
-  "id" : "exampleString"
 }
 ```
 ### <a name="cli-deployment-text-chat-messages-example-schema">DeploymentTextChatMessages[]</a>
@@ -27662,14 +27618,6 @@ The following example shows the format of the EngineDetails object.
   }
 }
 ```
-### <a name="cli-environment-variables-example-schema">EnvironmentVariables</a>
-
-The following example shows the format of the EnvironmentVariables object.
-
-```json
-
-{ }
-```
 ### <a name="cli-evaluation-definition-example-schema">EvaluationDefinition</a>
 
 The following example shows the format of the EvaluationDefinition object.
@@ -27691,8 +27639,8 @@ The following example shows the format of the EvaluationMetric object.
 ```json
 
 {
-  "maximize" : true,
-  "name" : "exampleString"
+  "name" : "exampleString",
+  "maximize" : true
 }
 ```
 ### <a name="cli-evaluations-spec-item-example-schema">EvaluationsSpecItem</a>
@@ -27704,7 +27652,7 @@ The following example shows the format of the EvaluationsSpecItem object.
 {
   "id" : "exampleString",
   "input_target" : "exampleString",
-  "metrics_names" : [ "exampleString", "anotherExampleString" ]
+  "metrics_names" : [ "auroc", "accuracy" ]
 }
 ```
 ### <a name="cli-execute-config-example-schema">ExecuteConfig</a>
@@ -27720,80 +27668,6 @@ The following example shows the format of the ExecuteConfig object.
   "executor_cores" : 1,
   "num_executors" : 1
 }
-```
-### <a name="cli-experiment-resource-entity-request-evaluation-definition-example-schema">ExperimentResourceEntityRequestEvaluationDefinition</a>
-
-The following example shows the format of the ExperimentResourceEntityRequestEvaluationDefinition object.
-
-```json
-
-{
-  "method" : "binary",
-  "metrics" : [ {
-    "maximize" : true,
-    "name" : "exampleString"
-  } ]
-}
-```
-### <a name="cli-experiment-resource-entity-request-training-references-item-example-schema">ExperimentResourceEntityRequestTrainingReferencesItem[]</a>
-
-The following example shows the format of the ExperimentResourceEntityRequestTrainingReferencesItem[] object.
-
-```json
-
-[ {
-  "hyper_parameters_optimization" : {
-    "hyper_parameters" : [ {
-      "items" : {
-        "max_value" : 72.5,
-        "min_value" : 72.5,
-        "power" : 72.5,
-        "step" : 72.5
-      },
-      "name" : "exampleString"
-    } ],
-    "method" : {
-      "name" : "random",
-      "parameters" : {
-        "anyKey" : "anyValue"
-      }
-    }
-  },
-  "model_definition" : {
-    "id" : "exampleString"
-  },
-  "pipeline" : {
-    "href" : "exampleString",
-    "id" : "exampleString",
-    "rev" : "exampleString",
-    "data_bindings" : [ {
-      "data_reference_name" : "exampleString",
-      "node_id" : "exampleString"
-    } ],
-    "hardware_spec" : {
-      "id" : "exampleString",
-      "name" : "exampleString",
-      "num_nodes" : 38,
-      "rev" : "exampleString"
-    },
-    "hybrid_pipeline_hardware_specs" : [ {
-      "hardware_spec" : {
-        "id" : "exampleString",
-        "name" : "exampleString",
-        "num_nodes" : 38,
-        "rev" : "exampleString"
-      },
-      "node_runtime_id" : "exampleString"
-    } ],
-    "model_type" : "exampleString",
-    "nodes_parameters" : [ {
-      "node_id" : "exampleString",
-      "parameters" : {
-        "anyKey" : "anyValue"
-      }
-    } ]
-  }
-} ]
 ```
 ### <a name="cli-export-assets-example-schema">ExportAssets</a>
 
@@ -27894,7 +27768,7 @@ The following example shows the format of the FederatedLearning object.
   "software_spec" : {
     "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
     "rev" : "2",
-    "name" : "..."
+    "name" : "exampleString"
   },
   "version" : "exampleString",
   "log_level" : "info",
@@ -28070,33 +27944,6 @@ The following example shows the format of the FunctionEntitySchemas object.
   } ]
 }
 ```
-### <a name="cli-function-resource-entity-request-schemas-example-schema">FunctionResourceEntityRequestSchemas</a>
-
-The following example shows the format of the FunctionResourceEntityRequestSchemas object.
-
-```json
-
-{
-  "input" : [ {
-    "fields" : [ {
-      "anyKey" : "anyValue"
-    }, {
-      "anotherAnyKey" : "anotherAnyValue"
-    } ],
-    "id" : "exampleString",
-    "name" : "exampleString"
-  } ],
-  "output" : [ {
-    "fields" : [ {
-      "anyKey" : "anyValue"
-    }, {
-      "anotherAnyKey" : "anotherAnyValue"
-    } ],
-    "id" : "exampleString",
-    "name" : "exampleString"
-  } ]
-}
-```
 ### <a name="cli-gpu-example-schema">GPU</a>
 
 The following example shows the format of the GPU object.
@@ -28153,19 +28000,6 @@ The following example shows the format of the HardwareSpec object.
   "rev" : "2",
   "name" : "exampleString",
   "num_nodes" : 2
-}
-```
-### <a name="cli-hardware-spec-rel-example-schema">HardwareSpecRel</a>
-
-The following example shows the format of the HardwareSpecRel object.
-
-```json
-
-{
-  "id" : "exampleString",
-  "name" : "exampleString",
-  "num_nodes" : 38,
-  "rev" : "exampleString"
 }
 ```
 ### <a name="cli-hardware-specification-cpu-definition-example-schema">HardwareSpecificationCpuDefinition</a>
@@ -28331,10 +28165,10 @@ The following example shows the format of the HybridPipelineHardwareSpecsItem ob
 ```json
 
 {
-  "id" : "exampleString",
+  "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
+  "rev" : "2",
   "name" : "exampleString",
-  "num_nodes" : 38,
-  "rev" : "exampleString"
+  "num_nodes" : 2
 }
 ```
 ### <a name="cli-hybrid-pipeline-hardware-specs-item-example-schema">HybridPipelineHardwareSpecsItem[]</a>
@@ -28344,13 +28178,13 @@ The following example shows the format of the HybridPipelineHardwareSpecsItem[] 
 ```json
 
 [ {
+  "node_runtime_id" : "auto_ai.kb",
   "hardware_spec" : {
-    "id" : "exampleString",
+    "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
+    "rev" : "2",
     "name" : "exampleString",
-    "num_nodes" : 38,
-    "rev" : "exampleString"
-  },
-  "node_runtime_id" : "exampleString"
+    "num_nodes" : 2
+  }
 } ]
 ```
 ### <a name="cli-iceberg-source-table-example-schema">IcebergSourceTable</a>
@@ -28389,30 +28223,6 @@ The following example shows the format of the IngestionSchemaResponse object.
   "header_name" : "exampleString",
   "type" : "exampleString"
 }
-```
-### <a name="cli-input-data-array-example-schema">InputDataArray</a>
-
-The following example shows the format of the InputDataArray object.
-
-```json
-
-{
-  "id" : "exampleString",
-  "fields" : [ "name", "age", "occupation" ],
-  "values" : [ [ "exampleString", "anotherExampleString" ], [ "exampleString", "anotherExampleString" ] ]
-}
-```
-### <a name="cli-input-data-array-example-schema">InputDataArray[]</a>
-
-The following example shows the format of the InputDataArray[] object.
-
-```json
-
-[ {
-  "id" : "exampleString",
-  "fields" : [ "name", "age", "occupation" ],
-  "values" : [ [ "exampleString", "anotherExampleString" ], [ "exampleString", "anotherExampleString" ] ]
-} ]
 ```
 ### <a name="cli-input-data-reference-example-schema">InputDataReference</a>
 
@@ -28466,14 +28276,44 @@ The following example shows the format of the JSONPatchOperation[] object.
   "value" : "exampleString"
 } ]
 ```
-### <a name="cli-job-decision-optimization-request-output-data-item-example-schema">JobDecisionOptimizationRequestOutputDataItem</a>
+### <a name="cli-job-decision-optimization-request-example-schema">JobDecisionOptimizationRequest</a>
 
-The following example shows the format of the JobDecisionOptimizationRequestOutputDataItem object.
+The following example shows the format of the JobDecisionOptimizationRequest object.
 
 ```json
 
 {
-  "name" : "exampleString"
+  "solve_parameters" : {
+    "anyKey" : "anyValue"
+  },
+  "input_data" : [ {
+    "id" : "exampleString",
+    "fields" : [ "exampleString", "anotherExampleString" ],
+    "values" : [ [ { } ] ],
+    "content" : "exampleString"
+  } ],
+  "input_data_references" : [ {
+    "id" : "b6e37189-90e8-4260-86d8-0a6d2a02aa99",
+    "type" : "connection_asset",
+    "connection" : {
+      "anyKey" : "anyValue"
+    },
+    "location" : { }
+  } ],
+  "output_data" : [ {
+    "id" : "exampleString",
+    "fields" : [ "exampleString", "anotherExampleString" ],
+    "values" : [ [ { } ] ],
+    "content" : "exampleString"
+  } ],
+  "output_data_references" : [ {
+    "id" : "b6e37189-90e8-4260-86d8-0a6d2a02aa99",
+    "type" : "connection_asset",
+    "connection" : {
+      "anyKey" : "anyValue"
+    },
+    "location" : { }
+  } ]
 }
 ```
 ### <a name="cli-job-parameter-example-schema">JobParameter</a>
@@ -28631,6 +28471,60 @@ The following example shows the format of the JobRuntimeConfiguration object.
   "version" : "d00a9d88-4394-48f8-86db-d9b8360f8a72"
 }
 ```
+### <a name="cli-job-scoring-request-example-schema">JobScoringRequest</a>
+
+The following example shows the format of the JobScoringRequest object.
+
+```json
+
+{
+  "input_data" : [ {
+    "id" : "exampleString",
+    "type" : "target",
+    "fields" : [ "exampleString", "anotherExampleString" ],
+    "values" : [ [ "exampleString", "anotherExampleString" ], [ "exampleString", "anotherExampleString" ] ],
+    "targets" : [ [ "exampleString", "anotherExampleString" ], [ "exampleString", "anotherExampleString" ] ]
+  } ],
+  "input_data_references" : [ {
+    "id" : "8d3682dd-2858-43c9-bfd7-12a79abcfb0c",
+    "type" : "connection_asset",
+    "connection" : { },
+    "location" : { },
+    "schema" : {
+      "id" : "t1",
+      "name" : "Tasks",
+      "fields" : [ {
+        "anyKey" : "anyValue"
+      }, {
+        "anotherAnyKey" : "anotherAnyValue"
+      } ],
+      "type" : "struct"
+    }
+  } ],
+  "output_data_reference" : {
+    "id" : "8d3682dd-2858-43c9-bfd7-12a79abcfb0c",
+    "type" : "connection_asset",
+    "connection" : { },
+    "location" : { },
+    "schema" : {
+      "id" : "t1",
+      "name" : "Tasks",
+      "fields" : [ {
+        "anyKey" : "anyValue"
+      }, {
+        "anotherAnyKey" : "anotherAnyValue"
+      } ],
+      "type" : "struct"
+    }
+  },
+  "evaluations" : [ {
+    "id" : "exampleString",
+    "input_target" : "exampleString",
+    "metrics_names" : [ "auroc", "accuracy" ]
+  } ],
+  "environment_variables" : { }
+}
+```
 ### <a name="cli-local-git-storage-repository-example-schema">LocalGitStorageRepository</a>
 
 The following example shows the format of the LocalGitStorageRepository object.
@@ -28775,19 +28669,19 @@ The following example shows the format of the Metric[] object.
       "average_precision" : {
         "level_shift" : {
           "mean" : 1,
-          "range" : [ 1, 1 ]
+          "range" : [ -1, 1 ]
         },
         "localized_extreme" : {
           "mean" : 1,
-          "range" : [ 1, 1 ]
+          "range" : [ -1, 1 ]
         },
         "trend" : {
           "mean" : 1,
-          "range" : [ 1, 1 ]
+          "range" : [ -1, 1 ]
         },
         "variance" : {
           "mean" : 1,
-          "range" : [ 1, 1 ]
+          "range" : [ -1, 1 ]
         }
       },
       "f1" : {
@@ -28801,7 +28695,8 @@ The following example shows the format of the Metric[] object.
           "anyKey" : "anyValue"
         },
         "variance" : {
-          "anyKey" : "anyValue"
+          "mean" : 1,
+          "range" : [ -1, 1 ]
         }
       },
       "precision" : {
@@ -28815,7 +28710,8 @@ The following example shows the format of the Metric[] object.
           "anyKey" : "anyValue"
         },
         "variance" : {
-          "anyKey" : "anyValue"
+          "mean" : 1,
+          "range" : [ -1, 1 ]
         }
       },
       "recall" : {
@@ -28829,7 +28725,8 @@ The following example shows the format of the Metric[] object.
           "anyKey" : "anyValue"
         },
         "variance" : {
-          "anyKey" : "anyValue"
+          "mean" : 1,
+          "range" : [ -1, 1 ]
         }
       },
       "roc_auc" : {
@@ -28843,7 +28740,8 @@ The following example shows the format of the Metric[] object.
           "anyKey" : "anyValue"
         },
         "variance" : {
-          "anyKey" : "anyValue"
+          "mean" : 1,
+          "range" : [ -1, 1 ]
         }
       }
     },
@@ -28889,7 +28787,6 @@ The following example shows the format of the Metric[] object.
       "p6" : 5
     } ]
   },
-  "ml_federated_metrics" : { },
   "context" : {
     "deployment_id" : "exampleString",
     "intermediate_model" : {
@@ -28959,11 +28856,9 @@ The following example shows the format of the Metric[] object.
       "one_vs_all_location" : "data/7d9ac934-9073-4ffd-846c-7b1f912b1ab2/data/autoai/pre_hpo_d_output/Pipeline1/one_vs_all.json"
     },
     "features_importance" : [ {
-      "stage" : "exampleString",
       "computation_type" : "exampleString",
-      "features" : {
-        "anyKey" : "anyValue"
-      }
+      "features" : { },
+      "min_max_normalization" : true
     } ],
     "schema" : "exampleString",
     "estimators" : [ "exampleString", "anotherExampleString" ],
@@ -28977,75 +28872,6 @@ The following example shows the format of the Metric[] object.
     },
     "prediction_type" : "regression"
   }
-} ]
-```
-### <a name="cli-metrics-item-example-schema">MetricsItem[]</a>
-
-The following example shows the format of the MetricsItem[] object.
-
-```json
-
-[ {
-  "context" : {
-    "binary_classfication" : {
-      "confusion_matrices" : [ {
-        "fn" : 38,
-        "fp" : 38,
-        "tn" : 38,
-        "tp" : 38,
-        "true_class" : "exampleString"
-      } ],
-      "roc_curves" : [ {
-        "fpr" : 72.5,
-        "thresholds" : [ 72.5, 73.9 ],
-        "tpr" : 72.5,
-        "true_class" : "exampleString"
-      } ]
-    },
-    "classes" : [ "exampleString", "anotherExampleString" ],
-    "features_importance" : [ {
-      "computation_type" : "exampleString",
-      "features" : {
-        "anyKey" : "anyValue"
-      },
-      "stage" : "exampleString"
-    } ],
-    "intermediate_model" : {
-      "composition_steps" : [ "exampleString", "anotherExampleString" ],
-      "features_importance" : [ {
-        "computation_type" : "exampleString",
-        "features" : {
-          "anyKey" : "anyValue"
-        },
-        "stage" : "exampleString"
-      } ],
-      "location" : {
-        "model" : "exampleString",
-        "pipeline" : "exampleString",
-        "pipeline_model" : "exampleString"
-      },
-      "name" : "exampleString",
-      "process" : "exampleString"
-    },
-    "phase" : "exampleString",
-    "step" : {
-      "completed_at" : "2019-01-01T12:00:00.000Z",
-      "data_allocation" : 38,
-      "estimator" : "exampleString",
-      "hyper_parameters" : {
-        "anyKey" : "anyValue"
-      },
-      "id" : "exampleString",
-      "name" : "exampleString",
-      "started_at" : "2019-01-01T12:00:00.000Z",
-      "transformer" : "exampleString"
-    }
-  },
-  "iteration" : 38,
-  "ml_metrics" : {
-    "anyKey" : "anyValue"
-  },
-  "timestamp" : "2019-01-01T12:00:00.000Z"
 } ]
 ```
 ### <a name="cli-model-definition-entity-request-platform-example-schema">ModelDefinitionEntityRequestPlatform</a>
@@ -29066,7 +28892,7 @@ The following example shows the format of the ModelDefinitionID object.
 ```json
 
 {
-  "id" : "exampleString"
+  "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab"
 }
 ```
 ### <a name="cli-model-definition-rel-example-schema">ModelDefinitionRel</a>
@@ -29076,24 +28902,23 @@ The following example shows the format of the ModelDefinitionRel object.
 ```json
 
 {
-  "href" : "exampleString",
-  "id" : "exampleString",
-  "rev" : "exampleString",
-  "command" : "exampleString",
-  "hardware_spec" : {
-    "id" : "exampleString",
-    "name" : "exampleString",
-    "num_nodes" : 38,
-    "rev" : "exampleString"
-  },
+  "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
+  "rev" : "2",
   "model_type" : "exampleString",
-  "parameters" : {
-    "anyKey" : "anyValue"
+  "hardware_spec" : {
+    "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
+    "rev" : "2",
+    "name" : "exampleString",
+    "num_nodes" : 2
   },
   "software_spec" : {
-    "id" : "exampleString",
-    "name" : "exampleString",
-    "rev" : "exampleString"
+    "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
+    "rev" : "2",
+    "name" : "exampleString"
+  },
+  "command" : "exampleString",
+  "parameters" : {
+    "anyKey" : "anyValue"
   }
 }
 ```
@@ -29149,6 +28974,20 @@ The following example shows the format of the ModelEntitySize object.
   "content" : 72.5
 }
 ```
+### <a name="cli-model-fine-tuning-parameters-example-schema">ModelFineTuningParameters</a>
+
+The following example shows the format of the ModelFineTuningParameters object.
+
+```json
+
+{
+  "type" : "lora",
+  "rank" : 32,
+  "target_modules" : [ "exampleString", "anotherExampleString" ],
+  "lora_alpha" : 32,
+  "lora_dropout" : 0.05
+}
+```
 ### <a name="cli-model-reference-example-schema">ModelReference[]</a>
 
 The following example shows the format of the ModelReference[] object.
@@ -29161,44 +29000,6 @@ The following example shows the format of the ModelReference[] object.
   "id" : "exampleString",
   "rev" : "exampleString"
 } ]
-```
-### <a name="cli-model-resource-entity-request-schemas-example-schema">ModelResourceEntityRequestSchemas</a>
-
-The following example shows the format of the ModelResourceEntityRequestSchemas object.
-
-```json
-
-{
-  "input" : [ {
-    "fields" : [ {
-      "anyKey" : "anyValue"
-    }, {
-      "anotherAnyKey" : "anotherAnyValue"
-    } ],
-    "id" : "exampleString",
-    "name" : "exampleString"
-  } ],
-  "output" : [ {
-    "fields" : [ {
-      "anyKey" : "anyValue"
-    }, {
-      "anotherAnyKey" : "anotherAnyValue"
-    } ],
-    "id" : "exampleString",
-    "name" : "exampleString"
-  } ]
-}
-```
-### <a name="cli-model-resource-entity-request-size-example-schema">ModelResourceEntityRequestSize</a>
-
-The following example shows the format of the ModelResourceEntityRequestSize object.
-
-```json
-
-{
-  "content" : 72.5,
-  "in_memory" : 72.5
-}
 ```
 ### <a name="cli-moderations-example-schema">Moderations</a>
 
@@ -29574,6 +29375,35 @@ The following example shows the format of the OnlineDeploymentParameters object.
   "serving_name" : "churn"
 }
 ```
+### <a name="cli-online-parameters-example-schema">OnlineParameters</a>
+
+The following example shows the format of the OnlineParameters object.
+
+```json
+
+{
+  "max_model_length" : 2048,
+  "max_num_seqs" : 256,
+  "functions" : [ "text_generation", "text_chat" ]
+}
+```
+### <a name="cli-online-request-example-schema">OnlineRequest</a>
+
+The following example shows the format of the OnlineRequest object.
+
+```json
+
+{
+  "parameters" : {
+    "serving_name" : "churn",
+    "foundation_model" : {
+      "max_model_length" : 2048,
+      "max_num_seqs" : 256,
+      "functions" : [ "text_generation", "text_chat" ]
+    }
+  }
+}
+```
 ### <a name="cli-option-example-schema">Option[]</a>
 
 The following example shows the format of the Option[] object.
@@ -29584,17 +29414,6 @@ The following example shows the format of the Option[] object.
   "key" : "exampleString",
   "value" : "exampleString"
 } ]
-```
-### <a name="cli-organization-example-schema">Organization</a>
-
-The following example shows the format of the Organization object.
-
-```json
-
-{
-  "name" : "Blogg Ltd",
-  "region" : "EU"
-}
 ```
 ### <a name="cli-package-extension-reference-example-schema">PackageExtensionReference[]</a>
 
@@ -29669,20 +29488,6 @@ The following example shows the format of the PatchDocument[] object.
 
 [ {
   "from" : "exampleString",
-  "op" : "add",
-  "path" : "exampleString",
-  "value" : {
-    "anyKey" : "anyValue"
-  }
-} ]
-```
-### <a name="cli-patch-item-example-schema">PatchItem[]</a>
-
-The following example shows the format of the PatchItem[] object.
-
-```json
-
-[ {
   "op" : "add",
   "path" : "exampleString",
   "value" : {
@@ -29782,33 +29587,32 @@ The following example shows the format of the PipelineRel object.
 ```json
 
 {
-  "href" : "exampleString",
-  "id" : "exampleString",
-  "rev" : "exampleString",
+  "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
+  "rev" : "2",
+  "model_type" : "exampleString",
   "data_bindings" : [ {
     "data_reference_name" : "exampleString",
     "node_id" : "exampleString"
   } ],
-  "hardware_spec" : {
-    "id" : "exampleString",
-    "name" : "exampleString",
-    "num_nodes" : 38,
-    "rev" : "exampleString"
-  },
-  "hybrid_pipeline_hardware_specs" : [ {
-    "hardware_spec" : {
-      "id" : "exampleString",
-      "name" : "exampleString",
-      "num_nodes" : 38,
-      "rev" : "exampleString"
-    },
-    "node_runtime_id" : "exampleString"
-  } ],
-  "model_type" : "exampleString",
   "nodes_parameters" : [ {
     "node_id" : "exampleString",
     "parameters" : {
       "anyKey" : "anyValue"
+    }
+  } ],
+  "hardware_spec" : {
+    "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
+    "rev" : "2",
+    "name" : "exampleString",
+    "num_nodes" : 2
+  },
+  "hybrid_pipeline_hardware_specs" : [ {
+    "node_runtime_id" : "auto_ai.kb",
+    "hardware_spec" : {
+      "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
+      "rev" : "2",
+      "name" : "exampleString",
+      "num_nodes" : 2
     }
   } ]
 }
@@ -30027,6 +29831,32 @@ The following example shows the format of the PromptWithExternalModelParameters 
   "repetition_penalty" : 72.5
 }
 ```
+### <a name="cli-r-shiny-parameters-example-schema">RShinyParameters</a>
+
+The following example shows the format of the RShinyParameters object.
+
+```json
+
+{
+  "path" : "RShiny/apps/app1"
+}
+```
+### <a name="cli-r-shiny-request-example-schema">RShinyRequest</a>
+
+The following example shows the format of the RShinyRequest object.
+
+```json
+
+{
+  "authentication" : "members_of_deployment_space",
+  "parameters" : {
+    "serving_name" : "churn",
+    "code_package" : {
+      "path" : "RShiny/apps/app1"
+    }
+  }
+}
+```
 ### <a name="cli-records-count-summary-example-schema">RecordsCountSummary</a>
 
 The following example shows the format of the RecordsCountSummary object.
@@ -30067,17 +29897,6 @@ The following example shows the format of the Rel object.
 {
   "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
   "rev" : "2"
-}
-```
-### <a name="cli-remote-admin-example-schema">RemoteAdmin</a>
-
-The following example shows the format of the RemoteAdmin object.
-
-```json
-
-{
-  "name" : "Joe Blogg",
-  "email" : "joe.blogg@mail.com"
 }
 ```
 ### <a name="cli-rerank-input-example-schema">RerankInput[]</a>
@@ -30239,6 +30058,38 @@ The following example shows the format of the ScoringEndpointRequest object.
   "token" : "exampleString"
 }
 ```
+### <a name="cli-scoring-parameters-example-schema">ScoringParameters</a>
+
+The following example shows the format of the ScoringParameters object.
+
+```json
+
+{
+  "forecast_window" : 1
+}
+```
+### <a name="cli-scoring-payload-example-schema">ScoringPayload</a>
+
+The following example shows the format of the ScoringPayload object.
+
+```json
+
+{
+  "id" : "exampleString",
+  "type" : "target",
+  "fields" : [ "exampleString", "anotherExampleString" ],
+  "values" : [ [ "exampleString", "anotherExampleString" ], [ "exampleString", "anotherExampleString" ] ],
+  "targets" : [ [ "exampleString", "anotherExampleString" ], [ "exampleString", "anotherExampleString" ] ]
+}
+```
+### <a name="cli-scoring-payload-optim-example-schema">ScoringPayloadOptim</a>
+
+The following example shows the format of the ScoringPayloadOptim object.
+
+```json
+
+{ }
+```
 ### <a name="cli-secret-example-schema">Secret</a>
 
 The following example shows the format of the Secret object.
@@ -30309,7 +30160,7 @@ The following example shows the format of the SoftwareSpecRel[] object.
 [ {
   "id" : "4cedab6d-e8e4-4214-b81a-2ddb122db2ab",
   "rev" : "2",
-  "name" : "..."
+  "name" : "exampleString"
 } ]
 ```
 ### <a name="cli-software-specification-entity-software-configuration-definition-example-schema">SoftwareSpecificationEntitySoftwareConfigurationDefinition</a>
@@ -30414,40 +30265,6 @@ The following example shows the format of the SourceSystem object.
   "last_modified" : 1531854592,
   "source" : "DASHDB",
   "source_system_id" : "String"
-}
-```
-### <a name="cli-space-entity-storage-example-schema">SpaceEntityStorage</a>
-
-The following example shows the format of the SpaceEntityStorage object.
-
-```json
-
-{
-  "cos" : {
-    "bucket_name" : "exampleString",
-    "bucket_region" : "exampleString",
-    "credentials" : {
-      "admin" : {
-        "access_key_id" : "exampleString",
-        "api_key" : "exampleString",
-        "secret_access_key" : "exampleString",
-        "service_id" : "exampleString"
-      },
-      "editor" : {
-        "access_key_id" : "exampleString",
-        "api_key" : "exampleString",
-        "secret_access_key" : "exampleString",
-        "service_id" : "exampleString"
-      },
-      "viewer" : {
-        "access_key_id" : "exampleString",
-        "api_key" : "exampleString",
-        "secret_access_key" : "exampleString",
-        "service_id" : "exampleString"
-      }
-    },
-    "endpoint_url" : "exampleString"
-  }
 }
 ```
 ### <a name="cli-spark-application-details-example-schema">SparkApplicationDetails</a>
@@ -30639,8 +30456,35 @@ The following example shows the format of the SyncScoringData object.
     "id" : "exampleString",
     "fields" : [ "name", "age", "occupation" ],
     "values" : [ [ "exampleString", "anotherExampleString" ], [ "exampleString", "anotherExampleString" ] ]
-  } ]
+  } ],
+  "scoring_parameters" : {
+    "forecast_window" : 1
+  }
 }
+```
+### <a name="cli-sync-scoring-data-item-example-schema">SyncScoringDataItem</a>
+
+The following example shows the format of the SyncScoringDataItem object.
+
+```json
+
+{
+  "id" : "exampleString",
+  "fields" : [ "name", "age", "occupation" ],
+  "values" : [ [ "exampleString", "anotherExampleString" ], [ "exampleString", "anotherExampleString" ] ]
+}
+```
+### <a name="cli-sync-scoring-data-item-example-schema">SyncScoringDataItem[]</a>
+
+The following example shows the format of the SyncScoringDataItem[] object.
+
+```json
+
+[ {
+  "id" : "exampleString",
+  "fields" : [ "name", "age", "occupation" ],
+  "values" : [ [ "exampleString", "anotherExampleString" ], [ "exampleString", "anotherExampleString" ] ]
+} ]
 ```
 ### <a name="cli-ts-forecast-input-schema-example-schema">TSForecastInputSchema</a>
 
@@ -31079,6 +30923,30 @@ The following example shows the format of the TrainingDataReferenceLocation obje
 {
   "schema_name" : "exampleString",
   "table_name" : "exampleString"
+}
+```
+### <a name="cli-training-details-example-schema">TrainingDetails</a>
+
+The following example shows the format of the TrainingDetails object.
+
+```json
+
+{
+  "id" : "b8e64f4b-ead1-47f3-abf6-8247b2826763",
+  "base_model" : {
+    "model_id" : "google/flan-t5-xl"
+  },
+  "task_id" : "summarization",
+  "verbalizer" : "{{input}}",
+  "fine_tuning" : {
+    "peft_parameters" : {
+      "type" : "lora",
+      "rank" : 32,
+      "target_modules" : [ "exampleString", "anotherExampleString" ],
+      "lora_alpha" : 32,
+      "lora_dropout" : 0.05
+    }
+  }
 }
 ```
 ### <a name="cli-training-reference-example-schema">TrainingReference[]</a>
