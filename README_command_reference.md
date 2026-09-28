@@ -394,12 +394,26 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 - [wx-ai ai-service list-revisions](#wx-ai_ai-service_list-revisions)
 - [wx-ai ai-service update](#wx-ai_ai-service_update)
 - [wx-ai ai-service upload-code](#wx-ai_ai-service_upload-code)
+- [wx-ai audio transcribe](#wx-ai_audio_transcribe)
 - [wx-ai autoai-rag create](#wx-ai_autoai-rag_create)
 - [wx-ai autoai-rag delete](#wx-ai_autoai-rag_delete)
 - [wx-ai autoai-rag get](#wx-ai_autoai-rag_get)
 - [wx-ai autoai-rag list](#wx-ai_autoai-rag_list)
+- [wx-ai batches cancel](#wx-ai_batches_cancel)
+- [wx-ai batches create](#wx-ai_batches_create)
+- [wx-ai batches get](#wx-ai_batches_get)
+- [wx-ai batches list](#wx-ai_batches_list)
+- [wx-ai cluster-schema cluster](#wx-ai_cluster-schema_cluster)
+- [wx-ai cluster-schema delete](#wx-ai_cluster-schema_delete)
+- [wx-ai cluster-schema get](#wx-ai_cluster-schema_get)
+- [wx-ai cluster-schema list](#wx-ai_cluster-schema_list)
+- [wx-ai create-schema create](#wx-ai_create-schema_create)
+- [wx-ai create-schema delete](#wx-ai_create-schema_delete)
+- [wx-ai create-schema get](#wx-ai_create-schema_get)
+- [wx-ai create-schema list](#wx-ai_create-schema_list)
 - [wx-ai custom-foundation-model list](#wx-ai_custom-foundation-model_list)
 - [wx-ai deployment chat](#wx-ai_deployment_chat)
+- [wx-ai deployment chat-completions](#wx-ai_deployment_chat-completions)
 - [wx-ai deployment chat-stream](#wx-ai_deployment_chat-stream)
 - [wx-ai deployment create](#wx-ai_deployment_create)
 - [wx-ai deployment delete](#wx-ai_deployment_delete)
@@ -407,18 +421,109 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 - [wx-ai deployment list](#wx-ai_deployment_list)
 - [wx-ai deployment text-generate](#wx-ai_deployment_text-generate)
 - [wx-ai deployment text-generate-stream](#wx-ai_deployment_text-generate-stream)
+- [wx-ai deployment time-series-forecast](#wx-ai_deployment_time-series-forecast)
 - [wx-ai deployment update](#wx-ai_deployment_update)
 - [wx-ai deployment wait](#wx-ai_deployment_wait)
 - [wx-ai document-extraction create](#wx-ai_document-extraction_create)
 - [wx-ai document-extraction delete](#wx-ai_document-extraction_delete)
 - [wx-ai document-extraction get](#wx-ai_document-extraction_get)
 - [wx-ai document-extraction list](#wx-ai_document-extraction_list)
+- [wx-ai evaluation delete](#wx-ai_evaluation_delete)
+- [wx-ai evaluation get](#wx-ai_evaluation_get)
+- [wx-ai evaluation list](#wx-ai_evaluation_list)
+- [wx-ai evaluation submit](#wx-ai_evaluation_submit)
+- [wx-ai files get](#wx-ai_files_get)
+- [wx-ai files list](#wx-ai_files_list)
+- [wx-ai files upload](#wx-ai_files_upload)
 - [wx-ai fine-tuning create](#wx-ai_fine-tuning_create)
 - [wx-ai fine-tuning delete](#wx-ai_fine-tuning_delete)
 - [wx-ai fine-tuning get](#wx-ai_fine-tuning_get)
 - [wx-ai fine-tuning list](#wx-ai_fine-tuning_list)
 - [wx-ai foundation-model list-models](#wx-ai_foundation-model_list-models)
 - [wx-ai foundation-model list-tasks](#wx-ai_foundation-model_list-tasks)
+- [wx-ai gpus list](#wx-ai_gpus_list)
+- [wx-ai improve-schema delete](#wx-ai_improve-schema_delete)
+- [wx-ai improve-schema get](#wx-ai_improve-schema_get)
+- [wx-ai improve-schema improve](#wx-ai_improve-schema_improve)
+- [wx-ai improve-schema list](#wx-ai_improve-schema_list)
+- [wx-ai merge-schema delete](#wx-ai_merge-schema_delete)
+- [wx-ai merge-schema get](#wx-ai_merge-schema_get)
+- [wx-ai merge-schema list](#wx-ai_merge-schema_list)
+- [wx-ai merge-schema merge](#wx-ai_merge-schema_merge)
+- [wx-ai model-gateway create-anthropic-provider](#wx-ai_model-gateway_create-anthropic-provider)
+- [wx-ai model-gateway create-azure-openai-provider](#wx-ai_model-gateway_create-azure-openai-provider)
+- [wx-ai model-gateway create-bedrock-provider](#wx-ai_model-gateway_create-bedrock-provider)
+- [wx-ai model-gateway create-cerebras-provider](#wx-ai_model-gateway_create-cerebras-provider)
+- [wx-ai model-gateway create-chat-completions](#wx-ai_model-gateway_create-chat-completions)
+- [wx-ai model-gateway create-cohere-provider](#wx-ai_model-gateway_create-cohere-provider)
+- [wx-ai model-gateway create-completions](#wx-ai_model-gateway_create-completions)
+- [wx-ai model-gateway create-embeddings](#wx-ai_model-gateway_create-embeddings)
+- [wx-ai model-gateway create-gemini-provider](#wx-ai_model-gateway_create-gemini-provider)
+- [wx-ai model-gateway create-groq-provider](#wx-ai_model-gateway_create-groq-provider)
+- [wx-ai model-gateway create-image](#wx-ai_model-gateway_create-image)
+- [wx-ai model-gateway create-jwt](#wx-ai_model-gateway_create-jwt)
+- [wx-ai model-gateway create-load-balancer](#wx-ai_model-gateway_create-load-balancer)
+- [wx-ai model-gateway create-load-balancer-backend](#wx-ai_model-gateway_create-load-balancer-backend)
+- [wx-ai model-gateway create-mistral-provider](#wx-ai_model-gateway_create-mistral-provider)
+- [wx-ai model-gateway create-nim-provider](#wx-ai_model-gateway_create-nim-provider)
+- [wx-ai model-gateway create-openai-provider](#wx-ai_model-gateway_create-openai-provider)
+- [wx-ai model-gateway create-policy](#wx-ai_model-gateway_create-policy)
+- [wx-ai model-gateway create-provider-model](#wx-ai_model-gateway_create-provider-model)
+- [wx-ai model-gateway create-rate-limit](#wx-ai_model-gateway_create-rate-limit)
+- [wx-ai model-gateway create-response](#wx-ai_model-gateway_create-response)
+- [wx-ai model-gateway create-speech](#wx-ai_model-gateway_create-speech)
+- [wx-ai model-gateway create-watsonxai-provider](#wx-ai_model-gateway_create-watsonxai-provider)
+- [wx-ai model-gateway create-xai-provider](#wx-ai_model-gateway_create-xai-provider)
+- [wx-ai model-gateway delete-load-balancer](#wx-ai_model-gateway_delete-load-balancer)
+- [wx-ai model-gateway delete-load-balancer-backend](#wx-ai_model-gateway_delete-load-balancer-backend)
+- [wx-ai model-gateway delete-model](#wx-ai_model-gateway_delete-model)
+- [wx-ai model-gateway delete-policy](#wx-ai_model-gateway_delete-policy)
+- [wx-ai model-gateway delete-provider](#wx-ai_model-gateway_delete-provider)
+- [wx-ai model-gateway delete-provider-model](#wx-ai_model-gateway_delete-provider-model)
+- [wx-ai model-gateway delete-rate-limit](#wx-ai_model-gateway_delete-rate-limit)
+- [wx-ai model-gateway delete-tenant](#wx-ai_model-gateway_delete-tenant)
+- [wx-ai model-gateway delete-tenant-config](#wx-ai_model-gateway_delete-tenant-config)
+- [wx-ai model-gateway find-providers](#wx-ai_model-gateway_find-providers)
+- [wx-ai model-gateway get-load-balancer](#wx-ai_model-gateway_get-load-balancer)
+- [wx-ai model-gateway get-load-balancer-backend](#wx-ai_model-gateway_get-load-balancer-backend)
+- [wx-ai model-gateway get-model](#wx-ai_model-gateway_get-model)
+- [wx-ai model-gateway get-policy](#wx-ai_model-gateway_get-policy)
+- [wx-ai model-gateway get-provider](#wx-ai_model-gateway_get-provider)
+- [wx-ai model-gateway get-rate-limit](#wx-ai_model-gateway_get-rate-limit)
+- [wx-ai model-gateway get-tenant](#wx-ai_model-gateway_get-tenant)
+- [wx-ai model-gateway get-tenant-config](#wx-ai_model-gateway_get-tenant-config)
+- [wx-ai model-gateway get-tenant-usage](#wx-ai_model-gateway_get-tenant-usage)
+- [wx-ai model-gateway get-user-usage](#wx-ai_model-gateway_get-user-usage)
+- [wx-ai model-gateway list-load-balancer-backends](#wx-ai_model-gateway_list-load-balancer-backends)
+- [wx-ai model-gateway list-load-balancers](#wx-ai_model-gateway_list-load-balancers)
+- [wx-ai model-gateway list-models](#wx-ai_model-gateway_list-models)
+- [wx-ai model-gateway list-policies](#wx-ai_model-gateway_list-policies)
+- [wx-ai model-gateway list-provider-available-models](#wx-ai_model-gateway_list-provider-available-models)
+- [wx-ai model-gateway list-provider-models](#wx-ai_model-gateway_list-provider-models)
+- [wx-ai model-gateway list-providers](#wx-ai_model-gateway_list-providers)
+- [wx-ai model-gateway list-rate-limits](#wx-ai_model-gateway_list-rate-limits)
+- [wx-ai model-gateway replace-load-balancer](#wx-ai_model-gateway_replace-load-balancer)
+- [wx-ai model-gateway replace-load-balancer-backend](#wx-ai_model-gateway_replace-load-balancer-backend)
+- [wx-ai model-gateway replace-policy](#wx-ai_model-gateway_replace-policy)
+- [wx-ai model-gateway replace-provider-anthropic](#wx-ai_model-gateway_replace-provider-anthropic)
+- [wx-ai model-gateway replace-provider-azure-openai](#wx-ai_model-gateway_replace-provider-azure-openai)
+- [wx-ai model-gateway replace-provider-bedrock](#wx-ai_model-gateway_replace-provider-bedrock)
+- [wx-ai model-gateway replace-provider-cerebras](#wx-ai_model-gateway_replace-provider-cerebras)
+- [wx-ai model-gateway replace-provider-cohere](#wx-ai_model-gateway_replace-provider-cohere)
+- [wx-ai model-gateway replace-provider-gemini](#wx-ai_model-gateway_replace-provider-gemini)
+- [wx-ai model-gateway replace-provider-groq](#wx-ai_model-gateway_replace-provider-groq)
+- [wx-ai model-gateway replace-provider-mistral](#wx-ai_model-gateway_replace-provider-mistral)
+- [wx-ai model-gateway replace-provider-model](#wx-ai_model-gateway_replace-provider-model)
+- [wx-ai model-gateway replace-provider-nim](#wx-ai_model-gateway_replace-provider-nim)
+- [wx-ai model-gateway replace-provider-openai](#wx-ai_model-gateway_replace-provider-openai)
+- [wx-ai model-gateway replace-provider-watsonxai](#wx-ai_model-gateway_replace-provider-watsonxai)
+- [wx-ai model-gateway replace-provider-xai](#wx-ai_model-gateway_replace-provider-xai)
+- [wx-ai model-gateway replace-rate-limit](#wx-ai_model-gateway_replace-rate-limit)
+- [wx-ai model-gateway replace-tenant](#wx-ai_model-gateway_replace-tenant)
+- [wx-ai model-gateway replace-tenant-config](#wx-ai_model-gateway_replace-tenant-config)
+- [wx-ai model-gateway update-provider-model](#wx-ai_model-gateway_update-provider-model)
+- [wx-ai model-gateway update-tenant](#wx-ai_model-gateway_update-tenant)
+- [wx-ai model-gateway validate-provider-credentials](#wx-ai_model-gateway_validate-provider-credentials)
 - [wx-ai prompt add-chat-item](#wx-ai_prompt_add-chat-item)
 - [wx-ai prompt create](#wx-ai_prompt_create)
 - [wx-ai prompt delete](#wx-ai_prompt_delete)
@@ -442,17 +547,31 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 - [wx-ai synthetic-data-generation delete](#wx-ai_synthetic-data-generation_delete)
 - [wx-ai synthetic-data-generation get](#wx-ai_synthetic-data-generation_get)
 - [wx-ai synthetic-data-generation list](#wx-ai_synthetic-data-generation_list)
+- [wx-ai synthetic-data-generation-unstructured create](#wx-ai_synthetic-data-generation-unstructured_create)
 - [wx-ai taxonomy create](#wx-ai_taxonomy_create)
 - [wx-ai taxonomy delete](#wx-ai_taxonomy_delete)
 - [wx-ai taxonomy get](#wx-ai_taxonomy_get)
 - [wx-ai taxonomy list](#wx-ai_taxonomy_list)
 - [wx-ai text calculate-embeddings](#wx-ai_text_calculate-embeddings)
 - [wx-ai text chat](#wx-ai_text_chat)
+- [wx-ai text chat-completions](#wx-ai_text_chat-completions)
 - [wx-ai text chat-stream](#wx-ai_text_chat-stream)
 - [wx-ai text generate](#wx-ai_text_generate)
 - [wx-ai text generate-stream](#wx-ai_text_generate-stream)
 - [wx-ai text rerank](#wx-ai_text_rerank)
 - [wx-ai text tokenize](#wx-ai_text_tokenize)
+- [wx-ai text-batch-jobs create](#wx-ai_text-batch-jobs_create)
+- [wx-ai text-batch-jobs delete](#wx-ai_text-batch-jobs_delete)
+- [wx-ai text-batch-jobs get](#wx-ai_text-batch-jobs_get)
+- [wx-ai text-batch-jobs get-result](#wx-ai_text-batch-jobs_get-result)
+- [wx-ai text-batch-jobs list](#wx-ai_text-batch-jobs_list)
+- [wx-ai text-classification create](#wx-ai_text-classification_create)
+- [wx-ai text-classification delete](#wx-ai_text-classification_delete)
+- [wx-ai text-classification get](#wx-ai_text-classification_get)
+- [wx-ai text-classification list](#wx-ai_text-classification_list)
+- [wx-ai text-detection detect-from-content](#wx-ai_text-detection_detect-from-content)
+- [wx-ai text-detection detect-from-context](#wx-ai_text-detection_detect-from-context)
+- [wx-ai text-detection detect-from-generated-text](#wx-ai_text-detection_detect-from-generated-text)
 - [wx-ai text-extraction create](#wx-ai_text-extraction_create)
 - [wx-ai text-extraction delete](#wx-ai_text-extraction_delete)
 - [wx-ai text-extraction get](#wx-ai_text-extraction_get)
@@ -467,6 +586,11 @@ For general description of `cpdctl` purpose and usage refer to the [main README 
 - [wx-ai utility-agent-tools list](#wx-ai_utility-agent-tools_list)
 - [wx-ai utility-agent-tools run](#wx-ai_utility-agent-tools_run)
 - [wx-ai utility-agent-tools run-by-name](#wx-ai_utility-agent-tools_run-by-name)
+- [wx-ai vector-indexes create](#wx-ai_vector-indexes_create)
+- [wx-ai vector-indexes delete](#wx-ai_vector-indexes_delete)
+- [wx-ai vector-indexes get](#wx-ai_vector-indexes_get)
+- [wx-ai vector-indexes update](#wx-ai_vector-indexes_update)
+- [wx-ai vector-indexes update-attachment](#wx-ai_vector-indexes_update-attachment)
 - [wx-data access-control list-access](#wx-data_access-control_list-access)
 - [wx-data access-control list-users-groups](#wx-data_access-control_list-users-groups)
 - [wx-data access-control revoke-access](#wx-data_access-control_revoke-access)
@@ -3713,6 +3837,9 @@ cpdctl config profile set name [flags]
 ```
 
 #### Command options
+
+`--account-id` (string)
+:   Account ID for multi-tenant on-premise deployments.
 
 `--apikey` (string)
 :   Create a user having this API key and associate it with the profile.
@@ -18845,7 +18972,7 @@ cpdctl space member update {--space-id SPACE-ID | --space SPACE-NAME} --member-i
 Create a new AI service with the given payload. A AI service is some code that can be deployed as a deployment.
 
 ```sh
-cpdctl wx-ai ai-service create {--space-id SPACE-ID | --space SPACE-NAME} --name NAME --version VERSION {--software-spec (SOFTWARE-SPEC | @SOFTWARE-SPEC-FILE) | --software-spec-id SOFTWARE-SPEC-ID --software-spec-rev SOFTWARE-SPEC-REV --software-spec-name SOFTWARE-SPEC-NAME} [--description DESCRIPTION] [--tags TAGS] [--code-type python] [--documentation (DOCUMENTATION | @DOCUMENTATION-FILE) | (--documentation-request DOCUMENTATION-REQUEST | @DOCUMENTATION-REQUEST-FILE) (--documentation-response DOCUMENTATION-RESPONSE | @DOCUMENTATION-RESPONSE-FILE)] [--custom CUSTOM | @CUSTOM-FILE] [--tooling TOOLING | @TOOLING-FILE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai ai-service create [command options]
 ```
 
 #### Command options
@@ -18864,6 +18991,32 @@ cpdctl wx-ai ai-service create {--space-id SPACE-ID | --space SPACE-NAME} --name
 
 `--documentation` ([`AIServiceDocumentation`](#cli-ai-service-documentation-example-schema))
 :   The documentation of the AI service request body and response body.
+
+`--documentation-functions` ([`AIServiceDocumentationFunctions`](#cli-ai-service-documentation-functions-example-schema))
+:   The documentation for which endpoints are supported. If any of the fields do not exist then they are assumed to be 'true'.
+
+If the deployment only supports batch jobs then the 'functions' object would be declared like this:
+
+
+  '''json
+  "functions": {
+    "generate": false,
+    "generate_stream": false
+  }
+  '''
+
+
+If the deployment only supports online scoring, with streaming support as well, then the 'functions' object would be declared like this:
+
+
+  '''json
+  "functions": {
+    "generate_batch": false
+  }
+  '''. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--documentation-init` (generic map)
+:   A JSON schema describing the init parameters. It should be a JSON string or a path to a JSON file prepended with @.
 
 `--documentation-request` (map[string]map[string]interface{})
 :   The schema for a given content type. Each property defines the content type and the sub-object is the JSON schema that describes the content.
@@ -18908,7 +19061,7 @@ cpdctl wx-ai ai-service create {--space-id SPACE-ID | --space SPACE-NAME} --name
     --description exampleString \
     --tags exampleString,anotherTestString \
     --code-type python \
-    --documentation '{"request": {}, "response": {}}' \
+    --documentation '{"request": {}, "response": {}, "init": {"anyKey": "anyValue"}, "functions": {"generate": true, "generate_stream": true, "generate_batch": true}}' \
     --custom '{"anyKey": "anyValue"}' \
     --tooling '{"anyKey": "anyValue"}' \
     --version 2019-01-01
@@ -18918,7 +19071,7 @@ Create a new AI service revision. The current metadata and content for
 `id` will be taken and a new revision created. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl wx-ai ai-service create-revision --ai-service-id AI-SERVICE-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai ai-service create-revision --ai-service-id AI-SERVICE-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--commit-message COMMIT-MESSAGE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18958,7 +19111,7 @@ cpdctl wx-ai ai-service create-revision --ai-service-id AI-SERVICE-ID --version 
 Delete the AI service with the specified identifier. This will delete all revisions of this flow as well. For each revision all attachments will also be deleted.
 
 ```sh
-cpdctl wx-ai ai-service delete --ai-service-id AI-SERVICE-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai ai-service delete --ai-service-id AI-SERVICE-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -18994,7 +19147,7 @@ cpdctl wx-ai ai-service delete --ai-service-id AI-SERVICE-ID --version VERSION [
 Download the AI service code. It is possible to download the `code` for a given revision of the `flow`. AI services expect a zip file that contains the code files that make up the flow.
 
 ```sh
-cpdctl wx-ai ai-service download-code --ai-service-id AI-SERVICE-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--region REGION] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
+cpdctl wx-ai ai-service download-code --ai-service-id AI-SERVICE-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
@@ -19039,7 +19192,7 @@ Retrieve the AI service with the specified identifier. If `rev` query parameter 
 `rev=latest` will fetch the latest revision. A call with `rev={revision_number}` will fetch the given revision_number record. Either `space_id` or `project_id` has to be provided and is mandatory.
 
 ```sh
-cpdctl wx-ai ai-service get --ai-service-id AI-SERVICE-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai ai-service get --ai-service-id AI-SERVICE-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--rev REV] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19079,7 +19232,7 @@ cpdctl wx-ai ai-service get --ai-service-id AI-SERVICE-ID --version VERSION [{--
 Retrieve the AI services for the specified space or project.
 
 ```sh
-cpdctl wx-ai ai-service list --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai ai-service list --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--tag-value TAG-VALUE] [--search SEARCH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19134,7 +19287,7 @@ cpdctl wx-ai ai-service list --version VERSION [{--space-id SPACE-ID | --space S
 Retrieve the AI service revisions.
 
 ```sh
-cpdctl wx-ai ai-service list-revisions --ai-service-id AI-SERVICE-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai ai-service list-revisions --ai-service-id AI-SERVICE-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19189,7 +19342,7 @@ Update the AI service with the provided patch data. The following fields can be 
 - `/custom`.
 
 ```sh
-cpdctl wx-ai ai-service update --ai-service-id AI-SERVICE-ID --version VERSION {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai ai-service update --ai-service-id AI-SERVICE-ID --version VERSION {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19241,7 +19394,7 @@ cpdctl wx-ai ai-service update --ai-service-id AI-SERVICE-ID --version VERSION {
 Upload the flow code. AI services expect a zip file that contains the code files that make up the flow.
 
 ```sh
-cpdctl wx-ai ai-service upload-code --ai-service-id AI-SERVICE-ID --upload-code UPLOAD-CODE --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai ai-service upload-code --ai-service-id AI-SERVICE-ID --upload-code UPLOAD-CODE --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19275,6 +19428,53 @@ cpdctl wx-ai ai-service upload-code --ai-service-id AI-SERVICE-ID --upload-code 
     --upload-code tempdir/test-file.txt \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_audio_transcribe">`wx-ai audio transcribe`</a>
+Transcribe audio into text.
+
+
+Since watsonx.ai `2.2.1`.
+
+```sh
+cpdctl wx-ai audio transcribe --model MODEL --file FILE --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--language LANGUAGE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--file` (string)
+:   Required. The path to a 'mp3' or 'wav' audio file to transcribe.
+
+`--language` (string)
+:   Optional target language to which to transcribe; for example, 'fr' for French. Default is English.
+
+`--model` (string)
+:   Required. The model to use for audio transcriptions.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai audio transcribe \
+    --model exampleString \
+    --file exampleString \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --language exampleString \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_autoai-rag_create">`wx-ai autoai-rag create`</a>
@@ -19315,6 +19515,9 @@ cpdctl wx-ai autoai-rag create [command options]
 `--input-data-references` ([`AutoAIDataLocation[]`](#cli-auto-ai-data-location-example-schema))
 :   Required. A set of input data references. It can also be a path to a JSON file. The maximum length is 20 items. The minimum length is 1 item.
 
+`--knowledge-base-references` ([`AutoAIRAGKnowledgeBase[]`](#cli-auto-airag-knowledge-base-example-schema))
+:   A set of existing knowledge base references. Applicable to multi-retrieval scenarios. Either 'input_data_references' or 'knowledge_base_references' must be provided. It should be a JSON string or a path to a JSON file prepended with @. The maximum length is 20 items. The minimum length is 1 item.
+
 `--name` (string)
 :   Required. The name of the job.
 
@@ -19323,6 +19526,9 @@ cpdctl wx-ai autoai-rag create [command options]
 
 `--parameters-constraints` ([`AutoAIRAGConstraints`](#cli-auto-airag-constraints-example-schema))
 :   The constraint parameters for an AutoAI RAG run. It can also be a path to a JSON file.
+
+`--parameters-deployment` ([`AutoAIRAGParametersDeployment`](#cli-auto-airag-parameters-deployment-example-schema))
+:   Best pattern deployment related properties. It should be a JSON string or a path to a JSON file prepended with @.
 
 `--parameters-optimization` ([`AutoAIRAGOptimizationParameters`](#cli-auto-airag-optimization-parameters-example-schema))
 :   The optimization parameters for an AutoAI RAG run. It can also be a path to a JSON file.
@@ -19376,14 +19582,15 @@ See here for [details about specifying connections](#datareferences). It can als
    cpdctl wx-ai autoai-rag create \
     --name exampleString \
     --hardware-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}' \
-    --input-data-references '[{"type": "connection_asset", "connection": {}, "location": {}}]' \
-    --test-data-references '[{"type": "connection_asset", "connection": {}, "location": {}}]' \
     --results-reference '{"id": "exampleString", "type": "container", "connection": {}, "location": {}}' \
     --description exampleString \
     --tags t1,t2 \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
-    --parameters '{"constraints": {"chunking": [{"method": "recursive", "chunk_size": 512, "chunk_overlap": 128}], "embedding_models": ["ibm/slate-125m-english-rtrvr","intfloat/multilingual-e5-large"], "retrieval_methods": ["simple","window"], "foundation_models": ["ibm/granite-13b-chat-v2","mistralai/mixtral-8x7b-instruct-v01"], "max_number_of_rag_patterns": 8}, "optimization": {"metrics": ["answer_correctness","faithfulness","context_correctness"]}, "output_logs": true}' \
+    --parameters '{"constraints": {"chunking": [{"method": "recursive", "chunk_size": 512, "chunk_overlap": 128}], "embedding_models": ["ibm/slate-125m-english-rtrvr","intfloat/multilingual-e5-large"], "retrieval": [{"method": "simple", "number_of_chunks": 5, "window_size": 2, "hybrid_ranker": {"strategy": "rrf", "sparse_vectors": {"model_id": "BM25"}, "alpha": 0.9, "k": 70}}], "generation": {"language": {"auto_detect": true}, "foundation_models": [{"model_id": "meta-llama/llama-3-3-70b-instruct", "parameters": {"max_completion_tokens": 1024, "temperature": 1, "decoding_method": "sample", "max_new_tokens": 300, "min_new_tokens": 5, "max_sequence_length": 4096}, "chat_template_messages": {"system_message_text": "You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don\'t know the answer to a question, please don\'t share false information.", "user_message_text": "Generate the next agent response by answering the question. You are provided several documents with titles. If the answer comes from different documents please mention all possibilities and use the titles of documents to separate between topics or domains. If you cannot base your answer on the given documents, please state that you do not have an answer.\n\n{reference_documents}\n\n{question}"}, "prompt_template_text": "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don\'t know the answer to a question, please don\'t share false information.\n\n<</SYS>>\n\nGenerate the next agent response by answering the question. You are provided several documents with titles. If the answer comes from different documents please mention all possibilities and use the titles of documents to separate between topics or domains. If you cannot base your answer on the given documents, please state that you do not have an answer.\n\n{reference_documents}\n\n{question} [/INST]", "context_template_text": "[Document]\n{document}\n[End]", "word_to_token_ratio": 1.5}]}, "max_number_of_rag_patterns": 8}, "optimization": {"metrics": ["answer_correctness","faithfulness","context_correctness","answer_correctness_judge","faithfulness_judge"]}, "deployment": {"inference_service": {"auto_deploy": true, "space_id": "3fc54cf1-252f-424b-b52d-5cdd9814987f"}, "indexing_service": {"auto_deploy": true, "space_id": "3fc54cf1-252f-424b-b52d-5cdd9814987f"}}, "output_logs": true}' \
+    --input-data-references '[{"type": "connection_asset", "connection": {}, "location": {}}]' \
+    --test-data-references '[{"type": "connection_asset", "connection": {}, "location": {}}]' \
+    --knowledge-base-references '[{"name": "2025_financial_documentation", "description": "This knowledge base contains ABC financial documents for 2025 year.", "type": "AutoAIRAGIndex", "reference": {"type": "connection_asset", "connection": {}}, "settings": {"index_name": "autoai_rag_id_pipeline_id_index", "fields_mapping": [{"role": "dense_vector_embeddings", "field_name": "vector_embeddings"}], "embeddings": {"model_id": "ibm/slate-125m-english-rtrvr"}, "hybrid_ranker": {"sparse_vectors": {"model_id": "BM25"}}}}]' \
     --vector-store-references '[{"type": "connection_asset", "connection": {}}]' \
     --custom '{"anyKey": "anyValue"}' \
     --version 2019-01-01
@@ -19392,7 +19599,7 @@ See here for [details about specifying connections](#datareferences). It can als
 Cancel or delete the specified AutoAI RAG run, once deleted all trace of the run job is gone.
 
 ```sh
-cpdctl wx-ai autoai-rag delete --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai autoai-rag delete --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19434,7 +19641,7 @@ cpdctl wx-ai autoai-rag delete --id ID --version VERSION [{--space-id SPACE-ID |
 Get the results of an AutoAI RAG run, or details if the job failed.
 
 ```sh
-cpdctl wx-ai autoai-rag get --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai autoai-rag get --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19472,7 +19679,7 @@ Retrieve the list of AutoAI RAG requests for the specified space or project.
 This operation does not save the history, any requests that were deleted or purged will not appear in this list.
 
 ```sh
-cpdctl wx-ai autoai-rag list --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai autoai-rag list --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19509,6 +19716,510 @@ cpdctl wx-ai autoai-rag list --version VERSION [{--space-id SPACE-ID | --space S
 
 ```sh
    cpdctl wx-ai autoai-rag list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --start exampleString \
+    --limit 50 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_batches_cancel">`wx-ai batches cancel`</a>
+Cancels an in-progress batch job. The batch will transition to the `cancelling` state and may take several minutes to reach the `cancelled` state. Partial results, if available, will be preserved and accessible via the output file.
+
+```sh
+cpdctl wx-ai batches cancel --batch-id BATCH-ID --x-ibm-project-id X-IBM-PROJECT-ID --version VERSION [--x-ibm-space-id X-IBM-SPACE-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--batch-id` (string)
+:   Required. The ID of the batch job to cancel.
+
+`--x-ibm-project-id` (string)
+:   Required. Watsonx project identifier.
+
+`--x-ibm-space-id` (string)
+:   Watsonx space identifier.
+
+##### Example
+
+```sh
+   cpdctl wx-ai batches cancel \
+    --batch-id batch_id \
+    --x-ibm-project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --x-ibm-space-id 4c8f2a91-8a7d-4dbe-9c7c-1c2a3b4d5e6f \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_batches_create">`wx-ai batches create`</a>
+Creates a new batch job using an uploaded input file. The batch job will process the requests in the input file for the specified endpoint.
+
+```sh
+cpdctl wx-ai batches create --x-ibm-project-id X-IBM-PROJECT-ID --input-file-id INPUT-FILE-ID --endpoint ENDPOINT --completion-window COMPLETION-WINDOW --version VERSION [--metadata METADATA | @METADATA-FILE] [--x-ibm-space-id X-IBM-SPACE-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--completion-window` (string)
+:   Required. Time window for completion of the batch job.
+
+`--endpoint` (string)
+:   Required. API endpoint to use for processing each batch item.
+
+`--input-file-id` (string)
+:   Required. ID of the uploaded input file for the batch job.
+
+`--metadata` (map[string]string)
+:   null It should be a JSON string or a path to a JSON file prepended with @.
+
+`--x-ibm-project-id` (string)
+:   Required. Watsonx project identifier.
+
+`--x-ibm-space-id` (string)
+:   Watsonx space identifier.
+
+##### Example
+
+```sh
+   cpdctl wx-ai batches create \
+    --x-ibm-project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --input-file-id file-CAMS_ASSET_ID \
+    --endpoint /v1/chat/completions \
+    --completion-window 24h \
+    --metadata '{}' \
+    --x-ibm-space-id 4c8f2a91-8a7d-4dbe-9c7c-1c2a3b4d5e6f \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_batches_get">`wx-ai batches get`</a>
+Retrieves details for a specific batch job, including status, input/output files, request counts, timestamps, and user-defined metadata.
+
+```sh
+cpdctl wx-ai batches get --batch-id BATCH-ID --x-ibm-project-id X-IBM-PROJECT-ID --version VERSION [--x-ibm-space-id X-IBM-SPACE-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--batch-id` (string)
+:   Required. The ID of the batch job to retrieve.
+
+`--x-ibm-project-id` (string)
+:   Required. Watsonx project identifier.
+
+`--x-ibm-space-id` (string)
+:   Watsonx space identifier.
+
+##### Example
+
+```sh
+   cpdctl wx-ai batches get \
+    --batch-id batch_id \
+    --x-ibm-project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --x-ibm-space-id 4c8f2a91-8a7d-4dbe-9c7c-1c2a3b4d5e6f \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_batches_list">`wx-ai batches list`</a>
+Returns a list of batch jobs created in the current watsonx.ai project. This endpoint is commonly used to monitor batch job status and retrieve batch identifiers for further inspection.
+
+```sh
+cpdctl wx-ai batches list --x-ibm-project-id X-IBM-PROJECT-ID --version VERSION [--x-ibm-space-id X-IBM-SPACE-ID] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--limit` (int64)
+:   Maximum number of batch jobs to return. The default value is 20. The maximum value is 100. The minimum value is 1.
+
+    The default value is `0`.
+
+`--x-ibm-project-id` (string)
+:   Required. Watsonx project identifier.
+
+`--x-ibm-space-id` (string)
+:   Watsonx space identifier.
+
+##### Example
+
+```sh
+   cpdctl wx-ai batches list \
+    --x-ibm-project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --x-ibm-space-id 4c8f2a91-8a7d-4dbe-9c7c-1c2a3b4d5e6f \
+    --limit 2 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_cluster-schema_cluster">`wx-ai cluster-schema cluster`</a>
+Start a request to cluster a list of custom schemas into semantically similar groups.
+
+```sh
+cpdctl wx-ai cluster-schema cluster --version VERSION {--parameters (PARAMETERS | @PARAMETERS-FILE) | (--parameters-schemas PARAMETERS-SCHEMAS | @PARAMETERS-SCHEMAS-FILE) (--parameters-semantic-config PARAMETERS-SEMANTIC-CONFIG | @PARAMETERS-SEMANTIC-CONFIG-FILE)} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--parameters` ([`ClusterSchemaParameters`](#cli-cluster-schema-parameters-example-schema))
+:   The parameters to cluster schemas. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--parameters-schemas` ([`ClusterSchemas[]`](#cli-cluster-schemas-example-schema))
+:   A list of document schemas. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--parameters-semantic-config` ([`SchemaSemanticConfig`](#cli-schema-semantic-config-example-schema))
+:   Properties related to semantic config. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai cluster-schema cluster \
+    --parameters '{"schemas": [{"document_name": "Passport", "schema": {"document_type": "Passport", "document_description": "Passport document to get the schema", "fields": {"description": "Name", "example": "name of the user", "available_options": ["exampleString","anotherTestString"]}, "additional_prompt_instructions": "exampleString"}}], "semantic_config": {"default_model_name": "exampleString"}}' \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id exampleString \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_cluster-schema_delete">`wx-ai cluster-schema delete`</a>
+Cancel the specified cluster schema request and delete any associated results.
+
+```sh
+cpdctl wx-ai cluster-schema delete --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--hard-delete` (bool)
+:   Set to true in order to also delete the job or request metadata.
+
+    The default value is `false`.
+
+`--id` (string)
+:   Required. The identifier of the cluster schema request.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai cluster-schema delete \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --hard-delete=true \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_cluster-schema_get">`wx-ai cluster-schema get`</a>
+Retrieve the cluster schema request with the specified identifier.
+
+Note that there is a retention period of 2 days. If this retention period is exceeded then the request will be deleted and the results no longer available. In this case this operation will return `404`.
+
+```sh
+cpdctl wx-ai cluster-schema get --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--id` (string)
+:   Required. The identifier of the cluster schema request.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai cluster-schema get \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_cluster-schema_list">`wx-ai cluster-schema list`</a>
+Retrieve the list of cluster schema requests for the specified space or project.
+
+This operation does not save the history, any requests that were deleted or purged will not appear in this list.
+
+```sh
+cpdctl wx-ai cluster-schema list --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--all-pages` (bool)
+:   Invoke multiple requests to display all pages of the collection for cluster-schema-list.
+
+    The default value is `false`.
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200. The default value is 100. The maximum value is 200. The minimum value is 1.
+
+    The default value is `0`.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
+
+##### Example
+
+```sh
+   cpdctl wx-ai cluster-schema list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --start exampleString \
+    --limit 50 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_create-schema_create">`wx-ai create-schema create`</a>
+Start a request to create the custom schema for text extraction.
+
+```sh
+cpdctl wx-ai create-schema create --version VERSION {--document-reference (DOCUMENT-REFERENCE | @DOCUMENT-REFERENCE-FILE) | --document-reference-type connection_asset | container (--document-reference-connection DOCUMENT-REFERENCE-CONNECTION | @DOCUMENT-REFERENCE-CONNECTION-FILE) (--document-reference-location DOCUMENT-REFERENCE-LOCATION | @DOCUMENT-REFERENCE-LOCATION-FILE)} [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-mode standard | high_quality --parameters-ocr-mode disabled | enabled | forced --parameters-auto-rotation-correction=PARAMETERS-AUTO-ROTATION-CORRECTION --parameters-languages PARAMETERS-LANGUAGES --parameters-additional-prompt-instructions PARAMETERS-ADDITIONAL-PROMPT-INSTRUCTIONS --parameters-enable-grounding=PARAMETERS-ENABLE-GROUNDING --parameters-max-pages-to-process PARAMETERS-MAX-PAGES-TO-PROCESS (--parameters-semantic-config PARAMETERS-SEMANTIC-CONFIG | @PARAMETERS-SEMANTIC-CONFIG-FILE)] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--document-reference` ([`TextExtractionDataReference`](#cli-text-extraction-data-reference-example-schema))
+:   A reference to data. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--document-reference-connection` ([`CosDataConnection`](#cli-cos-data-connection-example-schema))
+:   Contains a set of location fields specific to each data source. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--document-reference-location` ([`CosDataLocation`](#cli-cos-data-location-example-schema))
+:   Contains a set of fields specific to each connection. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--document-reference-type` (string)
+:   The data source type. Allowable values are: connection_asset, container.
+
+`--parameters` ([`CreateSchemaParameters`](#cli-create-schema-parameters-example-schema))
+:   The parameters for the create schema. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--parameters-additional-prompt-instructions` (string)
+:   Additional instructions to guide schema creation.
+
+`--parameters-auto-rotation-correction` (bool)
+:   Should the service attempt to fix a rotated page or image. The default value is false.
+
+    The default value is `false`.
+
+`--parameters-enable-grounding` (bool)
+:   If we should return grounding data with examples of each field. The default value is false.
+
+    The default value is `false`.
+
+`--parameters-languages` (string)
+:   Set of languages to be expected in the document. The language codes follow 'ISO 639' where possible. See the documentation for the currently supported languages. The maximum length is 100 items. The minimum length is 1 item.
+
+`--parameters-max-pages-to-process` (int64)
+:   How many pages we should create a schema for. The default value is 20.
+
+    The default value is `0`.
+
+`--parameters-mode` (string)
+:   Which processing mode to use for this request. The default value is standard. Allowable values are: standard, high_quality.
+
+`--parameters-ocr-mode` (string)
+:   If OCR should be used when processing a document. An empty value allows the service to select the best option for your processing mode.
+- 'enabled': OCR is run on embedded images, OCR is only run if no programmatic text could be extracted from the area.
+- 'disabled': OCR is not run, no information is extracted from images or scanned documents.
+- 'forced': WDU will take a picture of the page and run OCR across it, this applies to all documents even purely programmatic ones. Allowable values are: disabled, enabled, forced.
+
+`--parameters-semantic-config` ([`SchemaSemanticConfig`](#cli-schema-semantic-config-example-schema))
+:   Properties related to semantic config. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai create-schema create \
+    --document-reference '{"type": "connection_asset", "connection": {"id": "6f5688fd-f3bf-42c2-a18b-49c0d8a1920d"}, "location": {"file_name": "files/document.pdf", "bucket": "exampleString", "path": "exampleString"}}' \
+    --parameters '{"mode": "high_quality", "ocr_mode": "enabled", "auto_rotation_correction": false, "languages": ["latn"], "additional_prompt_instructions": "exampleString", "enable_grounding": false, "max_pages_to_process": 20, "semantic_config": {"default_model_name": "exampleString"}}' \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id exampleString \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_create-schema_delete">`wx-ai create-schema delete`</a>
+Cancel the specified create schema request and delete any associated results.
+
+```sh
+cpdctl wx-ai create-schema delete --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--hard-delete` (bool)
+:   Set to true in order to also delete the job or request metadata.
+
+    The default value is `false`.
+
+`--id` (string)
+:   Required. The identifier of the create schema request.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai create-schema delete \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --hard-delete=true \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_create-schema_get">`wx-ai create-schema get`</a>
+Retrieve the create schema request with the specified identifier.
+
+Note that there is a retention period of 2 days. If this retention period is exceeded then the request will be deleted and the results no longer available. In this case this operation will return `404`.
+
+```sh
+cpdctl wx-ai create-schema get --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--id` (string)
+:   Required. The identifier of the create schema request.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai create-schema get \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_create-schema_list">`wx-ai create-schema list`</a>
+Retrieve the list of create schema requests for the specified space or project.
+
+This operation does not save the history, any requests that were deleted or purged will not appear in this list.
+
+```sh
+cpdctl wx-ai create-schema list --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--all-pages` (bool)
+:   Invoke multiple requests to display all pages of the collection for create-schema-list.
+
+    The default value is `false`.
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200. The default value is 100. The maximum value is 200. The minimum value is 1.
+
+    The default value is `0`.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
+
+##### Example
+
+```sh
+   cpdctl wx-ai create-schema list \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --start exampleString \
@@ -19553,7 +20264,7 @@ In order to deploy a custom foundation model using one of the models in this lis
 Since CloudPak for Data `4.8.4`.
 
 ```sh
-cpdctl wx-ai custom-foundation-model list --version VERSION [--start START] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai custom-foundation-model list --version VERSION [--start START] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19580,10 +20291,13 @@ Infer the next chat message for a given deployment. The deployment must referenc
 If a `serving_name` is used then it must match the `serving_name` that is returned in the `inference` section when the deployment was created.
 
 ```sh
-cpdctl wx-ai deployment chat --id-or-name ID-OR-NAME --messages (MESSAGES | @MESSAGES-FILE) --version VERSION [--context CONTEXT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai deployment chat [command options]
 ```
 
 #### Command options
+
+`--chat-template-kwargs` (generic map)
+:   Additional kwargs to pass to the chat template, described as a JSON Schema object. See the [JSON Schema reference](https://json-schema.org/learn/getting-started-step-by-step) for documentation about the format. It should be a JSON string or a path to a JSON file prepended with @.
 
 `--context` (string)
 :   If specified, 'context' will be inserted into 'messages'. Depending on the model, 'context' may be inserted into the 'content' with 'system' 'role'; or into the 'content' of the last message of 'user' 'role'.
@@ -19592,15 +20306,135 @@ cpdctl wx-ai deployment chat --id-or-name ID-OR-NAME --messages (MESSAGES | @MES
 In the example, 'context' "Today is Wednesday" is inserted as such
 'content' of 'user' becomes "Today is Wednesday. Who are you and which day is tomorrow?".
 
+`--frequency-penalty` (float64)
+:   Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. The default value is 0. The value must be less than 2. The value must be greater than -2.
+
+    The default value is `0`.
+
 `--id-or-name` (string)
 :   Required. The 'id_or_name' can be either the 'deployment_id' that identifies the deployment or a 'serving_name' that allows a predefined URL to be used to post a prediction. The deployment must reference a prompt template with 'input_mode' 'chat'.
 
 The WML instance that is associated with the deployment will be used for limits and billing (if a paid plan).
 
+`--include-reasoning` (bool)
+:   Whether to include 'reasoning_content' in the response. Default is 'true'.
+
+    The default value is `false`.
+
+`--logit-bias` (generic map)
+:   Increasing or decreasing probability of tokens being selected during generation; a positive bias makes a token more likely to appear, while a negative bias makes it less likely. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--logprobs` (bool)
+:   Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the content of message. The default value is false.
+
+    The default value is `false`.
+
+`--max-completion-tokens` (int64)
+:   The maximum number of tokens that can be generated in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length. Set to 0 for the model's configured max generated tokens. The default value is 1024.
+
+    The default value is `0`.
+
+`--max-tokens` (int64)
+:   The maximum number of tokens that can be generated in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length. Set to 0 for the model's configured max generated tokens.
+
+This value is now deprecated in favor of 'max_completion_tokens'. If specified together with 'max_completion_tokens',
+'max_tokens' will be ignored. The default value is 1024.
+
+    The default value is `0`.
+
 `--messages` ([`DeploymentTextChatMessages[]`](#cli-deployment-text-chat-messages-example-schema))
 :   Required. The messages for this chat session. You cannot specify 'system' 'role' in the messages. Depending on the model, the 'content' of 'system' 'role' may be from 'system_prompt' of the prompt template, and will be automatically inserted into 'messages'.
 
 As an example, depending on the model, if 'system_prompt' of a prompt template is "You are Granite Chat, an AI language model developed by IBM. You are a cautious assistant. You carefully follow instructions. You are helpful and harmless and you follow ethical guidelines and promote positive behavior.", a message with 'system' 'role' having 'content' the same as 'system_prompt' is inserted. The maximum length is 1000 items. The minimum length is 1 item.
+
+`--n` (int64)
+:   How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep n as 1 to minimize costs. The default value is 1.
+
+    The default value is `0`.
+
+`--presence-penalty` (float64)
+:   Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. The default value is 0. The value must be less than 2. The value must be greater than -2.
+
+    The default value is `0`.
+
+`--reasoning-effort` (string)
+:   A lower reasoning effort can result in faster responses, fewer tokens used, and shorter 'reasoning_content' in the responses. Supported values are 'low', 'medium', and 'high'. Allowable values are: low, medium, high.
+
+`--response-format` ([`TextChatResponseFormat`](#cli-text-chat-response-format-example-schema))
+:   The chat response format parameters. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--response-format-json-schema` ([`TextChatResponseFormatJSONSchema`](#cli-text-chat-response-format-json-schema-example-schema))
+:   User-defined JSON schema object with optional parameters to enforce structured output.
+
+**Important:** this field will only applied when 'response_format'.'type' is set to 'json_schema'. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--response-format-type` (string)
+:   Used to enable JSON mode, which guarantees the message the model generates is valid JSON.
+
+**Important:** when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if 'finish_reason="length"', which indicates the generation exceeded 'max_tokens' or the conversation exceeded the max context length.
+
+- 'text' : **Will not** create a JSON structured output.
+- 'json_object' : User will get a JSON structured output, but the schema is not guranteed.
+- 'json_schema' : User needs to declare the 'json_schema' object to provide the desired JSON schema in order to get a matched response. Allowable values are: text, json_object, json_schema.
+
+`--seed` (int64)
+:   Random number generator seed to use in sampling mode for experimental repeatability.
+
+    The default value is `0`.
+
+`--stop` (string)
+:   Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 4 items. The minimum length is 0 items.
+
+`--stream` (bool)
+:   If set to true, this operation will return the output tokens as a stream of events, and usage is always included in the response.
+
+    The default value is `false`.
+
+`--temperature` (float64)
+:   What sampling temperature to use,. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
+
+We generally recommend altering this or 'top_p' but not both. The default value is 1. The value must be less than 2. The value must be greater than 0.
+
+    The default value is `0`.
+
+`--time-limit` (int64)
+:   Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the 'TIME_LIMIT'' stop reason. Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. The value must be greater than 0.
+
+    The default value is `0`.
+
+`--tool-choice` ([`TextChatToolChoiceTool`](#cli-text-chat-tool-choice-tool-example-schema))
+:   Specifying a particular tool via '{"type": "function", "function": {"name": "my_function"}}' forces the model to call that tool.
+Specify either 'tool_choice_option' to allow the model to pick or 'tool_choice' to force the model to call a tool. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--tool-choice-function` ([`TextChatToolFunction`](#cli-text-chat-tool-function-example-schema))
+:   The named function. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--tool-choice-option` (string)
+:   Specify either 'tool_choice_option' to allow the model to pick or 'tool_choice' to force the model to call a tool.
+
+Using 'auto' means the model can pick between generating a message or calling one or more tools. Default is 'auto'.
+
+Using 'none' means the model will not call any tool and instead generates a message.
+
+Using 'required' means the model must call one or more tools. Allowable values are: auto, none, required.
+
+`--tool-choice-type` (string)
+:   The tool type. Allowable values are: function.
+
+`--tools` ([`TextChatParameterTools[]`](#cli-text-chat-parameter-tools-example-schema))
+:   Tool functions that can be called with the response. It should be a JSON string or a path to a JSON file prepended with @. The maximum length is 128 items. The minimum length is 1 item.
+
+`--top-logprobs` (int64)
+:   An integer specifying the number of most likely tokens to return at each token position, each with an associated log probability. The option 'logprobs' must be set to 'true' if this parameter is used. The maximum value is 20. The minimum value is 0.
+
+    The default value is `0`.
+
+`--top-p` (float64)
+:   An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.
+
+We generally recommend altering this or 'temperature' but not both. The default value is 1. The value must be less than 1. The value must be greater than 0.
+
+    The default value is `0`.
 
 ##### Example
 
@@ -19608,7 +20442,219 @@ As an example, depending on the model, if 'system_prompt' of a prompt template i
    cpdctl wx-ai deployment chat \
     --id-or-name exampleString \
     --messages '[{"role": "assistant", "content": "Who won the world series in 2020?", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
+    --tools '[{"type": "function", "function": {"name": "exampleString", "description": "exampleString", "parameters": {"anyKey": "anyValue"}}}]' \
+    --tool-choice-option auto \
+    --tool-choice '{"type": "function", "function": {"name": "exampleString"}}' \
     --context exampleString \
+    --chat-template-kwargs '{"anyKey": "anyValue"}' \
+    --frequency-penalty 0 \
+    --include-reasoning=true \
+    --logit-bias '{"anyKey": "anyValue"}' \
+    --logprobs=false \
+    --top-logprobs 0 \
+    --max-completion-tokens 1024 \
+    --max-tokens 1024 \
+    --n 1 \
+    --presence-penalty 0 \
+    --reasoning-effort low \
+    --response-format '{"type": "text", "json_schema": {"name": "exampleString", "schema": {"anyKey": "anyValue"}, "strict": true}}' \
+    --seed 38 \
+    --stop exampleString,anotherTestString \
+    --stream=true \
+    --temperature 1 \
+    --top-p 1 \
+    --time-limit 0 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_deployment_chat-completions">`wx-ai deployment chat-completions`</a>
+Infers the next chat message for a given deployment. The deployment must reference either a prompt template with `input_mode` set to `chat`, a custom foundation model, or a curated foundation model. When a prompt template is referenced, the model used for the chat request is specified by the deployment's `base_model_id`. Chat parameters are derived from the prompt template's `model_parameters`. If a `serving_name` is provided, it must match the `serving_name` returned in the inference section at the time of deployment creation.
+
+Related guides:
+  - [Deployment](#create-deployment)
+  - [Prompt template](#post-prompt)
+  - [Text chat](#text-chat)
+
+
+If `stream` is true, this operation will return the output tokens in a server-sent events (SSE) stream.
+
+```sh
+cpdctl wx-ai deployment chat-completions [command options]
+```
+
+#### Command options
+
+`--accept` (string)
+:   The type of the response: application/json or text/event-stream. A character encoding can be specified by including a 'charset' parameter. For example, 'text/event-stream;charset=utf-8'. Allowable values are: application/json, text/event-stream.
+
+`--chat-template-kwargs` (generic map)
+:   Additional kwargs to pass to the chat template, described as a JSON Schema object. See the [JSON Schema reference](https://json-schema.org/learn/getting-started-step-by-step) for documentation about the format. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--context` (string)
+:   If specified, 'context' will be inserted into 'messages'. Depending on the model, 'context' may be inserted into the 'content' with 'system' 'role'; or into the 'content' of the last message of 'user' 'role'.
+
+
+In the example, 'context' "Today is Wednesday" is inserted as such
+'content' of 'user' becomes "Today is Wednesday. Who are you and which day is tomorrow?".
+
+`--frequency-penalty` (float64)
+:   Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. The default value is 0. The value must be less than 2. The value must be greater than -2.
+
+    The default value is `0`.
+
+`--id-or-name` (string)
+:   Required. The 'id_or_name' can be either the 'deployment_id' that identifies the deployment or a 'serving_name' that allows a predefined URL to be used to post a prediction. The deployment must reference either a prompt template with input_mode set to chat, a custom foundation model, or a curated foundation model.
+
+The WML instance that is associated with the deployment will be used for limits and billing (if a paid plan).
+
+`--include-reasoning` (bool)
+:   Whether to include 'reasoning_content' in the response. Default is 'true'.
+
+    The default value is `false`.
+
+`--logit-bias` (generic map)
+:   Increasing or decreasing probability of tokens being selected during generation; a positive bias makes a token more likely to appear, while a negative bias makes it less likely. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--logprobs` (bool)
+:   Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the content of message. The default value is false.
+
+    The default value is `false`.
+
+`--max-completion-tokens` (int64)
+:   The maximum number of tokens that can be generated in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length. Set to 0 for the model's configured max generated tokens. The default value is 1024.
+
+    The default value is `0`.
+
+`--max-tokens` (int64)
+:   The maximum number of tokens that can be generated in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length. Set to 0 for the model's configured max generated tokens.
+
+This value is now deprecated in favor of 'max_completion_tokens'. If specified together with 'max_completion_tokens',
+'max_tokens' will be ignored. The default value is 1024.
+
+    The default value is `0`.
+
+`--messages` ([`DeploymentTextChatMessages[]`](#cli-deployment-text-chat-messages-example-schema))
+:   Required. The messages for this chat session.
+
+If the deployment references a prompt template then 'system' 'role' can not be in 'messages'. For such deployments, depending on the model, the 'content' of 'system' 'role' may be from 'system_prompt' of the prompt template, and will be automatically inserted into 'messages'. As an example, depending on the model, if 'system_prompt' of a prompt template is "You are Granite Chat, an AI language model developed by IBM. You are a cautious assistant. You carefully follow instructions. You are helpful and harmless and you follow ethical guidelines and promote positive behavior.", a message with 'system' 'role' having 'content' the same as 'system_prompt' is inserted. It should be a JSON string or a path to a JSON file prepended with @. The maximum length is 1000 items. The minimum length is 1 item.
+
+`--n` (int64)
+:   How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep n as 1 to minimize costs. The default value is 1.
+
+    The default value is `0`.
+
+`--presence-penalty` (float64)
+:   Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. The default value is 0. The value must be less than 2. The value must be greater than -2.
+
+    The default value is `0`.
+
+`--reasoning-effort` (string)
+:   A lower reasoning effort can result in faster responses, fewer tokens used, and shorter 'reasoning_content' in the responses. Supported values are 'low', 'medium', and 'high'. Allowable values are: low, medium, high.
+
+`--response-format` ([`TextChatResponseFormat`](#cli-text-chat-response-format-example-schema))
+:   The chat response format parameters. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--response-format-json-schema` ([`TextChatResponseFormatJSONSchema`](#cli-text-chat-response-format-json-schema-example-schema))
+:   User-defined JSON schema object with optional parameters to enforce structured output.
+
+**Important:** this field will only applied when 'response_format'.'type' is set to 'json_schema'. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--response-format-type` (string)
+:   Used to enable JSON mode, which guarantees the message the model generates is valid JSON.
+
+**Important:** when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if 'finish_reason="length"', which indicates the generation exceeded 'max_tokens' or the conversation exceeded the max context length.
+
+- 'text' : **Will not** create a JSON structured output.
+- 'json_object' : User will get a JSON structured output, but the schema is not guranteed.
+- 'json_schema' : User needs to declare the 'json_schema' object to provide the desired JSON schema in order to get a matched response. Allowable values are: text, json_object, json_schema.
+
+`--seed` (int64)
+:   Random number generator seed to use in sampling mode for experimental repeatability.
+
+    The default value is `0`.
+
+`--stop` (string)
+:   Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 4 items. The minimum length is 0 items.
+
+`--stream` (bool)
+:   If set to true, this operation will return the output tokens as a stream of events, and usage is always included in the response.
+
+    The default value is `false`.
+
+`--temperature` (float64)
+:   What sampling temperature to use,. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
+
+We generally recommend altering this or 'top_p' but not both. The default value is 1. The value must be less than 2. The value must be greater than 0.
+
+    The default value is `0`.
+
+`--time-limit` (int64)
+:   Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the 'TIME_LIMIT'' stop reason. Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. The value must be greater than 0.
+
+    The default value is `0`.
+
+`--tool-choice` ([`TextChatToolChoiceTool`](#cli-text-chat-tool-choice-tool-example-schema))
+:   Specifying a particular tool via '{"type": "function", "function": {"name": "my_function"}}' forces the model to call that tool.
+Specify either 'tool_choice_option' to allow the model to pick or 'tool_choice' to force the model to call a tool. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--tool-choice-function` ([`TextChatToolFunction`](#cli-text-chat-tool-function-example-schema))
+:   The named function. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--tool-choice-option` (string)
+:   Specify either 'tool_choice_option' to allow the model to pick or 'tool_choice' to force the model to call a tool.
+
+Using 'auto' means the model can pick between generating a message or calling one or more tools. Default is 'auto'.
+
+Using 'none' means the model will not call any tool and instead generates a message.
+
+Using 'required' means the model must call one or more tools. Allowable values are: auto, none, required.
+
+`--tool-choice-type` (string)
+:   The tool type. Allowable values are: function.
+
+`--tools` ([`TextChatParameterTools[]`](#cli-text-chat-parameter-tools-example-schema))
+:   Tool functions that can be called with the response. It should be a JSON string or a path to a JSON file prepended with @. The maximum length is 128 items. The minimum length is 1 item.
+
+`--top-logprobs` (int64)
+:   An integer specifying the number of most likely tokens to return at each token position, each with an associated log probability. The option 'logprobs' must be set to 'true' if this parameter is used. The maximum value is 20. The minimum value is 0.
+
+    The default value is `0`.
+
+`--top-p` (float64)
+:   An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.
+
+We generally recommend altering this or 'temperature' but not both. The default value is 1. The value must be less than 1. The value must be greater than 0.
+
+    The default value is `0`.
+
+##### Example
+
+```sh
+   cpdctl wx-ai deployment chat-completions \
+    --id-or-name exampleString \
+    --messages '[{"role": "assistant", "content": "Who won the world series in 2020?", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
+    --tools '[{"type": "function", "function": {"name": "exampleString", "description": "exampleString", "parameters": {"anyKey": "anyValue"}}}]' \
+    --tool-choice-option auto \
+    --tool-choice '{"type": "function", "function": {"name": "exampleString"}}' \
+    --context exampleString \
+    --chat-template-kwargs '{"anyKey": "anyValue"}' \
+    --frequency-penalty 0 \
+    --include-reasoning=true \
+    --logit-bias '{"anyKey": "anyValue"}' \
+    --logprobs=false \
+    --top-logprobs 0 \
+    --max-completion-tokens 1024 \
+    --max-tokens 1024 \
+    --n 1 \
+    --presence-penalty 0 \
+    --reasoning-effort low \
+    --response-format '{"type": "text", "json_schema": {"name": "exampleString", "schema": {"anyKey": "anyValue"}, "strict": true}}' \
+    --seed 38 \
+    --stop exampleString,anotherTestString \
+    --stream=true \
+    --temperature 1 \
+    --top-p 1 \
+    --time-limit 0 \
+    --accept application/json \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_deployment_chat-stream">`wx-ai deployment chat-stream`</a>
@@ -19617,10 +20663,13 @@ Infer the next chat message for a given deployment. This operation will return t
 If a `serving_name` is used then it must match the `serving_name` that is returned in the `inference` section when the deployment was created.
 
 ```sh
-cpdctl wx-ai deployment chat-stream --id-or-name ID-OR-NAME --messages (MESSAGES | @MESSAGES-FILE) --version VERSION [--context CONTEXT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai deployment chat-stream [command options]
 ```
 
 #### Command options
+
+`--chat-template-kwargs` (generic map)
+:   Additional kwargs to pass to the chat template, described as a JSON Schema object. See the [JSON Schema reference](https://json-schema.org/learn/getting-started-step-by-step) for documentation about the format. It should be a JSON string or a path to a JSON file prepended with @.
 
 `--context` (string)
 :   If specified, 'context' will be inserted into 'messages'. Depending on the model, 'context' may be inserted into the 'content' with 'system' 'role'; or into the 'content' of the last message of 'user' 'role'.
@@ -19629,15 +20678,135 @@ cpdctl wx-ai deployment chat-stream --id-or-name ID-OR-NAME --messages (MESSAGES
 In the example, 'context' "Today is Wednesday" is inserted as such
 'content' of 'user' becomes "Today is Wednesday. Who are you and which day is tomorrow?".
 
+`--frequency-penalty` (float64)
+:   Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. The default value is 0. The value must be less than 2. The value must be greater than -2.
+
+    The default value is `0`.
+
 `--id-or-name` (string)
 :   Required. The 'id_or_name' can be either the 'deployment_id' that identifies the deployment or a 'serving_name' that allows a predefined URL to be used to post a prediction. The deployment must reference a prompt template with 'input_mode' 'chat'.
 
 The WML instance that is associated with the deployment will be used for limits and billing (if a paid plan).
 
+`--include-reasoning` (bool)
+:   Whether to include 'reasoning_content' in the response. Default is 'true'.
+
+    The default value is `false`.
+
+`--logit-bias` (generic map)
+:   Increasing or decreasing probability of tokens being selected during generation; a positive bias makes a token more likely to appear, while a negative bias makes it less likely. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--logprobs` (bool)
+:   Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the content of message. The default value is false.
+
+    The default value is `false`.
+
+`--max-completion-tokens` (int64)
+:   The maximum number of tokens that can be generated in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length. Set to 0 for the model's configured max generated tokens. The default value is 1024.
+
+    The default value is `0`.
+
+`--max-tokens` (int64)
+:   The maximum number of tokens that can be generated in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length. Set to 0 for the model's configured max generated tokens.
+
+This value is now deprecated in favor of 'max_completion_tokens'. If specified together with 'max_completion_tokens',
+'max_tokens' will be ignored. The default value is 1024.
+
+    The default value is `0`.
+
 `--messages` ([`DeploymentTextChatMessages[]`](#cli-deployment-text-chat-messages-example-schema))
 :   Required. The messages for this chat session. You cannot specify 'system' 'role' in the messages. Depending on the model, the 'content' of 'system' 'role' may be from 'system_prompt' of the prompt template, and will be automatically inserted into 'messages'.
 
 As an example, depending on the model, if 'system_prompt' of a prompt template is "You are Granite Chat, an AI language model developed by IBM. You are a cautious assistant. You carefully follow instructions. You are helpful and harmless and you follow ethical guidelines and promote positive behavior.", a message with 'system' 'role' having 'content' the same as 'system_prompt' is inserted. The maximum length is 1000 items. The minimum length is 1 item.
+
+`--n` (int64)
+:   How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep n as 1 to minimize costs. The default value is 1.
+
+    The default value is `0`.
+
+`--presence-penalty` (float64)
+:   Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. The default value is 0. The value must be less than 2. The value must be greater than -2.
+
+    The default value is `0`.
+
+`--reasoning-effort` (string)
+:   A lower reasoning effort can result in faster responses, fewer tokens used, and shorter 'reasoning_content' in the responses. Supported values are 'low', 'medium', and 'high'. Allowable values are: low, medium, high.
+
+`--response-format` ([`TextChatResponseFormat`](#cli-text-chat-response-format-example-schema))
+:   The chat response format parameters. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--response-format-json-schema` ([`TextChatResponseFormatJSONSchema`](#cli-text-chat-response-format-json-schema-example-schema))
+:   User-defined JSON schema object with optional parameters to enforce structured output.
+
+**Important:** this field will only applied when 'response_format'.'type' is set to 'json_schema'. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--response-format-type` (string)
+:   Used to enable JSON mode, which guarantees the message the model generates is valid JSON.
+
+**Important:** when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if 'finish_reason="length"', which indicates the generation exceeded 'max_tokens' or the conversation exceeded the max context length.
+
+- 'text' : **Will not** create a JSON structured output.
+- 'json_object' : User will get a JSON structured output, but the schema is not guranteed.
+- 'json_schema' : User needs to declare the 'json_schema' object to provide the desired JSON schema in order to get a matched response. Allowable values are: text, json_object, json_schema.
+
+`--seed` (int64)
+:   Random number generator seed to use in sampling mode for experimental repeatability.
+
+    The default value is `0`.
+
+`--stop` (string)
+:   Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 4 items. The minimum length is 0 items.
+
+`--stream` (bool)
+:   If set to true, this operation will return the output tokens as a stream of events, and usage is always included in the response.
+
+    The default value is `false`.
+
+`--temperature` (float64)
+:   What sampling temperature to use,. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
+
+We generally recommend altering this or 'top_p' but not both. The default value is 1. The value must be less than 2. The value must be greater than 0.
+
+    The default value is `0`.
+
+`--time-limit` (int64)
+:   Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the 'TIME_LIMIT'' stop reason. Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. The value must be greater than 0.
+
+    The default value is `0`.
+
+`--tool-choice` ([`TextChatToolChoiceTool`](#cli-text-chat-tool-choice-tool-example-schema))
+:   Specifying a particular tool via '{"type": "function", "function": {"name": "my_function"}}' forces the model to call that tool.
+Specify either 'tool_choice_option' to allow the model to pick or 'tool_choice' to force the model to call a tool. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--tool-choice-function` ([`TextChatToolFunction`](#cli-text-chat-tool-function-example-schema))
+:   The named function. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--tool-choice-option` (string)
+:   Specify either 'tool_choice_option' to allow the model to pick or 'tool_choice' to force the model to call a tool.
+
+Using 'auto' means the model can pick between generating a message or calling one or more tools. Default is 'auto'.
+
+Using 'none' means the model will not call any tool and instead generates a message.
+
+Using 'required' means the model must call one or more tools. Allowable values are: auto, none, required.
+
+`--tool-choice-type` (string)
+:   The tool type. Allowable values are: function.
+
+`--tools` ([`TextChatParameterTools[]`](#cli-text-chat-parameter-tools-example-schema))
+:   Tool functions that can be called with the response. It should be a JSON string or a path to a JSON file prepended with @. The maximum length is 128 items. The minimum length is 1 item.
+
+`--top-logprobs` (int64)
+:   An integer specifying the number of most likely tokens to return at each token position, each with an associated log probability. The option 'logprobs' must be set to 'true' if this parameter is used. The maximum value is 20. The minimum value is 0.
+
+    The default value is `0`.
+
+`--top-p` (float64)
+:   An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.
+
+We generally recommend altering this or 'temperature' but not both. The default value is 1. The value must be less than 1. The value must be greater than 0.
+
+    The default value is `0`.
 
 ##### Example
 
@@ -19645,7 +20814,28 @@ As an example, depending on the model, if 'system_prompt' of a prompt template i
    cpdctl wx-ai deployment chat-stream \
     --id-or-name exampleString \
     --messages '[{"role": "assistant", "content": "Who won the world series in 2020?", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
+    --tools '[{"type": "function", "function": {"name": "exampleString", "description": "exampleString", "parameters": {"anyKey": "anyValue"}}}]' \
+    --tool-choice-option auto \
+    --tool-choice '{"type": "function", "function": {"name": "exampleString"}}' \
     --context exampleString \
+    --chat-template-kwargs '{"anyKey": "anyValue"}' \
+    --frequency-penalty 0 \
+    --include-reasoning=true \
+    --logit-bias '{"anyKey": "anyValue"}' \
+    --logprobs=false \
+    --top-logprobs 0 \
+    --max-completion-tokens 1024 \
+    --max-tokens 1024 \
+    --n 1 \
+    --presence-penalty 0 \
+    --reasoning-effort low \
+    --response-format '{"type": "text", "json_schema": {"name": "exampleString", "schema": {"anyKey": "anyValue"}, "strict": true}}' \
+    --seed 38 \
+    --stop exampleString,anotherTestString \
+    --stream=true \
+    --temperature 1 \
+    --top-p 1 \
+    --time-limit 0 \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_deployment_create">`wx-ai deployment create`</a>
@@ -19747,7 +20937,7 @@ The 'serving_name' can be provided in the 'online.parameters'.
 ```sh
    cpdctl wx-ai deployment create \
     --name text_classification \
-    --online '{"parameters": {"serving_name": "churn"}}' \
+    --online '{"parameters": {"serving_name": "churn", "foundation_model": {"functions": ["exampleString","anotherTestString"]}}}' \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id exampleString \
     --description exampleString \
@@ -19757,14 +20947,14 @@ The 'serving_name' can be provided in the 'online.parameters'.
     --hardware-spec '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2", "name": "exampleString", "num_nodes": 2}' \
     --hardware-request '{"size": "gpu_s", "num_nodes": 72.5}' \
     --asset '{"id": "4cedab6d-e8e4-4214-b81a-2ddb122db2ab", "rev": "2"}' \
-    --base-model-id exampleString \
+    --base-model-id google/flan-ul2 \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_deployment_delete">`wx-ai deployment delete`</a>
 Delete the deployment with the specified identifier.
 
 ```sh
-cpdctl wx-ai deployment delete --deployment-id DEPLOYMENT-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai deployment delete --deployment-id DEPLOYMENT-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -19800,10 +20990,15 @@ cpdctl wx-ai deployment delete --deployment-id DEPLOYMENT-ID --version VERSION [
 Retrieve the deployment details with the specified identifier.
 
 ```sh
-cpdctl wx-ai deployment get --deployment-id DEPLOYMENT-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai deployment get --deployment-id DEPLOYMENT-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--attempt-activation=ATTEMPT-ACTIVATION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
+
+`--attempt-activation` (bool)
+:   Attempts activation for the deployment with specified 'deployment_id', if it is hibernated and if it is set to true. The default value is false.
+
+    The default value is `false`.
 
 `--cpd-scope` (string)
 :   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -19830,13 +21025,14 @@ cpdctl wx-ai deployment get --deployment-id DEPLOYMENT-ID --version VERSION [{--
     --deployment-id exampleString \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --attempt-activation=true \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_deployment_list">`wx-ai deployment list`</a>
 Retrieve the list of deployments for the specified space or project.
 
 ```sh
-cpdctl wx-ai deployment list --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--serving-name SERVING-NAME] [--tag-value TAG-VALUE] [--asset-id ASSET-ID] [--prompt-template-id PROMPT-TEMPLATE-ID] [--name NAME] [--type TYPE] [--state STATE] [--conflict=CONFLICT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai deployment list --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--serving-name SERVING-NAME] [--tag-value TAG-VALUE] [--asset-id ASSET-ID] [--prompt-template-id PROMPT-TEMPLATE-ID] [--name NAME] [--type TYPE] [--state STATE] [--conflict=CONFLICT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20031,7 +21227,7 @@ Depending on the users plan, and on the model being used, there may be an enforc
     --id-or-name exampleString \
     --input 'how far is paris from bangalore:\n' \
     --parameters '{"decoding_method": "greedy", "length_penalty": {"decay_factor": 2.5, "start_index": 5}, "max_new_tokens": 100, "min_new_tokens": 5, "random_seed": 1, "stop_sequences": ["fail"], "temperature": 1.5, "time_limit": 600000, "top_k": 50, "top_p": 0.5, "repetition_penalty": 1.5, "truncate_input_tokens": 1, "return_options": {"input_text": true, "generated_tokens": true, "input_tokens": true, "token_logprobs": true, "token_ranks": true, "top_n_tokens": 2}, "include_stop_sequence": true, "typical_p": 0.5, "prompt_variables": {}}' \
-    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}' \
+    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "granite_guardian": {"input": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}' \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_deployment_text-generate-stream">`wx-ai deployment text-generate-stream`</a>
@@ -20159,7 +21355,73 @@ Depending on the users plan, and on the model being used, there may be an enforc
     --id-or-name exampleString \
     --input exampleString \
     --parameters '{"decoding_method": "greedy", "length_penalty": {"decay_factor": 2.5, "start_index": 5}, "max_new_tokens": 30, "min_new_tokens": 5, "random_seed": 1, "stop_sequences": ["fail"], "temperature": 1.5, "time_limit": 600000, "top_k": 50, "top_p": 0.5, "repetition_penalty": 1.5, "truncate_input_tokens": 1, "return_options": {"input_text": true, "generated_tokens": true, "input_tokens": true, "token_logprobs": true, "token_ranks": true, "top_n_tokens": 2}, "include_stop_sequence": true, "typical_p": 0.5, "prompt_variables": {}}' \
-    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}' \
+    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "granite_guardian": {"input": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_deployment_time-series-forecast">`wx-ai deployment time-series-forecast`</a>
+Generate forecasts, or predictions for future time points, given historical time series data.
+
+```sh
+cpdctl wx-ai deployment time-series-forecast --id-or-name ID-OR-NAME --data (DATA | @DATA-FILE) --version VERSION {--schema (SCHEMA | @SCHEMA-FILE) | --schema-timestamp-column SCHEMA-TIMESTAMP-COLUMN --schema-id-columns SCHEMA-ID-COLUMNS --schema-freq SCHEMA-FREQ --schema-target-columns SCHEMA-TARGET-COLUMNS} [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-prediction-length PARAMETERS-PREDICTION-LENGTH --parameters-inference-batch-size PARAMETERS-INFERENCE-BATCH-SIZE] [--future-data FUTURE-DATA | @FUTURE-DATA-FILE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` (generic map)
+:   Required. A payload of data matching 'schema'. We assume the following about your data:
+  * All timeseries are of equal length and are uniform in nature (the time difference between two successive rows is constant). This implies that there are no missing rows of data;
+  * The data meet the minimum model-dependent historical context length which
+  can be any number of rows per timeseries;
+
+Note that the example payloads shown are for illustration purposes only. An actual payload would necessary be much larger to meet minimum model-specific context lengths. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--future-data` (generic map)
+:   Exogenous or supporting features that extend into the forecasting horizon (e.g., a weather forecast or calendar of special promotions) which are known in advance. 'future_data' would be in the same format as 'data' except  that all timestamps would be in the forecast horizon and it would not include previously specified
+'target_columns'. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--id-or-name` (string)
+:   Required. The 'id_or_name' can be either the 'deployment_id' that identifies the deployment or a 'serving_name' that allows a predefined URL to be used to post a prediction.
+
+The WML instance that is associated with the deployment will be used for limits and billing (if a paid plan).
+
+`--parameters` ([`DeploymentTSForecastParameters`](#cli-deployment-ts-forecast-parameters-example-schema))
+:   The parameters for the forecast request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--parameters-inference-batch-size` (int64)
+:   The batch size used during inference. When multiple time series are present, the inference will be conducted in batches. If not specified, the model default batch size will be used.
+
+    The default value is `0`.
+
+`--parameters-prediction-length` (int64)
+:   The prediction length for the forecast. The service will return this many periods beyond the last timestamp in the inference data payload. If specified, 'prediction_length' must be an integer >=1 and no more than the model default prediction length. When omitted the model default prediction_length will be used.
+
+    The default value is `0`.
+
+`--schema` ([`TSForecastInputSchema`](#cli-ts-forecast-input-schema-example-schema))
+:   Contains metadata about your timeseries data input. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--schema-freq` (string)
+:   A frequency indicator for the given timestamp_column. See https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#period-aliases for a description of the allowed values. If not provided, we will attempt to infer it from the data. The maximum length is 100 characters. The minimum length is 0 characters.
+
+`--schema-id-columns` (string)
+:   Columns that define a unique key for timeseries. This is similar to a compound primary key in a database table. The maximum length is 10 items. The minimum length is 0 items.
+
+`--schema-target-columns` (string)
+:   An array of column headings which constitute the target variables in the data. These are the data that will be forecasted. The maximum length is 500 items. The minimum length is 0 items.
+
+`--schema-timestamp-column` (string)
+:   A valid column in the data that should be treated as the timestamp. Although not absolutely necessary, if using calendar dates  (simple integer time offsets are also allowed), users should consider using a format such as ISO 8601 that includes a UTC offset (e.g.,
+'2024-10-18T01:09:21.454746+00:00'). This will avoid potential issues such as duplicate dates appearing due to daylight savings change overs. There are many date formats in existence and inferring the correct one can be a challenge so please do consider adhering to ISO 8601. The maximum length is 100 characters. The minimum length is 1 character.
+
+##### Example
+
+```sh
+   cpdctl wx-ai deployment time-series-forecast \
+    --id-or-name exampleString \
+    --data '{"anyKey": "anyValue"}' \
+    --schema '{"timestamp_column": "date", "id_columns": ["ID1"], "freq": "1h", "target_columns": ["exampleString","anotherTestString"]}' \
+    --parameters '{"prediction_length": 38, "inference_batch_size": 38}' \
+    --future-data '{"anyKey": "anyValue"}' \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_deployment_update">`wx-ai deployment update`</a>
@@ -20179,7 +21441,7 @@ The PATCH operation with path specified as `/online/parameters` can be used to u
 Patching `/asset` or `/prompt_template` should normally be used in the case when these fields already exist.
 
 ```sh
-cpdctl wx-ai deployment update --deployment-id DEPLOYMENT-ID --version VERSION {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--asset ASSET | @ASSET-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai deployment update --deployment-id DEPLOYMENT-ID --version VERSION {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | --tags TAGS --name NAME --description DESCRIPTION (--custom CUSTOM | @CUSTOM-FILE) (--asset ASSET | @ASSET-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20264,7 +21526,7 @@ cpdctl wx-ai deployment wait --deployment-id DEPLOYMENT_ID --space-id SPACE_ID
 Create a document extraction.
 
 ```sh
-cpdctl wx-ai document-extraction create --name NAME --document-references (DOCUMENT-REFERENCES | @DOCUMENT-REFERENCES-FILE) --version VERSION {--results-reference (RESULTS-REFERENCE | @RESULTS-REFERENCE-FILE) | --results-reference-type github (--results-reference-location RESULTS-REFERENCE-LOCATION | @RESULTS-REFERENCE-LOCATION-FILE)} [--tags TAGS] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai document-extraction create --name NAME --document-references (DOCUMENT-REFERENCES | @DOCUMENT-REFERENCES-FILE) --version VERSION {--results-reference (RESULTS-REFERENCE | @RESULTS-REFERENCE-FILE) | --results-reference-type github (--results-reference-location RESULTS-REFERENCE-LOCATION | @RESULTS-REFERENCE-LOCATION-FILE)} [--tags TAGS] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20308,7 +21570,7 @@ cpdctl wx-ai document-extraction create --name NAME --document-references (DOCUM
    cpdctl wx-ai document-extraction create \
     --name exampleString \
     --document-references '[{"type": "container", "location": {}}]' \
-    --results-reference '{"type": "github", "location": {"filepaths": [results/text_extraction/1.md], "commit": "exampleString"}}' \
+    --results-reference '{"type": "github", "location": {"filepaths": ["results/text_extraction/1.md"], "commit": "exampleString"}}' \
     --tags t1,t2 \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
@@ -20318,7 +21580,7 @@ cpdctl wx-ai document-extraction create --name NAME --document-references (DOCUM
 Cancel the specified document extraction and remove it.
 
 ```sh
-cpdctl wx-ai document-extraction delete --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--hard-delete=HARD-DELETE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai document-extraction delete --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20360,7 +21622,7 @@ cpdctl wx-ai document-extraction delete --id ID --version VERSION [{--project-id
 Get document extraction.
 
 ```sh
-cpdctl wx-ai document-extraction get --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai document-extraction get --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20396,7 +21658,7 @@ cpdctl wx-ai document-extraction get --id ID --version VERSION [{--project-id PR
 Get document extractions.
 
 ```sh
-cpdctl wx-ai document-extraction list --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai document-extraction list --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20422,6 +21684,269 @@ cpdctl wx-ai document-extraction list --version VERSION [{--project-id PROJECT-I
    cpdctl wx-ai document-extraction list \
     --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_evaluation_delete">`wx-ai evaluation delete`</a>
+Cancel or delete Evaluation with given ID.
+
+```sh
+cpdctl wx-ai evaluation delete --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--hard-delete` (bool)
+:   If set to 'true', evaluation job gets deleted instead of cancelled.
+
+    The default value is `false`.
+
+`--id` (string)
+:   Required. The 'id' is the identifier that was returned in the 'metadata.id' field of the request.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai evaluation delete \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --hard-delete=true \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_evaluation_get">`wx-ai evaluation get`</a>
+Get Evalutation with given ID.
+
+```sh
+cpdctl wx-ai evaluation get --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--id` (string)
+:   Required. The 'id' is the identifier that was returned in the 'metadata.id' field of the request.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai evaluation get \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_evaluation_list">`wx-ai evaluation list`</a>
+Get list of Evaluations.
+
+```sh
+cpdctl wx-ai evaluation list --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+##### Example
+
+```sh
+   cpdctl wx-ai evaluation list \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_evaluation_submit">`wx-ai evaluation submit`</a>
+Submit a new Evaluation.
+
+```sh
+cpdctl wx-ai evaluation submit --name NAME --version VERSION {--task-settings (TASK-SETTINGS | @TASK-SETTINGS-FILE) | (--task-settings-tasks TASK-SETTINGS-TASKS | @TASK-SETTINGS-TASKS-FILE) --task-settings-sample-size TASK-SETTINGS-SAMPLE-SIZE} [--description DESCRIPTION] [--tags TAGS] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--model-settings (MODEL-SETTINGS | @MODEL-SETTINGS-FILE) | --model-settings-model-id MODEL-SETTINGS-MODEL-ID --model-settings-deployment-id MODEL-SETTINGS-DEPLOYMENT-ID (--model-settings-generation-parameters MODEL-SETTINGS-GENERATION-PARAMETERS | @MODEL-SETTINGS-GENERATION-PARAMETERS-FILE)] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--description` (string)
+:   The description of the job.
+
+`--model-settings` ([`EvaluationModelConfig`](#cli-evaluation-model-config-example-schema))
+:   Settings related to evaluated foundation model. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--model-settings-deployment-id` (string)
+:   The ID of the deployed foundation model. Either 'model_id' or 'deployment_id' parameter has to be given.
+
+`--model-settings-generation-parameters` ([`TextGenParameters`](#cli-text-gen-parameters-example-schema))
+:   Properties that control the model and response. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--model-settings-model-id` (string)
+:   The ID of the pre-installed foundation model. Either 'model_id' or 'deployment_id' parameter has to be given.
+
+`--name` (string)
+:   Required. The name of the job.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+`--tags` (string)
+:   A list of tags for this resource. The maximum length is 64 items.
+
+`--task-settings` ([`EvaluationTaskConfig`](#cli-evaluation-task-config-example-schema))
+:   Settings related to evaluation job. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--task-settings-sample-size` (int64)
+:   Sample size limit for given tasks.
+
+    The default value is `0`.
+
+`--task-settings-tasks` ([`EvaluationTaskConfigTasksItem[]`](#cli-evaluation-task-config-tasks-item-example-schema))
+:   The evaluation tasks to be run. It should be a JSON string or a path to a JSON file prepended with @.
+
+##### Example
+
+```sh
+   cpdctl wx-ai evaluation submit \
+    --name exampleString \
+    --task-settings '{"tasks": [{"name": "bluebench", "type": "EvaluationAcademicTask", "description": "Bluebench benchmarks for fine-tuned llama model"}], "sample_size": 38}' \
+    --description exampleString \
+    --tags t1,t2 \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --model-settings '{"model_id": "exampleString", "deployment_id": "exampleString", "generation_parameters": {"decoding_method": "greedy", "length_penalty": {"decay_factor": 2.5, "start_index": 5}, "max_new_tokens": 30, "min_new_tokens": 5, "random_seed": 1, "stop_sequences": ["fail"], "temperature": 1.5, "time_limit": 600000, "top_k": 50, "top_p": 0.5, "repetition_penalty": 1.5, "truncate_input_tokens": 1, "return_options": {"input_text": true, "generated_tokens": true, "input_tokens": true, "token_logprobs": true, "token_ranks": true, "top_n_tokens": 2}, "include_stop_sequence": true}}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_files_get">`wx-ai files get`</a>
+Retrieves the contents and metadata of a file previously uploaded. This endpoint is typically used to download or inspect batch input or output files.
+
+```sh
+cpdctl wx-ai files get --file-id FILE-ID --x-ibm-project-id X-IBM-PROJECT-ID --version VERSION [--x-ibm-space-id X-IBM-SPACE-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--file-id` (string)
+:   Required. The ID of the file to retrieve.
+
+`--x-ibm-project-id` (string)
+:   Required. Watsonx project identifier.
+
+`--x-ibm-space-id` (string)
+:   Watsonx space identifier.
+
+##### Example
+
+```sh
+   cpdctl wx-ai files get \
+    --file-id file-CAMS_ASSET_ID \
+    --x-ibm-project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --x-ibm-space-id 4c8f2a91-8a7d-4dbe-9c7c-1c2a3b4d5e6f \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_files_list">`wx-ai files list`</a>
+Returns a list of files that have been uploaded to watsonx.ai. Files can be filtered by purpose and sorted by creation time. This endpoint is commonly used to locate batch input or output files.
+
+```sh
+cpdctl wx-ai files list --x-ibm-project-id X-IBM-PROJECT-ID --version VERSION [--x-ibm-space-id X-IBM-SPACE-ID] [--after AFTER] [--limit LIMIT] [--order asc | desc] [--purpose PURPOSE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--after` (string)
+:   A cursor for pagination. Use the last file ID from the previous response to retrieve the next page.
+
+`--limit` (int64)
+:   Maximum number of files to return. Must be between 1 and 10,000. The default value is 10000. The maximum value is 10000. The minimum value is 1.
+
+    The default value is `0`.
+
+`--order` (string)
+:   Sort order by created_at timestamp. The default value is desc. Allowable values are: asc, desc.
+
+`--purpose` (string)
+:   Only return files with the specified purpose.
+
+`--x-ibm-project-id` (string)
+:   Required. Watsonx project identifier.
+
+`--x-ibm-space-id` (string)
+:   Watsonx space identifier.
+
+##### Example
+
+```sh
+   cpdctl wx-ai files list \
+    --x-ibm-project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --x-ibm-space-id 4c8f2a91-8a7d-4dbe-9c7c-1c2a3b4d5e6f \
+    --after file-abc123 \
+    --limit 100 \
+    --order desc \
+    --purpose batch \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_files_upload">`wx-ai files upload`</a>
+Uploads a file to be used for batch inferencing. The file must be uploaded with purpose=batch and can later be referenced when submitting a batch job.
+
+```sh
+cpdctl wx-ai files upload --x-ibm-project-id X-IBM-PROJECT-ID --file FILE --version VERSION [--file-content-type FILE-CONTENT-TYPE] [--purpose batch] [--x-ibm-space-id X-IBM-SPACE-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--file` (io.ReadCloser)
+:   Required. JSONL file containing batch requests.
+
+`--file-content-type` (string)
+:   The content type of File.
+
+`--purpose` (string)
+:   Purpose of the uploaded file. Must be set to batch. Allowable values are: batch.
+
+`--x-ibm-project-id` (string)
+:   Required. Watsonx project identifier.
+
+`--x-ibm-space-id` (string)
+:   Watsonx space identifier.
+
+##### Example
+
+```sh
+   cpdctl wx-ai files upload \
+    --x-ibm-project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --file tempdir/test-file.txt \
+    --file-content-type exampleString \
+    --purpose batch \
+    --x-ibm-space-id 4c8f2a91-8a7d-4dbe-9c7c-1c2a3b4d5e6f \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_fine-tuning_create">`wx-ai fine-tuning create`</a>
@@ -20494,6 +22019,11 @@ then 'response_template' must also be provided (and vice versa).
 
     The default value is `0`.
 
+`--parameters-peft-parameters` ([`FineTuningPeftParameters`](#cli-fine-tuning-peft-parameters-example-schema))
+:   Parameters to be set when running a Fine Tuning job with LoRA/QLoRA.
+
+These fields must not be set while creating a fine tuning job with InstructLab. It should be a JSON string or a path to a JSON file prepended with @.
+
 `--parameters-response-template` (string)
 :   Separator for the prediction/response in the single sequence to train on completions only. The default value is 
 
@@ -20555,17 +22085,17 @@ The holdout/test datasets. The maximum length is 20 items. The minimum length is
 
 ```sh
    cpdctl wx-ai fine-tuning create \
-    --name exampleString \
-    --training-data-references '[{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}]' \
-    --results-reference '{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}' \
+    --name 'Example - Lora fine tuning' \
+    --training-data-references '[{"type": "data_asset", "location": {}, "connection": {}, "id": "exampleString"}]' \
+    --results-reference '{"type": "data_asset", "location": {}, "connection": {}, "id": "exampleString"}' \
     --description exampleString \
-    --tags t1,t2 \
-    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
-    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
-    --auto-update-model=false \
-    --parameters '{"task_id": "exampleString", "accumulate_steps": 1, "base_model": {"model_id": "google/flan-t5-xl"}, "num_epochs": 5, "learning_rate": 0.2, "batch_size": 5, "max_seq_length": 1024, "response_template": "\n\n### Response:", "verbalizer": "### Input: {{input}} \n\n### Response: {{output}}", "gpu": {"num": 4, "name": "NVIDIA-A100-80GB-PCIe"}, "gradient_checkpointing": true}' \
+    --tags exampleString,anotherTestString \
+    --project-id dbbbfd33-1cca-4c6b-a9fa-c939b5f611eb \
+    --space-id exampleString \
+    --auto-update-model=true \
+    --parameters '{"task_id": "classification", "accumulate_steps": 1, "base_model": {"model_id": "ibm/granite-3-1-8b-base"}, "num_epochs": 10, "learning_rate": 5.0E-5, "batch_size": 16, "max_seq_length": 2048, "response_template": "\n### Response:", "verbalizer": "### Input: {{input}} \n\n### Response: {{output}}", "gpu": {"num": 1, "name": "NVIDIA-A100-80GB-PCIe"}, "peft_parameters": {"type": "lora", "rank": 16, "target_modules": ["all-linear"], "lora_alpha": 32, "lora_dropout": 0.05}, "gradient_checkpointing": true}' \
     --type ilab \
-    --test-data-references '[{"type": "exampleString", "location": {}, "connection": {}, "id": "exampleString"}]' \
+    --test-data-references '[{"type": "data_asset", "location": {}, "connection": {}, "id": "exampleString"}]' \
     --custom '{"anyKey": "anyValue"}' \
     --version 2019-01-01
 ```
@@ -20573,7 +22103,7 @@ The holdout/test datasets. The maximum length is 20 items. The minimum length is
 Delete a fine tuning job if it exists, once deleted all trace of the job is gone.
 
 ```sh
-cpdctl wx-ai fine-tuning delete --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai fine-tuning delete --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20615,7 +22145,7 @@ cpdctl wx-ai fine-tuning delete --id ID --version VERSION [{--space-id SPACE-ID 
 Get the results of a fine tuning job, or details if the job failed.
 
 ```sh
-cpdctl wx-ai fine-tuning get --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai fine-tuning get --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20651,7 +22181,7 @@ cpdctl wx-ai fine-tuning get --id ID --version VERSION [{--space-id SPACE-ID | -
 Retrieve the list of fine tuning jobs for the specified space or project.
 
 ```sh
-cpdctl wx-ai fine-tuning list --version VERSION [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--state STATE] [--type ilab] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai fine-tuning list --version VERSION [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--state STATE] [--type ilab] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20716,7 +22246,7 @@ cpdctl wx-ai fine-tuning list --version VERSION [--start START | --all-pages] [-
 Retrieve the list of deployed foundation models.
 
 ```sh
-cpdctl wx-ai foundation-model list-models --version VERSION [--start START | --all-pages] [--limit LIMIT] [--filters FILTERS] [--tech-preview=TECH-PREVIEW] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai foundation-model list-models --version VERSION [--start START | --all-pages] [--limit LIMIT] [--filters FILTERS] [--tech-preview=TECH-PREVIEW] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20781,7 +22311,7 @@ cpdctl wx-ai foundation-model list-models --version VERSION [--start START | --a
 Retrieve the list of tasks that are supported by the foundation models.
 
 ```sh
-cpdctl wx-ai foundation-model list-tasks --version VERSION [--start START | --all-pages] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai foundation-model list-tasks --version VERSION [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20807,11 +22337,3279 @@ cpdctl wx-ai foundation-model list-tasks --version VERSION [--start START | --al
     --limit 50 \
     --version 2019-01-01
 ```
+## • <a name="wx-ai_gpus_list">`wx-ai gpus list`</a>
+See all available GPUs on the cluster.
+
+```sh
+cpdctl wx-ai gpus list --version VERSION [--start START | --all-pages] [--limit LIMIT] [--gpu-id GPU-ID] [--gpu-type GPU-TYPE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--all-pages` (bool)
+:   Invoke multiple requests to display all pages of the collection for gpus-list.
+
+    The default value is `false`.
+
+`--gpu-id` (string)
+:   The GPU id for filtering. The maximum length is 12 characters. The minimum length is 1 character.
+
+`--gpu-type` (string)
+:   The GPU type for filtering. The maximum length is 12 characters. The minimum length is 4 characters.
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200. The default value is 100. The maximum value is 200. The minimum value is 1.
+
+    The default value is `0`.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
+
+##### Example
+
+```sh
+   cpdctl wx-ai gpus list \
+    --start exampleString \
+    --limit 50 \
+    --gpu-id 1l40s-48g \
+    --gpu-type L40S \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_improve-schema_delete">`wx-ai improve-schema delete`</a>
+Cancel the specified improve schema request and delete any associated results.
+
+```sh
+cpdctl wx-ai improve-schema delete --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--hard-delete` (bool)
+:   Set to true in order to also delete the job or request metadata.
+
+    The default value is `false`.
+
+`--id` (string)
+:   Required. The identifier of the improve schema request.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai improve-schema delete \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --hard-delete=true \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_improve-schema_get">`wx-ai improve-schema get`</a>
+Retrieve the improve schema request with the specified identifier.
+
+Note that there is a retention period of 2 days. If this retention period is exceeded then the request will be deleted and the results no longer available. In this case this operation will return `404`.
+
+```sh
+cpdctl wx-ai improve-schema get --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--id` (string)
+:   Required. The identifier of the improve schema request.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai improve-schema get \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_improve-schema_improve">`wx-ai improve-schema improve`</a>
+Start a request to create the custom schema for text extraction.
+
+```sh
+cpdctl wx-ai improve-schema improve --version VERSION {--parameters (PARAMETERS | @PARAMETERS-FILE) | (--parameters-schema PARAMETERS-SCHEMA | @PARAMETERS-SCHEMA-FILE) (--parameters-semantic-config PARAMETERS-SEMANTIC-CONFIG | @PARAMETERS-SEMANTIC-CONFIG-FILE)} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--parameters` ([`ImproveSchemaParameters`](#cli-improve-schema-parameters-example-schema))
+:   The parameters to improve schema. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--parameters-schema` ([`CustomSchema`](#cli-custom-schema-example-schema))
+:   A custom input schema given by the user. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--parameters-semantic-config` ([`SchemaSemanticConfig`](#cli-schema-semantic-config-example-schema))
+:   Properties related to semantic config. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai improve-schema improve \
+    --parameters '{"schema": {"document_type": "Passport", "document_description": "Passport document to get the schema", "fields": {"description": "Name", "example": "name of the user", "available_options": ["exampleString","anotherTestString"]}, "additional_prompt_instructions": "exampleString"}, "semantic_config": {"default_model_name": "exampleString"}}' \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id exampleString \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_improve-schema_list">`wx-ai improve-schema list`</a>
+Retrieve the list of improve schema requests for the specified space or project.
+
+This operation does not save the history, any requests that were deleted or purged will not appear in this list.
+
+```sh
+cpdctl wx-ai improve-schema list --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--all-pages` (bool)
+:   Invoke multiple requests to display all pages of the collection for improve-schema-list.
+
+    The default value is `false`.
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200. The default value is 100. The maximum value is 200. The minimum value is 1.
+
+    The default value is `0`.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
+
+##### Example
+
+```sh
+   cpdctl wx-ai improve-schema list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --start exampleString \
+    --limit 50 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_merge-schema_delete">`wx-ai merge-schema delete`</a>
+Cancel the specified merge schema request and delete any associated results.
+
+```sh
+cpdctl wx-ai merge-schema delete --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--hard-delete` (bool)
+:   Set to true in order to also delete the job or request metadata.
+
+    The default value is `false`.
+
+`--id` (string)
+:   Required. The identifier of the merge schema request.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai merge-schema delete \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --hard-delete=true \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_merge-schema_get">`wx-ai merge-schema get`</a>
+Retrieve the merge schema request with the specified identifier.
+
+Note that there is a retention period of 2 days. If this retention period is exceeded then the request will be deleted and the results no longer available. In this case this operation will return `404`.
+
+```sh
+cpdctl wx-ai merge-schema get --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--id` (string)
+:   Required. The identifier of the merge schema request.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai merge-schema get \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_merge-schema_list">`wx-ai merge-schema list`</a>
+Retrieve the list of merge schema requests for the specified space or project.
+
+This operation does not save the history, any requests that were deleted or purged will not appear in this list.
+
+```sh
+cpdctl wx-ai merge-schema list --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--all-pages` (bool)
+:   Invoke multiple requests to display all pages of the collection for merge-schema-list.
+
+    The default value is `false`.
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200. The default value is 100. The maximum value is 200. The minimum value is 1.
+
+    The default value is `0`.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
+
+##### Example
+
+```sh
+   cpdctl wx-ai merge-schema list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --start exampleString \
+    --limit 50 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_merge-schema_merge">`wx-ai merge-schema merge`</a>
+Start a request to merge a list of semantically similar custom schemas for text extraction into a single schema.
+
+```sh
+cpdctl wx-ai merge-schema merge --version VERSION {--parameters (PARAMETERS | @PARAMETERS-FILE) | (--parameters-schemas PARAMETERS-SCHEMAS | @PARAMETERS-SCHEMAS-FILE) (--parameters-semantic-config PARAMETERS-SEMANTIC-CONFIG | @PARAMETERS-SEMANTIC-CONFIG-FILE)} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--parameters` ([`MergeSchemaParameters`](#cli-merge-schema-parameters-example-schema))
+:   The parameters to merge schema. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--parameters-schemas` ([`CustomSchema[]`](#cli-custom-schema-example-schema))
+:   A list of input schemas. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--parameters-semantic-config` ([`SchemaSemanticConfig`](#cli-schema-semantic-config-example-schema))
+:   Properties related to semantic config. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai merge-schema merge \
+    --parameters '{"schemas": [{"document_type": "Passport", "document_description": "Passport document to get the schema", "fields": {"description": "Name", "example": "name of the user", "available_options": ["exampleString","anotherTestString"]}, "additional_prompt_instructions": "exampleString"}], "semantic_config": {"default_model_name": "exampleString"}}' \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id exampleString \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-anthropic-provider">`wx-ai model-gateway create-anthropic-provider`</a>
+Creates a new Anthropic model provider configuration with the supplied details.
+
+```sh
+cpdctl wx-ai model-gateway create-anthropic-provider --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`AnthropicConfig`](#cli-anthropic-config-example-schema))
+:   Configuration details for an Anthropic provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   The required authentication key for accessing the Anthropic API.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom description for the Anthropic model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the Anthropic model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-anthropic-provider \
+    --name fast-llm \
+    --description 'Some custom description string' \
+    --data '{"apikey": "YOUR_API_KEY"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-azure-openai-provider">`wx-ai model-gateway create-azure-openai-provider`</a>
+Creates a new Azure OpenAI model provider configuration with the supplied details.
+
+```sh
+cpdctl wx-ai model-gateway create-azure-openai-provider --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-account-name DATA-ACCOUNT-NAME --data-api-version DATA-API-VERSION --data-apikey DATA-APIKEY --data-resource-group-name DATA-RESOURCE-GROUP-NAME --data-resource-name DATA-RESOURCE-NAME --data-subscription-id DATA-SUBSCRIPTION-ID] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`AzureOpenAIConfig`](#cli-azure-open-ai-config-example-schema))
+:   Configuration details for an Azure OpenAI provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-account-name` (string)
+:   The Azure account name; required to use '/v1/providers/{provider_uuid}/models'.
+
+`--data-api-version` (string)
+:   Version of the Azure OpenAI API to use (default: '"2024-10-21"'). The default value is 2024-10-21.
+
+`--data-apikey` (string)
+:   The required authentication key for accessing Azure OpenAI services.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--data-resource-group-name` (string)
+:   The Azure resource group name; required to use '/v1/providers/{provider_uuid}/models'.
+
+`--data-resource-name` (string)
+:   The Azure OpenAI resource to connect to.
+
+`--data-subscription-id` (string)
+:   The Azure subscription ID; required to use '/v1/providers/{provider_uuid}/models'.
+
+`--description` (string)
+:   A custom description for the Azure OpenAI model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the Azure OpenAI model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-azure-openai-provider \
+    --name fast-llm \
+    --description 'Some custom description string' \
+    --data '{"account_name": "my-azure-account", "api_version": "2024-10-21", "apikey": "YOUR_API_KEY", "resource_group_name": "my-resource-group", "resource_name": "my-resource-name", "subscription_id": "acde070d-8c4c-4f0d-9d8a-162843c10333"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-bedrock-provider">`wx-ai model-gateway create-bedrock-provider`</a>
+Creates a new AWS Bedrock model provider configuration with the supplied details.
+
+```sh
+cpdctl wx-ai model-gateway create-bedrock-provider --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-access-key-id DATA-ACCESS-KEY-ID --data-base-url DATA-BASE-URL --data-region DATA-REGION --data-secret-access-key DATA-SECRET-ACCESS-KEY --data-session-token DATA-SESSION-TOKEN] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`AWSBedrockConfig`](#cli-aws-bedrock-config-example-schema))
+:   Configuration details for an AWS Bedrock provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-access-key-id` (string)
+:   The AWS access key ID required to authenticate with the Bedrock API.
+
+`--data-base-url` (string)
+:   Overrides the default AWS Bedrock Runtime API endpoint with the provided URL.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--data-region` (string)
+:   The AWS region where the Bedrock API is hosted.
+
+`--data-secret-access-key` (string)
+:   The AWS secret access key required to authenticate with the Bedrock API.
+
+`--data-session-token` (string)
+:   Optional AWS session token for temporary credentials.
+
+`--description` (string)
+:   A custom description for the AWS Bedrock model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the AWS Bedrock model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-bedrock-provider \
+    --name fast-llm \
+    --description 'Some custom description string' \
+    --data '{"access_key_id": "acde070d-8c4c-4f0d-9d8a-162843c10333", "base_url": "https://bedrock-runtime.us-east-1.amazonaws.com", "region": "us-east-1", "secret_access_key": "YOUR_API_KEY", "session_token": "AQoDYXdzEJr...<omitted>...HVkDR45Kg=="}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-cerebras-provider">`wx-ai model-gateway create-cerebras-provider`</a>
+Creates a new Cerebras model provider configuration with the supplied details.
+
+```sh
+cpdctl wx-ai model-gateway create-cerebras-provider --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`CerebrasConfig`](#cli-cerebras-config-example-schema))
+:   Configuration details for a Cerebras provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   The required authentication key for accessing the Cerebras API.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom description for the Cerebras model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the Cerebras model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-cerebras-provider \
+    --name fast-llm \
+    --description 'Some custom description string' \
+    --data '{"apikey": "YOUR_API_KEY"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-chat-completions">`wx-ai model-gateway create-chat-completions`</a>
+Generate a chat completion based on the provided messages and parameters using the provided model.
+
+```sh
+cpdctl wx-ai model-gateway create-chat-completions [command options]
+```
+
+#### Command options
+
+`--audio` (map[string]string)
+:   Parameters for audio output. Only required when audio output is requested with modalities: '["audio"]'.
+
+See: [OpenAI's Audio Guide](https://platform.openai.com/docs/guides/audio) for more information. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--cache` ([`ChatsCache`](#cli-chats-cache-example-schema))
+:   Contains the caching configuration for a request. Cache is only supported for non-streaming requests. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--cache-enabled` (bool)
+:   Specifies whether to enable caching for the current request. The default value is false.
+
+    The default value is `false`.
+
+`--cache-filter` (map[string]string)
+:   The filter criteria for caching. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--cache-threshold` (float64)
+:   The threshold for caching the request; required if cache is enabled.
+
+    The default value is `0`.
+
+`--frequency-penalty` (float64)
+:   A number between '-2.0' and '2.0'. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. The default value is 0. The maximum value is 2. The minimum value is -2.
+
+    The default value is `0`.
+
+`--function-call` (interface{})
+:   Controls which (if any) function is called by the model.
+- '"none"' means the model will not call a function and instead generates a message.
+- '"auto"' means the model can pick between generating a message or calling a function.
+- Specifying a particular function via '{"name": "my_function"}' forces the model to call that function.
+
+'"none"' is the default when no functions are present. '"auto"' is the default if functions are present.
+
+Deprecated: 'function_call' has been deprecated by OpenAI in favor of 'tool_choice'. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--functions` (map[string]string)
+:   A list of functions the model may generate JSON inputs for.
+
+Deprecated: 'functions' has been deprecated by OpenAI in favor of 'tools'. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--logit-bias` (map[string]int64)
+:   Modifies the likelihood of specified tokens appearing in the completion. Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from '-100' to '100'. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between '-1' and '1' should decrease or increase likelihood of selection; values like '-100' or '100' should result in a ban or exclusive selection of the relevant token. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--logprobs` (bool)
+:   Indicates whether to return log probabilities of the output tokens or not. If 'true', returns the log probabilities of each output token returned in the content of message. The default value is false.
+
+    The default value is `false`.
+
+`--max-completion-tokens` (int64)
+:   Specifies an upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens].
+
+[reasoning tokens]: https://platform.openai.com/docs/guides/reasoning. The maximum value is 4096. The minimum value is 0.
+
+    The default value is `0`.
+
+`--max-tokens` (int64)
+:   Specifies a maximum number of tokens that can be generated in the chat completion. This value can be used to control costs for text generated via API.
+
+Deprecated: 'max_tokens' has been deprecated by OpenAI in favor of 'max_completion_tokens', and is not compatible with 'o1' series models. The maximum value is 4096. The minimum value is 0.
+
+    The default value is `0`.
+
+`--messages` ([`ChatsMessage[]`](#cli-chats-message-example-schema))
+:   Required. A list of messages comprising the chat conversation so far. Depending on the model you use, different message types (modalities) are supported, like '"text"', '"images"', and '"audio"'. It should be a JSON string or a path to a JSON file prepended with @. The maximum length is 100 items. The minimum length is 1 item.
+
+`--metadata` (map[string]string)
+:   Contains developer-defined tags and values used for filtering completions. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--modalities` (string)
+:   Specifies the output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default ('["text"]'). Some models can generate audio. For OpenAI, the 'gpt-4o-audio-preview' model can be used to [generate audio]. To request that this model generate both text and audio responses, you can use '["text", "audio"]'.
+
+[generate audio]: https://platform.openai.com/docs/guides/audio. The default value is ["text"]. The maximum length is 2 items. The minimum length is 1 item.
+
+`--model` (string)
+:   Required. The ID or alias of the model to forward the chat request to.
+
+`--n` (int64)
+:   Specifies how many chat completion choices to generate for each input message.
+
+Note: you will be charged based on the number of generated tokens across all choices, keep '"n"' set to '1' to minimize costs. The default value is 1. The maximum value is 128. The minimum value is 1.
+
+    The default value is `0`.
+
+`--parallel-tool-calls` (bool)
+:   Specifies whether to enable parallel function calling during tool use. The default value is true.
+
+    The default value is `false`.
+
+`--prediction` ([`ChatsPrediction`](#cli-chats-prediction-example-schema))
+:   The configuration for a [Predicted Output], which can greatly improve response times when
+large parts of the model response are known ahead of time.
+This is most common when you are regenerating a file with only minor changes to most of the content.
+
+[Predicted Output]: https://platform.openai.com/docs/guides/predicted-outputs. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--prediction-content` (interface{})
+:   Content that should be matched when generating a model response. If generated tokens would match this content, the entire model response can be returned much more quickly. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--prediction-type` (string)
+:   Type of predicted content you want to provide, should always be '"content"'. Allowable values are: content.
+
+`--presence-penalty` (float64)
+:   A number between '-2.0' and '2.0'. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. The default value is 0. The maximum value is 2. The minimum value is -2.
+
+    The default value is `0`.
+
+`--reasoning-effort` (string)
+:   Constrains effort on reasoning for reasoning models. For OpenAI, currently supported by 'o1' models only. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. The default value is medium. Allowable values are: low, medium, high.
+
+`--response-format` ([`ChatsResponseFormat`](#cli-chats-response-format-example-schema))
+:   An object specifying the format that the model must output.
+- Setting to '{ "type": "json_schema", "json_schema": {...} }' enables [Structured Outputs] which ensures the model will match your supplied JSON schema.
+- Setting to '{ "type": "json_object" }' enables JSON mode, which ensures the message the model generates is valid JSON.
+
+Important: when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user message.
+Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit,
+resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially
+cut off if '"finish_reason"' is set to '"length"', which indicates the generation exceeded 'max_tokens' or the conversation exceeded the max context length.
+
+[Structured Outputs]: https://platform.openai.com/docs/guides/structured-outputs. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--response-format-json-schema` ([`ChatsJSONSchema`](#cli-chats-json-schema-example-schema))
+:   The custom schema used to generate structures JSON responses. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--response-format-type` (string)
+:   The type of the response format, in this case should always be '"text"'.
+
+`--router` (map[string]string)
+:   Specifies model routing configurations for the request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--seed` (int64)
+:   The seed for the model request. For OpenAI, this feature is in Beta. If specified, OpenAI's system will make a best effort attempt to sample deterministically, such that repeated requests with the same seed and parameters should return the same result. Determinism is not guaranteed, and you should refer to the 'system_fingerprint' response parameter to monitor changes in the backend.
+
+    The default value is `0`.
+
+`--service-tier` (string)
+:   The service tier used for processing a request. The default value is auto. Allowable values are: auto, default, flex, priority.
+
+`--stop` (interface{})
+:   Specifies up to 4 sequences where the API will stop generating further tokens. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--store` (bool)
+:   Indicates whether to store the output of this chat completion request for use in OpenAI's [model distillation] or [evals] products.
+
+[model distillation]: https://platform.openai.com/docs/guides/distillation
+[evals]: https://platform.openai.com/docs/guides/evals. The default value is false.
+
+    The default value is `false`.
+
+`--stream` (bool)
+:   Indicates whether to stream the model response to the user. If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only server-sent events as they become available, with the stream terminated by a data: '[DONE]' message. The default value is false.
+
+    The default value is `false`.
+
+`--stream-options` ([`StreamOptions`](#cli-stream-options-example-schema))
+:   Options for streaming response. Only set this when you set 'stream' to 'true'. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--stream-options-include-usage` (bool)
+:   If set, an additional chunk will be streamed before the data: [DONE] message. The usage field on this chunk shows the token usage statistics for the entire request, and the choices field will always be an empty array. All other chunks will also include a usage field, but with a null value. The default value is false.
+
+    The default value is `false`.
+
+`--temperature` (float64)
+:   Specifies what sampling temperature to use. Higher values like '0.8' will make the output more random, while lower values like '0.2' will make it more focused and deterministic.
+
+Note: OpenAI generally recommends altering this or 'top_p' but not both. The default value is 1. The maximum value is 2. The minimum value is 0.
+
+    The default value is `0`.
+
+`--tool-choice` (interface{})
+:   Controls which (if any) tool is called by the model.
+- '"none"' means the model will not call any tool and instead generates a message.
+- '"auto"' means the model can pick between generating a message or calling one or more tools.
+- '"required"' means the model must call one or more tools.
+- Specifying a particular tool via '{"type": "function", "function": {"name": "my_function"}}' forces the model to call that tool.
+
+'"none"' is the default when no tools are present. '"auto"' is the default if tools are present. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--tools` ([`ChatsRequestTool[]`](#cli-chats-request-tool-example-schema))
+:   A list of tools the model may call. Currently, only functions are supported as tools. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. It should be a JSON string or a path to a JSON file prepended with @. The maximum length is 128 items. The minimum length is 0 items.
+
+`--top-logprobs` (int64)
+:   An integer between '0' and '20' specifying the number of most likely tokens to return at each token position, each with an associated log probability. LogProbs must be set to 'true' if this parameter is used. The maximum value is 20. The minimum value is 0.
+
+    The default value is `0`.
+
+`--top-p` (float64)
+:   An alternative to sampling with 'temperature', called nucleus sampling, where the model considers the results of the tokens with 'top_p' probability mass. Example: '0.1' means only the tokens comprising the top 10% probability mass are considered.
+
+Note: OpenAI generally recommends altering this or 'temperature' but not both. The default value is 1. The maximum value is 1. The minimum value is 0.
+
+    The default value is `0`.
+
+`--user` (string)
+:   A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-chat-completions \
+    --model gpt-4o \
+    --messages '[{"role": "developer", "content": "exampleString", "name": "my-username"}]' \
+    --audio '{}' \
+    --frequency-penalty 0.4 \
+    --function-call "exampleString" \
+    --functions '{}' \
+    --logit-bias '{}' \
+    --logprobs=true \
+    --max-completion-tokens 1000 \
+    --max-tokens 1000 \
+    --metadata '{}' \
+    --modalities text,audio \
+    --n 3 \
+    --parallel-tool-calls=true \
+    --prediction '{"type": "content", "content": "exampleString"}' \
+    --presence-penalty 0.4 \
+    --reasoning-effort high \
+    --response-format '{"type": "text"}' \
+    --seed 239847829 \
+    --service-tier auto \
+    --stop "exampleString" \
+    --store=true \
+    --stream=true \
+    --stream-options '{"include_usage": true}' \
+    --temperature 0.8 \
+    --tool-choice "exampleString" \
+    --tools '[{"type": "function", "function": {"name": "myToolFunction"}}]' \
+    --top-logprobs 10 \
+    --top-p 0.1 \
+    --user my-username \
+    --router '{}' \
+    --cache '{"enabled": true, "filter": {}, "threshold": 0.5}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-cohere-provider">`wx-ai model-gateway create-cohere-provider`</a>
+Creates a new Cohere model provider configuration with the supplied details.
+
+```sh
+cpdctl wx-ai model-gateway create-cohere-provider --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`CohereConfig`](#cli-cohere-config-example-schema))
+:   Configuration details for a Cohere provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   The required authentication key for accessing the Cohere API.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom user-defined description for the model provider.
+
+`--name` (string)
+:   Required. Name can only contain alphanumeric characters, single spaces (no consecutive spaces), underscores (_), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-cohere-provider \
+    --name openai-prod \
+    --description 'Some custom description string' \
+    --data '{"apikey": "YOUR_API_KEY"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-completions">`wx-ai model-gateway create-completions`</a>
+Generate a text completion based on the provided prompt and parameters using the provided model.
+
+```sh
+cpdctl wx-ai model-gateway create-completions [command options]
+```
+
+#### Command options
+
+`--best-of` (int64)
+:   Generates 'best_of' number of completions server-side and returns the "best" (the one with the highest log probability per token). Results cannot be streamed. When used with 'n', 'best_of' controls the number of candidate completions and 'n' specifies how many to return – 'best_of' must be greater than 'n'.
+
+Note: Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for 'max_tokens' and 'stop'. The default value is 1. The maximum value is 128. The minimum value is 0.
+
+    The default value is `0`.
+
+`--cache` ([`CompletionsCache`](#cli-completions-cache-example-schema))
+:   The caching configuration for the request. Cache is only supported for non-streaming requests. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--cache-enabled` (bool)
+:   Indicates whether caching is enabled.
+
+    The default value is `false`.
+
+`--cache-filter` (map[string]string)
+:   The filtering criteria for caching. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--cache-threshold` (float64)
+:   The threshold for caching the request; required if caching is enabled.
+
+    The default value is `0`.
+
+`--echo` (bool)
+:   Indicate whether to echo back the prompt in addition to the completion. The default value is false.
+
+    The default value is `false`.
+
+`--frequency-penalty` (float64)
+:   A number between '-2.0' and '2.0'. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. The default value is 0. The maximum value is 2. The minimum value is -2.
+
+    The default value is `0`.
+
+`--logit-bias` (map[string]int64)
+:   Used to modify the likelihood of specified tokens appearing in the completion. Accepts a JSON object that maps tokens (specified by their token ID in the GPT tokenizer) to an associated bias value from -100 to 100. You can use this tokenizer tool to convert text to token IDs. Mathematically, the bias is added to the logits generated by the model prior to sampling.
+
+The exact effect will vary per model, but:
+- values between '-1' and '1' should decrease or increase likelihood of selection and
+- values like '-100' or '100' should result in a ban or exclusive selection of the relevant token.
+
+As an example, you can pass '{"50256": -100}' to prevent the '<|endoftext|>' token from being generated. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--logprobs` (int64)
+:   The number of most likely output tokens to include the log probabilities of, as well the chosen tokens. For example, if 'logprobs' is '5', the API will return a list of the 5 most likely tokens. The API will always return the 'logprob' of the sampled token, so there may be up to 'logprobs+1' elements in the response. The maximum value for 'logprobs' is '5'. The maximum value is 5. The minimum value is 0.
+
+    The default value is `0`.
+
+`--max-tokens` (int64)
+:   The maximum number of tokens that can be generated in the completion. The token count of your prompt plus 'max_tokens' cannot exceed the model's context length. The default value is 16. The maximum value is 4096. The minimum value is 0.
+
+    The default value is `0`.
+
+`--metadata` (map[string]string)
+:   Contains developer-defined tags and values used for filtering completions. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--model` (string)
+:   Required. The ID or alias of the model to use.
+
+`--n` (int64)
+:   Specifies how many completions to generate for each prompt.
+
+Note: Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for 'max_tokens' and 'stop'. The default value is 1. The maximum value is 128. The minimum value is 0.
+
+    The default value is `0`.
+
+`--presence-penalty` (float64)
+:   A number between '-2.0' and '2.0'. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. The default value is 0. The maximum value is 2. The minimum value is -2.
+
+    The default value is `0`.
+
+`--prompt` (string)
+:   Required. The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.
+
+Note: '<|endoftext|>' is the document separator that the model sees during training, so if a prompt is not specified the model will generate as if from the beginning of a new document.
+
+`--router` ([`ModelRouter`](#cli-model-router-example-schema))
+:   The model routing configuration for a request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--router-family-model` (string)
+:   The model families to include into the assessment in the case of smart routing. The maximum length is 1000 items. The minimum length is 0 items.
+
+`--router-max-cost` (float64)
+:   The maximum cost of the model to include into the assessment in the case of smart routing. The minimum value is 0.
+
+    The default value is `0`.
+
+`--router-models` (string)
+:   The model names to include into the assessment in the case of smart routing. The maximum length is 1000 items. The minimum length is 0 items.
+
+`--router-optimization` (string)
+:   The model selection optimization parameter. Options are '"efficacy"' (default) and '"cost"'. The default value is efficacy. Allowable values are: cost, efficacy.
+
+`--router-quality-tradeoff` (float64)
+:   How much of quality possible to sacrifice during most optimal model selection, value between 0 and 1. Where, e.g. '0.8' means the quality can be reduced by 20%.
+
+    The default value is `0`.
+
+`--router-region` (string)
+:   The region of the model to include into the assessment in the case of smart routing.
+
+`--seed` (int64)
+:   The seed for the model request. If specified, OpenAI's system will make a best effort to sample deterministically, such that repeated requests with the same 'seed' and parameters should return the same result.
+
+Note: Determinism is not guaranteed, and you should refer to the 'system_fingerprint' response parameter to monitor changes in the backend.
+
+    The default value is `0`.
+
+`--stop` (interface{})
+:   Specifies up to 4 sequences where the API will stop generating further tokens. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--stream` (bool)
+:   Indicates whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events] as they become available, with the stream terminated by a 'data: [DONE]' message.
+
+[server-sent events]: https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format. The default value is false.
+
+    The default value is `false`.
+
+`--stream-options` ([`StreamOptions`](#cli-stream-options-example-schema))
+:   Options for streaming response. Only set this when you set 'stream' to 'true'. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--stream-options-include-usage` (bool)
+:   If set, an additional chunk will be streamed before the data: [DONE] message. The usage field on this chunk shows the token usage statistics for the entire request, and the choices field will always be an empty array. All other chunks will also include a usage field, but with a null value. The default value is false.
+
+    The default value is `false`.
+
+`--suffix` (string)
+:   Text that comes after a completion of inserted text. On OpenAI, this parameter is only supported for 'gpt-3.5-turbo-instruct'.
+
+`--temperature` (float64)
+:   Specifies what temperature to use for sample, between '0' and '2'. Higher values like '0.8' will make the output more random, while lower values like '0.2' will make it more focused and deterministic.
+
+Note: OpenAI generally recommends altering this or 'top_p' but not both. The default value is 1. The maximum value is 2. The minimum value is 0.
+
+    The default value is `0`.
+
+`--top-p` (float64)
+:   An alternative to sampling with 'temperature', called nucleus sampling, where the model considers the results of the tokens with 'top_p' probability mass. So '0.1' means only the tokens comprising the top 10% probability mass are considered.
+
+Note: OpenAI generally recommends altering this or 'temperature' but not both. The default value is 1. The maximum value is 1. The minimum value is 0.
+
+    The default value is `0`.
+
+`--user` (string)
+:   A unique identifier representing your end-user, which can help Services to monitor and detect abuse.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-completions \
+    --model gpt-4o \
+    --prompt 'What is the capital of France?' \
+    --best-of 2 \
+    --echo=true \
+    --frequency-penalty 1.4 \
+    --logit-bias '{}' \
+    --logprobs 4 \
+    --max-tokens 1000 \
+    --metadata '{}' \
+    --n 3 \
+    --presence-penalty 0.4 \
+    --seed 239847829 \
+    --stop "exampleString" \
+    --stream=true \
+    --stream-options '{"include_usage": true}' \
+    --suffix 'some text' \
+    --temperature 1.3 \
+    --top-p 0.8 \
+    --user my-username \
+    --cache '{"enabled": true, "filter": {}, "threshold": 0.8}' \
+    --router '{"family_model": ["gpt","claude"], "max_cost": 0.1, "models": ["gpt-4o"], "optimization": "cost", "quality_tradeoff": 0.5, "region": "us-south"}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-embeddings">`wx-ai model-gateway create-embeddings`</a>
+Generate embeddings based on the provided input using the provided model.
+
+```sh
+cpdctl wx-ai model-gateway create-embeddings --model MODEL --input (INPUT | @INPUT-FILE) --version VERSION [--dimensions DIMENSIONS] [--encoding-format ENCODING-FORMAT] [--user USER] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--dimensions` (int64)
+:   The number of dimensions the resulting output embeddings should have. For OpenAI, only supported in 'text-embedding-3' and later models. The maximum value is 2048. The minimum value is 0.
+
+    The default value is `0`.
+
+`--encoding-format` (string)
+:   The format to return the embeddings in. Can be either '"float"' or '"base64"'. The default value is float.
+
+`--input` (interface{})
+:   Required. Input text to embed, encoded as a string, array of strings, array of integers, or array of integer arrays. The input must not exceed the max input tokens for the model (8192 tokens for OpenAI's 'text-embedding-ada-002') and cannot be an empty string. Any array must be 2048 dimensions or less. Some models may also impose a limit on total number of tokens summed across inputs. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--model` (string)
+:   Required. The ID or alias of the model to use.
+
+`--user` (string)
+:   A unique identifier representing your end-user.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-embeddings \
+    --model gpt-4o \
+    --input "exampleString" \
+    --dimensions 10 \
+    --encoding-format base64 \
+    --user my-username \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-gemini-provider">`wx-ai model-gateway create-gemini-provider`</a>
+Creates a new Google Gemini model provider configuration with the supplied details.
+
+```sh
+cpdctl wx-ai model-gateway create-gemini-provider --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`GeminiConfig`](#cli-gemini-config-example-schema))
+:   Configuration details for a Gemini provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   The required Google AI Studio API key for accessing the Gemini API.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom description for the Gemini model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the Gemini model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-gemini-provider \
+    --name fast-llm \
+    --description 'Some custom description string' \
+    --data '{"apikey": "YOUR_API_KEY"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-groq-provider">`wx-ai model-gateway create-groq-provider`</a>
+Creates a new Groq model provider configuration with the supplied details.
+
+```sh
+cpdctl wx-ai model-gateway create-groq-provider --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`GroqConfig`](#cli-groq-config-example-schema))
+:   Contains the credential details for configuring the provider instance. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   APIKey is the required authentication key for accessing the Groq API.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom description for the Groq model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the Groq model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-groq-provider \
+    --name my-groq \
+    --description 'Some custom description string' \
+    --data '{"apikey": "exampleString"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-image">`wx-ai model-gateway create-image`</a>
+Generates an image from a prompt using the provided model.
+
+```sh
+cpdctl wx-ai model-gateway create-image --model MODEL --prompt PROMPT --version VERSION [--background auto | transparent | opaque] [--moderation low | auto] [--n N] [--output-compression OUTPUT-COMPRESSION] [--output-format auto | png | webp | jpeg] [--partial-images PARTIAL-IMAGES] [--quality auto | hd | standard | low | medium | high] [--response-format url | b64_json] [--size SIZE] [--style vivid | natural] [--user USER] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--background` (string)
+:   The background parameter allows to set transparency for the background for image generation.
+
+In a request this parameter can be '"auto"' (default), '"transparent"' or '"opaque"'. In the response this value not be '"auto"'. When '"auto"' is used, the model will automatically determine the best background for the image. If '"transparent"', the '"output_format"' needs to support transparency, so it should be set to either '"png"' (default value) or '"webp"'.
+
+For OpenAI, this parameter is only supported for the 'gpt-image-1' model. The default value is auto. Allowable values are: auto, transparent, opaque.
+
+`--model` (string)
+:   Required. The ID or alias of model to use for image generation. The default value is dall-e-2.
+
+`--moderation` (string)
+:   Control the content-moderation level for images. For OpenAI, this parameter is only supported by the 'gpt-image-1' model.
+
+Must be either '"low"' for less restrictive filtering or '"auto"' (default value). The default value is auto. Allowable values are: low, auto.
+
+`--n` (int64)
+:   The number of images to generate. Must be between '1' and '10'. For OpenAI's 'dall-e-3', 'n' only supports a value of '1'. The default value is 1. The maximum value is 10. The minimum value is 1.
+
+    The default value is `0`.
+
+`--output-compression` (int64)
+:   The compression level (0-100%) for the generated images. This parameter is only supported for OpenAI's 'gpt-image-1' model with the '"webp"' or '"jpeg"' output formats, and defaults to '100'. The default value is 100.
+
+    The default value is `0`.
+
+`--output-format` (string)
+:   The output format of the image generation. For OpenAI, this parameter is only supported by the 'gpt-image-1' model.
+
+In a request this parameter can be '"auto"', '"png"', '"webp"', or '"jpeg"'. In the response this value will not be '"auto"'. The default value is jpeg. Allowable values are: auto, png, webp, jpeg.
+
+`--partial-images` (int64)
+:   The number of partial images to generate. This parameter is used for streaming responses that return partial images. Value must be between '0' and '3'. When set to '0', the response will be a single image sent in one streaming event.
+
+Note: The final image may be sent before the full number of partial images are generated if the full image is generated more quickly. The default value is 0. The maximum value is 3. The minimum value is 0.
+
+    The default value is `0`.
+
+`--prompt` (string)
+:   Required. A text description of the desired image(s). For OpenAI, the maximum length is 32000 characters for 'gpt-image-1', and 1000 and 4000 characters respectively for 'dall-e-2' and 'dall-e-3'. The minimum length is 1 character.
+
+`--quality` (string)
+:   The quality of the image generated.
+
+In a request this parameter can be '"auto"', '"hd"', '"standard"', '"low"', '"medium"', or '"high"'. In the response this value will not be '"auto"'.
+
+'"auto"' (default value) will automatically select the best quality for the given model. For OpenAI:
+- '"high"', '"medium"' and '"low"' are only supported for the 'gpt-image-1' model.
+- '"hd"' and '"standard"' are supported for the 'dall-e-3' model.
+- '"standard"' is the only option for the 'dall-e-2' model. The default value is auto. Allowable values are: auto, hd, standard, low, medium, high.
+
+`--response-format` (string)
+:   The format in which generated images are returned. Must be one of '"url"' or '"b64_json"'. URLs are only valid for 60 minutes after the image has been generated.
+
+For OpenAI, this parameter is only supported by the 'dall-e-2' and 'dall-e-3' models. This parameter is not supported for the 'gpt-image-1' model which will always return base64-encoded images. The default value is url. Allowable values are: url, b64_json.
+
+`--size` (string)
+:   The size of the generated images.
+
+In a request this parameter must be one of:
+- '"1024x1024"', '"1536x1024"' (landscape), '"1024x1536"' (portrait), or '"auto"' (default value) for OpenAI's 'gpt-image-1' model.
+- '"256x256"', '"512x512"', or '"1024x1024"' for OpenAI's 'dall-e-2' model.
+- '"1024x1024"', '"1792x1024"', or '"1024x1792"' for OpenAI's 'dall-e-3' model. In the response this value will not be '"auto"'. The default value is 1024x1024.
+
+`--style` (string)
+:   Style of the generated images. Must be one of:
+- '"vivid"' causes the model to lean towards generating hyper-real and dramatic images.
+- '"natural"' causes the model to produce more natural, less hyper-real looking images.
+
+For OpenAI, this param is only supported for 'dall-e-3'. The default value is vivid. Allowable values are: vivid, natural.
+
+`--user` (string)
+:   A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-image \
+    --model dall-e-3 \
+    --prompt 'Create an image of a dog' \
+    --background opaque \
+    --moderation low \
+    --n 5 \
+    --output-compression 50 \
+    --output-format webp \
+    --partial-images 2 \
+    --quality high \
+    --response-format url \
+    --size 512x512 \
+    --style natural \
+    --user 'John Doe' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-jwt">`wx-ai model-gateway create-jwt`</a>
+Creates a JWT token for direct access to backend services using the tenant UUID.
+
+```sh
+cpdctl wx-ai model-gateway create-jwt --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-jwt \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-load-balancer">`wx-ai model-gateway create-load-balancer`</a>
+Creates a new user-defined load balancer for the tenant.
+
+```sh
+cpdctl wx-ai model-gateway create-load-balancer --name NAME --alias ALIAS --algorithm least_connections | weighted_round_robin | round_robin | quota_priority --version VERSION [--config (CONFIG | @CONFIG-FILE) | --config-default-weight CONFIG-DEFAULT-WEIGHT] [--backends BACKENDS | @BACKENDS-FILE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--algorithm` (string)
+:   Required. The load balancing algorithm to use for distributing requests. Supported algorithms: "least_connections", "weighted_round_robin", "round_robin", "quota_priority". Allowable values are: least_connections, weighted_round_robin, round_robin, quota_priority.
+
+`--alias` (string)
+:   Required. The alias that clients will use to reference this load balancer. This alias must be unique within the tenant and cannot conflict with existing model aliases.
+
+`--backends` ([`LoadBalancersBackendPrototype[]`](#cli-load-balancers-backend-prototype-example-schema))
+:   Optional list of backends to create along with the load balancer. If provided, backends will be created in the same transaction as the load balancer. It should be a JSON string or a path to a JSON file prepended with @. The maximum length is 100 items. The minimum length is 0 items.
+
+`--config` ([`LoadBalancersLoadBalancerConfig`](#cli-load-balancers-load-balancer-config-example-schema))
+:   Optional algorithm-specific configuration parameters.
+The structure of this object depends on the selected algorithm. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--config-default-weight` (int64)
+:   DefaultWeight is the default weight assigned to backends when using weighted algorithms
+
+Used by: weighted_round_robin. The minimum value is 1.
+
+    The default value is `0`.
+
+`--name` (string)
+:   Required. A custom name for the new load balancer.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-load-balancer \
+    --name 'My Load Balancer' \
+    --alias my-custom-model \
+    --algorithm least_connections \
+    --config '{"default_weight": 1}' \
+    --backends '[{"model_uuid": "550e8400-e29b-41d4-a716-446655440000", "priority": 0, "quota": 10, "weight": 1}]' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-load-balancer-backend">`wx-ai model-gateway create-load-balancer-backend`</a>
+Creates a new backend for the specified load balancer.
+
+```sh
+cpdctl wx-ai model-gateway create-load-balancer-backend --load-balancer-uuid LOAD-BALANCER-UUID --model-uuid MODEL-UUID --version VERSION [--priority PRIORITY] [--quota QUOTA] [--weight WEIGHT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--load-balancer-uuid` (string)
+:   Required. Load Balancer UUID.
+
+`--model-uuid` (string)
+:   Required. The UUID of the model to use as a backend (required).
+
+`--priority` (int64)
+:   Priority determines the evaluation order for quota-priority routing (lower values have higher priority). The minimum value is 0.
+
+    The default value is `0`.
+
+`--quota` (int64)
+:   Optional quota for quota-priority strategy specifying the maximum number of concurrent connections. The minimum value is 0.
+
+    The default value is `0`.
+
+`--weight` (int64)
+:   The weight for this backend in weighted load balancing algorithms. Must be a positive integer. The minimum value is 1.
+
+    The default value is `0`.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-load-balancer-backend \
+    --load-balancer-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --model-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --priority 0 \
+    --quota 10 \
+    --weight 1 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-mistral-provider">`wx-ai model-gateway create-mistral-provider`</a>
+Creates a new Mistral model provider configuration with the supplied details.
+
+```sh
+cpdctl wx-ai model-gateway create-mistral-provider --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`MistralConfig`](#cli-mistral-config-example-schema))
+:   Configuration details for a Mistral provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   The required authentication key for accessing the Mistral API.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom user-defined description for the model provider.
+
+`--name` (string)
+:   Required. Name can only contain alphanumeric characters, single spaces (no consecutive spaces), underscores (_), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-mistral-provider \
+    --name openai-prod \
+    --description 'Some custom description string' \
+    --data '{"apikey": "YOUR_API_KEY"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-nim-provider">`wx-ai model-gateway create-nim-provider`</a>
+Creates a new Nvidia NIM model provider configuration with the supplied details.
+
+```sh
+cpdctl wx-ai model-gateway create-nim-provider --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`NvidiaNIMConfig`](#cli-nvidia-nim-config-example-schema))
+:   Configuration details for an Nvidia NIM provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   The required authentication key for accessing the Nvidia NIM API.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom description for the Nvidia NIM model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the Nvidia NIM model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-nim-provider \
+    --name fast-llm \
+    --description 'Some custom description string' \
+    --data '{"apikey": "YOUR_API_KEY"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-openai-provider">`wx-ai model-gateway create-openai-provider`</a>
+Creates a new OpenAI model provider configuration with the supplied details.
+
+```sh
+cpdctl wx-ai model-gateway create-openai-provider --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY --data-base-url DATA-BASE-URL] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`OpenAIConfig`](#cli-open-ai-config-example-schema))
+:   Configuration details for an OpenAI provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   The required authentication key for accessing the OpenAI API.
+
+`--data-base-url` (string)
+:   Override the URL used to access the OpenAI provider services. This URL can point to any OpenAI-compatible model provider service. The default value is https://api.openai.com/v1.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom description for the OpenAI model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the OpenAI model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-openai-provider \
+    --name fast-llm \
+    --description 'Some custom description string' \
+    --data '{"apikey": "YOUR_API_KEY", "base_url": "https://api.openai.com/v1"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-policy">`wx-ai model-gateway create-policy`</a>
+Creates a new policy.
+
+```sh
+cpdctl wx-ai model-gateway create-policy --subject SUBJECT --resource RESOURCE --action read | write --version VERSION [--effect allow | deny] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--action` (string)
+:   Required. The action to perform on the policy. Currently only one of '"read"' or '"write"' are supported. Allowable values are: read, write.
+
+`--effect` (string)
+:   The effect that the policy is to have, either '"allow"' or '"deny"'. The default value is allow. Allowable values are: allow, deny.
+
+`--resource` (string)
+:   Required. A unique identifier for the resource this policy is restricting access to.
+
+Format: '"<resource_type>:<resource_uuid>"' Currently, the supported resource types are: 'tenant', 'provider', 'model', and 'policy'.
+
+`--subject` (string)
+:   Required. A unique identifier for the party subject to this resource access policy. For IBM Cloud IAM this can be the Access Group ID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-policy \
+    --subject AccessGroupId-56c5e703-80d4-4f06-a7e6-844618ec39b3 \
+    --resource model:62a04a11-07bf-5309-a78e-95323dbbc333 \
+    --action write \
+    --effect allow \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-provider-model">`wx-ai model-gateway create-provider-model`</a>
+Creates a new model configuration for the specified provider.
+
+```sh
+cpdctl wx-ai model-gateway create-provider-model --provider-uuid PROVIDER-UUID --id ID --version VERSION [--alias ALIAS] [--description DESCRIPTION] [--metadata METADATA | @METADATA-FILE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--alias` (string)
+:   An optional friendly name for the model. If not set, the default is the value of ID. The Alias can be used by clients to refer to that model in a more convenient or custom manner. When a client provides the alias (e.g., '"my-gpt"') instead of the official name, the middleware will map the alias back to the underlying ID (e.g., '"gpt-4.1-2025-04-14"') and execute requests against the correct model.
+
+`--description` (string)
+:   A custom user-defined description for the model.
+
+`--id` (string)
+:   Required. The unique identifier of a model, as specified by the model provider that its hosting and providing it. For example, ID could be '"gpt-4.1"' or a specific snapshot like '"gpt-4.1-2025-04-14"', which are official server-side IDs for a model offered by the OpenAI provider.
+
+`--metadata` ([`ModelMetadata`](#cli-model-metadata-example-schema))
+:   Contains additional configuration for the model. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-provider-model \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --id gpt-3.5-turbo-456723 \
+    --alias gpt-3.5-turbo \
+    --description 'Some custom description string' \
+    --metadata '{"cost": 0.02, "model_family": "gpt-3.5", "recommender_label": "openai-gpt-4o-mini", "region": "us-east-1", "batch": true, "context_window": 128000}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-rate-limit">`wx-ai model-gateway create-rate-limit`</a>
+Creates a new rate limit configuration for the tenant making the request.
+
+```sh
+cpdctl wx-ai model-gateway create-rate-limit --version VERSION {--rate-limit-prototype (RATE-LIMIT-PROTOTYPE | @RATE-LIMIT-PROTOTYPE-FILE) | --rate-limit-type tenant (--rate-limit-request RATE-LIMIT-REQUEST | @RATE-LIMIT-REQUEST-FILE) (--rate-limit-token RATE-LIMIT-TOKEN | @RATE-LIMIT-TOKEN-FILE) --rate-limit-provider-uuid RATE-LIMIT-PROVIDER-UUID --rate-limit-model-uuid RATE-LIMIT-MODEL-UUID} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--rate-limit-model-uuid` (string)
+:   The UUID of the model for which the rate limit is being requested.
+
+`--rate-limit-prototype` ([`RateLimitPrototype`](#cli-rate-limit-prototype-example-schema))
+:   Rate limit Configuration. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--rate-limit-provider-uuid` (string)
+:   The unique identifier of the provider being rate limited.
+
+`--rate-limit-request` ([`RateLimitItem`](#cli-rate-limit-item-example-schema))
+:   Request rate limiting settings (per request origin). It should be a JSON string or a path to a JSON file prepended with @.
+
+`--rate-limit-token` ([`RateLimitItem`](#cli-rate-limit-item-example-schema))
+:   Request rate limiting settings (per request origin). It should be a JSON string or a path to a JSON file prepended with @.
+
+`--rate-limit-type` (string)
+:   The type of rate limit request, in this case should always be '"tenant"'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-rate-limit \
+    --rate-limit-prototype '{"type": "tenant", "request": {"amount": 10, "capacity": 100, "duration": "1m"}, "token": {"amount": 10, "capacity": 100, "duration": "1m"}}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-response">`wx-ai model-gateway create-response`</a>
+Creates a model response using the OpenAI-compatible Responses API.
+
+```sh
+cpdctl wx-ai model-gateway create-response [command options]
+```
+
+#### Command options
+
+`--background` (bool)
+:   Whether to run in background.
+
+    The default value is `false`.
+
+`--frequency-penalty` (float64)
+:   Frequency penalty.
+
+    The default value is `0`.
+
+`--include` (string)
+:   Fields to include in response.
+
+`--input` (interface{})
+:   The input for response generation. Provide either a plain string or an array of input items. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--instructions` (string)
+:   Instructions for the model.
+
+`--max-output-tokens` (int64)
+:   Maximum number of tokens to generate.
+
+    The default value is `0`.
+
+`--max-tool-calls` (int64)
+:   Maximum number of tool calls allowed.
+
+    The default value is `0`.
+
+`--metadata` (map[string]string)
+:   Additional metadata. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--model` (string)
+:   Required. The model to use for generating the response.
+
+`--parallel-tool-calls` (bool)
+:   Whether to allow parallel tool calls.
+
+    The default value is `false`.
+
+`--presence-penalty` (float64)
+:   Presence penalty.
+
+    The default value is `0`.
+
+`--previous-response-id` (string)
+:   ID of previous response to continue from.
+
+`--prompt-cache-key` (string)
+:   Cache key for prompt.
+
+`--reasoning` (generic map)
+:   Reasoning configuration. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--safety-identifier` (string)
+:   Safety identifier.
+
+`--service-tier` (string)
+:   Service tier.
+
+`--store` (bool)
+:   Whether to store the response.
+
+    The default value is `false`.
+
+`--stream` (bool)
+:   Whether to stream the response.
+
+    The default value is `false`.
+
+`--stream-options` ([`StreamOptions`](#cli-stream-options-example-schema))
+:   Options for streaming response. Only set this when you set 'stream' to 'true'. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--stream-options-include-usage` (bool)
+:   If set, an additional chunk will be streamed before the data: [DONE] message. The usage field on this chunk shows the token usage statistics for the entire request, and the choices field will always be an empty array. All other chunks will also include a usage field, but with a null value. The default value is false.
+
+    The default value is `false`.
+
+`--temperature` (float64)
+:   Sampling temperature.
+
+    The default value is `0`.
+
+`--text` (generic map)
+:   Text configuration. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--tool-choice` (generic map)
+:   Tool choice configuration. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--tools` ([]map[string]interface{})
+:   Tools available for the model. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--top-logprobs` (int64)
+:   Number of top log probabilities to return.
+
+    The default value is `0`.
+
+`--top-p` (float64)
+:   Nucleus sampling parameter.
+
+    The default value is `0`.
+
+`--truncation` (string)
+:   Truncation strategy.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-response \
+    --model gpt-4.1 \
+    --input "exampleString" \
+    --instructions exampleString \
+    --max-output-tokens 38 \
+    --max-tool-calls 38 \
+    --temperature 72.5 \
+    --top-p 72.5 \
+    --frequency-penalty 72.5 \
+    --presence-penalty 72.5 \
+    --stream=true \
+    --stream-options '{"include_usage": true}' \
+    --store=true \
+    --metadata '{}' \
+    --tools '[{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}]' \
+    --tool-choice '{"anyKey": "anyValue"}' \
+    --parallel-tool-calls=true \
+    --reasoning '{"anyKey": "anyValue"}' \
+    --text '{"anyKey": "anyValue"}' \
+    --background=true \
+    --include exampleString,anotherTestString \
+    --previous-response-id resp_123 \
+    --prompt-cache-key exampleString \
+    --safety-identifier exampleString \
+    --service-tier exampleString \
+    --top-logprobs 38 \
+    --truncation exampleString \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-speech">`wx-ai model-gateway create-speech`</a>
+Generates speech from text using the specified model.
+
+```sh
+cpdctl wx-ai model-gateway create-speech --input INPUT --model MODEL --voice alloy | ash | ballad | coral | echo | fable | onyx | nova | sage | shimmer | verse --version VERSION [--instructions INSTRUCTIONS] [--response-format mp3 | opus | aac | flac | wav | pcm] [--speed SPEED] [--stream-format sse | audio] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--input` (string)
+:   Required. The text to generate audio for. The maximum length is 4096 characters. The maximum length is 4096 characters.
+
+`--instructions` (string)
+:   Control the voice of your generated audio with additional instructions. For OpenAI, does not work with 'tts-1' or 'tts-1-hd'.
+
+`--model` (string)
+:   Required. The ID or alias of the model to use for speech generation. For OpenAI, one of the available TTS models: 'tts-1', 'tts-1-hd' or 'gpt-4o-mini-tts'.
+
+`--response-format` (string)
+:   Specify the format of the audio data being generated. For OpenAI, supported formats are '"mp3"', '"opus"', '"aac"', '"flac"', '"wav"', and '"pcm"'. The default value is mp3. Allowable values are: mp3, opus, aac, flac, wav, pcm.
+
+`--speed` (float64)
+:   The speed of the generated audio. Select a value from '0.25' to '4.0'. '1.0' is the default. The default value is 1. The maximum value is 4. The minimum value is 0.25.
+
+    The default value is `0`.
+
+`--stream-format` (string)
+:   The format to stream the audio in. Supported formats are '"sse"' and '"audio"'.
+'"sse"' is not supported for OpenAI's 'tts-1' or 'tts-1-hd' models. The default value is audio. Allowable values are: sse, audio.
+
+`--voice` (string)
+:   Required. The voice to use when generating the audio. For OpenAI, supported voices are '"alloy"', '"ash"', '"ballad"', '"coral"', '"echo"', '"fable"', '"onyx"', '"nova"', '"sage"', '"shimmer"', and '"verse"'. Previews of supported voices for OpenAI are available in their [Text to speech guide].
+
+[Text to speech guide]: https://platform.openai.com/docs/guides/text-to-speech#voice-options. Allowable values are: alloy, ash, ballad, coral, echo, fable, onyx, nova, sage, shimmer, verse.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-speech \
+    --input 'Some input text' \
+    --model tts-1 \
+    --voice alloy \
+    --instructions 'Answer in a deep monotone voice' \
+    --response-format wav \
+    --speed 0.5 \
+    --stream-format sse \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-watsonxai-provider">`wx-ai model-gateway create-watsonxai-provider`</a>
+Creates a new IBM Watsonx.ai model provider configuration with the supplied details.
+
+```sh
+cpdctl wx-ai model-gateway create-watsonxai-provider --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-api-version DATA-API-VERSION --data-apikey DATA-APIKEY --data-auth-url DATA-AUTH-URL --data-base-url DATA-BASE-URL --data-project-id DATA-PROJECT-ID --data-space-id DATA-SPACE-ID] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`WatsonxAIConfig`](#cli-watsonx-ai-config-example-schema))
+:   Configuration details for a WatsonX.ai provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-api-version` (string)
+:   Overrides the WatsonX.ai API version to use. The default value is 2023-07-07.
+
+`--data-apikey` (string)
+:   Optional authentication key for accessing WatsonX.ai services.
+
+`--data-auth-url` (string)
+:   Overrides the URL to use for IBM Cloud IAM authentication. The default value is https://iam.cloud.ibm.com/identity/token.
+
+`--data-base-url` (string)
+:   Overrides the URL to use to access the IBM WatsonX.ai services. The default value is https://us-south.ml.cloud.ibm.com.
+
+`--data-project-id` (string)
+:   The IBM WatsonX.ai project ID (required if 'space_id' is not provided).
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--data-space-id` (string)
+:   The IBM WatsonX.ai space ID (required if 'project_id' is not provided).
+
+`--description` (string)
+:   A custom description for the Watsonx.ai model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the Watsonx.ai model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-watsonxai-provider \
+    --name fast-llm \
+    --description 'Some custom description string' \
+    --data '{"api_version": "2023-07-07", "apikey": "YOUR_API_KEY", "auth_url": "https://iam.cloud.ibm.com/identity/token", "base_url": "https://us-south.ml.cloud.ibm.com", "project_id": "09b2r701-4592-4386-85cf-326c6b3c94c7", "space_id": "q9b2d701-4592-4386-85cf-326c6b3c94c7"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_create-xai-provider">`wx-ai model-gateway create-xai-provider`</a>
+Creates a new xAI model provider configuration with the supplied details.
+
+```sh
+cpdctl wx-ai model-gateway create-xai-provider --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`XaiConfig`](#cli-xai-config-example-schema))
+:   Configuration details for an xAI provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   The required authentication key for accessing the xAI API.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom user-defined description for the model provider.
+
+`--name` (string)
+:   Required. Name can only contain alphanumeric characters, single spaces (no consecutive spaces), underscores (_), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway create-xai-provider \
+    --name openai-prod \
+    --description 'Some custom description string' \
+    --data '{"apikey": "YOUR_API_KEY"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_delete-load-balancer">`wx-ai model-gateway delete-load-balancer`</a>
+Removes a user-defined load balancer by ID.
+
+```sh
+cpdctl wx-ai model-gateway delete-load-balancer --load-balancer-uuid LOAD-BALANCER-UUID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--load-balancer-uuid` (string)
+:   Required. Load Balancer UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway delete-load-balancer \
+    --load-balancer-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_delete-load-balancer-backend">`wx-ai model-gateway delete-load-balancer-backend`</a>
+Removes a load balancer backend from the specified load balancer.
+
+```sh
+cpdctl wx-ai model-gateway delete-load-balancer-backend --load-balancer-uuid LOAD-BALANCER-UUID --load-balancer-backend-uuid LOAD-BALANCER-BACKEND-UUID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--load-balancer-backend-uuid` (string)
+:   Required. Load Balancer Backend UUID.
+
+`--load-balancer-uuid` (string)
+:   Required. Load Balancer UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway delete-load-balancer-backend \
+    --load-balancer-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --load-balancer-backend-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_delete-model">`wx-ai model-gateway delete-model`</a>
+Removes a specific model configuration from the tenant by UUID.
+
+```sh
+cpdctl wx-ai model-gateway delete-model --model-uuid MODEL-UUID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--model-uuid` (string)
+:   Required. Model UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway delete-model \
+    --model-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_delete-policy">`wx-ai model-gateway delete-policy`</a>
+Deletes an existing policy with the specified UUID from the tenant.
+
+```sh
+cpdctl wx-ai model-gateway delete-policy --policy-uuid POLICY-UUID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--policy-uuid` (string)
+:   Required. Tenant Policy UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway delete-policy \
+    --policy-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_delete-provider">`wx-ai model-gateway delete-provider`</a>
+Deletes an existing model provider configuration with the specified UUID.
+
+```sh
+cpdctl wx-ai model-gateway delete-provider --provider-uuid PROVIDER-UUID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway delete-provider \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_delete-provider-model">`wx-ai model-gateway delete-provider-model`</a>
+Deletes an existing model configuration with the specified UUID.
+
+```sh
+cpdctl wx-ai model-gateway delete-provider-model --provider-uuid PROVIDER-UUID --model-uuid MODEL-UUID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--model-uuid` (string)
+:   Required. Model UUID.
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway delete-provider-model \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --model-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_delete-rate-limit">`wx-ai model-gateway delete-rate-limit`</a>
+Deletes the rate limit configuration identified by the provided UUID for the tenant making the request.
+
+```sh
+cpdctl wx-ai model-gateway delete-rate-limit --ratelimit-uuid RATELIMIT-UUID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--ratelimit-uuid` (string)
+:   Required. Rate limit UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway delete-rate-limit \
+    --ratelimit-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_delete-tenant">`wx-ai model-gateway delete-tenant`</a>
+Deletes an existing tenant.
+
+```sh
+cpdctl wx-ai model-gateway delete-tenant --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway delete-tenant \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_delete-tenant-config">`wx-ai model-gateway delete-tenant-config`</a>
+Deletes the tenant configuration by clearing the default space_id, project_id, and default_algorithm.
+
+```sh
+cpdctl wx-ai model-gateway delete-tenant-config --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway delete-tenant-config \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_find-providers">`wx-ai model-gateway find-providers`</a>
+Searches for providers by name.
+
+```sh
+cpdctl wx-ai model-gateway find-providers --version VERSION [--name NAME] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--name` (string)
+:   Provider name to search for.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway find-providers \
+    --name exampleString \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_get-load-balancer">`wx-ai model-gateway get-load-balancer`</a>
+Retrieves a specific load balancer by ID (supports both user-defined and system-generated load balancers).
+
+```sh
+cpdctl wx-ai model-gateway get-load-balancer --load-balancer-uuid LOAD-BALANCER-UUID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--load-balancer-uuid` (string)
+:   Required. Load Balancer UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway get-load-balancer \
+    --load-balancer-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_get-load-balancer-backend">`wx-ai model-gateway get-load-balancer-backend`</a>
+Retrieves a specific load balancer backend by ID from a load balancer.
+
+```sh
+cpdctl wx-ai model-gateway get-load-balancer-backend --load-balancer-uuid LOAD-BALANCER-UUID --load-balancer-backend-uuid LOAD-BALANCER-BACKEND-UUID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--load-balancer-backend-uuid` (string)
+:   Required. Load Balancer Backend UUID.
+
+`--load-balancer-uuid` (string)
+:   Required. Load Balancer UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway get-load-balancer-backend \
+    --load-balancer-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --load-balancer-backend-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_get-model">`wx-ai model-gateway get-model`</a>
+Retrieves a specific model configuration by model UUID.
+
+```sh
+cpdctl wx-ai model-gateway get-model --model-uuid MODEL-UUID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--model-uuid` (string)
+:   Required. Model UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway get-model \
+    --model-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_get-policy">`wx-ai model-gateway get-policy`</a>
+Retrieves a specific policy by its UUID.
+
+```sh
+cpdctl wx-ai model-gateway get-policy --policy-uuid POLICY-UUID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--policy-uuid` (string)
+:   Required. Tenant Policy UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway get-policy \
+    --policy-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_get-provider">`wx-ai model-gateway get-provider`</a>
+Retrieves the details of an existing model provider with the specified UUID.
+
+```sh
+cpdctl wx-ai model-gateway get-provider --provider-uuid PROVIDER-UUID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway get-provider \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_get-rate-limit">`wx-ai model-gateway get-rate-limit`</a>
+Retrieves the current rate limit configuration for the tenant making the request.
+
+```sh
+cpdctl wx-ai model-gateway get-rate-limit --ratelimit-uuid RATELIMIT-UUID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--ratelimit-uuid` (string)
+:   Required. Rate limit UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway get-rate-limit \
+    --ratelimit-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_get-tenant">`wx-ai model-gateway get-tenant`</a>
+Retrieves details of the currently authenticated tenant.
+
+```sh
+cpdctl wx-ai model-gateway get-tenant --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway get-tenant \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_get-tenant-config">`wx-ai model-gateway get-tenant-config`</a>
+Retrieves the current tenant configuration including default space_id, project_id, and default_algorithm.
+
+```sh
+cpdctl wx-ai model-gateway get-tenant-config --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway get-tenant-config \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_get-tenant-usage">`wx-ai model-gateway get-tenant-usage`</a>
+Retrieves aggregated usage statistics associated with the tenant making the request.
+
+```sh
+cpdctl wx-ai model-gateway get-tenant-usage --version VERSION [--start-time START-TIME] [--end-time END-TIME] [--bucket-width BUCKET-WIDTH] [--group-by GROUP-BY] [--limit LIMIT] [--page PAGE] [--user-ids USER-IDS] [--models MODELS] [--usage-types USAGE-TYPES] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--bucket-width` (string)
+:   Bucket width for aggregation: 1m, 1h, 1d (default 1d).
+
+`--end-time` (int64)
+:   End time in Unix seconds. The maximum value is 4102444800. The minimum value is 0.
+
+    The default value is `0`.
+
+`--group-by` (string)
+:   Fields to group results by (e.g., user_uuid, model, service_provider, credential_uuid, usage_type, load_balancer_uuid, load_balancer_alias). The maximum length is 20 items. The minimum length is 1 item.
+
+`--limit` (int64)
+:   Maximum number of buckets to return (default 10). The default value is 10. The maximum value is 100. The minimum value is 1.
+
+    The default value is `0`.
+
+`--models` (string)
+:   Filter by model names. The maximum length is 100 items. The minimum length is 1 item.
+
+`--page` (string)
+:   Pagination cursor from previous request.
+
+`--start-time` (int64)
+:   Start time in Unix seconds. The maximum value is 4102444800. The minimum value is 0.
+
+    The default value is `0`.
+
+`--usage-types` (string)
+:   Filter by usage types (e.g., completion, embedding, moderation, image). The maximum length is 20 items. The minimum length is 1 item.
+
+`--user-ids` (string)
+:   Filter by user UUIDs (use 'self' for current user). The maximum length is 100 items. The minimum length is 1 item.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway get-tenant-usage \
+    --start-time 0 \
+    --end-time 0 \
+    --bucket-width exampleString \
+    --group-by exampleString,anotherTestString \
+    --limit 10 \
+    --page exampleString \
+    --user-ids exampleString,anotherTestString \
+    --models exampleString,anotherTestString \
+    --usage-types exampleString,anotherTestString \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_get-user-usage">`wx-ai model-gateway get-user-usage`</a>
+Retrieves aggregated usage statistics associated with the current user under the tenant.
+
+```sh
+cpdctl wx-ai model-gateway get-user-usage --version VERSION [--start-time START-TIME] [--end-time END-TIME] [--bucket-width BUCKET-WIDTH] [--group-by GROUP-BY] [--limit LIMIT] [--page PAGE] [--user-ids USER-IDS] [--models MODELS] [--usage-types USAGE-TYPES] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--bucket-width` (string)
+:   Bucket width for aggregation: 1m, 1h, 1d (default 1d).
+
+`--end-time` (int64)
+:   End time in Unix seconds. The maximum value is 4102444800. The minimum value is 0.
+
+    The default value is `0`.
+
+`--group-by` (string)
+:   Fields to group results by (e.g., user_uuid, model, service_provider, credential_uuid, usage_type, load_balancer_uuid, load_balancer_alias). The maximum length is 20 items. The minimum length is 1 item.
+
+`--limit` (int64)
+:   Maximum number of buckets to return (default 10). The default value is 10. The maximum value is 100. The minimum value is 1.
+
+    The default value is `0`.
+
+`--models` (string)
+:   Filter by model names. The maximum length is 100 items. The minimum length is 1 item.
+
+`--page` (string)
+:   Pagination cursor from previous request.
+
+`--start-time` (int64)
+:   Start time in Unix seconds. The maximum value is 4102444800. The minimum value is 0.
+
+    The default value is `0`.
+
+`--usage-types` (string)
+:   Filter by usage types (completion, embedding). The maximum length is 20 items. The minimum length is 1 item.
+
+`--user-ids` (string)
+:   Filter by user UUIDs (use 'self' for current user). The maximum length is 100 items. The minimum length is 1 item.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway get-user-usage \
+    --start-time 0 \
+    --end-time 0 \
+    --bucket-width exampleString \
+    --group-by exampleString,anotherTestString \
+    --limit 10 \
+    --page exampleString \
+    --user-ids exampleString,anotherTestString \
+    --models exampleString,anotherTestString \
+    --usage-types exampleString,anotherTestString \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_list-load-balancer-backends">`wx-ai model-gateway list-load-balancer-backends`</a>
+Lists all backends for the specified load balancer.
+
+```sh
+cpdctl wx-ai model-gateway list-load-balancer-backends --load-balancer-uuid LOAD-BALANCER-UUID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--load-balancer-uuid` (string)
+:   Required. Load Balancer UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway list-load-balancer-backends \
+    --load-balancer-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_list-load-balancers">`wx-ai model-gateway list-load-balancers`</a>
+Lists all load balancers (both user-defined and system-generated) for the tenant.
+
+```sh
+cpdctl wx-ai model-gateway list-load-balancers --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway list-load-balancers \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_list-models">`wx-ai model-gateway list-models`</a>
+Lists all configured model details aggregated across all configured providers.
+
+```sh
+cpdctl wx-ai model-gateway list-models --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway list-models \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_list-policies">`wx-ai model-gateway list-policies`</a>
+Lists all the existing policies for the tenant.
+
+```sh
+cpdctl wx-ai model-gateway list-policies --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway list-policies \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_list-provider-available-models">`wx-ai model-gateway list-provider-available-models`</a>
+Lists all models available for the specified provider.
+
+```sh
+cpdctl wx-ai model-gateway list-provider-available-models --provider-uuid PROVIDER-UUID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway list-provider-available-models \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_list-provider-models">`wx-ai model-gateway list-provider-models`</a>
+Lists all model configurations for the specified provider.
+
+```sh
+cpdctl wx-ai model-gateway list-provider-models --provider-uuid PROVIDER-UUID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway list-provider-models \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_list-providers">`wx-ai model-gateway list-providers`</a>
+Lists all configured model providers for the tenant.
+
+```sh
+cpdctl wx-ai model-gateway list-providers --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway list-providers \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_list-rate-limits">`wx-ai model-gateway list-rate-limits`</a>
+Lists all rate limit configurations for the tenant making the request.
+
+```sh
+cpdctl wx-ai model-gateway list-rate-limits --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway list-rate-limits \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-load-balancer">`wx-ai model-gateway replace-load-balancer`</a>
+Updates an existing user-defined load balancer by ID.
+
+```sh
+cpdctl wx-ai model-gateway replace-load-balancer --load-balancer-uuid LOAD-BALANCER-UUID --version VERSION [--name NAME] [--alias ALIAS] [--algorithm least_connections | weighted_round_robin | round_robin | quota_priority] [--config CONFIG | @CONFIG-FILE] [--backends BACKENDS | @BACKENDS-FILE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--algorithm` (string)
+:   The load balancing algorithm to use for distributing requests.
+
+Supported algorithms: "least_connections", "weighted_round_robin",
+"round_robin", "quota_priority". Allowable values are: least_connections, weighted_round_robin, round_robin, quota_priority.
+
+`--alias` (string)
+:   A new alias for the load balancer.
+
+`--backends` ([`LoadBalancersBackendPrototype[]`](#cli-load-balancers-backend-prototype-example-schema))
+:   Optional full replacement list of backends. When provided, all existing backends are removed and replaced in a single transaction. It should be a JSON string or a path to a JSON file prepended with @. The maximum length is 100 items. The minimum length is 0 items.
+
+`--config` (generic map)
+:   Algorithm-specific configuration parameters. The structure of this object depends on the selected algorithm. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--load-balancer-uuid` (string)
+:   Required. Load Balancer UUID.
+
+`--name` (string)
+:   A new name for the load balancer.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-load-balancer \
+    --load-balancer-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --name 'Updated Load Balancer' \
+    --alias updated-custom-model \
+    --algorithm weighted_round_robin \
+    --config '{"anyKey": "anyValue"}' \
+    --backends '[{"model_uuid": "550e8400-e29b-41d4-a716-446655440000", "priority": 0, "quota": 10, "weight": 1}]' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-load-balancer-backend">`wx-ai model-gateway replace-load-balancer-backend`</a>
+Replaces a load balancer backend's configuration (currently only weight).
+
+```sh
+cpdctl wx-ai model-gateway replace-load-balancer-backend --load-balancer-uuid LOAD-BALANCER-UUID --load-balancer-backend-uuid LOAD-BALANCER-BACKEND-UUID --version VERSION [--priority PRIORITY] [--quota QUOTA] [--weight WEIGHT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--load-balancer-backend-uuid` (string)
+:   Required. Load Balancer Backend UUID.
+
+`--load-balancer-uuid` (string)
+:   Required. Load Balancer UUID.
+
+`--priority` (int64)
+:   Optional priority override for quota-priority routing (smaller numbers evaluated first). The minimum value is 0.
+
+    The default value is `0`.
+
+`--quota` (int64)
+:   Optional quota override for quota-priority strategy. The minimum value is 1.
+
+    The default value is `0`.
+
+`--weight` (int64)
+:   The new weight for this backend in weighted load balancing algorithms. Must be a positive integer. The minimum value is 1.
+
+    The default value is `0`.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-load-balancer-backend \
+    --load-balancer-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --load-balancer-backend-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --priority 0 \
+    --quota 5 \
+    --weight 2 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-policy">`wx-ai model-gateway replace-policy`</a>
+Updates an existing policy with the specified UUID. Only provided fields are updated; omitted fields retain their current values.
+
+```sh
+cpdctl wx-ai model-gateway replace-policy --policy-uuid POLICY-UUID --version VERSION [--subject SUBJECT] [--resource RESOURCE] [--action read | write] [--effect allow | deny] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--action` (string)
+:   The action to perform on the policy. Currently only one of '"read"' or '"write"' are supported. Allowable values are: read, write.
+
+`--effect` (string)
+:   The effect that the policy is to have, either '"allow"' or '"deny"'. Allowable values are: allow, deny.
+
+`--policy-uuid` (string)
+:   Required. Tenant Policy UUID.
+
+`--resource` (string)
+:   A unique identifier for the resource this policy is restricting access to.
+
+Format: '"<resource_type>:<resource_uuid>"' Currently, the supported resource types are: 'tenant', 'provider', 'model', and 'policy'.
+
+`--subject` (string)
+:   A unique identifier for the party subject to this resource access policy. For IBM Cloud IAM this can be the Access Group ID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-policy \
+    --policy-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --subject AccessGroupId-56c5e703-80d4-4f06-a7e6-844618ec39b3 \
+    --resource model:62a04a11-07bf-5309-a78e-95323dbbc333 \
+    --action write \
+    --effect deny \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-provider-anthropic">`wx-ai model-gateway replace-provider-anthropic`</a>
+Replace information for an existing Anthropic provider configuration with new details.
+
+```sh
+cpdctl wx-ai model-gateway replace-provider-anthropic --provider-uuid PROVIDER-UUID --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`AnthropicConfig`](#cli-anthropic-config-example-schema))
+:   Configuration details for an Anthropic provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   The required authentication key for accessing the Anthropic API.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom description for the Anthropic model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the Anthropic model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-provider-anthropic \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --name fast-llm \
+    --description 'Some custom description string' \
+    --data '{"apikey": "YOUR_API_KEY"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-provider-azure-openai">`wx-ai model-gateway replace-provider-azure-openai`</a>
+Replace information for an existing Azure OpenAI provider configuration with new details.
+
+```sh
+cpdctl wx-ai model-gateway replace-provider-azure-openai --provider-uuid PROVIDER-UUID --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-account-name DATA-ACCOUNT-NAME --data-api-version DATA-API-VERSION --data-apikey DATA-APIKEY --data-resource-group-name DATA-RESOURCE-GROUP-NAME --data-resource-name DATA-RESOURCE-NAME --data-subscription-id DATA-SUBSCRIPTION-ID] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`AzureOpenAIConfig`](#cli-azure-open-ai-config-example-schema))
+:   Configuration details for an Azure OpenAI provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-account-name` (string)
+:   The Azure account name; required to use '/v1/providers/{provider_uuid}/models'.
+
+`--data-api-version` (string)
+:   Version of the Azure OpenAI API to use (default: '"2024-10-21"'). The default value is 2024-10-21.
+
+`--data-apikey` (string)
+:   The required authentication key for accessing Azure OpenAI services.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--data-resource-group-name` (string)
+:   The Azure resource group name; required to use '/v1/providers/{provider_uuid}/models'.
+
+`--data-resource-name` (string)
+:   The Azure OpenAI resource to connect to.
+
+`--data-subscription-id` (string)
+:   The Azure subscription ID; required to use '/v1/providers/{provider_uuid}/models'.
+
+`--description` (string)
+:   A custom description for the Azure OpenAI model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the Azure OpenAI model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-provider-azure-openai \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --name fast-llm \
+    --description 'Some custom description string' \
+    --data '{"account_name": "my-azure-account", "api_version": "2024-10-21", "apikey": "YOUR_API_KEY", "resource_group_name": "my-resource-group", "resource_name": "my-resource-name", "subscription_id": "acde070d-8c4c-4f0d-9d8a-162843c10333"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-provider-bedrock">`wx-ai model-gateway replace-provider-bedrock`</a>
+Replaces information for an existing AWS Bedrock provider configuration with new details.
+
+```sh
+cpdctl wx-ai model-gateway replace-provider-bedrock --provider-uuid PROVIDER-UUID --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-access-key-id DATA-ACCESS-KEY-ID --data-base-url DATA-BASE-URL --data-region DATA-REGION --data-secret-access-key DATA-SECRET-ACCESS-KEY --data-session-token DATA-SESSION-TOKEN] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`AWSBedrockConfig`](#cli-aws-bedrock-config-example-schema))
+:   Configuration details for an AWS Bedrock provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-access-key-id` (string)
+:   The AWS access key ID required to authenticate with the Bedrock API.
+
+`--data-base-url` (string)
+:   Overrides the default AWS Bedrock Runtime API endpoint with the provided URL.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--data-region` (string)
+:   The AWS region where the Bedrock API is hosted.
+
+`--data-secret-access-key` (string)
+:   The AWS secret access key required to authenticate with the Bedrock API.
+
+`--data-session-token` (string)
+:   Optional AWS session token for temporary credentials.
+
+`--description` (string)
+:   A custom description for the AWS Bedrock model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the AWS Bedrock model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-provider-bedrock \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --name fast-llm \
+    --description 'Some custom description string' \
+    --data '{"access_key_id": "acde070d-8c4c-4f0d-9d8a-162843c10333", "base_url": "https://bedrock-runtime.us-east-1.amazonaws.com", "region": "us-east-1", "secret_access_key": "YOUR_API_KEY", "session_token": "AQoDYXdzEJr...<omitted>...HVkDR45Kg=="}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-provider-cerebras">`wx-ai model-gateway replace-provider-cerebras`</a>
+Replaces information for an existing Cerebras model provider configuration with new details.
+
+```sh
+cpdctl wx-ai model-gateway replace-provider-cerebras --provider-uuid PROVIDER-UUID --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`CerebrasConfig`](#cli-cerebras-config-example-schema))
+:   Configuration details for a Cerebras provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   The required authentication key for accessing the Cerebras API.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom description for the Cerebras model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the Cerebras model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-provider-cerebras \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --name fast-llm \
+    --description 'Some custom description string' \
+    --data '{"apikey": "YOUR_API_KEY"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-provider-cohere">`wx-ai model-gateway replace-provider-cohere`</a>
+Replaces information for an existing Cohere provider configuration with new details.
+
+```sh
+cpdctl wx-ai model-gateway replace-provider-cohere --provider-uuid PROVIDER-UUID --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`CohereConfig`](#cli-cohere-config-example-schema))
+:   Configuration details for a Cohere provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   The required authentication key for accessing the Cohere API.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom user-defined description for the model provider.
+
+`--name` (string)
+:   Required. Name can only contain alphanumeric characters, single spaces (no consecutive spaces), underscores (_), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-provider-cohere \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --name openai-prod \
+    --description 'Some custom description string' \
+    --data '{"apikey": "YOUR_API_KEY"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-provider-gemini">`wx-ai model-gateway replace-provider-gemini`</a>
+Replace information for an existing Google Gemini provider configuration with new details.
+
+```sh
+cpdctl wx-ai model-gateway replace-provider-gemini --provider-uuid PROVIDER-UUID --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`GeminiConfig`](#cli-gemini-config-example-schema))
+:   Configuration details for a Gemini provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   The required Google AI Studio API key for accessing the Gemini API.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom description for the Gemini model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the Gemini model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-provider-gemini \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --name fast-llm \
+    --description 'Some custom description string' \
+    --data '{"apikey": "YOUR_API_KEY"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-provider-groq">`wx-ai model-gateway replace-provider-groq`</a>
+Replace information for an existing Groq provider configuration with new details.
+
+```sh
+cpdctl wx-ai model-gateway replace-provider-groq --provider-uuid PROVIDER-UUID --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`GroqConfig`](#cli-groq-config-example-schema))
+:   Contains the credential details for configuring the provider instance. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   APIKey is the required authentication key for accessing the Groq API.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom description for the Groq model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the Groq model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-provider-groq \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --name my-groq \
+    --description 'Some custom description string' \
+    --data '{"apikey": "exampleString"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-provider-mistral">`wx-ai model-gateway replace-provider-mistral`</a>
+Replaces information for an existing Mistral provider configuration with new details.
+
+```sh
+cpdctl wx-ai model-gateway replace-provider-mistral --provider-uuid PROVIDER-UUID --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`MistralConfig`](#cli-mistral-config-example-schema))
+:   Configuration details for a Mistral provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   The required authentication key for accessing the Mistral API.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom user-defined description for the model provider.
+
+`--name` (string)
+:   Required. Name can only contain alphanumeric characters, single spaces (no consecutive spaces), underscores (_), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-provider-mistral \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --name openai-prod \
+    --description 'Some custom description string' \
+    --data '{"apikey": "YOUR_API_KEY"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-provider-model">`wx-ai model-gateway replace-provider-model`</a>
+Replace an existing model configuration with the specified UUID with the supplied information.
+
+```sh
+cpdctl wx-ai model-gateway replace-provider-model --provider-uuid PROVIDER-UUID --model-uuid MODEL-UUID --id ID --version VERSION [--alias ALIAS] [--description DESCRIPTION] [--metadata METADATA | @METADATA-FILE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--alias` (string)
+:   An optional friendly name for the model. If not set, the default is the value of ID. The Alias can be used by clients to refer to that model in a more convenient or custom manner. When a client provides the alias (e.g., '"my-gpt"') instead of the official name, the middleware will map the alias back to the underlying ID (e.g., '"gpt-4.1-2025-04-14"') and execute requests against the correct model.
+
+`--description` (string)
+:   A custom user-defined description for the model.
+
+`--id` (string)
+:   Required. The unique identifier of a model, as specified by the model provider that its hosting and providing it. For example, ID could be '"gpt-4.1"' or a specific snapshot like '"gpt-4.1-2025-04-14"', which are official server-side IDs for a model offered by the OpenAI provider.
+
+`--metadata` ([`ModelMetadata`](#cli-model-metadata-example-schema))
+:   Contains additional configuration for the model. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--model-uuid` (string)
+:   Required. Model UUID.
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-provider-model \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --model-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --id gpt-4.1-2025-04-14 \
+    --alias my-gpt \
+    --description 'A custom description string' \
+    --metadata '{"cost": 0.02, "model_family": "gpt-3.5", "recommender_label": "openai-gpt-4o-mini", "region": "us-east-1", "batch": true, "context_window": 128000}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-provider-nim">`wx-ai model-gateway replace-provider-nim`</a>
+Replaces information for an existing Nvidia NIM provider configuration with new details.
+
+```sh
+cpdctl wx-ai model-gateway replace-provider-nim --provider-uuid PROVIDER-UUID --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`NvidiaNIMConfig`](#cli-nvidia-nim-config-example-schema))
+:   Configuration details for an Nvidia NIM provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   The required authentication key for accessing the Nvidia NIM API.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom description for the Nvidia NIM model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the Nvidia NIM model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-provider-nim \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --name fast-llm \
+    --description 'Some custom description string' \
+    --data '{"apikey": "YOUR_API_KEY"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-provider-openai">`wx-ai model-gateway replace-provider-openai`</a>
+Replaces information for an existing OpenAI provider configuration with new details.
+
+```sh
+cpdctl wx-ai model-gateway replace-provider-openai --provider-uuid PROVIDER-UUID --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY --data-base-url DATA-BASE-URL] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`OpenAIConfig`](#cli-open-ai-config-example-schema))
+:   Configuration details for an OpenAI provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   The required authentication key for accessing the OpenAI API.
+
+`--data-base-url` (string)
+:   Override the URL used to access the OpenAI provider services. This URL can point to any OpenAI-compatible model provider service. The default value is https://api.openai.com/v1.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom description for the OpenAI model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the OpenAI model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-provider-openai \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --name fast-llm \
+    --description 'Some custom description string' \
+    --data '{"apikey": "YOUR_API_KEY", "base_url": "https://api.openai.com/v1"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-provider-watsonxai">`wx-ai model-gateway replace-provider-watsonxai`</a>
+Replaces information for an existing IBM WatsonX.ai provider configuration with new details.
+
+```sh
+cpdctl wx-ai model-gateway replace-provider-watsonxai --provider-uuid PROVIDER-UUID --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-api-version DATA-API-VERSION --data-apikey DATA-APIKEY --data-auth-url DATA-AUTH-URL --data-base-url DATA-BASE-URL --data-project-id DATA-PROJECT-ID --data-space-id DATA-SPACE-ID] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`WatsonxAIConfig`](#cli-watsonx-ai-config-example-schema))
+:   Configuration details for a WatsonX.ai provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-api-version` (string)
+:   Overrides the WatsonX.ai API version to use. The default value is 2023-07-07.
+
+`--data-apikey` (string)
+:   Optional authentication key for accessing WatsonX.ai services.
+
+`--data-auth-url` (string)
+:   Overrides the URL to use for IBM Cloud IAM authentication. The default value is https://iam.cloud.ibm.com/identity/token.
+
+`--data-base-url` (string)
+:   Overrides the URL to use to access the IBM WatsonX.ai services. The default value is https://us-south.ml.cloud.ibm.com.
+
+`--data-project-id` (string)
+:   The IBM WatsonX.ai project ID (required if 'space_id' is not provided).
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--data-space-id` (string)
+:   The IBM WatsonX.ai space ID (required if 'project_id' is not provided).
+
+`--description` (string)
+:   A custom description for the Watsonx.ai model provider instance.
+
+`--name` (string)
+:   Required. A custom name for the Watsonx.ai model provider instance. The name can only contain alphanumeric characters, single spaces (no consecutive spaces), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-provider-watsonxai \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --name fast-llm \
+    --description 'Some custom description string' \
+    --data '{"api_version": "2023-07-07", "apikey": "YOUR_API_KEY", "auth_url": "https://iam.cloud.ibm.com/identity/token", "base_url": "https://us-south.ml.cloud.ibm.com", "project_id": "09b2r701-4592-4386-85cf-326c6b3c94c7", "space_id": "q9b2d701-4592-4386-85cf-326c6b3c94c7"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-provider-xai">`wx-ai model-gateway replace-provider-xai`</a>
+Replaces information for an existing xAI provider configuration with new details.
+
+```sh
+cpdctl wx-ai model-gateway replace-provider-xai --provider-uuid PROVIDER-UUID --name NAME --version VERSION [--description DESCRIPTION] [--data (DATA | @DATA-FILE) | --data-apikey DATA-APIKEY] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` ([`XaiConfig`](#cli-xai-config-example-schema))
+:   Configuration details for an xAI provider. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-apikey` (string)
+:   The required authentication key for accessing the xAI API.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--description` (string)
+:   A custom user-defined description for the model provider.
+
+`--name` (string)
+:   Required. Name can only contain alphanumeric characters, single spaces (no consecutive spaces), underscores (_), hyphens (-), parentheses (), and square brackets []. No leading or trailing spaces are allowed.
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-provider-xai \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --name openai-prod \
+    --description 'Some custom description string' \
+    --data '{"apikey": "YOUR_API_KEY"}' \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-rate-limit">`wx-ai model-gateway replace-rate-limit`</a>
+Replaces the rate limit configuration for the tenant making the request.
+
+```sh
+cpdctl wx-ai model-gateway replace-rate-limit --ratelimit-uuid RATELIMIT-UUID --version VERSION {--rate-limit-prototype (RATE-LIMIT-PROTOTYPE | @RATE-LIMIT-PROTOTYPE-FILE) | --rate-limit-type tenant (--rate-limit-request RATE-LIMIT-REQUEST | @RATE-LIMIT-REQUEST-FILE) (--rate-limit-token RATE-LIMIT-TOKEN | @RATE-LIMIT-TOKEN-FILE) --rate-limit-provider-uuid RATE-LIMIT-PROVIDER-UUID --rate-limit-model-uuid RATE-LIMIT-MODEL-UUID} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--rate-limit-model-uuid` (string)
+:   The UUID of the model for which the rate limit is being requested.
+
+`--rate-limit-prototype` ([`RateLimitPrototype`](#cli-rate-limit-prototype-example-schema))
+:   Replacement Rate Limit Configuration. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--rate-limit-provider-uuid` (string)
+:   The unique identifier of the provider being rate limited.
+
+`--rate-limit-request` ([`RateLimitItem`](#cli-rate-limit-item-example-schema))
+:   Request rate limiting settings (per request origin). It should be a JSON string or a path to a JSON file prepended with @.
+
+`--rate-limit-token` ([`RateLimitItem`](#cli-rate-limit-item-example-schema))
+:   Request rate limiting settings (per request origin). It should be a JSON string or a path to a JSON file prepended with @.
+
+`--rate-limit-type` (string)
+:   The type of rate limit request, in this case should always be '"tenant"'.
+
+`--ratelimit-uuid` (string)
+:   Required. Rate limit UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-rate-limit \
+    --ratelimit-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --rate-limit-prototype '{"type": "tenant", "request": {"amount": 10, "capacity": 100, "duration": "1m"}, "token": {"amount": 10, "capacity": 100, "duration": "1m"}}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-tenant">`wx-ai model-gateway replace-tenant`</a>
+Replaces details of the currently authenticated tenant's information.
+
+```sh
+cpdctl wx-ai model-gateway replace-tenant --name NAME --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--name` (string)
+:   Required. The new name for the tenant. Currently, the tenant's name is the only mutable field.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-tenant \
+    --name my-account \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_replace-tenant-config">`wx-ai model-gateway replace-tenant-config`</a>
+Updates the tenant configuration with default space_id, project_id, and/or default_algorithm.
+
+```sh
+cpdctl wx-ai model-gateway replace-tenant-config --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--default-algorithm least_connections | weighted_round_robin | round_robin | quota_priority] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--default-algorithm` (string)
+:   The load balancing algorithm to use for distributing requests. Supported algorithms: "least_connections", "weighted_round_robin", "round_robin", "quota_priority". Allowable values are: least_connections, weighted_round_robin, round_robin, quota_priority.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   Default project ID for the tenant. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   Default space ID for the tenant. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway replace-tenant-config \
+    --space-id exampleString \
+    --project-id exampleString \
+    --default-algorithm least_connections \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_update-provider-model">`wx-ai model-gateway update-provider-model`</a>
+Update information for an existing specific model configuration with the specified UUID.
+
+```sh
+cpdctl wx-ai model-gateway update-provider-model --provider-uuid PROVIDER-UUID --model-uuid MODEL-UUID --id ID --version VERSION [--alias ALIAS] [--description DESCRIPTION] [--metadata METADATA | @METADATA-FILE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--alias` (string)
+:   An optional friendly name for the model. If not set, the default is the value of ID. The Alias can be used by clients to refer to that model in a more convenient or custom manner. When a client provides the alias (e.g., '"my-gpt"') instead of the official name, the middleware will map the alias back to the underlying ID (e.g., '"gpt-4.1-2025-04-14"') and execute requests against the correct model.
+
+`--description` (string)
+:   A custom user-defined description for the model.
+
+`--id` (string)
+:   Required. The unique identifier of a model, as specified by the model provider that its hosting and providing it. For example, ID could be '"gpt-4.1"' or a specific snapshot like '"gpt-4.1-2025-04-14"', which are official server-side IDs for a model offered by the OpenAI provider.
+
+`--metadata` ([`ModelMetadata`](#cli-model-metadata-example-schema))
+:   Contains additional configuration for the model. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--model-uuid` (string)
+:   Required. Model UUID.
+
+`--provider-uuid` (string)
+:   Required. Provider UUID.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway update-provider-model \
+    --provider-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --model-uuid 550e8400-e29b-41d4-a716-446655440000 \
+    --id gpt-4.1-2025-04-14 \
+    --alias my-gpt \
+    --description 'A custom description string' \
+    --metadata '{"cost": 0.02, "model_family": "gpt-3.5", "recommender_label": "openai-gpt-4o-mini", "region": "us-east-1", "batch": true, "context_window": 128000}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_update-tenant">`wx-ai model-gateway update-tenant`</a>
+Updates details of the currently authenticated tenant's information.
+
+```sh
+cpdctl wx-ai model-gateway update-tenant --version VERSION [--name NAME] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--name` (string)
+:   A new name for the tenant. Currently, the tenant's name is the only mutable field.
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway update-tenant \
+    --name my-account \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_model-gateway_validate-provider-credentials">`wx-ai model-gateway validate-provider-credentials`</a>
+Validates provider credentials before creating a provider instance. Returns 200 OK with valid field indicating success or failure. Supports both direct credentials via the data field and credential references via data_reference. If both are provided, data takes precedence.
+
+```sh
+cpdctl wx-ai model-gateway validate-provider-credentials --type TYPE --version VERSION [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-resource DATA-REFERENCE-RESOURCE] [--data DATA | @DATA-FILE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--data` (generic map)
+:   The credential details for validating the provider. This should be a JSON object matching the provider's configuration schema. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference` ([`DataReference`](#cli-data-reference-example-schema))
+:   Data Reference is a reference to a remote credential store. For example, an IBM Cloud Secrets Manager secret. The value in the remote store is expected to be a JSON representation of the 'data' field of a provider request. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--data-reference-resource` (string)
+:   A unique identifier for the remote store that references the credential data object.
+
+`--type` (string)
+:   Required. The type of provider to validate (e.g., "openai", "anthropic", "watsonxai").
+
+##### Example
+
+```sh
+   cpdctl wx-ai model-gateway validate-provider-credentials \
+    --type openai \
+    --data-reference '{"resource": "crn:v1:bluemix:public:secrets-manager:..."}' \
+    --data '{"anyKey": "anyValue"}' \
+    --version 2019-01-01
+```
 ## • <a name="wx-ai_prompt_add-chat-item">`wx-ai prompt add-chat-item`</a>
 This adds new chat items to the given prompt.
 
 ```sh
-cpdctl wx-ai prompt add-chat-item --prompt-id PROMPT-ID --chat-item (CHAT-ITEM | @CHAT-ITEM-FILE) --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai prompt add-chat-item --prompt-id PROMPT-ID {--project-id PROJECT-ID | --project PROJECT-NAME} --chat-item (CHAT-ITEM | @CHAT-ITEM-FILE) --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20842,9 +25640,9 @@ cpdctl wx-ai prompt add-chat-item --prompt-id PROMPT-ID --chat-item (CHAT-ITEM |
 ```sh
    cpdctl wx-ai prompt add-chat-item \
     --prompt-id exampleString \
+    --project-id exampleString \
     --chat-item '[{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]' \
     --space-id exampleString \
-    --project-id exampleString \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_prompt_create">`wx-ai prompt create`</a>
@@ -20945,6 +25743,7 @@ cpdctl wx-ai prompt create [command options]
 
 ```sh
    cpdctl wx-ai prompt create \
+    --project-id exampleString \
     --name 'My Prompt' \
     --prompt '{"input": [exampleString,anotherTestString,exampleString,anotherTestString],[exampleString,anotherTestString, exampleString,anotherTestString], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [exampleString,anotherTestString,exampleString,anotherTestString],[exampleString,anotherTestString, exampleString,anotherTestString]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}], "external_information": {"external_prompt_id": "exampleString", "external_model_id": "exampleString", "external_model_provider": "exampleString", "external_prompt": {"url": "exampleString", "additional_information": [[{"key": "exampleString"}]]}, "external_model": {"name": "exampleString", "url": "exampleString"}}}' \
     --description 'My First Prompt' \
@@ -20954,7 +25753,6 @@ cpdctl wx-ai prompt create [command options]
     --model-version '{"number": "2.0.0-rc.7", "tag": "tag", "description": "Description of the model version."}' \
     --prompt-variables '{}' \
     --input-mode structured \
-    --project-id exampleString \
     --space-id exampleString \
     --version 2019-01-01
 ```
@@ -20962,7 +25760,7 @@ cpdctl wx-ai prompt create [command options]
 This delets a prompt / prompt template with the given id.
 
 ```sh
-cpdctl wx-ai prompt delete --prompt-id PROMPT-ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai prompt delete {--project-id PROJECT-ID | --project PROJECT-NAME} --prompt-id PROMPT-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -20989,8 +25787,8 @@ cpdctl wx-ai prompt delete --prompt-id PROMPT-ID --version VERSION [{--project-i
 
 ```sh
    cpdctl wx-ai prompt delete \
-    --prompt-id exampleString \
     --project-id exampleString \
+    --prompt-id exampleString \
     --space-id exampleString \
     --version 2019-01-01
 ```
@@ -20998,7 +25796,7 @@ cpdctl wx-ai prompt delete --prompt-id PROMPT-ID --version VERSION [{--project-i
 This retrieves a prompt / prompt template with the given id.
 
 ```sh
-cpdctl wx-ai prompt get --prompt-id PROMPT-ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--restrict-model-parameters RESTRICT-MODEL-PARAMETERS] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai prompt get {--project-id PROJECT-ID | --project PROJECT-NAME} --prompt-id PROMPT-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [--restrict-model-parameters RESTRICT-MODEL-PARAMETERS] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21028,8 +25826,8 @@ cpdctl wx-ai prompt get --prompt-id PROMPT-ID --version VERSION [{--project-id P
 
 ```sh
    cpdctl wx-ai prompt get \
-    --prompt-id exampleString \
     --project-id exampleString \
+    --prompt-id exampleString \
     --space-id exampleString \
     --restrict-model-parameters true \
     --version 2019-01-01
@@ -21038,7 +25836,7 @@ cpdctl wx-ai prompt get --prompt-id PROMPT-ID --version VERSION [{--project-id P
 Computes the inference input string based on state of a prompt. Optionally replaces template params.
 
 ```sh
-cpdctl wx-ai prompt get-input --prompt-id PROMPT-ID --version VERSION [--input INPUT] [--prompt-variables PROMPT-VARIABLES | @PROMPT-VARIABLES-FILE] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai prompt get-input --prompt-id PROMPT-ID {--project-id PROJECT-ID | --project PROJECT-NAME} --version VERSION [--input INPUT] [--prompt-variables PROMPT-VARIABLES | @PROMPT-VARIABLES-FILE] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21072,17 +25870,17 @@ cpdctl wx-ai prompt get-input --prompt-id PROMPT-ID --version VERSION [--input I
 ```sh
    cpdctl wx-ai prompt get-input \
     --prompt-id exampleString \
+    --project-id exampleString \
     --input 'Some text with variables.' \
     --prompt-variables '{}' \
     --space-id exampleString \
-    --project-id exampleString \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_prompt_get-lock">`wx-ai prompt get-lock`</a>
 Retrieves the current locked state of a prompt.
 
 ```sh
-cpdctl wx-ai prompt get-lock --prompt-id PROMPT-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai prompt get-lock --prompt-id PROMPT-ID {--project-id PROJECT-ID | --project PROJECT-NAME} --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21110,8 +25908,8 @@ cpdctl wx-ai prompt get-lock --prompt-id PROMPT-ID --version VERSION [{--space-i
 ```sh
    cpdctl wx-ai prompt get-lock \
     --prompt-id exampleString \
-    --space-id exampleString \
     --project-id exampleString \
+    --space-id exampleString \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_prompt_update">`wx-ai prompt update`</a>
@@ -21201,6 +25999,7 @@ cpdctl wx-ai prompt update [command options]
 
 ```sh
    cpdctl wx-ai prompt update \
+    --project-id exampleString \
     --prompt-id exampleString \
     --name 'My Prompt' \
     --prompt '{"input": [exampleString,anotherTestString,exampleString,anotherTestString],[exampleString,anotherTestString, exampleString,anotherTestString], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [exampleString,anotherTestString,exampleString,anotherTestString],[exampleString,anotherTestString, exampleString,anotherTestString]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]}' \
@@ -21211,7 +26010,6 @@ cpdctl wx-ai prompt update [command options]
     --model-version '{"number": "2.0.0-rc.7", "tag": "tag", "description": "Description of the model version."}' \
     --prompt-variables '{}' \
     --input-mode structured \
-    --project-id exampleString \
     --space-id exampleString \
     --version 2019-01-01
 ```
@@ -21219,7 +26017,7 @@ cpdctl wx-ai prompt update [command options]
 Modifies the current locked state of a prompt.
 
 ```sh
-cpdctl wx-ai prompt update-lock --prompt-id PROMPT-ID --locked=LOCKED --version VERSION [--lock-type edit | governance] [--locked-by LOCKED-BY] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--force=FORCE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai prompt update-lock --prompt-id PROMPT-ID {--project-id PROJECT-ID | --project PROJECT-NAME} --locked=LOCKED --version VERSION [--lock-type edit | governance] [--locked-by LOCKED-BY] [{--space-id SPACE-ID | --space SPACE-NAME}] [--force=FORCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21263,10 +26061,10 @@ cpdctl wx-ai prompt update-lock --prompt-id PROMPT-ID --locked=LOCKED --version 
 ```sh
    cpdctl wx-ai prompt update-lock \
     --prompt-id exampleString \
+    --project-id exampleString \
     --locked=true \
     --lock-type edit \
     --locked-by IBMid-000000YYY0 \
-    --project-id exampleString \
     --space-id exampleString \
     --force=true \
     --version 2019-01-01
@@ -21275,7 +26073,7 @@ cpdctl wx-ai prompt update-lock --prompt-id PROMPT-ID --locked=LOCKED --version 
 This adds new chat items to the given entry.
 
 ```sh
-cpdctl wx-ai prompt-session add-chat-item --session-id SESSION-ID --entry-id ENTRY-ID --chat-item (CHAT-ITEM | @CHAT-ITEM-FILE) --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai prompt-session add-chat-item --session-id SESSION-ID --entry-id ENTRY-ID {--project-id PROJECT-ID | --project PROJECT-NAME} --chat-item (CHAT-ITEM | @CHAT-ITEM-FILE) --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21304,8 +26102,8 @@ cpdctl wx-ai prompt-session add-chat-item --session-id SESSION-ID --entry-id ENT
    cpdctl wx-ai prompt-session add-chat-item \
     --session-id exampleString \
     --entry-id exampleString \
-    --chat-item '[{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]' \
     --project-id exampleString \
+    --chat-item '[{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]' \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_prompt-session_add-entry">`wx-ai prompt-session add-entry`</a>
@@ -21380,6 +26178,7 @@ cpdctl wx-ai prompt-session add-entry [command options]
 ```sh
    cpdctl wx-ai prompt-session add-entry \
     --session-id exampleString \
+    --project-id exampleString \
     --name 'My Prompt' \
     --created-at 1711504485261 \
     --prompt '{"input": [exampleString,anotherTestString,exampleString,anotherTestString],[exampleString,anotherTestString, exampleString,anotherTestString], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [exampleString,anotherTestString,exampleString,anotherTestString],[exampleString,anotherTestString, exampleString,anotherTestString]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]}' \
@@ -21388,14 +26187,13 @@ cpdctl wx-ai prompt-session add-entry [command options]
     --prompt-variables '{}' \
     --is-template=true \
     --input-mode structured \
-    --project-id exampleString \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_prompt-session_create">`wx-ai prompt-session create`</a>
 This creates a new prompt session.
 
 ```sh
-cpdctl wx-ai prompt-session create --name NAME --version VERSION [--id ID] [--description DESCRIPTION] [--created-at CREATED-AT] [--created-by CREATED-BY] [--last-updated-at LAST-UPDATED-AT] [--last-updated-by LAST-UPDATED-BY] [--lock (LOCK | @LOCK-FILE) | --lock-locked=LOCK-LOCKED --lock-lock-type edit | governance --lock-locked-by LOCK-LOCKED-BY] [--prompts PROMPTS | @PROMPTS-FILE] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai prompt-session create {--project-id PROJECT-ID | --project PROJECT-NAME} --name NAME --version VERSION [--id ID] [--description DESCRIPTION] [--created-at CREATED-AT] [--created-by CREATED-BY] [--last-updated-at LAST-UPDATED-AT] [--last-updated-by LAST-UPDATED-BY] [--lock (LOCK | @LOCK-FILE) | --lock-locked=LOCK-LOCKED --lock-lock-type edit | governance --lock-locked-by LOCK-LOCKED-BY] [--prompts PROMPTS | @PROMPTS-FILE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21455,6 +26253,7 @@ cpdctl wx-ai prompt-session create --name NAME --version VERSION [--id ID] [--de
 
 ```sh
    cpdctl wx-ai prompt-session create \
+    --project-id exampleString \
     --name 'Session 1' \
     --id 1c29d9a1-9ba6-422d-aa39-517b26adc147 \
     --description 'My First Prompt Session' \
@@ -21464,14 +26263,13 @@ cpdctl wx-ai prompt-session create --name NAME --version VERSION [--id ID] [--de
     --last-updated-by IBMid-000000YYY0 \
     --lock '{"locked": true, "lock_type": "edit", "locked_by": "IBMid-000000YYY0"}' \
     --prompts '[{"id": "1c29d9a1-9ba6-422d-aa39-517b26adc147", "name": "My Prompt", "description": "My First Prompt", "prompt_variables": {}, "is_template": true, "created_at": 1711504485261, "input_mode": "structured", "prompt": {"input": [exampleString,anotherTestString,exampleString,anotherTestString],[exampleString,anotherTestString, exampleString,anotherTestString], "model_id": "ibm/granite-13b-chat-v2", "model_parameters": {"decoding_method": "exampleString", "max_new_tokens": 38, "min_new_tokens": 38, "random_seed": 38, "stop_sequences": ["exampleString","anotherTestString"], "temperature": 72.5, "top_k": 72.5, "top_p": 72.5, "repetition_penalty": 72.5}, "data": {"instruction": "exampleString", "input_prefix": "exampleString", "output_prefix": "exampleString", "examples": [exampleString,anotherTestString,exampleString,anotherTestString],[exampleString,anotherTestString, exampleString,anotherTestString]}, "system_prompt": "exampleString", "chat_items": [{"type": "question", "content": "Some text", "status": "ready", "timestamp": 1711504485261}]}}]' \
-    --project-id exampleString \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_prompt-session_delete">`wx-ai prompt-session delete`</a>
 This deletes a prompt session with the given id.
 
 ```sh
-cpdctl wx-ai prompt-session delete --session-id SESSION-ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai prompt-session delete --session-id SESSION-ID {--project-id PROJECT-ID | --project PROJECT-NAME} --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21500,7 +26298,7 @@ cpdctl wx-ai prompt-session delete --session-id SESSION-ID --version VERSION [{-
 This deletes a prompt session entry with the given id.
 
 ```sh
-cpdctl wx-ai prompt-session delete-entry --session-id SESSION-ID --entry-id ENTRY-ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai prompt-session delete-entry --session-id SESSION-ID {--project-id PROJECT-ID | --project PROJECT-NAME} --entry-id ENTRY-ID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21525,15 +26323,15 @@ cpdctl wx-ai prompt-session delete-entry --session-id SESSION-ID --entry-id ENTR
 ```sh
    cpdctl wx-ai prompt-session delete-entry \
     --session-id exampleString \
-    --entry-id exampleString \
     --project-id exampleString \
+    --entry-id exampleString \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_prompt-session_get">`wx-ai prompt-session get`</a>
 This retrieves a prompt session with the given id.
 
 ```sh
-cpdctl wx-ai prompt-session get --session-id SESSION-ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--prefetch=PREFETCH] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai prompt-session get --session-id SESSION-ID {--project-id PROJECT-ID | --project PROJECT-NAME} --version VERSION [--prefetch=PREFETCH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21568,7 +26366,7 @@ cpdctl wx-ai prompt-session get --session-id SESSION-ID --version VERSION [{--pr
 This retrieves a prompt session entry with the given id.
 
 ```sh
-cpdctl wx-ai prompt-session get-entry --session-id SESSION-ID --entry-id ENTRY-ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai prompt-session get-entry --session-id SESSION-ID {--project-id PROJECT-ID | --project PROJECT-NAME} --entry-id ENTRY-ID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21593,15 +26391,15 @@ cpdctl wx-ai prompt-session get-entry --session-id SESSION-ID --entry-id ENTRY-I
 ```sh
    cpdctl wx-ai prompt-session get-entry \
     --session-id exampleString \
-    --entry-id exampleString \
     --project-id exampleString \
+    --entry-id exampleString \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_prompt-session_get-lock">`wx-ai prompt-session get-lock`</a>
 Retrieves the current locked state of a prompt session.
 
 ```sh
-cpdctl wx-ai prompt-session get-lock --session-id SESSION-ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai prompt-session get-lock --session-id SESSION-ID {--project-id PROJECT-ID | --project PROJECT-NAME} --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21630,7 +26428,7 @@ cpdctl wx-ai prompt-session get-lock --session-id SESSION-ID --version VERSION [
 List entries from a given session.
 
 ```sh
-cpdctl wx-ai prompt-session list-entries --session-id SESSION-ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--bookmark BOOKMARK] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai prompt-session list-entries --session-id SESSION-ID {--project-id PROJECT-ID | --project PROJECT-NAME} --version VERSION [--bookmark BOOKMARK] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21667,7 +26465,7 @@ cpdctl wx-ai prompt-session list-entries --session-id SESSION-ID --version VERSI
 This updates a prompt session with the given id.
 
 ```sh
-cpdctl wx-ai prompt-session update --session-id SESSION-ID --version VERSION [--name NAME] [--description DESCRIPTION] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai prompt-session update --session-id SESSION-ID {--project-id PROJECT-ID | --project PROJECT-NAME} --version VERSION [--name NAME] [--description DESCRIPTION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21695,16 +26493,16 @@ cpdctl wx-ai prompt-session update --session-id SESSION-ID --version VERSION [--
 ```sh
    cpdctl wx-ai prompt-session update \
     --session-id exampleString \
+    --project-id exampleString \
     --name 'Session 1' \
     --description 'My First Prompt Session' \
-    --project-id exampleString \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_prompt-session_update-lock">`wx-ai prompt-session update-lock`</a>
 Modifies the current locked state of a prompt session.
 
 ```sh
-cpdctl wx-ai prompt-session update-lock --session-id SESSION-ID --locked=LOCKED --version VERSION [--lock-type edit | governance] [--locked-by LOCKED-BY] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--force=FORCE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai prompt-session update-lock --session-id SESSION-ID {--project-id PROJECT-ID | --project PROJECT-NAME} --locked=LOCKED --version VERSION [--lock-type edit | governance] [--locked-by LOCKED-BY] [--force=FORCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21742,10 +26540,10 @@ cpdctl wx-ai prompt-session update-lock --session-id SESSION-ID --locked=LOCKED 
 ```sh
    cpdctl wx-ai prompt-session update-lock \
     --session-id exampleString \
+    --project-id exampleString \
     --locked=true \
     --lock-type edit \
     --locked-by IBMid-000000YYY0 \
-    --project-id exampleString \
     --force=true \
     --version 2019-01-01
 ```
@@ -21753,7 +26551,7 @@ cpdctl wx-ai prompt-session update-lock --session-id SESSION-ID --locked=LOCKED 
 Create a synthetic data generation job.
 
 ```sh
-cpdctl wx-ai synthetic-data-generation create --name NAME --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-type DATA-REFERENCE-TYPE (--data-reference-location DATA-REFERENCE-LOCATION | @DATA-REFERENCE-LOCATION-FILE) (--data-reference-connection DATA-REFERENCE-CONNECTION | @DATA-REFERENCE-CONNECTION-FILE) --data-reference-id DATA-REFERENCE-ID] [--results-reference (RESULTS-REFERENCE | @RESULTS-REFERENCE-FILE) | --results-reference-type RESULTS-REFERENCE-TYPE (--results-reference-location RESULTS-REFERENCE-LOCATION | @RESULTS-REFERENCE-LOCATION-FILE) (--results-reference-connection RESULTS-REFERENCE-CONNECTION | @RESULTS-REFERENCE-CONNECTION-FILE) --results-reference-id RESULTS-REFERENCE-ID] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai synthetic-data-generation create --name NAME --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-type DATA-REFERENCE-TYPE (--data-reference-location DATA-REFERENCE-LOCATION | @DATA-REFERENCE-LOCATION-FILE) (--data-reference-connection DATA-REFERENCE-CONNECTION | @DATA-REFERENCE-CONNECTION-FILE) --data-reference-id DATA-REFERENCE-ID] [--results-reference (RESULTS-REFERENCE | @RESULTS-REFERENCE-FILE) | --results-reference-type RESULTS-REFERENCE-TYPE (--results-reference-location RESULTS-REFERENCE-LOCATION | @RESULTS-REFERENCE-LOCATION-FILE) (--results-reference-connection RESULTS-REFERENCE-CONNECTION | @RESULTS-REFERENCE-CONNECTION-FILE) --results-reference-id RESULTS-REFERENCE-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21831,7 +26629,7 @@ The possible types will depend on the API and platform being used.
 Cancel the synthetic data generation and remove it.
 
 ```sh
-cpdctl wx-ai synthetic-data-generation delete --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--hard-delete=HARD-DELETE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai synthetic-data-generation delete --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21873,7 +26671,7 @@ cpdctl wx-ai synthetic-data-generation delete --id ID --version VERSION [{--proj
 Get synthetic data generation job.
 
 ```sh
-cpdctl wx-ai synthetic-data-generation get --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai synthetic-data-generation get --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21909,7 +26707,7 @@ cpdctl wx-ai synthetic-data-generation get --id ID --version VERSION [{--project
 Get synthetic data generation jobs.
 
 ```sh
-cpdctl wx-ai synthetic-data-generation list --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai synthetic-data-generation list --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -21937,11 +26735,76 @@ cpdctl wx-ai synthetic-data-generation list --version VERSION [{--project-id PRO
     --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
     --version 2019-01-01
 ```
+## • <a name="wx-ai_synthetic-data-generation-unstructured_create">`wx-ai synthetic-data-generation-unstructured create`</a>
+Create a synthetic unstructured data generation job.
+
+```sh
+cpdctl wx-ai synthetic-data-generation-unstructured create --name NAME {--project-id PROJECT-ID | --project PROJECT-NAME} --version VERSION [--description DESCRIPTION] [--configuration (CONFIGURATION | @CONFIGURATION-FILE) | --configuration-pipeline nl2sql | tool_calling | knowledge --configuration-num-outputs-to-generate CONFIGURATION-NUM-OUTPUTS-TO-GENERATE (--configuration-generator CONFIGURATION-GENERATOR | @CONFIGURATION-GENERATOR-FILE) (--configuration-validators CONFIGURATION-VALIDATORS | @CONFIGURATION-VALIDATORS-FILE) (--configuration-seed-data-reference CONFIGURATION-SEED-DATA-REFERENCE | @CONFIGURATION-SEED-DATA-REFERENCE-FILE) (--configuration-results-reference CONFIGURATION-RESULTS-REFERENCE | @CONFIGURATION-RESULTS-REFERENCE-FILE) (--configuration-knowledge-base-references CONFIGURATION-KNOWLEDGE-BASE-REFERENCES | @CONFIGURATION-KNOWLEDGE-BASE-REFERENCES-FILE) --configuration-overwrite-output-file=CONFIGURATION-OVERWRITE-OUTPUT-FILE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--configuration` ([`SDGUnstructuredGenerationConfigConfiguration`](#cli-sdg-unstructured-generation-config-configuration-example-schema))
+:   null It should be a JSON string or a path to a JSON file prepended with @.
+
+`--configuration-generator` ([`SDGUnstructuredGenerationLLMConfig`](#cli-sdg-unstructured-generation-llm-config-example-schema))
+:   Data builder configuration. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--configuration-knowledge-base-references` ([`SDGObjectLocation[]`](#cli-sdg-object-location-example-schema))
+:   null It should be a JSON string or a path to a JSON file prepended with @.
+
+`--configuration-num-outputs-to-generate` (int64)
+:   How many QnA pairs to generate. The minimum value is 1.
+
+    The default value is `0`.
+
+`--configuration-overwrite-output-file` (bool)
+:   Flag to allow overwriting existing output file. If false or not set, job creation will fail if output file already exists.
+
+    The default value is `false`.
+
+`--configuration-pipeline` (string)
+:   The pipeline type. Allowable values are: nl2sql, tool_calling, knowledge.
+
+`--configuration-results-reference` ([`SDGObjectLocation`](#cli-sdg-object-location-example-schema))
+:   A reference to data. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--configuration-seed-data-reference` ([`SDGObjectLocation`](#cli-sdg-object-location-example-schema))
+:   A reference to data. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--configuration-validators` ([`SDGUnstructuredGenerationValidatorRS[]`](#cli-sdg-unstructured-generation-validator-rs-example-schema))
+:   null It should be a JSON string or a path to a JSON file prepended with @.
+
+`--cpd-scope` (string)
+:   CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--description` (string)
+:   A description of the resource. The maximum length is 1000 characters.
+
+`--name` (string)
+:   Required. The name of the resource. The maximum length is 250 characters. The minimum length is 1 character.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   Required. The project that contains the resource. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai synthetic-data-generation-unstructured create \
+    --name my-resource \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --description 'This is my first resource.' \
+    --configuration '{"pipeline": "nl2sql", "num_outputs_to_generate": 100, "generator": {"model_id": "ibm/granite-3-8b-instruct", "min_new_tokens": 50, "max_new_tokens": 50, "temperature": 0.05, "top_p": 0, "top_k": 1}, "validators": [{"type": "rouge_scorer", "threshold": 0}], "seed_data_reference": {"type": "container", "location": {"path": "qna_nl2sql.yaml"}}, "results_reference": {"type": "container", "location": {"path": "qna_nl2sql.yaml"}}, "knowledge_base_references": [{"type": "container", "location": {"path": "qna_nl2sql.yaml"}}], "overwrite_output_file": true}' \
+    --version 2019-01-01
+```
 ## • <a name="wx-ai_taxonomy_create">`wx-ai taxonomy create`</a>
 Create a taxonomy job.
 
 ```sh
-cpdctl wx-ai taxonomy create --name NAME --version VERSION [--description DESCRIPTION] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-type DATA-REFERENCE-TYPE (--data-reference-location DATA-REFERENCE-LOCATION | @DATA-REFERENCE-LOCATION-FILE) (--data-reference-connection DATA-REFERENCE-CONNECTION | @DATA-REFERENCE-CONNECTION-FILE) --data-reference-id DATA-REFERENCE-ID] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai taxonomy create --name NAME --version VERSION [--description DESCRIPTION] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--data-reference (DATA-REFERENCE | @DATA-REFERENCE-FILE) | --data-reference-type DATA-REFERENCE-TYPE (--data-reference-location DATA-REFERENCE-LOCATION | @DATA-REFERENCE-LOCATION-FILE) (--data-reference-connection DATA-REFERENCE-CONNECTION | @DATA-REFERENCE-CONNECTION-FILE) --data-reference-id DATA-REFERENCE-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -22001,7 +26864,7 @@ The possible types will depend on the API and platform being used.
 Cancel or delete the taxonomy job.
 
 ```sh
-cpdctl wx-ai taxonomy delete --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--hard-delete=HARD-DELETE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai taxonomy delete --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -22043,7 +26906,7 @@ cpdctl wx-ai taxonomy delete --id ID --version VERSION [{--project-id PROJECT-ID
 Get taxonomy job.
 
 ```sh
-cpdctl wx-ai taxonomy get --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai taxonomy get --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -22079,7 +26942,7 @@ cpdctl wx-ai taxonomy get --id ID --version VERSION [{--project-id PROJECT-ID | 
 Get taxonomy jobs.
 
 ```sh
-cpdctl wx-ai taxonomy list --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai taxonomy list --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -22113,13 +26976,21 @@ Generate embeddings from text input.
 See the [documentation](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-embed-overview.html?context=wx&audience=wdp) for a description of text embeddings.
 
 ```sh
-cpdctl wx-ai text calculate-embeddings --model-id MODEL-ID --inputs INPUTS --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS (--parameters-return-options PARAMETERS-RETURN-OPTIONS | @PARAMETERS-RETURN-OPTIONS-FILE)] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai text calculate-embeddings --model-id MODEL-ID --inputs INPUTS --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS (--parameters-return-options PARAMETERS-RETURN-OPTIONS | @PARAMETERS-RETURN-OPTIONS-FILE)] [--crypto (CRYPTO | @CRYPTO-FILE) | --crypto-key-ref CRYPTO-KEY-REF] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
 `--cpd-scope` (string)
 :   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--crypto` ([`CryptoInfo`](#cli-crypto-info-example-schema))
+:   To enable encryption, configure credentials for your chosen keys management service. For details, see [Encrypting inference requests](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-api-chat.html?context=wx&audience=wdp). It should be a JSON string or a path to a JSON file prepended with @.
+
+`--crypto-key-ref` (string)
+:   Identifier of the DEK in the chosen keys management service.
+* IBM Key Protect - full CRN (e.g. 'crn:v1:bluemix:public:kms:us-south:a/12345:<instance_id>:key:<root_key_id>:wdek:<ciphertext>') This field is required, but its exact format depends on the selected
+'keys_manager'. No strict pattern is enforced here - validation will be performed by the keys management service.
 
 `--inputs` (string)
 :   Required. The input text. The maximum length is 1000 items.
@@ -22159,6 +27030,7 @@ cpdctl wx-ai text calculate-embeddings --model-id MODEL-ID --inputs INPUTS --ver
     --space-id exampleString \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --parameters '{"truncate_input_tokens": 1, "return_options": {"input_text": true}}' \
+    --crypto '{"key_ref": "exampleString"}' \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_text_chat">`wx-ai text chat`</a>
@@ -22170,13 +27042,41 @@ cpdctl wx-ai text chat [command options]
 
 #### Command options
 
+`--chat-template-kwargs` (generic map)
+:   Additional kwargs to pass to the chat template, described as a JSON Schema object. See the [JSON Schema reference](https://json-schema.org/learn/getting-started-step-by-step) for documentation about the format. It should be a JSON string or a path to a JSON file prepended with @.
+
 `--cpd-scope` (string)
 :   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--crypto` ([`CryptoInfo`](#cli-crypto-info-example-schema))
+:   To enable encryption, configure credentials for your chosen keys management service. For details, see [Encrypting inference requests](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-api-chat.html?context=wx&audience=wdp). It should be a JSON string or a path to a JSON file prepended with @.
+
+`--crypto-key-ref` (string)
+:   Identifier of the DEK in the chosen keys management service.
+* IBM Key Protect - full CRN (e.g. 'crn:v1:bluemix:public:kms:us-south:a/12345:<instance_id>:key:<root_key_id>:wdek:<ciphertext>') This field is required, but its exact format depends on the selected
+'keys_manager'. No strict pattern is enforced here - validation will be performed by the keys management service.
 
 `--frequency-penalty` (float64)
 :   Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. The default value is 0. The value must be less than 2. The value must be greater than -2.
 
     The default value is `0`.
+
+`--guided-choice` (string)
+:   If specified, the output will be exactly one of the choices.
+
+`--guided-grammar` (string)
+:   If specified, the output will follow the context free grammar.
+
+`--guided-json` (generic map)
+:   If specified, the output will follow the JSON schema. See the [JSON Schema reference](https://json-schema.org/learn/getting-started-step-by-step) for documentation about the format. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--guided-regex` (string)
+:   If specified, the output will follow the regex pattern.
+
+`--include-reasoning` (bool)
+:   Whether to include 'reasoning_content' in the response. Default is 'true'.
+
+    The default value is `false`.
 
 `--logit-bias` (generic map)
 :   Increasing or decreasing probability of tokens being selected during generation; a positive bias makes a token more likely to appear, while a negative bias makes it less likely.
@@ -22186,6 +27086,11 @@ cpdctl wx-ai text chat [command options]
 
     The default value is `false`.
 
+`--max-completion-tokens` (int64)
+:   The maximum number of tokens that can be generated in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length. Set to 0 for the model's configured max generated tokens. The default value is 1024.
+
+    The default value is `0`.
+
 `--max-tokens` (int64)
 :   The maximum number of tokens that can be generated in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length. The default value is 1024.
 
@@ -22194,10 +27099,18 @@ cpdctl wx-ai text chat [command options]
 `--messages` ([`TextChatMessages[]`](#cli-text-chat-messages-example-schema))
 :   Required. The messages for this chat session. The maximum length is 1000 items. The minimum length is 1 item.
 
+`--model` (string)
+:   This is an alias for 'model_id' and can be used instead of 'model_id'.
+
+The field 'model_id' is marked as mandatory but it can be replaced by the 'model' field for compatibility with other APIs.
+
 `--model-id` (string)
 :   Required. The model to use for the chat completion.
 
 Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx).
+
+`--moderations` ([`Moderations`](#cli-moderations-example-schema))
+:   Properties that control the moderations, for usages such as 'Hate and profanity' (HAP) and 'Personal identifiable information' (PII) filtering. This list can be extended with new types of moderations. It should be a JSON string or a path to a JSON file prepended with @.
 
 `--n` (int64)
 :   How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep n as 1 to minimize costs. The default value is 1.
@@ -22215,8 +27128,16 @@ Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/con
 `--project-id` (string)
 :   The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters. This option is mutually exclusive with '--project'.
 
+`--reasoning-effort` (string)
+:   A lower reasoning effort can result in faster responses, fewer tokens used, and shorter 'reasoning_content' in the responses. Supported values are 'low', 'medium', and 'high'. Allowable values are: low, medium, high.
+
 `--response-format` ([`TextChatResponseFormat`](#cli-text-chat-response-format-example-schema))
 :   The chat response format parameters.
+
+`--response-format-json-schema` ([`TextChatResponseFormatJSONSchema`](#cli-text-chat-response-format-json-schema-example-schema))
+:   User-defined JSON schema object with optional parameters to enforce structured output.
+
+**Important:** this field will only applied when 'response_format'.'type' is set to 'json_schema'. It should be a JSON string or a path to a JSON file prepended with @.
 
 `--response-format-type` (string)
 :   Used to enable JSON mode, which guarantees the message the model generates is valid JSON.
@@ -22236,6 +27157,11 @@ Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/con
 
 `--stop` (string)
 :   Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 4 items. The minimum length is 0 items.
+
+`--stream` (bool)
+:   If set to true, this operation will return the output tokens as a stream of events, and usage is always included in the response.
+
+    The default value is `false`.
 
 `--temperature` (float64)
 :   What sampling temperature to use,. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
@@ -22282,34 +27208,54 @@ We generally recommend altering this or 'temperature' but not both. The default 
    cpdctl wx-ai text chat \
     --model-id meta-llama/llama-3-8b-instruct \
     --messages '[{"role": "assistant", "content": "You are a helpful assistant.", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
+    --model exampleString \
     --space-id exampleString \
     --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "granite_guardian": {"input": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}' \
     --tools '[{"type": "function", "function": {"name": "exampleString", "description": "exampleString", "parameters": {"anyKey": "anyValue"}}}]' \
-    --tool-choice-option exampleString \
+    --tool-choice-option auto \
     --tool-choice '{"type": "function", "function": {"name": "exampleString"}}' \
+    --guided-choice exampleString,anotherTestString \
+    --guided-regex exampleString \
+    --guided-grammar exampleString \
+    --guided-json '{"anyKey": "anyValue"}' \
+    --crypto '{"key_ref": "exampleString"}' \
+    --chat-template-kwargs '{"anyKey": "anyValue"}' \
     --frequency-penalty 0 \
+    --include-reasoning=true \
     --logit-bias '{"anyKey": "anyValue"}' \
     --logprobs=false \
     --top-logprobs 0 \
+    --max-completion-tokens 1024 \
     --max-tokens 100 \
     --n 1 \
     --presence-penalty 0 \
-    --response-format '{"type": "json_object"}' \
+    --reasoning-effort low \
+    --response-format '{"type": "text", "json_schema": {"name": "exampleString", "schema": {"anyKey": "anyValue"}, "strict": true}}' \
     --seed 38 \
     --stop exampleString,anotherTestString \
+    --stream=true \
     --temperature 0 \
     --top-p 1 \
     --time-limit 1000 \
     --version 2019-01-01
 ```
-## • <a name="wx-ai_text_chat-stream">`wx-ai text chat-stream`</a>
-Infer the next tokens for a given deployed model with a set of parameters. This operation will return the output tokens as a stream of events.
+## • <a name="wx-ai_text_chat-completions">`wx-ai text chat-completions`</a>
+Infer the next tokens for a given deployed model with a set of PARAMS1.
+
+If `stream` is true, this operation will return the output tokens in a server-sent events (SSE) stream.
 
 ```sh
-cpdctl wx-ai text chat-stream [command options]
+cpdctl wx-ai text chat-completions [command options]
 ```
 
 #### Command options
+
+`--accept` (string)
+:   The type of the response: application/json or text/event-stream. A character encoding can be specified by including a 'charset' parameter. For example, 'text/event-stream;charset=utf-8'. Allowable values are: application/json, text/event-stream.
+
+`--chat-template-kwargs` (generic map)
+:   Additional kwargs to pass to the chat template, described as a JSON Schema object. See the [JSON Schema reference](https://json-schema.org/learn/getting-started-step-by-step) for documentation about the format. It should be a JSON string or a path to a JSON file prepended with @.
 
 `--cpd-scope` (string)
 :   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -22319,23 +27265,36 @@ cpdctl wx-ai text chat-stream [command options]
 
     The default value is `0`.
 
+`--include-reasoning` (bool)
+:   Whether to include 'reasoning_content' in the response. Default is 'true'.
+
+    The default value is `false`.
+
 `--logit-bias` (generic map)
-:   Increasing or decreasing probability of tokens being selected during generation; a positive bias makes a token more likely to appear, while a negative bias makes it less likely.
+:   Increasing or decreasing probability of tokens being selected during generation; a positive bias makes a token more likely to appear, while a negative bias makes it less likely. It should be a JSON string or a path to a JSON file prepended with @.
 
 `--logprobs` (bool)
 :   Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the content of message. The default value is false.
 
     The default value is `false`.
 
+`--max-completion-tokens` (int64)
+:   The maximum number of tokens that can be generated in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length. Set to 0 for the model's configured max generated tokens. The default value is 1024.
+
+    The default value is `0`.
+
 `--max-tokens` (int64)
-:   The maximum number of tokens that can be generated in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length. The default value is 1024.
+:   The maximum number of tokens that can be generated in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length. Set to 0 for the model's configured max generated tokens.
+
+This value is now deprecated in favor of 'max_completion_tokens'. If specified together with 'max_completion_tokens',
+'max_tokens' will be ignored. The default value is 1024.
 
     The default value is `0`.
 
 `--messages` ([`TextChatMessages[]`](#cli-text-chat-messages-example-schema))
-:   Required. The messages for this chat session. The maximum length is 1000 items. The minimum length is 1 item.
+:   Required. The messages for this chat session. It should be a JSON string or a path to a JSON file prepended with @. The maximum length is 1000 items. The minimum length is 1 item.
 
-`--model-id` (string)
+`--model` (string)
 :   Required. The model to use for the chat completion.
 
 Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx).
@@ -22354,10 +27313,222 @@ Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/con
 :   Project name. This option is mutually exclusive with '--project-id'.
 
 `--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--reasoning-effort` (string)
+:   A lower reasoning effort can result in faster responses, fewer tokens used, and shorter 'reasoning_content' in the responses. Supported values are 'low', 'medium', and 'high'. Allowable values are: low, medium, high.
+
+`--response-format` ([`TextChatResponseFormat`](#cli-text-chat-response-format-example-schema))
+:   The chat response format parameters. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--response-format-json-schema` ([`TextChatResponseFormatJSONSchema`](#cli-text-chat-response-format-json-schema-example-schema))
+:   User-defined JSON schema object with optional parameters to enforce structured output.
+
+**Important:** this field will only applied when 'response_format'.'type' is set to 'json_schema'. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--response-format-type` (string)
+:   Used to enable JSON mode, which guarantees the message the model generates is valid JSON.
+
+**Important:** when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user message. Without this, the model may generate an unending stream of whitespace until the generation reaches the token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be partially cut off if 'finish_reason="length"', which indicates the generation exceeded 'max_tokens' or the conversation exceeded the max context length.
+
+- 'text' : **Will not** create a JSON structured output.
+- 'json_object' : User will get a JSON structured output, but the schema is not guranteed.
+- 'json_schema' : User needs to declare the 'json_schema' object to provide the desired JSON schema in order to get a matched response. Allowable values are: text, json_object, json_schema.
+
+`--seed` (int64)
+:   Random number generator seed to use in sampling mode for experimental repeatability.
+
+    The default value is `0`.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+`--stop` (string)
+:   Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 4 items. The minimum length is 0 items.
+
+`--stream` (bool)
+:   If set to true, this operation will return the output tokens as a stream of events, and usage is always included in the response.
+
+    The default value is `false`.
+
+`--temperature` (float64)
+:   What sampling temperature to use,. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
+
+We generally recommend altering this or 'top_p' but not both. The default value is 1. The value must be less than 2. The value must be greater than 0.
+
+    The default value is `0`.
+
+`--time-limit` (int64)
+:   Time limit in milliseconds - if not completed within this time, generation will stop. The text generated so far will be returned along with the 'TIME_LIMIT'' stop reason. Depending on the users plan, and on the model being used, there may be an enforced maximum time limit. The value must be greater than 0.
+
+    The default value is `0`.
+
+`--tool-choice` ([`TextChatToolChoiceTool`](#cli-text-chat-tool-choice-tool-example-schema))
+:   Specifying a particular tool via '{"type": "function", "function": {"name": "my_function"}}' forces the model to call that tool.
+Specify either 'tool_choice_option' to allow the model to pick or 'tool_choice' to force the model to call a tool. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--tool-choice-function` ([`TextChatToolFunction`](#cli-text-chat-tool-function-example-schema))
+:   The named function. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--tool-choice-option` (string)
+:   Specify either 'tool_choice_option' to allow the model to pick or 'tool_choice' to force the model to call a tool.
+
+Using 'auto' means the model can pick between generating a message or calling one or more tools. Default is 'auto'.
+
+Using 'none' means the model will not call any tool and instead generates a message.
+
+Using 'required' means the model must call one or more tools. Allowable values are: auto, none, required.
+
+`--tool-choice-type` (string)
+:   The tool type. Allowable values are: function.
+
+`--tools` ([`TextChatParameterTools[]`](#cli-text-chat-parameter-tools-example-schema))
+:   Tool functions that can be called with the response. It should be a JSON string or a path to a JSON file prepended with @. The maximum length is 128 items. The minimum length is 1 item.
+
+`--top-logprobs` (int64)
+:   An integer specifying the number of most likely tokens to return at each token position, each with an associated log probability. The option 'logprobs' must be set to 'true' if this parameter is used. The maximum value is 20. The minimum value is 0.
+
+    The default value is `0`.
+
+`--top-p` (float64)
+:   An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.
+
+We generally recommend altering this or 'temperature' but not both. The default value is 1. The value must be less than 1. The value must be greater than 0.
+
+    The default value is `0`.
+
+##### Example
+
+```sh
+   cpdctl wx-ai text chat-completions \
+    --model meta-llama/llama-3-8b-instruct \
+    --messages '[{"role": "assistant", "content": "You are a helpful assistant.", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
+    --space-id exampleString \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --tools '[{"type": "function", "function": {"name": "exampleString", "description": "exampleString", "parameters": {"anyKey": "anyValue"}}}]' \
+    --tool-choice-option auto \
+    --tool-choice '{"type": "function", "function": {"name": "exampleString"}}' \
+    --chat-template-kwargs '{"anyKey": "anyValue"}' \
+    --frequency-penalty 0 \
+    --include-reasoning=true \
+    --logit-bias '{"anyKey": "anyValue"}' \
+    --logprobs=false \
+    --top-logprobs 0 \
+    --max-completion-tokens 1024 \
+    --max-tokens 100 \
+    --n 1 \
+    --presence-penalty 0 \
+    --reasoning-effort low \
+    --response-format '{"type": "text", "json_schema": {"name": "exampleString", "schema": {"anyKey": "anyValue"}, "strict": true}}' \
+    --seed 38 \
+    --stop exampleString,anotherTestString \
+    --stream=true \
+    --temperature 0 \
+    --top-p 1 \
+    --time-limit 1000 \
+    --accept application/json \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_text_chat-stream">`wx-ai text chat-stream`</a>
+Infer the next tokens for a given deployed model with a set of parameters. This operation will return the output tokens as a stream of events.
+
+```sh
+cpdctl wx-ai text chat-stream [command options]
+```
+
+#### Command options
+
+`--chat-template-kwargs` (generic map)
+:   Additional kwargs to pass to the chat template, described as a JSON Schema object. See the [JSON Schema reference](https://json-schema.org/learn/getting-started-step-by-step) for documentation about the format. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--frequency-penalty` (float64)
+:   Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. The default value is 0. The value must be less than 2. The value must be greater than -2.
+
+    The default value is `0`.
+
+`--guided-choice` (string)
+:   If specified, the output will be exactly one of the choices.
+
+`--guided-grammar` (string)
+:   If specified, the output will follow the context free grammar.
+
+`--guided-json` (generic map)
+:   If specified, the output will follow the JSON schema. See the [JSON Schema reference](https://json-schema.org/learn/getting-started-step-by-step) for documentation about the format. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--guided-regex` (string)
+:   If specified, the output will follow the regex pattern.
+
+`--include-reasoning` (bool)
+:   Whether to include 'reasoning_content' in the response. Default is 'true'.
+
+    The default value is `false`.
+
+`--logit-bias` (generic map)
+:   Increasing or decreasing probability of tokens being selected during generation; a positive bias makes a token more likely to appear, while a negative bias makes it less likely.
+
+`--logprobs` (bool)
+:   Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the content of message. The default value is false.
+
+    The default value is `false`.
+
+`--max-completion-tokens` (int64)
+:   The maximum number of tokens that can be generated in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length. Set to 0 for the model's configured max generated tokens. The default value is 1024.
+
+    The default value is `0`.
+
+`--max-tokens` (int64)
+:   The maximum number of tokens that can be generated in the chat completion. The total length of input tokens and generated tokens is limited by the model's context length. The default value is 1024.
+
+    The default value is `0`.
+
+`--messages` ([`TextChatMessages[]`](#cli-text-chat-messages-example-schema))
+:   Required. The messages for this chat session. The maximum length is 1000 items. The minimum length is 1 item.
+
+`--model` (string)
+:   This is an alias for 'model_id' and can be used instead of 'model_id'.
+
+The field 'model_id' is marked as mandatory but it can be replaced by the 'model' field for compatibility with other APIs.
+
+`--model-id` (string)
+:   Required. The model to use for the chat completion.
+
+Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-models.html?context=wx).
+
+`--moderations` ([`Moderations`](#cli-moderations-example-schema))
+:   Properties that control the moderations, for usages such as 'Hate and profanity' (HAP) and 'Personal identifiable information' (PII) filtering. This list can be extended with new types of moderations. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--n` (int64)
+:   How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep n as 1 to minimize costs. The default value is 1.
+
+    The default value is `0`.
+
+`--presence-penalty` (float64)
+:   Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. The default value is 0. The value must be less than 2. The value must be greater than -2.
+
+    The default value is `0`.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
 :   The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters. This option is mutually exclusive with '--project'.
+
+`--reasoning-effort` (string)
+:   A lower reasoning effort can result in faster responses, fewer tokens used, and shorter 'reasoning_content' in the responses. Supported values are 'low', 'medium', and 'high'. Allowable values are: low, medium, high.
 
 `--response-format` ([`TextChatResponseFormat`](#cli-text-chat-response-format-example-schema))
 :   The chat response format parameters.
+
+`--response-format-json-schema` ([`TextChatResponseFormatJSONSchema`](#cli-text-chat-response-format-json-schema-example-schema))
+:   User-defined JSON schema object with optional parameters to enforce structured output.
+
+**Important:** this field will only applied when 'response_format'.'type' is set to 'json_schema'. It should be a JSON string or a path to a JSON file prepended with @.
 
 `--response-format-type` (string)
 :   Used to enable JSON mode, which guarantees the message the model generates is valid JSON.
@@ -22377,6 +27548,11 @@ Please refer to the [list of models](https://dataplatform.cloud.ibm.com/docs/con
 
 `--stop` (string)
 :   Stop sequences are one or more strings which will cause the text generation to stop if/when they are produced as part of the output. Stop sequences encountered prior to the minimum number of tokens being generated will be ignored. The maximum length is 4 items. The minimum length is 0 items.
+
+`--stream` (bool)
+:   If set to true, this operation will return the output tokens as a stream of events, and usage is always included in the response.
+
+    The default value is `false`.
 
 `--temperature` (float64)
 :   What sampling temperature to use,. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
@@ -22421,26 +27597,37 @@ We generally recommend altering this or 'temperature' but not both. The default 
 
 ```sh
    cpdctl wx-ai text chat-stream \
-    --model-id exampleString \
-    --messages '[{"role": "assistant", "content": "exampleString", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
-    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
-    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --model-id meta-llama/llama-3-8b-instruct \
+    --messages '[{"role": "assistant", "content": "{\"type\":\"text\",\"text\":\"Where was the 2020 world series played?\"}", "name": "exampleString", "refusal": "exampleString", "tool_calls": [{"id": "exampleString", "type": "function", "function": {"name": "exampleString", "arguments": "exampleString"}}]}]' \
+    --model exampleString \
+    --space-id exampleString \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "granite_guardian": {"input": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}' \
     --tools '[{"type": "function", "function": {"name": "exampleString", "description": "exampleString", "parameters": {"anyKey": "anyValue"}}}]' \
-    --tool-choice-option exampleString \
+    --tool-choice-option auto \
     --tool-choice '{"type": "function", "function": {"name": "exampleString"}}' \
+    --guided-choice exampleString,anotherTestString \
+    --guided-regex exampleString \
+    --guided-grammar exampleString \
+    --guided-json '{"anyKey": "anyValue"}' \
+    --chat-template-kwargs '{"anyKey": "anyValue"}' \
     --frequency-penalty 0 \
+    --include-reasoning=true \
     --logit-bias '{"anyKey": "anyValue"}' \
     --logprobs=false \
     --top-logprobs 0 \
-    --max-tokens 1024 \
+    --max-completion-tokens 1024 \
+    --max-tokens 30 \
     --n 1 \
     --presence-penalty 0 \
-    --response-format '{"type": "json_object"}' \
-    --seed 41 \
-    --stop this,the \
-    --temperature 1 \
+    --reasoning-effort low \
+    --response-format '{"type": "text", "json_schema": {"name": "exampleString", "schema": {"anyKey": "anyValue"}, "strict": true}}' \
+    --seed 38 \
+    --stop exampleString,anotherTestString \
+    --stream=true \
+    --temperature 0.8 \
     --top-p 1 \
-    --time-limit 600000 \
+    --time-limit 0 \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_text_generate">`wx-ai text generate`</a>
@@ -22454,6 +27641,14 @@ cpdctl wx-ai text generate [command options]
 
 `--cpd-scope` (string)
 :   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--crypto` ([`CryptoInfo`](#cli-crypto-info-example-schema))
+:   To enable encryption, configure credentials for your chosen keys management service. For details, see [Encrypting inference requests](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-api-chat.html?context=wx&audience=wdp). It should be a JSON string or a path to a JSON file prepended with @.
+
+`--crypto-key-ref` (string)
+:   Identifier of the DEK in the chosen keys management service.
+* IBM Key Protect - full CRN (e.g. 'crn:v1:bluemix:public:kms:us-south:a/12345:<instance_id>:key:<root_key_id>:wdek:<ciphertext>') This field is required, but its exact format depends on the selected
+'keys_manager'. No strict pattern is enforced here - validation will be performed by the keys management service.
 
 `--input` (string)
 :   Required. The prompt to generate completions. Note: The method tokenizes the input internally. It is recommended not to leave any trailing spaces.
@@ -22558,7 +27753,8 @@ Depending on the users plan, and on the model being used, there may be an enforc
     --space-id exampleString \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --parameters '{"decoding_method": "greedy", "length_penalty": {"decay_factor": 2.5, "start_index": 5}, "max_new_tokens": 30, "min_new_tokens": 5, "random_seed": 1, "stop_sequences": ["fail"], "temperature": 0.8, "time_limit": 600000, "top_k": 50, "top_p": 0.5, "repetition_penalty": 1.5, "truncate_input_tokens": 1, "return_options": {"input_text": true, "generated_tokens": true, "input_tokens": true, "token_logprobs": true, "token_ranks": true, "top_n_tokens": 2}, "include_stop_sequence": true}' \
-    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}' \
+    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "granite_guardian": {"input": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}' \
+    --crypto '{"key_ref": "exampleString"}' \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_text_generate-stream">`wx-ai text generate-stream`</a>
@@ -22676,20 +27872,28 @@ Depending on the users plan, and on the model being used, there may be an enforc
     --space-id exampleString \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --parameters '{"decoding_method": "greedy", "length_penalty": {"decay_factor": 2.5, "start_index": 5}, "max_new_tokens": 30, "min_new_tokens": 5, "random_seed": 1, "stop_sequences": ["fail"], "temperature": 0.8, "time_limit": 600000, "top_k": 50, "top_p": 0.5, "repetition_penalty": 1.5, "truncate_input_tokens": 1, "return_options": {"input_text": true, "generated_tokens": true, "input_tokens": true, "token_logprobs": true, "token_ranks": true, "top_n_tokens": 2}, "include_stop_sequence": true}' \
-    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}' \
+    --moderations '{"hap": {"input": {"enabled": true, "threshold": 0}, "output": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "pii": {"input": {"enabled": true}, "output": {"enabled": true}, "mask": {"remove_entity_value": false}}, "granite_guardian": {"input": {"enabled": true, "threshold": 0}, "mask": {"remove_entity_value": false}}, "input_ranges": [{"start": 0, "end": 0}]}' \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_text_rerank">`wx-ai text rerank`</a>
 Rerank texts based on some queries.
 
 ```sh
-cpdctl wx-ai text rerank --model-id MODEL-ID --inputs (INPUTS | @INPUTS-FILE) --query QUERY --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS (--parameters-return-options PARAMETERS-RETURN-OPTIONS | @PARAMETERS-RETURN-OPTIONS-FILE)] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai text rerank --model-id MODEL-ID --inputs (INPUTS | @INPUTS-FILE) --query QUERY --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-truncate-input-tokens PARAMETERS-TRUNCATE-INPUT-TOKENS (--parameters-return-options PARAMETERS-RETURN-OPTIONS | @PARAMETERS-RETURN-OPTIONS-FILE)] [--crypto (CRYPTO | @CRYPTO-FILE) | --crypto-key-ref CRYPTO-KEY-REF] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
 `--cpd-scope` (string)
 :   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--crypto` ([`CryptoInfo`](#cli-crypto-info-example-schema))
+:   To enable encryption, configure credentials for your chosen keys management service. For details, see [Encrypting inference requests](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-api-chat.html?context=wx&audience=wdp). It should be a JSON string or a path to a JSON file prepended with @.
+
+`--crypto-key-ref` (string)
+:   Identifier of the DEK in the chosen keys management service.
+* IBM Key Protect - full CRN (e.g. 'crn:v1:bluemix:public:kms:us-south:a/12345:<instance_id>:key:<root_key_id>:wdek:<ciphertext>') This field is required, but its exact format depends on the selected
+'keys_manager'. No strict pattern is enforced here - validation will be performed by the keys management service.
 
 `--inputs` ([`RerankInput[]`](#cli-rerank-input-example-schema))
 :   Required. The rank input strings. The maximum length is 1000 items. The minimum length is 0 items.
@@ -22737,19 +27941,28 @@ If this value exceeds the 'maximum sequence length' (refer to the documentation 
     --space-id exampleString \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --parameters '{"truncate_input_tokens": 1, "return_options": {"top_n": 2, "inputs": false, "query": false}}' \
+    --crypto '{"key_ref": "exampleString"}' \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_text_tokenize">`wx-ai text tokenize`</a>
 The text tokenize operation allows you to check the conversion of provided input to tokens for a given model. It splits text into words or sub-words, which then are converted to ids through a look-up table (vocabulary). Tokenization allows the model to have a reasonable vocabulary size.
 
 ```sh
-cpdctl wx-ai text tokenize --model-id MODEL-ID --input INPUT --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-return-tokens=PARAMETERS-RETURN-TOKENS] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai text tokenize --model-id MODEL-ID --input INPUT --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-return-tokens=PARAMETERS-RETURN-TOKENS] [--crypto (CRYPTO | @CRYPTO-FILE) | --crypto-key-ref CRYPTO-KEY-REF] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
 `--cpd-scope` (string)
 :   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--crypto` ([`CryptoInfo`](#cli-crypto-info-example-schema))
+:   To enable encryption, configure credentials for your chosen keys management service. For details, see [Encrypting inference requests](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-api-chat.html?context=wx&audience=wdp). It should be a JSON string or a path to a JSON file prepended with @.
+
+`--crypto-key-ref` (string)
+:   Identifier of the DEK in the chosen keys management service.
+* IBM Key Protect - full CRN (e.g. 'crn:v1:bluemix:public:kms:us-south:a/12345:<instance_id>:key:<root_key_id>:wdek:<ciphertext>') This field is required, but its exact format depends on the selected
+'keys_manager'. No strict pattern is enforced here - validation will be performed by the keys management service.
 
 `--input` (string)
 :   Required. The input string to tokenize.
@@ -22786,6 +27999,549 @@ cpdctl wx-ai text tokenize --model-id MODEL-ID --input INPUT --version VERSION [
     --space-id exampleString \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --parameters '{"return_tokens": true}' \
+    --crypto '{"key_ref": "exampleString"}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_text-batch-jobs_create">`wx-ai text-batch-jobs create`</a>
+Submit a batch job for processing batch inferencing.
+
+```sh
+cpdctl wx-ai text-batch-jobs create --version VERSION {--text-batch-job-request (TEXT-BATCH-JOB-REQUEST | @TEXT-BATCH-JOB-REQUEST-FILE) | --text-batch-job-request-name TEXT-BATCH-JOB-REQUEST-NAME --text-batch-job-request-description TEXT-BATCH-JOB-REQUEST-DESCRIPTION (--text-batch-job-request-data-reference TEXT-BATCH-JOB-REQUEST-DATA-REFERENCE | @TEXT-BATCH-JOB-REQUEST-DATA-REFERENCE-FILE) --text-batch-job-request-space-id TEXT-BATCH-JOB-REQUEST-SPACE-ID --text-batch-job-request-project-id TEXT-BATCH-JOB-REQUEST-PROJECT-ID} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--text-batch-job-request` ([`TextBatchJobRequest`](#cli-text-batch-job-request-example-schema))
+:   Batch job creation request with data reference and metadata. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--text-batch-job-request-data-reference` ([`TextBatchLocationReference`](#cli-text-batch-location-reference-example-schema))
+:   Details about the 'data_asset' file location.
+
+To learn more about 'data_asset', see the documentation links accordingly:
+- <a href="https://cloud.ibm.com/apidocs/data-ai-common-core#createdataassetv2">Cloud</a>
+- <a href="https://cloud.ibm.com/apidocs/data-ai-common-core-cpd/data-ai-common-core-cpd#createdataassetv2">CPD</a>. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--text-batch-job-request-description` (string)
+:   Optional description of the batch job.
+
+`--text-batch-job-request-name` (string)
+:   The name of the batch job.
+
+`--text-batch-job-request-project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters.
+
+`--text-batch-job-request-space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters.
+
+##### Example
+
+```sh
+   cpdctl wx-ai text-batch-jobs create \
+    --text-batch-job-request '{"name": "batch-job-1", "description": "This is a batch job", "data_reference": {"type": "data_asset", "location": {"id": "9fab83da-98cb-4f18-a7ba-b6f0435c9673", "href": "/v2/assets/f47ac10b-58cc-4372-a567-0e02b2c3d479?project=63dc4cf1-252f-424b-b52d-5cdd9814987f"}}, "space_id": "3fc54cf1-252f-424b-b52d-5cdd9814987f"}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_text-batch-jobs_delete">`wx-ai text-batch-jobs delete`</a>
+Cancel or delete a batch job.
+
+```sh
+cpdctl wx-ai text-batch-jobs delete --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--purge=PURGE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--id` (string)
+:   Required. The 'id' is the identifier that was returned in the 'metadata.id' field of the request.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--purge` (bool)
+:   Set to 'false' to cancel the job while it is being processed, and 'true' to hard delete the job and its metadata.
+
+    The default value is `false`.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai text-batch-jobs delete \
+    --id exampleString \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --purge=true \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_text-batch-jobs_get">`wx-ai text-batch-jobs get`</a>
+Get a batch job.
+
+```sh
+cpdctl wx-ai text-batch-jobs get --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--id` (string)
+:   Required. The 'id' is the identifier that was returned in the 'metadata.id' field of the request.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai text-batch-jobs get \
+    --id exampleString \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_text-batch-jobs_get-result">`wx-ai text-batch-jobs get-result`</a>
+Download the content of a result batch file.
+
+```sh
+cpdctl wx-ai text-batch-jobs get-result --id ID --version VERSION [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--id` (string)
+:   Required. The 'id' is the identifier that was returned in the 'metadata.id' field of the request.
+
+`--output-file` (string)
+:   Filename/path to write the resulting output to.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai text-batch-jobs get-result \
+    --id exampleString \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01 \
+    --output-file tempdir/example-output.txt
+```
+## • <a name="wx-ai_text-batch-jobs_list">`wx-ai text-batch-jobs list`</a>
+Get a list of batch jobs for the specified space or project and specified status.
+
+```sh
+cpdctl wx-ai text-batch-jobs list --version VERSION [--start START] [--limit LIMIT] [--status validating | failed | in_progress | finalizing | completed | expired | cancelling | cancelled] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200. The default value is 100. The maximum value is 200. The minimum value is 1.
+
+    The default value is `0`.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
+
+`--status` (string)
+:   The status of the batch job. Possible values are: validating, failed, in_progress, finalizing, completed, expired, cancelling, cancelled. Allowable values are: validating, failed, in_progress, finalizing, completed, expired, cancelling, cancelled.
+
+##### Example
+
+```sh
+   cpdctl wx-ai text-batch-jobs list \
+    --start exampleString \
+    --limit 50 \
+    --status in_progress \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_text-classification_create">`wx-ai text-classification create`</a>
+Start a request to classify text from a document or an image (using OCR).
+
+```sh
+cpdctl wx-ai text-classification create --version VERSION {--document-reference (DOCUMENT-REFERENCE | @DOCUMENT-REFERENCE-FILE) | --document-reference-type connection_asset | container (--document-reference-connection DOCUMENT-REFERENCE-CONNECTION | @DOCUMENT-REFERENCE-CONNECTION-FILE) (--document-reference-location DOCUMENT-REFERENCE-LOCATION | @DOCUMENT-REFERENCE-LOCATION-FILE)} [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-ocr-mode disabled | enabled | forced --parameters-classification-mode exact | binary --parameters-auto-rotation-correction=PARAMETERS-AUTO-ROTATION-CORRECTION --parameters-languages PARAMETERS-LANGUAGES (--parameters-semantic-config PARAMETERS-SEMANTIC-CONFIG | @PARAMETERS-SEMANTIC-CONFIG-FILE)] [--custom CUSTOM | @CUSTOM-FILE] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--custom` (generic map)
+:   User defined properties specified as key-value pairs. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--document-reference` ([`TextClassificationDataReference`](#cli-text-classification-data-reference-example-schema))
+:   A reference to data. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--document-reference-connection` ([`CosDataConnection`](#cli-cos-data-connection-example-schema))
+:   Contains a set of location fields specific to each data source. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--document-reference-location` ([`CosDataLocation`](#cli-cos-data-location-example-schema))
+:   Contains a set of fields specific to each connection. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--document-reference-type` (string)
+:   The data source type. Allowable values are: connection_asset, container.
+
+`--parameters` ([`TextClassificationParameters`](#cli-text-classification-parameters-example-schema))
+:   The parameters for the text extraction. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--parameters-auto-rotation-correction` (bool)
+:   Should the service attempt to fix a rotated page or image. The default value is false.
+
+    The default value is `false`.
+
+`--parameters-classification-mode` (string)
+:   The classification mode. The value 'exact' gives the exact schema name the the document is classified to. The option 'binary'' only gives whether the document is classified to a known schema or not. The default value is exact. Allowable values are: exact, binary.
+
+`--parameters-languages` (string)
+:   Set of languages to be expected in the document. The language codes follow 'ISO 639' where possible. See the documentation for the currently supported languages. The maximum length is 100 items. The minimum length is 1 item.
+
+`--parameters-ocr-mode` (string)
+:   If OCR should be used when processing a document. An empty value allows the service to select the best option for your processing mode.
+- 'enabled': OCR is run on embedded images, OCR is only run if no programmatic text could be extracted from the area.
+- 'disabled': OCR is not run, no information is extracted from images or scanned documents.
+- 'forced': Document processing will take a picture of the page and run OCR across it, this applies to all documents even purely programmatic ones. Allowable values are: disabled, enabled, forced.
+
+`--parameters-semantic-config` ([`TextExtractionSemanticConfig`](#cli-text-extraction-semantic-config-example-schema))
+:   Properties related to semantic config. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai text-classification create \
+    --document-reference '{"type": "connection_asset", "connection": {"id": "exampleString"}, "location": {"file_name": "/results/", "bucket": "exampleString", "path": "exampleString"}}' \
+    --parameters '{"ocr_mode": "disabled", "classification_mode": "exact", "auto_rotation_correction": false, "languages": ["exampleString","anotherTestString"], "semantic_config": {"enable_text_hints": true, "enable_schema_kvp": true, "grounding_mode": "precise", "schemas_merge_strategy": "merge", "force_schema_name": "None", "schemas": [{"document_type": "exampleString", "document_description": "exampleString", "fields": {"type": "exampleString", "description": "exampleString", "columns": {"description": "exampleString", "example": "exampleString", "available_options": ["exampleString","anotherTestString"]}}, "pages": {"page_description": "exampleString", "slices": [{"fields": {"anyKey": "anyValue"}, "normalized_bbox": [0,0]}]}, "additional_prompt_instructions": "exampleString"}], "default_model_name": "exampleString", "task_model_name_override": {}}}' \
+    --custom '{"anyKey": "anyValue"}' \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_text-classification_delete">`wx-ai text-classification delete`</a>
+Cancel the specified text classification request and delete any associated results.
+
+```sh
+cpdctl wx-ai text-classification delete --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--hard-delete` (bool)
+:   Set to true in order to also delete the job or request metadata.
+
+    The default value is `false`.
+
+`--id` (string)
+:   Required. The identifier of the classification request.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai text-classification delete \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --hard-delete=true \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_text-classification_get">`wx-ai text-classification get`</a>
+Retrieve the text classification request with the specified identifier.
+
+Note that there is a retention period of 2 days. If this retention period is exceeded then the request will be deleted and the results no longer available. In this case this operation will return `404`.
+
+```sh
+cpdctl wx-ai text-classification get --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--id` (string)
+:   Required. The identifier of the classification request.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai text-classification get \
+    --id exampleString \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_text-classification_list">`wx-ai text-classification list`</a>
+Retrieve the list of text classification requests for the specified space or project.
+
+This operation does not save the history, any requests that were deleted or purged will not appear in this list.
+
+```sh
+cpdctl wx-ai text-classification list --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--all-pages` (bool)
+:   Invoke multiple requests to display all pages of the collection for text-classification-list.
+
+    The default value is `false`.
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--limit` (int64)
+:   How many resources should be returned. By default limit is 100. Max limit allowed is 200. The default value is 100. The maximum value is 200. The minimum value is 1.
+
+    The default value is `0`.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' query parameter has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+`--start` (string)
+:   Token required for token-based pagination. This token cannot be determined by end user. It is generated by the service and it is set in the href available in the 'next' field.
+
+##### Example
+
+```sh
+   cpdctl wx-ai text-classification list \
+    --space-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id a77190a2-f52d-4f2a-be3d-7867b5f46edc \
+    --start exampleString \
+    --limit 50 \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_text-detection_detect-from-content">`wx-ai text-detection detect-from-content`</a>
+This operation is used mainly for Hate And Profanity (`HAP`) and Personal Identifiable Information (`PII`) filtering.
+
+This is a detection-only end-point. It supports natural language input and output and returns the result of the detection. It can be configured for HAP, PII, or any combination with other available detectors.
+
+```sh
+cpdctl wx-ai text-detection detect-from-content --input INPUT --detectors (DETECTORS | @DETECTORS-FILE) --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--detectors` ([`TextDetectionContentDetectors`](#cli-text-detection-content-detectors-example-schema))
+:   Required. The detectors to use, these can be IBM provided 'HAP' or 'PII' detectors or a custom content detector. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--input` (string)
+:   Required. The text to be examined.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai text-detection detect-from-content \
+    --input 'my text to check' \
+    --detectors '{"hap": {"threshold": 0.5}, "pii": {"anyKey": "anyValue"}, "granite_guardian": {"threshold": 0.5}}' \
+    --space-id exampleString \
+    --project-id 63dc4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_text-detection_detect-from-context">`wx-ai text-detection detect-from-context`</a>
+This operation supports `context relevance` and `faithfulness` (or `groundedness`).
+
+The `input` is analyzed, along with the context information, and the model will return any detections that it found.
+
+```sh
+cpdctl wx-ai text-detection detect-from-context --input INPUT --detectors (DETECTORS | @DETECTORS-FILE) --context-type docs --context CONTEXT --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--context` (string)
+:   Required. Context documents. The maximum length is 100 items. The minimum length is 1 item.
+
+`--context-type` (string)
+:   Required. The type of the context. Allowable values are: docs.
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--detectors` (map[string]map[string]string)
+:   Required. The detectors to use, this is a map of 'detector-name' with a map of optional key/value pairs. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--input` (string)
+:   Required. The text to be examined.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai text-detection detect-from-context \
+    --input exampleString \
+    --detectors '{}' \
+    --context-type docs \
+    --context https://en.wikipedia.org/wiki/IBM,https://research.ibm.com/ \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_text-detection_detect-from-generated-text">`wx-ai text-detection detect-from-generated-text`</a>
+This operation supports `answer relevance`.
+
+The `prompt` is analyzed, along with the `generated text`, and the model will return any detections that it found.
+
+```sh
+cpdctl wx-ai text-detection detect-from-generated-text --prompt PROMPT --generated-text GENERATED-TEXT --detectors (DETECTORS | @DETECTORS-FILE) --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--detectors` (map[string]map[string]string)
+:   Required. The detectors to use, this is a map of 'detector-name' with a map of optional key/value pairs. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--generated-text` (string)
+:   Required. The generated text.
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   The project that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--project'.
+
+`--prompt` (string)
+:   Required. The text prompt.
+
+`--space` (string)
+:   Deployment space name. This option is mutually exclusive with '--space-id'.
+
+`--space-id` (string)
+:   The space that contains the resource. Either 'space_id' or 'project_id' has to be given. Length must be 36 characters. This option is mutually exclusive with '--space'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai text-detection detect-from-generated-text \
+    --prompt exampleString \
+    --generated-text exampleString \
+    --detectors '{}' \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
+    --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_text-extraction_create">`wx-ai text-extraction create`</a>
@@ -22798,15 +28554,6 @@ cpdctl wx-ai text-extraction create [command options]
 ```
 
 #### Command options
-
-`--assembly-json` (generic map)
-:   Set this as an empty object to speify 'json' output.
-
-Note that this is not strictly required because if an
-'assembly_md' object is not found then the default will be 'json'. The default value is {}.
-
-`--assembly-md` (generic map)
-:   Set this as an empty object to specify 'markdown' output.
 
 `--cpd-scope` (string)
 :   CPD space or project scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -22825,6 +28572,48 @@ Note that this is not strictly required because if an
 
 `--document-reference-type` (string)
 :   The data source type. Allowable values are: connection_asset.
+
+`--parameters` ([`TextExtractionParameters`](#cli-text-extraction-parameters-example-schema))
+:   The parameters for the text extraction. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--parameters-auto-rotation-correction` (bool)
+:   Should the service attempt to fix a rotated page or image. The default value is false.
+
+    The default value is `false`.
+
+`--parameters-create-embedded-images` (string)
+:   If the service should return embedded images in the output markdown and JSON formats. The default value is disabled. Allowable values are: disabled, enabled_placeholder, enabled_text, enabled_verbalization, enabled_verbalization_all.
+
+`--parameters-kvp-mode` (string)
+:   Which version of KVP should be used when processing, if not set then KVP is disabled. See the documentation for more information about the available modes. Allowable values are: generic_with_semantic.
+
+`--parameters-languages` (string)
+:   Set of languages to be expected in the document. The language codes follow 'ISO 639' where possible. See the documentation for the currently supported languages. The maximum length is 100 items. The minimum length is 1 item.
+
+`--parameters-mode` (string)
+:   Which processing mode to use for this request. The default value is standard. Allowable values are: standard, high_quality.
+
+`--parameters-ocr-mode` (string)
+:   If OCR should be used when processing a document. An empty value allows the service to select the best option for your processing mode.
+- 'enabled': OCR is run on embedded images, OCR is only run if no programmatic text could be extracted from the area.
+- 'disabled': OCR is not run, no information is extracted from images or scanned documents.
+- 'forced': Document processing will take a picture of the page and run OCR across it, this applies to all documents even purely programmatic ones. Allowable values are: disabled, enabled, forced.
+
+`--parameters-output-dpi` (float64)
+:   The DPI for extracted images. The default value is 72.
+
+    The default value is `0`.
+
+`--parameters-output-tokens` (bool)
+:   Disables returning the individual tokens. The default value is true.
+
+    The default value is `false`.
+
+`--parameters-requested-outputs` (string)
+:   A list of requested outputs. The default value is ["plain_text"]. Allowable list items are: assembly, html, md, plain_text, page_images.
+
+`--parameters-semantic-config` ([`TextExtractionSemanticConfig`](#cli-text-extraction-semantic-config-example-schema))
+:   Properties related to semantic config. It should be a JSON string or a path to a JSON file prepended with @.
 
 `--project` (string)
 :   Project name. This option is mutually exclusive with '--project-id'.
@@ -22850,24 +28639,13 @@ Note that this is not strictly required because if an
 `--space-id` (string)
 :   The space that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters. This option is mutually exclusive with '--space'.
 
-`--steps` ([`TextExtractionSteps`](#cli-text-extraction-steps-example-schema))
-:   The steps for the text extraction pipeline.
-
-`--steps-ocr` ([`TextExtractionStepOcr`](#cli-text-extraction-step-ocr-example-schema))
-:   The OCR text extraction step.
-
-`--steps-tables-processing` ([`TextExtractionStepTablesProcessing`](#cli-text-extraction-step-tables-processing-example-schema))
-:   The tables processing text extraction step.
-
 ##### Example
 
 ```sh
    cpdctl wx-ai text-extraction create \
-    --document-reference '{"type": "connection_asset", "connection": {"id": "6f5688fd-f3bf-42c2-a18b-49c0d8a1920d"}, "location": {"file_name": "files/document.pdf", "bucket": "exampleString"}}' \
-    --results-reference '{"type": "connection_asset", "connection": {"id": "6f5688fd-f3bf-42c2-a18b-49c0d8a1920d"}, "location": {"file_name": "files/document.pdf", "bucket": "exampleString"}}' \
-    --steps '{"ocr": {"languages_list": ["exampleString","anotherTestString"]}, "tables_processing": {"enabled": true}}' \
-    --assembly-json '{"anyKey": "anyValue"}' \
-    --assembly-md '{"anyKey": "anyValue"}' \
+    --document-reference '{"type": "connection_asset", "connection": {"id": "6f5688fd-f3bf-42c2-a18b-49c0d8a1920d"}, "location": {"file_name": "files/document.pdf", "bucket": "exampleString", "path": "exampleString"}}' \
+    --results-reference '{"type": "connection_asset", "connection": {"id": "6f5688fd-f3bf-42c2-a18b-49c0d8a1920d"}, "location": {"file_name": "files/document.pdf", "bucket": "exampleString", "path": "exampleString"}}' \
+    --parameters '{"requested_outputs": ["assembly","html","md","plain_text","page_images"], "mode": "standard", "ocr_mode": "disabled", "languages": ["exampleString","anotherTestString"], "auto_rotation_correction": false, "create_embedded_images": "disabled", "output_dpi": 72, "output_tokens": true, "kvp_mode": "generic_with_semantic", "semantic_config": {"enable_text_hints": true, "enable_schema_kvp": true, "grounding_mode": "precise", "schemas_merge_strategy": "merge", "force_schema_name": "None", "schemas": [{"document_type": "exampleString", "document_description": "exampleString", "fields": {"type": "exampleString", "description": "exampleString", "columns": {"description": "exampleString", "example": "exampleString", "available_options": ["exampleString","anotherTestString"]}}, "pages": {"page_description": "exampleString", "slices": [{"fields": {"anyKey": "anyValue"}, "normalized_bbox": [0,0]}]}, "additional_prompt_instructions": "exampleString"}], "default_model_name": "exampleString", "task_model_name_override": {}}}' \
     --custom '{"anyKey": "anyValue"}' \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
     --space-id exampleString \
@@ -22877,7 +28655,7 @@ Note that this is not strictly required because if an
 Cancel the specified text extraction request and delete any associated results.
 
 ```sh
-cpdctl wx-ai text-extraction delete --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai text-extraction delete --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -22921,7 +28699,7 @@ Retrieve the text extraction request with the specified identifier.
 Note that there is a retention period of 2 days. If this retention period is exceeded then the request will be deleted and the results no longer available. In this case this operation will return `404`.
 
 ```sh
-cpdctl wx-ai text-extraction get --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai text-extraction get --id ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -22959,7 +28737,7 @@ Retrieve the list of text extraction requests for the specified space or project
 This operation does not save the history, any requests that were deleted or purged will not appear in this list.
 
 ```sh
-cpdctl wx-ai text-extraction list --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai text-extraction list --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -23006,7 +28784,7 @@ cpdctl wx-ai text-extraction list --version VERSION [{--space-id SPACE-ID | --sp
 Generate forecasts, or predictions for future time points, given historical time series data.
 
 ```sh
-cpdctl wx-ai time-series forecast --model-id MODEL-ID --data (DATA | @DATA-FILE) --version VERSION {--schema (SCHEMA | @SCHEMA-FILE) | --schema-timestamp-column SCHEMA-TIMESTAMP-COLUMN --schema-id-columns SCHEMA-ID-COLUMNS --schema-freq SCHEMA-FREQ --schema-target-columns SCHEMA-TARGET-COLUMNS} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-prediction-length PARAMETERS-PREDICTION-LENGTH] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai time-series forecast --model-id MODEL-ID --data (DATA | @DATA-FILE) --version VERSION {--schema (SCHEMA | @SCHEMA-FILE) | --schema-timestamp-column SCHEMA-TIMESTAMP-COLUMN --schema-id-columns SCHEMA-ID-COLUMNS --schema-freq SCHEMA-FREQ --schema-target-columns SCHEMA-TARGET-COLUMNS} [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--parameters (PARAMETERS | @PARAMETERS-FILE) | --parameters-prediction-length PARAMETERS-PREDICTION-LENGTH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -23025,7 +28803,7 @@ Note that the example payloads shown are for illustration purposes only. An actu
 `--model-id` (string)
 :   Required. The model to be used for generating a forecast. The maximum length is 256 characters. The minimum length is 1 character.
 
-`--parameters` ([`TSForecastParameters`](#cli-ts-forecast-parameters-example-schema))
+`--parameters` ([`TSCommonForecastParameters`](#cli-ts-common-forecast-parameters-example-schema))
 :   The parameters for the forecast request.
 
 `--parameters-prediction-length` (int64)
@@ -23077,7 +28855,7 @@ Note that the example payloads shown are for illustration purposes only. An actu
 wx-ai-training-create-command-long-description
 
 ```sh
-cpdctl wx-ai training create [command options]
+cpdctl wx-ai training create --name NAME --version VERSION {--results-reference (RESULTS-REFERENCE | @RESULTS-REFERENCE-FILE) | --results-reference-id RESULTS-REFERENCE-ID --results-reference-type connection_asset | container (--results-reference-connection RESULTS-REFERENCE-CONNECTION | @RESULTS-REFERENCE-CONNECTION-FILE) (--results-reference-location RESULTS-REFERENCE-LOCATION | @RESULTS-REFERENCE-LOCATION-FILE)} [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--description DESCRIPTION] [--tags TAGS] [--training-data-references TRAINING-DATA-REFERENCES | @TRAINING-DATA-REFERENCES-FILE] [--custom CUSTOM | @CUSTOM-FILE] [--auto-update-model=AUTO-UPDATE-MODEL] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -23109,57 +28887,6 @@ cpdctl wx-ai training create [command options]
 
 `--project-id` (string)
 :   The project that contains the resource. Either 'space_id' or 'project_id' has to be given. The maximum length is 36 characters. The minimum length is 36 characters. This option is mutually exclusive with '--project'.
-
-`--prompt-tuning` ([`PromptTuning`](#cli-prompt-tuning-example-schema))
-:   Properties to control the prompt tuning.
-
-`--prompt-tuning-accumulate-steps` (int64)
-:   Number of steps to be used for gradient accumulation. Gradient accumulation refers to a method of collecting gradient for configured number of steps instead of updating the model variables at every step and then applying the update to model variables. This can be used as a tool to overcome smaller batch size limitation. Often also referred in conjunction with "effective batch size". The default value is 16. The maximum value is 128. The minimum value is 1.
-
-    The default value is `0`.
-
-`--prompt-tuning-base-model` ([`BaseModel`](#cli-base-model-example-schema))
-:   The model id of the base model for this job.
-
-`--prompt-tuning-batch-size` (int64)
-:   The batch size is a number of samples processed before the model is updated. The default value is 16. The maximum value is 16. The minimum value is 1.
-
-    The default value is `0`.
-
-`--prompt-tuning-init-method` (string)
-:   The 'text' method requires 'init_text' to be set. The default value is random. Allowable values are: random, text.
-
-`--prompt-tuning-init-text` (string)
-:   Initialization text to be used if 'init_method' is set to 'text' otherwise this will be ignored.
-
-`--prompt-tuning-learning-rate` (float64)
-:   Learning rate to be used while tuning prompt vectors. The default value is 0.3. The maximum value is 0.5. The minimum value is 0.01.
-
-    The default value is `0`.
-
-`--prompt-tuning-max-input-tokens` (int64)
-:   Maximum length of input tokens being considered. The default value is 256. The maximum value is 256. The minimum value is 1.
-
-    The default value is `0`.
-
-`--prompt-tuning-max-output-tokens` (int64)
-:   Maximum length of output tokens being predicted. The default value is 128. The maximum value is 128. The minimum value is 1.
-
-    The default value is `0`.
-
-`--prompt-tuning-num-epochs` (int64)
-:   Number of epochs to tune the prompt vectors, this affects the quality of the trained model. The default value is 20. The maximum value is 50. The minimum value is 1.
-
-    The default value is `0`.
-
-`--prompt-tuning-task-id` (string)
-:   The task that is targeted for this model.
-
-`--prompt-tuning-tuning-type` (string)
-:   Type of Peft (Parameter-Efficient Fine-Tuning) config to build. The default value is prompt_tuning. Allowable values are: prompt_tuning.
-
-`--prompt-tuning-verbalizer` (string)
-:   wx-ai-training-create-prompt-tuning-verbalizer-flag-description
 
 `--results-reference` ([`ResultsLocation`](#cli-results-location-example-schema))
 :   The training results. Normally this is specified as 'type=container' which
@@ -23194,23 +28921,22 @@ See here for [details about specifying connections](#datareferences).
 
 ```sh
    cpdctl wx-ai training create \
-    --name my-prompt-tune-training \
+    --name my-prompt-training \
     --results-reference '{"id": "exampleString", "type": "container", "connection": {}, "location": {}}' \
-    --space-id exampleString \
+    --space-id 3fc54cf1-252f-424b-b52d-5cdd9814987f \
     --project-id 12ac4cf1-252f-424b-b52d-5cdd9814987f \
-    --description exampleString \
-    --tags exampleString,anotherTestString \
-    --prompt-tuning '{"base_model": {"model_id": "google/flan-t5-xl"}, "task_id": "classification", "tuning_type": "prompt_tuning", "num_epochs": 30, "learning_rate": 0.4, "accumulate_steps": 3, "verbalizer": "rte { 0 : entailment, 1 : not entailment } {{input}}", "batch_size": 10, "max_input_tokens": 100, "max_output_tokens": 100, "init_method": "text", "init_text": "exampleString"}' \
+    --description 'My prompt training.' \
+    --tags t1,t2 \
     --training-data-references '[{"id": "tune1_data.json", "type": "container", "connection": {}, "location": {}, "schema": {"id": "t1", "name": "Tasks", "fields": [{"anyKey": "anyValue"},{"anotherAnyKey": "anotherAnyValue"}], "type": "struct"}}]' \
     --custom '{"anyKey": "anyValue"}' \
-    --auto-update-model=true \
+    --auto-update-model=false \
     --version 2019-01-01
 ```
 ## • <a name="wx-ai_training_delete">`wx-ai training delete`</a>
 Cancel the specified training and remove it.
 
 ```sh
-cpdctl wx-ai training delete --training-id TRAINING-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai training delete --training-id TRAINING-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -23252,7 +28978,7 @@ cpdctl wx-ai training delete --training-id TRAINING-ID --version VERSION [{--spa
 Retrieve the training with the specified identifier.
 
 ```sh
-cpdctl wx-ai training get --training-id TRAINING-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai training get --training-id TRAINING-ID --version VERSION [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -23288,7 +29014,7 @@ cpdctl wx-ai training get --training-id TRAINING-ID --version VERSION [{--space-
 Retrieve the list of trainings for the specified space or project.
 
 ```sh
-cpdctl wx-ai training list --version VERSION [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--state queued | pending | running | storing | completed | failed | canceled] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai training list --version VERSION [--start START | --all-pages] [--limit LIMIT] [--total-count=TOTAL-COUNT] [--tag-value TAG-VALUE] [--state queued | pending | running | storing | completed | failed | canceled] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -23379,7 +29105,7 @@ cpdctl wx-ai training wait --training-id TRAINING_ID [{--space-id SPACE-ID | --s
 This retrieves the details of an utility agent tool and contains information required for running the tool. Providing authentication and configuration params may return additional details.
 
 ```sh
-cpdctl wx-ai utility-agent-tools get --tool-id TOOL-ID --version VERSION [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai utility-agent-tools get --tool-id TOOL-ID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -23398,7 +29124,7 @@ cpdctl wx-ai utility-agent-tools get --tool-id TOOL-ID --version VERSION [--regi
 This retrieves the complete list of supported utility agent tools and contains information required for running each tool.
 
 ```sh
-cpdctl wx-ai utility-agent-tools list --version VERSION [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai utility-agent-tools list --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 ##### Example
@@ -23413,15 +29139,15 @@ This runs a utility agent tool given an input and optional configuration paramet
 Some tools can choose to tailor the response based on the access token identity.
 
 ```sh
-cpdctl wx-ai utility-agent-tools run --version VERSION {--wx-utility-agent-tools-run-request (WX-UTILITY-AGENT-TOOLS-RUN-REQUEST | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-FILE) | --wx-utility-agent-tools-run-request-tool-name WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-TOOL-NAME --wx-utility-agent-tools-run-request-input WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-INPUT (--wx-utility-agent-tools-run-request-config WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG-FILE)} [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai utility-agent-tools run --version VERSION {--wx-utility-agent-tools-run-request (WX-UTILITY-AGENT-TOOLS-RUN-REQUEST | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-FILE) | --wx-utility-agent-tools-run-request-tool-name WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-TOOL-NAME --wx-utility-agent-tools-run-request-input WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-INPUT (--wx-utility-agent-tools-run-request-config WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG-FILE)} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--wx-utility-agent-tools-run-request` ([`WxUtilityAgentToolsRunRequest`](#cli-wx-utility-agent-tools-run-request-example-schema))
+`--wx-utility-agent-tools-run-request` (string)
 :   null It can also be a path to a JSON file.
 
-`--wx-utility-agent-tools-run-request-config` (generic map)
+`--wx-utility-agent-tools-run-request-config` (string)
 :   Optional configuration options that can be passed for some tools. This must match the config schema for that tool. It can also be a path to a JSON file.
 
 `--wx-utility-agent-tools-run-request-input` (string)
@@ -23443,7 +29169,7 @@ This runs a utility agent tool given an input and optional configuration paramet
 Some tools can choose to tailor the response based on the access token identity.
 
 ```sh
-cpdctl wx-ai utility-agent-tools run-by-name --tool-id TOOL-ID --version VERSION {--wx-utility-agent-tools-run-request (WX-UTILITY-AGENT-TOOLS-RUN-REQUEST | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-FILE) | --wx-utility-agent-tools-run-request-tool-name WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-TOOL-NAME --wx-utility-agent-tools-run-request-input WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-INPUT (--wx-utility-agent-tools-run-request-config WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG-FILE)} [--region REGION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl wx-ai utility-agent-tools run-by-name --tool-id TOOL-ID --version VERSION {--wx-utility-agent-tools-run-request (WX-UTILITY-AGENT-TOOLS-RUN-REQUEST | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-FILE) | --wx-utility-agent-tools-run-request-tool-name WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-TOOL-NAME --wx-utility-agent-tools-run-request-input WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-INPUT (--wx-utility-agent-tools-run-request-config WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG | @WX-UTILITY-AGENT-TOOLS-RUN-REQUEST-CONFIG-FILE)} [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -23451,10 +29177,10 @@ cpdctl wx-ai utility-agent-tools run-by-name --tool-id TOOL-ID --version VERSION
 `--tool-id` (string)
 :   Required. Tool name. 
 
-`--wx-utility-agent-tools-run-request` ([`WxUtilityAgentToolsRunRequest`](#cli-wx-utility-agent-tools-run-request-example-schema))
+`--wx-utility-agent-tools-run-request` (string)
 :   null It can also be a path to a JSON file.
 
-`--wx-utility-agent-tools-run-request-config` (generic map)
+`--wx-utility-agent-tools-run-request-config` (string)
 :   Optional configuration options that can be passed for some tools. This must match the config schema for that tool. It can also be a path to a JSON file.
 
 `--wx-utility-agent-tools-run-request-input` (string)
@@ -23469,6 +29195,275 @@ cpdctl wx-ai utility-agent-tools run-by-name --tool-id TOOL-ID --version VERSION
    cpdctl wx-ai utility-agent-tools run-by-name \
     --tool-id exampleString \
     --wx-utility-agent-tools-run-request '{"tool_name": "GoogleSearch", "input": "What is a project?", "config": {"anyKey": "anyValue"}}' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_vector-indexes_create">`wx-ai vector-indexes create`</a>
+This creates a new vector index with the provided parameters.
+
+```sh
+cpdctl wx-ai vector-indexes create {--project-id PROJECT-ID | --project PROJECT-NAME} --name NAME --data-assets DATA-ASSETS --store (STORE | @STORE-FILE) --version VERSION {--settings (SETTINGS | @SETTINGS-FILE) | --settings-chunk-size SETTINGS-CHUNK-SIZE --settings-chunk-overlap SETTINGS-CHUNK-OVERLAP --settings-top-k SETTINGS-TOP-K --settings-split-pdf-pages=SETTINGS-SPLIT-PDF-PAGES --settings-rerank=SETTINGS-RERANK --settings-embedding-model-id SETTINGS-EMBEDDING-MODEL-ID (--settings-schema-fields SETTINGS-SCHEMA-FIELDS | @SETTINGS-SCHEMA-FIELDS-FILE)} [--description DESCRIPTION] [--sample-questions SAMPLE-QUESTIONS] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--data-assets` (string)
+:   Required. The IDs of the associated data assets used in the vector index. 
+
+`--description` (string)
+:   An optional description for the vector index asset. 
+
+`--name` (string)
+:   Required. Name used to display the vector index. 
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   Required. [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.  This option is mutually exclusive with '--project'.
+
+`--sample-questions` (string)
+:   Frequently asked questions. The maximum length is 6 items.
+
+`--settings` ([`WxVectorIndexTransactionalPostSettings`](#cli-wx-vector-index-transactional-post-settings-example-schema))
+:   null It should be a JSON string or a path to a JSON file prepended with @.
+
+`--settings-chunk-overlap` (float64)
+:   The number of characters to overlap for chunking data. The maximum value is 2000. The minimum value is 0.
+
+    The default value is `0`.
+
+`--settings-chunk-size` (float64)
+:   The number of text (or tokens) that are grouped together before converting into a vector. The maximum value is 10000. The minimum value is 100.
+
+    The default value is `0`.
+
+`--settings-embedding-model-id` (string)
+:    
+
+`--settings-rerank` (bool)
+:   wx-ai-vector-indexes-create-settings-rerank-flag-description
+
+    The default value is `false`.
+
+`--settings-schema-fields` ([`ExternalStoreSettingsSchemaFields`](#cli-external-store-settings-schema-fields-example-schema))
+:   null It should be a JSON string or a path to a JSON file prepended with @.
+
+`--settings-split-pdf-pages` (bool)
+:   wx-ai-vector-indexes-create-settings-split-pdf-pages-flag-description
+
+    The default value is `false`.
+
+`--settings-top-k` (float64)
+:   number of most similar results to retrieve (lower values lead to greater similarity between the question and answer). The maximum value is 10. The minimum value is 1.
+
+    The default value is `0`.
+
+`--store` (interface{})
+:   Required. null It should be a JSON string or a path to a JSON file prepended with @.
+
+##### Example
+
+```sh
+   cpdctl wx-ai vector-indexes create \
+    --project-id exampleString \
+    --name 'My vector index' \
+    --data-assets 713259df-0540-4301-982e-693a81da462c,713259df-0540-4301-982e-693a81da573d \
+    --store "exampleString" \
+    --settings '{"chunk_size": 100, "chunk_overlap": 0, "top_k": 1, "split_pdf_pages": true, "rerank": true, "embedding_model_id": "sentence-transformers/all-minilm-l6-v2", "schema_fields": {"document_name": "document_name", "text": "text", "page_number": "page", "vector_query": "vector", "document_url": "documentURL"}}' \
+    --description 'My first vector index' \
+    --sample-questions 'summarize the document, name of the author' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_vector-indexes_delete">`wx-ai vector-indexes delete`</a>
+This deletes a vector index with the given id.
+
+```sh
+cpdctl wx-ai vector-indexes delete {--project-id PROJECT-ID | --project PROJECT-NAME} --index-id INDEX-ID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--index-id` (string)
+:   Required. Vector index ID. 
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   Required. [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.  This option is mutually exclusive with '--project'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai vector-indexes delete \
+    --project-id exampleString \
+    --index-id exampleString \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_vector-indexes_get">`wx-ai vector-indexes get`</a>
+This retrieves a vector index with the given id.
+
+```sh
+cpdctl wx-ai vector-indexes get {--project-id PROJECT-ID | --project PROJECT-NAME} --index-id INDEX-ID --version VERSION [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--index-id` (string)
+:   Required. Vector index ID. 
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   Required. [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.  This option is mutually exclusive with '--project'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai vector-indexes get \
+    --project-id exampleString \
+    --index-id exampleString \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_vector-indexes_update">`wx-ai vector-indexes update`</a>
+This updates a vector index with the given id.
+
+```sh
+cpdctl wx-ai vector-indexes update [command options]
+```
+
+#### Command options
+
+`--build` ([`WxVectorIndexPatchBuild`](#cli-wx-vector-index-patch-build-example-schema))
+:   The associated build to process the data for external vector stores. It should be a JSON string or a path to a JSON file prepended with @.
+
+`--build-job-id` (string)
+:   The ID of the associated job run. 
+
+`--build-notebook-id` (string)
+:   The ID of the associated notebook. 
+
+`--cpd-scope` (string)
+:   CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--data-assets` (string)
+:   The IDs of the associated data assets used in the vector index. 
+
+`--description` (string)
+:   An optional description for the vector index asset. 
+
+`--index-id` (string)
+:   Required. Vector index ID. 
+
+`--name` (string)
+:   Name used to display the vector index. 
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   Required. [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.  This option is mutually exclusive with '--project'.
+
+`--sample-questions` (string)
+:   Frequently asked questions. The maximum length is 6 items.
+
+`--settings` ([`WxVectorIndexPatchSettings`](#cli-wx-vector-index-patch-settings-example-schema))
+:   null It should be a JSON string or a path to a JSON file prepended with @.
+
+`--settings-chunk-overlap` (float64)
+:   The number of characters to overlap for chunking data. The maximum value is 2000. The minimum value is 0.
+
+    The default value is `0`.
+
+`--settings-chunk-size` (float64)
+:   The number of text (or tokens) that are grouped together before converting into a vector. The maximum value is 10000. The minimum value is 100.
+
+    The default value is `0`.
+
+`--settings-embedding-model-id` (string)
+:    
+
+`--settings-rerank` (bool)
+:   wx-ai-vector-indexes-update-settings-rerank-flag-description
+
+    The default value is `false`.
+
+`--settings-schema-fields` ([`ExternalStoreSettingsSchemaFields`](#cli-external-store-settings-schema-fields-example-schema))
+:   null It should be a JSON string or a path to a JSON file prepended with @.
+
+`--settings-split-pdf-pages` (bool)
+:   wx-ai-vector-indexes-update-settings-split-pdf-pages-flag-description
+
+    The default value is `false`.
+
+`--settings-top-k` (float64)
+:   number of most similar results to retrieve (lower values lead to greater similarity between the question and answer). The maximum value is 10. The minimum value is 1.
+
+    The default value is `0`.
+
+`--status` (string)
+:   The status of the vector index. 
+
+`--store` (interface{})
+:   null It should be a JSON string or a path to a JSON file prepended with @.
+
+##### Example
+
+```sh
+   cpdctl wx-ai vector-indexes update \
+    --project-id exampleString \
+    --index-id exampleString \
+    --name 'My vector index' \
+    --description 'My first vector index' \
+    --data-assets 713259df-0540-4301-982e-693a81da462c,713259df-0540-4301-982e-693a81da573d \
+    --store "exampleString" \
+    --settings '{"chunk_size": 100, "chunk_overlap": 0, "top_k": 1, "split_pdf_pages": true, "rerank": true, "embedding_model_id": "sentence-transformers/all-minilm-l6-v2", "schema_fields": {"document_name": "document_name", "text": "text", "page_number": "page", "vector_query": "vector", "document_url": "documentURL"}}' \
+    --build '{"notebook_id": "12c45f78-a2b4-1b3d-aa2c-zy09y87w6a3a", "job_id": "12c45f78-a2b4-1b3d-aa2c-zy09y87w6a3a"}' \
+    --status ready \
+    --sample-questions 'summarize the document, name of the author' \
+    --version 2019-01-01
+```
+## • <a name="wx-ai_vector-indexes_update-attachment">`wx-ai vector-indexes update-attachment`</a>
+TO BE USED ONLY WITH IN-MEMORY VECTOR STORE. This is to update the attachments/objects associated with the vector index.
+
+```sh
+cpdctl wx-ai vector-indexes update-attachment --index-id INDEX-ID {--project-id PROJECT-ID | --project PROJECT-NAME} --version VERSION [--object-key OBJECT-KEY] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+```
+
+#### Command options
+
+`--cpd-scope` (string)
+:   CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
+
+`--index-id` (string)
+:   Required. Vector index ID. 
+
+`--object-key` (string)
+:   The object key of the gzipped file, that is available in the attached COS Bucket. 
+
+`--project` (string)
+:   Project name. This option is mutually exclusive with '--project-id'.
+
+`--project-id` (string)
+:   Required. [REQUIRED] Specifies the project ID as the target. One target must be supplied per request.  This option is mutually exclusive with '--project'.
+
+##### Example
+
+```sh
+   cpdctl wx-ai vector-indexes update-attachment \
+    --index-id exampleString \
+    --project-id exampleString \
+    --object-key vector_index/myvectorindex__da__vi82w8pghq.gz \
     --version 2019-01-01
 ```
 ## • <a name="wx-data_access-control_list-access">`wx-data access-control list-access`</a>
@@ -26155,7 +32150,41 @@ The following example shows the format of the AIServiceDocumentation object.
 
 {
   "request" : { },
-  "response" : { }
+  "response" : { },
+  "init" : {
+    "anyKey" : "anyValue"
+  },
+  "functions" : {
+    "generate" : true,
+    "generate_stream" : true,
+    "generate_batch" : true
+  }
+}
+```
+### <a name="cli-ai-service-documentation-functions-example-schema">AIServiceDocumentationFunctions</a>
+
+The following example shows the format of the AIServiceDocumentationFunctions object.
+
+```json
+
+{
+  "generate" : true,
+  "generate_stream" : true,
+  "generate_batch" : true
+}
+```
+### <a name="cli-aws-bedrock-config-example-schema">AWSBedrockConfig</a>
+
+The following example shows the format of the AWSBedrockConfig object.
+
+```json
+
+{
+  "access_key_id" : "acde070d-8c4c-4f0d-9d8a-162843c10333",
+  "base_url" : "https://bedrock-runtime.us-east-1.amazonaws.com",
+  "region" : "us-east-1",
+  "secret_access_key" : "YOUR_API_KEY",
+  "session_token" : "AQoDYXdzEJr...<omitted>...HVkDR45Kg=="
 }
 ```
 ### <a name="cli-access-policy-patch-example-schema">AccessPolicyPatch[]</a>
@@ -26218,6 +32247,16 @@ The following example shows the format of the AnalyticsEngine object.
     "anyKey" : "anyValue"
   },
   "type" : "exampleString"
+}
+```
+### <a name="cli-anthropic-config-example-schema">AnthropicConfig</a>
+
+The following example shows the format of the AnthropicConfig object.
+
+```json
+
+{
+  "apikey" : "YOUR_API_KEY"
 }
 ```
 ### <a name="cli-api-cache-entry-filter-example-schema">ApiCacheEntryFilter[]</a>
@@ -26540,6 +32579,37 @@ The following example shows the format of the AutoAIRAGConstraints object.
   "chunk_overlap" : 128
 }
 ```
+### <a name="cli-auto-airag-knowledge-base-example-schema">AutoAIRAGKnowledgeBase[]</a>
+
+The following example shows the format of the AutoAIRAGKnowledgeBase[] object.
+
+```json
+
+[ {
+  "name" : "2025_financial_documentation",
+  "description" : "This knowledge base contains ABC financial documents for 2025 year.",
+  "type" : "AutoAIRAGIndex",
+  "reference" : {
+    "type" : "connection_asset",
+    "connection" : { }
+  },
+  "settings" : {
+    "index_name" : "autoai_rag_id_pipeline_id_index",
+    "fields_mapping" : [ {
+      "role" : "dense_vector_embeddings",
+      "field_name" : "vector_embeddings"
+    } ],
+    "embeddings" : {
+      "model_id" : "ibm/slate-125m-english-rtrvr"
+    },
+    "hybrid_ranker" : {
+      "sparse_vectors" : {
+        "model_id" : "BM25"
+      }
+    }
+  }
+} ]
+```
 ### <a name="cli-auto-airag-optimization-parameters-example-schema">AutoAIRAGOptimizationParameters</a>
 
 The following example shows the format of the AutoAIRAGOptimizationParameters object.
@@ -26547,7 +32617,7 @@ The following example shows the format of the AutoAIRAGOptimizationParameters ob
 ```json
 
 {
-  "metrics" : [ "answer_correctness", "faithfulness", "context_correctness" ]
+  "metrics" : [ "answer_correctness", "faithfulness", "context_correctness", "answer_correctness_judge", "faithfulness_judge" ]
 }
 ```
 ### <a name="cli-auto-airag-parameters-example-schema">AutoAIRAGParameters</a>
@@ -26564,14 +32634,84 @@ The following example shows the format of the AutoAIRAGParameters object.
       "chunk_overlap" : 128
     } ],
     "embedding_models" : [ "ibm/slate-125m-english-rtrvr", "intfloat/multilingual-e5-large" ],
-    "retrieval_methods" : [ "simple", "window" ],
-    "foundation_models" : [ "ibm/granite-13b-chat-v2", "mistralai/mixtral-8x7b-instruct-v01" ],
+    "retrieval" : [ {
+      "method" : "simple",
+      "number_of_chunks" : 5,
+      "window_size" : 2,
+      "hybrid_ranker" : {
+        "strategy" : "rrf",
+        "sparse_vectors" : {
+          "model_id" : "BM25"
+        },
+        "alpha" : 0.9,
+        "k" : 70
+      }
+    } ],
+    "generation" : {
+      "language" : {
+        "auto_detect" : true
+      },
+      "foundation_models" : [ {
+        "model_id" : "meta-llama/llama-3-3-70b-instruct",
+        "parameters" : {
+          "max_completion_tokens" : 1024,
+          "temperature" : 1,
+          "decoding_method" : "sample",
+          "max_new_tokens" : 300,
+          "min_new_tokens" : 5,
+          "max_sequence_length" : 4096
+        },
+        "chat_template_messages" : {
+          "system_message_text" : "You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.",
+          "user_message_text" : "Generate the next agent response by answering the question. You are provided several documents with titles. If the answer comes from different documents please mention all possibilities and use the titles of documents to separate between topics or domains. If you cannot base your answer on the given documents, please state that you do not have an answer.\n\n{reference_documents}\n\n{question}"
+        },
+        "prompt_template_text" : "<s>[INST] <<SYS>>\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.\n\n<</SYS>>\n\nGenerate the next agent response by answering the question. You are provided several documents with titles. If the answer comes from different documents please mention all possibilities and use the titles of documents to separate between topics or domains. If you cannot base your answer on the given documents, please state that you do not have an answer.\n\n{reference_documents}\n\n{question} [/INST]",
+        "context_template_text" : "[Document]\n{document}\n[End]",
+        "word_to_token_ratio" : 1.5
+      } ]
+    },
     "max_number_of_rag_patterns" : 8
   },
   "optimization" : {
-    "metrics" : [ "answer_correctness", "faithfulness", "context_correctness" ]
+    "metrics" : [ "answer_correctness", "faithfulness", "context_correctness", "answer_correctness_judge", "faithfulness_judge" ]
+  },
+  "deployment" : {
+    "inference_service" : {
+      "auto_deploy" : true,
+      "space_id" : "3fc54cf1-252f-424b-b52d-5cdd9814987f"
+    },
+    "indexing_service" : {
+      "auto_deploy" : true,
+      "space_id" : "3fc54cf1-252f-424b-b52d-5cdd9814987f"
+    }
   },
   "output_logs" : true
+}
+```
+### <a name="cli-auto-airag-parameters-deployment-example-schema">AutoAIRAGParametersDeployment</a>
+
+The following example shows the format of the AutoAIRAGParametersDeployment object.
+
+```json
+
+{
+  "auto_deploy" : true,
+  "space_id" : "3fc54cf1-252f-424b-b52d-5cdd9814987f"
+}
+```
+### <a name="cli-azure-open-ai-config-example-schema">AzureOpenAIConfig</a>
+
+The following example shows the format of the AzureOpenAIConfig object.
+
+```json
+
+{
+  "account_name" : "my-azure-account",
+  "api_version" : "2024-10-21",
+  "apikey" : "YOUR_API_KEY",
+  "resource_group_name" : "my-resource-group",
+  "resource_name" : "my-resource-name",
+  "subscription_id" : "acde070d-8c4c-4f0d-9d8a-162843c10333"
 }
 ```
 ### <a name="cli-base-model-example-schema">BaseModel</a>
@@ -26871,6 +33011,16 @@ The following example shows the format of the CatalogOperationsOperationsItems[]
   "catalog" : [ "exampleString", "anotherExampleString" ]
 } ]
 ```
+### <a name="cli-cerebras-config-example-schema">CerebrasConfig</a>
+
+The following example shows the format of the CerebrasConfig object.
+
+```json
+
+{
+  "apikey" : "YOUR_API_KEY"
+}
+```
 ### <a name="cli-chat-item-example-schema">ChatItem</a>
 
 The following example shows the format of the ChatItem object.
@@ -26896,6 +33046,77 @@ The following example shows the format of the ChatItem[] object.
   "status" : "ready",
   "timestamp" : 1711504485261
 } ]
+```
+### <a name="cli-chats-cache-example-schema">ChatsCache</a>
+
+The following example shows the format of the ChatsCache object.
+
+```json
+
+{
+  "enabled" : true,
+  "filter" : { },
+  "threshold" : 0.5
+}
+```
+### <a name="cli-chats-json-schema-example-schema">ChatsJSONSchema</a>
+
+The following example shows the format of the ChatsJSONSchema object.
+
+```json
+
+{
+  "name" : "my-username",
+  "description" : "Some schema description text.",
+  "schema" : { },
+  "strict" : true
+}
+```
+### <a name="cli-chats-message-example-schema">ChatsMessage[]</a>
+
+The following example shows the format of the ChatsMessage[] object.
+
+```json
+
+[ {
+  "role" : "developer",
+  "content" : "exampleString",
+  "name" : "my-username"
+} ]
+```
+### <a name="cli-chats-prediction-example-schema">ChatsPrediction</a>
+
+The following example shows the format of the ChatsPrediction object.
+
+```json
+
+{
+  "type" : "content",
+  "content" : "exampleString"
+}
+```
+### <a name="cli-chats-request-tool-example-schema">ChatsRequestTool[]</a>
+
+The following example shows the format of the ChatsRequestTool[] object.
+
+```json
+
+[ {
+  "type" : "function",
+  "function" : {
+    "name" : "myToolFunction"
+  }
+} ]
+```
+### <a name="cli-chats-response-format-example-schema">ChatsResponseFormat</a>
+
+The following example shows the format of the ChatsResponseFormat object.
+
+```json
+
+{
+  "type" : "text"
+}
 ```
 ### <a name="cli-classification-example-schema">Classification</a>
 
@@ -26923,6 +33144,53 @@ The following example shows the format of the CloudObjectStorageCredentials obje
   "service_id" : "iam-ServiceId-abcd1234-efgh-5678-abcd-1234efgh5678"
 }
 ```
+### <a name="cli-cluster-schema-parameters-example-schema">ClusterSchemaParameters</a>
+
+The following example shows the format of the ClusterSchemaParameters object.
+
+```json
+
+{
+  "schemas" : [ {
+    "document_name" : "Passport",
+    "schema" : {
+      "document_type" : "Passport",
+      "document_description" : "Passport document to get the schema",
+      "fields" : {
+        "description" : "Name",
+        "example" : "name of the user",
+        "available_options" : [ "exampleString", "anotherExampleString" ]
+      },
+      "additional_prompt_instructions" : "exampleString"
+    }
+  } ],
+  "semantic_config" : {
+    "default_model_name" : "exampleString"
+  }
+}
+```
+### <a name="cli-cluster-schemas-example-schema">ClusterSchemas</a>
+
+The following example shows the format of the ClusterSchemas object.
+
+```json
+
+{
+  "description" : "exampleString",
+  "example" : "exampleString",
+  "available_options" : [ "exampleString", "anotherExampleString" ]
+}
+```
+### <a name="cli-cohere-config-example-schema">CohereConfig</a>
+
+The following example shows the format of the CohereConfig object.
+
+```json
+
+{
+  "apikey" : "YOUR_API_KEY"
+}
+```
 ### <a name="cli-commit-info-example-schema">CommitInfo</a>
 
 The following example shows the format of the CommitInfo object.
@@ -26931,6 +33199,18 @@ The following example shows the format of the CommitInfo object.
 
 {
   "previous_revision" : 1
+}
+```
+### <a name="cli-completions-cache-example-schema">CompletionsCache</a>
+
+The following example shows the format of the CompletionsCache object.
+
+```json
+
+{
+  "enabled" : true,
+  "filter" : { },
+  "threshold" : 0.8
 }
 ```
 ### <a name="cli-compute-entity-example-schema">ComputeEntity</a>
@@ -27134,8 +33414,28 @@ The following example shows the format of the CosDataLocation object.
 ```json
 
 {
-  "file_name" : "exampleString",
-  "bucket" : "exampleString"
+  "file_name" : "/results/",
+  "bucket" : "exampleString",
+  "path" : "exampleString"
+}
+```
+### <a name="cli-create-schema-parameters-example-schema">CreateSchemaParameters</a>
+
+The following example shows the format of the CreateSchemaParameters object.
+
+```json
+
+{
+  "mode" : "high_quality",
+  "ocr_mode" : "enabled",
+  "auto_rotation_correction" : false,
+  "languages" : [ "latn" ],
+  "additional_prompt_instructions" : "exampleString",
+  "enable_grounding" : false,
+  "max_pages_to_process" : 20,
+  "semantic_config" : {
+    "default_model_name" : "exampleString"
+  }
 }
 ```
 ### <a name="cli-create-task-results-request-example-schema">CreateTaskResultsRequest</a>
@@ -27200,6 +33500,28 @@ The following example shows the format of the CreationTypeIdentity object.
   "strategy" : "DUPLICATE_DETECTION_BY_NAME"
 }
 ```
+### <a name="cli-crypto-info-example-schema">CryptoInfo</a>
+
+The following example shows the format of the CryptoInfo object.
+
+```json
+
+{
+  "key_ref" : "exampleString"
+}
+```
+### <a name="cli-custom-schema-example-schema">CustomSchema</a>
+
+The following example shows the format of the CustomSchema object.
+
+```json
+
+{
+  "description" : "exampleString",
+  "example" : "exampleString",
+  "available_options" : [ "exampleString", "anotherExampleString" ]
+}
+```
 ### <a name="cli-data-connection-example-schema">DataConnection</a>
 
 The following example shows the format of the DataConnection object.
@@ -27259,6 +33581,16 @@ The following example shows the format of the DataPreprocessingTransformation[] 
     "anyKey" : "anyValue"
   }
 } ]
+```
+### <a name="cli-data-reference-example-schema">DataReference</a>
+
+The following example shows the format of the DataReference object.
+
+```json
+
+{
+  "resource" : "crn:v1:bluemix:public:secrets-manager:..."
+}
 ```
 ### <a name="cli-data-schema-example-schema">DataSchema</a>
 
@@ -27497,6 +33829,17 @@ The following example shows the format of the DeploymentPatchRequestHelperRShiny
   "path" : "RShiny/apps/app1"
 }
 ```
+### <a name="cli-deployment-ts-forecast-parameters-example-schema">DeploymentTSForecastParameters</a>
+
+The following example shows the format of the DeploymentTSForecastParameters object.
+
+```json
+
+{
+  "prediction_length" : 38,
+  "inference_batch_size" : 38
+}
+```
 ### <a name="cli-deployment-text-chat-messages-example-schema">DeploymentTextChatMessages[]</a>
 
 The following example shows the format of the DeploymentTextChatMessages[] object.
@@ -27643,6 +33986,70 @@ The following example shows the format of the EvaluationMetric object.
   "maximize" : true
 }
 ```
+### <a name="cli-evaluation-model-config-example-schema">EvaluationModelConfig</a>
+
+The following example shows the format of the EvaluationModelConfig object.
+
+```json
+
+{
+  "model_id" : "exampleString",
+  "deployment_id" : "exampleString",
+  "generation_parameters" : {
+    "decoding_method" : "greedy",
+    "length_penalty" : {
+      "decay_factor" : 2.5,
+      "start_index" : 5
+    },
+    "max_new_tokens" : 30,
+    "min_new_tokens" : 5,
+    "random_seed" : 1,
+    "stop_sequences" : [ "fail" ],
+    "temperature" : 1.5,
+    "time_limit" : 600000,
+    "top_k" : 50,
+    "top_p" : 0.5,
+    "repetition_penalty" : 1.5,
+    "truncate_input_tokens" : 1,
+    "return_options" : {
+      "input_text" : true,
+      "generated_tokens" : true,
+      "input_tokens" : true,
+      "token_logprobs" : true,
+      "token_ranks" : true,
+      "top_n_tokens" : 2
+    },
+    "include_stop_sequence" : true
+  }
+}
+```
+### <a name="cli-evaluation-task-config-example-schema">EvaluationTaskConfig</a>
+
+The following example shows the format of the EvaluationTaskConfig object.
+
+```json
+
+{
+  "tasks" : [ {
+    "name" : "bluebench",
+    "type" : "EvaluationAcademicTask",
+    "description" : "Bluebench benchmarks for fine-tuned llama model"
+  } ],
+  "sample_size" : 38
+}
+```
+### <a name="cli-evaluation-task-config-tasks-item-example-schema">EvaluationTaskConfigTasksItem</a>
+
+The following example shows the format of the EvaluationTaskConfigTasksItem object.
+
+```json
+
+{
+  "name" : "bluebench",
+  "type" : "EvaluationAcademicTask",
+  "description" : "Bluebench benchmarks for fine-tuned llama model"
+}
+```
 ### <a name="cli-evaluations-spec-item-example-schema">EvaluationsSpecItem</a>
 
 The following example shows the format of the EvaluationsSpecItem object.
@@ -27702,6 +34109,20 @@ The following example shows the format of the ExternalInformation object.
 
 {
   "key" : "exampleString"
+}
+```
+### <a name="cli-external-store-settings-schema-fields-example-schema">ExternalStoreSettingsSchemaFields</a>
+
+The following example shows the format of the ExternalStoreSettingsSchemaFields object.
+
+```json
+
+{
+  "document_name" : "document_name",
+  "text" : "text",
+  "page_number" : "page",
+  "vector_query" : "vector",
+  "document_url" : "documentURL"
 }
 ```
 ### <a name="cli-federated-learning-example-schema">FederatedLearning</a>
@@ -27869,22 +34290,43 @@ The following example shows the format of the FineTuningParameters object.
 ```json
 
 {
-  "task_id" : "exampleString",
+  "task_id" : "classification",
   "accumulate_steps" : 1,
   "base_model" : {
-    "model_id" : "google/flan-t5-xl"
+    "model_id" : "ibm/granite-3-1-8b-base"
   },
-  "num_epochs" : 5,
-  "learning_rate" : 0.2,
-  "batch_size" : 5,
-  "max_seq_length" : 1024,
-  "response_template" : "\n\n### Response:",
+  "num_epochs" : 10,
+  "learning_rate" : 5.0E-5,
+  "batch_size" : 16,
+  "max_seq_length" : 2048,
+  "response_template" : "\n### Response:",
   "verbalizer" : "### Input: {{input}} \n\n### Response: {{output}}",
   "gpu" : {
-    "num" : 4,
+    "num" : 1,
     "name" : "NVIDIA-A100-80GB-PCIe"
   },
+  "peft_parameters" : {
+    "type" : "lora",
+    "rank" : 16,
+    "target_modules" : [ "all-linear" ],
+    "lora_alpha" : 32,
+    "lora_dropout" : 0.05
+  },
   "gradient_checkpointing" : true
+}
+```
+### <a name="cli-fine-tuning-peft-parameters-example-schema">FineTuningPeftParameters</a>
+
+The following example shows the format of the FineTuningPeftParameters object.
+
+```json
+
+{
+  "type" : "lora",
+  "rank" : 32,
+  "target_modules" : [ "exampleString", "anotherExampleString" ],
+  "lora_alpha" : 32,
+  "lora_dropout" : 0.05
 }
 ```
 ### <a name="cli-flow-dependency-tree-example-schema">FlowDependencyTree[]</a>
@@ -27955,6 +34397,16 @@ The following example shows the format of the GPU object.
   "name" : "NVIDIA-A100-80GB-PCIe"
 }
 ```
+### <a name="cli-gemini-config-example-schema">GeminiConfig</a>
+
+The following example shows the format of the GeminiConfig object.
+
+```json
+
+{
+  "apikey" : "YOUR_API_KEY"
+}
+```
 ### <a name="cli-generic-error-response-example-schema">GenericErrorResponse</a>
 
 The following example shows the format of the GenericErrorResponse object.
@@ -27976,6 +34428,16 @@ The following example shows the format of the GitSettingsHttp object.
 {
   "sslcainfo" : "exampleString",
   "sslverify" : "exampleString"
+}
+```
+### <a name="cli-groq-config-example-schema">GroqConfig</a>
+
+The following example shows the format of the GroqConfig object.
+
+```json
+
+{
+  "apikey" : "exampleString"
 }
 ```
 ### <a name="cli-hardware-request-example-schema">HardwareRequest</a>
@@ -28199,6 +34661,28 @@ The following example shows the format of the IcebergSourceTable object.
   "catalog_name" : "exampleString",
   "warehouse_name" : "exampleString",
   "snapshot_id" : 0
+}
+```
+### <a name="cli-improve-schema-parameters-example-schema">ImproveSchemaParameters</a>
+
+The following example shows the format of the ImproveSchemaParameters object.
+
+```json
+
+{
+  "schema" : {
+    "document_type" : "Passport",
+    "document_description" : "Passport document to get the schema",
+    "fields" : {
+      "description" : "Name",
+      "example" : "name of the user",
+      "available_options" : [ "exampleString", "anotherExampleString" ]
+    },
+    "additional_prompt_instructions" : "exampleString"
+  },
+  "semantic_config" : {
+    "default_model_name" : "exampleString"
+  }
 }
 ```
 ### <a name="cli-included-packages-definition-example-schema">IncludedPackagesDefinition</a>
@@ -28525,6 +35009,29 @@ The following example shows the format of the JobScoringRequest object.
   "environment_variables" : { }
 }
 ```
+### <a name="cli-load-balancers-backend-prototype-example-schema">LoadBalancersBackendPrototype[]</a>
+
+The following example shows the format of the LoadBalancersBackendPrototype[] object.
+
+```json
+
+[ {
+  "model_uuid" : "550e8400-e29b-41d4-a716-446655440000",
+  "priority" : 0,
+  "quota" : 10,
+  "weight" : 1
+} ]
+```
+### <a name="cli-load-balancers-load-balancer-config-example-schema">LoadBalancersLoadBalancerConfig</a>
+
+The following example shows the format of the LoadBalancersLoadBalancerConfig object.
+
+```json
+
+{
+  "default_weight" : 1
+}
+```
 ### <a name="cli-local-git-storage-repository-example-schema">LocalGitStorageRepository</a>
 
 The following example shows the format of the LocalGitStorageRepository object.
@@ -28591,6 +35098,28 @@ The following example shows the format of the MemberResource[] object.
   "state" : "active",
   "type" : "user"
 } ]
+```
+### <a name="cli-merge-schema-parameters-example-schema">MergeSchemaParameters</a>
+
+The following example shows the format of the MergeSchemaParameters object.
+
+```json
+
+{
+  "schemas" : [ {
+    "document_type" : "Passport",
+    "document_description" : "Passport document to get the schema",
+    "fields" : {
+      "description" : "Name",
+      "example" : "name of the user",
+      "available_options" : [ "exampleString", "anotherExampleString" ]
+    },
+    "additional_prompt_instructions" : "exampleString"
+  } ],
+  "semantic_config" : {
+    "default_model_name" : "exampleString"
+  }
+}
 ```
 ### <a name="cli-message-handler-v2-example-schema">MessageHandlerV2</a>
 
@@ -28874,6 +35403,16 @@ The following example shows the format of the Metric[] object.
   }
 } ]
 ```
+### <a name="cli-mistral-config-example-schema">MistralConfig</a>
+
+The following example shows the format of the MistralConfig object.
+
+```json
+
+{
+  "apikey" : "YOUR_API_KEY"
+}
+```
 ### <a name="cli-model-definition-entity-request-platform-example-schema">ModelDefinitionEntityRequestPlatform</a>
 
 The following example shows the format of the ModelDefinitionEntityRequestPlatform object.
@@ -28988,6 +35527,21 @@ The following example shows the format of the ModelFineTuningParameters object.
   "lora_dropout" : 0.05
 }
 ```
+### <a name="cli-model-metadata-example-schema">ModelMetadata</a>
+
+The following example shows the format of the ModelMetadata object.
+
+```json
+
+{
+  "cost" : 0.02,
+  "model_family" : "gpt-3.5",
+  "recommender_label" : "openai-gpt-4o-mini",
+  "region" : "us-east-1",
+  "batch" : true,
+  "context_window" : 128000
+}
+```
 ### <a name="cli-model-reference-example-schema">ModelReference[]</a>
 
 The following example shows the format of the ModelReference[] object.
@@ -29000,6 +35554,21 @@ The following example shows the format of the ModelReference[] object.
   "id" : "exampleString",
   "rev" : "exampleString"
 } ]
+```
+### <a name="cli-model-router-example-schema">ModelRouter</a>
+
+The following example shows the format of the ModelRouter object.
+
+```json
+
+{
+  "family_model" : [ "gpt", "claude" ],
+  "max_cost" : 0.1,
+  "models" : [ "gpt-4o" ],
+  "optimization" : "cost",
+  "quality_tradeoff" : 0.5,
+  "region" : "us-south"
+}
 ```
 ### <a name="cli-moderations-example-schema">Moderations</a>
 
@@ -29027,6 +35596,15 @@ The following example shows the format of the Moderations object.
     },
     "output" : {
       "enabled" : true
+    },
+    "mask" : {
+      "remove_entity_value" : false
+    }
+  },
+  "granite_guardian" : {
+    "input" : {
+      "enabled" : true,
+      "threshold" : 0
     },
     "mask" : {
       "remove_entity_value" : false
@@ -29312,6 +35890,16 @@ The following example shows the format of the NotebooksCreateRequest object.
   "project" : "b275be5f-10ff-47ee-bfc9-63f1ce5addbf"
 }
 ```
+### <a name="cli-nvidia-nim-config-example-schema">NvidiaNIMConfig</a>
+
+The following example shows the format of the NvidiaNIMConfig object.
+
+```json
+
+{
+  "apikey" : "YOUR_API_KEY"
+}
+```
 ### <a name="cli-object-location-example-schema">ObjectLocation</a>
 
 The following example shows the format of the ObjectLocation object.
@@ -29319,10 +35907,35 @@ The following example shows the format of the ObjectLocation object.
 ```json
 
 {
-  "type" : "exampleString",
+  "type" : "data_asset",
   "location" : { },
   "connection" : { },
   "id" : "exampleString"
+}
+```
+### <a name="cli-object-location-github-example-schema">ObjectLocationGithub</a>
+
+The following example shows the format of the ObjectLocationGithub object.
+
+```json
+
+{
+  "type" : "github",
+  "location" : {
+    "filepaths" : [ "results/text_extraction/1.md" ],
+    "commit" : "exampleString"
+  }
+}
+```
+### <a name="cli-object-location-github-location-example-schema">ObjectLocationGithubLocation</a>
+
+The following example shows the format of the ObjectLocationGithubLocation object.
+
+```json
+
+{
+  "filepaths" : [ "results/text_extraction/1.md" ],
+  "commit" : "exampleString"
 }
 ```
 ### <a name="cli-object-location-optim-example-schema">ObjectLocationOptim</a>
@@ -29347,7 +35960,7 @@ The following example shows the format of the ObjectLocation[] object.
 ```json
 
 [ {
-  "type" : "exampleString",
+  "type" : "data_asset",
   "location" : { },
   "connection" : { },
   "id" : "exampleString"
@@ -29361,7 +35974,12 @@ The following example shows the format of the OnlineDeployment object.
 
 {
   "parameters" : {
-    "serving_name" : "churn"
+    "serving_name" : "churn",
+    "foundation_model" : {
+      "max_model_length" : 2048,
+      "max_num_seqs" : 256,
+      "functions" : [ "exampleString", "anotherExampleString" ]
+    }
   }
 }
 ```
@@ -29372,7 +35990,9 @@ The following example shows the format of the OnlineDeploymentParameters object.
 ```json
 
 {
-  "serving_name" : "churn"
+  "max_model_length" : 2048,
+  "max_num_seqs" : 256,
+  "functions" : [ "exampleString", "anotherExampleString" ]
 }
 ```
 ### <a name="cli-online-parameters-example-schema">OnlineParameters</a>
@@ -29402,6 +36022,17 @@ The following example shows the format of the OnlineRequest object.
       "functions" : [ "text_generation", "text_chat" ]
     }
   }
+}
+```
+### <a name="cli-open-ai-config-example-schema">OpenAIConfig</a>
+
+The following example shows the format of the OpenAIConfig object.
+
+```json
+
+{
+  "apikey" : "YOUR_API_KEY",
+  "base_url" : "https://api.openai.com/v1"
 }
 ```
 ### <a name="cli-option-example-schema">Option[]</a>
@@ -29790,29 +36421,6 @@ The following example shows the format of the PromptModelParameters object.
   "repetition_penalty" : 72.5
 }
 ```
-### <a name="cli-prompt-tuning-example-schema">PromptTuning</a>
-
-The following example shows the format of the PromptTuning object.
-
-```json
-
-{
-  "base_model" : {
-    "model_id" : "google/flan-t5-xl"
-  },
-  "task_id" : "classification",
-  "tuning_type" : "prompt_tuning",
-  "num_epochs" : 30,
-  "learning_rate" : 0.4,
-  "accumulate_steps" : 3,
-  "verbalizer" : "rte { 0 : entailment, 1 : not entailment } {{input}}",
-  "batch_size" : 10,
-  "max_input_tokens" : 100,
-  "max_output_tokens" : 100,
-  "init_method" : "text",
-  "init_text" : "exampleString"
-}
-```
 ### <a name="cli-prompt-with-external-model-parameters-example-schema">PromptWithExternalModelParameters</a>
 
 The following example shows the format of the PromptWithExternalModelParameters object.
@@ -29854,6 +36462,38 @@ The following example shows the format of the RShinyRequest object.
     "code_package" : {
       "path" : "RShiny/apps/app1"
     }
+  }
+}
+```
+### <a name="cli-rate-limit-item-example-schema">RateLimitItem</a>
+
+The following example shows the format of the RateLimitItem object.
+
+```json
+
+{
+  "amount" : 10,
+  "capacity" : 100,
+  "duration" : "1m"
+}
+```
+### <a name="cli-rate-limit-prototype-example-schema">RateLimitPrototype</a>
+
+The following example shows the format of the RateLimitPrototype object.
+
+```json
+
+{
+  "type" : "tenant",
+  "request" : {
+    "amount" : 10,
+    "capacity" : 100,
+    "duration" : "1m"
+  },
+  "token" : {
+    "amount" : 10,
+    "capacity" : 100,
+    "duration" : "1m"
   }
 }
 ```
@@ -29992,6 +36632,84 @@ The following example shows the format of the RiskEvaluationStatus object.
   "state" : "pending_evaluation"
 }
 ```
+### <a name="cli-sdg-object-location-example-schema">SDGObjectLocation</a>
+
+The following example shows the format of the SDGObjectLocation object.
+
+```json
+
+{
+  "path" : "exampleString"
+}
+```
+### <a name="cli-sdg-unstructured-generation-config-configuration-example-schema">SDGUnstructuredGenerationConfigConfiguration</a>
+
+The following example shows the format of the SDGUnstructuredGenerationConfigConfiguration object.
+
+```json
+
+{
+  "pipeline" : "nl2sql",
+  "num_outputs_to_generate" : 100,
+  "generator" : {
+    "model_id" : "ibm/granite-3-8b-instruct",
+    "min_new_tokens" : 50,
+    "max_new_tokens" : 50,
+    "temperature" : 0.05,
+    "top_p" : 0,
+    "top_k" : 1
+  },
+  "validators" : [ {
+    "type" : "rouge_scorer",
+    "threshold" : 0
+  } ],
+  "seed_data_reference" : {
+    "type" : "container",
+    "location" : {
+      "path" : "qna_nl2sql.yaml"
+    }
+  },
+  "results_reference" : {
+    "type" : "container",
+    "location" : {
+      "path" : "qna_nl2sql.yaml"
+    }
+  },
+  "knowledge_base_references" : [ {
+    "type" : "container",
+    "location" : {
+      "path" : "qna_nl2sql.yaml"
+    }
+  } ],
+  "overwrite_output_file" : true
+}
+```
+### <a name="cli-sdg-unstructured-generation-llm-config-example-schema">SDGUnstructuredGenerationLLMConfig</a>
+
+The following example shows the format of the SDGUnstructuredGenerationLLMConfig object.
+
+```json
+
+{
+  "model_id" : "exampleString",
+  "min_new_tokens" : 50,
+  "max_new_tokens" : 50,
+  "temperature" : 0.05,
+  "top_p" : 0,
+  "top_k" : 1
+}
+```
+### <a name="cli-sdg-unstructured-generation-validator-rs-example-schema">SDGUnstructuredGenerationValidatorRS</a>
+
+The following example shows the format of the SDGUnstructuredGenerationValidatorRS object.
+
+```json
+
+{
+  "type" : "rouge_scorer",
+  "threshold" : 0
+}
+```
 ### <a name="cli-schedule-start-time-example-schema">ScheduleStartTime</a>
 
 The following example shows the format of the ScheduleStartTime object.
@@ -30003,6 +36721,16 @@ The following example shows the format of the ScheduleStartTime object.
   "delay_unit" : "minute",
   "timestamp" : "2018-11-21T09:37:55.523Z",
   "type" : "relative"
+}
+```
+### <a name="cli-schema-semantic-config-example-schema">SchemaSemanticConfig</a>
+
+The following example shows the format of the SchemaSemanticConfig object.
+
+```json
+
+{
+  "default_model_name" : "exampleString"
 }
 ```
 ### <a name="cli-schema-transformation-example-schema">SchemaTransformation</a>
@@ -30431,6 +37159,16 @@ The following example shows the format of the StorageRequestProperties object.
   "use_delegated_KMS_key" : false
 }
 ```
+### <a name="cli-stream-options-example-schema">StreamOptions</a>
+
+The following example shows the format of the StreamOptions object.
+
+```json
+
+{
+  "include_usage" : true
+}
+```
 ### <a name="cli-subject-patch-example-schema">SubjectPatch[]</a>
 
 The following example shows the format of the SubjectPatch[] object.
@@ -30486,6 +37224,16 @@ The following example shows the format of the SyncScoringDataItem[] object.
   "values" : [ [ "exampleString", "anotherExampleString" ], [ "exampleString", "anotherExampleString" ] ]
 } ]
 ```
+### <a name="cli-ts-common-forecast-parameters-example-schema">TSCommonForecastParameters</a>
+
+The following example shows the format of the TSCommonForecastParameters object.
+
+```json
+
+{
+  "prediction_length" : 38
+}
+```
 ### <a name="cli-ts-forecast-input-schema-example-schema">TSForecastInputSchema</a>
 
 The following example shows the format of the TSForecastInputSchema object.
@@ -30497,16 +37245,6 @@ The following example shows the format of the TSForecastInputSchema object.
   "id_columns" : [ "ID1" ],
   "freq" : "1h",
   "target_columns" : [ "exampleString", "anotherExampleString" ]
-}
-```
-### <a name="cli-ts-forecast-parameters-example-schema">TSForecastParameters</a>
-
-The following example shows the format of the TSForecastParameters object.
-
-```json
-
-{
-  "prediction_length" : 38
 }
 ```
 ### <a name="cli-table-definition-ds-info-example-schema">TableDefinitionDSInfo</a>
@@ -30656,6 +37394,36 @@ The following example shows the format of the TargetDetails object.
   "schema_infer" : true
 }
 ```
+### <a name="cli-text-batch-job-request-example-schema">TextBatchJobRequest</a>
+
+The following example shows the format of the TextBatchJobRequest object.
+
+```json
+
+{
+  "name" : "batch-job-1",
+  "description" : "This is a batch job",
+  "data_reference" : {
+    "type" : "data_asset",
+    "location" : {
+      "id" : "9fab83da-98cb-4f18-a7ba-b6f0435c9673",
+      "href" : "/v2/assets/f47ac10b-58cc-4372-a567-0e02b2c3d479?project=63dc4cf1-252f-424b-b52d-5cdd9814987f"
+    }
+  },
+  "space_id" : "3fc54cf1-252f-424b-b52d-5cdd9814987f"
+}
+```
+### <a name="cli-text-batch-location-reference-example-schema">TextBatchLocationReference</a>
+
+The following example shows the format of the TextBatchLocationReference object.
+
+```json
+
+{
+  "id" : "9fab83da-98cb-4f18-a7ba-b6f0435c9673",
+  "href" : "/v2/assets/f47ac10b-58cc-4372-a567-0e02b2c3d479?project=63dc4cf1-252f-424b-b52d-5cdd9814987f"
+}
+```
 ### <a name="cli-text-chat-messages-example-schema">TextChatMessages[]</a>
 
 The following example shows the format of the TextChatMessages[] object.
@@ -30701,7 +37469,28 @@ The following example shows the format of the TextChatResponseFormat object.
 ```json
 
 {
-  "type" : "json_object"
+  "type" : "text",
+  "json_schema" : {
+    "name" : "exampleString",
+    "schema" : {
+      "anyKey" : "anyValue"
+    },
+    "strict" : true
+  }
+}
+```
+### <a name="cli-text-chat-response-format-json-schema-example-schema">TextChatResponseFormatJSONSchema</a>
+
+The following example shows the format of the TextChatResponseFormatJSONSchema object.
+
+```json
+
+{
+  "name" : "exampleString",
+  "schema" : {
+    "anyKey" : "anyValue"
+  },
+  "strict" : true
 }
 ```
 ### <a name="cli-text-chat-tool-choice-tool-example-schema">TextChatToolChoiceTool</a>
@@ -30727,6 +37516,87 @@ The following example shows the format of the TextChatToolFunction object.
   "name" : "exampleString"
 }
 ```
+### <a name="cli-text-classification-data-reference-example-schema">TextClassificationDataReference</a>
+
+The following example shows the format of the TextClassificationDataReference object.
+
+```json
+
+{
+  "type" : "connection_asset",
+  "connection" : {
+    "id" : "exampleString"
+  },
+  "location" : {
+    "file_name" : "/results/",
+    "bucket" : "exampleString",
+    "path" : "exampleString"
+  }
+}
+```
+### <a name="cli-text-classification-parameters-example-schema">TextClassificationParameters</a>
+
+The following example shows the format of the TextClassificationParameters object.
+
+```json
+
+{
+  "ocr_mode" : "disabled",
+  "classification_mode" : "exact",
+  "auto_rotation_correction" : false,
+  "languages" : [ "exampleString", "anotherExampleString" ],
+  "semantic_config" : {
+    "enable_text_hints" : true,
+    "enable_schema_kvp" : true,
+    "grounding_mode" : "precise",
+    "schemas_merge_strategy" : "merge",
+    "force_schema_name" : "None",
+    "schemas" : [ {
+      "document_type" : "exampleString",
+      "document_description" : "exampleString",
+      "fields" : {
+        "type" : "exampleString",
+        "description" : "exampleString",
+        "columns" : {
+          "description" : "exampleString",
+          "example" : "exampleString",
+          "available_options" : [ "exampleString", "anotherExampleString" ]
+        }
+      },
+      "pages" : {
+        "page_description" : "exampleString",
+        "slices" : [ {
+          "fields" : {
+            "anyKey" : "anyValue"
+          },
+          "normalized_bbox" : [ 72.5, 73.9 ]
+        } ]
+      },
+      "additional_prompt_instructions" : "exampleString"
+    } ],
+    "default_model_name" : "exampleString",
+    "task_model_name_override" : { }
+  }
+}
+```
+### <a name="cli-text-detection-content-detectors-example-schema">TextDetectionContentDetectors</a>
+
+The following example shows the format of the TextDetectionContentDetectors object.
+
+```json
+
+{
+  "hap" : {
+    "threshold" : 0.5
+  },
+  "pii" : {
+    "anyKey" : "anyValue"
+  },
+  "granite_guardian" : {
+    "threshold" : 0.5
+  }
+}
+```
 ### <a name="cli-text-extraction-data-reference-example-schema">TextExtractionDataReference</a>
 
 The following example shows the format of the TextExtractionDataReference object.
@@ -30740,43 +37610,71 @@ The following example shows the format of the TextExtractionDataReference object
   },
   "location" : {
     "file_name" : "files/document.pdf",
-    "bucket" : "exampleString"
+    "bucket" : "exampleString",
+    "path" : "exampleString"
   }
 }
 ```
-### <a name="cli-text-extraction-step-ocr-example-schema">TextExtractionStepOcr</a>
+### <a name="cli-text-extraction-parameters-example-schema">TextExtractionParameters</a>
 
-The following example shows the format of the TextExtractionStepOcr object.
-
-```json
-
-{
-  "languages_list" : [ "exampleString", "anotherExampleString" ]
-}
-```
-### <a name="cli-text-extraction-step-tables-processing-example-schema">TextExtractionStepTablesProcessing</a>
-
-The following example shows the format of the TextExtractionStepTablesProcessing object.
+The following example shows the format of the TextExtractionParameters object.
 
 ```json
 
 {
-  "enabled" : true
-}
-```
-### <a name="cli-text-extraction-steps-example-schema">TextExtractionSteps</a>
-
-The following example shows the format of the TextExtractionSteps object.
-
-```json
-
-{
-  "ocr" : {
-    "languages_list" : [ "exampleString", "anotherExampleString" ]
-  },
-  "tables_processing" : {
-    "enabled" : true
+  "requested_outputs" : [ "assembly", "html", "md", "plain_text", "page_images" ],
+  "mode" : "standard",
+  "ocr_mode" : "disabled",
+  "languages" : [ "exampleString", "anotherExampleString" ],
+  "auto_rotation_correction" : false,
+  "create_embedded_images" : "disabled",
+  "output_dpi" : 72,
+  "output_tokens" : true,
+  "kvp_mode" : "generic_with_semantic",
+  "semantic_config" : {
+    "enable_text_hints" : true,
+    "enable_schema_kvp" : true,
+    "grounding_mode" : "precise",
+    "schemas_merge_strategy" : "merge",
+    "force_schema_name" : "None",
+    "schemas" : [ {
+      "document_type" : "exampleString",
+      "document_description" : "exampleString",
+      "fields" : {
+        "type" : "exampleString",
+        "description" : "exampleString",
+        "columns" : {
+          "description" : "exampleString",
+          "example" : "exampleString",
+          "available_options" : [ "exampleString", "anotherExampleString" ]
+        }
+      },
+      "pages" : {
+        "page_description" : "exampleString",
+        "slices" : [ {
+          "fields" : {
+            "anyKey" : "anyValue"
+          },
+          "normalized_bbox" : [ 72.5, 73.9 ]
+        } ]
+      },
+      "additional_prompt_instructions" : "exampleString"
+    } ],
+    "default_model_name" : "exampleString",
+    "task_model_name_override" : { }
   }
+}
+```
+### <a name="cli-text-extraction-semantic-config-example-schema">TextExtractionSemanticConfig</a>
+
+The following example shows the format of the TextExtractionSemanticConfig object.
+
+```json
+
+{
+  "description" : "exampleString",
+  "example" : "exampleString",
+  "available_options" : [ "exampleString", "anotherExampleString" ]
 }
 ```
 ### <a name="cli-text-gen-length-penalty-example-schema">TextGenLengthPenalty</a>
@@ -31291,6 +38189,21 @@ The following example shows the format of the Volumes[] object.
   "source_sub_path" : "exampleString"
 } ]
 ```
+### <a name="cli-watsonx-ai-config-example-schema">WatsonxAIConfig</a>
+
+The following example shows the format of the WatsonxAIConfig object.
+
+```json
+
+{
+  "api_version" : "2023-07-07",
+  "apikey" : "YOUR_API_KEY",
+  "auth_url" : "https://iam.cloud.ibm.com/identity/token",
+  "base_url" : "https://us-south.ml.cloud.ibm.com",
+  "project_id" : "09b2r701-4592-4386-85cf-326c6b3c94c7",
+  "space_id" : "q9b2d701-4592-4386-85cf-326c6b3c94c7"
+}
+```
 ### <a name="cli-wx-prompt-patch-model-version-example-schema">WxPromptPatchModelVersion</a>
 
 The following example shows the format of the WxPromptPatchModelVersion object.
@@ -31359,18 +38272,69 @@ The following example shows the format of the WxPromptSessionEntry[] object.
   }
 } ]
 ```
-### <a name="cli-wx-utility-agent-tools-run-request-example-schema">WxUtilityAgentToolsRunRequest</a>
+### <a name="cli-wx-vector-index-patch-build-example-schema">WxVectorIndexPatchBuild</a>
 
-The following example shows the format of the WxUtilityAgentToolsRunRequest object.
+The following example shows the format of the WxVectorIndexPatchBuild object.
 
 ```json
 
 {
-  "tool_name" : "GoogleSearch",
-  "input" : "What was the weather in Toronto on January 13th 2025?",
-  "config" : {
-    "anyKey" : "anyValue"
+  "notebook_id" : "12c45f78-a2b4-1b3d-aa2c-zy09y87w6a3a",
+  "job_id" : "12c45f78-a2b4-1b3d-aa2c-zy09y87w6a3a"
+}
+```
+### <a name="cli-wx-vector-index-patch-settings-example-schema">WxVectorIndexPatchSettings</a>
+
+The following example shows the format of the WxVectorIndexPatchSettings object.
+
+```json
+
+{
+  "chunk_size" : 100,
+  "chunk_overlap" : 0,
+  "top_k" : 1,
+  "split_pdf_pages" : true,
+  "rerank" : true,
+  "embedding_model_id" : "sentence-transformers/all-minilm-l6-v2",
+  "schema_fields" : {
+    "document_name" : "document_name",
+    "text" : "text",
+    "page_number" : "page",
+    "vector_query" : "vector",
+    "document_url" : "documentURL"
   }
+}
+```
+### <a name="cli-wx-vector-index-transactional-post-settings-example-schema">WxVectorIndexTransactionalPostSettings</a>
+
+The following example shows the format of the WxVectorIndexTransactionalPostSettings object.
+
+```json
+
+{
+  "chunk_size" : 100,
+  "chunk_overlap" : 0,
+  "top_k" : 1,
+  "split_pdf_pages" : true,
+  "rerank" : true,
+  "embedding_model_id" : "sentence-transformers/all-minilm-l6-v2",
+  "schema_fields" : {
+    "document_name" : "document_name",
+    "text" : "text",
+    "page_number" : "page",
+    "vector_query" : "vector",
+    "document_url" : "documentURL"
+  }
+}
+```
+### <a name="cli-xai-config-example-schema">XaiConfig</a>
+
+The following example shows the format of the XaiConfig object.
+
+```json
+
+{
+  "apikey" : "YOUR_API_KEY"
 }
 ```
 ### <a name="cli-map-string-asset-type-property-example-schema">map[string]AssetTypeProperty</a>
