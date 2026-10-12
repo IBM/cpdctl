@@ -3844,6 +3844,14 @@ cpdctl config profile set name [flags]
 `--apikey` (string)
 :   Create a user having this API key and associate it with the profile.
 
+`--apikey-file` (string)
+:   Path to a file containing the API key (mutually exclusive with --apikey and --apikey-stdin).
+
+`--apikey-stdin` (bool)
+:   Read API key from stdin (mutually exclusive with --apikey and --apikey-file).
+
+    The default value is `false`.
+
 `--auth-id` (string)
 :   AWS identifier for selected AWS authorization scope. E.g. account ID for default scope 'accounts'.
 
@@ -3862,6 +3870,14 @@ cpdctl config profile set name [flags]
 
 `--password` (string)
 :   Create a user having this password and associate it with the profile.
+
+`--password-file` (string)
+:   Path to a file containing the password (mutually exclusive with --password and --password-stdin).
+
+`--password-stdin` (bool)
+:   Read password from stdin (mutually exclusive with --password and --password-file).
+
+    The default value is `false`.
 
 `--region` (string)
 :   Cloud region.
@@ -3908,6 +3924,14 @@ cpdctl config user set name [flags]
 `--apikey` (string)
 :   Set user apikey
 
+`--apikey-file` (string)
+:   Path to a file containing the API key (mutually exclusive with --apikey and --apikey-stdin).
+
+`--apikey-stdin` (bool)
+:   Read API key from stdin (mutually exclusive with --apikey and --apikey-file).
+
+    The default value is `false`.
+
 `--auth-id` (string)
 :   AWS identifier for selected AWS authorization scope. E.g. account ID for default scope 'accounts'.
 
@@ -3918,6 +3942,14 @@ cpdctl config user set name [flags]
 
 `--password` (string)
 :   Set user password
+
+`--password-file` (string)
+:   Path to a file containing the password (mutually exclusive with --password and --password-stdin).
+
+`--password-stdin` (bool)
+:   Read password from stdin (mutually exclusive with --password and --password-file).
+
+    The default value is `false`.
 
 `--token-file` (string)
 :   Set location of a file that contains user token
@@ -37569,7 +37601,7 @@ The following example shows the format of the TextClassificationParameters objec
           "fields" : {
             "anyKey" : "anyValue"
           },
-          "normalized_bbox" : [ 72.5, 73.9 ]
+          "normalized_bbox" : [ 0, 0 ]
         } ]
       },
       "additional_prompt_instructions" : "exampleString"
@@ -37655,7 +37687,7 @@ The following example shows the format of the TextExtractionParameters object.
           "fields" : {
             "anyKey" : "anyValue"
           },
-          "normalized_bbox" : [ 72.5, 73.9 ]
+          "normalized_bbox" : [ 0, 0 ]
         } ]
       },
       "additional_prompt_instructions" : "exampleString"
