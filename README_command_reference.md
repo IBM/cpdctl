@@ -18076,13 +18076,16 @@ cpdctl project update {--project-id PROJECT-ID | --project PROJECT-NAME} [--cata
 Update project settings for Orchestration Pipelines.
 
 ```sh
-cpdctl project update-pipeline-settings [--allowed-operational-scope WIDE_SCOPE | INNER_SCOPE] [--default-pipeline-job-name-suffix DEFAULT-PIPELINE-JOB-NAME-SUFFIX] [{--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME}] [--jobs-deletion-mode DELETE_PIPELINE_JOBS | LEAVE_ORPHAN_JOBS] [--nested-job-execution-mode INLINE_MODE | INDEPENDENT_JOBS_MODE] [--pipeline-save-mode AUTO_SAVE | MANUAL_SAVE] [--resource-reference-type SEARCH_BY_ATTRIBUTES | EXACT_BY_ID] [--runner-type PIPELINE_RUNNER | DATASTAGE_OPTIMIZED_RUNNER] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet] --settings SETTINGS
+cpdctl project update-pipeline-settings [--allowed-operational-scope WIDE_SCOPE | INNER_SCOPE] [--bash-script-timeout BASH-SCRIPT-TIMEOUT] [--default-pipeline-job-name-suffix DEFAULT-PIPELINE-JOB-NAME-SUFFIX] [{--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME}] [--jobs-deletion-mode DELETE_PIPELINE_JOBS | LEAVE_ORPHAN_JOBS] [--nested-job-execution-mode INLINE_MODE | INDEPENDENT_JOBS_MODE] [--pipeline-save-mode AUTO_SAVE | MANUAL_SAVE] [--resource-reference-type SEARCH_BY_ATTRIBUTES | EXACT_BY_ID] [--runner-type PIPELINE_RUNNER | DATASTAGE_OPTIMIZED_RUNNER] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet] --settings SETTINGS
 ```
 
 #### Command options
 
 `--allowed-operational-scope` (string)
 :   Type of the allowed operational scope. Allowable values are: WIDE_SCOPE, INNER_SCOPE.
+
+`--bash-script-timeout` (string)
+:   Bash script timeout duration, default value is 0.
 
 `--cpd-scope` (string)
 :   CPD project scope, e.g. 'cpd://default-profile/projects/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -18125,6 +18128,7 @@ cpdctl project update-pipeline-settings [--allowed-operational-scope WIDE_SCOPE 
 ```sh
    cpdctl project update-pipeline-settings \
     --allowed-operational-scope WIDE_SCOPE \
+    --bash-script-timeout exampleString \
     --default-pipeline-job-name-suffix exampleString \
     --environment-id exampleString \
     --jobs-deletion-mode DELETE_PIPELINE_JOBS \
@@ -18743,13 +18747,16 @@ cpdctl space update {--space-id SPACE-ID | --space SPACE-NAME} {--json-patch (JS
 Update deployment space settings for Orchestration Pipelines.
 
 ```sh
-cpdctl space update-pipeline-settings [--allowed-operational-scope WIDE_SCOPE | INNER_SCOPE] [--default-pipeline-job-name-suffix DEFAULT-PIPELINE-JOB-NAME-SUFFIX] [{--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME}] [--jobs-deletion-mode DELETE_PIPELINE_JOBS | LEAVE_ORPHAN_JOBS] [--nested-job-execution-mode INLINE_MODE | INDEPENDENT_JOBS_MODE] [--pipeline-save-mode AUTO_SAVE | MANUAL_SAVE] [--resource-reference-type SEARCH_BY_ATTRIBUTES | EXACT_BY_ID] [--runner-type PIPELINE_RUNNER | DATASTAGE_OPTIMIZED_RUNNER] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet] --settings SETTINGS
+cpdctl space update-pipeline-settings [--allowed-operational-scope WIDE_SCOPE | INNER_SCOPE] [--bash-script-timeout BASH-SCRIPT-TIMEOUT] [--default-pipeline-job-name-suffix DEFAULT-PIPELINE-JOB-NAME-SUFFIX] [{--environment-id ENVIRONMENT-ID | --environment ENVIRONMENT-NAME}] [--jobs-deletion-mode DELETE_PIPELINE_JOBS | LEAVE_ORPHAN_JOBS] [--nested-job-execution-mode INLINE_MODE | INDEPENDENT_JOBS_MODE] [--pipeline-save-mode AUTO_SAVE | MANUAL_SAVE] [--resource-reference-type SEARCH_BY_ATTRIBUTES | EXACT_BY_ID] [--runner-type PIPELINE_RUNNER | DATASTAGE_OPTIMIZED_RUNNER] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet] --settings SETTINGS
 ```
 
 #### Command options
 
 `--allowed-operational-scope` (string)
 :   Type of the allowed operational scope. Allowable values are: WIDE_SCOPE, INNER_SCOPE.
+
+`--bash-script-timeout` (string)
+:   Bash script timeout duration, default value is 0.
 
 `--cpd-scope` (string)
 :   CPD space scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -18792,6 +18799,7 @@ cpdctl space update-pipeline-settings [--allowed-operational-scope WIDE_SCOPE | 
 ```sh
    cpdctl space update-pipeline-settings \
     --allowed-operational-scope WIDE_SCOPE \
+    --bash-script-timeout exampleString \
     --default-pipeline-job-name-suffix exampleString \
     --environment-id exampleString \
     --jobs-deletion-mode DELETE_PIPELINE_JOBS \
@@ -38063,6 +38071,7 @@ The following example shows the format of the V1AssetContainerSettings object.
 
 {
   "allowed_operational_scope" : "WIDE_SCOPE",
+  "bash_script_timeout" : "exampleString",
   "default_pipeline_job_name_suffix" : "exampleString",
   "environment_id" : "exampleString",
   "jobs_deletion_mode" : "DELETE_PIPELINE_JOBS",
