@@ -699,11 +699,8 @@ cpdctl asset create [command options]
 `--attachments` ([`AssetAttachment[]`](#cli-asset-attachment-example-schema))
 :   null It can also be a path to a JSON file.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -802,7 +799,7 @@ cpdctl asset create [command options]
 Delete an existing asset properties. You can delete an asset if you are the owner of the asset or a member of the asset with Admin or Editor permissions on the catalog or project.
 
 ```sh
-cpdctl asset delete --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--purge-on-delete=PURGE-ON-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset delete --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--purge-on-delete=PURGE-ON-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -810,11 +807,8 @@ cpdctl asset delete --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-
 `--asset-id` (string)
 :   asset_id.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -854,7 +848,7 @@ cpdctl asset delete --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-
 Retrieve an asset located in catalog or project. Access to an asset is controlled by a combination of the privacy level and the members of the asset. For a governed catalog, data assets are protected from unauthorized access by the governance policies that are defined in Data Catalog. Data assets in ungoverned catalogs are not subject to governance policies.
 
 ```sh
-cpdctl asset get --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--revision-id REVISION-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset get --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--revision-id REVISION-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -862,11 +856,8 @@ cpdctl asset get --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CON
 `--asset-id` (string)
 :   asset_id.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -945,7 +936,7 @@ cpdctl asset promote {--project-id PROJECT-ID | --project PROJECT-NAME} --asset-
 Search for assets for generic asset type (asset) or any  specific asset type in given Catalog<br/><b> Examples of Search query<br/> Search With Pagination </b><br/>User can request specific number of Search results with  adding limit param to request as shown below.By default it will return upto 200  Search results <br/>Request Body<br/>{<br/>    "query" : "asset.name:Asset*," <br/>    "limit" : 2<br/>}<br/><br/>Response :<br/>{<br/>"next": {<br/>"bookmark": "g1AAAXXXXXXXX",<br/>    "query" : "asset.name:Asset*," <br/>    "limit" : 2<br/>},<br/>"results": [<br/> {  ..asset 1... }, {  ..asset 2... }],<br/>"total_rows": 3<br/>}<br/>When more search results available then  response will contain "next" json object."next" contains "bookmark" along with original query which needs to be returned to retrieve next sets of result.<br/> Please resend the request with whatever is returned in "next" object. <br/>The Last page will not have "next" object.
 
 ```sh
-cpdctl asset search --type-name TYPE-NAME --query QUERY [--bookmark BOOKMARK] [--counts COUNTS] [--drilldown DRILLDOWN | @DRILLDOWN-FILE] [--include INCLUDE] [--limit LIMIT] [--sort SORT] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset search --type-name TYPE-NAME --query QUERY [--bookmark BOOKMARK] [--counts COUNTS] [--drilldown DRILLDOWN | @DRILLDOWN-FILE] [--include INCLUDE] [--limit LIMIT] [--sort SORT] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -953,11 +944,8 @@ cpdctl asset search --type-name TYPE-NAME --query QUERY [--bookmark BOOKMARK] [-
 `--bookmark` (string)
 :   Bookmark for results pagination.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--counts` (string)
 :   cams-search-counts-flag-description
@@ -1027,7 +1015,7 @@ Edit an existing asset properties, if you have proper permissions. Who can edit 
  * source_system.last_modification_timestamp, Expected Format: "yyyy-MM-ddTHH:mm:ssX".
 
 ```sh
-cpdctl asset update --asset-id ASSET-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | (--classification CLASSIFICATION | @CLASSIFICATION-FILE) --description DESCRIPTION --name NAME --resource-key RESOURCE-KEY (--source-system SOURCE-SYSTEM | @SOURCE-SYSTEM-FILE) --tags TAGS} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset update --asset-id ASSET-ID {--json-patch (JSON-PATCH | @JSON-PATCH-FILE) | (--classification CLASSIFICATION | @CLASSIFICATION-FILE) --description DESCRIPTION --name NAME --resource-key RESOURCE-KEY (--source-system SOURCE-SYSTEM | @SOURCE-SYSTEM-FILE) --tags TAGS} [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1035,11 +1023,8 @@ cpdctl asset update --asset-id ASSET-ID {--json-patch (JSON-PATCH | @JSON-PATCH-
 `--asset-id` (string)
 :   asset_id.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--classification` ([`Classification`](#cli-classification-example-schema))
 :   Classification.
@@ -1103,11 +1088,8 @@ cpdctl asset attachment create [command options]
 `--asset-type` (string)
 :   Required. null
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--connection` (string)
 :   Connection name. This option is mutually exclusive with '--connection-id'.
@@ -1203,7 +1185,7 @@ cpdctl asset attachment create [command options]
 Delete an attachment.
 
 ```sh
-cpdctl asset attachment delete --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset attachment delete --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1214,11 +1196,8 @@ cpdctl asset attachment delete --asset-id ASSET-ID --attachment-id ATTACHMENT-ID
 `--attachment-id` (string)
 :   Attachment GUID.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -1260,11 +1239,8 @@ cpdctl asset attachment download [flags]
 `--attachment-id` (string)
 :   ID of the attachment
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -1293,7 +1269,7 @@ cpdctl asset attachment download [flags]
 Retrieve an attachment.
 
 ```sh
-cpdctl asset attachment get --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [--revision-id REVISION-ID] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--private-url=PRIVATE-URL] [--response-content-disposition RESPONSE-CONTENT-DISPOSITION] [--response-content-type RESPONSE-CONTENT-TYPE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset attachment get --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [--revision-id REVISION-ID] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--private-url=PRIVATE-URL] [--response-content-disposition RESPONSE-CONTENT-DISPOSITION] [--response-content-type RESPONSE-CONTENT-TYPE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1304,11 +1280,8 @@ cpdctl asset attachment get --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [-
 `--attachment-id` (string)
 :   Attachment GUID.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -1357,7 +1330,7 @@ cpdctl asset attachment get --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [-
 Marks an attachment as transfer complete.
 
 ```sh
-cpdctl asset attachment mark-complete --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset attachment mark-complete --asset-id ASSET-ID --attachment-id ATTACHMENT-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1368,11 +1341,8 @@ cpdctl asset attachment mark-complete --asset-id ASSET-ID --attachment-id ATTACH
 `--attachment-id` (string)
 :   Attachment GUID.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -1403,7 +1373,7 @@ cpdctl asset attachment mark-complete --asset-id ASSET-ID --attachment-id ATTACH
 Update attachment metadata.
 
 ```sh
-cpdctl asset attachment update --asset-id ASSET-ID --attachment-id ATTACHMENT-ID --json-patch (JSON-PATCH | @JSON-PATCH-FILE) [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset attachment update --asset-id ASSET-ID --attachment-id ATTACHMENT-ID --json-patch (JSON-PATCH | @JSON-PATCH-FILE) [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1414,11 +1384,8 @@ cpdctl asset attachment update --asset-id ASSET-ID --attachment-id ATTACHMENT-ID
 `--attachment-id` (string)
 :   Attachment GUID.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -1457,7 +1424,7 @@ cpdctl asset attachment update --asset-id ASSET-ID --attachment-id ATTACHMENT-ID
 Create an asset attribute.
 
 ```sh
-cpdctl asset attribute create --asset-id ASSET-ID --name NAME [--entity ENTITY | @ENTITY-FILE] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset attribute create --asset-id ASSET-ID --name NAME [--entity ENTITY | @ENTITY-FILE] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1465,11 +1432,8 @@ cpdctl asset attribute create --asset-id ASSET-ID --name NAME [--entity ENTITY |
 `--asset-id` (string)
 :   asset_id.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -1511,7 +1475,7 @@ cpdctl asset attribute create --asset-id ASSET-ID --name NAME [--entity ENTITY |
 Delete an attribute of an asset.
 
 ```sh
-cpdctl asset attribute delete --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset attribute delete --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1522,11 +1486,8 @@ cpdctl asset attribute delete --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY 
 `--attribute-key` (string)
 :   attribute_key.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -1561,7 +1522,7 @@ cpdctl asset attribute delete --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY 
 Retrieve an attribute of an asset.
 
 ```sh
-cpdctl asset attribute get --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--revision-id REVISION-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset attribute get --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--revision-id REVISION-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1572,11 +1533,8 @@ cpdctl asset attribute get --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY [--
 `--attribute-key` (string)
 :   attribute_key.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -1615,7 +1573,7 @@ cpdctl asset attribute get --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY [--
 Retrieve all attributes of an asset.
 
 ```sh
-cpdctl asset attribute list --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--revision-id REVISION-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset attribute list --asset-id ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--revision-id REVISION-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1623,11 +1581,8 @@ cpdctl asset attribute list --asset-id ASSET-ID [--x-open-id-connect-id-token X-
 `--asset-id` (string)
 :   asset_id.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -1665,7 +1620,7 @@ cpdctl asset attribute list --asset-id ASSET-ID [--x-open-id-connect-id-token X-
 Update/modify an asset attribute.
 
 ```sh
-cpdctl asset attribute update --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY --json-patch (JSON-PATCH | @JSON-PATCH-FILE) [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset attribute update --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY --json-patch (JSON-PATCH | @JSON-PATCH-FILE) [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -1676,11 +1631,8 @@ cpdctl asset attribute update --asset-id ASSET-ID --attribute-key ATTRIBUTE-KEY 
 `--attribute-key` (string)
 :   attribute_key.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -1727,11 +1679,8 @@ cpdctl asset data-asset create [command options]
 `--attachments` ([`AssetAttachment[]`](#cli-asset-attachment-example-schema))
 :   null It can also be a path to a JSON file.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -1840,16 +1789,13 @@ Retrieve _metadata_ about a data asset. The response document will contain three
     **Step 3**: use the value in the 'url' field of the result from Step 2 to download (for example, with a browser) a copy of the file.
 
 ```sh
-cpdctl asset data-asset get --data-asset-id DATA-ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--revision-id REVISION-ID] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset data-asset get --data-asset-id DATA-ASSET-ID [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--revision-id REVISION-ID] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   catalog_id. This option is mutually exclusive with '--catalog'.
+:   catalog_id.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -1898,11 +1844,8 @@ cpdctl asset data-asset upload [flags]
 `--asset-id` (string)
 :   ID of the asset
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -1952,16 +1895,13 @@ cpdctl asset data-asset upload [flags]
 Cancels the asset export process with the specified identifier.
 
 ```sh
-cpdctl asset export cancel --export-id EXPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset export cancel --export-id EXPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--catalog-id CATALOG-ID] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory. This option is mutually exclusive with '--catalog'.
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2000,16 +1940,13 @@ cpdctl asset export cancel --export-id EXPORT-ID [{--space-id SPACE-ID | --space
 Downloads the content for the asset export process with the specified identifier.
 
 ```sh
-cpdctl asset export download --export-id EXPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
+cpdctl asset export download --export-id EXPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--catalog-id CATALOG-ID] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory. This option is mutually exclusive with '--catalog'.
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2054,16 +1991,13 @@ cpdctl asset export download --export-id EXPORT-ID [{--space-id SPACE-ID | --spa
 Retrieves the asset export with the specified identifier.
 
 ```sh
-cpdctl asset export get --export-id EXPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset export get --export-id EXPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--catalog-id CATALOG-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory. This option is mutually exclusive with '--catalog'.
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2096,7 +2030,7 @@ cpdctl asset export get --export-id EXPORT-ID [{--space-id SPACE-ID | --space SP
 Retrieves the asset export list for the specified space, project, or catalog.
 
 ```sh
-cpdctl asset export list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset export list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--catalog-id CATALOG-ID] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -2106,11 +2040,8 @@ cpdctl asset export list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--projec
 
     The default value is `false`.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory. This option is mutually exclusive with '--catalog'.
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2149,7 +2080,7 @@ cpdctl asset export list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--projec
 Starts the asset export process for the specified space, project, or catalog. On CPD 3.0.1 assets export is supported only in the context of a space.
 
 ```sh
-cpdctl asset export start [--assets (ASSETS | @ASSETS-FILE) | --assets-all-assets=ASSETS-ALL-ASSETS --assets-asset-ids ASSETS-ASSET-IDS --assets-asset-types ASSETS-ASSET-TYPES] [--description DESCRIPTION] [--encryption-key ENCRYPTION-KEY] [--format json | csv] [--module-keys MODULE-KEYS] [--name NAME] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset export start [--assets (ASSETS | @ASSETS-FILE) | --assets-all-assets=ASSETS-ALL-ASSETS --assets-asset-ids ASSETS-ASSET-IDS --assets-asset-types ASSETS-ASSET-TYPES] [--description DESCRIPTION] [--encryption-key ENCRYPTION-KEY] [--format json | csv] [--module-keys MODULE-KEYS] [--name NAME] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--catalog-id CATALOG-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -2173,11 +2104,8 @@ cpdctl asset export start [--assets (ASSETS | @ASSETS-FILE) | --assets-all-asset
 
     The default value is `false`.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory. This option is mutually exclusive with '--catalog'.
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2235,11 +2163,8 @@ cpdctl asset export wait --export-id EXPORT_ID [--space-id SPACE_ID] [--project-
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory. This option is mutually exclusive with '--catalog'.
+:   This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2282,11 +2207,8 @@ cpdctl asset file download [command options] --output-file OUTPUT_FILE
 `--byte-range` (string)
 :   If passed, indicates the bytes that should be returned. Must be in format ('x-y': bytes x to y inclusive, '-y': the last y bytes, 'x-': everything from and including the xth byte). Does not support multiple ranges.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   Make request relative to the specified catalog. This option is mutually exclusive with '--catalog'.
+:   Make request relative to the specified catalog.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2387,7 +2309,7 @@ cpdctl asset file download [command options] --output-file OUTPUT_FILE
 Returns a list of file paths (similar to S3 listObjects) for the provided project, catalog, space or account. Requires viewer or higher permission. Assets for a catalog are not retrievable by external users.
 
 ```sh
-cpdctl asset file list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--account-id ACCOUNT-ID] [{--space-id SPACE-ID | --space SPACE-NAME}] [--iam-id IAM-ID] [--limit LIMIT] [--offset OFFSET | --all-pages] [--flat=FLAT] [--hidden-files=HIDDEN-FILES] [--minimal=MINIMAL] [--root=ROOT] [--stream=STREAM] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset file list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [{--space-id SPACE-ID | --space SPACE-NAME}] [--iam-id IAM-ID] [--limit LIMIT] [--offset OFFSET | --all-pages] [--flat=FLAT] [--hidden-files=HIDDEN-FILES] [--minimal=MINIMAL] [--root=ROOT] [--stream=STREAM] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -2400,11 +2322,8 @@ cpdctl asset file list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--
 
     The default value is `false`.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   Make request relative to the specified catalog. This option is mutually exclusive with '--catalog'.
+:   Make request relative to the specified catalog.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2479,7 +2398,7 @@ cpdctl asset file list [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--
 Uploads the bytes into the file with the provided file name using HTTP multi-part format, creating a new file if missing, overriding if existing (unless override=false). Assets cannot be uploaded to a catalog by external users. Adding project or space assets accepts all formats that grant editor access or higher. Adding to accounts requires a user with account admin access. This endpoint supports authentication via signature parameter. See 'Get auth signature' call for more info on signed urls.
 
 ```sh
-cpdctl asset file upload --path PATH [--file FILE] [--file-content-type FILE-CONTENT-TYPE] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--account-id ACCOUNT-ID] [{--space-id SPACE-ID | --space SPACE-NAME}] [--iam-id IAM-ID] [--override=OVERRIDE] [--signature SIGNATURE] [--inflate=INFLATE] [--inflate-mode default | inline | overwrite | skip | rename] [--ensure-dir=ENSURE-DIR] [--root=ROOT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset file upload --path PATH [--file FILE] [--file-content-type FILE-CONTENT-TYPE] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--catalog-id CATALOG-ID] [--account-id ACCOUNT-ID] [{--space-id SPACE-ID | --space SPACE-NAME}] [--iam-id IAM-ID] [--override=OVERRIDE] [--signature SIGNATURE] [--inflate=INFLATE] [--inflate-mode default | inline | overwrite | skip | rename] [--ensure-dir=ENSURE-DIR] [--root=ROOT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -2487,11 +2406,8 @@ cpdctl asset file upload --path PATH [--file FILE] [--file-content-type FILE-CON
 `--account-id` (string)
 :   Make request relative to the specified account.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   Make request relative to the specified catalog. This option is mutually exclusive with '--catalog'.
+:   Make request relative to the specified catalog.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2574,16 +2490,13 @@ cpdctl asset file upload --path PATH [--file FILE] [--file-content-type FILE-CON
 Cancels the asset import process with the specified identifier.
 
 ```sh
-cpdctl asset import cancel --import-id IMPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset import cancel --import-id IMPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--catalog-id CATALOG-ID] [--hard-delete=HARD-DELETE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory. This option is mutually exclusive with '--catalog'.
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2622,16 +2535,13 @@ cpdctl asset import cancel --import-id IMPORT-ID [{--space-id SPACE-ID | --space
 Retrieves the asset import with the specified identifier.
 
 ```sh
-cpdctl asset import get --import-id IMPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset import get --import-id IMPORT-ID [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--catalog-id CATALOG-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory. This option is mutually exclusive with '--catalog'.
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2664,7 +2574,7 @@ cpdctl asset import get --import-id IMPORT-ID [{--space-id SPACE-ID | --space SP
 Retrieves the asset import list for the specified space, project, or catalog.
 
 ```sh
-cpdctl asset import list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset import list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--catalog-id CATALOG-ID] [--start START | --all-pages] [--limit LIMIT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -2674,11 +2584,8 @@ cpdctl asset import list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--projec
 
     The default value is `false`.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory. This option is mutually exclusive with '--catalog'.
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2717,7 +2624,7 @@ cpdctl asset import list [{--space-id SPACE-ID | --space SPACE-NAME}] [{--projec
 Starts the asset import process for the specified space, project, or catalog. On CPD 3.0.1 assets import is supported only in the context of a space.
 
 ```sh
-cpdctl asset import start --import-file IMPORT-FILE [--file-content-type FILE-CONTENT-TYPE] [--encryption-key ENCRYPTION-KEY] [--format json | csv] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset import start --import-file IMPORT-FILE [--file-content-type FILE-CONTENT-TYPE] [--encryption-key ENCRYPTION-KEY] [--format json | csv] [{--space-id SPACE-ID | --space SPACE-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [--catalog-id CATALOG-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -2727,11 +2634,8 @@ cpdctl asset import start --import-file IMPORT-FILE [--file-content-type FILE-CO
 
     The default value is `false`.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory. This option is mutually exclusive with '--catalog'.
+:   This parameter is only supported on CPD 3.5. Return resources pertaining to this catalog. Either 'space_id', 'project_id', 'catalog_id' query parameter has to be given and is mandatory.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2784,11 +2688,8 @@ cpdctl asset import wait --import-id IMPORT_ID [--space-id SPACE_ID] [--project-
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory. This option is mutually exclusive with '--catalog'.
+:   This parameter is only supported on CPD 3.5. The ID of the catalog to use. Either 'space-id', 'project-id', 'catalog-id' query parameter has to be given and is mandatory.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2909,16 +2810,13 @@ cpdctl asset relationship unset [--relationships RELATIONSHIPS | @RELATIONSHIPS-
 Use this command to create a script asset from a local file.
 
 ```sh
-cpdctl asset script create --file FILE [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--origin-country ORIGIN-COUNTRY] [--tag TAG] [--mime MIME] [{--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME}] [--language LANGUAGE] [flags]
+cpdctl asset script create --file FILE [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--description DESCRIPTION] [--origin-country ORIGIN-COUNTRY] [--tag TAG] [--mime MIME] [{--software-specification-id SOFTWARE-SPECIFICATION-ID | --software-specification SOFTWARE-SPECIFICATION-NAME}] [--language LANGUAGE] [flags]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -2998,11 +2896,8 @@ cpdctl asset type create [command options]
 
     The default value is `false`.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   This parameter allows the creation of a catalog-scoped asset type.  You must provide either a catalog_id, a project_id, a space_id, OR a bss_account_id but not more than one. This option is mutually exclusive with '--catalog'.
+:   This parameter allows the creation of a catalog-scoped asset type.  You must provide either a catalog_id, a project_id, a space_id, OR a bss_account_id but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -3140,7 +3035,7 @@ cpdctl asset type create [command options]
 Deletes an asset type in given account or container. Note that, deletion of an account scope asset type or a container scope asset type triggers background clean up of assets:<br/><ul><li>Assets of this type are deleted.</li><li>And in case of other assets, attributes of this type are removed.</li></ul>.
 
 ```sh
-cpdctl asset type delete --type-name TYPE-NAME [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--bss-account-id BSS-ACCOUNT-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset type delete --type-name TYPE-NAME [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--bss-account-id BSS-ACCOUNT-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -3148,11 +3043,8 @@ cpdctl asset type delete --type-name TYPE-NAME [{--catalog-id CATALOG-ID | --cat
 `--bss-account-id` (string)
 :   This parameter allows creating or updating an account-scoped asset type.  May be different than account of user specified in Bearer token.  You must provide either a catalog_id, a project_id, a space_id, OR a bss_account_id but not more than one.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   This parameter allows creating or updating a catalog-scoped asset type.  You must provide either a catalog_id, a project_id, a space_id, OR a bss_account_id but not more than one. This option is mutually exclusive with '--catalog'.
+:   This parameter allows creating or updating a catalog-scoped asset type.  You must provide either a catalog_id, a project_id, a space_id, OR a bss_account_id but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -3186,16 +3078,13 @@ cpdctl asset type delete --type-name TYPE-NAME [{--catalog-id CATALOG-ID | --cat
 Retrieves an asset type of a given name.
 
 ```sh
-cpdctl asset type get --type-name TYPE-NAME [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset type get --type-name TYPE-NAME [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -3232,16 +3121,13 @@ cpdctl asset type get --type-name TYPE-NAME [--x-open-id-connect-id-token X-OPEN
 Get all asset types in a catalog.
 
 ```sh
-cpdctl asset type list [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset type list [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -3275,16 +3161,13 @@ Replace asset attributes for the given asset type or create a new asset type if 
  Enter url_parameters_from_asset_attributes : ["id", "name.short_name"].
 
 ```sh
-cpdctl asset type replace --type-name TYPE-NAME --fields (FIELDS | @FIELDS-FILE) [--description DESCRIPTION] [--external-asset-preview (EXTERNAL-ASSET-PREVIEW | @EXTERNAL-ASSET-PREVIEW-FILE) | --external-asset-preview-base-client-url EXTERNAL-ASSET-PREVIEW-BASE-CLIENT-URL --external-asset-preview-url-parameters-fixed EXTERNAL-ASSET-PREVIEW-URL-PARAMETERS-FIXED --external-asset-preview-url-parameters-from-asset-attributes EXTERNAL-ASSET-PREVIEW-URL-PARAMETERS-FROM-ASSET-ATTRIBUTES --external-asset-preview-url-path-from-asset-attributes EXTERNAL-ASSET-PREVIEW-URL-PATH-FROM-ASSET-ATTRIBUTES] [--properties PROPERTIES | @PROPERTIES-FILE] [--relationships RELATIONSHIPS | @RELATIONSHIPS-FILE] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl asset type replace --type-name TYPE-NAME --fields (FIELDS | @FIELDS-FILE) [--description DESCRIPTION] [--external-asset-preview (EXTERNAL-ASSET-PREVIEW | @EXTERNAL-ASSET-PREVIEW-FILE) | --external-asset-preview-base-client-url EXTERNAL-ASSET-PREVIEW-BASE-CLIENT-URL --external-asset-preview-url-parameters-fixed EXTERNAL-ASSET-PREVIEW-URL-PARAMETERS-FIXED --external-asset-preview-url-parameters-from-asset-attributes EXTERNAL-ASSET-PREVIEW-URL-PARAMETERS-FROM-ASSET-ATTRIBUTES --external-asset-preview-url-path-from-asset-attributes EXTERNAL-ASSET-PREVIEW-URL-PATH-FROM-ASSET-ATTRIBUTES] [--properties PROPERTIES | @PROPERTIES-FILE] [--relationships RELATIONSHIPS | @RELATIONSHIPS-FILE] [--x-open-id-connect-id-token X-OPEN-ID-CONNECT-ID-TOKEN] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   You must provide either a catalog id, a project id, or a space id, but not more than one. This option is mutually exclusive with '--catalog'.
+:   You must provide either a catalog id, a project id, or a space id, but not more than one.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -3978,11 +3861,8 @@ cpdctl connection create [command options]
 `--asset-category` (string)
 :   The asset category.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id, project_id, or space_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
 
 `--child-source-systems` ([]map[string]interface{})
 :   A list of child source systems.
@@ -4110,16 +3990,13 @@ cpdctl connection create [command options]
 Deletes a connection definition. This call does not check whether the connection is used by activities, data sets or other assets. The caller must check this before deleting a connection.
 
 ```sh
-cpdctl connection delete {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl connection delete {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id, project_id, or space_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
 
 `--connection` (string)
 :   Connection name. This option is mutually exclusive with '--connection-id'.
@@ -4160,11 +4037,8 @@ cpdctl connection discover [command options]
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id, project_id, or space_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
 
 `--connection` (string)
 :   Connection name. This option is mutually exclusive with '--connection-id'.
@@ -4396,16 +4270,13 @@ cpdctl connection discover-adhoc [command options]
 Discover a data asset.
 
 ```sh
-cpdctl connection discover-data-asset --data-asset-id DATA-ASSET-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--limit LIMIT] [--offset OFFSET] [--fetch FETCH] [--detail=DETAIL] [--context source | target] [--properties PROPERTIES] [--filters FILTERS] [--path PATH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl connection discover-data-asset --data-asset-id DATA-ASSET-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--limit LIMIT] [--offset OFFSET] [--fetch FETCH] [--detail=DETAIL] [--context source | target] [--properties PROPERTIES] [--filters FILTERS] [--path PATH] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id, project_id, or space_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
 
 `--context` (string)
 :   Specify whether the asset is discovered for the purpose of reading (source) or writing (target). If not specified, source is used by default.
@@ -4480,16 +4351,13 @@ Connections created with shared credentials will return secrets such as database
 Connections created with personal credentials will only display clear text credentials to the same user who provided them.
 
 ```sh
-cpdctl connection get {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--inject-token=INJECT-TOKEN] [--entity-product ENTITY-PRODUCT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl connection get {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--inject-token=INJECT-TOKEN] [--entity-product ENTITY-PRODUCT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id, project_id, or space_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
 
 `--connection` (string)
 :   Connection name. This option is mutually exclusive with '--connection-id'.
@@ -4567,7 +4435,7 @@ Adding the name of a flag to entity.flags will add the connections  with that fl
 Adding the name of a flag to entity.flags with a minus sign (-) prefix will remove those connections with that flag from the list  results. All additions are done before the subtractions.
 
 ```sh
-cpdctl connection list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--metadata-creator METADATA-CREATOR] [--entity-name ENTITY-NAME] [--entity-datasource-type ENTITY-DATASOURCE-TYPE] [--entity-context ENTITY-CONTEXT] [--entity-properties ENTITY-PROPERTIES] [--entity-flags ENTITY-FLAGS] [--inject-token=INJECT-TOKEN] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl connection list [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--metadata-creator METADATA-CREATOR] [--entity-name ENTITY-NAME] [--entity-datasource-type ENTITY-DATASOURCE-TYPE] [--entity-context ENTITY-CONTEXT] [--entity-properties ENTITY-PROPERTIES] [--entity-flags ENTITY-FLAGS] [--inject-token=INJECT-TOKEN] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -4577,11 +4445,8 @@ cpdctl connection list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--
 
     The default value is `false`.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id, project_id, or space_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -4654,7 +4519,7 @@ cpdctl connection list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--
 Lists all supported actions for the connection.
 
 ```sh
-cpdctl connection list-actions {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} [--accept-language ACCEPT-LANGUAGE] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl connection list-actions {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} [--accept-language ACCEPT-LANGUAGE] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -4662,11 +4527,8 @@ cpdctl connection list-actions {--connection-id CONNECTION-ID | --connection CON
 `--accept-language` (string)
 :   The user's preferred locale identifier.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id, project_id, or space_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
 
 `--connection` (string)
 :   Connection name. This option is mutually exclusive with '--connection-id'.
@@ -4703,7 +4565,7 @@ cpdctl connection list-actions {--connection-id CONNECTION-ID | --connection CON
 Performs an action on the data source accessed using the connection.
 
 ```sh
-cpdctl connection perform-action {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} --action-name get_oauth2_tokens | get_record_count | get_signed_url | test | validate --request (REQUEST | @REQUEST-FILE) [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl connection perform-action {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} --action-name get_oauth2_tokens | get_record_count | get_signed_url | test | validate --request (REQUEST | @REQUEST-FILE) [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -4719,11 +4581,8 @@ cpdctl connection perform-action {--connection-id CONNECTION-ID | --connection C
 | test                  | to check if a connection can be established to the data source.          |
 | validate              | to validate the connection properties without establishing a connection. |.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id, project_id, or space_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
 
 `--connection` (string)
 :   Connection name. This option is mutually exclusive with '--connection-id'.
@@ -4764,16 +4623,13 @@ cpdctl connection perform-action {--connection-id CONNECTION-ID | --connection C
 Updates the definition of a connection.
 
 ```sh
-cpdctl connection update {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} --patch-request (PATCH-REQUEST | @PATCH-REQUEST-FILE) [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--test=TEST] [--skip-enforcement=SKIP-ENFORCEMENT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl connection update {--connection-id CONNECTION-ID | --connection CONNECTION-NAME} --patch-request (PATCH-REQUEST | @PATCH-REQUEST-FILE) [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--test=TEST] [--skip-enforcement=SKIP-ENFORCEMENT] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id, project_id, or space_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id, project_id, or space_id is required.
 
 `--connection` (string)
 :   Connection name. This option is mutually exclusive with '--connection-id'.
@@ -4994,11 +4850,8 @@ cpdctl datastage codegen generate-buildop [command options]
 `--buildop-id` (string)
 :   The DataStage BuildOp-Asset-ID to use.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -5104,16 +4957,13 @@ cpdctl datastage codegen generate-buildop [command options]
 Create a DataStage flow in the specified project or catalog based on an existing DataStage flow in the same project or catalog.
 
 ```sh
-cpdctl datastage flow clone --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage flow clone --flow-id FLOW-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -5150,16 +5000,13 @@ cpdctl datastage flow clone --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --cata
 Generate the runtime assets for a DataStage flow in the specified project or catalog for a specified runtime type. Either project_id or catalog_id must be specified.
 
 ```sh
-cpdctl datastage flow compile --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--runtime-type RUNTIME-TYPE] [--enable-sql-pushdown=ENABLE-SQL-PUSHDOWN] [--enable-async-compile=ENABLE-ASYNC-COMPILE] [--enable-native-sql-pushdown=ENABLE-NATIVE-SQL-PUSHDOWN] [--enable-push-processing-to-source=ENABLE-PUSH-PROCESSING-TO-SOURCE] [--enable-push-join-to-source=ENABLE-PUSH-JOIN-TO-SOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage flow compile --flow-id FLOW-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--runtime-type RUNTIME-TYPE] [--enable-sql-pushdown=ENABLE-SQL-PUSHDOWN] [--enable-async-compile=ENABLE-ASYNC-COMPILE] [--enable-native-sql-pushdown=ENABLE-NATIVE-SQL-PUSHDOWN] [--enable-push-processing-to-source=ENABLE-PUSH-PROCESSING-TO-SOURCE] [--enable-push-join-to-source=ENABLE-PUSH-JOIN-TO-SOURCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -5231,11 +5078,8 @@ cpdctl datastage flow create [command options]
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -5312,16 +5156,13 @@ If the deletion of the data flows and their runs will take some time to finish, 
          All the data flow runs associated with the data flows will also be deleted. If a data flow is still running, it will not be deleted unless the force parameter is set to true. If a data flow is still running and the force parameter is set to true, the call returns immediately with a 202 response. The related data flows are deleted after the data flow runs are stopped.
 
 ```sh
-cpdctl datastage flow delete --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--force=FORCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage flow delete --flow-id FLOW-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--force=FORCE] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -5360,16 +5201,13 @@ cpdctl datastage flow delete --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --cat
 Lists the DataStage flow that is contained in the specified project. Attachments, metadata and a limited number of attributes from the entity of each DataStage flow is returned.
 
 ```sh
-cpdctl datastage flow get --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage flow get --flow-id FLOW-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -5402,16 +5240,13 @@ cpdctl datastage flow get --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --catalo
 Request compile status of the flow that was previously submitted for compile. Either project_id or catalog_id must be specified.
 
 ```sh
-cpdctl datastage flow get-compile-status --flow-id FLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--enable-sql-pushdown=ENABLE-SQL-PUSHDOWN] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage flow get-compile-status --flow-id FLOW-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--enable-sql-pushdown=ENABLE-SQL-PUSHDOWN] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' or 'space_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' or 'space_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -5468,7 +5303,7 @@ To sort the results, use one or more of the parameters  described in the followi
 Multiple sort keys can be specified by delimiting them with a comma. For example, to sort in descending order on `create_time` and then in ascending order on name use: `sort=-metadata.create_time`,`+entity.name`.
 
 ```sh
-cpdctl datastage flow list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--name NAME] [--description DESCRIPTION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage flow list [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--name NAME] [--description DESCRIPTION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -5478,11 +5313,8 @@ cpdctl datastage flow list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] 
 
     The default value is `false`.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -5533,16 +5365,13 @@ cpdctl datastage flow list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] 
 Modifies attributes of a DataStage flow in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage flow patch-attributes --flow-id FLOW-ID [--description DESCRIPTION] [--directory-asset-id DIRECTORY-ASSET-ID] [--name NAME] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage flow patch-attributes --flow-id FLOW-ID [--description DESCRIPTION] [--directory-asset-id DIRECTORY-ASSET-ID] [--name NAME] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' or 'space_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' or 'space_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -5592,11 +5421,8 @@ cpdctl datastage flow update [command options]
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -5688,11 +5514,8 @@ cpdctl datastage migration create [command options]
 `--body` (io.ReadCloser)
 :   The ISX file to import. The maximum file size is 1GB.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--conflict-resolution` (string)
 :   Resolution when data flow to be imported has a name conflict with an existing data flow in the project or catalog. The default conflict resolution is "skip" will skip the data flow so that it will not be imported. The "rename" resolution will append "_Import_NNNN" suffix to the original name and use the new name for the imported data flow, while the "replace" resolution will first remove the existing data flow with the same name and import the new data flow. For the "rename_replace" option, when the flow name is already used, a new flow name with the suffix
@@ -5819,7 +5642,7 @@ cpdctl datastage migration create [command options]
 Creates data flows from the attached job export file. This is an asynchronous call. The API call returns almost immediately which does not necessarily imply the completion of the import request. It only means that the import request has been accepted. The status field of the import request is included in the import response object. The status "completed" ("in_progress", "failed", resp.) indicates the import request is completed (in progress, and failed, resp.) The job export file for an import request may contain one mor more data flows. Unless the on_failure option is set to "stop", a completed import request may contain not only successfully imported data flows but also data flows that cannot be imported.
 
 ```sh
-cpdctl datastage migration create-from-zip --body BODY [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--on-failure continue | stop] [--conflict-resolution skip | rename | replace | rename_replace] [--file-name FILE-NAME] [--enable-notification=ENABLE-NOTIFICATION] [--import-only=IMPORT-ONLY] [--include-dependencies=INCLUDE-DEPENDENCIES] [--asset-type ASSET-TYPE] [--skip-dependencies SKIP-DEPENDENCIES] [--replace-mode soft | hard] [--x-migration-enc-key X-MIGRATION-ENC-KEY] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage migration create-from-zip --body BODY [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--on-failure continue | stop] [--conflict-resolution skip | rename | replace | rename_replace] [--file-name FILE-NAME] [--enable-notification=ENABLE-NOTIFICATION] [--import-only=IMPORT-ONLY] [--include-dependencies=INCLUDE-DEPENDENCIES] [--asset-type ASSET-TYPE] [--skip-dependencies SKIP-DEPENDENCIES] [--replace-mode soft | hard] [--x-migration-enc-key X-MIGRATION-ENC-KEY] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -5830,11 +5653,8 @@ cpdctl datastage migration create-from-zip --body BODY [{--catalog-id CATALOG-ID
 `--body` (io.ReadCloser)
 :   The zip file to import. The maximum file size is 1GB.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--conflict-resolution` (string)
 :   Resolution when data flow to be imported has a name conflict with an existing data flow in the project or catalog. The default conflict resolution is "skip" will skip the data flow so that it will not be imported. The "rename" resolution will append "_Import_NNNN" suffix to the original name and use the new name for the imported data flow, while the "replace" resolution will first remove the existing data flow with the same name and import the new data flow. For the "rename_replace" option, when the flow name is already used, a new flow name with the suffix
@@ -5908,16 +5728,13 @@ cpdctl datastage migration create-from-zip --body BODY [{--catalog-id CATALOG-ID
 Cancel a previous import request. Use GET /v3/migration/imports/{import_id} to obtain the current status of the import, including whether it has been cancelled.
 
 ```sh
-cpdctl datastage migration delete --import-id IMPORT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage migration delete --import-id IMPORT-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -5950,16 +5767,13 @@ cpdctl datastage migration delete --import-id IMPORT-ID [{--catalog-id CATALOG-I
 Cancel a previous import request.
 
 ```sh
-cpdctl datastage migration delete-zip --import-id IMPORT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage migration delete-zip --import-id IMPORT-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -6010,16 +5824,13 @@ cpdctl datastage migration encrypt --input-text INPUT-TEXT [-j, --jmes-query JME
 export flows with dependencies as a zip file.
 
 ```sh
-cpdctl datastage migration export-flows-with-dependencies --flows (FLOWS | @FLOWS-FILE) [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--remove-secrets=REMOVE-SECRETS] [--include-dependencies=INCLUDE-DEPENDENCIES] [--id ID] [--type TYPE] [--include-data-assets=INCLUDE-DATA-ASSETS] [--exclude-data-files=EXCLUDE-DATA-FILES] [--x-migration-enc-key X-MIGRATION-ENC-KEY] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
+cpdctl datastage migration export-flows-with-dependencies --flows (FLOWS | @FLOWS-FILE) [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--remove-secrets=REMOVE-SECRETS] [--include-dependencies=INCLUDE-DEPENDENCIES] [--id ID] [--type TYPE] [--include-data-assets=INCLUDE-DATA-ASSETS] [--exclude-data-files=EXCLUDE-DATA-FILES] [--x-migration-enc-key X-MIGRATION-ENC-KEY] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -6092,16 +5903,13 @@ cpdctl datastage migration export-flows-with-dependencies --flows (FLOWS | @FLOW
 Gets the status of an import request. The status field in the response object indicates if the given import is completed, in progress, or failed. Detailed status information about each imported data flow is also contained in the response object.
 
 ```sh
-cpdctl datastage migration get --import-id IMPORT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--format json | csv] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage migration get --import-id IMPORT-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--format json | csv] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -6138,16 +5946,13 @@ cpdctl datastage migration get --import-id IMPORT-ID [{--catalog-id CATALOG-ID |
 Gets the status of an import request. The status field in the response object indicates if the given import is completed, in progress, or failed. Detailed status information about each imported data flow is also contained in the response object.
 
 ```sh
-cpdctl datastage migration get-zip --import-id IMPORT-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--format json | csv] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage migration get-zip --import-id IMPORT-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--format json | csv] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -6184,16 +5989,13 @@ cpdctl datastage migration get-zip --import-id IMPORT-ID [{--catalog-id CATALOG-
 Create a DataStage subflow in the specified project or catalog based on an existing DataStage subflow in the same project or catalog.
 
 ```sh
-cpdctl datastage subflow clone --subflow-id SUBFLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage subflow clone --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -6235,11 +6037,8 @@ cpdctl datastage subflow create [command options]
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -6315,16 +6114,13 @@ Deletes the specified data subflows in a project or catalog (either `project_id`
 If the deletion of the data subflows will take some time to finish, then a 202 response will be returned and the deletion will continue asynchronously.
 
 ```sh
-cpdctl datastage subflow delete --subflow-id SUBFLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage subflow delete --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -6357,16 +6153,13 @@ cpdctl datastage subflow delete --subflow-id SUBFLOW-ID [{--catalog-id CATALOG-I
 Lists the DataStage subflow that is contained in the specified project. Attachments, metadata and a limited number of attributes from the entity of each DataStage flow is returned.
 
 ```sh
-cpdctl datastage subflow get --subflow-id SUBFLOW-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage subflow get --subflow-id SUBFLOW-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -6417,7 +6210,7 @@ To sort the results, use one or more of the parameters  described in the followi
 Multiple sort keys can be specified by delimiting them with a comma. For example, to sort in descending order on `create_time` and then in ascending order on name use: `sort=-metadata.create_time`,`+entity.name`.
 
 ```sh
-cpdctl datastage subflow list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--name NAME] [--description DESCRIPTION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage subflow list [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--name NAME] [--description DESCRIPTION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6427,11 +6220,8 @@ cpdctl datastage subflow list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME
 
     The default value is `false`.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -6482,16 +6272,13 @@ cpdctl datastage subflow list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME
 Modifies attributes of a data subflow in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage subflow patch-attributes --subflow-id SUBFLOW-ID [--description DESCRIPTION] [--directory-asset-id DIRECTORY-ASSET-ID] [--name NAME] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage subflow patch-attributes --subflow-id SUBFLOW-ID [--description DESCRIPTION] [--directory-asset-id DIRECTORY-ASSET-ID] [--name NAME] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' or 'space_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' or 'space_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -6541,11 +6328,8 @@ cpdctl datastage subflow update [command options]
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -6623,16 +6407,13 @@ cpdctl datastage subflow update [command options]
 Clone table definition.
 
 ```sh
-cpdctl datastage table-definition clone --table-definition-id TABLE-DEFINITION-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage table-definition clone --table-definition-id TABLE-DEFINITION-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id or project_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -6665,7 +6446,7 @@ cpdctl datastage table-definition clone --table-definition-id TABLE-DEFINITION-I
 Creates a table definition in the specified project or catalog (either project_id or catalog_id must be set). All subsequent calls to use the parameter set must specify the project or catalog ID the table definition was created in.
 
 ```sh
-cpdctl datastage table-definition create {--entity (ENTITY | @ENTITY-FILE) | (--entity-column-info ENTITY-COLUMN-INFO | @ENTITY-COLUMN-INFO-FILE) (--entity-data-asset ENTITY-DATA-ASSET | @ENTITY-DATA-ASSET-FILE) (--entity-data-definition ENTITY-DATA-DEFINITION | @ENTITY-DATA-DEFINITION-FILE) (--entity-directory-asset ENTITY-DIRECTORY-ASSET | @ENTITY-DIRECTORY-ASSET-FILE) (--entity-ds-info ENTITY-DS-INFO | @ENTITY-DS-INFO-FILE)} {--metadata (METADATA | @METADATA-FILE) | --metadata-description METADATA-DESCRIPTION --metadata-name METADATA-NAME} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [--asset-category SYSTEM | USER] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage table-definition create {--entity (ENTITY | @ENTITY-FILE) | (--entity-column-info ENTITY-COLUMN-INFO | @ENTITY-COLUMN-INFO-FILE) (--entity-data-asset ENTITY-DATA-ASSET | @ENTITY-DATA-ASSET-FILE) (--entity-data-definition ENTITY-DATA-DEFINITION | @ENTITY-DATA-DEFINITION-FILE) (--entity-directory-asset ENTITY-DIRECTORY-ASSET | @ENTITY-DIRECTORY-ASSET-FILE) (--entity-ds-info ENTITY-DS-INFO | @ENTITY-DS-INFO-FILE)} {--metadata (METADATA | @METADATA-FILE) | --metadata-description METADATA-DESCRIPTION --metadata-name METADATA-NAME} [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [--asset-category SYSTEM | USER] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6673,11 +6454,8 @@ cpdctl datastage table-definition create {--entity (ENTITY | @ENTITY-FILE) | (--
 `--asset-category` (string)
 :   The category of the asset. Must be either SYSTEM or USER. Only a registered service can use this parameter.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id or project_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -6740,16 +6518,13 @@ cpdctl datastage table-definition create {--entity (ENTITY | @ENTITY-FILE) | (--
 Delete the specified table definitions from a project or catalog (either project_id or catalog_id must be set).
 
 ```sh
-cpdctl datastage table-definition delete --table-definition-id TABLE-DEFINITION-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage table-definition delete --table-definition-id TABLE-DEFINITION-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id or project_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -6782,16 +6557,13 @@ cpdctl datastage table-definition delete --table-definition-id TABLE-DEFINITION-
 Get table definition.
 
 ```sh
-cpdctl datastage table-definition get --table-definition-id TABLE-DEFINITION-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage table-definition get --table-definition-id TABLE-DEFINITION-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id or project_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -6840,7 +6612,7 @@ To sort the returned results, use one or more of the parameters described in the
 Multiple sort keys can be specified by delimiting them with a comma. For example, to sort in descending order on create_time and then in ascending order on name use: `?sort=-metadata.create_time,+asset.name.
 
 ```sh
-cpdctl datastage table-definition list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--name NAME] [--description DESCRIPTION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage table-definition list [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--sort SORT] [--start START | --all-pages] [--limit LIMIT] [--name NAME] [--description DESCRIPTION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -6850,11 +6622,8 @@ cpdctl datastage table-definition list [{--catalog-id CATALOG-ID | --catalog CAT
 
     The default value is `false`.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id or project_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -6905,16 +6674,13 @@ cpdctl datastage table-definition list [{--catalog-id CATALOG-ID | --catalog CAT
 Replace the contents of a table definition in the specified project or catalog (either project_id or catalog_id must be set).
 
 ```sh
-cpdctl datastage table-definition replace --table-definition-id TABLE-DEFINITION-ID {--entity (ENTITY | @ENTITY-FILE) | (--entity-column-info ENTITY-COLUMN-INFO | @ENTITY-COLUMN-INFO-FILE) (--entity-data-asset ENTITY-DATA-ASSET | @ENTITY-DATA-ASSET-FILE) (--entity-data-definition ENTITY-DATA-DEFINITION | @ENTITY-DATA-DEFINITION-FILE) (--entity-directory-asset ENTITY-DIRECTORY-ASSET | @ENTITY-DIRECTORY-ASSET-FILE) (--entity-ds-info ENTITY-DS-INFO | @ENTITY-DS-INFO-FILE)} {--metadata (METADATA | @METADATA-FILE) | --metadata-description METADATA-DESCRIPTION --metadata-name METADATA-NAME} [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage table-definition replace --table-definition-id TABLE-DEFINITION-ID {--entity (ENTITY | @ENTITY-FILE) | (--entity-column-info ENTITY-COLUMN-INFO | @ENTITY-COLUMN-INFO-FILE) (--entity-data-asset ENTITY-DATA-ASSET | @ENTITY-DATA-ASSET-FILE) (--entity-data-definition ENTITY-DATA-DEFINITION | @ENTITY-DATA-DEFINITION-FILE) (--entity-directory-asset ENTITY-DIRECTORY-ASSET | @ENTITY-DIRECTORY-ASSET-FILE) (--entity-ds-info ENTITY-DS-INFO | @ENTITY-DS-INFO-FILE)} {--metadata (METADATA | @METADATA-FILE) | --metadata-description METADATA-DESCRIPTION --metadata-name METADATA-NAME} [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id or project_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -6976,16 +6742,13 @@ cpdctl datastage table-definition replace --table-definition-id TABLE-DEFINITION
 Patch a table definition in the specified project or catalog (either project_id or catalog_id must be set).
 
 ```sh
-cpdctl datastage table-definition update --table-definition-id TABLE-DEFINITION-ID --json-patch (JSON-PATCH | @JSON-PATCH-FILE) [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage table-definition update --table-definition-id TABLE-DEFINITION-ID --json-patch (JSON-PATCH | @JSON-PATCH-FILE) [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id or project_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -7022,16 +6785,13 @@ cpdctl datastage table-definition update --table-definition-id TABLE-DEFINITION-
 Clone a DataStage XML schema library based on the specify library id in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library clone --library-id LIBRARY-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage xml-schema-library clone --library-id LIBRARY-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id or project_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -7064,16 +6824,13 @@ cpdctl datastage xml-schema-library clone --library-id LIBRARY-ID [{--catalog-id
 Creates a new DataStage XML schema library in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library create --name NAME [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [--folder FOLDER] [--description DESCRIPTION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage xml-schema-library create --name NAME [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [--folder FOLDER] [--description DESCRIPTION] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id or project_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -7118,16 +6875,13 @@ cpdctl datastage xml-schema-library create --name NAME [{--catalog-id CATALOG-ID
 Delete a DataStage XML schema library in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library delete --library-id LIBRARY-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage xml-schema-library delete --library-id LIBRARY-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id or project_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -7160,16 +6914,13 @@ cpdctl datastage xml-schema-library delete --library-id LIBRARY-ID [{--catalog-i
 Delete files from a DataStage XML schema library based on the file_names in the specified project or catalog (either `project_id` or `catalog_id` must be set). Thread unsafe.
 
 ```sh
-cpdctl datastage xml-schema-library delete-files --file-name FILE-NAME --library-id LIBRARY-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage xml-schema-library delete-files --file-name FILE-NAME --library-id LIBRARY-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id or project_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -7206,16 +6957,13 @@ cpdctl datastage xml-schema-library delete-files --file-name FILE-NAME --library
 Download file from a DataStage XML schema library based on the file_name in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library download --library-id LIBRARY-ID [--file-name FILE-NAME] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
+cpdctl datastage xml-schema-library download --library-id LIBRARY-ID [--file-name FILE-NAME] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id or project_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -7256,16 +7004,13 @@ cpdctl datastage xml-schema-library download --library-id LIBRARY-ID [--file-nam
 Export a XML Schema Library in zip format.
 
 ```sh
-cpdctl datastage xml-schema-library export-datastage-library-zip --library-name LIBRARY-NAME [--folder FOLDER] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
+cpdctl datastage xml-schema-library export-datastage-library-zip --library-name LIBRARY-NAME [--folder FOLDER] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] --output-file OUTPUT_FILE [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id, space_id, or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -7306,16 +7051,13 @@ cpdctl datastage xml-schema-library export-datastage-library-zip --library-name 
 Get the specify DataStage XML schema library in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library get --library-id LIBRARY-ID [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage xml-schema-library get --library-id LIBRARY-ID [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id or project_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -7348,7 +7090,7 @@ cpdctl datastage xml-schema-library get --library-id LIBRARY-ID [{--catalog-id C
 Import/create XML Schema Library from zip stream.
 
 ```sh
-cpdctl datastage xml-schema-library import-datastage-library-zip --library-name LIBRARY-NAME --body BODY [--folder FOLDER] [--conflict-option CONFLICT-OPTION] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage xml-schema-library import-datastage-library-zip --library-name LIBRARY-NAME --body BODY [--folder FOLDER] [--conflict-option CONFLICT-OPTION] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--directory-asset-id DIRECTORY-ASSET-ID] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -7356,11 +7098,8 @@ cpdctl datastage xml-schema-library import-datastage-library-zip --library-name 
 `--body` (io.ReadCloser)
 :   Required. null
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id, space_id, or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id, space_id, or project_id is required.
 
 `--conflict-option` (string)
 :   The conflict_option. The default is skip.
@@ -7406,16 +7145,13 @@ cpdctl datastage xml-schema-library import-datastage-library-zip --library-name 
 List existing DataStage XML schema libraries in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library list [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage xml-schema-library list [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id or project_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -7444,16 +7180,13 @@ cpdctl datastage xml-schema-library list [{--catalog-id CATALOG-ID | --catalog C
 Rename a DataStage XML schema library based on the specify library id in the specified project or catalog (either `project_id` or `catalog_id` must be set).
 
 ```sh
-cpdctl datastage xml-schema-library rename --library-id LIBRARY-ID --name NAME [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage xml-schema-library rename --library-id LIBRARY-ID --name NAME [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id or project_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -7490,7 +7223,7 @@ cpdctl datastage xml-schema-library rename --library-id LIBRARY-ID --name NAME [
 Upload a file to an existing DataStage XML schema library in the specified project or catalog (either `project_id` or `catalog_id` must be set). Thread unsafe.
 
 ```sh
-cpdctl datastage xml-schema-library upload --library-id LIBRARY-ID --body BODY [--file-name FILE-NAME] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
+cpdctl datastage xml-schema-library upload --library-id LIBRARY-ID --body BODY [--file-name FILE-NAME] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [-j, --jmes-query JMES-QUERY] [--jq JQ-QUERY] [--output OUTPUT] [-q, --quiet]
 ```
 
 #### Command options
@@ -7498,11 +7231,8 @@ cpdctl datastage xml-schema-library upload --library-id LIBRARY-ID --body BODY [
 `--body` (io.ReadCloser)
 :   The content of the file to upload.
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. catalog_id or project_id is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. catalog_id or project_id is required.
 
 `--cpd-scope` (string)
 :   CPD space or project or catalog scope, e.g. 'cpd://default-profile/spaces/7bccdda4-9752-4f37-868e-891de6c48135'
@@ -11389,16 +11119,13 @@ cpdctl mdm system reset [flags]
 Retrieve the current instance metadata via GET /mdm/v1/instance_metadata and merge the provided project, catalog, asset, and COS CRN settings before persisting them via PUT /mdm/v1/instance_metadata. The MDM configuration asset is created automatically if it does not already exist. On CP4D, --cos-crn is optional.
 
 ```sh
-cpdctl mdm system setup-master-data {--project-id PROJECT-ID | --project PROJECT-NAME} {--catalog-id CATALOG-ID | --catalog CATALOG-NAME} [--cos-crn COS-CRN] [--governance-enabled=GOVERNANCE-ENABLED] [--label LABEL] [--generate-connected-data-asset=GENERATE-CONNECTED-DATA-ASSET] [--history-tracking=true|false] [--retention-enabled=true|false] [--retention-days DAYS]
+cpdctl mdm system setup-master-data {--project-id PROJECT-ID | --project PROJECT-NAME} --catalog-id CATALOG-ID [--cos-crn COS-CRN] [--governance-enabled=GOVERNANCE-ENABLED] [--label LABEL] [--generate-connected-data-asset=GENERATE-CONNECTED-DATA-ASSET] [--history-tracking=true|false] [--retention-enabled=true|false] [--retention-days DAYS]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The UUID of the catalog (mandatory). This option is mutually exclusive with '--catalog'.
+:   The UUID of the catalog (mandatory).
 
 `--cos-crn` (string)
 :   The Cloud Object Storage instance CRN (mandatory on public cloud; optional on CP4D).
@@ -16263,16 +15990,13 @@ cpdctl pipeline commit {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [-
 Generate Runtime code for a Watson pipeline in the specified project or catalog for a specified runtime type. Either project_id or catalog_id must be specified.
 
 ```sh
-cpdctl pipeline compile {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [--recursive=RECURSIVE] [{--catalog-id CATALOG-ID | --catalog CATALOG-NAME}] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--enable-debug=ENABLE_DEBUG] [--enable-inline=ENABLE-INLINE] [--enable-versioning=ENABLE-VERSIONING] [--code] [--verbose]
+cpdctl pipeline compile {--pipeline-id PIPELINE-ID | --pipeline PIPELINE-NAME} [--recursive=RECURSIVE] [--catalog-id CATALOG-ID] [{--project-id PROJECT-ID | --project PROJECT-NAME}] [{--space-id SPACE-ID | --space SPACE-NAME}] [--enable-debug=ENABLE_DEBUG] [--enable-inline=ENABLE-INLINE] [--enable-versioning=ENABLE-VERSIONING] [--code] [--verbose]
 ```
 
 #### Command options
 
-`--catalog` (string)
-:   Catalog name. This option is mutually exclusive with '--catalog-id'.
-
 `--catalog-id` (string)
-:   The ID of the catalog to use. 'catalog_id' or 'project_id' or 'space_id' is required. This option is mutually exclusive with '--catalog'.
+:   The ID of the catalog to use. 'catalog_id' or 'project_id' or 'space_id' is required.
 
 `-c`, `--code` (bool)
 :   Whether to enable detailed stage information when compiling a flow. Only for Optimized Runner mode.
