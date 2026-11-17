@@ -14,7 +14,7 @@ ls -al
 unzip -l ${export_file}
 
 timestamp=$(date "+%Y%m%d-%H%M%S")
-test_space_name="test-space-${timestamp}"
+test_space_name="mode-lifecycle-test-space-${timestamp}"
 
 cpdctl space create --name ${test_space_name} --output json --jmes-query "metadata.id" --raw-output > ${test_space_id_file}
 
